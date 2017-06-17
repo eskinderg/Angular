@@ -1,10 +1,19 @@
 import { Component } from '@angular/core';
+// import { Config } from './shared/config/env.config';
+import { environment } from '../environments/environment'; // import './operators';
 
+/**
+ * This class represents the main application component.
+ */
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  moduleId: module.id,
+  selector: 'sd-app',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  title = 'app works!';
+  constructor() {
+    // debugger;
+    console.log('Environment config', environment);
+  }
 }

@@ -1,0 +1,28 @@
+@import "~bootstrap/scss/variables";
+@import './src/scss/libraries/overrides/variables';
+
+// :host{
+//   cursor:
+// }
+#main-dropdown
+{
+  background-color: $blue;
+  border:none;
+  color: $navbar-inverse-color;
+
+    &:focus, &:hover {
+      box-shadow: none;
+      color:$white;
+    }
+}
+
+
+.dropdown-menu {
+  right:0;
+  left:auto;
+
+  & .dropdown-item{
+    // color:red;
+  }
+
+}

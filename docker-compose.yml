@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  angular-project:
+    build:
+      context: .
+      dockerfile: ./.docker/.Dockerfile
+    command:  npm start
+    container_name: angular-project-start
+    image: angular-project
+    networks:
+      - dev-network
+    ports:
+      - '4200:4200'
+      - '49153:49153'
+
+networks:
+  dev-network:
+    driver: bridge

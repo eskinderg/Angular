@@ -1,0 +1,16 @@
+.notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, .2);
+}
+
+.notice-info {
+    border-color: #45ABCD;
+}
+
+
+.notice-info > strong {
+    color: #45ABCD;
+}

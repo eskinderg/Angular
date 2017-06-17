@@ -1,0 +1,54 @@
+%scope {
+  @import "~bootstrap/scss/variables";
+
+  // Colors
+      $blue: #2a6ada ! global;
+      
+  // Grayscales
+      // $gray-dark:                 lighten($blue, 10%) !global;
+      // $gray:                      lighten($blue, 21%) !global;
+      // $gray-light:                lighten($blue, 30%) !global;
+      // $gray-lighter:              lighten($blue, 40%) !global;
+      // $gray-lightest:             lighten($blue, 55%) !global;
+
+  // Symantic Color Scheme
+    // $brand-primary: $orange ! global ;
+    // $brand-primary: black !global;
+
+
+  //Fonts
+      // @import url(https://fonts.googleapis.com/css?family=Raleway);
+      // Font Variables
+      // $raleway: 'Raleway', sans-serif;
+      // $open-sans: 'Open Sans', sans-serif;
+      // $font-family-sans-serif: $raleway ! global;
+      // $font-family-serif:      $raleway;
+      // $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+      // $font-family-base:       $font-family-sans-serif !default;
+
+
+
+  // Components
+      // $component-active-color: $white !default;
+      // $component-active-bg:    lighten($brand-primary,25%);
+
+
+  //nav-bar
+      $navbar-inverse-hover-color:        $white ! global;
+
+
+  //table
+      $table-bg-hover:                    $gray-lightest ! global;
+
+  //Card
+      // $card-cap-bg :                      $gray-lightest !global;
+
+  //List group
+      // $list-group-link-color:             $gray-lig !default;
+
+  // @debug $brand-primary;
+}
+
+// $blue :red;
+
+// @debug $brand-primary;

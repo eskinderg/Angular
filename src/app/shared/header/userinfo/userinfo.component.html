@@ -1,0 +1,30 @@
+<!-- <a class="nav-link" [routerLink]="['/profile']">{{ user.profile.given_name }}</a> -->
+    <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+
+<!-- <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</li> -->
+<!-- <pre>
+{{user |json}}
+</pre> -->
+<div *ngIf="user" ngbDropdown class="d-inline-block hidden-md-down">
+     <button class="btn btn-secondary" id="main-dropdown" ngbDropdownToggle>
+       {{ user.profile.given_name }}
+       <!-- My Profile -->
+     </button>
+     <div class="dropdown-menu" aria-labelledby="dropdownBasic">
+       <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
+       <button class="dropdown-item" (click)="startSignoutMainWindow()">Logout</button>
+       <!-- <button class="dropdown-item">Something else is here</button> -->
+     </div>
+ </div>
