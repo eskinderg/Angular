@@ -1,13 +1,10 @@
 import { FormsModule } from '@angular/forms';
-import {
-  async,
-  TestBed
- } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { Observable } from 'rxjs/Observable';
 
 import { ProfileComponent } from './profile.component';
-import { NameListService } from '../shared/name-list/name-list.service';
+// import { NameListService } from '../shared/name-list/name-list.service';
 
 export function main() {
   describe('Profile component', () => {
@@ -16,10 +13,10 @@ export function main() {
 
       TestBed.configureTestingModule({
         imports: [FormsModule],
-        declarations: [ProfileComponent],
-        providers: [
-          { provide: NameListService, useValue: new MockNameListService() }
-        ]
+        declarations: [ProfileComponent]
+        // providers: [
+        //   { provide: NameListService, useValue: new MockNameListService() }
+        // ]
       });
 
     });

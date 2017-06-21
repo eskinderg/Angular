@@ -1,31 +1,27 @@
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 
-/**
- * This class represents the navigation bar component.
- */
 @Component({
   selector: 'userinfo',
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
 })
-export class UserInfoComponent {
+export class UserInfoComponent implements OnInit {
 
-  // public isExpanded = false;
-  @Input()
   user:any;
 
-  constructor(private service: AuthService) { }
+  constructor(private authService: AuthService) { }
 
-  startSignoutMainWindow() {
-    this.service.startSignoutMainWindow();
+  ngOnInit(){
+      this.authService.userLoadededEvent
+        .subscribe(user => {
+          this.user = user;
+      });
   }
 
-  isUserLoggedIn(){
-    return false
-    // let isLoggedIn = this.service.isLoggedInObs();
-    // return isLoggedIn;
+  startSignoutMainWindow() {
+      this.authService.startSignoutMainWindow();
   }
 
 }

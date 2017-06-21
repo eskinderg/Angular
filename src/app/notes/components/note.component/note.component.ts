@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Draggable } from '../../../shared';
+// import { Draggable } from '../../../shared';
 
 @Component({
   selector: 'app-note',

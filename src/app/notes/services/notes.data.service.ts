@@ -3,12 +3,14 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/from';
+import { environment } from '../../../environments/environment';
 
 import { Note } from '../note';
 
 @Injectable()
 export class NotesDataService {
-    private API_ROOT: String = "http://localhost:3000";
+
+    private API_ROOT: String = environment.API;
     private JSON_HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
     constructor(public http: Http) { }

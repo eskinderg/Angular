@@ -1,5 +1,8 @@
 @import '../../scss/variables';
 @import '../../scss/mixins';
+:host{
+  // display: block;
+}
 // div{
 //   // border: 1px solid black ! important;
 //   @include component;

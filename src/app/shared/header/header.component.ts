@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 
 /**
- * This class represents the navigation bar component.
+ * This class represents the HeaderComponent.
  */
 @Component({
+  moduleId: module.id,
   selector: 'sd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
@@ -13,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
   public isExpanded = false;
   _user:any;
-  loadedUserSub: any;
 
 
   constructor (private service: AuthService){
@@ -21,10 +21,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.loadedUserSub = this.service.userLoadededEvent
+    this.service.userLoadededEvent
       .subscribe(user => {
         this._user = user;
-      });
+    });
   }
 
   isUserLoggedIn(){

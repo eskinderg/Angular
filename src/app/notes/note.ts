@@ -5,12 +5,8 @@ export class Note {
     top: number;
     id: string;
     dirty: boolean;
-    
+
     constructor(values: Object = {}) {
       Object.assign(this, values);
     }
-}
-
-export interface AppState {
-  notes: Note[];
 }

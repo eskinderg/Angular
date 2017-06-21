@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   TODO_API: 'http://localhost:3000',
+  API: 'http://localhost:3000',
 
   Auth : {
     authority: 'http://localhost:5000',

@@ -1,69 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { NameListService } from '../shared/name-list/name-list.service';
+import { Observable } from 'rxjs';
 
+import { SlideAnimation }   from '../shared/animations';
+import { AuthService } from '../shared/services/auth/auth.service';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
 @Component({
-  moduleId: module.id,
   selector: 'sd-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
   // providers: [TodoDataService]
+  animations: [ SlideAnimation ],
+  host: { '[@routerAnimation]': '' }
 })
 export class HomeComponent  {
 
-// todos: Todo[] = [];
-// data: any = [];
-// tableData: any[]=[];
-//
-//   constructor(private todoDataService: TodoDataService) {
-//   }
-//
-//   public ngOnInit() {
-//     this.todoDataService
-//       .getAllTodos()
-//       .subscribe(
-//         (todos) => {
-//           this.todos = todos;
-//         }
-//       );
-//
-// // this.tableData = [
-// //   {"Name":"eskinder", "Age": "30"},
-// //   {"Name":"getahun", "Age": "60"}
-// // ];
-//
-//   }
-//
-//   onAddTodo(todo:Todo) {
-//     this.todoDataService
-//       .addTodo(todo)
-//       .subscribe(
-//         (newTodo) => {
-//           this.todos = this.todos.concat(newTodo);
-//         }
-//       );
-//   }
-//
-//   onToggleTodoComplete(todo:Todo) {
-//     this.todoDataService
-//       .toggleTodoComplete(todo)
-//       .subscribe(
-//         (updatedTodo) => {
-//           todo = updatedTodo;
-//         }
-//       );
-//   }
-//
-//   onRemoveTodo(todo:Todo) {
-//     this.todoDataService
-//       .deleteTodoById(todo.id)
-//       .subscribe(
-//         (_) => {
-//           this.todos = this.todos.filter((t) => t.id !== todo.id);
-//         }
-//       );
-// }
+  constructor() { }
+
+  ngOnInit() {
+
+    // Observable.fromPromise(this.authService.mgr.signoutRedirect())
+    //           .subscribe((user) => {
+    //             console.log('observalbe understood to some extent');
+    //               // this.authService.userLoadededEvent.emit(user); //Notifying User has loggedIn Successfully
+    //               // this.router.navigate(['/']);
+    //           },(error)=>{
+    //               console.log(error);
+    //               // this.router.navigate(['/404']);
+    //           });
+
+  }
 
 }

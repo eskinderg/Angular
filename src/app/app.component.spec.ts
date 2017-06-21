@@ -15,7 +15,6 @@ import {
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { HeaderComponent } from './shared/header/header.component';
 // import { Todo } from './shared/components/todo/todo.component';
 
@@ -30,7 +29,7 @@ export function main() {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [FormsModule, RouterTestingModule.withRoutes(config)],
-        declarations: [TestComponent, ToolbarComponent ,
+        declarations: [TestComponent,
           HeaderComponent, AppComponent,
           HomeComponent, AboutComponent],
         providers: [

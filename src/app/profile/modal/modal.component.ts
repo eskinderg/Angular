@@ -7,7 +7,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['modal.component.scss'],
   templateUrl: 'modal.component.html'
 })
-
+/**
+* Modal Component for modal dialogs
+*/
 export class ModalComponent implements OnInit {
 
   modalHeader: string;
@@ -24,6 +26,11 @@ export class ModalComponent implements OnInit {
   ngOnInit() {}
 
   closeModal() {
+    this.activeModal.close();
+  }
+
+  save(){
+    alert('Information saved');
     this.activeModal.close();
   }
 }

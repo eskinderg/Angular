@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { TodoListItemComponent } from './todo-list-item.component';
-import { Todo } from '../todo';
+import { Todo } from '../../todo';
 
 describe('TodoListItemComponent', () => {
   let component: TodoListItemComponent;

@@ -9,7 +9,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ModalComponent } from './modal/modal.component';
 
 
-
 @NgModule({
   imports: [CommonModule, ProfileRoutingModule, SharedModule, NgbModule.forRoot()],
   declarations: [ProfileComponent, ModalComponent],
