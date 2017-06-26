@@ -8,9 +8,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { FeatureComponent } from './feature/feature.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { NgaModule } from '../theme/nga.module';
 
 @NgModule({
-  imports: [CommonModule, AboutRoutingModule, SharedModule],
+  imports: [CommonModule, AboutRoutingModule, SharedModule, NgaModule],
   declarations: [
       AboutComponent,
       AboutUsComponent,

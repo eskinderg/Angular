@@ -1,18 +1,25 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-// import { LoggingService } from '../services';
+import { LoggingService } from './loggingservice';
 // import * as StackTrace from 'stacktrace-js';
-
+/**
+* Global error handler class
+*/
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-
+/**
+* @param {Injector} injector - service for injecting LoggingService
+*/
 constructor(private injector: Injector) { }
-
+/**
+* Hangles errors
+* @param {error} error - error thrown
+*/
 handleError(error) {
-    // const loggingService = this.injector.get(LoggingService);
+    const loggingService = this.injector.get(LoggingService);
 
-    // const location = this.injector.get(LocationStrategy);
-
+    const location = this.injector.get(LocationStrategy);
+    loggingService.error(error);
     const message = error.message ? error.message : error.toString();
 
     const url = location instanceof PathLocationStrategy
@@ -29,6 +36,7 @@ handleError(error) {
     // log on the server
     // loggingService.log({ message, url, stack: stackString });
     // });
+    // console.log(url + ' \n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-Globally Handled Error ->>>>>>>>>>>>>>>>>>>>>>>>>>>');
 
 throw error;
   }

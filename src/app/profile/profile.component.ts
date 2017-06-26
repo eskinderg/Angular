@@ -1,8 +1,8 @@
 import { Component, HostListener, HostBinding } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal.component';
-import { SlideAnimation }   from '../shared/animations';
-import { slideInOutAnimation } from '../shared/slideInOutAnimation';
+import { SlideAnimation }   from '../shared/animations/animations';
+import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 /**
  * This class represents the lazy loaded ProfileComponent.
  */
@@ -11,8 +11,8 @@ import { slideInOutAnimation } from '../shared/slideInOutAnimation';
   selector: 'sd-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss'],
-  animations: [ SlideAnimation ],
-  host: { '[@routerAnimation]': '' }
+  animations: [ fadeInAnimation ],
+  host: { '[@routerFadeInAnimation]': '' }
 })
 export class ProfileComponent {
   // @HostBinding('@routeAnimation') routeAnimation = true;
@@ -23,7 +23,7 @@ export class ProfileComponent {
   public y:number;
 
   constructor(private modalService: NgbModal) {
-
+// throw new Error("sample");
   }
 
   showDialog() {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { SlideAnimation }   from '../shared/animations';
+import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
+import { SlideAnimation }   from '../shared/animations/animations';
 import { AuthService } from '../shared/services/auth/auth.service';
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -10,9 +11,8 @@ import { AuthService } from '../shared/services/auth/auth.service';
   selector: 'sd-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss'],
-  // providers: [TodoDataService]
-  animations: [ SlideAnimation ],
-  host: { '[@routerAnimation]': '' }
+  animations: [ fadeInAnimation ],
+  host: { '[@routerFadeInAnimation]': '' }
 })
 export class HomeComponent  {
 

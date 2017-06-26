@@ -1,42 +1,33 @@
 <!-- <div class="notice notice-info">
-    <strong>videos</strong> <a target="_blank" href="https://youtube.com">Watch the video tutorial on this project</a>
+    <strong>Notice</strong> This is a sample notice
 </div> -->
 
 <div class="row mt-2">
   <div class="col-md-6 mt-2">
     <ba-card header="Add Names Please">
-          <!-- <div class="form-group" >
-            <form (submit)="addName()">
-
-              <div class="input-group">
-                <input type="text" [(ngModel)]="newName" name="newName" class="form-control form-control-sm" placeholder="Add new names">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="Submit">Add</button>
-                </span>
-              </div>
-            </form>
-          </div> -->
-          <div class="form-group">
+          <!-- <div class="form-group">
             <ul class="list-group">
-              <!-- <li class="list-group-item" *ngFor="let name of names">{{name.name}}</li> -->
               <li *ngFor="let todo of todos" class="list-group-item"> {{todo.title}}</li>
             </ul>
-          </div>
+          </div> -->
     </ba-card>
 
   </div>
 
 
   <div class="col-md-6 mt-2">
-    <ba-card header="Todos">
+    <ba-card header="Todo List">
         <todo></todo>
     </ba-card>
 
   </div>
 </div>
 
-<div class="row mt-3">
+<div class="row mt-3 mb-3">
   <div class="col-lg-12">
-    <table-todo-list title="Table Title" [todos]="todos"></table-todo-list>
+    <ba-card header="Table Content Area">
+      Content to be populated
+        <!-- <table-todo-list title="Table Title" [todos]="todos"></table-todo-list> -->
+    </ba-card>
   </div>
 </div>

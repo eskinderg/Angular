@@ -2,14 +2,17 @@
   <!-- <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete"> -->
 <div class="d-flex justify-content-end">
   <div class="mr-auto p-2">
-    <label class="custom-control custom-checkbox">
+    <label class="custom-control custom-checkbox mb-0">
       <input type="checkbox" class="custom-control-input" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
       <span class="custom-control-indicator"></span>
       <span class="custom-control-description">{{todo.title}}</span>
     </label>
   </div>
   <div class="p-2">
-    <button class="btn btn-danger btn-sm" (click)="removeTodo(todo)" >Delete</button>
+
+    <a href="#" class="btn btn-danger btn-sm" (click)="removeTodo(todo)" >
+      <span class="fa fa-bin2"></span>
+    </a>
   </div>
 </div>
   <!-- <button class="destroy" (click)="removeTodo(todo)">X</button> -->

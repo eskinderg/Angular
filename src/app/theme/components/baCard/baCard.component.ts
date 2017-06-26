@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  moduleId: module.id,
   selector: 'ba-card',
   templateUrl: './baCard.html',
   styleUrls: ['bacard.component.scss']

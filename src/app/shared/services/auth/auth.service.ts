@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { environment } from '../../../../environments/environment';
 
-import { UserManager, User} from 'oidc-client/lib/oidc-client.min.js';
+import { UserManager, User} from 'oidc-client';
 
 const settings: any = environment.Auth;
 

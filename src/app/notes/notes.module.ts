@@ -1,7 +1,7 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SharedModule } from '../shared/shared.module';
 import { NotesService } from './services/notes.service';
 import { NotesDataService } from './services/notes.data.service';
 import { NotesRoutingModule } from './notes-routing.module';
@@ -13,12 +13,6 @@ import { AddButtonComponent } from './components/add-button/add.button.component
 import { Draggable } from '../shared';
 
 
-// import { AboutUsComponent } from './about-us/aboutus.component';
-// import { ProfileComponent } from './profile/profile.component';
-// import { FeatureComponent } from './feature/feature.component';
-
-import { SharedModule } from '../shared/shared.module';
-
 @NgModule({
   imports: [CommonModule, NotesRoutingModule, SharedModule],
   declarations: [
@@ -26,9 +20,6 @@ import { SharedModule } from '../shared/shared.module';
       NoteComponent,
       AddButtonComponent,
       Draggable
-      // AboutUsComponent,
-      // ProfileComponent,
-      // FeatureComponent
     ],
   exports: [NotesComponent, Draggable],
   providers: [NotesService, NotesDataService]

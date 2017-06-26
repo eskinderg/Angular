@@ -1,0 +1,33 @@
+.active{
+  // font-weight: bold;
+  color:#0275d8  ! important;
+}
+
+.fa{
+  color:lightgrey;
+}
+
+.liner{
+  height: 2px;
+  background: #ddd;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 50%;
+  z-index: -1;
+}
+
+.active-liner{
+  background:#0275d8;
+}
+
+:host{
+  width:100%;
+}
+
+.col-1
+{
+  max-width: none;
+}

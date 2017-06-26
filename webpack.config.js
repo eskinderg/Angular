@@ -82,7 +82,8 @@ module.exports = {
       "./src\\polyfills.ts"
     ],
     "styles": [
-      "./src\\styles.scss"
+      "./src\\styles.scss",
+      "./src\\assets\\fonts\\style.css"
     ]
   },
   "output": {
@@ -118,7 +119,8 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.css$/,
         "use": [
@@ -141,7 +143,8 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.scss$|\.sass$/,
         "use": [
@@ -172,7 +175,8 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.less$/,
         "use": [
@@ -201,7 +205,8 @@ module.exports = {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.styl$/,
         "use": [
@@ -231,7 +236,8 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.css$/,
         "use": [
@@ -254,7 +260,8 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.scss$|\.sass$/,
         "use": [
@@ -285,7 +292,8 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.less$/,
         "use": [
@@ -314,7 +322,8 @@ module.exports = {
       },
       {
         "include": [
-          path.join(process.cwd(), "src\\styles.scss")
+          path.join(process.cwd(), "src\\styles.scss"),
+          path.join(process.cwd(), "src\\assets\\fonts\\style.css")
         ],
         "test": /\.styl$/,
         "use": [
@@ -373,7 +382,7 @@ module.exports = {
         }
       ],
       "globOptions": {
-        "cwd": "C:\\Users\\eskin\\Desktop\\AngularProjectEJECTED\\src",
+        "cwd": "C:\\Users\\eskin\\Desktop\\Angular2Notes\\src",
         "dot": true,
         "ignore": "**/.gitkeep"
       }

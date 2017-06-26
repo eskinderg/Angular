@@ -1,0 +1,21 @@
+<div class="row text-center justify-content-between">
+  <div class="col-1">
+    <a class="nav-link fa fa-user fa-2x" [routerLink]="['/wizard/profile']"
+    [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}"></a>
+  </div>
+  <div class="col">
+    <div class="liner" [routerLink]="['/wizard/feature']"
+    [routerLinkActive]="['active-liner']" [routerLinkActiveOptions]="{exact:false}"></div>
+  </div>
+  <div class="col-1">
+    <a class="nav-link fa fa-library fa-2x" [routerLink]="['/wizard/feature']"
+      [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}"></a>
+  </div>
+  <div class="col">
+    <div class="liner"></div>
+  </div>
+  <div class="col-1">
+    <a class="nav-link fa fa-credit-card fa-2x" [routerLink]="['/wizard/payment']"
+      [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}"></a>
+  </div>
+</div>
