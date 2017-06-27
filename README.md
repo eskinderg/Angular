@@ -1,4 +1,4 @@
-# AngularProject
+[![Build status](https://ci.appveyor.com/api/projects/status/n7mf5naafkdorc9g/branch/dev?svg=true)](https://ci.appveyor.com/project/eskinderg/angular2/branch/dev)# AngularProject
 
 [Angular CLI](https://github.com/angular/angular-cli) version 1.0.4.
 
