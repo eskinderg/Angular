@@ -10,4 +10,5 @@ export class BaCard {
   @Input() baCardClass:String;
   @Input() cardType:String;
   @Input() header:String;
+  @Input() footer:String;
 }
