@@ -9,11 +9,10 @@ branches:
     - dev
 
 before_script:
-  - npm install -g @angular/cli
   - npm install
 
 script:
-  - ng build
+  - ng build --prod
 
 after_success:
 
