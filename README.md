@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/eskinderg/Angular2.svg?branch=master)](https://travis-ci.org/eskinderg/Angular2)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/n7mf5naafkdorc9g/branch/dev?svg=true)](https://ci.appveyor.com/project/eskinderg/angular2/branch/dev)
 
 Angular2 Project
