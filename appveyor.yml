@@ -12,6 +12,8 @@ environment:
 
 build: off
 
+cache:
+  #- packages
 clone_depth: 10
 
 # Fix line endings on Windows
