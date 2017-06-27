@@ -1,0 +1,22 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "6.10.0"
+
+branches:
+  only:
+    - dev
+
+before_script:
+  - npm install
+
+script:
+  - ng build --prod
+
+after_success:
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
