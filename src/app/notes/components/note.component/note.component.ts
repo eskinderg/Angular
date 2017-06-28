@@ -20,14 +20,14 @@ export class NoteComponent {
 
   constructor() {}
 
-  handleChangeNotePosition(newPosition){
-    if(newPosition.left != this.left || newPosition.top != this.top){
-      this.changeNotePosition.emit(newPosition)
+  handleChangeNotePosition(newPosition) {
+    if (newPosition.left !== this.left || newPosition.top !== this.top) {
+      this.changeNotePosition.emit(newPosition);
     }
   }
-  handleChangeNoteText(text){
-    if(text != this.text){
-      this.changeNoteText.emit(text)
+  handleChangeNoteText(text) {
+    if (text !== this.text) {
+      this.changeNoteText.emit(text);
     }
   }
 }

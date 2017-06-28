@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { TodoDataService } from '../todo.data.service/todo.data.service';
 import { Todo } from '../todo';
@@ -10,25 +11,14 @@ import { Todo } from '../todo';
   styleUrls: ['todo.component.scss'],
   providers: [TodoDataService]
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
 
-todos: Todo[] = [];
+  @Input() todos: Todo[] = [];
 
   constructor(private todoDataService: TodoDataService) {
   }
 
-  public ngOnInit() {
-    this.todoDataService
-      .getAllTodos()
-      .subscribe(
-        (todos) => {
-          this.todos = todos;
-        }
-      );
-
-  }
-
-  onAddTodo(todo:Todo) {
+  onAddTodo(todo: Todo) {
     this.todoDataService
       .addTodo(todo)
       .subscribe(
@@ -38,7 +28,7 @@ todos: Todo[] = [];
       );
   }
 
-  onToggleTodoComplete(todo:Todo) {
+  onToggleTodoComplete(todo: Todo) {
     this.todoDataService
       .toggleTodoComplete(todo)
       .subscribe(
@@ -48,7 +38,7 @@ todos: Todo[] = [];
       );
   }
 
-  onRemoveTodo(todo:Todo) {
+  onRemoveTodo(todo: Todo) {
     this.todoDataService
       .deleteTodoById(todo.id)
       .subscribe(

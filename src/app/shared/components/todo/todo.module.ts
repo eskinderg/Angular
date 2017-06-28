@@ -10,6 +10,8 @@ import { TodoListHeaderComponent } from './todo/todo-list-header/todo-list-heade
 import { TodoListItemComponent } from './todo/todo-list-item/todo-list-item.component';
 import { TodoListFooterComponent} from './todo/todo-list-footer/todo-list-footer.component';
 
+import { TodosResolve } from './todo.data.service/TodosResolve';
+
 // import { TableComponent } from './components/table/table.component';
 
 @NgModule({
@@ -30,6 +32,6 @@ import { TodoListFooterComponent} from './todo/todo-list-footer/todo-list-footer
     CommonModule,
     FormsModule
   ],
-  providers: [TodoApiService]
+  providers: [TodoApiService, TodosResolve]
 })
 export class TodoModule { }

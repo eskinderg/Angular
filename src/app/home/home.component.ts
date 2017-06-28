@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { SlideAnimation }   from '../shared/animations/animations';
+import { SlideAnimation } from '../shared/animations/animations';
 import { AuthService } from '../shared/services/auth/auth.service';
+import { Todo } from '../shared/components/todo/todo';
 /**
  * This class represents the lazy loaded HomeComponent.
  */
@@ -14,22 +15,14 @@ import { AuthService } from '../shared/services/auth/auth.service';
   animations: [ fadeInAnimation ],
   host: { '[@routerFadeInAnimation]': '' }
 })
-export class HomeComponent  {
+export class HomeComponent implements OnInit  {
 
-  constructor() { }
+  public todos: Todo[];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    // Observable.fromPromise(this.authService.mgr.signoutRedirect())
-    //           .subscribe((user) => {
-    //             console.log('observalbe understood to some extent');
-    //               // this.authService.userLoadededEvent.emit(user); //Notifying User has loggedIn Successfully
-    //               // this.router.navigate(['/']);
-    //           },(error)=>{
-    //               console.log(error);
-    //               // this.router.navigate(['/404']);
-    //           });
-
+    this.todos = this.route.snapshot.data['todos'];
   }
 
 }

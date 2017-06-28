@@ -22,7 +22,7 @@ export class TodoApiService {
       .get(API_URL + '/todos')
       .map(response => {
         const todos = response.json();
-        return todos.map((todo:Todo) => new Todo(todo));
+        return todos.map((todo: Todo) => new Todo(todo));
       })
       .catch(this.handleError);
   }
