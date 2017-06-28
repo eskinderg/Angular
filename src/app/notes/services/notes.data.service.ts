@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/from';
 import { environment } from '../../../environments/environment';
@@ -20,9 +20,9 @@ export class NotesDataService {
         .map((response: Response) => response.json());
     }
 
-    addNote(note: Note): Observable<Note>{
+    addNote(note: Note): Observable<Note> {
       return this.http
-        .post(this.API_ROOT + '/notes/',note)
+        .post(this.API_ROOT + '/notes/', note)
         .map(response => {
             return new Note(response.json());
         });
@@ -30,12 +30,12 @@ export class NotesDataService {
 
     addOrUpdateNote(note: Note): Observable<Note> {
       return this.http.post(`${this.API_ROOT}/notes`, JSON.stringify(note), this.JSON_HEADER)
-        .map((response: Response) => response.json())
+        .map((response: Response) => response.json());
     }
 
     updateNote(note: Note): Observable<Note> {
       return this.http
-        .put( this.API_ROOT + '/notes/'+ note.id, note)
+        .put( this.API_ROOT + '/notes/' + note.id, note)
         .map( response => {
             return new Note(response.json());
         });
