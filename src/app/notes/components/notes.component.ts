@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { NotesService } from '../services/notes.service'
+import { NotesService } from '../services/notes.service';
 import { NoteComponent } from './note.component/note.component';
 import { AddButtonComponent } from './add-button/add.button.component';
-import { SlideAnimation }   from '../../shared/animations/animations';
+import { SlideAnimation } from '../../shared/animations/animations';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../note';
 
@@ -17,23 +18,15 @@ import { Note } from '../note';
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent implements OnInit {
-  $notes: Note[]
+  $notes: Note[];
   notesService: NotesService;
 
-  constructor(notesService: NotesService) {
+  constructor(notesService: NotesService, private route: ActivatedRoute) {
     this.notesService = notesService;
-
-    this.notesService
-    .getNotes()
-    .subscribe(
-      (notes)=>{
-        this.$notes =notes;
-      }
-    );
-
+    this.$notes = this.route.snapshot.data['notes'];
   }
 
-  onAddNote(colour){
+  onAddNote(colour) {
     this.notesService
     .addNote("", colour, 200, 100)
     .subscribe(
@@ -42,7 +35,7 @@ export class NotesComponent implements OnInit {
       });
   }
 
-  onChangeNoteText(newText: string, note: Note){
+  onChangeNoteText(newText: string, note: Note) {
     // this.notesService.changeNoteText(newText, note);
     note.text = newText;
     this.notesService.updateNote(note)
@@ -53,7 +46,7 @@ export class NotesComponent implements OnInit {
     );
   }
 
-  onChangeNotePosition(newPosition: any, note: Note){
+  onChangeNotePosition(newPosition: any, note: Note) {
     // this.notesService.changeNotePosition(newPosition.left, newPosition.top, note);
     // console.log(newPosition);
     note.left = newPosition.left;

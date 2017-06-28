@@ -113,7 +113,7 @@ export class AuthService {
     this.mgr.getUser().then(user => {
       return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
         console.log('signed out', resp);
-      setTimeout(5000, () => {
+        setTimeout(5000, () => {
           console.log('testing to see if fired...');
         });
       }).catch(function (err) {
@@ -137,7 +137,7 @@ export class AuthService {
 
     if (options) {
       options = this._setRequestOptions(options);
-    }else {
+    } else {
       options = this._setRequestOptions();
     }
     return this.http.get(url, options);

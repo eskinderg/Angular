@@ -1,15 +1,16 @@
-import { NgModule, ModuleWithProviders }      from '@angular/core';
-import { CommonModule }  from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { BaBackTop } from './components/baBackTop/baBackTop.component';
 import { BaCard } from './components/baCard/baCard.component';
-
+import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 
 const NGA_COMPONENTS = [
   BaBackTop,
-  BaCard
+  BaCard,
+  AppLoadingComponent
   // BaAmChart,
   // BaBackTop,
   // BaCard,

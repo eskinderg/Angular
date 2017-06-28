@@ -1,5 +1,8 @@
-<!-- <sd-toolbar></sd-toolbar> -->
+
 <sd-header></sd-header>
+<div class="loading-overlay" #spinnerElement style="opacity: 1;">
+    <app-loading></app-loading>
+</div>  
 
 <div *ngIf="errorOccured" class="notice notice-info">
     <strong>Notice</strong> An error has occured. Please try refreshing the page or try again later.
@@ -7,5 +10,6 @@
 <div class="container">
     <router-outlet></router-outlet>
 </div>
-<!-- <sd-footer></sd-footer> -->
+
 <back-top position="200"></back-top>
+

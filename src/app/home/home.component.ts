@@ -1,10 +1,11 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { SlideAnimation } from '../shared/animations/animations';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { Todo } from '../shared/components/todo/todo';
+
 /**
  * This class represents the lazy loaded HomeComponent.
  */

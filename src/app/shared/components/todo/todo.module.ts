@@ -15,7 +15,7 @@ import { TodosResolve } from './todo.data.service/TodosResolve';
 // import { TableComponent } from './components/table/table.component';
 
 @NgModule({
-  imports: [FormsModule,CommonModule ],
+  imports: [FormsModule, CommonModule ],
   declarations: [
       TodoComponent,
       TodoListHeaderComponent,
