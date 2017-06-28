@@ -9,11 +9,11 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  user:any;
+  user: any;
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit(){
+  ngOnInit() {
       this.authService.userLoadededEvent
         .subscribe(user => {
           this.user = user;

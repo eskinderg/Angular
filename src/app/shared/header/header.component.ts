@@ -13,22 +13,22 @@ import { AuthService } from '../services/auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   public isExpanded = false;
-  _user:any;
+  _user: any;
 
 
-  constructor (private service: AuthService){
+  constructor (private service: AuthService) {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.service.userLoadededEvent
       .subscribe(user => {
         this._user = user;
     });
   }
 
-  isUserLoggedIn(){
-    return false
+  isUserLoggedIn() {
+    return false;
     // let isLoggedIn = this.service.isLoggedInObs();
     // return isLoggedIn;
   }

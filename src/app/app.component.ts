@@ -13,9 +13,9 @@ import { LoggingService } from './error/loggingservice';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  errorOccured:boolean = false;
+  errorOccured  = false;
 
-  constructor(errorLog:LoggingService) {
+  constructor(errorLog: LoggingService) {
     // debugger;
     errorLog.onError.subscribe((error) =>{
         this.errorOccured = true;

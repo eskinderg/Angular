@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { CanActivate, Router } from '@angular/router';
 
@@ -23,9 +23,9 @@ export class AuthorizationComponent implements OnInit {
   ngOnInit() {
     Observable.fromPromise(this.authService.mgr.signinRedirectCallback())
               .subscribe((user) => {
-                  this.authService.userLoadededEvent.emit(user); //Notifying User has loggedIn Successfully
+                  this.authService.userLoadededEvent.emit(user); // Notifying User has loggedIn Successfully
                   this.router.navigate(['/']);
-              },(error)=>{
+              }, (error) => {
                   console.log(error);
                   this.router.navigate(['/404']);
               });

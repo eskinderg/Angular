@@ -26,9 +26,9 @@ export function main() {
         TestBed
           .compileComponents()
           .then(() => {
-            let fixture = TestBed.createComponent(ProfileComponent);
-            let homeInstance = fixture.debugElement.componentInstance;
-            let homeDOMEl = fixture.debugElement.nativeElement;
+            const fixture = TestBed.createComponent(ProfileComponent);
+            const homeInstance = fixture.debugElement.componentInstance;
+            const homeDOMEl = fixture.debugElement.nativeElement;
             // let mockNameListService =
               // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
             // let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();

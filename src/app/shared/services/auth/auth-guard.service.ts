@@ -20,8 +20,9 @@ export class AuthGuardService implements CanActivate {
         this.authService
         .isLoggedInObs()
         .subscribe((loggedin) => {
-            if (!loggedin)
+            if (!loggedin) {
                 this.router.navigate(['unauthorized']);
+            }
         });
 
         return this.authService.isLoggedInObs();

@@ -25,8 +25,7 @@ export class AuthService {
           this.loggedIn = true;
           this.currentUser = user;
           this.userLoadededEvent.emit(user);
-        }
-        else {
+        } else {
           this.loggedIn = false;
         }
       })
@@ -36,7 +35,7 @@ export class AuthService {
 
     this.mgr.events.addUserLoaded((user) => {
       this.currentUser = user;
-	  this.loggedIn = !(user === undefined);
+      this.loggedIn = !(user === undefined);
       if (!environment.production) {
         console.log('authService addUserLoaded', user);
       }
@@ -99,7 +98,7 @@ export class AuthService {
       console.log('signinRedirect done');
     }).catch(function (err) {
       console.log(err);
-       return "asdfasdf";
+       return err;
     });
   }
   endSigninMainWindow() {
@@ -114,7 +113,7 @@ export class AuthService {
     this.mgr.getUser().then(user => {
       return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
         console.log('signed out', resp);
-		setTimeout(5000, () => {
+      setTimeout(5000, () => {
           console.log('testing to see if fired...');
         });
       }).catch(function (err) {
@@ -138,8 +137,7 @@ export class AuthService {
 
     if (options) {
       options = this._setRequestOptions(options);
-    }
-    else {
+    }else {
       options = this._setRequestOptions();
     }
     return this.http.get(url, options);
@@ -149,12 +147,11 @@ export class AuthService {
    */
   AuthPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
 
-    let body = JSON.stringify(data);
+    const body = JSON.stringify(data);
 
     if (options) {
       options = this._setRequestOptions(options);
-    }
-    else {
+    } else {
       options = this._setRequestOptions();
     }
     return this.http.put(url, body, options);
@@ -166,8 +163,7 @@ export class AuthService {
 
     if (options) {
       options = this._setRequestOptions(options);
-    }
-    else {
+    } else {
       options = this._setRequestOptions();
     }
     return this.http.delete(url, options);
@@ -177,7 +173,7 @@ export class AuthService {
    */
   AuthPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
 
-    let body = JSON.stringify(data);
+    const body = JSON.stringify(data);
 
     if (options) {
       options = this._setRequestOptions(options);

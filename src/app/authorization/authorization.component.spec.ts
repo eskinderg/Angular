@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthService } from '../shared/services/auth/auth.service'; // dependency service
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthorizationComponent } from './authorization.component';
 
 class AuthServiceStub {
 
-  isLoggedInObs() : boolean {
+  isLoggedInObs(): boolean {
       return false;
   }
 
@@ -19,7 +19,7 @@ class AuthServiceStub {
 describe('AuthorizationComponent', () => {
   let component: AuthorizationComponent;
   let fixture: ComponentFixture<AuthorizationComponent>;
-  let mockRouter = { navigate: jasmine.createSpy('navigate') };
+  const mockRouter = { navigate: jasmine.createSpy('navigate') };
   // let authserviceSpy = { mgr: jasmine.createSpy('mgr') };
   let myServiceDependency: AuthService;
 
@@ -41,7 +41,7 @@ describe('AuthorizationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuthorizationComponent);
     component = fixture.componentInstance;
-    spyOn(component, "ngOnInit");
+    spyOn(component, 'ngOnInit');
     fixture.detectChanges();
   });
 
