@@ -9,15 +9,15 @@ import { AuthService } from '../shared/services/auth/auth.service';
 })
 export class UnauthorizedComponent implements OnInit {
 
-  constructor(private location:Location, private service: AuthService) { }
+  constructor(private location: Location, private service: AuthService) { }
 
   ngOnInit() {
   }
 
   login() {
-    try{
-      this.service.startSigninMainWindow()
-    }catch(err){
+    try {
+      this.service.startSigninMainWindow();
+    } catch (err) {
       console.log(err);
     }
   }
