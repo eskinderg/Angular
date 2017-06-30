@@ -28,7 +28,7 @@ export class NotesComponent implements OnInit {
 
   onAddNote(colour) {
     this.notesService
-    .addNote("", colour, 200, 100)
+    .addNote('', colour, Math.floor(Math.random() * 600), Math.floor(Math.random() * 400))
     .subscribe(
       (newNote) => {
         this.$notes = this.$notes.concat(newNote);
@@ -56,6 +56,15 @@ export class NotesComponent implements OnInit {
     .subscribe(
         (updatedNote) => {
           note = updatedNote;
+        }
+    );
+  }
+
+  onNoteDelete(id: any, note: Note) {
+    this.notesService.deleteNote(note)
+    .subscribe(
+        (_) => {
+          this.$notes = this.$notes.filter((n) => n.id !== note.id);
         }
     );
   }

@@ -4,15 +4,13 @@ services:
   angular-project:
     build:
       context: .
-      dockerfile: ./.docker/.Dockerfile
-    command:  npm start
-    container_name: angular-project-start
+      dockerfile: ./.docker/Dockerfile
+    container_name: angular-project-container
     image: angular-project
     networks:
       - dev-network
     ports:
-      - '4200:4200'
-      - '49153:49153'
+      - '4200:80'
 
 networks:
   dev-network:

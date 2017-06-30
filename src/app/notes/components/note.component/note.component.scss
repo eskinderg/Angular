@@ -30,6 +30,19 @@ textarea.yellow-note{
   background: linear-gradient(#F9EFAF, #F7E98D);
 }
 
+span {
+  display: block;
+  position:absolute;
+  right: 0px;
+  margin: 4px;
+  cursor: pointer;
+  // float:right;
+  color:#c6c9cc ;
+
+  &:hover {
+    color: rgba(255, 167, 0, 0.98);
+  }
+}
 textarea.red-note{
   background: -webkit-linear-gradient(#F9AFAF, #F78D8D);
   background: -moz-linear-gradient(#F9AFAF, #F78D8D);

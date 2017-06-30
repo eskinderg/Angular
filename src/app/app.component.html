@@ -4,10 +4,10 @@
     <app-loading></app-loading>
 </div>  
 
-<div *ngIf="errorOccured" class="notice notice-info">
-    <strong>Notice</strong> An error has occured. Please try refreshing the page or try again later.
-</div>
 <div class="container">
+    <div *ngIf="errorOccured" class="notice notice-info">
+        <strong>Notice</strong> An error has occured. Please try refreshing the page or try again later.
+    </div>
     <router-outlet></router-outlet>
 </div>
 

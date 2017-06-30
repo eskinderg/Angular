@@ -28,6 +28,14 @@ export class NotesDataService {
         });
     }
 
+    deleteNote(note: Note): Observable<Note> {
+      return this.http
+        .delete(this.API_ROOT + '/notes/' + note.id)
+        .map(response => {
+            return new Note(response.json());
+        });
+    }
+
     addOrUpdateNote(note: Note): Observable<Note> {
       return this.http.post(`${this.API_ROOT}/notes`, JSON.stringify(note), this.JSON_HEADER)
         .map((response: Response) => response.json());

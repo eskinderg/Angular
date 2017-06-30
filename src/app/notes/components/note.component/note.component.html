@@ -4,6 +4,7 @@
       [style.background] = "colour"
       (draggable)="handleChangeNotePosition($event)"
 >
+<span class="fa fa-bin2" (click)="handleNoteDelete(id)"></span>
   <textarea
     #noteText
     (blur)="handleChangeNoteText(noteText.value)"

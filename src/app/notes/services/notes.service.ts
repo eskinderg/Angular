@@ -30,6 +30,10 @@ export class NotesService {
       return this.store.addNote(new Note({text: text, colour: colour, left: left, top: top}));
     }
 
+    deleteNote(note: Note): Observable<Note> {
+      return this.store.deleteNote(note);
+    }
+
     changeNoteText(text: string, note: Note): Observable<Note>{
 
       console.log('changeNoteText');
