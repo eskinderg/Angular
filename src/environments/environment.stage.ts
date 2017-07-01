@@ -1,4 +1,7 @@
+// stage environment
+
 export const environment = {
+
   production: true,
 
   TODO_API: 'http://localhost:3000',
@@ -6,7 +9,7 @@ export const environment = {
 
   Auth : {
     authority: 'http://localhost:5000',
-    client_id: 'esk-client',
+    client_id: 'oidcCLIENT',
     redirect_uri: 'http://localhost:4200/authorize',
     post_logout_redirect_uri: 'http://localhost:4200',
     response_type: 'id_token token',

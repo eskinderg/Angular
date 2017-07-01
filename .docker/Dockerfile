@@ -19,7 +19,7 @@ RUN cd /tmp/npm_inst &&\
 # build and publish application
 ADD . /tmp/app
 RUN cd /tmp/app &&\
-    ng build --aot --prod &&\
+    ng build --prod &&\
     mv ./dist/* /usr/share/nginx/html/
 
 # clean
