@@ -24,19 +24,7 @@ export class ProfileComponent {
   public x: number;
   public y: number;
 
-  constructor(private confirmService: ConfirmService) {
-  }
-
-  showDialog() {
-    this.confirmService.confirm({ title: 'Confirm deletion',
-              message: 'Do you really want to delete this item?' }
-     ).then(
-      () => {
-        console.log('deleting...');
-      },
-      () => {
-        console.log('not deleting...');
-      });
+  constructor() {
   }
 
   @HostListener('window:resize', ['$event'] )
