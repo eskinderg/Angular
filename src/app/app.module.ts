@@ -7,15 +7,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalErrorHandler  } from './error/errorhandle';
 import { LoggingService } from './error/loggingservice';
-import { AuthorizationModule } from './authorization/authorization.module';
+import { AuthorizationModule } from './components/authorization/authorization.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { NgaModule } from './theme/nga.module';
-import { SharedModule } from './shared/shared.module';
+import { SharedModule } from './components/shared/shared.module';
 
-import { HomeModule } from './home/home.module';
-import { UnauthorizedModule } from './unauthorized/unauthorized.module';
-import { NotfoundModule } from './shared/404/404.module';
+import { HomeModule } from './components/home/home.module';
+import { UnauthorizedModule } from './components/unauthorized/unauthorized.module';
+import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 
 
@@ -31,7 +31,7 @@ import { AppComponent } from './app.component';
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
-    NgaModule,
+    NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot()
   ],

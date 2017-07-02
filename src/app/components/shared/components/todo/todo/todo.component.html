@@ -1,0 +1,14 @@
+
+  <app-todo-list-header class="mb-5"(add)="onAddTodo($event)"></app-todo-list-header>
+
+        <app-todo-list
+          [todos]="todos"
+          (toggleComplete)="onToggleTodoComplete($event)"
+          (remove)="onRemoveTodo($event)">
+       </app-todo-list>
+
+  <app-todo-list-footer [todos]="todos"></app-todo-list-footer>
+
+<ng-template confirm>
+   <confirm-modal-component></confirm-modal-component>
+</ng-template>
