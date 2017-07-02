@@ -13,9 +13,9 @@ import {
   RouterTestingModule
 } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { HeaderComponent } from './components/shared/header/header.component';
 // import { Todo } from './shared/components/todo/todo.component';
 
 export function main() {

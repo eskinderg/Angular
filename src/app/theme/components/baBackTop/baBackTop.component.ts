@@ -1,4 +1,4 @@
-import {Component, ViewChild, HostListener, Input, ElementRef} from '@angular/core';
+import { Component, ViewChild, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
 import * as jQuery from 'jquery';
 
 @Component({
@@ -8,27 +8,27 @@ import * as jQuery from 'jquery';
     <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i>
   `
 })
-export class BaBackTop {
+export class BaBackTop implements AfterViewInit {
 
-  @Input() position:number = 400;
-  @Input() showSpeed:number = 500;
-  @Input() moveSpeed:number = 1000;
+  @Input() position = 400;
+  @Input() showSpeed = 500;
+  @Input() moveSpeed = 1000;
 
-  @ViewChild('baBackTop') _selector:ElementRef;
+  @ViewChild('baBackTop') _selector: ElementRef;
 
-  ngAfterViewInit () {
+  ngAfterViewInit (): void {
     this._onWindowScroll();
   }
 
   @HostListener('click')
-  _onClick():boolean {
-    jQuery('html, body').animate({scrollTop:0}, {duration:this.moveSpeed});
+  _onClick(): boolean {
+    jQuery('html, body').animate({scrollTop: 0}, {duration: this.moveSpeed});
     return false;
   }
 
   @HostListener('window:scroll')
-  _onWindowScroll():void {
-    let el = this._selector.nativeElement;
+  _onWindowScroll(): void {
+    const el = this._selector.nativeElement;
     window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
   }
 }

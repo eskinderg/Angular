@@ -14,7 +14,7 @@ export const environment = {
     silent_redirect_uri: 'http://localhost:4200/silent',
     automaticSilentRenew: true,
     accessTokenExpiringNotificationTime: 4,
-    silentRequestTimeout:200,
+    silentRequestTimeout: 200,
     filterProtocolClaims: true,
     loadUserInfo: true
   }
