@@ -9,7 +9,7 @@ import { FeatureComponent } from './feature/feature.component';
   imports: [
     RouterModule.forChild([
       { path: '', component: AboutComponent ,
-        children:[
+        children: [
           {path: '', redirectTo: 'about-us', pathMatch: 'full'},
           {path: 'about-us', component: AboutUsComponent},
           {path: 'profile', component: ProfileComponent},

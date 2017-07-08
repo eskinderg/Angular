@@ -22,6 +22,8 @@ export const environment = {
     silentRequestTimeout: 200,
     filterProtocolClaims: true,
     loadUserInfo: true
-  }
+  },
+  MOVIES_API: 'https://api.themoviedb.org/3/',
+  MOVIES_API_KEY: 'fed69657ba4cc6e1078d2a6a95f51c8c'
 
 };

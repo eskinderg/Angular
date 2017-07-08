@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./.docker/Dockerfile
-    container_name: angular-project-container
+    container_name: angular-web
     image: angular-project
     networks:
       - dev-network
@@ -16,7 +16,7 @@ services:
     build:
       context: ./server
       dockerfile: ./Dockerfile
-    container_name: angular-api-container
+    container_name: angular-api
     image: angular-api
     networks:
       - dev-network
@@ -27,7 +27,7 @@ services:
     build:
       context: ./oidc
       dockerfile: ./Dockerfile
-    container_name: angular-oidc-container
+    container_name: angular-oidc
     image: node-oidc
     networks:
       - dev-network

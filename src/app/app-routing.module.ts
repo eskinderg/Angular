@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
        {path: 'profile', loadChildren: './components/profile/profile.module#ProfileModule'},
        {path: 'about', loadChildren: './components/about/about.module#AboutModule'},
        {path: 'notes', loadChildren: './components/notes/notes.module#NotesModule'},
-       {path: 'wizard', loadChildren: './components/wizard/wizardmanager.module#WizardManagerModule'}
+       {path: 'wizard', loadChildren: './components/wizard/wizardmanager.module#WizardManagerModule'},
+       {path: 'movies', loadChildren: './components/movies/movies.module#MoviesModule'}
     ])
   ],
   exports: [RouterModule]
