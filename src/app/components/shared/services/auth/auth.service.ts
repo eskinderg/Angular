@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +19,7 @@ export class AuthService {
 
   authHeaders: Headers;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private route: Router) {
 
     this.mgr.getUser()
       .then((user) => {
@@ -47,6 +48,8 @@ export class AuthService {
       if (!environment.production) {
         console.log('user unloaded');
       }
+      this.userLoadededEvent.emit(null);
+      this.route.navigate(['/']);
       this.loggedIn = false;
     });
 
@@ -105,6 +108,7 @@ export class AuthService {
   endSigninMainWindow() {
     this.mgr.signinRedirectCallback().then(function (user) {
       console.log('signed in', user);
+
     }).catch(function (err) {
       console.log(err);
     });
@@ -120,6 +124,12 @@ export class AuthService {
       }).catch(function (err) {
         console.log(err);
       });
+    });
+  };
+
+  logout() {
+    this.mgr.getUser().then(user => {
+      return this.mgr.signoutRedirect({ id_token_hint: user.id_token });
     });
   };
 

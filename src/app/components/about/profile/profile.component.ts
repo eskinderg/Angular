@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { User } from 'oidc-client';
 
 @Component({
   moduleId: module.id,
@@ -10,8 +12,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
+  public user: User;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.user = this.authService.currentUser;
   }
 
   ngOnInit() {
