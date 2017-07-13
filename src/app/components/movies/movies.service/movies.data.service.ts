@@ -59,7 +59,8 @@ export class MoviesDataService {
     search.set('api_key', this.apikey);
     return this._jsonp.get('https://api.themoviedb.org/3/search/movie?callback=JSONP_CALLBACK', {search})
       .map(res => {
-        return res.json();
+        const movies = res.json().results;
+        return movies.map((movie: Movie) => movie.title);
       })
   }
 

@@ -1,16 +1,21 @@
-<div class="input-group input-group-lg">
-    <input type="text" class="form-control" [formControl]="term" placeholder="Search for...">
- <!--<input type="text" [formControl]="term">-->
-    <!--<span class="input-group-btn">
+<!-- <div class="input-group input-group-lg">
+     <input type="text" class="form-control" [formControl]="term" placeholder="Search for..."> 
+ <input type="text" [formControl]="term">
+     <span class="input-group-btn"> 
         <button class="btn btn-secondary" (click)="btnSearch(txtSearch.value)"type="button">Go!</button>
-      </span>-->
+      </span>
 </div>
 
-    <!--{{ movies | json}}-->
+    {{ movies | json}}
 <div *ngIf="movies" class="mt-2">
     <ba-card header="Search Results" >
         <h3 *ngFor="let movie of movies | async">
             {{movie.title}}
         </h3>
     </ba-card>
+</div> -->
+
+<div class="input-group input-group-lg">
+    <input id="typeahead-http" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Wikipedia search" /> 
 </div>
+<!-- {{ model | json }} -->
