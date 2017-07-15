@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Event } from '../../../../theme/components/event/event';
 
 @Component(
   {

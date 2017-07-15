@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/eskinderg/Angular-CLI.svg?branch=dev)](https://travis-ci.org/eskinderg/Angular-CLI) [![Build status](https://ci.appveyor.com/api/projects/status/n7mf5naafkdorc9g/branch/dev?svg=true)](https://ci.appveyor.com/project/eskinderg/Angular-CLI/branch/dev)
+[![Build Status](https://travis-ci.org/eskinderg/Angular-CLI.svg?branch=dev)](https://travis-ci.org/eskinderg/Angular-CLI) [![Build status](https://ci.appveyor.com/api/projects/status/xortrnvhoggxxsxd/branch/master?svg=true)](https://ci.appveyor.com/project/eskinderg/angular-cli/branch/master)
 
 Angular2 Project
 
