@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { SlideAnimation } from '../shared/animations/animations';
 import { AuthService } from '../shared/services/auth/auth.service';
-import { Todo } from '../shared/components/todo/todo';
+import { Event } from '../../theme/components/event/event';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -18,12 +18,12 @@ import { Todo } from '../shared/components/todo/todo';
 })
 export class HomeComponent implements OnInit  {
 
-  public todos: Todo[];
+  public events: Event[];
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.todos = this.route.snapshot.data['todos'];
+    this.events = this.route.snapshot.data['events'];
   }
 
 }

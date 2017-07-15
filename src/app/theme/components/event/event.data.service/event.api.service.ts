@@ -1,62 +1,62 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Todo } from '../todo';
+import { Event } from '../event';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { environment } from '../../../../../../environments/environment';
+import { environment } from '../../../../../environments/environment';
 
 const API_URL = environment.TODO_API;
 
 @Injectable()
-export class TodoApiService {
+export class EventApiService {
 
   constructor(
     private http: Http
   ) {
   }
 
-  public getAllTodos(): Observable<Todo[]> {
+  public getAllEvents(): Observable<Event[]> {
     return this.http
       .get(API_URL + '/todos')
       .map(response => {
-        const todos = response.json();
-        return todos.map((todo: Todo) => new Todo(todo));
+        const events = response.json();
+        return events.map((event: Event) => new Event(event));
       })
       .catch(this.handleError);
   }
 
-  public createTodo(todo: Todo): Observable<Todo> {
+  public createEvent(event: Event): Observable<Event> {
     return this.http
-      .post(API_URL + '/todos', todo)
+      .post(API_URL + '/todos', event)
       .map(response => {
-        return new Todo(response.json());
+        return new Event(response.json());
       })
       .catch(this.handleError);
   }
 
-  public getTodoById(todoId: number): Observable<Todo> {
+  public getEventById(eventId: number): Observable<Event> {
     return this.http
-      .get(API_URL + '/todos/' + todoId)
+      .get(API_URL + '/todos/' + eventId)
       .map(response => {
-        return new Todo(response.json());
+        return new Event(response.json());
       })
       .catch(this.handleError);
   }
 
-  public updateTodo(todo: Todo): Observable<Todo> {
+  public updateEvent(event: Event): Observable<Event> {
     return this.http
-      .put(API_URL + '/todos/' + todo.id, todo)
+      .put(API_URL + '/todos/' + event.id, event)
       .map(response => {
-        return new Todo(response.json());
+        return new Event(response.json());
       })
       .catch(this.handleError);
   }
 
-  public deleteTodoById(todoId: number): Observable<null> {
+  public deleteEventById(eventId: number): Observable<null> {
     return this.http
-      .delete(API_URL + '/todos/' + todoId)
+      .delete(API_URL + '/todos/' + eventId)
       .map(response => null)
       .catch(this.handleError);
   }

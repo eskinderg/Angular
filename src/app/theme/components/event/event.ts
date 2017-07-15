@@ -1,4 +1,4 @@
-export class Todo {
+export class Event {
   id: number;
   title: string = '';
   complete: boolean = false;

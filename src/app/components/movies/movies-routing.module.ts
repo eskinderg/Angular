@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { MoviesComponent } from './movies.component';
-import { TodosResolve } from '../shared/components/todo/todo.data.service/TodosResolve';
-import { TodoDataService } from '../shared/components/todo/todo.data.service/todo.data.service';
 import { GenreComponent } from './genres/genre.component';
 import { GenreResolve } from './movies.service/genres.resolve';
 import { MoviesResolve } from './movies.service/movies.resolve';
@@ -45,7 +43,7 @@ import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-res
       }
     ])
   ],
-  providers: [TodoDataService, GenreResolve, MoviesResolve, MoviesDetailsResolve ],
+  providers: [ GenreResolve, MoviesResolve, MoviesDetailsResolve ],
   exports: [RouterModule]
 })
 export class MoviesRoutingModule { }

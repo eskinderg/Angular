@@ -7,8 +7,6 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesDataService } from './movies.service/movies.data.service';
 import { MoviesApiService } from './movies.service/movies.api.service';
 
-import { TodoModule } from '../shared/components/todo/todo.module';
-
 import { NgaModule } from '../../theme/nga.module';
 import { HttpModule, JsonpModule } from '@angular/http';
 

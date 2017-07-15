@@ -3,25 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TodoListFooterComponent } from './todo-list-footer.component';
-import { Todo } from '../../todo';
+import { EventListFooterComponent } from './event-list-footer.component';
+import { Event } from '../../event';
 
-describe('TodoListFooterComponent', () => {
-  let component: TodoListFooterComponent;
-  let fixture: ComponentFixture<TodoListFooterComponent>;
+describe('EventListFooterComponent', () => {
+  let component: EventListFooterComponent;
+  let fixture: ComponentFixture<EventListFooterComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoListFooterComponent ]
+      declarations: [ EventListFooterComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoListFooterComponent);
+    fixture = TestBed.createComponent(EventListFooterComponent);
     component = fixture.componentInstance;
-    component.todos = [
-      new Todo({ id: 1, title: 'Test', complete: false })
+    component.events = [
+      new Event({ id: 1, title: 'Test', complete: false })
     ];
     fixture.detectChanges();
   });

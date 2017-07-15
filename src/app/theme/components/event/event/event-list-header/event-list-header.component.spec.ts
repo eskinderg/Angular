@@ -3,25 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { TodoListHeaderComponent } from './todo-list-header.component';
+import { EventListHeaderComponent } from './event-list-header.component';
 import { FormsModule } from '@angular/forms';
 
-describe('TodoListHeaderComponent', () => {
-  let component: TodoListHeaderComponent;
-  let fixture: ComponentFixture<TodoListHeaderComponent>;
+describe('EventListHeaderComponent', () => {
+  let component: EventListHeaderComponent;
+  let fixture: ComponentFixture<EventListHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule
       ],
-      declarations: [ TodoListHeaderComponent ]
+      declarations: [ EventListHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoListHeaderComponent);
+    fixture = TestBed.createComponent(EventListHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
