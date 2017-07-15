@@ -1,21 +1,32 @@
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h2>Profile Page</h2>
-    <ul>
-      <li>Ready to go, statically typed build system using Gulp for working with TypeScript.</li>
-      <li>Production and development builds.</li>
-      <li>Sample unit tests with Jasmine and Karma including code coverage via Istanbul.</li>
-      <li>End-to-end tests with Protractor.</li>
-      <li>Development server with live reload.</li>
-      <li>TypeScript definition management using Types.</li>
-      <li>Basic Service Worker, which implements "Cache then network strategy".</li>
-    </ul>
-  </div>
-  <div class="col-md-6">
-      <ba-card header="Detail">
-      </ba-card>
-  </div>
+<div class="row">
+    <div class="col-6 mt-3">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-2 col-form-label">Name</label>
+      <div class="col-10">
+        <input class="form-control" name="name" type="text" [ngModel]="user.profile.given_name" > 
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-email-input" class="col-2 col-form-label">Email</label>
+      <div class="col-10">
+        <input class="form-control"  type="email" [ngModel]="user.profile.email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
+      <div class="col-10">
+        <input class="form-control" type="tel" >
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-date-input" class="col-2 col-form-label">Date</label>
+      <div class="col-10">
+        <input class="form-control"   type="text" >
+      </div>
+    </div>
 </div>
+</div>
+<button type="submit" class="btn btn-primary">Save</button>
 
 <div class="row mt-4">
     <button class="btn btn-outline-primary"

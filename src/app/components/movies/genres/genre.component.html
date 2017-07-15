@@ -1,0 +1,7 @@
+<!--{{movies | json}}-->
+<div class="row">
+    <div class="col-sm-6" *ngFor="let movie of movies" >
+    <!--<li>{{movie | json }}</li>-->
+        <movie-card [movie]='movie'></movie-card>
+    </div>
+</div>

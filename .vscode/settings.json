@@ -9,6 +9,8 @@
         "node_modules": true,
         "dist": true,
         "documentation": true,
+        "oidc": true,
+        "server": true,
         "coverage": true
     }
 }

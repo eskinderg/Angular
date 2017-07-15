@@ -1,0 +1,35 @@
+  <div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</a></h4>
+    <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
+    <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
+  </div>
+</div>
+
+<!--<div class="card">
+        <div class="card-block">
+          <h3 class="card-title">{{ movie.title }}</h3>
+          <p class="card-text">{{ movie.overview | truncate: 100 }}</p>
+          <a href="#" class="btn btn-outline-primary">Details</a>
+        </div>
+  </div>-->
+
+  <!--<div class="card">
+    <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
+    <div class="card-block">
+      <h4 class="card-title">{{ movie.title }}</h4>
+      <p class="card-text">{{ movie.overview | truncate: 150 }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">
+        <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
+        <ngbd-rating-decimal [currentRate]= "(5*(movie.vote_average))/10"></ngbd-rating-decimal>
+      
+      </small>
+    </div>
+    
+  </div>-->
+

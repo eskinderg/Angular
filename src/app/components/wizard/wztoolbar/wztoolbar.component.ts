@@ -17,7 +17,7 @@ export class WzToolbarComponent implements OnInit {
 
   constructor (private router: Router) {
       this.activeRoute = this.router.url;
-      console.log(this.router.routerState);
+      // console.log(this.router.routerState);
   }
 
   ngOnInit() {

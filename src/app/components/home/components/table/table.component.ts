@@ -1,11 +1,9 @@
-
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Todo } from '../../../shared/components/todo/todo';
 
 @Component(
   {
     moduleId: module.id,
-    selector: 'table-todo-list',
+    selector: 'table-event-list',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss']
   }
@@ -13,26 +11,26 @@ import { Todo } from '../../../shared/components/todo/todo';
 export class TableComponent {
 
   @Input()
-  todos: Todo[];
+  events: Event[];
 
   @Input()
   title: string;
 
   // @Output()
-  // remove: EventEmitter<Todo> = new EventEmitter();
+  // remove: EventEmitter<Event> = new EventEmitter();
 
   // @Output()
-  // toggleComplete: EventEmitter<Todo> = new EventEmitter();
+  // toggleComplete: EventEmitter<Event> = new EventEmitter();
 
   constructor() {
   }
 
-  // onToggleTodoComplete(todo: Todo) {
-  //   this.toggleComplete.emit(todo);
+  // onToggleEventComplete(event: Event) {
+  //   this.toggleComplete.emit(event);
   // }
   //
-  // onRemoveTodo(todo: Todo) {
-  //   this.remove.emit(todo);
+  // onRemoveEvent(event: Event) {
+  //   this.remove.emit(event);
   // }
 
 }

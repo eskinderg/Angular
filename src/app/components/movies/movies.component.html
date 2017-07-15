@@ -1,0 +1,26 @@
+<div class="row mt-2">
+
+    <div class="col-lg-3 mt-3 hidden-md-down">
+        
+      <div class="list-group">
+
+          <!--<a *ngFor="let genre of genres" 
+              [routerLink]="['genres',genre.id, genre.name]" 
+              class="list-group-item justify-content-between list-group-item-action" 
+              [routerLinkActiveOptions]="{exact:false}"
+              [routerLinkActive]="['active']" > 
+              {{genre.name}} 
+              <span class="badge badge-pill badge-default">{{genre.total_results}}</span>
+          </a>-->
+
+            <ng-container>
+                <genre-list (select)="onSelectGenre($event)" [genres]='genres'></genre-list>
+            </ng-container>
+
+      </div>
+    </div>
+
+    <div class="col-lg-9 mt-3">
+        <router-outlet></router-outlet>
+    </div>
+</div>

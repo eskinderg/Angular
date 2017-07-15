@@ -4,7 +4,7 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 
-import { TodoModule } from '../shared/components/todo/todo.module';
+import { EventModule } from '../../theme/components/event/event.module';
 import { TableComponent } from './components/table/table.component';
 
 import { NgaModule } from '../../theme/nga.module';
@@ -14,7 +14,7 @@ import { NgaModule } from '../../theme/nga.module';
     SharedModule,
     NgaModule,
     HomeRoutingModule,
-    TodoModule
+    EventModule
   ],
   declarations: [
     HomeComponent,

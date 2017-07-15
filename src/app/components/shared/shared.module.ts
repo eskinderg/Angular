@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -20,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule,NgbModule.forRoot()],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule.forRoot()],
   declarations: [
         HeaderComponent,
         UserInfoComponent,
@@ -33,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
         FooterComponent,
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule
   ]
 })
