@@ -10,11 +10,7 @@ import { AuthService } from './services/auth/auth.service';
 import { HeaderComponent } from './header/header.component';
 import { UserInfoComponent } from './header/userinfo/userinfo.component';
 import { FooterComponent } from './footer/footer.component';
-
-
-// import { BaCard } from '../theme/baCard.component';
-// import { Todo } from '../shared/components/todo/todo';
-// import { TodoService } from '../shared/components/todo/todo.service';
+import { TruncatePipe } from '../movies/directives/truncate';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -24,9 +20,9 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
         HeaderComponent,
         UserInfoComponent,
-        FooterComponent
+        FooterComponent,
+        TruncatePipe
   ],
-
   exports: [
         HeaderComponent,
         UserInfoComponent,
@@ -34,7 +30,8 @@ import { FooterComponent } from './footer/footer.component';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        RouterModule
+        RouterModule,
+        TruncatePipe
   ]
 })
 export class SharedModule {

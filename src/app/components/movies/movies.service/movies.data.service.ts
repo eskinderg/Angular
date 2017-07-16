@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, Jsonp} from '@angular/http';
-import { Todo } from './todo';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
+import { Tv } from '../models/tv';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -170,12 +170,13 @@ export class MoviesDataService {
         return res.json();
       })
   }
-  getPopularSeries() {
+  getPopularSeries(): Observable<Tv[]> {
     let search = new URLSearchParams();
     search.set('api_key', this.apikey);
     return this._jsonp.get('https://api.themoviedb.org/3/tv/popular?callback=JSONP_CALLBACK', {search})
       .map(res => {
-        return res.json();
+        const tvs = res.json().results;
+        return tvs.map((tv: Tv) => new Tv(tv));
       });
   }
 

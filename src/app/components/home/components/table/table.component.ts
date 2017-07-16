@@ -3,7 +3,6 @@ import { Event } from '../../../../theme/components/event/event';
 
 @Component(
   {
-    moduleId: module.id,
     selector: 'table-event-list',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss']

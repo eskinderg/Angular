@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Event } from '../event';
 import { EventApiService } from './event.api.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class EventDataService {

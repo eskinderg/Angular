@@ -17,7 +17,6 @@ import { MovieCardComponent } from './components/movie.card/movie.card.component
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 
-import {  TruncatePipe } from './directives/truncate';
 import { NgbdRatingDecimal } from './components/rating/rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -39,8 +38,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SearchComponent,
     MovieCardComponent,
     MovieDetailComponent,
-    NgbdRatingDecimal,
-    TruncatePipe
+    NgbdRatingDecimal
   ],
   exports: [MoviesComponent],
   providers: [MoviesApiService, MoviesDataService]

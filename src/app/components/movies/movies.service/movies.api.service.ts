@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Todo } from './todo';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
+import { Tv } from '../models/tv';
 import { MoviesDataService } from './movies.data.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class MoviesApiService {
@@ -17,7 +18,7 @@ export class MoviesApiService {
     }
     return Observable.empty<any>();
   }
-  getPopularSeries() {
+  getPopularSeries(): Observable<Tv[]> {
     return this.api.getPopularSeries();
   }
 

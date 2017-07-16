@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { BaBackTop } from './components/baBackTop/baBackTop.component';
 import { BaCard } from './components/baCard/baCard.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
-
+import { BarchartComponent } from './components/barchart/barchart.component';
 
 import {  ConfirmService,
           ConfirmState,
@@ -18,6 +18,7 @@ const NGA_COMPONENTS = [
   BaBackTop,
   BaCard,
   AppLoadingComponent,
+  BarchartComponent,
   ConfirmModalComponent
   // BaAmChart,
   // BaBackTop,
