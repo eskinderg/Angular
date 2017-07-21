@@ -1,29 +1,29 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { SlideAnimation } from '../shared/animations/animations';
-import { AuthService } from '../shared/services/auth/auth.service';
-import { Event } from '../../theme/components/event/event';
+import { EventDataService } from '../../theme/components/event/event.data.service/event.data.service';
 
 /**
  * This class represents the lazy loaded HomeComponent.
  */
 @Component({
-  selector: 'sd-home',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'app-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss'],
-  animations: [ fadeInAnimation ],
-  host: { '[@routerFadeInAnimation]': '' }
+  animations: [fadeInAnimation]
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit {
 
-  public events: Event[];
+  @HostBinding('@routerFadeInAnimation')
 
-  constructor(private route: ActivatedRoute) { }
+  public events$;
 
-  ngOnInit() {
-    this.events = this.route.snapshot.data['events'];
+  constructor(private route: ActivatedRoute, private eventDataService: EventDataService) {
+    this.events$ = eventDataService.getAllEvents();
   }
+
+  ngOnInit() { }
 
 }

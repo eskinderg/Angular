@@ -4,6 +4,12 @@ import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { events } from './reducers/events.reducer';
+import { EventsEffect } from './effects/events.effect';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalErrorHandler  } from './error/errorhandle';
 import { LoggingService } from './error/loggingservice';
@@ -19,8 +25,6 @@ import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 
 
-// import { OAuthModule } from 'angular-oauth2-oidc';
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,6 +35,12 @@ import { AppComponent } from './app.component';
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
+    StoreModule.provideStore({ events }, { events: [] }),
+    EffectsModule.run(EventsEffect),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5,
+      monitor: events
+    }),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot()
