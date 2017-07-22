@@ -3,8 +3,8 @@ import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { Store, Action } from '@ngrx/store';
 
-import { EventsActions } from '../common/actions';
-import { EventApiService } from '../theme/components/event/event.data.service/event.api.service';
+import { EventsActions } from '../events.actions';
+import { EventApiService } from '../event.data.service/event.api.service';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/switchMap';

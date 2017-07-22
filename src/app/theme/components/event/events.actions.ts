@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Event } from '../theme/components/event/event';
+import { Event } from './event';
 /*
 List of events messages
 */

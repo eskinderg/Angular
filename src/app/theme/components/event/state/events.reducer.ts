@@ -1,6 +1,6 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { EventsActions } from '../common/actions';
-import { Event } from '../theme/components/event/event';
+import { EventsActions } from '../events.actions';
+import { Event } from '../event';
 
 export function events(state: Event[] = [], { payload, type }: Action) {
     switch (type) {

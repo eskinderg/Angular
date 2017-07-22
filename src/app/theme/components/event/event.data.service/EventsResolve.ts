@@ -5,7 +5,7 @@ import { Event } from '../event';
 import { Store } from '@ngrx/store';
 import { Actions } from '@ngrx/effects';
 import { AppStore } from '../../../../app-store.model';
-import { EventsActions } from '../../../../common/actions';
+import { EventsActions } from '../events.actions';
 import { Action } from '@ngrx/store';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/take';

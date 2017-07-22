@@ -9,7 +9,7 @@ import { EventDataService } from '../event.data.service/event.data.service';
 import { Event } from '../event';
 import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
 import { AppStore } from '../../../../app-store.model';
-import { EventsActions } from '../../../../common/actions';
+import { EventsActions } from '../events.actions';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
