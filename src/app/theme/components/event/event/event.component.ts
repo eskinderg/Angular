@@ -1,64 +1,49 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Action } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { Actions } from '@ngrx/effects';
 
 import { EventDataService } from '../event.data.service/event.data.service';
 import { Event } from '../event';
 import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
-
+import { AppStore } from '../../../../app-store.model';
+import { EventsActions } from '../../../../common/actions';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'event',
   templateUrl: 'event.component.html',
-  styleUrls: ['event.component.scss'],
-  providers: [EventDataService]
+  styleUrls: ['event.component.scss']
 })
 export class EventComponent {
 
-  @Input() events: Event[] = [];
+  @Input() events: Event[];
 
-  constructor(private eventDataService: EventDataService, private confirmService: ConfirmService) {
-  }
+  constructor(private confirmService: ConfirmService,
+              private store: Store<any>,
+              private eventsActions: EventsActions) { }
 
   onAddEvent(event: Event) {
-    this.eventDataService
-      .addEvent(event)
-      .subscribe(
-        (newEvent) => {
-          this.events = this.events.concat(newEvent);
-        }
-      );
+    this.store.dispatch(this.eventsActions.createEvent(event));
   }
 
   onToggleEventComplete(event: Event) {
-    this.eventDataService
-      .toggleEventComplete(event)
-      .subscribe(
-        (updatedEvent) => {
-          event = updatedEvent;
-        }
-      );
+    event.complete = !event.complete;
+    this.store.dispatch(this.eventsActions.updateEvent(event.id, event));
   }
 
   onRemoveEvent(event: Event) {
     this.confirmService.confirm({
       title: 'Confirm deletion',
       message: 'Do you really want to delete the item ' + '"' + event.title + '"?'
-    }
-    ).then(
+    }).then(
       () => {
-        this.eventDataService
-          .deleteEventById(event.id)
-          .subscribe(
-          (_) => {
-            this.events = this.events.filter((t) => t.id !== event.id);
-          }
-          );
-      },
-      () => {
-        console.log('not deleting...');
+        this.store.dispatch(this.eventsActions.deleteEvent(event.id));
+      }, () => {
+        console.log();
       });
-
   }
 
 }

@@ -13,8 +13,7 @@ import { EventListItemComponent } from './event/event-list-item/event-list-item.
 import { EventListFooterComponent} from './event/event-list-footer/event-list-footer.component';
 
 import { EventsResolve } from './event.data.service/EventsResolve';
-
-// import { TableComponent } from './components/table/table.component';
+import { EventsActions } from '../../../common/actions';
 
 @NgModule({
   imports: [FormsModule, CommonModule, NgaModule],
@@ -34,6 +33,6 @@ import { EventsResolve } from './event.data.service/EventsResolve';
     CommonModule,
     FormsModule
   ],
-  providers: [EventApiService, EventsResolve]
+  providers: [EventApiService, EventsResolve, EventsActions]
 })
 export class EventModule { }

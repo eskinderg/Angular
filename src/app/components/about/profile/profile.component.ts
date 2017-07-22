@@ -5,7 +5,7 @@ import { User } from 'oidc-client';
 
 @Component({
   moduleId: module.id,
-  selector: 'sd-profile',
+  selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss']
 })

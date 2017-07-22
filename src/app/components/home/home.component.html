@@ -1,41 +1,36 @@
-
 <div class="row mt-2">
 
   <div class="col-md-6 mt-2">
     <ba-card header="Popular Series">
-        <div class="list-group">
-          <a *ngFor="let tv of tvs" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{ tv.name }}</h5>
-                <small class="text-muted">Aired {{ tv.first_air_date }}</small>
-              </div>
-              <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p>
-              <small class="text-muted">country {{ tv.origin_country[0] }}</small>
-          </a>
-        </div>
+      <div class="list-group">
+        <a *ngFor="let tv of tvs" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ tv.name }}</h5>
+            <small class="text-muted">Aired {{ tv.first_air_date }}</small>
+          </div>
+          <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p>
+          <small class="text-muted">country {{ tv.origin_country[0] }}</small>
+        </a>
+      </div>
     </ba-card>
   </div>
 
-
   <div class="col-md-6 mt-2">
-
-  <div class="row">
-    <div class="col-md-12">
-      <ba-card header="Chart Area">
-        <app-barchart *ngIf="chartData" [data]="chartData">Loading ....</app-barchart>
-      </ba-card>
-    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <ba-card header="Chart Area">
+          <app-barchart *ngIf="chartData" [data]="chartData">Loading ....</app-barchart>
+        </ba-card>
+      </div>
 
       <div class="col-md-12 mt-4">
         <ba-card header="Events List">
-            <event [events]="events"></event>
+          <event [events]="events$"></event>
         </ba-card>
       </div>
+      
     </div>
   </div>
 
 </div>
-<!-- 
-<div class="row mt-3 mb-3">
-  <div class="col-lg-12"></div>
-</div> -->

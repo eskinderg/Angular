@@ -11,16 +11,14 @@ import { User } from 'oidc-client';
  */
 @Component({
   moduleId: module.id,
-  selector: 'sd-profile',
+  selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss'],
-  animations: [ fadeInAnimation ],
-  host: { '[@routerFadeInAnimation]': '' }
+  animations: [ fadeInAnimation ]
 })
 export class ProfileComponent implements OnInit {
-  // @HostBinding('@routeAnimation') routeAnimation = true;
-  // @HostBinding('style.display')   display = 'block';
-  // @HostBinding('style.position')  position = 'absolute';
+
+  @HostBinding('@routerFadeInAnimation')
 
   public x: number;
   public y: number;

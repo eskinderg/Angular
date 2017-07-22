@@ -12,9 +12,11 @@ const API_URL = environment.TODO_API;
 @Injectable()
 export class EventApiService {
 
-  constructor(
-    private http: Http
-  ) {
+  constructor(private http: Http) { }
+
+  getEvents(): Observable<Array<Event>> {
+    return this.http.get(API_URL + '/todos')
+      .map((response: Response) => response.json());
   }
 
   public getAllEvents(): Observable<Event[]> {
@@ -57,7 +59,9 @@ export class EventApiService {
   public deleteEventById(eventId: number): Observable<null> {
     return this.http
       .delete(API_URL + '/todos/' + eventId)
-      .map(response => null)
+      .map(response => {
+        return new Event(response.json());
+      })
       .catch(this.handleError);
   }
 
