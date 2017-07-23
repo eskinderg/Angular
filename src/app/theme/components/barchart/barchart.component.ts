@@ -9,8 +9,8 @@ import * as d3 from 'd3';
 })
 export class BarchartComponent implements OnInit, OnChanges {
   @ViewChild('chart') private chartContainer: ElementRef;
-  @Input() private data: Array<any>;
-  private margin: any = { top: 20, bottom: 20, left: 20, right: 20};
+  @Input() private data: Array<any> = this.generateSampleData();
+  private margin: any = { top: 20, bottom: 20, left: 20, right: 20 };
   private chart: any;
   private width: number;
   private height: number;
@@ -23,10 +23,11 @@ export class BarchartComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
+    // if (!this.data) {
+    //   this.data = this.generateSampleData();
+    // }
     this.createChart();
-    if (this.data) {
-      this.updateChart();
-    }
+    this.updateChart();
   }
 
   ngOnChanges() {
@@ -35,11 +36,24 @@ export class BarchartComponent implements OnInit, OnChanges {
     }
   }
 
+  generateSampleData() {
+    const values: Array<any> = [];
+
+    for (let i = 0; i < (8 + Math.floor(Math.random() * 10)); i++) {
+      values.push([
+        `Index ${i}`,
+        Math.floor(Math.random() * 100)
+      ]);
+    }
+
+    return values;
+  }
+
   createChart() {
-    let element = this.chartContainer.nativeElement;
+    const element = this.chartContainer.nativeElement;
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
-    let svg = d3.select(element).append('svg')
+    const svg = d3.select(element).append('svg')
       .attr('width', element.offsetWidth)
       .attr('height', element.offsetHeight);
 
@@ -49,8 +63,8 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
 
     // define X & Y domains
-    let xDomain = this.data.map(d => d[0]);
-    let yDomain = [0, d3.max(this.data, d => d[1])];
+    const xDomain = this.data.map(d => d[0]);
+    const yDomain = [0, d3.max(this.data, d => d[1])];
 
     // create scales
     this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
@@ -78,7 +92,7 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));
 
-    let update = this.chart.selectAll('.bar')
+    const update = this.chart.selectAll('.bar')
       .data(this.data);
 
     // remove exiting bars

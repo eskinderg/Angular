@@ -23,10 +23,13 @@ describe('EventListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(EventListComponent);
     component = fixture.componentInstance;
-    component.events = [
-     new Event({ id: 1, title: 'Test', complete: false })
-    ];
-    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      component.events = [
+        new Event({ id: 1, title: 'Test', complete: false })
+      ];
+      // fixture.detectChanges();
+    });
   });
 
   it('should create', () => {
