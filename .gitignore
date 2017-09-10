@@ -45,3 +45,6 @@ Thumbs.db
 # server files
 server
 oidc
+
+#vim
+**/*.swp
