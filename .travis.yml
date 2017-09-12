@@ -2,12 +2,14 @@
 
 language: node_js
 node_js:
-  - "6.10.0"
+  - "6.11.2"
 
 branches:
   only:
     - dev
     - master
+
+before_install: if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
 
 before_script:
   - npm install
