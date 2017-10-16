@@ -1,15 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'truncate'
+    name: 'truncate'
 })
-export class TruncatePipe implements PipeTransform{
-  transform(value: string, args: string, trailadd: boolean) : string {
-    let trail = '';
-    let limit = args ? parseInt(args, 10) : 10;
-    if(trailadd) {
-      trail = ' ...';
+export class TruncatePipe implements PipeTransform {
+
+    transform(value: string, args: string, trailadd: boolean) : string {
+
+        let trail = '';
+
+        let limit = args ? parseInt(args, 10) : 10;
+
+        if(trailadd) {
+            trail = ' ...';
+        }
+
+        if(value)
+        {
+            return value.length > limit ? value.substring(0, limit) + trail : value;
+        }
     }
-    return value.length > limit ? value.substring(0, limit) + trail : value;
-  }
 }

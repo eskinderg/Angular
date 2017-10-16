@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -14,14 +13,14 @@ export class UserInfoComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-      this.authService.userLoadededEvent
-        .subscribe(user => {
-          this.user = user;
+    this.authService.userLoadededEvent
+      .subscribe(user => {
+        this.user = user;
       });
   }
 
   startSignoutMainWindow() {
-      this.authService.startSignoutMainWindow();
+    this.authService.startSignoutMainWindow();
   }
 
 }

@@ -11,11 +11,12 @@
       "assets": [
         "assets",
         "favicon.ico",
+        "service-worker.js",
         {
-  "glob": "**/*",
-  "input": "./assets/",
-  "output": "./assets/"
-}
+          "glob": "**/*",
+          "input": "./assets/",
+          "output": "./assets/"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",

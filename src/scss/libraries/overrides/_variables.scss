@@ -1,9 +1,10 @@
 %scope {
+  @import "~bootstrap/scss/functions";
   @import "~bootstrap/scss/variables";
 
   // Colors
-      // $blue: #2a6ada ! global;
-      // $blue: black ! global;
+       //$blue: #2a6ada ! global;
+       //$blue: black ! global;
 
   // Grayscales
       // $gray-dark:                 lighten($blue, 10%) !global;
@@ -13,7 +14,7 @@
       // $gray-lightest:             lighten($blue, 55%) !global;
 
   // Symantic Color Scheme
-    // $brand-primary: $orange ! global ;
+     //$brand-primary: $orange ! global ;
     // $brand-primary: black !global;
 
 
@@ -35,14 +36,14 @@
 
 
   //nav-bar
-      $navbar-inverse-hover-color:        $white ! global;
+      //$navbar-inverse-hover-color:        $white ! global;
 
 
   //table
-      $table-bg-hover:                    $gray-lightest ! global;
+      //$table-bg-hover:                    $gray-lightest ! global;
 
   //Card
-      // $card-cap-bg :                      $gray-lightest !global;
+       //$card-cap-bg :                      $gray-lightest !global;
       $card-spacer-x:                     1rem   ! global;
       $card-spacer-y:                     .5rem  ! global;
 
