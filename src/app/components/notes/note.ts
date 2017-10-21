@@ -3,7 +3,7 @@ export class Note {
     colour: string;
     left: number;
     top: number;
-    id: string;
+    id: number;
     dirty: boolean;
 
     constructor(values: Object = {}) {

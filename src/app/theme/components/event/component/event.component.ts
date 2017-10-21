@@ -22,8 +22,8 @@ export class EventComponent {
   @Input() events: Event[];
 
   constructor(private confirmService: ConfirmService,
-              private store: Store<any>,
-              private eventsActions: EventsActions) { }
+    private store: Store<Event>,
+    private eventsActions: EventsActions) { }
 
   onAddEvent(event: Event) {
     this.store.dispatch(this.eventsActions.createEvent(event));

@@ -14,58 +14,60 @@ import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, Navigatio
 })
 export class AppComponent {
 
-    @ViewChild('spinnerElement') spinnerElement: ElementRef;
-    errorOccured = false;
+  @ViewChild('spinnerElement') spinnerElement: ElementRef;
+  errorOccured = false;
 
-    constructor(private errorLog: LoggingService,
-                private router: Router,
-                private ngZone: NgZone,
-                private renderer: Renderer) {
+  constructor(
+    private errorLog: LoggingService,
+    private router: Router,
+    private ngZone: NgZone,
+    private renderer: Renderer
+  ) {
 
-          errorLog.onError.subscribe((error) => {
-              this.errorOccured = true;
-          });
+    errorLog.onError.subscribe((error) => {
+      this.errorOccured = true;
+    });
 
-          router.events.subscribe((event: RouterEvent) => {
-              this._navigationInterceptor(event);
-          });
+    router.events.subscribe((event: RouterEvent) => {
+      this._navigationInterceptor(event);
+    });
 
-        // for debugging purposes
-        console.log('Environment config', environment);
+    // for debugging purposes
+    console.log('Environment config', environment);
+  }
+
+  private _navigationInterceptor(event: RouterEvent): void {
+
+    if (event instanceof NavigationStart) {
+      this.ngZone.runOutsideAngular(() => {
+        this.renderer.setElementStyle(
+          this.spinnerElement.nativeElement,
+          'opacity',
+          '1'
+        );
+      });
+    }
+    if (event instanceof NavigationEnd) {
+      this._hideSpinner();
     }
 
-      private _navigationInterceptor(event: RouterEvent): void {
+    if (event instanceof NavigationCancel) {
+      this._hideSpinner();
+    }
+    if (event instanceof NavigationError) {
+      this._hideSpinner();
+    }
+  }
 
-          if (event instanceof NavigationStart) {
-              this.ngZone.runOutsideAngular(() => {
-                  this.renderer.setElementStyle(
-                      this.spinnerElement.nativeElement,
-                      'opacity',
-                      '1'
-                  );
-              });
-          }
-          if (event instanceof NavigationEnd) {
-              this._hideSpinner();
-          }
+  private _hideSpinner(): void {
 
-          if (event instanceof NavigationCancel) {
-              this._hideSpinner();
-          }
-          if (event instanceof NavigationError) {
-              this._hideSpinner();
-          }
-      }
-
-      private _hideSpinner(): void {
-
-          this.ngZone.runOutsideAngular(() => {
-              this.renderer.setElementStyle(
-                  this.spinnerElement.nativeElement,
-                  'opacity',
-                  '0'
-              );
-          });
-      }
+    this.ngZone.runOutsideAngular(() => {
+      this.renderer.setElementStyle(
+        this.spinnerElement.nativeElement,
+        'opacity',
+        '0'
+      );
+    });
+  }
 
 }

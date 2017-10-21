@@ -13,7 +13,7 @@ import { NotesService } from './services/notes.service';
         component: NotesComponent,
         canActivate: [AuthGuardService],
         resolve: {
-          notes: NotesResolver
+          //notes: NotesResolver
         }
       }
     ])

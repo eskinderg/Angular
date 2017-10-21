@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   public events$;
 
   constructor(private route: ActivatedRoute,
-              private eventDataService: EventDataService) { }
+    private eventDataService: EventDataService) { }
 
   ngOnInit() {
     this.tvs = this.route.snapshot.data['tvs'];

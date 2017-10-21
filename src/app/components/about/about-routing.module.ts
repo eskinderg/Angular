@@ -17,7 +17,7 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
           {path: 'feature', component: FeatureComponent}
         ],
         canActivate: [AuthGuardService]
-    }
+      }
     ])
   ],
   exports: [RouterModule]

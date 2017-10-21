@@ -6,7 +6,7 @@
         <add-button (add)="onAddNote($event)" colour="blue"></add-button>
     </div>
 </div>
-  <app-note *ngFor="let note of $notes "
+  <app-note *ngFor="let note of $notes | async"
   [text] = "note.text"
   [colour] = "note.colour"
   [left] = note.left

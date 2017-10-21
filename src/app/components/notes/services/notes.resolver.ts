@@ -9,6 +9,7 @@ export class NotesResolver implements Resolve<Note[]> {
   constructor(private notesService: NotesService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.notesService.getNotes();
+    return null;
+    //return this.notesService.getNotes();
   }
 }

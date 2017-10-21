@@ -1,7 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,11 +16,13 @@ import { UnauthorizedModule } from './components/unauthorized/unauthorized.modul
 import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { GlobalHttpInterceptor } from './http.interceptor';
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     UnauthorizedModule,
     HomeModule,
@@ -35,6 +36,7 @@ import { AppComponent } from './app.component';
   ],
   declarations: [AppComponent],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
     LoggingService,
     { provide: APP_BASE_HREF, useValue: '/' },
     { provide: ErrorHandler, useClass: GlobalErrorHandler }

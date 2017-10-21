@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import { environment } from '../../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 import { UserManager, User} from 'oidc-client';
 
@@ -19,7 +20,7 @@ export class AuthService {
 
   authHeaders: Headers;
 
-  constructor(private http: Http, private route: Router) {
+  constructor(private http: HttpClient , private route: Router) {
 
     this.mgr.getUser()
       .then((user) => {
@@ -102,7 +103,7 @@ export class AuthService {
       console.log('signinRedirect done');
     }).catch(function (err) {
       console.log(err);
-       return err;
+      return err;
     });
   }
   endSigninMainWindow() {
@@ -144,55 +145,55 @@ export class AuthService {
    * Example of how you can make auth request using angulars http methods.
    * @param options if options are not supplied the default content type is application/json
    */
-  AuthGet(url: string, options?: RequestOptions): Observable<Response> {
+  //AuthGet(url: string, options?: RequestOptions): Observable<Response> {
 
-    if (options) {
-      options = this._setRequestOptions(options);
-    } else {
-      options = this._setRequestOptions();
-    }
-    return this.http.get(url, options);
-  }
+  //if (options) {
+  //options = this._setRequestOptions(options);
+  //} else {
+  //options = this._setRequestOptions();
+  //}
+  //return this.http.get(url, options);
+  //}
   /**
    * @param options if options are not supplied the default content type is application/json
    */
-  AuthPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  //AuthPut(url: string, data: any, options?: RequestOptions): Observable<Response> {
 
-    const body = JSON.stringify(data);
+  //const body = JSON.stringify(data);
 
-    if (options) {
-      options = this._setRequestOptions(options);
-    } else {
-      options = this._setRequestOptions();
-    }
-    return this.http.put(url, body, options);
-  }
+  //if (options) {
+  //options = this._setRequestOptions(options);
+  //} else {
+  //options = this._setRequestOptions();
+  //}
+  //return this.http.put(url, body, options);
+  //}
   /**
    * @param options if options are not supplied the default content type is application/json
    */
-  AuthDelete(url: string, options?: RequestOptions): Observable<Response> {
+  //AuthDelete(url: string, options?: RequestOptions): Observable<Response> {
 
-    if (options) {
-      options = this._setRequestOptions(options);
-    } else {
-      options = this._setRequestOptions();
-    }
-    return this.http.delete(url, options);
-  }
+  //if (options) {
+  //options = this._setRequestOptions(options);
+  //} else {
+  //options = this._setRequestOptions();
+  //}
+  //return this.http.delete(url, options);
+  //}
   /**
    * @param options if options are not supplied the default content type is application/json
    */
-  AuthPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
+  //AuthPost(url: string, data: any, options?: RequestOptions): Observable<Response> {
 
-    const body = JSON.stringify(data);
+  //const body = JSON.stringify(data);
 
-    if (options) {
-      options = this._setRequestOptions(options);
-    } else {
-      options = this._setRequestOptions();
-    }
-    return this.http.post(url, body, options);
-  }
+  //if (options) {
+  //options = this._setRequestOptions(options);
+  //} else {
+  //options = this._setRequestOptions();
+  //}
+  //return this.http.post(url, body, options);
+  //}
 
 
   private _setAuthHeaders(user: any): void {
