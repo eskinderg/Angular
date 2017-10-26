@@ -28,7 +28,7 @@ export class NotesEffect {
     update: Observable<Action> = this.actions$
         .ofType(NotesActions.UPDATE_NOTE)
         .switchMap(({ payload }) =>
-            this.notesApiService.addOrUpdateNote(payload.changes)
+            this.notesApiService.updateNote(payload.changes)
                 .map(note => this.noteActions.updateNoteSuccess(note))
                 .catch(err => Observable.of(this.noteActions.createNoteFail(err)))
         );

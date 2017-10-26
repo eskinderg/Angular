@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { SharedModule } from '../shared/shared.module';
-import { NotesService } from './services/notes.service';
+import { NotesApiService } from './services/notes.api.service';
 import { NotesDataService } from './services/notes.data.service';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesResolver } from './services/notes.resolver';
@@ -34,6 +34,6 @@ import { notes } from './state/notes.reducer';
     Draggable
   ],
   exports: [NotesComponent, Draggable],
-  providers: [NotesService, NotesDataService, NotesResolver, NotesActions]
+  providers: [NotesApiService, NotesDataService, NotesResolver, NotesActions]
 })
 export class NotesModule { }

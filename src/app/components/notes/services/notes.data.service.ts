@@ -37,6 +37,7 @@ export class NotesDataService {
   }
 
   addOrUpdateNote(note: Note): Observable<Note> {
+    debugger;
     return this.http.post(`${this.API_ROOT}/notes`, JSON.stringify(note))
     .map(response => {
       return new Note(response);
