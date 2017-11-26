@@ -8,8 +8,11 @@ import * as d3 from 'd3';
   encapsulation: ViewEncapsulation.None
 })
 export class BarchartComponent implements OnInit, OnChanges {
+
   @ViewChild('chart') private chartContainer: ElementRef;
+
   @Input() private data: Array<any> = this.generateSampleData();
+
   private margin: any = { top: 20, bottom: 20, left: 20, right: 20 };
   private chart: any;
   private width: number;

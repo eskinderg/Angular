@@ -1,0 +1,51 @@
+import { Action, createFeatureSelector, createSelector} from '@ngrx/store';
+import * as NotesActions from '../actions/note';
+import { Note } from '../components/notes/note';
+
+export interface State {
+  notes: Note[];
+}
+
+export const initialState: State = {
+  notes: []
+};
+
+export function reducer(state = initialState , action: NotesActions.Actions ): State {
+
+  switch (action.type) {
+
+    case NotesActions.CREATE_NOTE_SUCCESS:
+      return {
+        notes: [...state.notes, action.payload]
+      };
+
+    case NotesActions.FETCH_NOTES_SUCCESS:
+      return {
+        notes: action.payload || []
+      };
+
+    case NotesActions.UPDATE_NOTE_POSITION_SUCCESS:
+
+    case NotesActions.UPDATE_NOTE_TEXT_SUCCESS:
+
+    case NotesActions.UPDATE_NOTE_SUCCESS:
+      return Object.assign({}, state, {
+        notes: state.notes.map(note =>
+          (note.id===action.payload.id) ? Object.assign({},note, action.payload) : note)
+      });
+
+
+    case NotesActions.DELETE_NOTE_SUCCESS:
+      const note = action.payload;
+      return Object.assign({}, state, {
+        notes: state.notes.filter((n: Note) => { return n.id !== action.payload.id; })
+      });
+
+    default:
+      return state;
+  }
+};
+
+export const getNoteSTate = createFeatureSelector<State>('notes');
+
+export const getNotes = createSelector(getNoteSTate,(state: State) => state.notes);

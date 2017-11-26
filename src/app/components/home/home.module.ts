@@ -14,6 +14,8 @@ import { MoviesApiService } from '../movies/movies.service/movies.api.service';
 import { MoviesDataService } from '../movies/movies.service/movies.data.service';
 import { TvsResolve } from '../movies/movies.service/tvs.resolve';
 
+import { EventApiService } from '../../theme/components/event/event.data.service/event.api.service';
+
 @NgModule({
   imports: [
     SharedModule,
@@ -27,6 +29,6 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
     TableComponent
   ],
   exports: [HomeComponent],
-  providers: [ MoviesDataService, MoviesApiService, TvsResolve ]
+  providers: [ EventApiService, MoviesDataService, MoviesApiService, TvsResolve ]
 })
 export class HomeModule { }

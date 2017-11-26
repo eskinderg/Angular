@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { MoviesComponent } from './movies.component';
 import { SharedModule } from '../shared/shared.module';
 import { MoviesRoutingModule } from './movies-routing.module';
@@ -28,7 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MoviesRoutingModule,
     JsonpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     MoviesComponent,

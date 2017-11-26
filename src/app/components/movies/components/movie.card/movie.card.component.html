@@ -4,7 +4,7 @@
     <h4 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</a></h4>
     <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
     <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-    <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
+    <h4 class="card-title">{{ movie.release_date | truncate: 4 }}</h4>
     <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
   </div>
 </div>

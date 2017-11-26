@@ -28,11 +28,11 @@ export class NotesDataService {
     });
   }
 
-  deleteNoteById(noteId: number): Observable<Note> {
+  deleteNote(note: Note): Observable<Note> {
     return this.http
-    .delete(this.API_ROOT + '/notes/' + noteId)
+    .delete(this.API_ROOT + '/notes/' + note.id)
     .map(response => {
-      return new Note(response);
+      return new Note({...note});
     });
   }
 

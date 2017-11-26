@@ -1,12 +1,12 @@
 <div class="row mt-3">
-    <div class="col-md-12">
-        <add-button (add)="onAddNote($event)" colour="yellow"></add-button>
-        <add-button (add)="onAddNote($event)" colour="red"></add-button>
-        <add-button (add)="onAddNote($event)" colour="green"></add-button>
-        <add-button (add)="onAddNote($event)" colour="blue"></add-button>
-    </div>
+  <div class="col-md-12">
+    <add-button (add)="onAddNote($event)" colour="yellow"></add-button>
+    <add-button (add)="onAddNote($event)" colour="red"></add-button>
+    <add-button (add)="onAddNote($event)" colour="green"></add-button>
+    <add-button (add)="onAddNote($event)" colour="blue"></add-button>
+  </div>
 </div>
-  <app-note *ngFor="let note of $notes | async"
+<app-note *ngFor="let note of $notes | async"
   [text] = "note.text"
   [colour] = "note.colour"
   [left] = note.left
@@ -16,4 +16,4 @@
   (deleteNote) = "onNoteDelete($event, note)"
   (changeNoteText) = "onChangeNoteText($event, note)"
   (changeNotePosition) = "onChangeNotePosition($event, note)"></app-note>
-  <!-- {{$notes | async | json}} -->
+<!-- {{$notes | async | json}} -->

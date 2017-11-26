@@ -16,13 +16,17 @@ export class EventListItemComponent {
   remove: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  toggleComplete: EventEmitter<Event> = new EventEmitter();
+  toggleComplete: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
-  toggleEventComplete(event: Event) {
-    this.toggleComplete.emit(event);
+  onComplete() {
+
+    this.toggleComplete.emit({
+      ...this.event, complete: !this.event.complete
+    });
+
   }
 
   removeEvent(event: Event) {

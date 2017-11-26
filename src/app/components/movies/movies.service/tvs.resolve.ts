@@ -9,6 +9,6 @@ export class TvsResolve implements Resolve<Tv[]> {
   constructor(private moviesApiService: MoviesApiService) {}
 
   resolve() {
-      return this.moviesApiService.getPopularSeries();
+    return this.moviesApiService.getPopularSeries();
   }
 }

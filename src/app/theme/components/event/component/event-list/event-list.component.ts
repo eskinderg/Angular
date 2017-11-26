@@ -18,13 +18,13 @@ export class EventListComponent {
   remove: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  toggleComplete: EventEmitter<Event> = new EventEmitter();
+  toggleComplete: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
-  onToggleEventComplete(event: Event) {
-    this.toggleComplete.emit(event);
+  onToggleEventComplete(event: Event, changes: any) {
+    this.toggleComplete.emit( { event: event, updates: changes } );
   }
 
   onRemoveEvent(event: Event) {
