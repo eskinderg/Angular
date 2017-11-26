@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { SlideAnimation } from '../shared/animations/animations';
 import { Tv } from '../movies/models/tv';
-import { EventDataService } from '../../theme/components/event/event.data.service/event.data.service';
+import { EventApiService } from '../../theme/components/event/event.data.service/event.api.service';
 
 /**
  * This class represents the lazy loaded HomeComponent.
@@ -22,13 +22,11 @@ export class HomeComponent implements OnInit {
   public tvs: Tv[];
   public events$;
 
-  constructor(private route: ActivatedRoute,
-    private eventDataService: EventDataService) { }
+  constructor(private route: ActivatedRoute, private eventApiService: EventApiService) { }
 
   ngOnInit() {
     this.tvs = this.route.snapshot.data['tvs'];
-    this.events$ = this.eventDataService.getAllEvents();
+    this.events$ = this.eventApiService.getAllEvents();
   }
 
 }
-

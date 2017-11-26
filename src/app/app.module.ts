@@ -1,4 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +21,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalHttpInterceptor } from './http.interceptor';
 
+import { reducer, metaReducers } from './reducers';
+import { NotesEffect } from './effects/notes.effect';
+import { EventsEffect } from './effects/events.effect';
+import { NotesDataService } from './components/notes/services/notes.data.service';
+import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,17 +37,27 @@ import { GlobalHttpInterceptor } from './http.interceptor';
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    StoreModule.forRoot(reducer, { metaReducers }),
+    EffectsModule.forRoot([ NotesEffect, EventsEffect ]),
+    StoreDevtoolsModule.instrument(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot()
   ],
   declarations: [AppComponent],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
+    NotesDataService,
+    EventDataService,
     LoggingService,
-    { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    {
+      provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true
+    },
+    {
+      provide: APP_BASE_HREF, useValue: '/'
+    },
+    {
+      provide: ErrorHandler, useClass: GlobalErrorHandler
+    }
   ],
   bootstrap: [AppComponent]
 

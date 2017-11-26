@@ -1,12 +1,12 @@
 <div class="form-group">
- <section class="main"> 
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let event of events | async " [class.completed]="event.complete">
-      <app-event-list-item
-        [event]="event"
-        (toggleComplete)="onToggleEventComplete($event)"
-        (remove)="onRemoveEvent($event)"></app-event-list-item>
-    </li>
-  </ul>
-</section>
+  <section class="main">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let event of events | async " [class.completed]="event.complete">
+        <app-event-list-item
+          [event]="event"
+          (toggleComplete)="onToggleEventComplete(event, $event)"
+          (remove)="onRemoveEvent($event)"></app-event-list-item>
+      </li>
+    </ul>
+  </section>
 </div>

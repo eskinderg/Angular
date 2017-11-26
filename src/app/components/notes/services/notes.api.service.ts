@@ -2,34 +2,38 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
+import { AppStore } from '../../../app-store.model';
 import { Note } from '../note';
-import { NotesActions } from  '../notes.actions';
+
+import * as NotesActions from  '../../../actions/note';
+import * as fromRoot from '../../../reducers';
+import * as fromNotes from '../../../reducers/notes';
 
 @Injectable()
 export class NotesApiService {
 
-  constructor(private notesActions: NotesActions, private store: Store<Note>) {
-    this.store.dispatch(this.notesActions.fetchNotes());
+  constructor(private store: Store<fromRoot.State>) {
+    this.store.dispatch(new NotesActions.fetchNotes());
   }
 
   getNotes(): Observable<Note[]> {
-    return this.store.select<Note[]>('notes');
+    return this.store.select(fromNotes.getNotes);
   }
 
   addNote(newNote: Note) {
-    return this.store.dispatch(this.notesActions.createNote(newNote));
+    return this.store.dispatch(new NotesActions.createNote(newNote));
   }
 
   deleteNote(note: Note) {
-    this.store.dispatch(this.notesActions.deleteNote(note.id));
+    this.store.dispatch(new NotesActions.deleteNote(note));
   }
 
   changeNoteText(text: string, note: Note) {
-    this.store.dispatch(this.notesActions.updateNote(note.id, note));
+    this.store.dispatch(new NotesActions.updateNoteText(text, note));
   }
 
-  changeNotePosition(left: number, top: number, note: Note): void {
-    this.store.dispatch(this.notesActions.updateNote(note.id, note));
+  changeNotePosition(newPosition: any, note: Note): void {
+    this.store.dispatch(new NotesActions.updateNotePosition(newPosition, {...note,left: newPosition.left, top: newPosition.top }));
   }
 
 }

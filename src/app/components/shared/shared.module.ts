@@ -18,20 +18,20 @@ import { TruncatePipe } from '../movies/directives/truncate';
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule.forRoot()],
   declarations: [
-        HeaderComponent,
-        UserInfoComponent,
-        FooterComponent,
-        TruncatePipe
+    HeaderComponent,
+    UserInfoComponent,
+    FooterComponent,
+    TruncatePipe
   ],
   exports: [
-        HeaderComponent,
-        UserInfoComponent,
-        FooterComponent,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterModule,
-        TruncatePipe
+    HeaderComponent,
+    UserInfoComponent,
+    FooterComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TruncatePipe
   ]
 })
 export class SharedModule {

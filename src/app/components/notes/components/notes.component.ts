@@ -26,15 +26,12 @@ export class NotesComponent {
     this.notesApiService.addNote(newNote);
   }
 
-  onChangeNoteText(newText: string, note: Note) {
-    note.text = newText;
-    this.notesApiService.changeNoteText(newText, note);
+  onChangeNoteText(newText: any , note: Note) {
+    this.notesApiService.changeNoteText(newText, {...note,text: newText});
   }
 
   onChangeNotePosition(newPosition: any, note: Note) {
-    note.left = newPosition.left;
-    note.top = newPosition.top;
-    this.notesApiService.changeNotePosition(newPosition.left, newPosition.top, note);
+    this.notesApiService.changeNotePosition(newPosition, note);
   }
 
   onNoteDelete(id: number, note: Note) {

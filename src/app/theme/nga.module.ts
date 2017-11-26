@@ -8,11 +8,12 @@ import { BaCard } from './components/baCard/baCard.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
 
-import {  ConfirmService,
-          ConfirmState,
-          ConfirmModalComponent,
-          ConfirmTemplateDirective
-        } from './components/modal';
+import {
+  ConfirmService,
+  ConfirmState,
+  ConfirmModalComponent,
+  ConfirmTemplateDirective
+} from './components/modal';
 
 const NGA_COMPONENTS = [
   BaBackTop,

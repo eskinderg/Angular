@@ -28,9 +28,9 @@ export class NoteComponent {
       this.changeNotePosition.emit(newPosition);
     }
   }
-  handleChangeNoteText(text) {
-    if (text !== this.text) {
-      this.changeNoteText.emit(text);
+  handleChangeNoteText(updatedText) {
+    if (updatedText !== this.text) {
+      this.changeNoteText.emit(updatedText);
     }
   }
 
