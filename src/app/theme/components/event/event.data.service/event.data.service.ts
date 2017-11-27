@@ -48,20 +48,20 @@ export class EventDataService {
     .catch(this.handleError);
   }
 
-  public updateEvent(eventId: any, event: any): Observable<Event> {
+  public updateEvent(event: Event): Observable<Event> {
     return this.http
-    .put(API_URL + '/todos/' + eventId, event)
+    .put(API_URL + '/todos/' + event.id, event)
     .map(response => {
       return new Event(response);
     })
     .catch(this.handleError);
   }
 
-  public deleteEventById(eventId: number): Observable<null> {
+  public deleteEventById(event: Event): Observable<Event> {
     return this.http
-      .delete(API_URL + '/todos/' + eventId)
+      .delete(API_URL + '/todos/' + event.id)
       .map(response => {
-        return new Event(response);
+        return event;
       })
       .catch(this.handleError);
   }

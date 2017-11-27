@@ -1,13 +1,13 @@
-
-<div [style.top.px] = "top"
-      [style.left.px] = "left"
-      [style.background] = "colour"
-      (draggable)="handleChangeNotePosition($event)"
->
-<span class="fa fa-bin2" (click)="handleNoteDelete(id)"></span>
+<div
+  [style.top.px] = "note.top"
+  [style.left.px] = "note.left"
+  [style.background] = "note.colour"
+  (draggable)="handleChangeNotePosition($event)"
+  >
+  <span class="fa fa-bin2" (click)="handleNoteDelete(note)"></span>
   <textarea
     #noteText
     (blur)="handleChangeNoteText(noteText.value)"
     [disabled] = "disabled"
-    [ngClass] = "colour + '-note'">{{text}}</textarea>
+    [ngClass] = "note.colour + '-note'">{{note.text}}</textarea>
 </div>

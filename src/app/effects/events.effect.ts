@@ -28,9 +28,9 @@ export class EventsEffect {
   update: Observable<Action> = this.actions$
     .ofType(EventsActions.UPDATE_EVENT)
     .switchMap((action: EventsActions.updateEvent) =>
-      this.eventsDataService.updateEvent(action.eventId ,action.payload)
+      this.eventsDataService.updateEvent(action.payload)
       .map(event => new EventsActions.updateEventSuccess(event))
-      .catch(err => Observable.of(new EventsActions.createEventFail(err)))
+      .catch(err => Observable.of(new EventsActions.updateEventFail(err)))
     );
 
   @Effect()
@@ -45,14 +45,11 @@ export class EventsEffect {
   delete = this.actions$
     .ofType(EventsActions.DELETE_EVENT)
     .switchMap((action: EventsActions.deleteEvent) =>
-      this.eventsDataService.deleteEventById(action.payload.id)
+      this.eventsDataService.deleteEventById(action.payload)
       .map(event => new EventsActions.deleteEventSuccess(event))
       .catch(err => Observable.of(new EventsActions.deleteEventFail(err)))
     );
 
-
-  constructor(
-    private actions$: Actions,
-    private eventsDataService: EventDataService) { }
+  constructor( private actions$: Actions, private eventsDataService: EventDataService) { }
 
 }

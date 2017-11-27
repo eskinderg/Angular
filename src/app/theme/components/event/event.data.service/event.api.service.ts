@@ -4,19 +4,18 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/delay';
 
 import { Event } from '../event';
-import { AppStore } from '../../../../app-store.model';
-import * as fromRoot from '../../../../reducers';
+
+// import * as fromRoot from '../../../../reducers';
 import * as fromEvents from '../../../../reducers/events';
 
 @Injectable()
 export class EventApiService {
 
-  constructor(private store: Store<fromRoot.State>) {
+  constructor(private store: Store<fromEvents.State>) {
     this.store.dispatch({ type: 'FETCH_EVENTS' });
   }
 
   getAllEvents(): Observable<Event[]> {
-    // return this.store.select(fromRoot.getEventEntities);
     return this.store.select(fromEvents.getEvents);
   }
 

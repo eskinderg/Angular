@@ -32,14 +32,6 @@ export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE';
 // ===================================
 //  CREATE
 // -----------------------------------
-// createEvent(event: Event): Action {
-//   return {
-//     type: EventsActions.CREATE_EVENT,
-//     payload: {
-//       event
-//     }
-//   };
-// }
 
 export class createEvent implements Action {
 
@@ -94,7 +86,7 @@ export class fetchEvents implements Action {
 
   readonly type = FETCH_EVENTS;
 
-  constructor (public payload: Event[]){  }
+  constructor (){  }
 }
 
 export class fetchEventsFailed implements Action {
@@ -115,22 +107,11 @@ export class fetchEventsSuccess implements Action {
 //  UPDATE
 // -----------------------------------
 
-// updateEvent(id: number, changes: Event): Action {
-//   changes = {...changes, complete: !changes.complete};
-//   return {
-//     type: EventsActions.UPDATE_EVENT,
-//     payload: {
-//       changes,
-//       id
-//     }
-//   };
-// }
-
 export class updateEvent implements Action {
 
   readonly type = UPDATE_EVENT;
 
-  constructor (public eventId: number, public payload: any){  }
+  constructor (public payload: any){  }
 }
 
 export class updateEventFail implements Action {

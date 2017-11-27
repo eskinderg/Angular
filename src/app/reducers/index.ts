@@ -1,10 +1,8 @@
 import { storeFreeze } from 'ngrx-store-freeze';
-// import {  } from 'reselect';
 import { combineReducers, ActionReducer, createSelector, createFeatureSelector } from '@ngrx/store';
 import { ActionReducerMap, MetaReducer} from '@ngrx/store';
-// import { createSelector } from 'reselect';
-import { environment } from '../../environments/environment';
 
+import { environment } from '../../environments/environment';
 import * as fromNotes from './notes';
 import * as fromEvents from './events';
 

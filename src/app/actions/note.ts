@@ -125,10 +125,10 @@ export const TOGGLE_NOTE_FAILURE = 'TOGGLE_NOTE_FAILURE';
   // -----------------------------------
 
   export class updateNoteText implements Action {
-    // note = {...note, text: newText};
+
     readonly type = UPDATE_NOTE_TEXT;
 
-    constructor (public updtedText: string, public payload: Note){  }
+    constructor (public payload: Note){  }
   }
 
 
@@ -172,13 +172,11 @@ export const TOGGLE_NOTE_FAILURE = 'TOGGLE_NOTE_FAILURE';
   }
 
 
-
   export class updateNotePosition implements Action {
 
-    // note = {...note, left: newPosition.left, top: newPosition.top};
     readonly type = UPDATE_NOTE_POSITION;
 
-    constructor (public newPosition: any, public payload: Note){  }
+    constructor (public payload: Note){  }
   }
 
 
