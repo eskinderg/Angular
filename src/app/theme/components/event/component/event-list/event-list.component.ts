@@ -3,7 +3,6 @@ import { Event } from '../../event';
 
 @Component(
   {
-    moduleId: module.id,
     selector: 'app-event-list',
     templateUrl: './event-list.component.html',
     styleUrls: ['./event-list.component.scss']
@@ -11,20 +10,15 @@ import { Event } from '../../event';
 )
 export class EventListComponent {
 
-  @Input()
-  events: Event[];
+  @Input() events: Event[];
 
-  @Output()
-  remove: EventEmitter<Event> = new EventEmitter();
+  @Output() remove: EventEmitter<Event> = new EventEmitter();
+  @Output() toggleComplete: EventEmitter<Event> = new EventEmitter();
 
-  @Output()
-  toggleComplete: EventEmitter<any> = new EventEmitter();
+  constructor() { }
 
-  constructor() {
-  }
-
-  onToggleEventComplete(event: Event, changes: any) {
-    this.toggleComplete.emit( { event: event, updates: changes } );
+  onToggleEventComplete(event: Event) {
+    this.toggleComplete.emit( event );
   }
 
   onRemoveEvent(event: Event) {

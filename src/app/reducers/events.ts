@@ -20,21 +20,22 @@ export function reducer(state:State = initialState, action: EventsActions.Action
       };
 
     case EventsActions.FETCH_EVENTS_SUCCESS:
-      console.log( action );
       return {
         events: action.payload || []
       };
 
     case EventsActions.UPDATE_EVENT_SUCCESS:
       return Object.assign({}, state, {
-        events: state.events.map((e) => {
-          return  (e.id==action.payload.id) ? action.payload: e
+        events: state.events.map((event) => {
+          return  (event.id==action.payload.id) ? action.payload: event
         })
       });
 
-    case EventsActions.DELETE_EVENT:
+    case EventsActions.DELETE_EVENT_SUCCESS:
       return Object.assign({}, state, {
-        events: state.events.filter((event: Event) => { return event.id !== action.payload.id; })
+        events: state.events.filter((event: Event) => {
+          return event.id !== action.payload.id;
+        })
       });
 
     default:

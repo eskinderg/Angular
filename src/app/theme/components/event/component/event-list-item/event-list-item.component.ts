@@ -16,7 +16,7 @@ export class EventListItemComponent {
   remove: EventEmitter<Event> = new EventEmitter();
 
   @Output()
-  toggleComplete: EventEmitter<any> = new EventEmitter();
+  toggleComplete: EventEmitter<Event> = new EventEmitter();
 
   constructor() {
   }
