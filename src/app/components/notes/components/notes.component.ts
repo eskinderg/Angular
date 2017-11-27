@@ -22,19 +22,27 @@ export class NotesComponent {
   }
 
   onAddNote(colour) {
-    const newNote = new Note({text: '', colour: colour, left: Math.floor(Math.random() * 600), top: Math.floor(Math.random() * 400)});
+
+    const newNote = new Note({
+      text: '',
+      colour: colour,
+      left: Math.floor(Math.random() * 600),
+      top: Math.floor(Math.random() * 400)
+    });
+
     this.notesApiService.addNote(newNote);
   }
 
   onChangeNoteText(newText: any , note: Note) {
-    this.notesApiService.changeNoteText(newText, {...note,text: newText});
+    console.log( newText );
+    this.notesApiService.changeNoteText({...note,text: newText});
   }
 
-  onChangeNotePosition(newPosition: any, note: Note) {
-    this.notesApiService.changeNotePosition(newPosition, note);
+  onChangeNotePosition( {top , left} , note: Note) {
+    this.notesApiService.changeNotePosition({...note, left: left, top: top});
   }
 
-  onNoteDelete(id: number, note: Note) {
+  onNoteDelete(note: Note) {
     this.notesApiService.deleteNote(note);
   }
 }

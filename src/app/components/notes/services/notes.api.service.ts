@@ -28,12 +28,12 @@ export class NotesApiService {
     this.store.dispatch(new NotesActions.deleteNote(note));
   }
 
-  changeNoteText(text: string, note: Note) {
-    this.store.dispatch(new NotesActions.updateNoteText(text, note));
+  changeNoteText(note: Note) {
+    this.store.dispatch(new NotesActions.updateNoteText(note));
   }
 
-  changeNotePosition(newPosition: any, note: Note): void {
-    this.store.dispatch(new NotesActions.updateNotePosition(newPosition, {...note,left: newPosition.left, top: newPosition.top }));
+  changeNotePosition(note: Note): void {
+    this.store.dispatch(new NotesActions.updateNotePosition(note));
   }
 
 }

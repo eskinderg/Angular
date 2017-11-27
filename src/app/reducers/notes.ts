@@ -25,20 +25,18 @@ export function reducer(state = initialState , action: NotesActions.Actions ): S
       };
 
     case NotesActions.UPDATE_NOTE_POSITION_SUCCESS:
-
     case NotesActions.UPDATE_NOTE_TEXT_SUCCESS:
-
     case NotesActions.UPDATE_NOTE_SUCCESS:
       return Object.assign({}, state, {
         notes: state.notes.map(note =>
-          (note.id===action.payload.id) ? Object.assign({},note, action.payload) : note)
+          (note.id===action.payload.id) ? action.payload : note)
       });
 
-
     case NotesActions.DELETE_NOTE_SUCCESS:
-      const note = action.payload;
       return Object.assign({}, state, {
-        notes: state.notes.filter((n: Note) => { return n.id !== action.payload.id; })
+        notes: state.notes.filter((note: Note) => {
+          return note.id !== action.payload.id;
+        })
       });
 
     default:

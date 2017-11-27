@@ -130,7 +130,7 @@ export class updateEvent implements Action {
 
   readonly type = UPDATE_EVENT;
 
-  constructor (public eventId: number, public payload: any){  }
+  constructor (public payload: any){  }
 }
 
 export class updateEventFail implements Action {

@@ -48,3 +48,4 @@ oidc
 
 #vim
 **/*.swp
+**/*.vim
