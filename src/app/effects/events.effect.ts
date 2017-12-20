@@ -20,36 +20,36 @@ export class EventsEffect {
     .ofType(EventsActions.CREATE_EVENT)
     .switchMap((action: EventsActions.createEvent) =>
       this.eventsDataService.createEvent(action.payload)
-      .map(event => new EventsActions.createEventSuccess(event))
-      .catch(err => Observable.of(new EventsActions.createEventFail(err)))
+        .map(event => new EventsActions.createEventSuccess(event))
+        .catch(err => Observable.of(new EventsActions.createEventFail(err)))
     );
 
-  @Effect()
-  update: Observable<Action> = this.actions$
-    .ofType(EventsActions.UPDATE_EVENT)
-    .switchMap((action: EventsActions.updateEvent) =>
-      this.eventsDataService.updateEvent(action.payload)
-      .map(event => new EventsActions.updateEventSuccess(event))
-      .catch(err => Observable.of(new EventsActions.updateEventFail(err)))
-    );
+    @Effect()
+    update: Observable<Action> = this.actions$
+      .ofType(EventsActions.UPDATE_EVENT)
+      .switchMap((action: EventsActions.updateEvent) =>
+        this.eventsDataService.updateEvent(action.payload)
+          .map(event => new EventsActions.updateEventSuccess(event))
+          .catch(err => Observable.of(new EventsActions.updateEventFail(err)))
+      );
 
-  @Effect()
-  fetch: Observable<Action> = this.actions$
-    .ofType(EventsActions.FETCH_EVENTS)
-    .switchMap(() => this.eventsDataService.getAllEvents()
-      .map(events => new EventsActions.fetchEventsSuccess(events))
-      .catch(err => Observable.of({ type: EventsActions.FETCH_EVENTS_FAILURE, payload: err }))
-    );
+      @Effect()
+      fetch: Observable<Action> = this.actions$
+        .ofType(EventsActions.FETCH_EVENTS)
+        .switchMap(() => this.eventsDataService.getAllEvents()
+          .map(events => new EventsActions.fetchEventsSuccess(events))
+          .catch(err => Observable.of({ type: EventsActions.FETCH_EVENTS_FAILURE, payload: err }))
+        );
 
-  @Effect()
-  delete = this.actions$
-    .ofType(EventsActions.DELETE_EVENT)
-    .switchMap((action: EventsActions.deleteEvent) =>
-      this.eventsDataService.deleteEventById(action.payload)
-      .map(event => new EventsActions.deleteEventSuccess(event))
-      .catch(err => Observable.of(new EventsActions.deleteEventFail(err)))
-    );
+        @Effect()
+        delete = this.actions$
+          .ofType(EventsActions.DELETE_EVENT)
+          .switchMap((action: EventsActions.deleteEvent) =>
+            this.eventsDataService.deleteEventById(action.payload)
+              .map(event => new EventsActions.deleteEventSuccess(event))
+              .catch(err => Observable.of(new EventsActions.deleteEventFail(err)))
+          );
 
-  constructor( private actions$: Actions, private eventsDataService: EventDataService) { }
+          constructor( private actions$: Actions, private eventsDataService: EventDataService) { }
 
 }

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot([
       /* define app module routes here, e.g., to lazily load a module
-         (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
+       (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
        */
       { path: 'profile', loadChildren: './components/profile/profile.module#ProfileModule' },
       { path: 'about', loadChildren: './components/about/about.module#AboutModule' },

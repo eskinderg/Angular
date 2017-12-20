@@ -109,19 +109,19 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('height', d => this.height - this.yScale(d[1]))
       .style('fill', (d, i) => this.colors(i));
 
-    // add new bars
-    update
-      .enter()
-      .append('rect')
-      .attr('class', 'bar')
-      .attr('x', d => this.xScale(d[0]))
-      .attr('y', d => this.yScale(0))
-      .attr('width', this.xScale.bandwidth())
-      .attr('height', 0)
-      .style('fill', (d, i) => this.colors(i))
-      .transition()
-      .delay((d, i) => i * 10)
-      .attr('y', d => this.yScale(d[1]))
-      .attr('height', d => this.height - this.yScale(d[1]));
+      // add new bars
+      update
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => this.xScale(d[0]))
+        .attr('y', d => this.yScale(0))
+        .attr('width', this.xScale.bandwidth())
+        .attr('height', 0)
+        .style('fill', (d, i) => this.colors(i))
+        .transition()
+        .delay((d, i) => i * 10)
+        .attr('y', d => this.yScale(d[1]))
+        .attr('height', d => this.height - this.yScale(d[1]));
   }
 }

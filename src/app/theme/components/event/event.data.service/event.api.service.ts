@@ -27,4 +27,4 @@ export class EventApiService {
   //return this.api.updateEvent(event);
   //}
 
-}
+  }

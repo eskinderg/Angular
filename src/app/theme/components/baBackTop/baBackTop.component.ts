@@ -5,8 +5,8 @@ import * as jQuery from 'jquery';
   selector: 'back-top',
   styleUrls: ['./baBackTop.scss'],
   template: `
-    <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i>
-  `
+  <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i>
+    `
 })
 export class BaBackTop implements AfterViewInit {
 

@@ -24,6 +24,7 @@ import { GlobalHttpInterceptor } from './http.interceptor';
 import { reducer, metaReducers } from './reducers';
 import { NotesEffect } from './effects/notes.effect';
 import { EventsEffect } from './effects/events.effect';
+import { AuthEffect } from './effects/auth.effect';
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
 
@@ -38,7 +39,7 @@ import { EventDataService } from './theme/components/event/event.data.service/ev
     AuthorizationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducer, { metaReducers }),
-    EffectsModule.forRoot([ NotesEffect, EventsEffect ]),
+    EffectsModule.forRoot([ NotesEffect, EventsEffect, AuthEffect ]),
     StoreDevtoolsModule.instrument(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),

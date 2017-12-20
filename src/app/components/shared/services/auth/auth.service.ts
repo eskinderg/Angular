@@ -1,12 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
+import { UserManager, User} from 'oidc-client';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/observable/fromPromise';
 import { environment } from '../../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-
-import { UserManager, User} from 'oidc-client';
 
 const settings: any = environment.Auth;
 
@@ -31,29 +31,28 @@ export class AuthService {
         } else {
           this.loggedIn = false;
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         this.loggedIn = false;
       });
 
-    this.mgr.events.addUserLoaded((user) => {
-      this.currentUser = user;
-      localStorage.setItem('token', user.id_token);
-      this.loggedIn = !(user === undefined);
-      if (!environment.production) {
-        console.log('authService addUserLoaded', user);
-      }
+      this.mgr.events.addUserLoaded((user) => {
+        this.currentUser = user;
+        localStorage.setItem('token', user.id_token);
+        this.loggedIn = !(user === undefined);
+        if (!environment.production) {
+          console.log('authService addUserLoaded', user);
+        }
 
-    });
+      });
 
-    this.mgr.events.addUserUnloaded((e) => {
-      if (!environment.production) {
-        console.log('user unloaded');
-      }
-      this.userLoadededEvent.emit(null);
-      this.route.navigate(['/']);
-      this.loggedIn = false;
-    });
+      this.mgr.events.addUserUnloaded((e) => {
+        if (!environment.production) {
+          console.log('user unloaded');
+        }
+        this.userLoadededEvent.emit(null);
+        this.route.navigate(['/']);
+        this.loggedIn = false;
+      });
 
   }
 

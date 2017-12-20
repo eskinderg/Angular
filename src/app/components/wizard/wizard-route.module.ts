@@ -20,7 +20,7 @@ import { PaymentComponent } from './payment/payment.component';
           {path: 'payment', component: PaymentComponent}
         ],
         canActivate: [AuthGuardService]
-    }
+      }
     ])
   ],
   exports: [RouterModule]

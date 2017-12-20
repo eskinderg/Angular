@@ -33,9 +33,9 @@ export class ProfileComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'] )
   public onWindowResize($event: any): void {
-      // console.log($event);
-      // this.x = $event.currentTarget.innerWidth;
-      // this.y = $event.currentTarget.innerHeight;
-  }
+    // console.log($event);
+    // this.x = $event.currentTarget.innerWidth;
+    // this.y = $event.currentTarget.innerHeight;
+    }
 
 }

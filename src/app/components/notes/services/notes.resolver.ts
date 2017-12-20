@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { NotesApiService } from './notes.api.service';
-import { Note } from '../note';
+import { Note } from '../../../models/note';
 
 @Injectable()
 export class NotesResolver implements Resolve<Note[]> {
@@ -11,5 +11,5 @@ export class NotesResolver implements Resolve<Note[]> {
   resolve(route: ActivatedRouteSnapshot) {
     return null;
     //return this.notesApiService.getNotes();
-  }
+    }
 }

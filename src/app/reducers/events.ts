@@ -19,27 +19,27 @@ export function reducer(state:State = initialState, action: EventsActions.Action
         events: [...state.events, action.payload]
       };
 
-    case EventsActions.FETCH_EVENTS_SUCCESS:
-      return {
-        events: action.payload || []
-      };
+ case EventsActions.FETCH_EVENTS_SUCCESS:
+   return {
+     events: action.payload || []
+   };
 
-    case EventsActions.UPDATE_EVENT_SUCCESS:
-      return Object.assign({}, state, {
-        events: state.events.map((event) => {
-          return  (event.id==action.payload.id) ? action.payload: event
-        })
-      });
+ case EventsActions.UPDATE_EVENT_SUCCESS:
+   return Object.assign({}, state, {
+     events: state.events.map((event) => {
+       return  (event.id==action.payload.id) ? action.payload: event
+     })
+   });
 
-    case EventsActions.DELETE_EVENT_SUCCESS:
-      return Object.assign({}, state, {
-        events: state.events.filter((event: Event) => {
-          return event.id !== action.payload.id;
-        })
-      });
+ case EventsActions.DELETE_EVENT_SUCCESS:
+   return Object.assign({}, state, {
+     events: state.events.filter((event: Event) => {
+       return event.id !== action.payload.id;
+     })
+   });
 
-    default:
-      return state;
+ default:
+   return state;
   }
 };
 

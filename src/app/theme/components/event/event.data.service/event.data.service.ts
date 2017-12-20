@@ -24,50 +24,50 @@ export class EventDataService {
   /**
    * Envoked from the effector for fetching all the events
    **/
-  public getAllEvents()  {
-    return this.http .get(API_URL + '/todos')
-      .map(response => { return response; })
-      .catch(this.handleError);
-  }
+   public getAllEvents()  {
+     return this.http .get(API_URL + '/todos')
+       .map(response => { return response; })
+       .catch(this.handleError);
+   }
 
-  public createEvent(event: Event): Observable<Event> {
-    return this.http
-    .post(API_URL + '/todos', event)
-    .map(response => {
-      return new Event(response);
-    })
-    .catch(this.handleError);
-  }
+   public createEvent(event: Event): Observable<Event> {
+     return this.http
+       .post(API_URL + '/todos', event)
+       .map(response => {
+         return new Event(response);
+       })
+         .catch(this.handleError);
+   }
 
-  public getEventById(eventId: number): Observable<Event> {
-    return this.http
-    .get(API_URL + '/todos/' + eventId)
-    .map(response => {
-      return new Event(response);
-    })
-    .catch(this.handleError);
-  }
+   public getEventById(eventId: number): Observable<Event> {
+     return this.http
+       .get(API_URL + '/todos/' + eventId)
+       .map(response => {
+         return new Event(response);
+       })
+         .catch(this.handleError);
+   }
 
-  public updateEvent(event: Event): Observable<Event> {
-    return this.http
-    .put(API_URL + '/todos/' + event.id, event)
-    .map(response => {
-      return new Event(response);
-    })
-    .catch(this.handleError);
-  }
+   public updateEvent(event: Event): Observable<Event> {
+     return this.http
+       .put(API_URL + '/todos/' + event.id, event)
+       .map(response => {
+         return new Event(response);
+       })
+         .catch(this.handleError);
+   }
 
-  public deleteEventById(event: Event): Observable<Event> {
-    return this.http
-      .delete(API_URL + '/todos/' + event.id)
-      .map(response => {
-        return event;
-      })
-      .catch(this.handleError);
-  }
+   public deleteEventById(event: Event): Observable<Event> {
+     return this.http
+       .delete(API_URL + '/todos/' + event.id)
+       .map(response => {
+         return event;
+       })
+         .catch(this.handleError);
+   }
 
-  private handleError (error: Response | any) {
-    console.error('ApiService::handleError', error);
-    return Observable.throw(error);
-  }
+   private handleError (error: Response | any) {
+     console.error('ApiService::handleError', error);
+     return Observable.throw(error);
+   }
 }

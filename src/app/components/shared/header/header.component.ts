@@ -5,7 +5,6 @@ import { AuthService } from '../services/auth/auth.service';
  * This class represents the HeaderComponent.
  */
 @Component({
-  moduleId: module.id,
   selector: 'sd-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
@@ -24,13 +23,13 @@ export class HeaderComponent implements OnInit {
     this.service.userLoadededEvent
       .subscribe(user => {
         this._user = user;
-    });
+      });
   }
 
   isUserLoggedIn() {
     return false;
     // let isLoggedIn = this.service.isLoggedInObs();
     // return isLoggedIn;
-  }
+    }
 
 }

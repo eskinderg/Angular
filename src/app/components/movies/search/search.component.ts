@@ -44,38 +44,38 @@ export class SearchComponent implements OnInit {
             debounceTime.call(text$, 300)),
           () => this.searching = true),
         term =>
-          _catch.call(
-            _do.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
-            () => {
-              this.searchFailed = true;
-              return of.call([]);
-            }
-          )
+        _catch.call(
+          _do.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
+          () => {
+            this.searchFailed = true;
+            return of.call([]);
+          }
+        )
       ),
       () => this.searching = false);
 
-ngOnInit() {
-  // this.movies = this.term.valueChanges
-  //   .debounceTime(400)
-  //   .distinctUntilChanged()
-  //   .switchMap(term => this._moviesServices.serachMovies(term))
-  //   .map(res => {
-  //     const movies = res.results;
-  //     return movies.map((movie: Movie) => new Movie(movie));
-  //   });
-}
+    ngOnInit() {
+      // this.movies = this.term.valueChanges
+      //   .debounceTime(400)
+      //   .distinctUntilChanged()
+      //   .switchMap(term => this._moviesServices.serachMovies(term))
+      //   .map(res => {
+      //     const movies = res.results;
+      //     return movies.map((movie: Movie) => new Movie(movie));
+      //   });
+      }
 
-  btnSearch(value) {
-    if (value) {
-      this._moviesServices.serachMovies(value)
-        .map(res => {
-          const movies = res.results;
-          return movies.map((movie: Movie) => new Movie(movie));
-        })
-        .subscribe(m => {
-          this.movies = m;
-        });
+    btnSearch(value) {
+      if (value) {
+        this._moviesServices.serachMovies(value)
+          .map(res => {
+            const movies = res.results;
+            return movies.map((movie: Movie) => new Movie(movie));
+          })
+            .subscribe(m => {
+              this.movies = m;
+            });
+      }
     }
-  }
 
 }

@@ -17,7 +17,7 @@ describe('EventListComponent', () => {
         NO_ERRORS_SCHEMA
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('EventListComponent', () => {
         new Event({ id: 1, title: 'Test', complete: false })
       ];
       // fixture.detectChanges();
-    });
+      });
   });
 
   it('should create', () => {

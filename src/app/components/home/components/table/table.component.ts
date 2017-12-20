@@ -33,4 +33,4 @@ export class TableComponent {
   //   this.remove.emit(event);
   // }
 
-}
+  }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Note } from '../../note';
+import { Note } from '../../../../models/note';
 
 @Component({
   selector: 'app-note',
@@ -13,13 +13,17 @@ export class NoteComponent {
 
   @Output() changeNoteText = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
+  @Output() changeNoteSize = new EventEmitter(false);
   @Output() deleteNote = new EventEmitter(false);
 
   constructor() { }
 
   handleChangeNotePosition({top, left}) {
     if (left !== this.note.left || top !== this.note.top) {
-      this.changeNotePosition.emit({top: top, left: left});
+      if(this.note.id !=undefined)
+      {
+        this.changeNotePosition.emit({top: top, left: left});
+      }
     }
   }
   handleChangeNoteText(updatedText) {
@@ -30,6 +34,10 @@ export class NoteComponent {
 
   handleNoteDelete(note) {
     this.deleteNote.emit(note);
+  }
+
+  handleResizeNote($event) {
+    this.changeNoteSize.emit($event);
   }
 
 }

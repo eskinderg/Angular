@@ -8,13 +8,13 @@ import { AuthorizationComponent } from './authorization.component';
 class AuthServiceStub {
 
   isLoggedInObs(): boolean {
-      return false;
+    return false;
   }
 
   // mgr(): () => eskinder{
   //    return null;
   // }
-}
+  }
 
 describe('AuthorizationComponent', () => {
   let component: AuthorizationComponent;
@@ -32,9 +32,9 @@ describe('AuthorizationComponent', () => {
         { provide: Router, useValue: mockRouter }
       ]
     })
-    .compileComponents();
+      .compileComponents();
 
-    myServiceDependency = TestBed.get(AuthService);
+      myServiceDependency = TestBed.get(AuthService);
 
   }));
 

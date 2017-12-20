@@ -16,7 +16,7 @@ import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-res
         path: '',
         component: MoviesComponent,
         children: [
-          {path: '', redirectTo: 'search', pathMatch: 'full'},
+          // {path: '', redirectTo: 'search', pathMatch: 'full'},
           {
             path: 'genres/:id/:name',
             component: GenreComponent,
