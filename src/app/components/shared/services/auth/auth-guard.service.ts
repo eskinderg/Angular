@@ -25,7 +25,7 @@ export class AuthGuardService implements CanActivate {
         }
       });
 
-      return this.authService.isLoggedInObs();
+    return this.authService.isLoggedInObs();
   }
 
 }

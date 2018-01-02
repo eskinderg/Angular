@@ -30,6 +30,6 @@ export class HeaderComponent implements OnInit {
     return false;
     // let isLoggedIn = this.service.isLoggedInObs();
     // return isLoggedIn;
-    }
+  }
 
 }

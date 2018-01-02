@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
       /* define app module routes here, e.g., to lazily load a module
        (do not place feature module routes here, use an own -routing.module.ts in the feature instead)
        */
+      { path: '', loadChildren: './components/home/home.module#HomeModule' },
       { path: 'profile', loadChildren: './components/profile/profile.module#ProfileModule' },
       { path: 'about', loadChildren: './components/about/about.module#AboutModule' },
       { path: 'notes', loadChildren: './components/notes/notes.module#NotesModule' },

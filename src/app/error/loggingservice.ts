@@ -35,4 +35,4 @@ export class LoggingService {
   //   console.error('ApiService::handleError', error);
   //   return Observable.throw(error);
   // }
-  }
+}

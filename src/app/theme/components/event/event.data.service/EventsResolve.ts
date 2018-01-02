@@ -18,5 +18,5 @@ export class EventsResolve implements Resolve<any> {
     // return this.action$.ofType(EventsActions.FETCH_EVENTS_SUCCESS)
     //   .take(1);
     // return this.eventsDataService.getAllEvents().first();
-    }
+  }
 }

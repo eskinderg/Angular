@@ -24,7 +24,7 @@ export class ResizableTextAreaDirective {
     //     this.height = el.offsetHeight;
     //   }
     // });
-    }
+  }
   @HostListener('mousemove', ['$event.target'])
   onMouseMove(el) {
     if (this._isDragging) {
@@ -41,7 +41,7 @@ export class ResizableTextAreaDirective {
       if (this._hasDragged) {
         this.resize.emit({width: this.width, height : this.height});
         // this.resize.emit({ width: el.offsetWidth, height: el.offsetHeight });
-        }
+      }
     }
   }
 
@@ -51,4 +51,4 @@ export class ResizableTextAreaDirective {
   //     this.mouseMoveListener();
   //   }
   // }
-  }
+}

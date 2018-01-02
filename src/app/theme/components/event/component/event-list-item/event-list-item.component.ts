@@ -2,11 +2,10 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 import { Event } from '../../event';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  moduleId: module.id,
   selector: 'app-event-list-item',
   templateUrl: './event-list-item.component.html',
-  styleUrls: ['./event-list-item.component.scss']
+  styleUrls: ['./event-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventListItemComponent {
 

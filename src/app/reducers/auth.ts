@@ -19,8 +19,8 @@ export function reducer(state:State = initialState, action: AuthActions.Actions)
         profile: action.payload
       };
 
- default:
-   return state;
+    default:
+      return state;
   }
 };
 

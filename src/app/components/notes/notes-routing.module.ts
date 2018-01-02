@@ -14,7 +14,7 @@ import { NotesResolver } from './services/notes.resolver';
         canActivate: [AuthGuardService],
         resolve: {
           //notes: NotesResolver
-          }
+        }
       }
     ])
   ],

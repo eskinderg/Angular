@@ -35,24 +35,24 @@ export class AuthService {
         this.loggedIn = false;
       });
 
-      this.mgr.events.addUserLoaded((user) => {
-        this.currentUser = user;
-        localStorage.setItem('token', user.id_token);
-        this.loggedIn = !(user === undefined);
-        if (!environment.production) {
-          console.log('authService addUserLoaded', user);
-        }
+    this.mgr.events.addUserLoaded((user) => {
+      this.currentUser = user;
+      localStorage.setItem('token', user.id_token);
+      this.loggedIn = !(user === undefined);
+      if (!environment.production) {
+        console.log('authService addUserLoaded', user);
+      }
 
-      });
+    });
 
-      this.mgr.events.addUserUnloaded((e) => {
-        if (!environment.production) {
-          console.log('user unloaded');
-        }
-        this.userLoadededEvent.emit(null);
-        this.route.navigate(['/']);
-        this.loggedIn = false;
-      });
+    this.mgr.events.addUserUnloaded((e) => {
+      if (!environment.production) {
+        console.log('user unloaded');
+      }
+      this.userLoadededEvent.emit(null);
+      this.route.navigate(['/']);
+      this.loggedIn = false;
+    });
 
   }
 

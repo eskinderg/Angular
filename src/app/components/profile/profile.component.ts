@@ -10,7 +10,6 @@ import { User } from 'oidc-client';
  * This class represents the lazy loaded ProfileComponent.
  */
 @Component({
-  moduleId: module.id,
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss'],
