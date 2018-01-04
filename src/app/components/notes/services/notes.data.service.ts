@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/from';
 import { environment } from '../../../../environments/environment';
 
-import { Note } from '../note';
+import { Note } from '../../../models/note';
 
 @Injectable()
 export class NotesDataService {
@@ -21,11 +21,19 @@ export class NotesDataService {
   }
 
   addNote(note: Note): Observable<Note> {
-    return this.http
-    .post(this.API_ROOT + '/notes/', note)
-    .map(response => {
-      return new Note(response);
-    });
+
+    if(note.id!=undefined)
+    {
+      return this.updateNote(note);
+    }
+    else
+    {
+      return this.http
+        .post(this.API_ROOT + '/notes/', note)
+        .map(response => {
+          return new Note(response);
+        });
+    }
   }
 
   deleteNote(note: Note): Observable<Note> {

@@ -28,7 +28,7 @@ export class NotesEffect {
   updateNoteText: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE_TEXT)
     .switchMap((action: NotesActions.updateNoteText) =>
-      this.notesApiService.updateNote(action.payload)
+      this.notesApiService.addNote(action.payload)
       .map(note => new NotesActions.updateNoteTextSuccess(note))
       .catch(err => Observable.of(new NotesActions.updateNoteTextFail(err)))
     );
@@ -37,16 +37,25 @@ export class NotesEffect {
   updateNotePosition: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE_POSITION)
     .switchMap((action: NotesActions.updateNotePosition) =>
-      this.notesApiService.updateNote(action.payload)
+      this.notesApiService.addNote(action.payload)
       .map(note => new NotesActions.updateNotePositionSuccess(note))
       .catch(err => Observable.of(new NotesActions.updateNotePositionFail(err)))
+    );
+
+  @Effect()
+  updateNoteSize: Observable<Action> = this.actions$
+    .ofType(NotesActions.UPDATE_NOTE_SIZE)
+    .switchMap((action: NotesActions.updateNoteSize) =>
+      this.notesApiService.addNote(action.payload)
+      .map(note => new NotesActions.updateNoteSizeSuccess(note))
+      .catch(err => Observable.of(new NotesActions.updateNoteSizeFail(err)))
     );
 
   @Effect()
   update: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE)
     .switchMap((action: NotesActions.updateNote) =>
-      this.notesApiService.updateNote(action.payload)
+      this.notesApiService.addNote(action.payload)
       .map(note => new NotesActions.updateNoteSuccess(note))
       .catch(err => Observable.of(new NotesActions.createNoteFail(err)))
     );

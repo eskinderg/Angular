@@ -19,8 +19,8 @@ export class EventComponent {
 
   @Input() events: Event[];
 
-  constructor(private confirmService: ConfirmService,
-    private store: Store<fromRoot.State>) { }
+  constructor( private confirmService: ConfirmService,
+    private store: Store<fromRoot.State> ) { }
 
   onAddEvent(event: Event) {
     this.store.dispatch(new EventsActions.createEvent(event));
@@ -33,9 +33,8 @@ export class EventComponent {
   onRemoveEvent(event: Event) {
     this.confirmService.confirm({
       title: 'Confirm deletion',
-      message: 'Do you really want to delete the item ' + '"' + event.title + '"?'
-    }).then(
-      () => {
+      message: 'Do you really want to delete the item ' + '"' + event.title + '"?' })
+      .then(() => {
         this.store.dispatch(new EventsActions.deleteEvent(event));
       }, () => {
         console.log();

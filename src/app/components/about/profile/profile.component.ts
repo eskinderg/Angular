@@ -4,7 +4,6 @@ import { AuthService } from '../../shared/services/auth/auth.service';
 import { User } from 'oidc-client';
 
 @Component({
-  moduleId: module.id,
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss']

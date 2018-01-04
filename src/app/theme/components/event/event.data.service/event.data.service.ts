@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Event } from '../event';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -7,7 +8,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { environment } from '../../../../../environments/environment';
 
-import { HttpClient } from '@angular/common/http';
 
 const API_URL = environment.TODO_API;
 
@@ -59,11 +59,11 @@ export class EventDataService {
 
   public deleteEventById(event: Event): Observable<Event> {
     return this.http
-      .delete(API_URL + '/todos/' + event.id)
-      .map(response => {
-        return event;
-      })
-      .catch(this.handleError);
+    .delete(API_URL + '/todos/' + event.id)
+    .map(response => {
+      return event;
+    })
+    .catch(this.handleError);
   }
 
   private handleError (error: Response | any) {

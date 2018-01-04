@@ -14,7 +14,7 @@ describe('EventListFooterComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ EventListFooterComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

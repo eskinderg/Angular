@@ -101,7 +101,7 @@ export class MoviesDataService {
   }
 
   getGenreMovieCount(genreId: string) {
-     let search = new URLSearchParams();
+    let search = new URLSearchParams();
     search.set('api_key', this.apikey);
     // search.set('page', '10');
     return this._jsonp.get('https://api.themoviedb.org/3/genre/'+ genreId +'/movies?callback=JSONP_CALLBACK', {search})
@@ -110,7 +110,7 @@ export class MoviesDataService {
         // console.log(res.json().total_results);
         // return movies.map((movie: Movie) => new Movie(movie));
         // return res.json();
-      });
+        });
   }
 
   getMoviesByGenre(id: string): Observable<Movie[]> {
@@ -123,7 +123,7 @@ export class MoviesDataService {
         // console.log(res.json().total_results);
         return movies.map((movie: Movie) => new Movie(movie));
         // return res.json();
-      });
+        });
   }
 
 

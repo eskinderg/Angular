@@ -1,12 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
+import { UserManager, User} from 'oidc-client';
 import { Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/observable/fromPromise';
 import { environment } from '../../../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-
-import { UserManager, User} from 'oidc-client';
 
 const settings: any = environment.Auth;
 
@@ -31,8 +31,7 @@ export class AuthService {
         } else {
           this.loggedIn = false;
         }
-      })
-      .catch((err) => {
+      }).catch((err) => {
         this.loggedIn = false;
       });
 

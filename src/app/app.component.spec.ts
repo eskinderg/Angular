@@ -14,41 +14,41 @@ import { HeaderComponent } from './components/shared/header/header.component';
 
 export function main() {
 
-    describe('App component', () => {
+  describe('App component', () => {
 
-        let config: Route[] = [
-            { path: '', component: HomeComponent },
-            { path: 'about', component: AboutComponent }
-        ];
-        beforeEach(() => {
-            TestBed.configureTestingModule({
-                imports: [FormsModule, RouterTestingModule.withRoutes(config)],
-                declarations: [TestComponent,
-                    HeaderComponent, AppComponent,
-                    HomeComponent, AboutComponent],
-                providers: [
-                    { provide: APP_BASE_HREF, useValue: '/' }
-                ]
-            });
-        });
-
-        it('should build without a problem',
-            async(() => {
-                TestBed
-                    .compileComponents()
-                    .then(() => {
-                        let fixture = TestBed.createComponent(TestComponent);
-                        let compiled = fixture.nativeElement;
-
-                        expect(compiled).toBeTruthy();
-                    });
-            }));
+    let config: Route[] = [
+      { path: '', component: HomeComponent },
+      { path: 'about', component: AboutComponent }
+    ];
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, RouterTestingModule.withRoutes(config)],
+        declarations: [TestComponent,
+          HeaderComponent, AppComponent,
+          HomeComponent, AboutComponent],
+        providers: [
+          { provide: APP_BASE_HREF, useValue: '/' }
+        ]
+      });
     });
+
+    it('should build without a problem',
+      async(() => {
+        TestBed
+          .compileComponents()
+          .then(() => {
+            let fixture = TestBed.createComponent(TestComponent);
+            let compiled = fixture.nativeElement;
+
+            expect(compiled).toBeTruthy();
+          });
+      }));
+  });
 }
 
 @Component({
-    selector: 'test-cmp',
-    template: '<sd-app></sd-app>'
+  selector: 'test-cmp',
+  template: '<sd-app></sd-app>'
 })
 
 class TestComponent {

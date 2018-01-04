@@ -10,7 +10,7 @@ export class GenreResolve implements Resolve<Genre[]> {
   constructor(private moviesApiService: MoviesApiService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-   // this.moviesApiService.getGenres()
+    // this.moviesApiService.getGenres()
     //  .subscribe((value) => {
     //     value.forEach(function(g){
     //      g.name = 'cahgned';

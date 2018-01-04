@@ -13,11 +13,11 @@ import { NgaModule } from '../../theme/nga.module';
 @NgModule({
   imports: [CommonModule, AboutRoutingModule, SharedModule, NgaModule],
   declarations: [
-      AboutComponent,
-      AboutUsComponent,
-      ProfileComponent,
-      FeatureComponent
-    ],
+    AboutComponent,
+    AboutUsComponent,
+    ProfileComponent,
+    FeatureComponent
+  ],
   exports: [AboutComponent]
 })
 export class AboutModule { }

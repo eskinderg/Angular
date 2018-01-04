@@ -6,7 +6,7 @@
 
   class AuthServiceStub {
     isLoggedInObs() : boolean {
-        return false;
+      return false;
     };
   }
 

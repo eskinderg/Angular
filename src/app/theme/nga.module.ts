@@ -36,7 +36,7 @@ const NGA_COMPONENTS = [
   // BaPictureUploader,
   // BaSidebar,
   // BaFileUploader
-];
+  ];
 
 const NGA_DIRECTIVES = [
   ConfirmTemplateDirective
@@ -44,13 +44,13 @@ const NGA_DIRECTIVES = [
   // BaSlimScroll,
   // BaThemeRun,
   // BaCardBlur
-];
+  ];
 
 const NGA_PIPES = [
   // BaAppPicturePipe,
   // BaKameleonPicturePipe,
   // BaProfilePicturePipe
-];
+  ];
 
 const NGA_SERVICES = [
   ConfirmService,
@@ -59,12 +59,12 @@ const NGA_SERVICES = [
   // BaThemePreloader,
   // BaThemeSpinner,
   // BaMenuService
-];
+  ];
 
 const NGA_VALIDATORS = [
   // EmailValidator,
   // EqualPasswordsValidator
-];
+  ];
 
 @NgModule({
   declarations: [
@@ -79,7 +79,7 @@ const NGA_VALIDATORS = [
     // ReactiveFormsModule,
     // AppTranslationModule,
     // NgUploaderModule
-  ],
+    ],
   exports: [
     ...NGA_PIPES,
     ...NGA_DIRECTIVES,

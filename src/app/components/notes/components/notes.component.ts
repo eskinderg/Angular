@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { NotesApiService } from '../services/notes.api.service';
 import { NoteComponent } from './note.component/note.component';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
-import { Note } from '../note';
+import { Note } from '../../../models/note';
 
 @Component({
   selector: 'app-notes',
@@ -26,6 +26,8 @@ export class NotesComponent {
     const newNote = new Note({
       text: '',
       colour: colour,
+      width: 10,
+      height: 10,
       left: Math.floor(Math.random() * 600),
       top: Math.floor(Math.random() * 400)
     });
@@ -40,6 +42,10 @@ export class NotesComponent {
 
   onChangeNotePosition( {top , left} , note: Note) {
     this.notesApiService.changeNotePosition({...note, left: left, top: top});
+  }
+
+  onChangeNoteSize( {height , width} , note: Note) {
+    this.notesApiService.changeNoteSize({...note, width: width, height: height});
   }
 
   onNoteDelete(note: Note) {

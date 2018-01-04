@@ -3,17 +3,21 @@ import { combineReducers, ActionReducer, createSelector, createFeatureSelector }
 import { ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
+
 import * as fromNotes from './notes';
 import * as fromEvents from './events';
+import * as fromAuth from './auth';
 
 export interface State {
   notes: fromNotes.State;
   events: fromEvents.State; // append more states here
+  profile: fromAuth.State;
 }
 
 export const reducer: ActionReducerMap<State> = {
   notes: fromNotes.reducer,         //append additional reducers here
-  events: fromEvents.reducer
+  events: fromEvents.reducer,
+  profile: fromAuth.reducer
 }
 
 

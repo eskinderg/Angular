@@ -9,6 +9,6 @@ export class MoviesResolve implements Resolve<Movie[]> {
   constructor(private moviesApiService: MoviesApiService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-      return this.moviesApiService.getMoviesByGenre(route.params['id']);
+    return this.moviesApiService.getMoviesByGenre(route.params['id']);
   }
 }

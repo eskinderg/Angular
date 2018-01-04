@@ -1,6 +1,6 @@
-<div class="card" style="width: 20rem;">
+<div class="card" style="">
   <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
-  <div class="card-block">
+  <div class="card-block p-3">
     <h4 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</a></h4>
     <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
     <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->

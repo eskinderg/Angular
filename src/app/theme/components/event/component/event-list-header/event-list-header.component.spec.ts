@@ -17,7 +17,7 @@ describe('EventListHeaderComponent', () => {
       ],
       declarations: [ EventListHeaderComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

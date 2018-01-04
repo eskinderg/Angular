@@ -10,11 +10,13 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "manifest.json",
         "favicon.ico",
         {
           "glob": "**/*",
           "input": "./assets/",
-          "output": "./assets/"
+          "output": "./assets/",
+          "allowOutsideOutDir": false
         }
       ],
       "index": "index.html",
@@ -24,6 +26,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
+      "serviceWorker": true,
       "styles": [
         "styles.scss",
         "assets/fonts/style.css"

@@ -4,7 +4,8 @@ services:
   angular-project:
     build:
       context: .
-      dockerfile: ./.docker/Dockerfile
+      dockerfile: ./Dockerfile
+      # dockerfile: ./.docker/Dockerfile
     container_name: angular-web
     image: angular-project
     networks:
@@ -12,27 +13,27 @@ services:
     ports:
       - '4200:80'
 
-  json-api:
-    build:
-      context: ./server
-      dockerfile: ./Dockerfile
-    container_name: angular-api
-    image: angular-api
-    networks:
-      - dev-network
-    ports:
-      - '3000:3000'
+  # json-api:
+  #   build:
+  #     context: ./server
+  #     dockerfile: ./Dockerfile
+  #   container_name: angular-api
+  #   image: angular-api
+  #   networks:
+  #     - dev-network
+  #   ports:
+  #     - '3000:3000'
 
-  web-oidc:
-    build:
-      context: ./oidc
-      dockerfile: ./Dockerfile
-    container_name: angular-oidc
-    image: node-oidc
-    networks:
-      - dev-network
-    ports:
-      - '5000:5000'
+  # web-oidc:
+  #   build:
+  #     context: ./oidc
+  #     dockerfile: ./Dockerfile
+  #   container_name: angular-oidc
+  #   image: node-oidc
+  #   networks:
+  #     - dev-network
+  #   ports:
+  #     - '5000:5000'
 
 networks:
   dev-network:

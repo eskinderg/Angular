@@ -1,4 +1,4 @@
-<div
+<div class="note-container"
   [style.top.px] = "note.top"
   [style.left.px] = "note.left"
   [style.background] = "note.colour"
@@ -7,6 +7,9 @@
   <span class="fa fa-bin2" (click)="handleNoteDelete(note)"></span>
   <textarea
     #noteText
+    [style.width.px]="note.width"
+    [style.height.px]="note.height"
+    (resize) = "handleResizeNote($event)"
     (blur)="handleChangeNoteText(noteText.value)"
     [ngClass] = "note.colour + '-note'">{{note.text}}</textarea>
 </div>

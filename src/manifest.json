@@ -1,0 +1,21 @@
+{
+  "short_name": "Angular-CLI",
+  "name": "Angular-Cli",
+  "start_url": "/",
+  "theme_color": "red",
+  "background_color": "blue",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons":[
+    {
+      "src":"/assets/favicon/favicon.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon"
+    },
+    {
+      "src":"/assets/favicon/favicon.ico",
+      "sizes": "192x192",
+      "type": "image/x-icon"
+    }
+  ]
+}

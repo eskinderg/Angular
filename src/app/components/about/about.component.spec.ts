@@ -7,7 +7,7 @@ import {
 import { AboutModule } from './about.module';
 
 export function main() {
-   describe('About component', () => {
+  describe('About component', () => {
     // Setting module for testing
     // Disable old forms
 
@@ -26,10 +26,10 @@ export function main() {
             let fixture = TestBed.createComponent(TestComponent);
             let aboutDOMEl = fixture.debugElement.children[0].nativeElement;
 
-              expect(aboutDOMEl.querySelectorAll('h2')[0].textContent).toEqual('Features');
+            expect(aboutDOMEl.querySelectorAll('h2')[0].textContent).toEqual('Features');
           });
-        }));
-    });
+      }));
+  });
 }
 
 @Component({

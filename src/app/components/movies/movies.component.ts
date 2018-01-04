@@ -29,14 +29,14 @@ export class MoviesComponent implements OnInit  {
     //   this.genres = res;
     // });
 
-  }
+    }
 
   search(searchStr) {
     // this.moviesApiService.serachMovies(searchStr)
     //   .subscribe( (res) => {
     //     this.movies = res.results;
     //   });
-  }
+    }
 
   ngOnInit() {
     // this.todos = this.route.snapshot.data['todos'];
@@ -45,6 +45,6 @@ export class MoviesComponent implements OnInit  {
 
   onSelectGenre (genre: Genre) {
     // alert(genre.name);
-  }
+    }
 
 }

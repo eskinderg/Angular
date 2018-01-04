@@ -1,7 +1,7 @@
+import { NgModule, Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+
 import { Event } from '../../event';
 
 @Component({
@@ -20,8 +20,9 @@ export class EventListHeaderComponent {
   constructor() { }
 
   addEvent() {
-    this.add.emit(this.newEvent);
-    this.newEvent = new Event();    // clear entry
+    if(this.newEvent.title.length > 0) {
+      this.add.emit(this.newEvent);
+      this.newEvent = new Event();    // clear entry
+    }
   }
-
 }

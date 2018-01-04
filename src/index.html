@@ -7,6 +7,9 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#FEFEFE">
     </head>
     <body>
         <ng-app>
@@ -161,17 +164,11 @@
                 <span></span>
         </div></ng-app>
 
-        <!--<script>-->
-            <!--if ('serviceWorker' in navigator) {-->
-                    <!--navigator.serviceWorker.register('/service-worker.js').then(function(registration) {-->
-                    <!--// Registration was successful-->
-                    <!--console.log('ServiceWorker registration successful with scope: ', registration.scope);-->
-                    <!--}).catch(function(err) {-->
-                    <!--// registration failed :(-->
-                    <!--console.log('ServiceWorker registration failed: ', err);-->
-                    <!--});-->
-                    <!--}-->
-        <!--</script>-->
+        <noscript>
+          <p>
+          Sorry, Javascript must be enabled to use this app
+          </p>
+        </noscript>
 
 </body>
 </html>

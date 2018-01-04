@@ -17,7 +17,7 @@ export function main() {
         // providers: [
         //   { provide: NameListService, useValue: new MockNameListService() }
         // ]
-      });
+        });
 
     });
 
@@ -30,7 +30,7 @@ export function main() {
             const homeInstance = fixture.debugElement.componentInstance;
             const homeDOMEl = fixture.debugElement.nativeElement;
             // let mockNameListService =
-              // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
+            // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
             // let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();
 
             // mockNameListService.returnValue = ['1', '2', '3'];
@@ -48,7 +48,7 @@ export function main() {
 
             // expect(homeDOMEl.querySelectorAll('li').length).toEqual(4);
             // expect(homeDOMEl.querySelectorAll('li')[3].textContent).toEqual('Minko');
-          });
+            });
 
       }));
   });

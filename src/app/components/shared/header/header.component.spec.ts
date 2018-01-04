@@ -2,29 +2,29 @@ import { Observable } from 'rxjs/Observable';
 import { HeaderComponent } from './header.component';
 import { EventEmitter } from '@angular/core';
 
-  describe('Header Component', () => {
+describe('Header Component', () => {
 
-    let component: HeaderComponent;
-    let fakeUserService: any;
+  let component: HeaderComponent;
+  let fakeUserService: any;
 
-    beforeEach (() => {
-        fakeUserService = {
-          userLoadededEvent: new EventEmitter()
-        };
+  beforeEach (() => {
+    fakeUserService = {
+      userLoadededEvent: new EventEmitter()
+    };
 
-        component = new HeaderComponent(fakeUserService);
-        fakeUserService.userLoadededEvent.emit('fake_user');
-    });
-
-      it('Header Component', () => {
-          expect(component).toBeDefined();
-          expect(component.isUserLoggedIn()).toEqual(false);
-          expect(component.isExpanded).toBeFalsy();
-      });
-
-      it('User Should be Loaded when initialized ', () => {
-          component.ngOnInit();
-          expect(component._user).toBeUndefined();
-      });
-
+    component = new HeaderComponent(fakeUserService);
+    fakeUserService.userLoadededEvent.emit('fake_user');
   });
+
+  it('Header Component', () => {
+    expect(component).toBeDefined();
+    expect(component.isUserLoggedIn()).toEqual(false);
+    expect(component.isExpanded).toBeFalsy();
+  });
+
+  it('User Should be Loaded when initialized ', () => {
+    component.ngOnInit();
+    expect(component._user).toBeUndefined();
+  });
+
+});

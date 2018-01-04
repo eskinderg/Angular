@@ -10,16 +10,16 @@ import {Component, Input, AfterViewInit} from '@angular/core';
       font-size: 3rem;
       color: #d3d3d3;
     }
-    .full {
-      color: red;
-    }
-    .half {
-      position: absolute;
-      display: inline-block;
-      overflow: hidden;
-      color: red;
-    }
-  `]
+      .full {
+        color: red;
+      }
+        .half {
+          position: absolute;
+          display: inline-block;
+          overflow: hidden;
+          color: red;
+        }
+        `]
 })
 export class NgbdRatingDecimal {
 

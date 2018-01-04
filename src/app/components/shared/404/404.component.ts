@@ -15,17 +15,17 @@ export class NotfoundComponent implements OnInit {
   constructor( private authService: AuthService ) {
     // this.service.mgr.signoutRedirectCallback()
     // if(this.authService.loggedIn)
-      // {
-      // this.userMgr
-      // .signinRedirectCallback()
-      // .then((user)=>{
-      //    console.log(user);
-      //    location.href ='/'
-      // }).catch(function(err){
-      //       console.log(err);
-      // });
+    // {
+    // this.userMgr
+    // .signinRedirectCallback()
+    // .then((user)=>{
+    //    console.log(user);
+    //    location.href ='/'
+    // }).catch(function(err){
+    //       console.log(err);
+    // });
     // }
-  }
+    }
 
   ngOnInit() {
 

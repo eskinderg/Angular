@@ -1,22 +1,22 @@
-<h1>{{ movie.title }}</h1>
+<!-- <h1>{{ movie.title }}</h1> -->
 <div class="row">
-    <div class="col-lg-6">
-        <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
-        <div class="card-block">
-            <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</h4>
-            <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
-            <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-            <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
-            <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
-        </div>
-        </div>
+  <div class="col-lg-6">
+    <div class="card" style="">
+      <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
+      <div class="card-block p-3">
+        <!-- <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p> -->
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
+        <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
+      </div>
     </div>
+  </div>
 
-    <div class="col-lg-6">
-            <h3 class="card-text">{{ movie.overview }}</h3>
-    </div>
-    <div>
-        <!--{{ movie | json}}-->
-    </div>
+  <div class="col-lg-6">
+    <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</h4>
+    <div class="card-text">{{ movie.overview }}</div>
+  </div>
+  <div>
+    <!--{{ movie | json}}-->
+  </div>
 </div>

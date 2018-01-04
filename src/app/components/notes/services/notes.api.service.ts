@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import { AppStore } from '../../../app-store.model';
-import { Note } from '../note';
+import { Note } from '../../../models/note';
 
 import * as NotesActions from  '../../../actions/note';
 import * as fromRoot from '../../../reducers';
@@ -21,7 +20,7 @@ export class NotesApiService {
   }
 
   addNote(newNote: Note) {
-    return this.store.dispatch(new NotesActions.createNote(newNote));
+    return this.store.dispatch(new NotesActions.createNewNote(newNote));
   }
 
   deleteNote(note: Note) {
@@ -34,6 +33,10 @@ export class NotesApiService {
 
   changeNotePosition(note: Note): void {
     this.store.dispatch(new NotesActions.updateNotePosition(note));
+  }
+
+  changeNoteSize(note: Note): void {
+    this.store.dispatch(new NotesActions.updateNoteSize(note));
   }
 
 }

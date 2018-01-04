@@ -22,13 +22,13 @@ import { NgaModule } from '../../theme/nga.module';
     NgaModule
   ],
   declarations: [
-      WizardManagerComponent,    // AboutUsComponent,
-      WzToolbarComponent,
-      ProfileComponent,
-      PaymentComponent,
-      FeatureComponent,
-      WzCommonComponent
-    ],
+    WizardManagerComponent,    // AboutUsComponent,
+    WzToolbarComponent,
+    ProfileComponent,
+    PaymentComponent,
+    FeatureComponent,
+    WzCommonComponent
+  ],
   exports: [WizardManagerComponent]
 })
 export class WizardManagerModule { }
