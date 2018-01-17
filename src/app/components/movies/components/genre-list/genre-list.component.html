@@ -1,24 +1,5 @@
-  <!--<div class="list-group">
-    <ng-content>
-      </ng-content>
-    <a href="#" class="list-group-item list-group-item-action" *ngFor="let genre of genres">
-      <genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></genre-list-item>
-    </a>
-  </div>-->
-
-<!--<div class="list-group">
-
-  <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-  <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-  <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-  <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-</div>-->
-<!--<div class="form-group">
-  <section class="main">
-    <ul class="list-group">-->
-      <ng-container  *ngFor="let genre of genres" >
-        <genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></genre-list-item>
-      </ng-container>
-    <!--</ul>
-  </section>
-</div>-->
+<ba-card margin="-1" title="" header="Genres">
+  <ng-container  *ngFor="let genre of genres" >
+    <genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></genre-list-item>
+  </ng-container>
+</ba-card>

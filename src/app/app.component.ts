@@ -60,7 +60,6 @@ export class AppComponent {
   }
 
   private _hideSpinner(): void {
-
     this.ngZone.runOutsideAngular(() => {
       this.renderer.setElementStyle(
         this.spinnerElement.nativeElement,

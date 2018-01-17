@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ba-card',
@@ -11,4 +11,5 @@ export class BaCard {
   @Input() cardType: String;
   @Input() header: String;
   @Input() footer: String;
+  @Input() margin: number;
 }

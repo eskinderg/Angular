@@ -21,7 +21,7 @@ export class GenreListItemComponent implements AfterViewInit  {
     //   .subscribe(res => {
     //     this.genre.total_results = res;
     //   });
-    }
+  }
 
   selectGenre(genre: Genre, $event: any) {
     $event.preventDefault();
