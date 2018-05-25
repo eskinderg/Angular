@@ -80,7 +80,7 @@
   },
   "engineStrict": true,
   "engines": {
-    "node": "6.11.2"
+    "node": "10.0.0"
   },
   "main": "index.js",
   "repository": "http://www.github.com/eskinderg/Angular-CLI.git",
