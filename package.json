@@ -24,8 +24,10 @@
     "@angular/http": "6.0.1",
     "@angular/platform-browser": "6.0.1",
     "@angular/platform-browser-dynamic": "6.0.1",
+    "@angular/pwa": "^0.6.5",
     "@angular/router": "6.0.1",
-    "@angular/service-worker": "6.0.1",
+    "@angular/service-worker": "6.0.3",
+    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
     "@ngrx/effects": "^6.0.0",
     "@ngrx/store-devtools": "^6.0.0",
@@ -37,8 +39,7 @@
     "oidc-client": "^1.4.1",
     "rxjs": "^6.2.0",
     "tether": "^1.4.3",
-    "zone.js": "^0.8.26",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0-alpha.0"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.6.3",

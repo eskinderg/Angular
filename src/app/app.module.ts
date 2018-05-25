@@ -44,7 +44,8 @@ import { environment } from '../environments/environment';
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot(),
-    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : []
+    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   declarations: [AppComponent],
   providers: [
