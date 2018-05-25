@@ -1,22 +1,18 @@
-<!-- <h1>{{ movie.title }}</h1> -->
 <div class="row">
+
   <div class="col-lg-6">
     <div class="card" style="">
       <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
-      <div class="card-block p-3">
-        <!-- <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p> -->
-        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-        <h4 class="card-title">{{ movie.release_date | truncate: 4}}</h4>
-        <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
-      </div>
     </div>
   </div>
 
   <div class="col-lg-6">
-    <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</h4>
-    <div class="card-text">{{ movie.overview }}</div>
+    <ba-card header="{{ movie.title }} {{ movie.release_date | truncate: 4}}">
+      <!-- <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" ></h4> -->
+      <div class="card-text">{{ movie.overview }}</div>
+      <h4 class="card-title"></h4>
+      <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
+    </ba-card>
   </div>
-  <div>
-    <!--{{ movie | json}}-->
-  </div>
+
 </div>

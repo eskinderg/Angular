@@ -1,7 +1,8 @@
 
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { Observable } from 'rxjs/Observable';
+import { from, of,Observable, Subject, pipe } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import * as  AuthActions from '../actions/auth';
@@ -9,11 +10,11 @@ import * as  AuthActions from '../actions/auth';
 
 import { AuthService } from '../components/shared/services/auth/auth.service';
 
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+
+
+
+
+
 
 @Injectable()
 export class AuthEffect {
@@ -33,10 +34,14 @@ export class AuthEffect {
   @Effect({ dispatch: false })
   login = this.actions$
     .ofType(AuthActions.LOGIN_EVENT)
-    .switchMap((action: AuthActions.loginEvent) =>
-      Observable.fromPromise(this.authService.mgr.signinRedirect())
-      .map(data => new AuthActions.loginEventSuccess(data))
-      .catch(err => Observable.of(new AuthActions.loginEventFail(err)))
+    .pipe(
+      switchMap((action: AuthActions.loginEvent) =>
+        from(this.authService.mgr.signinRedirect())
+        .pipe(
+          map(data => new AuthActions.loginEventSuccess(data)),
+          catchError(err => of(new AuthActions.loginEventFail(err)))
+        )
+      )
     );
 
   // @Effect()

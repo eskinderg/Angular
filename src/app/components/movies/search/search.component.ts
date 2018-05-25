@@ -3,19 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../models/movie';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { FormControl } from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import {Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
 
-import 'rxjs/add/operator/do';
-import {map} from 'rxjs/operator/map';
-import {debounceTime} from 'rxjs/operator/debounceTime';
-import {distinctUntilChanged} from 'rxjs/operator/distinctUntilChanged';
-import {_catch} from 'rxjs/operator/catch';
-import {_do} from 'rxjs/operator/do';
-import {switchMap} from 'rxjs/operator/switchMap';
-import {of} from 'rxjs/observable/of';
+
+import { of,Observable, Subject, pipe } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -37,45 +28,49 @@ export class SearchComponent implements OnInit {
 
 
   search = (text$: Observable<string>) =>
-    _do.call(
+    pipe(
+    tap.call(
       switchMap.call(
-        _do.call(
+        tap.call(
           distinctUntilChanged.call(
             debounceTime.call(text$, 300)),
           () => this.searching = true),
         term =>
-        _catch.call(
-          _do.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
+        catchError.call(
+          tap.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
           () => {
             this.searchFailed = true;
             return of.call([]);
           }
         )
       ),
-      () => this.searching = false);
+      () => this.searching = false)
+    );
 
-    ngOnInit() {
-      // this.movies = this.term.valueChanges
-      //   .debounceTime(400)
-      //   .distinctUntilChanged()
-      //   .switchMap(term => this._moviesServices.serachMovies(term))
-      //   .map(res => {
-      //     const movies = res.results;
-      //     return movies.map((movie: Movie) => new Movie(movie));
-      //   });
-      }
+  ngOnInit() {
+    // this.movies = this.term.valueChanges
+    //   .debounceTime(400)
+    //   .distinctUntilChanged()
+    //   .switchMap(term => this._moviesServices.serachMovies(term))
+    //   .map(res => {
+    //     const movies = res.results;
+    //     return movies.map((movie: Movie) => new Movie(movie));
+    //   });
+  }
 
-    btnSearch(value) {
-      if (value) {
-        this._moviesServices.serachMovies(value)
-          .map(res => {
+  btnSearch(value) {
+    if (value) {
+      this._moviesServices.serachMovies(value)
+        .pipe(
+          map(res => {
             const movies = res.results;
             return movies.map((movie: Movie) => new Movie(movie));
           })
-            .subscribe(m => {
-              this.movies = m;
-            });
-      }
+        )
+        .subscribe(m => {
+          this.movies = m;
+        });
     }
+  }
 
 }

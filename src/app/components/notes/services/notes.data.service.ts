@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions} from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/from';
+import { Observable } from 'rxjs';
+
+
 import { environment } from '../../../../environments/environment';
 
 import { Note } from '../../../models/note';
+
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class NotesDataService {
@@ -30,33 +32,45 @@ export class NotesDataService {
     {
       return this.http
         .post(this.API_ROOT + '/notes/', note)
-        .map(response => {
+      .pipe
+      (
+        map(response => {
           return new Note(response);
-        });
+        })
+      )
     }
   }
 
   deleteNote(note: Note): Observable<Note> {
     return this.http
     .delete(this.API_ROOT + '/notes/' + note.id)
-    .map(response => {
-      return new Note({...note});
-    });
+    .pipe
+    (
+      map(response => {
+        return new Note({...note});
+      })
+    )
   }
 
   addOrUpdateNote(note: Note): Observable<Note> {
     debugger;
     return this.http.post(`${this.API_ROOT}/notes`, JSON.stringify(note))
-    .map(response => {
-      return new Note(response);
-    });
+    .pipe
+    (
+      map(response => {
+        return new Note(response);
+      })
+    )
   }
 
   updateNote(note: Note): Observable<Note> {
     return this.http
     .put( this.API_ROOT + '/notes/' + note.id, note)
-    .map( response => {
-      return new Note(response);
-    });
+    .pipe
+    (
+      map( response => {
+        return new Note(response);
+      })
+    )
   }
 }

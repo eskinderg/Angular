@@ -1,9 +1,9 @@
-import { animate, AnimationEntryMetadata, state, style, transition, trigger } from '@angular/core';
+import { animate, AnimationTriggerMetadata, state, style, transition, trigger } from '@angular/animations';
 
 /**
  * Component transition animations
  */
-export const SlideAnimation: AnimationEntryMetadata =
+export const SlideAnimation: AnimationTriggerMetadata =
 trigger('routerAnimation', [
   // state('void', style({position:'absolute', width:'100%'}) ),
   state('*', style({position:'absolute', width:'100%'}) ),

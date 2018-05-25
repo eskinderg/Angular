@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
+import { Observable } from 'rxjs';
+
 
 import { Event } from '../event';
 
