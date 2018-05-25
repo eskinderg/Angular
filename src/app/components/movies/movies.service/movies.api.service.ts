@@ -3,9 +3,9 @@ import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
 import { MoviesDataService } from './movies.data.service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/empty';
-import 'rxjs/add/operator/delay';
+import { Observable, empty } from 'rxjs';
+
+
 
 @Injectable()
 export class MoviesApiService {
@@ -16,7 +16,7 @@ export class MoviesApiService {
     if (searchStr !== undefined && searchStr !== '') {
       return this.api.searchMovies(searchStr);
     }
-    return Observable.empty<any>();
+    return empty();
   }
   getPopularSeries(): Observable<Tv[]> {
     return this.api.getPopularSeries();

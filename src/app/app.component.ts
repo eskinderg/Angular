@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoggingService } from './error/loggingservice';
-import { NgZone, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 
 /**
@@ -21,7 +21,7 @@ export class AppComponent {
     private errorLog: LoggingService,
     private router: Router,
     private ngZone: NgZone,
-    private renderer: Renderer
+    private renderer: Renderer2
   ) {
 
     errorLog.onError.subscribe((error) => {
@@ -40,7 +40,7 @@ export class AppComponent {
 
     if (event instanceof NavigationStart) {
       this.ngZone.runOutsideAngular(() => {
-        this.renderer.setElementStyle(
+        this.renderer.setStyle(
           this.spinnerElement.nativeElement,
           'opacity',
           '1'
@@ -61,7 +61,7 @@ export class AppComponent {
 
   private _hideSpinner(): void {
     this.ngZone.runOutsideAngular(() => {
-      this.renderer.setElementStyle(
+      this.renderer.setStyle(
         this.spinnerElement.nativeElement,
         'opacity',
         '0'

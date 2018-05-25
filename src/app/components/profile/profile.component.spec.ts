@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { async, TestBed } from '@angular/core/testing';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { ProfileComponent } from './profile.component';
 // import { NameListService } from '../shared/name-list/name-list.service';
