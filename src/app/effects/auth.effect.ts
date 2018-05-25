@@ -1,20 +1,10 @@
-
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { from, of,Observable, Subject, pipe } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-
 import * as  AuthActions from '../actions/auth';
-// import { NotesDataService } from '../components/notes/services/notes.data.service';
-
 import { AuthService } from '../components/shared/services/auth/auth.service';
-
-
-
-
-
-
 
 @Injectable()
 export class AuthEffect {

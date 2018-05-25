@@ -29,7 +29,7 @@ export class Draggable {
     }else {
       // console.log('draggable: Error! the annotated ' + $event.target.nodeName +
       //  ' element needs to be inline styled with position, top and left');
-      }
+    }
   }
 
   @HostListener('mousemove', ['$event'])

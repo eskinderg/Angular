@@ -2,15 +2,9 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Store, Action } from '@ngrx/store';
-
 import * as  NotesActions from '../actions/note';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
-
 import { catchError, switchMap, map, tap } from 'rxjs/operators';
-
-
-
-
 
 @Injectable()
 export class NotesEffect {
@@ -86,8 +80,8 @@ export class NotesEffect {
     .pipe(
       switchMap(() => this.notesApiService.getNotes()
         .pipe(
-        map(notes => new NotesActions.fetchNotesSuccess(notes)),
-        catchError(err => of({ type: NotesActions.FETCH_NOTES_FAILURE, payload: err }))
+          map(notes => new NotesActions.fetchNotesSuccess(notes)),
+          catchError(err => of({ type: NotesActions.FETCH_NOTES_FAILURE, payload: err }))
         )
       )
     );

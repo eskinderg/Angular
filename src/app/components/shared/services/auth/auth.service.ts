@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
 
 import { environment } from '../../../../../environments/environment';
 
-
 const settings: any = environment.Auth;
 
 @Injectable()
