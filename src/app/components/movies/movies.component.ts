@@ -1,5 +1,5 @@
 import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { SlideAnimation } from '../shared/animations/animations';

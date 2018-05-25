@@ -2,7 +2,7 @@ import { Component, HostListener, HostBinding, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ConfirmService } from '../../theme/components/modal/confirm.service';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { User } from 'oidc-client';

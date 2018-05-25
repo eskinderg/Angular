@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { MoviesApiService } from './movies.api.service';
 import { Genre } from '../models/genre';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class GenreResolve implements Resolve<Genre[]> {

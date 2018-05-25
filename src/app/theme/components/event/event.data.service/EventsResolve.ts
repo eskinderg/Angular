@@ -5,8 +5,8 @@ import { Event } from '../event';
 import { Store } from '@ngrx/store';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import 'rxjs/add/operator/first';
-import 'rxjs/add/operator/take';
+
+
 
 @Injectable()
 export class EventsResolve implements Resolve<any> {

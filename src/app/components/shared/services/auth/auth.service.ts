@@ -3,10 +3,11 @@ import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { UserManager, User} from 'oidc-client';
 import { Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import 'rxjs/add/observable/fromPromise';
 import { environment } from '../../../../../environments/environment';
+
 
 const settings: any = environment.Auth;
 
@@ -57,13 +58,16 @@ export class AuthService {
   }
 
   isLoggedInObs(): Observable<boolean> {
-    return Observable.fromPromise(this.mgr.getUser()).map<User, boolean>((user) => {
-      if (user) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    return from(this.mgr.getUser())
+    .pipe(
+      map<User, boolean>((user) => {
+        if (user) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    )
   }
 
   clearState() {
