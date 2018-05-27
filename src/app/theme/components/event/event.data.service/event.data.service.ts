@@ -28,6 +28,12 @@ export class EventDataService {
 
   public updateEvent(event: Event): Observable<Event> {
     return this.http.put<Event>(API_URL, event)
+    .pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
   }
 
   public deleteEventById(event: Event): Observable<Event> {

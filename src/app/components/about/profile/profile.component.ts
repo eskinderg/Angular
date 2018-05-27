@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/services/auth/auth.service';
 import { User } from 'oidc-client';
+import { ConfirmService } from '../../../theme/components/modal/confirm.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   public user: User;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService,
+    private confirmService: ConfirmService){
     this.user = this.authService.currentUser;
   }
 
@@ -28,7 +30,14 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      alert('profile saved')
+      this.confirmService.openInfoModal({
+        title: 'Profile',
+        message: 'Profile Saved'
+      }).then(() => {
+        // this.store.dispatch(new EventsActions.deleteEvent(event));
+      }, () => {
+        console.log();
+      });
     }
   }
 

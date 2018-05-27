@@ -2,7 +2,7 @@
   <div class="form-group row">
     <label for="example-text-input" class="col-2 col-form-label">Name</label>
     <div class="col-10">
-      <input class="form-control" name="name" type="text" formControlName="name" [ngModel]="user.profile.given_name" > 
+      <input class="form-control" name="name" type="text" formControlName="name" [ngModel]="user.profile.given_name" >
     </div>
   </div>
   <div class="form-group row">
@@ -25,6 +25,10 @@
   </div>
 <button type="submit" class="btn btn-primary">Save</button>
 </form>
+
+<ng-template confirm>
+  <modal-info-component></modal-info-component>
+</ng-template>
 <!--<pre>
 {{ profileForm.value | json }}
 {{ profileForm.status | json }}

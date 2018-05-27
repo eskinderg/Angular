@@ -5,7 +5,8 @@
         <app-event-list-item
           [event]="event"
           (toggleComplete)="onToggleEventComplete($event)"
-          (remove)="onRemoveEvent($event)"></app-event-list-item>
+          (remove)="onRemoveEvent($event)"
+          (update)="onUpdateEvent($event)"></app-event-list-item>
       </li>
     </ul>
   </section>

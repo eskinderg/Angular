@@ -1,7 +1,11 @@
 <app-event-list-header class="mb-5" (add)="onAddEvent($event)">
 </app-event-list-header>
 
-<app-event-list [events]="events" (toggleComplete)="onToggleEventComplete($event)" (remove)="onRemoveEvent($event)">
+<app-event-list
+    [events]="events"
+    (toggleComplete)="onToggleEventComplete($event)"
+    (remove)="onRemoveEvent($event)"
+    (update)="onUpdateEvent($event)">
 </app-event-list>
 
 <app-event-list-footer [events]="events"></app-event-list-footer>
