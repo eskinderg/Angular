@@ -27,10 +27,4 @@ export class ConfirmService {
     this.state.modal = this.modalService.open(this.state.template, { backdrop: true } );
     return this.state.modal.result;
   }
-
-  openInfoModal(options: ConfirmOptions): Promise<any> {
-    this.state.options = options;
-    this.state.modal = this.modalService.open(this.state.template, { backdrop: true } );
-    return this.state.modal.result;
-  }
 }
