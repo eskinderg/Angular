@@ -12,6 +12,7 @@ import {
   ConfirmService,
   ConfirmState,
   ConfirmModalComponent,
+  ModalInfoComponent,
   ConfirmTemplateDirective
 } from './components/modal';
 
@@ -20,7 +21,8 @@ const NGA_COMPONENTS = [
   BaCard,
   AppLoadingComponent,
   BarchartComponent,
-  ConfirmModalComponent
+  ConfirmModalComponent,
+  ModalInfoComponent
   // BaAmChart,
   // BaBackTop,
   // BaCard,

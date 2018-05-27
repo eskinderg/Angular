@@ -16,7 +16,7 @@ export const environment = {
     scope: 'openid email profile api1 api2.full_access',
     silent_redirect_uri: 'http://eskinder.net/silent-renew.html',
     automaticSilentRenew: true,
-    accessTokenExpiringNotificationTime: 4,
+    accessTokenExpiringNotificationTime: 60,
     silentRequestTimeout: 200,
     filterProtocolClaims: true,
     loadUserInfo: true

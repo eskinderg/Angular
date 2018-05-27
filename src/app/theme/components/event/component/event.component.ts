@@ -28,6 +28,10 @@ export class EventComponent {
     this.store.dispatch(new EventsActions.updateEvent(event));
   }
 
+  onUpdateEvent(event: Event) {
+    this.store.dispatch(new EventsActions.updateEvent(event));
+  }
+
   onRemoveEvent(event: Event) {
     this.confirmService.confirm({
       title: 'Confirm deletion',
