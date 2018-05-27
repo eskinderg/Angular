@@ -10,16 +10,17 @@ import { Note } from '../../../models/note';
 
 import { map } from 'rxjs/operators';
 
+const API_ROOT = environment.NOTES_API;
+
 @Injectable()
 export class NotesDataService {
 
-  private API_ROOT: String = environment.API;
-  private JSON_HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
+  // private JSON_HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
   constructor(public http: HttpClient) { }
 
-  getNotes() : Observable<Note[]>  {
-    return this.http.get<Note[]>(`${this.API_ROOT}/notes`);
+  getNotes()  {
+    return this.http.get<Note[]>(API_ROOT);
   }
 
   addNote(note: Note): Observable<Note> {
@@ -31,19 +32,13 @@ export class NotesDataService {
     else
     {
       return this.http
-        .post(this.API_ROOT + '/notes/', note)
-      .pipe
-      (
-        map(response => {
-          return new Note(response);
-        })
-      )
+        .post<Note>(API_ROOT, note)
     }
   }
 
   deleteNote(note: Note): Observable<Note> {
     return this.http
-    .delete(this.API_ROOT + '/notes/' + note.id)
+    .delete(API_ROOT + note.id)
     .pipe
     (
       map(response => {
@@ -53,8 +48,7 @@ export class NotesDataService {
   }
 
   addOrUpdateNote(note: Note): Observable<Note> {
-    debugger;
-    return this.http.post(`${this.API_ROOT}/notes`, JSON.stringify(note))
+    return this.http.post(API_ROOT, JSON.stringify(note))
     .pipe
     (
       map(response => {
@@ -65,7 +59,7 @@ export class NotesDataService {
 
   updateNote(note: Note): Observable<Note> {
     return this.http
-    .put( this.API_ROOT + '/notes/' + note.id, note)
+    .put(API_ROOT, note)
     .pipe
     (
       map( response => {

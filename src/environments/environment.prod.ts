@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
 
-  TODO_API: 'http://localhost:3000',
-  API: 'http://localhost:3000',
+  EVENTS_API: 'http://localhost:5000/api/events/',
+  API: 'http://localhost:5000',
 
   Auth : {
     authority: 'http://eskinder.auth0.com',
@@ -12,7 +12,7 @@ export const environment = {
     post_logout_redirect_uri: 'http://eskinder.net',
     popup_post_logout_redirect_uri: 'http://eskinder.net',
     response_type: 'id_token token',
-    scope: 'openid email profile',
+    scope: 'openid email profile api1 api2.full_access',
     silent_redirect_uri: 'http://eskinder.net/silent-renew.html',
     automaticSilentRenew: true,
     accessTokenExpiringNotificationTime: 4,

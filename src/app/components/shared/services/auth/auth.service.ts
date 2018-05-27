@@ -38,6 +38,7 @@ export class AuthService {
     this.mgr.events.addUserLoaded((user) => {
       this.currentUser = user;
       localStorage.setItem('token', user.id_token);
+      localStorage.setItem('access_token', user.access_token);
       this.loggedIn = !(user === undefined);
       if (!environment.production) {
         console.log('authService addUserLoaded', user);

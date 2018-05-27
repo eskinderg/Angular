@@ -4,129 +4,145 @@ import { Action } from '@ngrx/store';
  List of auth messages
  **/
 
- export const LOGIN_EVENT = 'LOGIN_EVENT';
- export const LOGIN_EVENT_SUCCESS = 'LOGIN_EVENT_SUCCESS';
- export const LOGIN_EVENT_FAIL = 'LOGIN_EVENT_FAIL';
+export const LOGIN_EVENT = 'LOGIN_EVENT';
+export const LOGIN_EVENT_SUCCESS = 'LOGIN_EVENT_SUCCESS';
+export const LOGIN_EVENT_FAIL = 'LOGIN_EVENT_FAIL';
+export const AUTH_INIT = '@ngrx/store/init';
+export const AUTH_INIT_SUCCESS = 'AUTH_INIT_SUCCESS';
+// export const UPDATE_EVENT = 'UPDATE_EVENT';
+// export const UPDATE_EVENT_SUCCESS = 'UPDATE_EVENT_SUCCESS';
+// export const UPDATE_EVENT_FAIL = 'UPDATE_EVENT_FAIL';
 
- // export const UPDATE_EVENT = 'UPDATE_EVENT';
- // export const UPDATE_EVENT_SUCCESS = 'UPDATE_EVENT_SUCCESS';
- // export const UPDATE_EVENT_FAIL = 'UPDATE_EVENT_FAIL';
+// export const DELETE_EVENT = 'DELETE_EVENT';
+// export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
+// export const DELETE_EVENT_FAIL = 'DELETE_EVENT_FAIL';
 
- // export const DELETE_EVENT = 'DELETE_EVENT';
- // export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
- // export const DELETE_EVENT_FAIL = 'DELETE_EVENT_FAIL';
+// export const SAVE_EVENT = 'SAVE_EVENT';
+// export const SAVE_EVENT_SUCCESS = 'SAVE_EVENT_SUCCESS';
+// export const SAVE_EVENT_FAILURE = 'SAVE_EVENT_FAILURE';
+// export const ADD_EVENT_FROMSERVER = 'ADD_EVENT_FROMSERVER';
 
- // export const SAVE_EVENT = 'SAVE_EVENT';
- // export const SAVE_EVENT_SUCCESS = 'SAVE_EVENT_SUCCESS';
- // export const SAVE_EVENT_FAILURE = 'SAVE_EVENT_FAILURE';
- // export const ADD_EVENT_FROMSERVER = 'ADD_EVENT_FROMSERVER';
+// export const FETCH_EVENTS = 'FETCH_EVENTS';
+// export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
+// export const FETCH_EVENTS_FAILURE = 'FETCH_EVENTS_FAILURE';
 
- // export const FETCH_EVENTS = 'FETCH_EVENTS';
- // export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
- // export const FETCH_EVENTS_FAILURE = 'FETCH_EVENTS_FAILURE';
+// export const TOGGLE_EVENT = 'TOGGLE_EVENT';
+// export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
+// export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE';
 
- // export const TOGGLE_EVENT = 'TOGGLE_EVENT';
- // export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
- // export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE';
+// ===================================
+//  CREATE
+// -----------------------------------
 
- // ===================================
- //  CREATE
- // -----------------------------------
+export class loginEvent implements Action {
 
- export class loginEvent implements Action {
+  readonly type = LOGIN_EVENT;
 
-   readonly type = LOGIN_EVENT;
+  constructor (){  }
+}
 
-   constructor (){  }
- }
+export class loginEventFail implements Action {
 
- export class loginEventFail implements Action {
+  readonly type = LOGIN_EVENT_FAIL;
 
-   readonly type = LOGIN_EVENT_FAIL;
+  constructor (public payload: any){  }
+}
 
-   constructor (public payload: any){  }
- }
+export class loginEventSuccess implements Action {
 
- export class loginEventSuccess implements Action {
+  readonly type = LOGIN_EVENT_SUCCESS;
 
-   readonly type = LOGIN_EVENT_SUCCESS;
+  constructor (public payload: any){  }
+}
 
-   constructor (public payload:any){  }
- }
+export class authInit implements Action {
 
- // ===================================
- //  DELETE
- // -----------------------------------
- // export class deleteEvent implements Action {
+  readonly type = AUTH_INIT;
 
- //   readonly type = DELETE_EVENT;
+  constructor (){  }
+}
 
- //   constructor (public payload: Event){  }
- // }
+export class authInitSuccess implements Action {
 
- // export class deleteEventFail implements Action {
+  readonly type = AUTH_INIT_SUCCESS;
 
- //   readonly type = DELETE_EVENT_FAIL;
+  constructor (public payload:any){  }
+}
 
- //   constructor (public payload: Event){  }
- // }
 
- // export class deleteEventSuccess implements Action {
+// ===================================
+//  DELETE
+// -----------------------------------
+// export class deleteEvent implements Action {
 
- //   readonly type = DELETE_EVENT_SUCCESS;
+//   readonly type = DELETE_EVENT;
 
- //   constructor (public payload: Event){  }
- // }
+//   constructor (public payload: Event){  }
+// }
 
- // ===================================
- //  FETCH
- // -----------------------------------
+// export class deleteEventFail implements Action {
 
- // export class fetchEvents implements Action {
+//   readonly type = DELETE_EVENT_FAIL;
 
- //   readonly type = FETCH_EVENTS;
+//   constructor (public payload: Event){  }
+// }
 
- //   constructor (){  }
- // }
+// export class deleteEventSuccess implements Action {
 
- // export class fetchEventsFailed implements Action {
+//   readonly type = DELETE_EVENT_SUCCESS;
 
- //   readonly type = FETCH_EVENTS_FAILURE;
+//   constructor (public payload: Event){  }
+// }
 
- //   constructor (public payload: Event){  }
- // }
+// ===================================
+//  FETCH
+// -----------------------------------
 
- // export class fetchEventsSuccess implements Action {
+// export class fetchEvents implements Action {
 
- //   readonly type = FETCH_EVENTS_SUCCESS;
+//   readonly type = FETCH_EVENTS;
 
- //   constructor (public payload: Event[]){  }
- // }
+//   constructor (){  }
+// }
 
- // ===================================
- //  UPDATE
- // -----------------------------------
+// export class fetchEventsFailed implements Action {
 
- // export class updateEvent implements Action {
+//   readonly type = FETCH_EVENTS_FAILURE;
 
- //   readonly type = UPDATE_EVENT;
+//   constructor (public payload: Event){  }
+// }
 
- //   constructor (public payload: any){  }
- // }
+// export class fetchEventsSuccess implements Action {
 
- // export class updateEventFail implements Action {
+//   readonly type = FETCH_EVENTS_SUCCESS;
 
- //   readonly type = UPDATE_EVENT_FAIL;
+//   constructor (public payload: Event[]){  }
+// }
 
- //   constructor (public payload: Event){  }
- // }
+// ===================================
+//  UPDATE
+// -----------------------------------
 
- // export class updateEventSuccess implements Action {
+// export class updateEvent implements Action {
 
- //   readonly type = UPDATE_EVENT_SUCCESS;
+//   readonly type = UPDATE_EVENT;
 
- //   constructor (public payload: Event){  }
- // }
+//   constructor (public payload: any){  }
+// }
 
- export type Actions = loginEvent | loginEventSuccess | loginEventFail;
+// export class updateEventFail implements Action {
+
+//   readonly type = UPDATE_EVENT_FAIL;
+
+//   constructor (public payload: Event){  }
+// }
+
+// export class updateEventSuccess implements Action {
+
+//   readonly type = UPDATE_EVENT_SUCCESS;
+
+//   constructor (public payload: Event){  }
+// }
+
+export type Actions = loginEvent | loginEventSuccess | loginEventFail | authInit | authInitSuccess;
 

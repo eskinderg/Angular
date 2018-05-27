@@ -5,61 +5,34 @@ import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../event';
 import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
-
-
 import { environment } from '../../../../../environments/environment';
 
-
-const API_URL = environment.TODO_API;
+const API_URL = environment.EVENTS_API;
 
 @Injectable()
 export class EventDataService {
 
   constructor(private http: HttpClient) { }
 
-  //getEvents(): Observable<Array<Event>> {
-  //return this.http.get(API_URL + '/todos')
-  //.map((response: Response) => response.json());
-  //}
-
-  /**
-   * Envoked from the effector for fetching all the events
-   **/
   public getAllEvents()  {
-    return this.http .get<Event[]>(API_URL + '/todos')
-      // .map(response => { return response; })
-      // .catch(this.handleError);
+    return this.http .get<Event[]>(API_URL)
   }
 
   public createEvent(event: Event): Observable<Event> {
-    return this.http
-    .post<Event>(API_URL + '/todos', event)
-    // .map(response => {
-    //   return new Event(response);
-    // })
-    // .catch(this.handleError);
+    return this.http.post<Event>(API_URL , event)
   }
 
   public getEventById(eventId: number): Observable<Event> {
-    return this.http .get<Event>(API_URL + '/todos/' + eventId)
-    // .map(response => {
-    //   return new Event(response);
-    // })
-    // .catch(this.handleError);
+    return this.http .get<Event>(API_URL + eventId)
   }
 
   public updateEvent(event: Event): Observable<Event> {
-    return this.http
-    .put<Event>(API_URL + '/todos/' + event.id, event)
-    // .map(response => {
-    //   return new Event(response);
-    // })
-    // .catch(this.handleError);
+    return this.http.put<Event>(API_URL, event)
   }
 
   public deleteEventById(event: Event): Observable<Event> {
     return this.http
-    .delete<Event>(API_URL + '/todos/' + event.id)
+    .delete<Event>(API_URL + event.id)
     .pipe(
       map(response => {
         return event;
@@ -69,7 +42,7 @@ export class EventDataService {
   }
 
   private handleError (error: Response | any) {
-    console.error('ApiService::handleError', error);
+    console.error('EventDataApiService Error::handleError', error);
     return observableThrowError(error);
   }
 }

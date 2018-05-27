@@ -13,10 +13,14 @@ export const initialState: State = {
 export function reducer(state:State = initialState, action: AuthActions.Actions): State {
 
   switch (action.type) {
-
     case AuthActions.LOGIN_EVENT_SUCCESS:
+      // debugger;
       return {
-        profile: action.payload
+        profile: action.payload.profile
+      };
+    case AuthActions.AUTH_INIT_SUCCESS:
+      return {
+        profile: action.payload.profile
       };
 
     default:

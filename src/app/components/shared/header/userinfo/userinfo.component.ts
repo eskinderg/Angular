@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -6,17 +6,12 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
 
-  user: any;
+  constructor( private authService: AuthService ) { }
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit() {
-    this.authService.userLoadededEvent
-      .subscribe(user => {
-        this.user = user;
-      });
+  isLoggedIn() {
+    return this.authService.loggedIn;
   }
 
   startSignoutMainWindow() {
