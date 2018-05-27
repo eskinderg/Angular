@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-
+import * as AuthActions from '../app/actions/auth';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../app/reducers';
 /**
  * This class represents the main application component.
  */
@@ -12,7 +14,7 @@ import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, Navigatio
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   @ViewChild('spinnerElement') spinnerElement: ElementRef;
   errorOccured = false;
@@ -21,7 +23,8 @@ export class AppComponent {
     private errorLog: LoggingService,
     private router: Router,
     private ngZone: NgZone,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private store: Store<fromRoot.State>
   ) {
 
     errorLog.onError.subscribe((error) => {
@@ -34,6 +37,10 @@ export class AppComponent {
 
     // for debugging purposes
     console.log('Environment config', environment);
+  }
+
+  ngOnInit() {
+    this.store.dispatch(new AuthActions.authInit());
   }
 
   private _navigationInterceptor(event: RouterEvent): void {

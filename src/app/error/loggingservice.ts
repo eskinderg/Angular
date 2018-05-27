@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
 
-const API_URL = environment.TODO_API;
+// const API_URL = environment.TODO_API;
 
 @Injectable()
 export class LoggingService {

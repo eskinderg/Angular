@@ -18,7 +18,7 @@ export class ConfirmService {
    */
   confirm(options: ConfirmOptions): Promise<any> {
     this.state.options = options;
-    this.state.modal = this.modalService.open(this.state.template, { backdrop: false} );
+    this.state.modal = this.modalService.open(this.state.template, { backdrop: true, centered: true} );
     return this.state.modal.result;
   }
 }

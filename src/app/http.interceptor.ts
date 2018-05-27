@@ -15,11 +15,11 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
 
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`
       }
     });
 
-    //console.log(localStorage.getItem('token'));
+    // console.log(localStorage.getItem('access_token'));
 
     return next.handle(request);
   }

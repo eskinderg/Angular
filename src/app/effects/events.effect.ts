@@ -1,17 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { from, of,Observable, Subject, pipe } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
+import { catchError, switchMap, map } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
-
 import * as EventsActions from '../actions/event';
 import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
-
-
-
-
-
-
 
 @Injectable()
 export class EventsEffect {
@@ -58,13 +51,13 @@ export class EventsEffect {
   delete = this.actions$
     .ofType(EventsActions.DELETE_EVENT)
     .pipe(
-       switchMap((action: EventsActions.deleteEvent) =>
-          this.eventsDataService.deleteEventById(action.payload)
-         .pipe(
+      switchMap((action: EventsActions.deleteEvent) =>
+        this.eventsDataService.deleteEventById(action.payload)
+        .pipe(
           map(event => new EventsActions.deleteEventSuccess(event)),
           catchError(err => of(new EventsActions.deleteEventFail(err)))
-         )
         )
+      )
     );
 
   constructor( private actions$: Actions, private eventsDataService: EventDataService) { }

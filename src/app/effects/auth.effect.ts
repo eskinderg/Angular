@@ -35,6 +35,15 @@ export class AuthEffect {
     );
 
   // @Effect()
+  // authInit = this.actions$
+  //   .ofType(AuthActions.AUTH_INIT)
+  //   .pipe(
+  //     map((action: AuthActions.authInit) =>{
+  //       if(this.authService.currentUser)
+  //         return new AuthActions.authInitSuccess(this.authService.currentUser);
+  //     }));
+
+  // @Effect()
   // loginSuccess = this.actions$
   //   .ofType(AuthActions.LOGIN_EVENT_SUCCESS)
   //   .switchMap((action: AuthActions.loginEventSuccess) =>

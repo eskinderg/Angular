@@ -10,7 +10,7 @@ import { catchError, retry ,  map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 
-const API_URL = environment.TODO_API;
+const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
 @Injectable()
 export class MoviesDataService {

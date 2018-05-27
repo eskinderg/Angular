@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?e7ff1n');
-  src:  url('fonts/icomoon.eot?e7ff1n#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?e7ff1n') format('truetype'),
-    url('fonts/icomoon.woff?e7ff1n') format('woff'),
-    url('fonts/icomoon.svg?e7ff1n#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?5mlukn');
+  src:  url('fonts/icomoon.eot?5mlukn#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?5mlukn') format('truetype'),
+    url('fonts/icomoon.woff?5mlukn') format('woff'),
+    url('fonts/icomoon.svg?5mlukn#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,6 +30,9 @@
 .fa-credit-card:before {
   content: "\e93f";
 }
+.fa-user:before {
+  content: "\e971";
+}
 .fa-bin2:before {
   content: "\e9ad";
 }
@@ -45,6 +48,12 @@
 .fa-circle-left:before {
   content: "\ea44";
 }
-.fa-user:before {
-  content: "\e971";
+.fa-pencil:before {
+  content: "\e905";
+}
+.fa-pencil2:before {
+  content: "\e906";
+}
+.fa-checkmark2:before {
+  content: "\ea11";
 }
