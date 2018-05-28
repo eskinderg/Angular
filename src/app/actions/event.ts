@@ -27,7 +27,7 @@ import { Event } from '../models/event';
 
  export const TOGGLE_EVENT = 'TOGGLE_EVENT';
  export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
- export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE';
+ export const TOGGLE_EVENT_FAIL = 'TOGGLE_EVENT_FAIL';
 
  // ===================================
  //  CREATE
@@ -128,8 +128,35 @@ import { Event } from '../models/event';
    constructor (public payload: Event){  }
  }
 
+
+ // ===================================
+ //  TOGGLE Complete
+ // -----------------------------------
+
+ export class toggleEvent implements Action {
+
+   readonly type = TOGGLE_EVENT;
+
+   constructor (public payload: any){  }
+ }
+
+ export class toggleEventFail implements Action {
+
+   readonly type = TOGGLE_EVENT_FAIL;
+
+   constructor (public payload: Event){  }
+ }
+
+ export class toggleEventSuccess implements Action {
+
+   readonly type = TOGGLE_EVENT_SUCCESS;
+
+   constructor (public payload: Event){  }
+ }
+
  export type Actions = createEvent | createEventSuccess | createEventFail |
    updateEvent| updateEventSuccess | updateEventFail |
    fetchEvents | fetchEventsSuccess | fetchEventsFailed |
+   toggleEvent | toggleEventSuccess | toggleEventFail |
    deleteEvent| deleteEventSuccess | deleteEventFail;
 

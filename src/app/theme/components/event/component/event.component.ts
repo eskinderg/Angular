@@ -24,8 +24,8 @@ export class EventComponent {
     this.store.dispatch(new EventsActions.createEvent(event));
   }
 
-  onToggleEventComplete(event) {
-    this.store.dispatch(new EventsActions.updateEvent(event));
+  onToggleEvent(event) {
+    this.store.dispatch(new EventsActions.toggleEvent(event));
   }
 
   onUpdateEvent(event: Event) {

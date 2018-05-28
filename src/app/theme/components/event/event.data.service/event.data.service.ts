@@ -36,6 +36,16 @@ export class EventDataService {
     );
   }
 
+  public toggleEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(API_URL + 'toggle/', event)
+    .pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   public deleteEventById(event: Event): Observable<Event> {
     return this.http
     .delete<Event>(API_URL + event.id)

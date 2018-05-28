@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-end">
     <div class="mr-auto p-2">
         <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
-            <input type="checkbox" class="custom-control-input" (click)="onComplete()" [checked]="event.complete">
+            <input type="checkbox" class="custom-control-input" (click)="onToggleEvent(event)" [checked]="event.complete">
             <span class="custom-control-label"></span>
             <span class="custom-control-description">{{event.title}}</span>
         </label>
-        <input (keyup.enter)="editEvent(event)" class="editbox form-control " [hidden]="!IsInEditMode" type="text" [(ngModel)] = "event.title">
+        <input (keyup.enter)="onUpdateEvent(event)" class="editbox form-control " [hidden]="!IsInEditMode" type="text"  [(ngModel)]="esk.title">
     </div>
     <div class="p-2">
 
-        <i href="#" [ngClass]="IsInEditMode ? 'btn-success' : 'btn-primary'" class="btn btn-sm mr-2" (click)="editEvent(event)" >
+        <i href="#" [ngClass]="IsInEditMode ? 'btn-success' : 'btn-primary'" class="btn btn-sm mr-2" (click)="onUpdateEvent(event)" >
             <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>
         </i>
         <i href="#" class="btn btn-danger btn-sm" (click)="removeEvent(event)" >

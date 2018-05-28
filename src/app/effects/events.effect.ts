@@ -27,10 +27,23 @@ export class EventsEffect {
     .ofType(EventsActions.UPDATE_EVENT)
     .pipe(
       switchMap((action: EventsActions.updateEvent) =>
-        this.eventsDataService.updateEvent(action.payload)
+        this.eventsDataService.updateEvent(action.payload.newValue)
         .pipe(
           map(event => new EventsActions.updateEventSuccess(event)),
           catchError(err => of(new EventsActions.updateEventFail(err)))
+        )
+      )
+    );
+
+  @Effect()
+  toggleEvent: Observable<Action> = this.actions$
+    .ofType(EventsActions.TOGGLE_EVENT)
+    .pipe(
+      switchMap((action: EventsActions.toggleEvent) =>
+        this.eventsDataService.toggleEvent(action.payload)
+        .pipe(
+          map(event => new EventsActions.toggleEventSuccess(event)),
+          catchError(err => of(new EventsActions.toggleEventFail(err)))
         )
       )
     );

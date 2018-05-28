@@ -4,7 +4,7 @@
       <li class="list-group-item" *ngFor="let event of events | async " [class.completed]="event.complete">
         <app-event-list-item
           [event]="event"
-          (toggleComplete)="onToggleEventComplete($event)"
+          (toggle)="onToggleEvent($event)"
           (remove)="onRemoveEvent($event)"
           (update)="onUpdateEvent($event)"></app-event-list-item>
       </li>

@@ -24,6 +24,7 @@ export function reducer(state:State = initialState, action: EventsActions.Action
         events: action.payload || []
       };
 
+    case EventsActions.TOGGLE_EVENT_SUCCESS:
     case EventsActions.UPDATE_EVENT_SUCCESS:
       return Object.assign({}, state, {
         events: state.events.map((event) => {
