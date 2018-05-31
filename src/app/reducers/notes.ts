@@ -1,6 +1,7 @@
 import { Action, createFeatureSelector, createSelector} from '@ngrx/store';
 import * as NotesActions from '../actions/note';
 import { Note } from '../models/note';
+
 export interface State {
   notes: Note[];
 }

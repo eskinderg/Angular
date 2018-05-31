@@ -130,7 +130,7 @@ import { Event } from '../models/event';
 
 
  // ===================================
- //  TOGGLE Complete
+ //  TOGGLE
  // -----------------------------------
 
  export class toggleEvent implements Action {

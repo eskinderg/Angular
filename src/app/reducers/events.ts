@@ -16,12 +16,12 @@ export function reducer(state:State = initialState, action: EventsActions.Action
 
     case EventsActions.CREATE_EVENT_SUCCESS:
       return {
-        events: [...state.events, action.payload]
+        events: [ action.payload, ...state.events ]
       };
 
     case EventsActions.FETCH_EVENTS_SUCCESS:
       return {
-        events: action.payload || []
+        events: action.payload.reverse() || []
       };
 
     case EventsActions.TOGGLE_EVENT_SUCCESS:

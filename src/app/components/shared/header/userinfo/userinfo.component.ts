@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class UserInfoComponent {
 
+  @Output() signout: EventEmitter<any> = new EventEmitter();
+
   constructor( private authService: AuthService ) { }
 
   isLoggedIn() {
@@ -15,7 +17,8 @@ export class UserInfoComponent {
   }
 
   startSignoutMainWindow() {
-    this.authService.startSignoutMainWindow();
+    // this.authService.startSignoutMainWindow();
+    this.signout.emit();
   }
 
 }

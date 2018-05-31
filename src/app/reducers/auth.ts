@@ -14,7 +14,6 @@ export function reducer(state:State = initialState, action: AuthActions.Actions)
 
   switch (action.type) {
     case AuthActions.LOGIN_EVENT_SUCCESS:
-      // debugger;
       return {
         profile: action.payload.profile
       };

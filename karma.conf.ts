@@ -19,7 +19,6 @@ module.exports = function (config: karma.Config) {
       {pattern: './src/test.ts', watched: false}
     ],
     preprocessors: {
-      
     },
     mime: {
       'text/x-typescript': ['ts', 'tsx']

@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedIn()" ngbDropdown placement="bottom-right" class="d-inline-block">
-  <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{  authService.currentUser.profile.given_name }}</button>
+  <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.profile.given_name }}</button>
   <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
     <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
     <button class="dropdown-item" (click)="startSignoutMainWindow()">Logout</button>

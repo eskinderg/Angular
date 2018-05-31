@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
         );
       });
     }
+
     if (event instanceof NavigationEnd) {
       this._hideSpinner();
     }

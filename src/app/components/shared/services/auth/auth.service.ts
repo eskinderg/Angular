@@ -47,10 +47,14 @@ export class AuthService {
     });
 
     this.mgr.events.addUserUnloaded((e) => {
+
+      localStorage.removeItem('token');
+      localStorage.removeItem('access_token');
+
       if (!environment.production) {
         console.log('user unloaded');
       }
-      this.userLoadededEvent.emit(null);
+      // this.userLoadededEvent.emit(null);
       this.route.navigate(['/']);
       this.loggedIn = false;
     });
