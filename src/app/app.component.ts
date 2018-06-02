@@ -2,10 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import {
+  Router,
+  Event as RouterEvent,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError
+} from '@angular/router';
 import * as AuthActions from '../app/actions/auth';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../app/reducers';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc';
+import { authConfig } from './auth.config';
+
 /**
  * This class represents the main application component.
  */
@@ -24,6 +35,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private ngZone: NgZone,
     private renderer: Renderer2,
+    private oauthService: OAuthService,
     private store: Store<fromRoot.State>
   ) {
 
@@ -34,13 +46,22 @@ export class AppComponent implements OnInit {
     router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });
+    this.configureWithNewConfigApi();
 
     // for debugging purposes
     console.log('Environment config', environment);
   }
 
   ngOnInit() {
-    this.store.dispatch(new AuthActions.authInit());
+    // this.store.dispatch(new AuthActions.loginEventSuccess());
+    // alert('appinit')
+  }
+
+  private configureWithNewConfigApi() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.setStorage(localStorage);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
 
   private _navigationInterceptor(event: RouterEvent): void {

@@ -27,7 +27,7 @@ export class AuthorizationComponent implements OnInit {
     from(this.authService.mgr.signinRedirectCallback())
       .subscribe((user) => {
         this.authService.userLoadededEvent.emit(user); // Notifying User has loggedIn Successfully
-        this.store.dispatch(new AuthActions.loginEventSuccess(user));
+        // this.store.dispatch(new AuthActions.loginEventSuccess(user));
         this.router.navigate(['/']);
       }, (error) => {
         console.log(error);

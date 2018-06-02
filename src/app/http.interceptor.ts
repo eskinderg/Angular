@@ -24,32 +24,32 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
 
     // console.log(localStorage.getItem('access_token'));
 
-    return next.handle(request)
-    .pipe(
-      tap(
-        (event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-            // do stuff with response if you want
-          }
-        }, (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              alert('401: Unauthorized request')
-            }
-            if (err.status === 403) {
-              alert('403 (Forbidden): User not Authorized to the resource')
-              // this.confirmService.openInfoModal({
-              //   title: 'From HttpInterceptor',
-              //   message: 'From HttpInterceptor'
-              // }).then(() => {
-              //   // this.store.dispatch(new EventsActions.deleteEvent(event));
-              // }, () => {
-              //   console.log();
-              // });
-            }
-          }
-        }
-      ));
+    return next.handle(request);
+    // .pipe(
+    //   tap(
+    //     (event: HttpEvent<any>) => {
+    //       if (event instanceof HttpResponse) {
+    //         // do stuff with response if you want
+    //       }
+    //     }, (err: any) => {
+    //       if (err instanceof HttpErrorResponse) {
+    //         if (err.status === 401) {
+    //           alert('401: Unauthorized request')
+    //         }
+    //         if (err.status === 403) {
+    //           alert('403 (Forbidden): User not Authorized to the resource')
+    //           // this.confirmService.openInfoModal({
+    //           //   title: 'From HttpInterceptor',
+    //           //   message: 'From HttpInterceptor'
+    //           // }).then(() => {
+    //           //   // this.store.dispatch(new EventsActions.deleteEvent(event));
+    //           // }, () => {
+    //           //   console.log();
+    //           // });
+    //         }
+    //       }
+    //     }
+    //   ));
 
   }
 }

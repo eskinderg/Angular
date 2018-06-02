@@ -28,6 +28,7 @@ import { AuthEffect } from './effects/auth.effect';
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
 import { environment } from '../environments/environment';
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 @NgModule({
   imports: [
@@ -41,6 +42,13 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot(reducer, { metaReducers }),
     EffectsModule.forRoot([ NotesEffect, EventsEffect, AuthEffect ]),
     StoreDevtoolsModule.instrument(),
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:3000/api'],
+        sendAccessToken: true
+
+      }
+    }),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot(),

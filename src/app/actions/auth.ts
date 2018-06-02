@@ -9,36 +9,28 @@ export const LOGIN_EVENT_SUCCESS = 'LOGIN_EVENT_SUCCESS';
 export const LOGIN_EVENT_FAIL = 'LOGIN_EVENT_FAIL';
 export const AUTH_INIT = '@ngrx/store/init';
 export const AUTH_INIT_SUCCESS = 'AUTH_INIT_SUCCESS';
-// export const UPDATE_EVENT = 'UPDATE_EVENT';
-// export const UPDATE_EVENT_SUCCESS = 'UPDATE_EVENT_SUCCESS';
-// export const UPDATE_EVENT_FAIL = 'UPDATE_EVENT_FAIL';
+export const LOAD_PROFILE = ' LOAD_PROFILE';
+export const LOAD_PROFILE_SUCCESS = 'LOAD_PROFILE_SUCCESS';
+export const LOAD_PROFILE_FAIL = 'LOAD_PROFILE_FAIL';
+export const ROUTE_TO_HOME = 'ROUTE_TO_HOME'
+export const LOGOUT = 'LOGOUT';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 
-// export const DELETE_EVENT = 'DELETE_EVENT';
-// export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
-// export const DELETE_EVENT_FAIL = 'DELETE_EVENT_FAIL';
 
-// export const SAVE_EVENT = 'SAVE_EVENT';
-// export const SAVE_EVENT_SUCCESS = 'SAVE_EVENT_SUCCESS';
-// export const SAVE_EVENT_FAILURE = 'SAVE_EVENT_FAILURE';
-// export const ADD_EVENT_FROMSERVER = 'ADD_EVENT_FROMSERVER';
+export class routeToHome implements Action {
 
-// export const FETCH_EVENTS = 'FETCH_EVENTS';
-// export const FETCH_EVENTS_SUCCESS = 'FETCH_EVENTS_SUCCESS';
-// export const FETCH_EVENTS_FAILURE = 'FETCH_EVENTS_FAILURE';
+  readonly type = ROUTE_TO_HOME;
 
-// export const TOGGLE_EVENT = 'TOGGLE_EVENT';
-// export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
-// export const TOGGLE_EVENT_FAILURE = 'TOGGLE_EVENT_FAILURE';
+  constructor (){  }
+}
 
-// ===================================
-//  CREATE
-// -----------------------------------
 
 export class loginEvent implements Action {
 
   readonly type = LOGIN_EVENT;
 
-  constructor (){  }
+  constructor (public username: string,public password: string ){  }
 }
 
 export class loginEventFail implements Action {
@@ -52,7 +44,7 @@ export class loginEventSuccess implements Action {
 
   readonly type = LOGIN_EVENT_SUCCESS;
 
-  constructor (public payload: any){  }
+  constructor (){  }
 }
 
 export class authInit implements Action {
@@ -70,79 +62,52 @@ export class authInitSuccess implements Action {
 }
 
 
-// ===================================
-//  DELETE
-// -----------------------------------
-// export class deleteEvent implements Action {
+export class loadProfile implements Action {
 
-//   readonly type = DELETE_EVENT;
+  readonly type = LOAD_PROFILE;
 
-//   constructor (public payload: Event){  }
-// }
+  constructor (){  }
+}
 
-// export class deleteEventFail implements Action {
+export class loadProfileSuccess implements Action {
 
-//   readonly type = DELETE_EVENT_FAIL;
+  readonly type = LOAD_PROFILE_SUCCESS;
 
-//   constructor (public payload: Event){  }
-// }
+  constructor (public profile: any){  }
+}
 
-// export class deleteEventSuccess implements Action {
+export class loadProfileFail implements Action {
 
-//   readonly type = DELETE_EVENT_SUCCESS;
+  readonly type = LOAD_PROFILE_FAIL;
 
-//   constructor (public payload: Event){  }
-// }
+  constructor (public payload: any){  }
+}
 
-// ===================================
-//  FETCH
-// -----------------------------------
 
-// export class fetchEvents implements Action {
+export class logout implements Action {
 
-//   readonly type = FETCH_EVENTS;
+  readonly type = LOGOUT;
 
-//   constructor (){  }
-// }
+  constructor (){  }
+}
 
-// export class fetchEventsFailed implements Action {
+export class logoutSuccess implements Action {
 
-//   readonly type = FETCH_EVENTS_FAILURE;
+  readonly type = LOGOUT_SUCCESS;
 
-//   constructor (public payload: Event){  }
-// }
+  constructor (){  }
+}
 
-// export class fetchEventsSuccess implements Action {
+export class logoutFail implements Action {
 
-//   readonly type = FETCH_EVENTS_SUCCESS;
+  readonly type = LOGOUT_FAIL;
 
-//   constructor (public payload: Event[]){  }
-// }
+  constructor (){  }
+}
 
-// ===================================
-//  UPDATE
-// -----------------------------------
-
-// export class updateEvent implements Action {
-
-//   readonly type = UPDATE_EVENT;
-
-//   constructor (public payload: any){  }
-// }
-
-// export class updateEventFail implements Action {
-
-//   readonly type = UPDATE_EVENT_FAIL;
-
-//   constructor (public payload: Event){  }
-// }
-
-// export class updateEventSuccess implements Action {
-
-//   readonly type = UPDATE_EVENT_SUCCESS;
-
-//   constructor (public payload: Event){  }
-// }
-
-export type Actions = loginEvent | loginEventSuccess | loginEventFail | authInit | authInitSuccess;
+export type Actions = loginEvent | loginEventSuccess | loginEventFail |
+                      authInit | authInitSuccess |
+  loadProfile | loadProfileSuccess | loadProfileFail |
+  logout | logoutSuccess | logoutFail |
+  routeToHome;
 
