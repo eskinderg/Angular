@@ -35,6 +35,6 @@ export class ProfileComponent implements OnInit {
     // console.log($event);
     // this.x = $event.currentTarget.innerWidth;
     // this.y = $event.currentTarget.innerHeight;
-    }
+  }
 
 }

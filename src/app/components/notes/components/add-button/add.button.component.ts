@@ -6,7 +6,7 @@ import { NgClass } from '@angular/common';
   templateUrl: 'add.button.component.html',
   styleUrls: ['add.button.component.scss'],
   // directives: [NgClass]
-  })
+})
 export class AddButtonComponent {
   @Input() colour: string;
   @Output() add: EventEmitter<string> = new EventEmitter<string>();

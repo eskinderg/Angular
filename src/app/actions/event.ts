@@ -1,9 +1,9 @@
 import { Action } from '@ngrx/store';
 import { Event } from '../models/event';
+
 /**
  List of events messages
  **/
-
  export const CREATE_EVENT = 'CREATE_EVENT';
  export const CREATE_EVENT_SUCCESS = 'CREATE_EVENT_SUCCESS';
  export const CREATE_EVENT_FAIL = 'CREATE_EVENT_FAIL';
@@ -28,6 +28,9 @@ import { Event } from '../models/event';
  export const TOGGLE_EVENT = 'TOGGLE_EVENT';
  export const TOGGLE_EVENT_SUCCESS = 'TOGGLE_EVENT_SUCCESS';
  export const TOGGLE_EVENT_FAIL = 'TOGGLE_EVENT_FAIL';
+
+
+ export const EVENTS_CLEAR = 'EVENTS_CLEAR';
 
  // ===================================
  //  CREATE
@@ -154,9 +157,18 @@ import { Event } from '../models/event';
    constructor (public payload: Event){  }
  }
 
- export type Actions = createEvent | createEventSuccess | createEventFail |
-   updateEvent| updateEventSuccess | updateEventFail |
-   fetchEvents | fetchEventsSuccess | fetchEventsFailed |
-   toggleEvent | toggleEventSuccess | toggleEventFail |
-   deleteEvent| deleteEventSuccess | deleteEventFail;
+
+ export class eventsClear implements Action {
+
+   readonly type = EVENTS_CLEAR;
+
+   constructor (){  }
+ }
+
+export type Actions = createEvent | createEventSuccess | createEventFail |
+  updateEvent| updateEventSuccess | updateEventFail |
+  fetchEvents | fetchEventsSuccess | fetchEventsFailed |
+  toggleEvent | toggleEventSuccess | toggleEventFail |
+  deleteEvent| deleteEventSuccess | deleteEventFail |
+  eventsClear;
 

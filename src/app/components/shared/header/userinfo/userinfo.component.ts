@@ -4,6 +4,7 @@ import { AuthService } from '../../../../shared/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../../../../reducers/auth';
+import * as  AuthActions from '../../../../actions/auth';
 import { Router,} from '@angular/router';
 
 @Component({
@@ -40,11 +41,8 @@ export class UserInfoComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  startSignoutMainWindow() {
-    // this.authService.startSignoutMainWindow();
-    this.authService.logout();
-    this.router.navigate([`/`])
-    // this.signout.emit();
+  logOut() {
+    this.store.dispatch(new AuthActions.logout());
   }
 
 }

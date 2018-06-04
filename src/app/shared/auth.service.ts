@@ -44,7 +44,6 @@ export class AuthService {
   }
 
   getUser() {
-
     this.oauthService.loadUserProfile().then(profile => {
       this.currentUser = profile;
       console.log('got user', profile);

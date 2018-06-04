@@ -14,6 +14,11 @@ export function reducer(state:State = initialState, action: EventsActions.Action
 
   switch (action.type) {
 
+    case EventsActions.EVENTS_CLEAR:
+      return {
+        events: []
+      };
+
     case EventsActions.CREATE_EVENT_SUCCESS:
       return {
         events: [ action.payload, ...state.events ]

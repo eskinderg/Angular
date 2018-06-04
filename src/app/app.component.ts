@@ -2,14 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import {
-  Router,
-  Event as RouterEvent,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError
-} from '@angular/router';
+import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import * as AuthActions from '../app/actions/auth';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../app/reducers';
@@ -39,6 +32,11 @@ export class AppComponent implements OnInit {
     private store: Store<fromRoot.State>
   ) {
 
+    this.oauthService.events.subscribe(e => {
+      if(e.type == "token_expires")
+        this.store.dispatch(new AuthActions.tokenExpire("Your session has expired. Please login again."));
+    });
+
     errorLog.onError.subscribe((error) => {
       this.errorOccured = true;
     });
@@ -49,13 +47,11 @@ export class AppComponent implements OnInit {
     this.configureWithNewConfigApi();
 
     // for debugging purposes
-    console.log('Environment config', environment);
+    if(!environment.production)
+      console.log('Environment config', environment);
   }
 
-  ngOnInit() {
-    // this.store.dispatch(new AuthActions.loginEventSuccess());
-    // alert('appinit')
-  }
+  ngOnInit() { }
 
   private configureWithNewConfigApi() {
     this.oauthService.configure(authConfig);
