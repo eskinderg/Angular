@@ -13,10 +13,26 @@ export const LOAD_PROFILE = ' LOAD_PROFILE';
 export const LOAD_PROFILE_SUCCESS = 'LOAD_PROFILE_SUCCESS';
 export const LOAD_PROFILE_FAIL = 'LOAD_PROFILE_FAIL';
 export const ROUTE_TO_HOME = 'ROUTE_TO_HOME'
+export const ROUTE_TO_LOGIN = 'ROUTE_TO_LOGIN'
 export const LOGOUT = 'LOGOUT';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const TOKEN_EXPIRE = 'TOKEN_EXPIRE';
 
+
+export class tokenExpire implements Action {
+
+  readonly type = TOKEN_EXPIRE;
+
+  constructor (public message?:string){  }
+}
+
+export class routeToLogin implements Action {
+
+  readonly type = ROUTE_TO_LOGIN;
+
+  constructor (public message?:string){  }
+}
 
 export class routeToHome implements Action {
 
@@ -88,7 +104,7 @@ export class logout implements Action {
 
   readonly type = LOGOUT;
 
-  constructor (){  }
+  constructor (message?: string ){  }
 }
 
 export class logoutSuccess implements Action {

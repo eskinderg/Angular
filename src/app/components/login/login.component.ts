@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { CanActivate, Router } from '@angular/router';
+import { Router , ActivatedRoute} from '@angular/router';
 import * as fromRoot from '../../reducers';
 import * as AuthActions from '../../actions/auth';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -15,22 +15,29 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  userName: string;
-  password: string;
+  userName: string = "Kukusha";
+  password: string = "123001";
   loginFailed: boolean = false;
   userProfile: object;
   loginForm: FormGroup;
+  message: string;
 
   constructor(
     private store: Store<fromRoot.State>,
     private oauthService: OAuthService,
     private router: Router,
-    private formBuilder : FormBuilder
-  ){ }
+    private formBuilder : FormBuilder,
+    private route: ActivatedRoute
+  ){
+    this.route.params
+      .subscribe(
+        params => this.message = params['endsession']
+      );
+  }
 
   ngOnInit() {
 
-this.loginForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       username: ['', Validators.required ],
       password: ['', Validators.required ]
     })
@@ -41,6 +48,10 @@ this.loginForm = this.formBuilder.group({
     .then(
       up => (this.userProfile = up)
     );
+  }
+
+  hasMessage() :boolean {
+    return this.message !==undefined;
   }
 
   get access_token() {
