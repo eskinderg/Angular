@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/eskinderg/Angular-CLI.svg?branch=dev)](https://travis-ci.org/eskinderg/Angular-CLI) [![Build status](https://ci.appveyor.com/api/projects/status/xortrnvhoggxxsxd/branch/master?svg=true)](https://ci.appveyor.com/project/eskinderg/angular-cli/branch/master)
 
-Angular2 Project
+Angular6 Project
 
 ## Development server
 
