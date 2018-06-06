@@ -26,8 +26,8 @@ export class NotesComponent {
     const newNote = new Note({
       text: '',
       colour: colour,
-      width: 10,
-      height: 10,
+      width: 200,
+      height: 150,
       left: Math.floor(Math.random() * 600),
       top: Math.floor(Math.random() * 400)
     });

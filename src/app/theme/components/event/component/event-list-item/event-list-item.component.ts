@@ -12,28 +12,30 @@ export class EventListItemComponent {
 
   @Input() event: Event;
   @Input() IsInEditMode :boolean = false;
+
   @Output() remove: EventEmitter<Event> = new EventEmitter();
-  @Output() toggleComplete: EventEmitter<Event> = new EventEmitter();
-  @Output() update: EventEmitter<Event> = new EventEmitter();
-  @Output() toggleEdit: EventEmitter<boolean> = new EventEmitter();
+  @Output() toggle: EventEmitter<Event> = new EventEmitter();
+  @Output() update: EventEmitter<any> = new EventEmitter();
+
+  editEvent:Event = new Event();
 
   constructor() { }
 
-  onComplete() {
-    this.toggleComplete.emit({
-      ...this.event, complete: !this.event.complete
-    });
+  onToggleEvent(event: Event) {
+    this.toggle.emit(this.event);
   }
 
-  editEvent(event: Event) {
+  onUpdateEvent(event: Event) {
+
     if(this.IsInEditMode){
-      this.update.emit(event);
+      this.update.emit({oldValue: event, newValue: this.editEvent});
     }
+
     this.IsInEditMode =! this.IsInEditMode;
+    this.editEvent = new Event(event);
   }
 
   removeEvent(event: Event) {
     this.remove.emit(event);
   }
-
 }

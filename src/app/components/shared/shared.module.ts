@@ -5,7 +5,9 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AuthGuardService } from './services/auth/auth-guard.service';
-import { AuthService } from './services/auth/auth.service';
+// import { AuthService } from './services/auth/auth.service';
+import { AuthService } from './../../shared/auth.service';
+
 
 import { HeaderComponent } from './header/header.component';
 import { UserInfoComponent } from './header/userinfo/userinfo.component';

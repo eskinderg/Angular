@@ -1,36 +1,38 @@
 <div class="row mt-3">
-  <div class="col-md-12">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['about-us']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['feature']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Features</a>
-      </li>
-    </ul>
-  </div>
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['about-us']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['feature']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Features</a>
+            </li>
+        </ul>
+    </div>
 </div>
 
 <div class="row mt-2">
-  <div class="col-lg-8 mt-3">
-    <router-outlet></router-outlet>
-  </div>
+    <div class="col-lg-8 mt-3">
+        <ba-card>
+            <router-outlet></router-outlet>
+        </ba-card>
+    </div>
 
-  <div class="col-lg-4 mt-3 hidden-md-down">
-    <ba-card title="Title" header="Side Navigation">
-      The quick brown fox jumps over the lazy dog
-    </ba-card>
-  </div>
+    <div class="col-lg-4 mt-3 hidden-md-down">
+        <ba-card title="Title" header="Side Navigation">
+            The quick brown fox jumps over the lazy dog
+        </ba-card>
+    </div>
 </div>
 
 <!-- <div class="col-sm-12" style="margin-top:5px;"> -->
 
-  <!--
-  <div class="col-sm-12">
-  </div> -->
+<!--
+    <div class="col-sm-12">
+    </div> -->
 
-  <!-- <todo title="my-title"></todo> -->
-  <!-- <div class="eskinder">About Page</div> -->
+    <!-- <todo title="my-title"></todo> -->
+    <!-- <div class="eskinder">About Page</div> -->

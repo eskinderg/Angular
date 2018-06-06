@@ -23,9 +23,9 @@ describe('UserInfo Component', () => {
   });
 
   it('User Should be Loaded when initialized ', () => {
-    component.ngOnInit();
+    // component.isLoggedIn();
     component.startSignoutMainWindow();
-    expect(component.user).toBeUndefined()
+    expect(component).toBeUndefined()
   });
 
 });

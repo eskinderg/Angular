@@ -1,27 +1,30 @@
 import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as AuthActions from '../actions/auth';
-// import { Event } from '../models/event';
 
 export interface State {
   profile: any;
 }
 
 export const initialState: State = {
-  profile: []
+  profile: {}
 };
 
 export function reducer(state:State = initialState, action: AuthActions.Actions): State {
 
   switch (action.type) {
-    case AuthActions.LOGIN_EVENT_SUCCESS:
-      // debugger;
+    case AuthActions.LOAD_PROFILE_SUCCESS:
       return {
-        profile: action.payload.profile
+        profile: action.profile
       };
-    case AuthActions.AUTH_INIT_SUCCESS:
-      return {
-        profile: action.payload.profile
-      };
+      // case AuthActions.LOGIN_EVENT_SUCCESS:
+      //   return state;
+      // return {
+      // profile: action.payload.profile
+      // };
+      // case AuthActions.AUTH_INIT_SUCCESS:
+      //   return {
+      //     profile: action.payload.profile
+      //   };
 
     default:
       return state;

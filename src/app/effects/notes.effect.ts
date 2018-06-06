@@ -27,7 +27,7 @@ export class NotesEffect {
     .ofType(NotesActions.UPDATE_NOTE_TEXT)
     .pipe(
       switchMap((action: NotesActions.updateNoteText) =>
-        this.notesApiService.addNote(action.payload)
+        this.notesApiService.updateNote(action.payload)
         .pipe(
           map(note => new NotesActions.updateNoteTextSuccess(note)),
           catchError(err => of(new NotesActions.updateNoteTextFail(err)))
@@ -40,7 +40,7 @@ export class NotesEffect {
     .ofType(NotesActions.UPDATE_NOTE_POSITION)
     .pipe(
       switchMap((action: NotesActions.updateNotePosition) =>
-        this.notesApiService.addNote(action.payload)
+        this.notesApiService.updateNote(action.payload)
         .pipe(
           map(note => new NotesActions.updateNotePositionSuccess(note)),
           catchError(err => of(new NotesActions.updateNotePositionFail(err)))
@@ -53,7 +53,7 @@ export class NotesEffect {
     .ofType(NotesActions.UPDATE_NOTE_SIZE)
     .pipe(
       switchMap((action: NotesActions.updateNoteSize) =>
-        this.notesApiService.addNote(action.payload)
+        this.notesApiService.updateNote(action.payload)
         .pipe(
           map(note => new NotesActions.updateNoteSizeSuccess(note)),
           catchError(err => of(new NotesActions.updateNoteSizeFail(err)))
@@ -66,7 +66,7 @@ export class NotesEffect {
     .ofType(NotesActions.UPDATE_NOTE)
     .pipe(
       switchMap((action: NotesActions.updateNote) =>
-        this.notesApiService.addNote(action.payload)
+        this.notesApiService.updateNote(action.payload)
         .pipe(
           map(note => new NotesActions.updateNoteSuccess(note)),
           catchError(err => of(new NotesActions.createNoteFail(err)))

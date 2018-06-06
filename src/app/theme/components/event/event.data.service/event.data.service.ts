@@ -1,20 +1,25 @@
-
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../event';
 import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
+import { ApiService } from '../../../../components/shared/services/api.service';
+
+import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
 
 const API_URL = environment.EVENTS_API;
 
 @Injectable()
-export class EventDataService {
+export class EventDataService extends ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, confirmService: ConfirmService) {
+    super(http, confirmService);
+  }
 
   public getAllEvents()  {
+    // this.ShowDialog("from service");
     return this.http .get<Event[]>(API_URL)
   }
 
@@ -36,6 +41,16 @@ export class EventDataService {
     );
   }
 
+  public toggleEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(API_URL + 'toggle/', event)
+    .pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   public deleteEventById(event: Event): Observable<Event> {
     return this.http
     .delete<Event>(API_URL + event.id)
@@ -45,10 +60,5 @@ export class EventDataService {
       }),
       catchError(this.handleError)
     );
-  }
-
-  private handleError (error: Response | any) {
-    console.error('EventDataApiService Error::handleError', error);
-    return observableThrowError(error);
   }
 }

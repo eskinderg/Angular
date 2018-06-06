@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-
+import { OAuthService } from 'angular-oauth2-oidc';
 import { AuthService } from './auth.service';
 /**
  * This class represents AuthGuardService.
@@ -12,20 +12,23 @@ export class AuthGuardService implements CanActivate {
    * @param {AuthService} authService - Authorization service the provied autorization
    * @param {Router} router - A Router used for routing
    */
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private oauthService: OAuthService,
+    private router: Router
+  ) { }
   /**
    *  Checks if the user is loggedin.
    */
   canActivate() {
-    this.authService
-      .isLoggedInObs()
-      .subscribe((loggedin) => {
-        if (!loggedin) {
-          this.router.navigate(['unauthorized']);
-        }
-      });
 
-    return this.authService.isLoggedInObs();
+    if(this.oauthService.hasValidAccessToken())
+      return true;
+    else{
+      this.router.navigate(['login']);
+      return false
+    }
+
+    // return this.authService.isLoggedInObs();
   }
 
 }

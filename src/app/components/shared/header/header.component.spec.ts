@@ -18,7 +18,7 @@ describe('Header Component', () => {
 
   it('Header Component', () => {
     expect(component).toBeDefined();
-    expect(component.isUserLoggedIn()).toEqual(false);
+    expect(component.isExpanded).toEqual(false);
     expect(component.isExpanded).toBeFalsy();
   });
 

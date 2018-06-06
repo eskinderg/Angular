@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
       { path: 'about', loadChildren: './components/about/about.module#AboutModule' },
       { path: 'notes', loadChildren: './components/notes/notes.module#NotesModule' },
       { path: 'wizard', loadChildren: './components/wizard/wizardmanager.module#WizardManagerModule' },
+      { path: 'login', loadChildren: './components/login/login.module#LoginModule'},
       { path: 'movies', loadChildren: './components/movies/movies.module#MoviesModule' }
     ])
   ],

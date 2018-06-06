@@ -3,7 +3,7 @@
 
 <app-event-list
     [events]="events"
-    (toggleComplete)="onToggleEventComplete($event)"
+    (toggle)="onToggleEvent($event)"
     (remove)="onRemoveEvent($event)"
     (update)="onUpdateEvent($event)">
 </app-event-list>

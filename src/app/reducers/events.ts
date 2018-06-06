@@ -14,16 +14,22 @@ export function reducer(state:State = initialState, action: EventsActions.Action
 
   switch (action.type) {
 
+    case EventsActions.EVENTS_CLEAR:
+      return {
+        events: []
+      };
+
     case EventsActions.CREATE_EVENT_SUCCESS:
       return {
-        events: [...state.events, action.payload]
+        events: [ action.payload, ...state.events ]
       };
 
     case EventsActions.FETCH_EVENTS_SUCCESS:
       return {
-        events: action.payload || []
+        events: action.payload.reverse() || []
       };
 
+    case EventsActions.TOGGLE_EVENT_SUCCESS:
     case EventsActions.UPDATE_EVENT_SUCCESS:
       return Object.assign({}, state, {
         events: state.events.map((event) => {

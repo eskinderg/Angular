@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth/auth.service';
+import { AuthService } from '../../../shared/auth.service';
 import { User } from 'oidc-client';
 import { ConfirmService } from '../../../theme/components/modal/confirm.service';
 
@@ -12,19 +12,19 @@ import { ConfirmService } from '../../../theme/components/modal/confirm.service'
 export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
-  public user: User;
+  public user: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService,
     private confirmService: ConfirmService){
-    this.user = this.authService.currentUser;
+    this.user = this.authService.getProfile();
   }
 
   ngOnInit() {
     this.profileForm = this.fb.group({
       'name': ['', [Validators.required]],
       'email': ['', [Validators.required]],
-      'telephone': ['', [Validators.required]],
-      'date': ['', [Validators.required]],
+      'lastName': ['', [Validators.required]],
+      'website': ['', [Validators.required]],
     });
   }
 

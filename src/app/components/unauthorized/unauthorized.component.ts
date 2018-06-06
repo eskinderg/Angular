@@ -2,9 +2,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../shared/services/auth/auth.service';
-
 import * as fromRoot from '../../reducers';
-
 import * as AuthActions from '../../actions/auth';
 
 @Component({
@@ -20,22 +18,16 @@ export class UnauthorizedComponent implements OnInit {
   }
 
   login() {
-    // try {
-    this.store.dispatch(new AuthActions.loginEvent());
-    // this.service.mgr.signinPopup();
-    // this.service.startSigninMainWindow();
-    // this.service.mgr.signinRedirect();
-    // } catch (err) {
-    // console.log(err);
-    // }
-    }
+    // this.store.dispatch(new AuthActions.loginEvent());
+  }
 
   goback() {
     this.location.back();
   }
 
   startSignoutMainWindow() {
-    this.service.startSignoutMainWindow();
+    // this.service.startSignoutMainWindow();
+    this.service.logout();
   }
 
 }

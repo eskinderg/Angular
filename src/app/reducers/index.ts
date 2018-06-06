@@ -20,7 +20,6 @@ export const reducer: ActionReducerMap<State> = {
   profile: fromAuth.reducer
 }
 
-
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
     return reducer(state, action);
