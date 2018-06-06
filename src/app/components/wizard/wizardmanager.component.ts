@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding} from '@angular/core';
 
 import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
@@ -9,7 +9,12 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
   selector: 'sd-about',
   templateUrl: 'wizardmanager.component.html',
   styleUrls: ['wizardmanager.component.scss'],
-  animations: [ fadeInAnimation ],
-  host: { '[@routerFadeInAnimation]': '' }
+  animations: [ fadeInAnimation ]
+  // host: { '[@routerFadeInAnimation]': '' }
 })
-export class WizardManagerComponent { }
+export class WizardManagerComponent {
+
+  // @HostBinding('@routerFadeInAnimation')
+
+  constructor (){}
+}

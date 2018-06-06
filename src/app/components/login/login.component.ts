@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router , ActivatedRoute} from '@angular/router';
 import * as fromRoot from '../../reducers';
@@ -7,13 +7,17 @@ import * as AuthActions from '../../actions/auth';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from '../../auth.config';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [ fadeInAnimation ]
 })
 export class LoginComponent implements OnInit {
+
+  @HostBinding('@routerFadeInAnimation')
 
   userName: string = "Kukusha";
   password: string = "123001";
@@ -82,20 +86,6 @@ export class LoginComponent implements OnInit {
       )
     );
 
-    // this.oauthService
-    //   .fetchTokenUsingPasswordFlowAndLoadUserProfile(
-    //     this.userName,
-    //     this.password
-    //   )
-    //   .then(() => {
-    //     console.debug('successfully logged in');
-    //     this.loginFailed = false;
-    //     this.router.navigate(['/']);
-    //   })
-    //   .catch(err => {
-    //     console.error('error logging in', err);
-    //     this.loginFailed = true;
-    //   });
   }
 
   logout() {

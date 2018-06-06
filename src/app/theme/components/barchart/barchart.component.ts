@@ -16,6 +16,7 @@ import * as d3 from "d3"
   encapsulation: ViewEncapsulation.None,
 })
 export class BarchartComponent implements OnInit, OnChanges {
+
   @ViewChild("chart") private chartContainer: ElementRef
 
   @Input() private data: Array<any> = this.generateSampleData()
@@ -91,7 +92,7 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.colors = d3
       .scaleLinear()
       .domain([0, this.data.length])
-      .range(<any[]>["red", "blue"])
+      .range(<any[]>["green", "yellow"])
 
     // x & y axis
     this.xAxis = svg
