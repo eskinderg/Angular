@@ -33,8 +33,9 @@ export class AppComponent implements OnInit {
   ) {
 
     this.oauthService.events.subscribe(e => {
-      if(e.type == "token_expires")
-        this.store.dispatch(new AuthActions.tokenExpire("Your session has expired. Please login again."));
+      if (e.type == 'token_expires') {
+        this.store.dispatch(new AuthActions.tokenExpire('Your session has expired. Please login again.'));
+      }
     });
 
     errorLog.onError.subscribe((error) => {
@@ -47,8 +48,9 @@ export class AppComponent implements OnInit {
     this.configureWithNewConfigApi();
 
     // for debugging purposes
-    if(!environment.production)
+    if (!environment.production) {
       console.log('Environment config', environment);
+    }
   }
 
   ngOnInit() { }

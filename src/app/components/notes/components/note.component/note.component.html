@@ -2,7 +2,10 @@
   [style.top.px] = "note.top"
   [style.left.px] = "note.left"
   [style.background] = "note.colour"
-  (draggable)="handleChangeNotePosition($event)"
+    [style.width.px]="note.width"
+    [style.height.px]="note.height"
+     appMovable
+     (dragEnd)="handleChangeNotePosition($event)"
   >
   <span class="fa fa-bin2" (click)="handleNoteDelete(note)"></span>
   <textarea

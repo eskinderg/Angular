@@ -15,7 +15,7 @@ export interface State {
 }
 
 export const reducer: ActionReducerMap<State> = {
-  notes: fromNotes.reducer,         //append additional reducers here
+  notes: fromNotes.reducer,         // append additional reducers here
   events: fromEvents.reducer,
   profile: fromAuth.reducer
 }

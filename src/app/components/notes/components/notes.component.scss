@@ -1,3 +1,19 @@
-*{
-  line-height: 1;
+.box {
+  background: #BADA55;
+  border: 1px solid black;
+  padding: 10px 20px;
+  display: inline-block;
+
+  &.dragging {
+    // background: coral;
+  }
+}
+
+.area {
+  background: grey;
+  padding: 40px;
+}
+
+button {
+  // margin-top: 20px;
 }

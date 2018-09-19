@@ -1,9 +1,8 @@
-import { throwError as observableThrowError,  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../event';
-import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { ApiService } from '../../../../components/shared/services/api.service';
 
@@ -19,7 +18,6 @@ export class EventDataService extends ApiService {
   }
 
   public getAllEvents()  {
-    // this.ShowDialog("from service");
     return this.http .get<Event[]>(API_URL)
   }
 

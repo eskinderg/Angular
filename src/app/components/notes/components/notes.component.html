@@ -1,16 +1,30 @@
-<div class="row mt-3">
-  <div class="col-md-12">
-    <add-button (add)="onAddNote($event)" colour="yellow"></add-button>
-    <add-button (add)="onAddNote($event)" colour="red"></add-button>
-    <add-button (add)="onAddNote($event)" colour="green"></add-button>
-    <add-button (add)="onAddNote($event)" colour="blue"></add-button>
-  </div>
-</div>
+<!-- <div class="row mt-3"> -->
+<!--     <div class="area" appMovableArea> -->
+<!--         <div class="box" appMovable *ngFor="let note of $notes | async"> -->
+<!--             {{ note.text }} -->
+<!--         </div> -->
+<!--     </div> -->
+<!-- </div> -->
 
-<app-note *ngFor="let note of $notes | async"
-  [note] = "note"
-  (deleteNote) = "onNoteDelete($event)"
-  (changeNoteText) = "onChangeNoteText($event, note)"
-  (changeNotePosition) = "onChangeNotePosition($event, note)"
-  (changeNoteSize) = "onChangeNoteSize($event, note)">
-</app-note>
+<div  class="card" appMovable *ngFor="let note of $notes | async"
+    [style.width.px]="note.width"
+    [style.height.px]="note.height"
+  [style.top.px] = "note.top"
+  [style.left.px] = "note.left"
+  [style.background] = "note.colour"
+    >
+    <div class="card-header">
+        <!-- {{ header }} -->
+    </div>
+    <div [style.margin.px]=margin class="card-block">
+        <h4 *ngIf="title" class="card-title">
+            <!-- {{ title }} -->
+        </h4>
+
+        <p class="card-text"> {{ note.text }}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+    <div *ngIf="footer" class="card-footer">
+        <!-- {{ footer }} -->
+    </div>
+</div>

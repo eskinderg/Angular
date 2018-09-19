@@ -14,7 +14,7 @@ import { Note } from '../../../models/note';
   host: { '[@routerFadeInAnimation]': '' }
 })
 export class NotesComponent {
-
+trappedBoxes = ['Trapped 1', 'Trapped 2'];
   $notes: Observable<Note[]>;
 
   constructor(private notesApiService: NotesApiService) {
