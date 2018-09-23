@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   public user: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService,
-    private confirmService: ConfirmService){
+    private confirmService: ConfirmService) {
     this.user = this.authService.getProfile();
   }
 

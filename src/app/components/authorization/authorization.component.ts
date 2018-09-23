@@ -19,7 +19,7 @@ export class AuthorizationComponent implements OnInit {
    * @param {AuthService} authService - Authorization service used of authService
    * @param {Router} router - Injected router for user redirection based on user login status
    */
-  constructor(private authService: AuthService, private router: Router,private store: Store<fromRoot.State>) { }
+  constructor (private authService: AuthService, private router: Router, private store: Store<fromRoot.State>) { }
   /**
    * Invoked during class initialization and redirects the user
    */

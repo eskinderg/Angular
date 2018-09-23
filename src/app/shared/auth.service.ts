@@ -31,7 +31,7 @@ export class AuthService {
     return of(this.oauthService.hasValidAccessToken());
   }
 
-  isLoggedIn() : boolean {
+  isLoggedIn(): boolean {
     return this.oauthService.hasValidAccessToken();
   }
 
@@ -53,7 +53,7 @@ export class AuthService {
     });
   }
 
-  getProfile(){
+  getProfile() {
     return this.oauthService.getIdentityClaims();
   }
 

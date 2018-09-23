@@ -1,7 +1,7 @@
 export class Event {
   id: number;
-  title: string = '';
-  complete: boolean = false;
+  title: String = '';
+  complete = false;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

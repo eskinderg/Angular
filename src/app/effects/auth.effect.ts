@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { empty, from, of,Observable, Subject, pipe } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
+import { empty, from, of, Observable, Subject, pipe } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import * as  AuthActions from '../actions/auth';
 import * as  EventActions from '../actions/event';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Router,} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffect {
