@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.events$ = this.eventApiService.getAllEvents();
   }
 
-  login(){
+  login() {
     this.events$ = this.eventApiService.getAllEvents();
   }
 

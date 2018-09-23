@@ -10,7 +10,7 @@ export const initialState: State = {
   events: []
 };
 
-export function reducer(state:State = initialState, action: EventsActions.Actions): State {
+export function reducer(state: State = initialState, action: EventsActions.Actions): State {
 
   switch (action.type) {
 
@@ -51,4 +51,4 @@ export function reducer(state:State = initialState, action: EventsActions.Action
 
 export const getEventState = createFeatureSelector<State>('events');
 
-export const getEvents = createSelector(getEventState, (state: State)=> state.events);
+export const getEvents = createSelector(getEventState, (state: State) => state.events);

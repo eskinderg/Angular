@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { from, of,Observable, Subject, pipe } from 'rxjs';
+import { from, of, Observable, Subject, pipe } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
 import * as EventsActions from '../actions/event';

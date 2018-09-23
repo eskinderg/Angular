@@ -20,7 +20,7 @@ export class EventListHeaderComponent {
   constructor() { }
 
   addEvent() {
-    if(this.newEvent.title.length > 0) {
+    if (this.newEvent.title.length > 0) {
       this.add.emit(this.newEvent);
       this.newEvent = new Event();    // clear entry
     }

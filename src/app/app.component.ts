@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   ) {
 
     this.oauthService.events.subscribe(e => {
-      if (e.type == 'token_expires') {
+      if (e.type === 'token_expires') {
         this.store.dispatch(new AuthActions.tokenExpire('Your session has expired. Please login again.'));
       }
     });

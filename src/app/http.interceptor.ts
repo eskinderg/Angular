@@ -1,20 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpInterceptor,HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpInterceptor, HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
-//import { AuthService } from './components/shared/services/auth/auth.service';
+// import { AuthService } from './components/shared/services/auth/auth.service';
 
 import { ConfirmService } from './theme/components/modal/confirm.service';
 
 @Injectable()
 export class GlobalHttpInterceptor implements HttpInterceptor {
 
-  //constructor(public auth: AuthService) {}
+  // constructor(public auth: AuthService) {}
   constructor(private confirmService: ConfirmService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    //const auth  = this.injector.get(AuthService);
+    // const auth  = this.injector.get(AuthService);
 
     request = request.clone({
       setHeaders: {

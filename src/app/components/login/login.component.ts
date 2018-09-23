@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  userName: string = "Kukusha";
-  password: string = "123001";
-  loginFailed: boolean = false;
+  userName = 'Kukusha';
+  password = '123001';
+  loginFailed = false;
   userProfile: object;
   loginForm: FormGroup;
   message: string;
@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private oauthService: OAuthService,
     private router: Router,
-    private formBuilder : FormBuilder,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute
-  ){
+  ) {
     this.route.params
       .subscribe(
         params => this.message = params['endsession']
