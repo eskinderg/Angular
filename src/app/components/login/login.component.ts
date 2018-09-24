@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  hasMessage() :boolean {
+  hasMessage(): boolean {
     return (this.message !== undefined && this.message !== 'undefined');
   }
 
@@ -67,20 +67,28 @@ export class LoginComponent implements OnInit {
   }
 
   get givenName() {
-    var claims = this.oauthService.getIdentityClaims();
-    if (!claims) return null;
+    const claims = this.oauthService.getIdentityClaims();
+
+    if (!claims) {
+      return null;
+    }
+
     return claims['given_name'];
   }
 
   get familyName() {
-    var claims = this.oauthService.getIdentityClaims();
-    if (!claims) return null;
+    const claims = this.oauthService.getIdentityClaims();
+
+    if (!claims) {
+      return null;
+    }
+
     return claims['family_name'];
   }
 
   loginWithPassword() {
     this.store.dispatch(
-      new AuthActions.loginEvent(
+      new AuthActions.LoginEvent(
         this.userName,
         this.password
       )

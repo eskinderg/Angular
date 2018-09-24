@@ -20,110 +20,110 @@ export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 export const TOKEN_EXPIRE = 'TOKEN_EXPIRE';
 
 
-export class tokenExpire implements Action {
+export class TokenExpire implements Action {
 
   readonly type = TOKEN_EXPIRE;
 
-  constructor (public message?:string){  }
+  constructor (public message?: string) { }
 }
 
-export class routeToLogin implements Action {
+export class RouteToLogin implements Action {
 
   readonly type = ROUTE_TO_LOGIN;
 
-  constructor (public message?:string){  }
+  constructor (public message?: string) { }
 }
 
-export class routeToHome implements Action {
+export class RouteToHome implements Action {
 
   readonly type = ROUTE_TO_HOME;
 
-  constructor (){  }
+  constructor () { }
 }
 
 
-export class loginEvent implements Action {
+export class LoginEvent implements Action {
 
   readonly type = LOGIN_EVENT;
 
-  constructor (public username: string,public password: string ){  }
+  constructor (public username: string, public password: string ) { }
 }
 
-export class loginEventFail implements Action {
+export class LoginEventFail implements Action {
 
   readonly type = LOGIN_EVENT_FAIL;
 
-  constructor (public payload: any){  }
+  constructor (public payload: any) { }
 }
 
-export class loginEventSuccess implements Action {
+export class LoginEventSuccess implements Action {
 
   readonly type = LOGIN_EVENT_SUCCESS;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export class authInit implements Action {
+export class AuthInit implements Action {
 
   readonly type = AUTH_INIT;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export class authInitSuccess implements Action {
+export class AuthInitSuccess implements Action {
 
   readonly type = AUTH_INIT_SUCCESS;
 
-  constructor (public payload:any){  }
+  constructor (public payload: any) { }
 }
 
 
-export class loadProfile implements Action {
+export class LoadProfile implements Action {
 
   readonly type = LOAD_PROFILE;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export class loadProfileSuccess implements Action {
+export class LoadProfileSuccess implements Action {
 
   readonly type = LOAD_PROFILE_SUCCESS;
 
-  constructor (public profile: any){  }
+  constructor (public profile: any) { }
 }
 
-export class loadProfileFail implements Action {
+export class LoadProfileFail implements Action {
 
   readonly type = LOAD_PROFILE_FAIL;
 
-  constructor (public payload: any){  }
+  constructor (public payload: any) { }
 }
 
 
-export class logout implements Action {
+export class Logout implements Action {
 
   readonly type = LOGOUT;
 
-  constructor (public message?: string ){  }
+  constructor (public message?: string ) { }
 }
 
-export class logoutSuccess implements Action {
+export class LogoutSuccess implements Action {
 
   readonly type = LOGOUT_SUCCESS;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export class logoutFail implements Action {
+export class LogoutFail implements Action {
 
   readonly type = LOGOUT_FAIL;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export type Actions = loginEvent | loginEventSuccess | loginEventFail |
-                      authInit | authInitSuccess |
-  loadProfile | loadProfileSuccess | loadProfileFail |
-  logout | logoutSuccess | logoutFail |
-  routeToHome;
+export type Actions = LoginEvent | LoginEventSuccess | LoginEventFail |
+                      AuthInit | AuthInitSuccess |
+  LoadProfile | LoadProfileSuccess | LoadProfileFail |
+  Logout | LogoutSuccess | LogoutFail |
+  RouteToHome;
 

@@ -13,11 +13,11 @@ export class EventsEffect {
   save = this.actions$
     .ofType(EventsActions.CREATE_EVENT)
     .pipe(
-      switchMap((action: EventsActions.createEvent) =>
+      switchMap((action: EventsActions.CreateEvent) =>
         this.eventsDataService.createEvent(action.payload)
         .pipe(
-          map(event => new EventsActions.createEventSuccess(event)),
-          catchError(err => of(new EventsActions.createEventFail(err)))
+          map(event => new EventsActions.CreateEventSuccess(event)),
+          catchError(err => of(new EventsActions.CreateEventFail(err)))
         )
       )
     );
@@ -26,11 +26,11 @@ export class EventsEffect {
   update: Observable<Action> = this.actions$
     .ofType(EventsActions.UPDATE_EVENT)
     .pipe(
-      switchMap((action: EventsActions.updateEvent) =>
+      switchMap((action: EventsActions.UpdateEvent) =>
         this.eventsDataService.updateEvent(action.payload.newValue)
         .pipe(
-          map(event => new EventsActions.updateEventSuccess(event)),
-          catchError(err => of(new EventsActions.updateEventFail(err)))
+          map(event => new EventsActions.UpdateEventSuccess(event)),
+          catchError(err => of(new EventsActions.UpdateEventFail(err)))
         )
       )
     );
@@ -39,11 +39,11 @@ export class EventsEffect {
   toggleEvent: Observable<Action> = this.actions$
     .ofType(EventsActions.TOGGLE_EVENT)
     .pipe(
-      switchMap((action: EventsActions.toggleEvent) =>
+      switchMap((action: EventsActions.ToggleEvent) =>
         this.eventsDataService.toggleEvent(action.payload)
         .pipe(
-          map(event => new EventsActions.toggleEventSuccess(event)),
-          catchError(err => of(new EventsActions.toggleEventFail(err)))
+          map(event => new EventsActions.ToggleEventSuccess(event)),
+          catchError(err => of(new EventsActions.ToggleEventFail(err)))
         )
       )
     );
@@ -54,7 +54,7 @@ export class EventsEffect {
     .pipe(
       switchMap(() => this.eventsDataService.getAllEvents()
         .pipe(
-          map(events => new EventsActions.fetchEventsSuccess(events)),
+          map(events => new EventsActions.FetchEventsSuccess(events)),
           catchError(err => of({ type: EventsActions.FETCH_EVENTS_FAILURE, payload: err }))
         )
       )
@@ -64,11 +64,11 @@ export class EventsEffect {
   delete = this.actions$
     .ofType(EventsActions.DELETE_EVENT)
     .pipe(
-      switchMap((action: EventsActions.deleteEvent) =>
+      switchMap((action: EventsActions.DeleteEvent) =>
         this.eventsDataService.deleteEventById(action.payload)
         .pipe(
-          map(event => new EventsActions.deleteEventSuccess(event)),
-          catchError(err => of(new EventsActions.deleteEventFail(err)))
+          map(event => new EventsActions.DeleteEventSuccess(event)),
+          catchError(err => of(new EventsActions.DeleteEventFail(err)))
         )
       )
     );

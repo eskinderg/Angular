@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NotesApiService } from './services/notes.api.service';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesResolver } from './services/notes.resolver';
-import { DraggableModule } from  '../shared/draggable/draggable.module';
+import { DraggableModule } from '../shared/draggable/draggable.module';
 
 import { NgaModule } from '../../theme/nga.module';
 
@@ -16,7 +16,7 @@ import { NotesComponent } from './components/notes.component';
 import { NoteComponent } from './components/note.component/note.component';
 import { AddButtonComponent } from './components/add-button/add.button.component';
 
-import { Draggable, ResizableTextAreaDirective} from '../shared';
+import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
 @NgModule({
   imports: [
@@ -30,10 +30,10 @@ import { Draggable, ResizableTextAreaDirective} from '../shared';
     NotesComponent,
     NoteComponent,
     AddButtonComponent,
-    Draggable,
+    DraggableDirective,
     ResizableTextAreaDirective
   ],
-  exports: [NotesComponent, Draggable],
+  exports: [NotesComponent, DraggableDirective],
   providers: [NotesApiService, NotesResolver]
 })
 export class NotesModule { }

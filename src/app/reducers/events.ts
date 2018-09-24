@@ -33,7 +33,7 @@ export function reducer(state: State = initialState, action: EventsActions.Actio
     case EventsActions.UPDATE_EVENT_SUCCESS:
       return Object.assign({}, state, {
         events: state.events.map((event) => {
-          return  (event.id==action.payload.id) ? action.payload: event
+          return  (event.id === action.payload.id) ? action.payload : event
         })
       });
 

@@ -12,8 +12,8 @@ import { PaymentComponent } from './payment/payment.component';
   imports: [
     RouterModule.forChild([
       { path: '', component: WizardManagerComponent ,
-        children:[
-          {path: '', redirectTo:'profile', pathMatch:'full'},
+        children: [
+          {path: '', redirectTo: 'profile', pathMatch: 'full'},
           // {path: 'about-us', component: AboutUsComponent},
           {path: 'profile', component: ProfileComponent},
           {path: 'feature', component: FeatureComponent},

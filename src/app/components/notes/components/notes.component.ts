@@ -37,7 +37,7 @@ trappedBoxes = ['Trapped 1', 'Trapped 2'];
 
   onChangeNoteText(newText: any , note: Note) {
     console.log( newText );
-    this.notesApiService.changeNoteText({...note,text: newText});
+    this.notesApiService.changeNoteText({...note, text: newText});
   }
 
   onChangeNotePosition( {top , left} , note: Note) {

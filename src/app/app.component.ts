@@ -14,7 +14,7 @@ import { authConfig } from './auth.config';
  * This class represents the main application component.
  */
 @Component({
-  selector: 'ng-app',
+  selector: 'app-main',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 
     this.oauthService.events.subscribe(e => {
       if (e.type === 'token_expires') {
-        this.store.dispatch(new AuthActions.tokenExpire('Your session has expired. Please login again.'));
+        this.store.dispatch(new AuthActions.TokenExpire('Your session has expired. Please login again.'));
       }
     });
 

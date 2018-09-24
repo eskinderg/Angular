@@ -13,11 +13,11 @@ export class NotesEffect {
   save = this.actions$
     .ofType(NotesActions.CREATE_NOTE)
     .pipe(
-      switchMap((action: NotesActions.createNote) =>
+      switchMap((action: NotesActions.CreateNote) =>
         this.notesApiService.addNote(action.payload)
         .pipe(
-          map(note => new NotesActions.createNoteSuccess(note)),
-          catchError(err => of(new NotesActions.createNoteFail(err)))
+          map(note => new NotesActions.CreateNoteSuccess(note)),
+          catchError(err => of(new NotesActions.CreateNoteFail(err)))
         )
       )
     );
@@ -26,11 +26,11 @@ export class NotesEffect {
   updateNoteText: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE_TEXT)
     .pipe(
-      switchMap((action: NotesActions.updateNoteText) =>
+      switchMap((action: NotesActions.UpdateNoteText) =>
         this.notesApiService.updateNote(action.payload)
         .pipe(
-          map(note => new NotesActions.updateNoteTextSuccess(note)),
-          catchError(err => of(new NotesActions.updateNoteTextFail(err)))
+          map(note => new NotesActions.UpdateNoteTextSuccess(note)),
+          catchError(err => of(new NotesActions.UpdateNoteTextFail(err)))
         )
       )
     );
@@ -39,11 +39,11 @@ export class NotesEffect {
   updateNotePosition: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE_POSITION)
     .pipe(
-      switchMap((action: NotesActions.updateNotePosition) =>
+      switchMap((action: NotesActions.UpdateNotePosition) =>
         this.notesApiService.updateNote(action.payload)
         .pipe(
-          map(note => new NotesActions.updateNotePositionSuccess(note)),
-          catchError(err => of(new NotesActions.updateNotePositionFail(err)))
+          map(note => new NotesActions.UpdateNotePositionSuccess(note)),
+          catchError(err => of(new NotesActions.UpdateNotePositionFail(err)))
         )
       )
     );
@@ -52,11 +52,11 @@ export class NotesEffect {
   updateNoteSize: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE_SIZE)
     .pipe(
-      switchMap((action: NotesActions.updateNoteSize) =>
+      switchMap((action: NotesActions.UpdateNoteSize) =>
         this.notesApiService.updateNote(action.payload)
         .pipe(
-          map(note => new NotesActions.updateNoteSizeSuccess(note)),
-          catchError(err => of(new NotesActions.updateNoteSizeFail(err)))
+          map(note => new NotesActions.UpdateNoteSizeSuccess(note)),
+          catchError(err => of(new NotesActions.UpdateNoteSizeFail(err)))
         )
       )
     );
@@ -65,11 +65,11 @@ export class NotesEffect {
   update: Observable<Action> = this.actions$
     .ofType(NotesActions.UPDATE_NOTE)
     .pipe(
-      switchMap((action: NotesActions.updateNote) =>
+      switchMap((action: NotesActions.UpdateNote) =>
         this.notesApiService.updateNote(action.payload)
         .pipe(
-          map(note => new NotesActions.updateNoteSuccess(note)),
-          catchError(err => of(new NotesActions.createNoteFail(err)))
+          map(note => new NotesActions.UpdateNoteSuccess(note)),
+          catchError(err => of(new NotesActions.CreateNoteFail(err)))
         )
       )
     );
@@ -80,7 +80,7 @@ export class NotesEffect {
     .pipe(
       switchMap(() => this.notesApiService.getNotes()
         .pipe(
-          map(notes => new NotesActions.fetchNotesSuccess(notes)),
+          map(notes => new NotesActions.FetchNotesSuccess(notes)),
           catchError(err => of({ type: NotesActions.FETCH_NOTES_FAILURE, payload: err }))
         )
       )
@@ -90,11 +90,11 @@ export class NotesEffect {
   delete = this.actions$
     .ofType(NotesActions.DELETE_NOTE)
     .pipe(
-      switchMap((action: NotesActions.deleteNote) =>
+      switchMap((action: NotesActions.DeleteNote) =>
         this.notesApiService.deleteNote(action.payload)
         .pipe(
-          map(note => new NotesActions.deleteNoteSuccess(note)),
-          catchError(err => of(new NotesActions.deleteNoteFail(err)))
+          map(note => new NotesActions.DeleteNoteSuccess(note)),
+          catchError(err => of(new NotesActions.DeleteNoteFail(err)))
         )
       )
     );

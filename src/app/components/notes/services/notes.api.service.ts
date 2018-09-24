@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Note } from '../../../models/note';
 
-import * as NotesActions from  '../../../actions/note';
+import * as NotesActions from '../../../actions/note';
 import * as fromRoot from '../../../reducers';
 import * as fromNotes from '../../../reducers/notes';
 
@@ -12,7 +12,7 @@ import * as fromNotes from '../../../reducers/notes';
 export class NotesApiService {
 
   constructor(private store: Store<fromRoot.State>) {
-    this.store.dispatch(new NotesActions.fetchNotes());
+    this.store.dispatch(new NotesActions.FetchNotes());
   }
 
   getNotes(): Observable<Note[]> {
@@ -20,27 +20,27 @@ export class NotesApiService {
   }
 
   addNote(newNote: Note) {
-    return this.store.dispatch(new NotesActions.createNewNote(newNote));
+    return this.store.dispatch(new NotesActions.CreateNewNote(newNote));
   }
 
   updateNote(note: Note) {
-    return this.store.dispatch(new NotesActions.updateNote(note));
+    return this.store.dispatch(new NotesActions.UpdateNote(note));
   }
 
   deleteNote(note: Note) {
-    this.store.dispatch(new NotesActions.deleteNote(note));
+    this.store.dispatch(new NotesActions.DeleteNote(note));
   }
 
   changeNoteText(note: Note) {
-    this.store.dispatch(new NotesActions.updateNoteText(note));
+    this.store.dispatch(new NotesActions.UpdateNoteText(note));
   }
 
   changeNotePosition(note: Note): void {
-    this.store.dispatch(new NotesActions.updateNotePosition(note));
+    this.store.dispatch(new NotesActions.UpdateNotePosition(note));
   }
 
   changeNoteSize(note: Note): void {
-    this.store.dispatch(new NotesActions.updateNoteSize(note));
+    this.store.dispatch(new NotesActions.UpdateNoteSize(note));
   }
 
 }

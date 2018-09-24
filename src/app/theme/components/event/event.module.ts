@@ -10,11 +10,14 @@ import { EventListItemComponent } from './component/event-list-item/event-list-i
 import { EventListFooterComponent} from './component/event-list-footer/event-list-footer.component';
 import { EventsResolve } from './event.data.service/EventsResolve';
 
+import { ScrollbarModule } from 'ngx-scrollbar';
+
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
     NgaModule,
+    ScrollbarModule
   ],
   declarations: [
     EventComponent,

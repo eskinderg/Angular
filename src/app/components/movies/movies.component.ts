@@ -11,7 +11,7 @@ import { MoviesApiService } from './movies.service/movies.api.service';
  * This class represents the lazy loaded MoviesComponent.
  */
 @Component({
-  selector: 'sd-movies',
+  selector: 'app-movies',
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
   animations: [ fadeInAnimation ],

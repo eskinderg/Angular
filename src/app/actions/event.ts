@@ -36,99 +36,99 @@ export const EVENTS_CLEAR = 'EVENTS_CLEAR';
 //  CREATE
 // -----------------------------------
 
-export class createEvent implements Action {
+export class CreateEvent implements Action {
 
   readonly type = CREATE_EVENT;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class createEventFail implements Action {
+export class CreateEventFail implements Action {
 
   readonly type = CREATE_EVENT_FAIL;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class createEventSuccess implements Action {
+export class CreateEventSuccess implements Action {
 
   readonly type = CREATE_EVENT_SUCCESS;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
 // ===================================
 //  DELETE
 // -----------------------------------
-export class deleteEvent implements Action {
+export class DeleteEvent implements Action {
 
   readonly type = DELETE_EVENT;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class deleteEventFail implements Action {
+export class DeleteEventFail implements Action {
 
   readonly type = DELETE_EVENT_FAIL;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class deleteEventSuccess implements Action {
+export class DeleteEventSuccess implements Action {
 
   readonly type = DELETE_EVENT_SUCCESS;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
 // ===================================
 //  FETCH
 // -----------------------------------
 
-export class fetchEvents implements Action {
+export class FetchEvents implements Action {
 
   readonly type = FETCH_EVENTS;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export class fetchEventsFailed implements Action {
+export class FetchEventsFailed implements Action {
 
   readonly type = FETCH_EVENTS_FAILURE;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class fetchEventsSuccess implements Action {
+export class FetchEventsSuccess implements Action {
 
   readonly type = FETCH_EVENTS_SUCCESS;
 
-  constructor (public payload: Event[]){  }
+  constructor (public payload: Event[]) { }
 }
 
 // ===================================
 //  UPDATE
 // -----------------------------------
 
-export class updateEvent implements Action {
+export class UpdateEvent implements Action {
 
   readonly type = UPDATE_EVENT;
 
-  constructor (public payload: any){  }
+  constructor (public payload: any) { }
 }
 
-export class updateEventFail implements Action {
+export class UpdateEventFail implements Action {
 
   readonly type = UPDATE_EVENT_FAIL;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class updateEventSuccess implements Action {
+export class UpdateEventSuccess implements Action {
 
   readonly type = UPDATE_EVENT_SUCCESS;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
 
@@ -136,39 +136,39 @@ export class updateEventSuccess implements Action {
 //  TOGGLE
 // -----------------------------------
 
-export class toggleEvent implements Action {
+export class ToggleEvent implements Action {
 
   readonly type = TOGGLE_EVENT;
 
-  constructor (public payload: any){  }
+  constructor (public payload: any) { }
 }
 
-export class toggleEventFail implements Action {
+export class ToggleEventFail implements Action {
 
   readonly type = TOGGLE_EVENT_FAIL;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
-export class toggleEventSuccess implements Action {
+export class ToggleEventSuccess implements Action {
 
   readonly type = TOGGLE_EVENT_SUCCESS;
 
-  constructor (public payload: Event){  }
+  constructor (public payload: Event) { }
 }
 
 
-export class eventsClear implements Action {
+export class EventsClear implements Action {
 
   readonly type = EVENTS_CLEAR;
 
-  constructor (){  }
+  constructor () { }
 }
 
-export type Actions = createEvent | createEventSuccess | createEventFail |
-  updateEvent| updateEventSuccess | updateEventFail |
-  fetchEvents | fetchEventsSuccess | fetchEventsFailed |
-  toggleEvent | toggleEventSuccess | toggleEventFail |
-  deleteEvent| deleteEventSuccess | deleteEventFail |
-  eventsClear;
+export type Actions = CreateEvent | CreateEventSuccess | CreateEventFail |
+  UpdateEvent| UpdateEventSuccess | UpdateEventFail |
+  FetchEvents | FetchEventsSuccess | FetchEventsFailed |
+  ToggleEvent | ToggleEventSuccess | ToggleEventFail |
+  DeleteEvent| DeleteEventSuccess | DeleteEventFail |
+  EventsClear;
 

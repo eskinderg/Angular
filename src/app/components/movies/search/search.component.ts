@@ -5,8 +5,8 @@ import { MoviesApiService } from '../movies.service/movies.api.service';
 import { FormControl } from '@angular/forms';
 
 
-import { of,Observable, Subject, pipe } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged,switchMap, map, takeUntil, tap } from 'rxjs/operators';
+import { of, Observable, Subject, pipe } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',

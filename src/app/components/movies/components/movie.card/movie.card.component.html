@@ -5,7 +5,7 @@
     <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
     <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
     <h4 class="card-title">{{ movie.release_date | truncate: 4 }}</h4>
-    <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
+    <app-ngbd-rating-decimal [currentRate]= "movieRating"></app-ngbd-rating-decimal>
   </div>
 </div>
 

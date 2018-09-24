@@ -9,7 +9,7 @@ import * as fromRoot from '../../../../reducers';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'event',
+  selector: 'app-event',
   templateUrl: 'event.component.html',
   styleUrls: ['event.component.scss']
 })
@@ -21,15 +21,15 @@ export class EventComponent {
     private store: Store<fromRoot.State> ) { }
 
   onAddEvent(event: Event) {
-    this.store.dispatch(new EventsActions.createEvent(event));
+    this.store.dispatch(new EventsActions.CreateEvent(event));
   }
 
   onToggleEvent(event) {
-    this.store.dispatch(new EventsActions.toggleEvent(event));
+    this.store.dispatch(new EventsActions.ToggleEvent(event));
   }
 
   onUpdateEvent(event: Event) {
-    this.store.dispatch(new EventsActions.updateEvent(event));
+    this.store.dispatch(new EventsActions.UpdateEvent(event));
   }
 
   onRemoveEvent(event: Event) {
@@ -37,7 +37,7 @@ export class EventComponent {
       title: 'Confirm deletion',
       message: 'Do you really want to delete the item ' + '"' + event.title + '"?'
     }).then(() => {
-      this.store.dispatch(new EventsActions.deleteEvent(event));
+      this.store.dispatch(new EventsActions.DeleteEvent(event));
     }, () => {
       console.log();
     });

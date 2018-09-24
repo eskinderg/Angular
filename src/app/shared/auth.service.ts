@@ -79,6 +79,7 @@ export class AuthService {
       return err;
     });
   }
+
   endSigninMainWindow() {
     this.mgr.signinRedirectCallback().then(function (user) {
       console.log('signed in', user);

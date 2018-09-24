@@ -6,7 +6,7 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
  * This class represents the lazy loaded AboutComponent.
  */
 @Component({
-  selector: 'sd-about',
+  selector: 'app-about',
   templateUrl: 'about.component.html',
   styleUrls: ['about.component.scss'],
   animations: [ fadeInAnimation ],

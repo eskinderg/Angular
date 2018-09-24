@@ -48,54 +48,54 @@ export const TOGGLE_NOTE_FAILURE = 'TOGGLE_NOTE_FAILURE';
 //  CREATE NEW NOTE
 // -----------------------------------
 
-export class createNewNote implements Action {
+export class CreateNewNote implements Action {
 
   readonly type = CREATE_NEW_NOTE;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class createNewNoteFail implements Action {
+export class CreateNewNoteFail implements Action {
 
   readonly type = CREATE_NEW_NOTE_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class createNewNoteSuccess implements Action {
+export class CreateNewNoteSuccess implements Action {
 
   readonly type = CREATE_NEW_NOTE_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 // ===================================
 //  CREATE
 // -----------------------------------
 
-export class createNote implements Action {
+export class CreateNote implements Action {
 
   readonly type = CREATE_NOTE;
 
-  constructor (public payload: Note ){  }
+  constructor (public payload: Note ) { }
 }
 
 
-export class createNoteFail implements Action {
+export class CreateNoteFail implements Action {
 
   readonly type = CREATE_NOTE_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class createNoteSuccess implements Action {
+export class CreateNoteSuccess implements Action {
 
   readonly type = CREATE_NOTE_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 // ===================================
@@ -103,27 +103,27 @@ export class createNoteSuccess implements Action {
 // -----------------------------------
 
 
-export class deleteNote implements Action {
+export class DeleteNote implements Action {
 
   readonly type = DELETE_NOTE;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class deleteNoteFail implements Action {
+export class DeleteNoteFail implements Action {
 
   readonly type = DELETE_NOTE_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class deleteNoteSuccess implements Action {
+export class DeleteNoteSuccess implements Action {
 
   readonly type = DELETE_NOTE_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 // ===================================
@@ -131,133 +131,133 @@ export class deleteNoteSuccess implements Action {
 // -----------------------------------
 
 
-export class fetchNotes implements Action {
+export class FetchNotes implements Action {
 
   readonly type = FETCH_NOTES;
 
-  constructor (){  }
+  constructor () { }
 }
 
 
-export class fetchNotesFailed implements Action {
+export class FetchNotesFailed implements Action {
 
   readonly type = FETCH_NOTES_FAILURE;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class fetchNotesSuccess implements Action {
+export class FetchNotesSuccess implements Action {
 
   readonly type = FETCH_NOTES_SUCCESS;
 
-  constructor (public payload: Note[]){  }
+  constructor (public payload: Note[]) { }
 }
 
 // ===================================
 //  UPDATE
 // -----------------------------------
 
-export class updateNoteText implements Action {
+export class UpdateNoteText implements Action {
 
   readonly type = UPDATE_NOTE_TEXT;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNoteTextSuccess implements Action {
+export class UpdateNoteTextSuccess implements Action {
 
   readonly type = UPDATE_NOTE_TEXT_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNoteTextFail implements Action {
+export class UpdateNoteTextFail implements Action {
 
   readonly type = UPDATE_NOTE_TEXT_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class updateNote implements Action {
+export class UpdateNote implements Action {
 
   readonly type = UPDATE_NOTE;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNoteFail implements Action {
+export class UpdateNoteFail implements Action {
 
   readonly type = UPDATE_NOTE_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
 
-export class updateNoteSuccess implements Action {
+export class UpdateNoteSuccess implements Action {
 
   readonly type = UPDATE_NOTE_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNotePosition implements Action {
+export class UpdateNotePosition implements Action {
 
   readonly type = UPDATE_NOTE_POSITION;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNotePositionSuccess implements Action {
+export class UpdateNotePositionSuccess implements Action {
 
   readonly type = UPDATE_NOTE_POSITION_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNotePositionFail implements Action {
+export class UpdateNotePositionFail implements Action {
 
   readonly type = UPDATE_NOTE_POSITION_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
-export class updateNoteSize implements Action {
+export class UpdateNoteSize implements Action {
 
   readonly type = UPDATE_NOTE_SIZE;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNoteSizeSuccess implements Action {
+export class UpdateNoteSizeSuccess implements Action {
 
   readonly type = UPDATE_NOTE_SIZE_SUCCESS;
 
-  constructor (public payload: Note){  }
+  constructor (public payload: Note) { }
 }
 
 
-export class updateNoteSizeFail implements Action {
+export class UpdateNoteSizeFail implements Action {
 
   readonly type = UPDATE_NOTE_SIZE_FAIL;
 
-  constructor (public payload: string){  }
+  constructor (public payload: string) { }
 }
 
-export type Actions = fetchNotes | fetchNotesSuccess | fetchNotesFailed |
-  createNewNote | createNewNoteSuccess | createNewNoteFail |
-  createNote | createNoteSuccess | createNoteFail |
-  deleteNote | deleteNoteSuccess | deleteNoteFail |
-  updateNote | updateNoteSuccess | updateNoteFail |
-  updateNoteText | updateNoteTextSuccess | updateNoteTextFail |
-  updateNotePositionFail | updateNotePositionSuccess | updateNotePositionFail |
-  updateNoteSizeFail | updateNoteSizeSuccess | updateNoteSizeFail |
-  updateNotePosition | updateNoteSuccess | updateNotePositionFail;
+export type Actions = FetchNotes | FetchNotesSuccess | FetchNotesFailed |
+  CreateNewNote | CreateNewNoteSuccess | CreateNewNoteFail |
+  CreateNote | CreateNoteSuccess | CreateNoteFail |
+  DeleteNote | DeleteNoteSuccess | DeleteNoteFail |
+  UpdateNote | UpdateNoteSuccess | UpdateNoteFail |
+  UpdateNoteText | UpdateNoteTextSuccess | UpdateNoteTextFail |
+  UpdateNotePositionFail | UpdateNotePositionSuccess | UpdateNotePositionFail |
+  UpdateNoteSizeFail | UpdateNoteSizeSuccess | UpdateNoteSizeFail |
+  UpdateNotePosition | UpdateNoteSuccess | UpdateNotePositionFail;

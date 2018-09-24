@@ -10,6 +10,6 @@ export class NotesResolver implements Resolve<Note[]> {
 
   resolve(route: ActivatedRouteSnapshot) {
     return null;
-    //return this.notesApiService.getNotes();
+    // return this.notesApiService.getNotes();
   }
 }

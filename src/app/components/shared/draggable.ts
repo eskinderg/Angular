@@ -1,9 +1,9 @@
 import { Directive, Input, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[draggable]'
+  selector: '[appDraggable]'
 })
-export class Draggable {
+export class DraggableDirective {
   _isDragging = false;
   _hasDragged = false;
   _originalClientX: number;
@@ -26,7 +26,7 @@ export class Draggable {
       this._originalTop = parseInt($event.target.style.top, 10);
       this._originalClientX = $event.clientX;
       this._originalClientY = $event.clientY;
-    }else {
+    } else {
       // console.log('draggable: Error! the annotated ' + $event.target.nodeName +
       //  ' element needs to be inline styled with position, top and left');
     }

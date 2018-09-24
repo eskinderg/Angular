@@ -6,7 +6,7 @@ import { ConfirmState } from './confirm.state';
  * The component displayed in the confirmation modal opened by the ConfirmService.
  */
 @Component({
-  selector: 'confirm-modal-component',
+  selector: 'app-confirm-modal-component',
   templateUrl: './modal.component.html'
 })
 export class ConfirmModalComponent {

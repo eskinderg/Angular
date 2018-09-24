@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MoviesApiService } from '../../movies.service/movies.api.service'
 
 @Component({
-  selector: 'movie-detail',
+  selector: 'app-movie-detail',
   templateUrl: './movie.detail.component.html',
   styleUrls: ['./movie.detail.component.scss']
 })
