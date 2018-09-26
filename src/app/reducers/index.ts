@@ -20,6 +20,7 @@ export const reducer: ActionReducerMap<State> = {
   profile: fromAuth.reducer
 }
 
+// tslint:disable-next-line:no-shadowed-variable
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
     return reducer(state, action);
