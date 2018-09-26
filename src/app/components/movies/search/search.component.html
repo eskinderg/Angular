@@ -8,11 +8,11 @@
 
   {{ movies | json}}
   <div *ngIf="movies" class="mt-2">
-  <ba-card header="Search Results" >
+  <app-ba-card>
   <h3 *ngFor="let movie of movies | async">
   {{movie.title}}
   </h3>
-  </ba-card>
+  </app-ba-card>
   </div> -->
 
   <div class="input-group input-group-lg">

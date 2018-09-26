@@ -16,13 +16,16 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
 
 import { EventApiService } from '../../theme/components/event/event.data.service/event.api.service';
 
+import { ScrollbarModule } from 'ngx-scrollbar';
+
 @NgModule({
   imports: [
     SharedModule,
     NgaModule,
     HomeRoutingModule,
     JsonpModule,
-    EventModule
+    EventModule,
+    ScrollbarModule
   ],
   declarations: [
     HomeComponent,

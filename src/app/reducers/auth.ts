@@ -9,7 +9,7 @@ export const initialState: State = {
   profile: {}
 };
 
-export function reducer(state:State = initialState, action: AuthActions.Actions): State {
+export function reducer(state: State = initialState, action: AuthActions.Actions): State {
 
   switch (action.type) {
     case AuthActions.LOAD_PROFILE_SUCCESS:
@@ -33,4 +33,4 @@ export function reducer(state:State = initialState, action: AuthActions.Actions)
 
 export const getAuthState = createFeatureSelector<State>('profile');
 
-export const getProfile = createSelector(getAuthState, (state: State)=> state.profile);
+export const getProfile = createSelector(getAuthState, (state: State) => state.profile);

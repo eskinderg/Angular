@@ -3,7 +3,7 @@ import { Movie } from '../../models/movie';
 // import { NgbdRatingDecimal } from '../../components/rating/rating';
 
 @Component({
-  selector: 'movie-card',
+  selector: 'app-movie-card',
   templateUrl: './movie.card.component.html',
   styleUrls: ['./movie.card.component.scss']
 })

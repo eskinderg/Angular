@@ -3,15 +3,15 @@
   <div class="col-lg-3 mt-3 hidden-md-down">
     <div class="list-group">
       <ng-container>
-        <genre-list (select)="onSelectGenre($event)" [genres]='genres'></genre-list>
+        <app-genre-list (select)="onSelectGenre($event)" [genres]='genres'></app-genre-list>
       </ng-container>
     </div>
   </div>
 
   <div class="col-lg-9 mt-3">
-    <ba-card  header="Movies">
+    <app-ba-card  header="Movies">
       <router-outlet></router-outlet>
-    </ba-card>
+    </app-ba-card>
   </div>
 
 </div>

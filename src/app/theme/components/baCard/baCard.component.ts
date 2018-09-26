@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'ba-card',
+  selector: 'app-ba-card',
   templateUrl: './baCard.html',
   styleUrls: ['bacard.component.scss']
 })
-export class BaCard {
+export class BaCardComponent {
   @Input() title: String;
   @Input() baCardClass: String;
   @Input() cardType: String;

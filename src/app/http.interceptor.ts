@@ -1,20 +1,20 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpInterceptor,HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpInterceptor, HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
-//import { AuthService } from './components/shared/services/auth/auth.service';
+// import { AuthService } from './components/shared/services/auth/auth.service';
 
 import { ConfirmService } from './theme/components/modal/confirm.service';
 
 @Injectable()
 export class GlobalHttpInterceptor implements HttpInterceptor {
 
-  //constructor(public auth: AuthService) {}
-  constructor() { }
+  // constructor(public auth: AuthService) {}
+  constructor(private confirmService: ConfirmService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    //const auth  = this.injector.get(AuthService);
+    // const auth  = this.injector.get(AuthService);
 
     request = request.clone({
       setHeaders: {
@@ -34,18 +34,16 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
     //     }, (err: any) => {
     //       if (err instanceof HttpErrorResponse) {
     //         if (err.status === 401) {
-    //           alert('401: Unauthorized request')
+    //           this.confirmService.openInfoModal({
+    //             title: '401: Unauthorized request',
+    //             message: 'From Interceptor'
+    //           })
     //         }
     //         if (err.status === 403) {
-    //           alert('403 (Forbidden): User not Authorized to the resource')
-    //           // this.confirmService.openInfoModal({
-    //           //   title: 'From HttpInterceptor',
-    //           //   message: 'From HttpInterceptor'
-    //           // }).then(() => {
-    //           //   // this.store.dispatch(new EventsActions.deleteEvent(event));
-    //           // }, () => {
-    //           //   console.log();
-    //           // });
+    //           this.confirmService.openInfoModal({
+    //             title: '403: Forbidden request',
+    //             message: 'From Interceptor'
+    //           })
     //         }
     //       }
     //     }

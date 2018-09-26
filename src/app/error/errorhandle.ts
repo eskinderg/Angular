@@ -2,7 +2,7 @@ import { ErrorHandler, Injectable, Injector } from '@angular/core';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoggingService } from './loggingservice';
 
-//import * as StackTrace from 'stacktrace-js';
+// import * as StackTrace from 'stacktrace-js';
 /**
  * Global error handler class
  */

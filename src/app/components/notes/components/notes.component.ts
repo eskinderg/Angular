@@ -14,7 +14,7 @@ import { Note } from '../../../models/note';
   host: { '[@routerFadeInAnimation]': '' }
 })
 export class NotesComponent {
-
+trappedBoxes = ['Trapped 1', 'Trapped 2'];
   $notes: Observable<Note[]>;
 
   constructor(private notesApiService: NotesApiService) {
@@ -37,7 +37,7 @@ export class NotesComponent {
 
   onChangeNoteText(newText: any , note: Note) {
     console.log( newText );
-    this.notesApiService.changeNoteText({...note,text: newText});
+    this.notesApiService.changeNoteText({...note, text: newText});
   }
 
   onChangeNotePosition( {top , left} , note: Note) {

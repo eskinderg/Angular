@@ -2,13 +2,13 @@ import { Component, ViewChild, HostListener, Input, ElementRef, AfterViewInit } 
 import * as jQuery from 'jquery';
 
 @Component({
-  selector: 'back-top',
+  selector: 'app-back-top',
   styleUrls: ['./baBackTop.scss'],
   template: `
   <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i>
     `
 })
-export class BaBackTop implements AfterViewInit {
+export class BaBackTopComponent implements AfterViewInit {
 
   @Input() position = 400;
   @Input() showSpeed = 500;

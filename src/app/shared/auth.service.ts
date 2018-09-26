@@ -31,7 +31,7 @@ export class AuthService {
     return of(this.oauthService.hasValidAccessToken());
   }
 
-  isLoggedIn() : boolean {
+  isLoggedIn(): boolean {
     return this.oauthService.hasValidAccessToken();
   }
 
@@ -53,7 +53,7 @@ export class AuthService {
     });
   }
 
-  getProfile(){
+  getProfile() {
     return this.oauthService.getIdentityClaims();
   }
 
@@ -79,6 +79,7 @@ export class AuthService {
       return err;
     });
   }
+
   endSigninMainWindow() {
     this.mgr.signinRedirectCallback().then(function (user) {
       console.log('signed in', user);

@@ -18,13 +18,14 @@ export class NoteComponent {
 
   constructor() { }
 
-  handleChangeNotePosition({top, left}) {
-    if (left !== this.note.left || top !== this.note.top) {
-      if(this.note.id !=undefined)
-      {
-        this.changeNotePosition.emit({top: top, left: left});
-      }
-    }
+  handleChangeNotePosition(event: PointerEvent) {
+    console.log(event)
+    // if (left !== this.note.left || top !== this.note.top) {
+    //   if(this.note.id !=undefined)
+    //   {
+    //     this.changeNotePosition.emit({top: top, left: left});
+    //   }
+    // }
   }
   handleChangeNoteText(updatedText) {
     if (updatedText !== this.note.text) {

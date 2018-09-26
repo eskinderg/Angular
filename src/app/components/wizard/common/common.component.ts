@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
  * This class represents the HeaderComponent.
  */
 @Component({
-  selector: 'wz-common',
+  selector: 'app-wz-common',
   templateUrl: 'common.component.html',
   styleUrls: ['common.component.scss'],
 })

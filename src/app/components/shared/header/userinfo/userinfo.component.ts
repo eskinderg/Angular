@@ -7,13 +7,13 @@ import * as  AuthActions from '../../../../actions/auth';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'userinfo',
+  selector: 'app-userinfo',
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
 })
 export class UserInfoComponent implements OnInit {
 
-  claims:any;
+  claims: any;
   name: any;
 
   @Output() signout: EventEmitter<any> = new EventEmitter();
@@ -36,12 +36,13 @@ export class UserInfoComponent implements OnInit {
   }
 
   logOut() {
-    this.store.dispatch(new AuthActions.logout());
+    this.store.dispatch(new AuthActions.Logout());
   }
 
   ngOnInit() {
-    if(this.isLoggedIn())
+    if (this.isLoggedIn()) {
       this.name = this.oauthService.getIdentityClaims()['given_name'];
+    }
   }
 
   isLoggedIn() {

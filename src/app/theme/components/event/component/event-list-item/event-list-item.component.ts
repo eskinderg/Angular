@@ -11,13 +11,13 @@ import { HostListener, NgZone, Renderer2, ElementRef, ViewChild } from '@angular
 export class EventListItemComponent {
 
   @Input() event: Event;
-  @Input() IsInEditMode :boolean = false;
+  @Input() IsInEditMode = false;
 
   @Output() remove: EventEmitter<Event> = new EventEmitter();
   @Output() toggle: EventEmitter<Event> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter();
 
-  editEvent:Event = new Event();
+  editEvent: Event = new Event();
 
   constructor() { }
 
@@ -27,11 +27,11 @@ export class EventListItemComponent {
 
   onUpdateEvent(event: Event) {
 
-    if(this.IsInEditMode){
+    if (this.IsInEditMode) {
       this.update.emit({oldValue: event, newValue: this.editEvent});
     }
 
-    this.IsInEditMode =! this.IsInEditMode;
+    this.IsInEditMode = !this.IsInEditMode;
     this.editEvent = new Event(event);
   }
 

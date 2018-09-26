@@ -6,7 +6,7 @@
 // import {  } from 'rxjs';
 
   class AuthServiceStub {
-    isLoggedInObs() : boolean {
+    isLoggedInObs() {
       return false;
     };
   }
@@ -15,7 +15,7 @@
   describe('AuthGuard Service', () => {
     let service: AuthGuardService;
     let myServiceDependency: AuthService;
-    let mockRouter = { navigate: jasmine.createSpy('navigate') };
+    const mockRouter = { navigate: jasmine.createSpy('navigate') };
 
     beforeEach(() => {
       TestBed.configureTestingModule({

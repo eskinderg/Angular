@@ -7,12 +7,12 @@
   </div>
 
   <div class="col-lg-6">
-    <ba-card header="{{ movie.title }} {{ movie.release_date | truncate: 4}}">
+    <app-ba-card header="{{ movie.title }} {{ movie.release_date | truncate: 4}}">
       <!-- <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" ></h4> -->
       <div class="card-text">{{ movie.overview }}</div>
       <h4 class="card-title"></h4>
-      <ngbd-rating-decimal [currentRate]= "movieRating"></ngbd-rating-decimal>
-    </ba-card>
+      <app-ngbd-rating-decimal [currentRate]= "movieRating"></app-ngbd-rating-decimal>
+    </app-ba-card>
   </div>
 
 </div>

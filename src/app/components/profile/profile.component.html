@@ -1,35 +1,35 @@
-<ba-card header="Profile">
-    <div class="form-group row">
-        <label for="example-text-input" class="col-2 col-form-label">Name</label>
-        <div class="col-10">
-            <input class="form-control" name="name" type="text" [ngModel]="user['given_name']" >
-        </div>
+<app-ba-card header="Profile">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">Name</label>
+    <div class="col-10">
+      <input class="form-control" name="name" type="text" [ngModel]="user['given_name']" >
     </div>
-    <div class="form-group row">
-        <label for="example-email-input" class="col-2 col-form-label">Email</label>
-        <div class="col-10">
-            <input class="form-control"  type="email" [ngModel]="user['email']">
-        </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-email-input" class="col-2 col-form-label">Email</label>
+    <div class="col-10">
+      <input class="form-control"  type="email" [ngModel]="user['email']">
     </div>
-    <div class="form-group row">
-        <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
-        <div class="col-10">
-            <input class="form-control" type="tel" >
-        </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
+    <div class="col-10">
+      <input class="form-control" type="tel" >
     </div>
-    <div class="form-group row">
-        <label for="example-date-input" class="col-2 col-form-label">Date</label>
-        <div class="col-10">
-            <input class="form-control"   type="text" >
-        </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-date-input" class="col-2 col-form-label">Date</label>
+    <div class="col-10">
+      <input class="form-control"   type="text" >
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
 
-    <button class="ml-4 btn btn-outline-primary"
-            ngbPopover="You see, I show up on hover!"
-            triggers="mouseenter:mouseleave"
-            popoverTitle="Pop title"
-            placement="right">
-        Mouse Over</button>
-</ba-card>
+  <button class="ml-4 btn btn-outline-primary"
+          ngbPopover="You see, I show up on hover!"
+          triggers="mouseenter:mouseleave"
+          popoverTitle="Pop title"
+          placement="right">
+    Mouse Over</button>
+</app-ba-card>
 

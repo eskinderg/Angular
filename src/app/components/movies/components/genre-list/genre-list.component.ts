@@ -3,7 +3,7 @@ import { Genre } from '../../models/genre';
 
 @Component(
   {
-    selector: 'genre-list',
+    selector: 'app-genre-list',
     templateUrl: './genre-list.component.html',
     styleUrls: ['./genre-list.component.scss']
   }

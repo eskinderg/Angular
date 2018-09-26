@@ -5,7 +5,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
  * This class represents the Header Component.
  */
 @Component({
-  selector: 'sd-header',
+  selector: 'app-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
 })

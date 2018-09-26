@@ -6,18 +6,18 @@ import {
   ElementRef,
   Input,
   ViewEncapsulation,
-} from "@angular/core"
-import * as d3 from "d3"
+} from '@angular/core'
+import * as d3 from 'd3'
 
 @Component({
-  selector: "app-barchart",
-  templateUrl: "./barchart.component.html",
-  styleUrls: ["./barchart.component.scss"],
+  selector: 'app-barchart',
+  templateUrl: './barchart.component.html',
+  styleUrls: ['./barchart.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class BarchartComponent implements OnInit, OnChanges {
 
-  @ViewChild("chart") private chartContainer: ElementRef
+  @ViewChild('chart') private chartContainer: ElementRef
 
   @Input() private data: Array<any> = this.generateSampleData()
 
@@ -63,15 +63,15 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom
     const svg = d3
       .select(element)
-      .append("svg")
-      .attr("width", element.offsetWidth)
-      .attr("height", element.offsetHeight)
+      .append('svg')
+      .attr('width', element.offsetWidth)
+      .attr('height', element.offsetHeight)
 
     // chart plot area
     this.chart = svg
-      .append("g")
-      .attr("class", "bars")
-      .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`)
+      .append('g')
+      .attr('class', 'bars')
+      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
 
     // define X & Y domains
     const xDomain = this.data.map(d => d[0])
@@ -92,21 +92,21 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.colors = d3
       .scaleLinear()
       .domain([0, this.data.length])
-      .range(<any[]>["green", "yellow"])
+      .range(<any[]>['green', 'yellow'])
 
     // x & y axis
     this.xAxis = svg
-      .append("g")
-      .attr("class", "axis axis-x")
+      .append('g')
+      .attr('class', 'axis axis-x')
       .attr(
-        "transform",
+        'transform',
         `translate(${this.margin.left}, ${this.margin.top + this.height})`
       )
       .call(d3.axisBottom(this.xScale))
     this.yAxis = svg
-      .append("g")
-      .attr("class", "axis axis-y")
-      .attr("transform", `translate(${this.margin.left}, ${this.margin.top})`)
+      .append('g')
+      .attr('class', 'axis axis-y')
+      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
       .call(d3.axisLeft(this.yScale))
   }
 
@@ -118,34 +118,34 @@ export class BarchartComponent implements OnInit, OnChanges {
     this.xAxis.transition().call(d3.axisBottom(this.xScale))
     this.yAxis.transition().call(d3.axisLeft(this.yScale))
 
-    const update = this.chart.selectAll(".bar").data(this.data)
+    const update = this.chart.selectAll('.bar').data(this.data)
 
     // remove exiting bars
     update.exit().remove()
 
     // update existing bars
     this.chart
-      .selectAll(".bar")
+      .selectAll('.bar')
       .transition()
-      .attr("x", d => this.xScale(d[0]))
-      .attr("y", d => this.yScale(d[1]))
-      .attr("width", d => this.xScale.bandwidth())
-      .attr("height", d => this.height - this.yScale(d[1]))
-      .style("fill", (d, i) => this.colors(i))
+      .attr('x', d => this.xScale(d[0]))
+      .attr('y', d => this.yScale(d[1]))
+      .attr('width', d => this.xScale.bandwidth())
+      .attr('height', d => this.height - this.yScale(d[1]))
+      .style('fill', (d, i) => this.colors(i))
 
     // add new bars
     update
       .enter()
-      .append("rect")
-      .attr("class", "bar")
-      .attr("x", d => this.xScale(d[0]))
-      .attr("y", d => this.yScale(0))
-      .attr("width", this.xScale.bandwidth())
-      .attr("height", 0)
-      .style("fill", (d, i) => this.colors(i))
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => this.xScale(d[0]))
+      .attr('y', d => this.yScale(0))
+      .attr('width', this.xScale.bandwidth())
+      .attr('height', 0)
+      .style('fill', (d, i) => this.colors(i))
       .transition()
       .delay((d, i) => i * 10)
-      .attr("y", d => this.yScale(d[1]))
-      .attr("height", d => this.height - this.yScale(d[1]))
+      .attr('y', d => this.yScale(d[1]))
+      .attr('height', d => this.height - this.yScale(d[1]))
   }
 }

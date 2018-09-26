@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'add-button',
+  selector: 'app-add-button',
   templateUrl: 'add.button.component.html',
   styleUrls: ['add.button.component.scss'],
   // directives: [NgClass]

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-
 import { Event } from '../event';
 
 // import * as fromRoot from '../../../../reducers';
@@ -19,12 +18,12 @@ export class EventApiService {
     return this.store.select(fromEvents.getEvents);
   }
 
-  //getEventById(eventId: number): Observable<Event> {
-  //return this.api.getEventById(eventId);
-  //}
-  //
-  //toggleEventComplete(event: Event) {
-  //return this.api.updateEvent(event);
-  //}
+  // getEventById(eventId: number): Observable<Event> {
+  // return this.api.getEventById(eventId);
+  // }
+
+  // toggleEventComplete(event: Event) {
+  // return this.api.updateEvent(event);
+  // }
 
 }

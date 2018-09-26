@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
  * This class represents the HeaderComponent.
  */
 @Component({
-  selector: 'wz-toolbar',
+  selector: 'app-toolbar',
   templateUrl: 'wztoolbar.component.html',
   styleUrls: ['wztoolbar.component.scss'],
 })

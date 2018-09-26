@@ -1,2 +1,2 @@
-export { Draggable } from './draggable'
+export { DraggableDirective } from './draggable'
 export { ResizableTextAreaDirective } from './resizable'

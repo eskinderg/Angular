@@ -3,7 +3,7 @@ import { Genre } from '../../models/genre';
 import { MoviesApiService } from '../../movies.service/movies.api.service';
 
 @Component({
-  selector: 'genre-list-item',
+  selector: 'app-genre-list-item',
   templateUrl: './genre-list-item.component.html',
   styleUrls: ['./genre-list-item.component.scss']
 })

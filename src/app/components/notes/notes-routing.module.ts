@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { NotesComponent } from './components/notes.component';
 import { NotesResolver } from './services/notes.resolver';
-//import { NotesApiService } from './services/notes.api.service';
+// import { NotesApiService } from './services/notes.api.service';
 
 @NgModule({
   imports: [
@@ -13,12 +13,12 @@ import { NotesResolver } from './services/notes.resolver';
         component: NotesComponent,
         canActivate: [AuthGuardService],
         resolve: {
-          //notes: NotesResolver
+          // notes: NotesResolver
         }
       }
     ])
   ],
-  //providers: [NotesApiService],
+  // providers: [NotesApiService],
   exports: [RouterModule]
 })
 export class NotesRoutingModule { }

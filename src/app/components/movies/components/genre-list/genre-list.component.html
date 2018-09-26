@@ -1,5 +1,5 @@
-<ba-card margin="-1" title="" header="Genres">
+<app-ba-card margin="-1" title="" header="Genres">
   <ng-container  *ngFor="let genre of genres" >
-    <genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></genre-list-item>
+    <app-genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></app-genre-list-item>
   </ng-container>
-</ba-card>
+</app-ba-card>
