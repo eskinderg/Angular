@@ -165,7 +165,8 @@ export class EventsClear implements Action {
   constructor () { }
 }
 
-export type Actions = CreateEvent | CreateEventSuccess | CreateEventFail |
+export type Actions =
+  CreateEvent | CreateEventSuccess | CreateEventFail |
   UpdateEvent| UpdateEventSuccess | UpdateEventFail |
   FetchEvents | FetchEventsSuccess | FetchEventsFailed |
   ToggleEvent | ToggleEventSuccess | ToggleEventFail |

@@ -121,8 +121,9 @@ export class LogoutFail implements Action {
   constructor () { }
 }
 
-export type Actions = LoginEvent | LoginEventSuccess | LoginEventFail |
-                      AuthInit | AuthInitSuccess |
+export type Actions =
+  LoginEvent | LoginEventSuccess | LoginEventFail |
+  AuthInit | AuthInitSuccess |
   LoadProfile | LoadProfileSuccess | LoadProfileFail |
   Logout | LogoutSuccess | LogoutFail |
   RouteToHome;
