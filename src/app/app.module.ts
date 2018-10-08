@@ -3,7 +3,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     UnauthorizedModule,
     NotfoundModule,
     AuthorizationModule,
@@ -52,8 +51,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule.forRoot(),
-    environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    !environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
+    AppRoutingModule
   ],
   declarations: [AppComponent],
   providers: [
