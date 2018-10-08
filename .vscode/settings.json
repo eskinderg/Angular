@@ -10,6 +10,7 @@
         "dist": true,
         "documentation": true,
         "oidc": true,
+        "release": true,
         "server": true,
         "coverage": true
     }
