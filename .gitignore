@@ -9,6 +9,8 @@
 npm-debug.log.*
 # dependencies
 /node_modules
+main.js
+main.js.map
 
 # IDEs and editors
 /.idea

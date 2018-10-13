@@ -4,6 +4,7 @@ var electron_1 = require("electron");
 var path = require("path");
 var url = require("url");
 var win, serve;
+
 var args = process.argv.slice(1);
 serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {
@@ -14,10 +15,7 @@ function createWindow() {
         x: 0,
         y: 0,
         width: size.width,
-        height: size.height,
-        titleBarStyle: 'hidden',
-        transparent: true,
-        frame: false
+        height: size.height
     });
     if (serve) {
         require('electron-reload')(__dirname, {
