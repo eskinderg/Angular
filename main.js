@@ -14,10 +14,7 @@ function createWindow() {
         x: 0,
         y: 0,
         width: size.width,
-        height: size.height,
-        titleBarStyle: 'hidden',
-        transparent: true,
-        frame: false
+        height: size.height
     });
     if (serve) {
         require('electron-reload')(__dirname, {
