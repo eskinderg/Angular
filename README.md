@@ -2,13 +2,41 @@
 
 Angular 6 Project
 
-## Development server
+## Getting Started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Clone this repository locally :
 
-## Build
+``` bash
+git clone https://github.com/eskinderg/angular.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Install dependencies with npm :
+
+``` bash
+npm install
+```
+
+## To build for development
+
+- **in a terminal window** -> npm start
+
+Voila! You can use your Angular + Electron app in a local development environment with hot reload !
+
+The application code is managed by `main.ts`. In this sample, the app runs with a simple Angular App (http://localhost:4200) and an Electron window.
+The Angular component contains an example of Electron and NodeJS native lib import.
+You can desactivate "Developer Tools" by commenting `win.webContents.openDevTools();` in `main.ts`.
+
+## Included Commands
+
+|Command|Description|
+|--|--|
+|`npm run ng:serve:web`| Execute the app in the browser |
+|`npm run build`| Build the app. Your built files are in the /dist folder. |
+|`npm run build:prod`| Build the app with Angular aot. Your built files are in the /dist folder. |
+|`npm run electron:local`| Builds your application and start electron
+|`npm run electron:linux`| Builds your application and creates an app consumable on linux system |
+|`npm run electron:windows`| On a Windows OS, builds your application and creates an app consumable in windows 32/64 bit systems |
+|`npm run electron:mac`|  On a MAC OS, builds your application and generates a `.app` file of your application that can be run on Mac |
 
 ## Running unit tests
 
