@@ -252,7 +252,8 @@ export class UpdateNoteSizeFail implements Action {
   constructor (public payload: string) { }
 }
 
-export type Actions = FetchNotes | FetchNotesSuccess | FetchNotesFailed |
+export type Actions =
+  FetchNotes | FetchNotesSuccess | FetchNotesFailed |
   CreateNewNote | CreateNewNoteSuccess | CreateNewNoteFail |
   CreateNote | CreateNoteSuccess | CreateNoteFail |
   DeleteNote | DeleteNoteSuccess | DeleteNoteFail |

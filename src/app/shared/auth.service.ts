@@ -93,9 +93,9 @@ export class AuthService {
     this.mgr.getUser().then(user => {
       return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
         console.log('signed out', resp);
-        setTimeout(5000, () => {
+        setTimeout(() => {
           console.log('testing to see if fired...');
-        });
+        }, 5000);
       }).catch(function (err) {
         console.log(err);
       });

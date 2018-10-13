@@ -7,7 +7,8 @@ import { ConfirmState } from './confirm.state';
  */
 @Component({
   selector: 'app-confirm-modal-component',
-  templateUrl: './modal.component.html'
+  templateUrl: './modal.component.html',
+  styleUrls: ['modal.component.scss'],
 })
 export class ConfirmModalComponent {
 

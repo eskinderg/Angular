@@ -1,4 +1,4 @@
-import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as NotesActions from '../actions/note';
 import { Note } from '../models/note';
 
@@ -50,15 +50,6 @@ export function reducer(state = initialState , action: NotesActions.Actions): St
   }
 };
 
-function noteSaved(payload:  Note, state: Note) {
-  if ( payload === undefined ) {
-    return state
-  } else if (state.id === payload.id) {
-    return payload;
-  } else if (state.id === undefined) {
-    return payload;
-  }
-}
 
 export const getNoteSTate = createFeatureSelector<State>('notes');
 
