@@ -4,7 +4,6 @@ var electron_1 = require("electron");
 var path = require("path");
 var url = require("url");
 var win, serve;
-
 var args = process.argv.slice(1);
 serve = args.some(function (val) { return val === '--serve'; });
 function createWindow() {

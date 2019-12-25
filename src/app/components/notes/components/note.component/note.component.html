@@ -1,18 +1,25 @@
-<div class="note-container"
-  [style.top.px] = "note.top"
-  [style.left.px] = "note.left"
-  [style.background] = "note.colour"
-    [style.width.px]="note.width"
-    [style.height.px]="note.height"
-     appMovable
-     (dragEnd)="handleChangeNotePosition($event)"
-  >
-  <span class="fa fa-bin2" (click)="handleNoteDelete(note)"></span>
-  <textarea
-    #noteText
-    [style.width.px]="note.width"
-    [style.height.px]="note.height"
-    (resize) = "handleResizeNote($event)"
-    (blur)="handleChangeNoteText(noteText.value)"
-    [ngClass] = "note.colour + '-note'">{{note.text}}</textarea>
+<div  #notediv
+      cdkDrag class     = "card"
+      [style.width.px]  = "note.width"
+      [style.height.px] = "note.height"
+      [style.top.px]    = "note.top"
+      [style.left.px]   = "note.left"
+      (cdkDragEnded)    = "dragEnded($event)"
+>
+    <div cdkDragHandle class="card-header">
+
+      <span  class="del fa fa-bin2" (click)="handleNoteDelete(note)"></span>
+      <span class="clear"></span>
+      <!-- {{ header }} -->
+    </div>
+    <div [ngClass] = "note.colour + '-note'" class="card-block">
+    </div>
+
+    <app-textarea-expanded
+        #notediv
+        (note)      = "note"
+        [(ngModel)] = "note.text"
+        (onChange)  = "handleChangeNoteText(textData)"
+    >
+    </app-textarea-expanded>
 </div>

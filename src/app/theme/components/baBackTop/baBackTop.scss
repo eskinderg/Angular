@@ -16,9 +16,11 @@ $height: 52px;
   text-align: center;
   opacity: 0.4;
   // color: $primary;
+  color: #fff;
   // background-color: rgba(0, 0, 0, 0.75);
   border-radius: 50%;
-  line-height: 46px;
+  line-height: 40px;
+  background:#4280f7;
   &:hover {
     opacity: 0.8;
   }

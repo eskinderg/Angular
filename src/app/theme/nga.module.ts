@@ -2,11 +2,13 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ScrollbarModule } from 'ngx-scrollbar';
 
 import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
 import { BaCardComponent } from './components/baCard/baCard.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
+import { TextareaExpandedComponent } from './components/textAreaExpanded/textAreaExpanded.component';
 
 import {
   ConfirmService,
@@ -22,6 +24,7 @@ const NGA_COMPONENTS = [
   AppLoadingComponent,
   BarchartComponent,
   ConfirmModalComponent,
+  TextareaExpandedComponent,
   ModalInfoComponent
   // BaAmChart,
   // BaBackTop,
@@ -75,7 +78,8 @@ const NGA_VALIDATORS = [
     ...NGA_COMPONENTS
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ScrollbarModule
     // RouterModule,
     // FormsModule,
     // ReactiveFormsModule,

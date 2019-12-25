@@ -1,8 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { NotesApiService } from '../services/notes.api.service';
-import { NoteComponent } from './note.component/note.component';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
 
@@ -14,13 +13,23 @@ import { Note } from '../../../models/note';
   host: { '[@routerFadeInAnimation]': '' }
 })
 export class NotesComponent {
-trappedBoxes = ['Trapped 1', 'Trapped 2'];
+  trappedBoxes = ['Trapped 1', 'Trapped 2'];
   $notes: Observable<Note[]>;
 
   constructor(private notesApiService: NotesApiService) {
     this.$notes = this.notesApiService.getNotes();
   }
 
+  @HostListener('mouseup', ['$event'])
+  onMouseUp($event) {
+    // console.log($event.clientX);
+    // if (this._isDragging) {
+    //   this._isDragging = false;
+    //   if (this._hasDragged) {
+    //     this.endDragEvent.emit({left: this._originalLeft +
+    //       ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
+    //   }
+    }
   onAddNote(colour) {
 
     const newNote = new Note({
@@ -36,7 +45,7 @@ trappedBoxes = ['Trapped 1', 'Trapped 2'];
   }
 
   onChangeNoteText(newText: any , note: Note) {
-    console.log( newText );
+    // console.log( newText );
     this.notesApiService.changeNoteText({...note, text: newText});
   }
 

@@ -10,7 +10,7 @@ import * as jQuery from 'jquery';
 })
 export class BaBackTopComponent implements AfterViewInit {
 
-  @Input() position = 400;
+  @Input() position  = 400;
   @Input() showSpeed = 500;
   @Input() moveSpeed = 1000;
 

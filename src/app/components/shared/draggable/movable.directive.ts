@@ -17,7 +17,7 @@ export class MovableDirective extends DraggableDirective {
     );
   }
 
-  @HostBinding('class.movable') movable = true;
+  @HostBinding('class.movable') movable = false;
 
   position: Position = {x: 0, y: 0};
 

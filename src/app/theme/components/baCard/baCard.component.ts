@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ba-card',
-  templateUrl: './baCard.html',
-  styleUrls: ['bacard.component.scss']
+  templateUrl: './baCard.component.html',
+  styleUrls: ['baCard.component.scss']
 })
 export class BaCardComponent {
   @Input() title: String;
@@ -11,5 +11,6 @@ export class BaCardComponent {
   @Input() cardType: String;
   @Input() header: String;
   @Input() footer: String;
+  @Input() scrollBar: boolean;
   @Input() margin: number;
 }

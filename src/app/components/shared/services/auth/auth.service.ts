@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Injectable, EventEmitter, Output } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { UserManager, User} from 'oidc-client';
-import { Headers, RequestOptions, Response } from '@angular/http';
+import { Headers, RequestOptions } from '@angular/http';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +17,6 @@ export class AuthService {
   userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
   currentUser: User;
   loggedIn = false;
-
   authHeaders: Headers;
 
   constructor(private http: HttpClient , private route: Router) {
@@ -32,6 +31,7 @@ export class AuthService {
           this.loggedIn = false;
         }
       }).catch((err) => {
+        console.error(err);
         this.loggedIn = false;
       });
 
@@ -127,9 +127,9 @@ export class AuthService {
     this.mgr.getUser().then(user => {
       return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
         console.log('signed out', resp);
-        setTimeout(5000, () => {
+        setTimeout(() => {
           console.log('testing to see if fired...');
-        });
+        }, 5000);
       }).catch(function (err) {
         console.log(err);
       });

@@ -1,5 +1,4 @@
-import { storeFreeze } from 'ngrx-store-freeze';
-import { combineReducers, ActionReducer, createSelector, createFeatureSelector } from '@ngrx/store';
+import { ActionReducer} from '@ngrx/store';
 import { ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';

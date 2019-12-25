@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { SlideAnimation } from '../shared/animations/animations';
+// import { SlideAnimation } from '../shared/animations/animations';
 import { Tv } from '../movies/models/tv';
 import { EventApiService } from '../../theme/components/event/event.data.service/event.api.service';
 /**

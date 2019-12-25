@@ -34,7 +34,8 @@
   "linux": {
     "icon": "dist",
     "target": [
-      "AppImage"
+      "deb",
+      "tar.gz"
     ]
   }
 }

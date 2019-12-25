@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
 import { SharedModule } from '../shared/shared.module';
 import { NotesApiService } from './services/notes.api.service';
 import { NotesRoutingModule } from './notes-routing.module';
@@ -33,7 +30,7 @@ import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
     DraggableDirective,
     ResizableTextAreaDirective
   ],
-  exports: [NotesComponent, DraggableDirective],
+  exports: [NotesComponent],
   providers: [NotesApiService, NotesResolver]
 })
 export class NotesModule { }

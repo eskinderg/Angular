@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { JsonpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
@@ -13,9 +12,7 @@ import { NgaModule } from '../../theme/nga.module';
 import { MoviesApiService } from '../movies/movies.service/movies.api.service';
 import { MoviesDataService } from '../movies/movies.service/movies.data.service';
 import { TvsResolve } from '../movies/movies.service/tvs.resolve';
-
-import { EventApiService } from '../../theme/components/event/event.data.service/event.api.service';
-
+import { EventApiService } from 'app/theme/components/event/event.data.service/event.api.service';
 import { ScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({

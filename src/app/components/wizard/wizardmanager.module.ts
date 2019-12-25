@@ -22,7 +22,7 @@ import { NgaModule } from '../../theme/nga.module';
     NgaModule
   ],
   declarations: [
-    WizardManagerComponent,    // AboutUsComponent,
+    WizardManagerComponent,
     WzToolbarComponent,
     ProfileComponent,
     PaymentComponent,

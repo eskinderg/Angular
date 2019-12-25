@@ -16,12 +16,11 @@ export class GenreComponent implements OnInit {
   constructor(
     private _moviesServices: MoviesApiService,
     private router: ActivatedRoute ) {
+    }
 
-  }
-
-  ngOnInit() {
-    this.router.params.subscribe((params) => {
-      this.movies = this.router.snapshot.data['movies'];
-    });
-  }
+    ngOnInit() {
+      this.router.params.subscribe((params) => {
+        this.movies = this.router.snapshot.data['movies'];
+      });
+    }
 }

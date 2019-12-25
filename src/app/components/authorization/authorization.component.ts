@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Observable, from} from 'rxjs';
+import { from } from 'rxjs';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import * as AuthActions from '../../actions/auth';
+// import * as AuthActions from '../../actions/auth';
 import * as fromRoot from '../../reducers';
 /**
  * Class representing authorization endpoint for the client

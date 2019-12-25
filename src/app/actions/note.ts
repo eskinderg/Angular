@@ -3,46 +3,46 @@ import { Note } from '../models/note';
 /*
  List of notes messages
  */
-export const CREATE_NEW_NOTE = 'CREATE_NEW_NOTE';
-export const CREATE_NEW_NOTE_SUCCESS = 'CREATE_NEW_NOTE_SUCCESS';
-export const CREATE_NEW_NOTE_FAIL = 'CREATE_NEW_NOTE_FAIL';
+export const CREATE_NEW_NOTE              = 'CREATE_NEW_NOTE';
+export const CREATE_NEW_NOTE_SUCCESS      = 'CREATE_NEW_NOTE_SUCCESS';
+export const CREATE_NEW_NOTE_FAIL         = 'CREATE_NEW_NOTE_FAIL';
 
-export const CREATE_NOTE = 'CREATE_NOTE';
-export const CREATE_NOTE_SUCCESS = 'CREATE_NOTE_SUCCESS';
-export const CREATE_NOTE_FAIL = 'CREATE_NOTE_FAIL';
+export const CREATE_NOTE                  = 'CREATE_NOTE';
+export const CREATE_NOTE_SUCCESS          = 'CREATE_NOTE_SUCCESS';
+export const CREATE_NOTE_FAIL             = 'CREATE_NOTE_FAIL';
 
-export const UPDATE_NOTE = 'UPDATE_NOTE';
-export const UPDATE_NOTE_SUCCESS = 'UPDATE_NOTE_SUCCESS';
-export const UPDATE_NOTE_FAIL = 'UPDATE_NOTE_FAIL';
+export const UPDATE_NOTE                  = 'UPDATE_NOTE';
+export const UPDATE_NOTE_SUCCESS          = 'UPDATE_NOTE_SUCCESS';
+export const UPDATE_NOTE_FAIL             = 'UPDATE_NOTE_FAIL';
 
-export const UPDATE_NOTE_TEXT = 'UPDATE_NOTE_TEXT';
-export const UPDATE_NOTE_TEXT_SUCCESS = 'UPDATE_NOTE_TEXT_SUCCESS';
-export const UPDATE_NOTE_TEXT_FAIL = 'UPDATE_NOTE_TEXT_FAIL';
+export const UPDATE_NOTE_TEXT             = 'UPDATE_NOTE_TEXT';
+export const UPDATE_NOTE_TEXT_SUCCESS     = 'UPDATE_NOTE_TEXT_SUCCESS';
+export const UPDATE_NOTE_TEXT_FAIL        = 'UPDATE_NOTE_TEXT_FAIL';
 
-export const UPDATE_NOTE_POSITION = 'UPDATE_NOTE_POSITION';
+export const UPDATE_NOTE_POSITION         = 'UPDATE_NOTE_POSITION';
 export const UPDATE_NOTE_POSITION_SUCCESS = 'UPDATE_NOTE_POSITION_SUCCESS';
-export const UPDATE_NOTE_POSITION_FAIL = 'UPDATE_NOTE_POSITION_FAIL';
+export const UPDATE_NOTE_POSITION_FAIL    = 'UPDATE_NOTE_POSITION_FAIL';
 
-export const UPDATE_NOTE_SIZE = 'UPDATE_NOTE_SIZE';
-export const UPDATE_NOTE_SIZE_SUCCESS = 'UPDATE_NOTE_SIZE_SUCCESS';
-export const UPDATE_NOTE_SIZE_FAIL = 'UPDATE_NOTE_SIZE_FAIL';
+export const UPDATE_NOTE_SIZE             = 'UPDATE_NOTE_SIZE';
+export const UPDATE_NOTE_SIZE_SUCCESS     = 'UPDATE_NOTE_SIZE_SUCCESS';
+export const UPDATE_NOTE_SIZE_FAIL        = 'UPDATE_NOTE_SIZE_FAIL';
 
-export const DELETE_NOTE = 'DELETE_NOTE';
-export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
-export const DELETE_NOTE_FAIL = 'DELETE_NOTE_FAIL';
+export const DELETE_NOTE                  = 'DELETE_NOTE';
+export const DELETE_NOTE_SUCCESS          = 'DELETE_NOTE_SUCCESS';
+export const DELETE_NOTE_FAIL             = 'DELETE_NOTE_FAIL';
 
-export const SAVE_NOTE = 'SAVE_NOTE';
-export const SAVE_NOTE_SUCCESS = 'SAVE_NOTE_SUCCESS';
-export const SAVE_NOTE_FAILURE = 'SAVE_NOTE_FAILURE';
-export const ADD_NOTE_FROMSERVER = 'ADD_NOTE_FROMSERVER';
+export const SAVE_NOTE                    = 'SAVE_NOTE';
+export const SAVE_NOTE_SUCCESS            = 'SAVE_NOTE_SUCCESS';
+export const SAVE_NOTE_FAILURE            = 'SAVE_NOTE_FAILURE';
+export const ADD_NOTE_FROMSERVER          = 'ADD_NOTE_FROMSERVER';
 
-export const FETCH_NOTES = 'FETCH_NOTES';
-export const FETCH_NOTES_SUCCESS = 'FETCH_NOTES_SUCCESS';
-export const FETCH_NOTES_FAILURE = 'FETCH_NOTES_FAILURE';
+export const FETCH_NOTES                  = 'FETCH_NOTES';
+export const FETCH_NOTES_SUCCESS          = 'FETCH_NOTES_SUCCESS';
+export const FETCH_NOTES_FAILURE          = 'FETCH_NOTES_FAILURE';
 
-export const TOGGLE_NOTE = 'TOGGLE_NOTE';
-export const TOGGLE_NOTE_SUCCESS = 'TOGGLE_NOTE_SUCCESS';
-export const TOGGLE_NOTE_FAILURE = 'TOGGLE_NOTE_FAILURE';
+export const TOGGLE_NOTE                  = 'TOGGLE_NOTE';
+export const TOGGLE_NOTE_SUCCESS          = 'TOGGLE_NOTE_SUCCESS';
+export const TOGGLE_NOTE_FAILURE          = 'TOGGLE_NOTE_FAILURE';
 
 // ===================================
 //  CREATE NEW NOTE

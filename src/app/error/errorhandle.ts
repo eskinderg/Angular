@@ -20,14 +20,12 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error) {
 
     const loggingService = this.injector.get(LoggingService);
-
-    const location = this.injector.get(LocationStrategy);
+    const location       = this.injector.get(LocationStrategy);
+    const message        = error.message ? error.message : error.toString();
+    const url            = location instanceof PathLocationStrategy ? location.path() : '';
 
     loggingService.error(error);
 
-    const message = error.message ? error.message : error.toString();
-
-    const url = location instanceof PathLocationStrategy ? location.path() : '';
 
     // get the stack trace, lets grab the last 10 stacks only
     // StackTrace.fromError(error).then(stackframes => {

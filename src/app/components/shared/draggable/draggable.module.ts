@@ -11,7 +11,17 @@ import { DraggableHelperDirective } from './draggable-helper.directive';
     CommonModule,
     OverlayModule
   ],
-  declarations: [DraggableDirective, MovableDirective, MovableAreaDirective, DraggableHelperDirective],
-  exports: [DraggableDirective, MovableDirective, MovableAreaDirective, DraggableHelperDirective]
+  declarations: [
+    DraggableDirective,
+    MovableDirective,
+    MovableAreaDirective,
+    DraggableHelperDirective
+  ],
+  exports: [
+    DraggableDirective,
+    MovableDirective,
+    MovableAreaDirective,
+    DraggableHelperDirective
+  ]
 })
 export class DraggableModule { }

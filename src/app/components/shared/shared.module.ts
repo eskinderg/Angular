@@ -8,11 +8,12 @@ import { AuthGuardService } from './services/auth/auth-guard.service';
 // import { AuthService } from './services/auth/auth.service';
 import { AuthService } from './../../shared/auth.service';
 
-
 import { HeaderComponent } from './header/header.component';
 import { UserInfoComponent } from './header/userinfo/userinfo.component';
 import { FooterComponent } from './footer/footer.component';
 import { TruncatePipe } from '../movies/directives/truncate';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -33,6 +34,7 @@ import { TruncatePipe } from '../movies/directives/truncate';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    DragDropModule,
     TruncatePipe
   ]
 })

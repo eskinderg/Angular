@@ -20,10 +20,10 @@ export class DraggableDirective {
   @HostListener('mousedown', ['$event'])
   onMouseDown($event) {
     if ($event.target.style.position === 'absolute' && $event.target.style.left && $event.target.style.top) {
-      this._hasDragged = false;
-      this._isDragging = true;
-      this._originalLeft = parseInt($event.target.style.left, 10);
-      this._originalTop = parseInt($event.target.style.top, 10);
+      this._hasDragged      = false;
+      this._isDragging      = true;
+      this._originalLeft    = parseInt($event.target.style.left, 10);
+      this._originalTop     = parseInt($event.target.style.top, 10);
       this._originalClientX = $event.clientX;
       this._originalClientY = $event.clientY;
     } else {

@@ -25,9 +25,9 @@ export function main() {
         TestBed
           .compileComponents()
           .then(() => {
-            let fixture = TestBed.createComponent(HomeComponent);
-            let homeInstance = fixture.debugElement.componentInstance;
-            let homeDOMEl = fixture.debugElement.nativeElement;
+            // let fixture = TestBed.createComponent(HomeComponent);
+            // let homeInstance = fixture.debugElement.componentInstance;
+            // let homeDOMEl = fixture.debugElement.nativeElement;
 
             fixture.detectChanges();
           });
