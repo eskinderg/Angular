@@ -13,5 +13,20 @@
         "release": true,
         "server": true,
         "coverage": true
-    }
+    },
+    "sqltools.connections": [
+        {
+            "askForPassword": true,
+            "database": "mydb",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "MyConnection",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "esk"
+        }
+    ]
 }

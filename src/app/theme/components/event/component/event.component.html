@@ -4,10 +4,10 @@
 <div style="height: 400px">
   <ng-scrollbar thumbClass="custom-scrollbars">
     <app-event-list
-                [events]="events"
-                (toggle)="onToggleEvent($event)"
-                (remove)="onRemoveEvent($event)"
-                (update)="onUpdateEvent($event)">
+      [events]="events"
+      (toggle)="onToggleEvent($event)"
+      (remove)="onRemoveEvent($event)"
+      (update)="onUpdateEvent($event)">
     </app-event-list>
 
   </ng-scrollbar>

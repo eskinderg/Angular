@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  userName = 'Kukusha';
+  userName = 'user';
   password = '123001';
   loginFailed = false;
   userProfile: object;

@@ -43,7 +43,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
       resourceServer: {
         allowedUrls: ['http://localhost:3000/api'],
         sendAccessToken: true
-
       }
     }),
     NgaModule.forRoot(),
@@ -58,15 +57,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     NotesDataService,
     EventDataService,
     LoggingService,
-    {
-      provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true
-    },
-    {
-      provide: APP_BASE_HREF, useValue: '/'
-    },
-    {
-      provide: ErrorHandler, useClass: GlobalErrorHandler
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
+    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [AppComponent]
 

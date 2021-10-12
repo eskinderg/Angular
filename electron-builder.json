@@ -34,8 +34,7 @@
   "linux": {
     "icon": "dist",
     "target": [
-      "deb",
-      "tar.gz"
+      "deb"
     ]
   }
 }

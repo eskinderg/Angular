@@ -10,6 +10,9 @@ import { ConfirmService } from './theme/components/modal/confirm.service';
 export class GlobalHttpInterceptor implements HttpInterceptor {
 
   // constructor(public auth: AuthService) {}
+  /**
+   * @param {ConfirmService} confirmService - Confirm Dialog service
+   */
   constructor(private confirmService: ConfirmService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

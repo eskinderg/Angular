@@ -14,7 +14,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private injector: Injector) { }
 
   /**
-   * Hangles errors
+   * Handles error
    * @param {error} error - error thrown
    */
   handleError(error) {

@@ -1,17 +1,17 @@
 <!-- <h3>{{title}}</h3> -->
 <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Complete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr  *ngFor="let event of events | async">
-            <th scope="row">{{ event.id }}</th>
-            <td>{{ event.title }}</td>
-            <td>{{ event.complete }}</td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Complete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let event of events | async">
+      <th scope="row">{{ event.id }}</th>
+      <td>{{ event.title }}</td>
+      <td>{{ event.complete }}</td>
+    </tr>
+  </tbody>
 </table>

@@ -17,7 +17,7 @@ export const environment = {
     post_logout_redirect_uri:            'http://localhost:4200/',
     popup_post_logout_redirect_uri:      'http://localhost:4200',
     response_type:                       'id_token token',
-    scope:                               'openid email profile api2.full_access',
+    scope:                               'openid email profile api2',
     silent_redirect_uri:                 'http://localhost:4200/silent-renew.html',
     automaticSilentRenew:                true,
     accessTokenExpiringNotificationTime: 60,

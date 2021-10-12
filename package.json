@@ -1,7 +1,7 @@
 {
-  "name": "angular-project",
-  "version": "2.0.0",
-  "license": "MIT",
+  "name": "Angular",
+  "version": "7.0.1",
+  "description": "Application uses angular as it's javascript framework.\nProvides an example of how to use Angular app with Electron. \n It uses external API to fetch movie data.",
   "scripts": {
     "postinstall": "npm run postinstall:electron && npx electron-builder install-app-deps",
     "postinstall:web": "node postinstall-web",

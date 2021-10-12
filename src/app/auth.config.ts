@@ -7,5 +7,6 @@ export const authConfig: AuthConfig = {
   responseType: 'id_token token',
   scope: 'openid email profile api2.full_access',
   showDebugInformation: true,
-  oidc: false
+  oidc: true
+  // oidc: false
 }

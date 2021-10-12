@@ -1,4 +1,4 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
+import {throwError as observableThrowError, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, Jsonp} from '@angular/http';
 import { Genre } from '../models/genre';
@@ -11,9 +11,9 @@ import { environment } from '../../../../environments/environment';
 
 const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
+
 @Injectable()
 export class MoviesDataService {
-
 
   apikey = API_KEY;
 

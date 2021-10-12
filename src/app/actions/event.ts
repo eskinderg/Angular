@@ -1,9 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Event } from '../models/event';
 
-/**
- List of events messages
- **/
 export const CREATE_EVENT         = 'CREATE_EVENT';
 export const CREATE_EVENT_SUCCESS = 'CREATE_EVENT_SUCCESS';
 export const CREATE_EVENT_FAIL    = 'CREATE_EVENT_FAIL';
@@ -53,6 +50,9 @@ export class CreateEventSuccess implements Action {
 
   readonly type = CREATE_EVENT_SUCCESS;
 
+/**
+* @param { Event } payload - The new created event
+*/
   constructor (public payload: Event) { }
 }
 
@@ -127,6 +127,9 @@ export class UpdateEventSuccess implements Action {
 
   readonly type = UPDATE_EVENT_SUCCESS;
 
+/**
+* @param { Event } payload - Updated event
+*/
   constructor (public payload: Event) { }
 }
 
