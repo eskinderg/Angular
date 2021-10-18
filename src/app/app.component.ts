@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 
     // for debugging purposes
     if (!environment.production) {
-      console.log('Environment config', environment);
+      // console.log('Environment config', environment);
     }
   }
 

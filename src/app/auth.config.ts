@@ -5,8 +5,7 @@ export const authConfig: AuthConfig = {
   redirectUri: window.location.origin + '/index.html',
   clientId: 'Angular6',
   responseType: 'id_token token',
-  scope: 'openid email profile api2.full_access',
+  scope: ' openid profile api2',
   showDebugInformation: true,
-  oidc: true
-  // oidc: false
+  oidc: false
 }
