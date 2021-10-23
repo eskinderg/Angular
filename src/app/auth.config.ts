@@ -1,7 +1,8 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'http://localhost:5000',
+  issuer: 'http://192.168.1.5:8080/auth/realms/master',
+  requireHttps: false,
   redirectUri: window.location.origin + '/index.html',
   clientId: 'Angular6',
   responseType: 'id_token token',
