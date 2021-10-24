@@ -87,12 +87,15 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithPassword() {
-    this.store.dispatch(
-      new AuthActions.LoginEvent(
-        this.userName,
-        this.password
-      )
-    );
+
+    this.oauthService.initLoginFlow();
+
+    // this.store.dispatch(
+    //   new AuthActions.LoginEvent(
+    //     this.userName,
+    //     this.password
+    //   )
+    // );
 
   }
 

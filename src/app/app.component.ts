@@ -7,7 +7,7 @@ import * as AuthActions from '../app/actions/auth';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../app/reducers';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { JwksValidationHandler } from 'angular-oauth2-oidc';
+import { NullValidationHandler, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 
 /**
@@ -33,9 +33,10 @@ export class AppComponent implements OnInit {
   ) {
 
     this.oauthService.events.subscribe(e => {
-      if (e.type === 'token_expires') {
-        this.store.dispatch(new AuthActions.TokenExpire('Your session has expired. Please login again.'));
-      }
+      // if (e.type === 'token_expires') {
+        // console.log(e);
+        // this.store.dispatch(new AuthActions.TokenExpire('Your session has expired. Please login again.'));
+      // }
     });
 
     errorLog.onError.subscribe((error) => {
@@ -57,7 +58,7 @@ export class AppComponent implements OnInit {
 
   private configureWithNewConfigApi() {
     this.oauthService.configure(authConfig);
-    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+    this.oauthService.tokenValidationHandler = new NullValidationHandler();
     this.oauthService.setStorage(localStorage);
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
