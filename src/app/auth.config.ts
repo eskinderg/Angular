@@ -1,12 +1,14 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'http://localhost:5000',
-  redirectUri: window.location.origin + '/index.html',
-  clientId: 'Angular6',
+  issuer: 'http://192.168.1.5:8080/auth/realms/master',
+  requireHttps: false,
+  redirectUri: window.location.origin,
+  clientId: 'Angular7',
   responseType: 'id_token token',
-  scope: 'openid email profile api2.full_access',
+  disableAtHashCheck: true,
+  scope: ' openid profile api2',
   showDebugInformation: true,
-  oidc: true
-  // oidc: false
+  oidc: false
+
 }
