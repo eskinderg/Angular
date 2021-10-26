@@ -24,8 +24,8 @@ export class HeaderComponent implements OnInit {
   // public ItemsCount;
 
   constructor (private oauthService: OAuthService, private store: Store<fromEvents.State>) {
-    // var result = this.store.select(fromEvents.getEvents);
-    // result.subscribe(e=> this.ItemsCount = e.length);
+    var result = this.store.select(fromEvents.getEvents);
+    result.subscribe(e=> this.ItemsCount = e.length);
   }
 
   ngOnInit() {

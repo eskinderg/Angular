@@ -6,24 +6,24 @@
 
   <a class="navbar-brand" [routerLink]="['/']">Angular Seed</a>
   <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
-    <ul class="navbar-nav mr-auto">
+    <ul *ngIf="IsLoggedIn" class="navbar-nav mr-auto">
       <li class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
         <a class="nav-link" [routerLink]="['/']" >Home</a>
       </li>
-        <li *ngIf="IsLoggedIn"class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+        <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
-        <li *ngIf="IsLoggedIn"class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a class="nav-link" [routerLink]="['/profile']">Profile</a>
         </li>
-        <li *ngIf="IsLoggedIn"class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a class="nav-link" [routerLink]="['/notes']">Notes</a>
         </li>
-        <li *ngIf="IsLoggedIn"class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+        <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <a class="nav-link" [routerLink]="['/wizard']">Wizard</a>
         </li>
-        <li *ngIf="IsLoggedIn" class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
-          <a class="nav-link" [routerLink]="['/events']">Events <span class="badge badge-light">{{ItemsCount}}</span></a>
+        <li  class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
+          <a class="nav-link" [routerLink]="['/events']">Events <span *ngIf="ItemsCount" class="badge badge-light">{{ItemsCount}}</span></a>
         </li>
         <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <a class="nav-link" [routerLink]="['/movies']">Movies</a>
