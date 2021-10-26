@@ -1,4 +1,4 @@
-<div *ngIf="givenName; else logIn"  ngbDropdown placement="bottom-right" class="d-inline-block">
+<div *ngIf="isLoggedIn(); else logIn"  ngbDropdown placement="bottom-right" class="d-inline-block">
     <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{givenName}}</button>
     <!-- <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.given_name }}</button> -->
     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">

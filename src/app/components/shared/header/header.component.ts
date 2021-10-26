@@ -1,6 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { Store } from '@ngrx/store';
+import * as fromEvents from '../../../reducers/events';
+import { count, takeUntil } from 'rxjs/operators';
+
 /**
  * This class represents the Header Component.
  */
@@ -11,14 +15,17 @@ import { OAuthService } from 'angular-oauth2-oidc';
 })
 export class HeaderComponent implements OnInit {
 
-
   @Output() signout: EventEmitter<any> = new EventEmitter();
   public isExpanded = false;
   _user: any;
+  ItemsCount = 0;
   // name: any;
   // claims: any
-  constructor (private oauthService: OAuthService) {
+  // public ItemsCount;
 
+  constructor (private oauthService: OAuthService, private store: Store<fromEvents.State>) {
+    // var result = this.store.select(fromEvents.getEvents);
+    // result.subscribe(e=> this.ItemsCount = e.length);
   }
 
   ngOnInit() {
@@ -40,5 +47,15 @@ export class HeaderComponent implements OnInit {
   onSignout() {
     // this.service.logout();
   }
+
+  get IsLoggedIn() {
+    return this.oauthService.hasValidAccessToken();
+  }
+
+
+  // get EventItemCount() {
+  //   // return this.store.select(fromEvents.initialState.events.length)
+  //   return 1;
+  // }
 
 }

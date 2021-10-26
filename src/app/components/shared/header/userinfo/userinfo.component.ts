@@ -36,7 +36,7 @@ export class UserInfoComponent {
   }
 
   isLoggedIn() {
-    return this.authService.isLoggedIn();
+    return this.oauthService.hasValidAccessToken();
   }
 
   get givenName() {

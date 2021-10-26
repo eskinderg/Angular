@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router';
       { path: 'notes', loadChildren: './components/notes/notes.module#NotesModule' },
       { path: 'wizard', loadChildren: './components/wizard/wizardmanager.module#WizardManagerModule' },
       { path: 'login', loadChildren: './components/login/login.module#LoginModule'},
-      { path: 'movies', loadChildren: './components/movies/movies.module#MoviesModule' }
+      { path: 'movies', loadChildren: './components/movies/movies.module#MoviesModule' },
+      { path: 'events', loadChildren: './components/events/events.module#EventsModule' }
     ], {useHash: true})
   ],
   exports: [RouterModule]
