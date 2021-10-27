@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AuthService } from './auth.service';
 /**
  * This class represents AuthGuardService.
  */
@@ -29,7 +28,6 @@ export class AuthGuardService implements CanActivate {
       return false
     }
 
-    // return this.authService.isLoggedInObs();
   }
 
 }

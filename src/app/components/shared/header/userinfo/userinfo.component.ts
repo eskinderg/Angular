@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output , OnInit} from '@angular/core';
-import { AuthService } from '../../../../shared/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromAuth from '../../../../reducers/auth';
@@ -21,8 +20,7 @@ export class UserInfoComponent {
   constructor(
     private router: Router,
     private store: Store<fromAuth.State>,
-    private oauthService: OAuthService,
-    private authService: AuthService
+    private oauthService: OAuthService
   ) { }
 
   login() {

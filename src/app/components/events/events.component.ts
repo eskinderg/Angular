@@ -4,7 +4,6 @@ import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Observable } from 'rxjs';
 import { ConfirmService } from '../../theme/components/modal/confirm.service';
-import { AuthService } from '../../shared/auth.service';
 import { User } from 'oidc-client';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../reducers/events';
@@ -21,7 +20,7 @@ export class EventsComponent implements OnInit {
 
   public events$;
 
-  constructor(private authService: AuthService, private store: Store<fromEvents.State>) {
+  constructor(private store: Store<fromEvents.State>) {
     this.store.dispatch({ type: 'FETCH_EVENTS' });
   }
 

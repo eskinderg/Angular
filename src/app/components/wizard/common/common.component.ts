@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 /**
  * This class represents the HeaderComponent.

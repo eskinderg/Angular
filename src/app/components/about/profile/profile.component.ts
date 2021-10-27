@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../../shared/auth.service';
 import { User } from 'oidc-client';
 import { ConfirmService } from '../../../theme/components/modal/confirm.service';
 
@@ -14,9 +13,7 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   public user: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService,
-    private confirmService: ConfirmService) {
-    this.user = this.authService.getProfile();
+  constructor(private fb: FormBuilder,private confirmService: ConfirmService) {
   }
 
   ngOnInit() {
