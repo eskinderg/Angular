@@ -4,8 +4,7 @@ import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Observable } from 'rxjs';
 import { ConfirmService } from '../../theme/components/modal/confirm.service';
-import { AuthService } from '../../shared/auth.service';
-import { User } from 'oidc-client';
+import { OAuthService } from 'angular-oauth2-oidc';
 /**
  * This class represents the lazy loaded ProfileComponent.
  */
@@ -23,8 +22,8 @@ export class ProfileComponent implements OnInit {
   public y: number;
   public user: any;
 
-  constructor(private authService: AuthService) {
-    this.user = this.authService.getProfile();
+  constructor(private authService: OAuthService) {
+    this.user = this.authService.getIdentityClaims();
   }
 
   ngOnInit() { }
