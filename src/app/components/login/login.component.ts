@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  userName = 'user';
-  password = '123001';
+  userName = '';
+  password = '';
   loginFailed = false;
   userProfile: object;
   loginForm: FormGroup;
@@ -87,12 +87,15 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithPassword() {
-    this.store.dispatch(
-      new AuthActions.LoginEvent(
-        this.userName,
-        this.password
-      )
-    );
+
+    this.oauthService.initLoginFlow();
+
+    // this.store.dispatch(
+    //   new AuthActions.LoginEvent(
+    //     this.userName,
+    //     this.password
+    //   )
+    // );
 
   }
 

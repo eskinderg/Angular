@@ -19,18 +19,12 @@ export class HomeComponent implements OnInit {
   @HostBinding('@routerFadeInAnimation')
 
   public tvs: Tv[];
-  public events$;
 
-  constructor(private route: ActivatedRoute, private eventApiService: EventApiService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.tvs = this.route.snapshot.data['tvs'];
-    this.events$ = this.eventApiService.getAllEvents();
-  }
-
-  login() {
-    this.events$ = this.eventApiService.getAllEvents();
   }
 
 }

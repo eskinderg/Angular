@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
 
   claims: any;
   name: any;
@@ -23,30 +23,28 @@ export class UserInfoComponent implements OnInit {
     private store: Store<fromAuth.State>,
     private oauthService: OAuthService,
     private authService: AuthService
-  ) {
-
-    this.store.select(fromAuth.getProfile)
-      .subscribe(p => {
-        this.name = p['given_name'];
-      })
-  }
+  ) { }
 
   login() {
-    this.router.navigate(['login']);
+    // this.router.navigate(['login']);
+    this.oauthService.initLoginFlow();
   }
 
   logOut() {
-    this.store.dispatch(new AuthActions.Logout());
-  }
-
-  ngOnInit() {
-    if (this.isLoggedIn()) {
-      this.name = this.oauthService.getIdentityClaims()['given_name'];
-    }
+    this.oauthService.logOut();
+    // this.store.dispatch(new AuthActions.Logout());
   }
 
   isLoggedIn() {
-    return this.authService.isLoggedIn();
+    return this.oauthService.hasValidAccessToken();
+  }
+
+  get givenName() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['given_name'];
   }
 
 }
