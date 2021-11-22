@@ -3,12 +3,12 @@
     <!-- <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.given_name }}</button> -->
     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
         <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
-        <button class="dropdown-item" (click)="logOut()">Logout</button>
+        <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
         <!-- <button class="dropdown-item">Something else is here</button> -->
     </div>
 </div>
 
 <ng-template #logIn>
-    <button type="button" (click)="login()" class="btn btn-primary">Login / SignUp</button>
+    <button id="btnLogin" type="button" (click)="login()" class="btn btn-primary">Login / SignUp</button>
 </ng-template>
 
