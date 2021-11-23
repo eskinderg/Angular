@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { ofType, Actions, Effect } from '@ngrx/effects';
 import { from, of, Observable, Subject, pipe } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { Store, Action } from '@ngrx/store';
@@ -11,8 +11,7 @@ export class EventsEffect {
 
   @Effect()
   save = this.actions$
-    .ofType(EventsActions.CREATE_EVENT)
-    .pipe(
+    .pipe(ofType(EventsActions.CREATE_EVENT),
       switchMap((action: EventsActions.CreateEvent) =>
         this.eventsDataService.createEvent(action.payload)
         .pipe(
@@ -24,8 +23,7 @@ export class EventsEffect {
 
   @Effect()
   update: Observable<Action> = this.actions$
-    .ofType(EventsActions.UPDATE_EVENT)
-    .pipe(
+    .pipe(ofType(EventsActions.UPDATE_EVENT),
       switchMap((action: EventsActions.UpdateEvent) =>
         this.eventsDataService.updateEvent(action.payload.newValue)
         .pipe(
@@ -37,8 +35,7 @@ export class EventsEffect {
 
   @Effect()
   toggleEvent: Observable<Action> = this.actions$
-    .ofType(EventsActions.TOGGLE_EVENT)
-    .pipe(
+    .pipe(ofType(EventsActions.TOGGLE_EVENT),
       switchMap((action: EventsActions.ToggleEvent) =>
         this.eventsDataService.toggleEvent(action.payload)
         .pipe(
@@ -50,8 +47,7 @@ export class EventsEffect {
 
   @Effect()
   fetch: Observable<Action> = this.actions$
-    .ofType(EventsActions.FETCH_EVENTS)
-    .pipe(
+    .pipe(ofType(EventsActions.FETCH_EVENTS),
       switchMap(() => this.eventsDataService.getAllEvents()
         .pipe(
           map(events => new EventsActions.FetchEventsSuccess(events)),
@@ -62,8 +58,7 @@ export class EventsEffect {
 
   @Effect()
   delete = this.actions$
-    .ofType(EventsActions.DELETE_EVENT)
-    .pipe(
+    .pipe(ofType(EventsActions.DELETE_EVENT),
       switchMap((action: EventsActions.DeleteEvent) =>
         this.eventsDataService.deleteEventById(action.payload)
         .pipe(

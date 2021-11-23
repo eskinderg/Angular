@@ -46,7 +46,7 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
 })
 export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
 
-  @ViewChild('textarea') private textarea: ElementRef;
+  @ViewChild('textarea', {static:true}) private textarea: ElementRef;
 
   @Input() textData: string;
   @Output() onChange = new EventEmitter(false);

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
 import { UserManager, User} from 'oidc-client';
-import { Headers, RequestOptions, Response } from '@angular/http';
+// import { Headers, RequestOptions, Response } from '@angular/http';
 import { of, Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';

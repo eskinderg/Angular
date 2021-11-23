@@ -4,6 +4,7 @@ import { Movie } from '../models/movie';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { FormControl } from '@angular/forms';
 
+import { empty } from 'rxjs';
 
 import { of, Observable, Subject, pipe } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
@@ -63,8 +64,9 @@ export class SearchComponent implements OnInit {
       this._moviesServices.serachMovies(value)
         .pipe(
           map(res => {
-            const movies = res.results;
-            return movies.map((movie: Movie) => new Movie(movie));
+            // const movies = res.results;
+            return empty();
+            // return movies.map((movie: Movie) => new Movie(movie));
           })
         )
         .subscribe(m => {

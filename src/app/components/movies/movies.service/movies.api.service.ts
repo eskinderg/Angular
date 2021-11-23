@@ -6,15 +6,17 @@ import { MoviesDataService } from './movies.data.service';
 import { Observable, empty } from 'rxjs';
 
 
-
 @Injectable()
 export class MoviesApiService {
 
-  constructor(private api: MoviesDataService) { }
+  constructor(
+    private api: MoviesDataService
+  ) { }
 
   serachMovies(searchStr: string) {
     if (searchStr !== undefined && searchStr !== '') {
-      return this.api.searchMovies(searchStr);
+      // return this.api.searchMovies(searchStr);
+    return empty();
     }
     return empty();
   }

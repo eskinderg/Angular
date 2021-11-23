@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect } from '@ngrx/effects'
+import { Actions, Effect, ofType} from '@ngrx/effects'
 import { empty } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
 @Injectable()
 export class AuthEffect {
   @Effect({ dispatch: false })
-  login = this.actions$.ofType(AuthActions.LOGIN_EVENT).pipe(
+  login = this.actions$.pipe(ofType(AuthActions.LOGIN_EVENT),
     switchMap((action: AuthActions.LoginEvent) =>
       this.oauthService
         .fetchTokenUsingPasswordFlowAndLoadUserProfile(
@@ -24,7 +24,7 @@ export class AuthEffect {
   )
 
   @Effect({ dispatch: false })
-  loginSuccess = this.actions$.ofType(AuthActions.LOGIN_EVENT_SUCCESS).pipe(
+  loginSuccess = this.actions$.pipe(ofType(AuthActions.LOGIN_EVENT_SUCCESS),
     switchMap((action: AuthActions.LoginEventSuccess) =>
       this.oauthService
         .loadUserProfile()
@@ -38,7 +38,7 @@ export class AuthEffect {
   )
 
   @Effect({ dispatch: false })
-  tokenExpire = this.actions$.ofType(AuthActions.TOKEN_EXPIRE).pipe(
+  tokenExpire = this.actions$.pipe(ofType(AuthActions.TOKEN_EXPIRE),
     switchMap((action: AuthActions.TokenExpire) => {
       this.store.dispatch(new AuthActions.Logout(action.message))
       return empty()
@@ -46,7 +46,7 @@ export class AuthEffect {
   )
 
   @Effect({ dispatch: false })
-  logout = this.actions$.ofType(AuthActions.LOGOUT).pipe(
+  logout = this.actions$.pipe(ofType(AuthActions.LOGOUT),
     switchMap((action: AuthActions.Logout) => {
       this.oauthService.logOut()
       this.store.dispatch(new EventActions.EventsClear())
@@ -57,8 +57,7 @@ export class AuthEffect {
 
   @Effect({ dispatch: false })
   routeToHome = this.actions$
-    .ofType(AuthActions.ROUTE_TO_HOME)
-    .pipe(
+    .pipe(ofType(AuthActions.ROUTE_TO_HOME),
       switchMap((action: AuthActions.RouteToHome) =>
         this.router.navigate([`/`])
       )
@@ -66,8 +65,7 @@ export class AuthEffect {
 
   @Effect({ dispatch: false })
   routeToLogin = this.actions$
-    .ofType(AuthActions.ROUTE_TO_LOGIN)
-    .pipe(
+    .pipe(ofType(AuthActions.ROUTE_TO_LOGIN),
       switchMap((action: AuthActions.RouteToLogin) =>
         this.router.navigate([
           `/login`,

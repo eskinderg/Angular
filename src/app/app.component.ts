@@ -20,7 +20,7 @@ import { authConfig } from './auth.config';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('spinnerElement') spinnerElement: ElementRef;
+  @ViewChild('spinnerElement', {static:true}) spinnerElement: ElementRef;
   errorOccured = false;
 
   constructor(

@@ -25,7 +25,7 @@ export class NoteComponent {
   @Output() changeNoteSize     = new EventEmitter(false);
   @Output() deleteNote         = new EventEmitter(false);
 
-  @ViewChild('notediv') textarea: ElementRef;
+  @ViewChild('notediv', {static:true}) textarea: ElementRef;
 
   constructor( private renderer: Renderer2 ) { }
 

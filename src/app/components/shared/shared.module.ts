@@ -19,7 +19,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule.forRoot()],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule],
   declarations: [
     HeaderComponent,
     UserInfoComponent,

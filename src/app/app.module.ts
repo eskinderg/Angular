@@ -47,7 +47,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     }),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
-    NgbModule.forRoot(),
+    NgbModule,
     !environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
     AppRoutingModule

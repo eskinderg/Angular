@@ -9,7 +9,6 @@ import { MoviesDataService } from './movies.service/movies.data.service';
 import { MoviesApiService } from './movies.service/movies.api.service';
 
 import { NgaModule } from '../../theme/nga.module';
-import { JsonpModule } from '@angular/http';
 
 import { GenreListItemComponent } from './components/genre-list-item/genre-list-item.component';
 import { GenreListComponent } from './components/genre-list/genre-list.component';
@@ -27,7 +26,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgaModule,
     NgbModule,
     MoviesRoutingModule,
-    JsonpModule,
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -42,6 +40,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbdRatingDecimalComponent
   ],
   exports: [MoviesComponent],
-  providers: [MoviesApiService, MoviesDataService]
+  providers: [
+    MoviesApiService,
+    MoviesDataService
+  ]
 })
 export class MoviesModule { }

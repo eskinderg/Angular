@@ -17,7 +17,7 @@ import * as d3 from 'd3'
 })
 export class BarchartComponent implements OnInit, OnChanges {
 
-  @ViewChild('chart') private chartContainer: ElementRef
+  @ViewChild('chart', {static:true}) private chartContainer: ElementRef
 
   @Input() private data: Array<any> = this.generateSampleData()
 

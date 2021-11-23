@@ -14,7 +14,7 @@ export class BaBackTopComponent implements AfterViewInit {
   @Input() showSpeed = 500;
   @Input() moveSpeed = 1000;
 
-  @ViewChild('baBackTop') _selector: ElementRef;
+  @ViewChild('baBackTop', {static:true}) _selector: ElementRef;
 
   ngAfterViewInit (): void {
     this._onWindowScroll();

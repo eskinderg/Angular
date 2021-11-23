@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { UserManager, User} from 'oidc-client';
-import { Headers, RequestOptions } from '@angular/http';
+// import { Headers, RequestOptions } from '@angular/http';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -213,17 +213,18 @@ export class AuthService {
       this.authHeaders.append('Content-Type', 'application/json');
     }
   }
-  private _setRequestOptions(options?: RequestOptions) {
-    if (this.loggedIn) {
-      this._setAuthHeaders(this.currentUser);
-    }
-    if (options) {
-      options.headers.append(this.authHeaders.keys[0], this.authHeaders.values[0]);
-    } else {
-      options = new RequestOptions({ headers: this.authHeaders });
-    }
 
-    return options;
-  }
+  // private _setRequestOptions(options?: RequestOptions) {
+  //   if (this.loggedIn) {
+  //     this._setAuthHeaders(this.currentUser);
+  //   }
+  //   if (options) {
+  //     options.headers.append(this.authHeaders.keys[0], this.authHeaders.values[0]);
+  //   } else {
+  //     options = new RequestOptions({ headers: this.authHeaders });
+  //   }
+
+  //   return options;
+  // }
 
 }

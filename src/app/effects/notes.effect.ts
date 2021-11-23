@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { ofType, Actions, Effect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
 import { Store, Action } from '@ngrx/store';
 import * as NotesActions from '../actions/note';
@@ -10,8 +10,7 @@ import { catchError, switchMap, map } from 'rxjs/operators';
 export class NotesEffect {
   @Effect()
   save = this.actions$
-    .ofType(NotesActions.CREATE_NOTE)
-    .pipe(
+    .pipe(ofType(NotesActions.CREATE_NOTE),
       switchMap((action: NotesActions.CreateNote) =>
         this.notesApiService
           .addNote(action.payload)
@@ -24,8 +23,7 @@ export class NotesEffect {
 
   @Effect()
   updateNoteText: Observable<Action> = this.actions$
-    .ofType(NotesActions.UPDATE_NOTE_TEXT)
-    .pipe(
+    .pipe(ofType(NotesActions.UPDATE_NOTE_TEXT),
       switchMap((action: NotesActions.UpdateNoteText) =>
         this.notesApiService
           .updateNote(action.payload)
@@ -38,8 +36,7 @@ export class NotesEffect {
 
   @Effect()
   updateNotePosition: Observable<Action> = this.actions$
-    .ofType(NotesActions.UPDATE_NOTE_POSITION)
-    .pipe(
+    .pipe(ofType(NotesActions.UPDATE_NOTE_POSITION),
       switchMap((action: NotesActions.UpdateNotePosition) =>
         this.notesApiService
           .updateNote(action.payload)
@@ -52,8 +49,7 @@ export class NotesEffect {
 
   @Effect()
   updateNoteSize: Observable<Action> = this.actions$
-    .ofType(NotesActions.UPDATE_NOTE_SIZE)
-    .pipe(
+    .pipe(ofType(NotesActions.UPDATE_NOTE_SIZE),
       switchMap((action: NotesActions.UpdateNoteSize) =>
         this.notesApiService
           .updateNote(action.payload)
@@ -66,8 +62,7 @@ export class NotesEffect {
 
   @Effect()
   update: Observable<Action> = this.actions$
-    .ofType(NotesActions.UPDATE_NOTE)
-    .pipe(
+    .pipe(ofType(NotesActions.UPDATE_NOTE),
       switchMap((action: NotesActions.UpdateNote) =>
         this.notesApiService
           .updateNote(action.payload)
@@ -80,8 +75,7 @@ export class NotesEffect {
 
   @Effect()
   fetch: Observable<Action> = this.actions$
-    .ofType(NotesActions.FETCH_NOTES)
-    .pipe(
+    .pipe(ofType(NotesActions.FETCH_NOTES),
       switchMap(() =>
         this.notesApiService
           .getNotes()
@@ -96,8 +90,7 @@ export class NotesEffect {
 
   @Effect()
   delete = this.actions$
-    .ofType(NotesActions.DELETE_NOTE)
-    .pipe(
+    .pipe(ofType(NotesActions.DELETE_NOTE),
       switchMap((action: NotesActions.DeleteNote) =>
         this.notesApiService
           .deleteNote(action.payload)

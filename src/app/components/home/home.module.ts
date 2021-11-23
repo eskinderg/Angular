@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
-import { JsonpModule } from '@angular/http';
-
+import { HttpClientJsonpModule } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -18,7 +17,7 @@ import { ScrollbarModule } from 'ngx-scrollbar';
     SharedModule,
     NgaModule,
     HomeRoutingModule,
-    JsonpModule,
+    HttpClientJsonpModule,
     ScrollbarModule
   ],
   declarations: [
@@ -26,6 +25,10 @@ import { ScrollbarModule } from 'ngx-scrollbar';
     TableComponent
   ],
   exports: [HomeComponent],
-  providers: [ MoviesDataService, MoviesApiService, TvsResolve ]
+  providers: [
+    MoviesDataService,
+    MoviesApiService,
+    TvsResolve
+  ]
 })
 export class HomeModule { }
