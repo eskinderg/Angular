@@ -36,10 +36,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/fonts/style.css",
-              {
-                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
-              }
+              "src/assets/fonts/style.css"
             ],
             "scripts": []
           },

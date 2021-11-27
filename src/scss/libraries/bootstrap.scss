@@ -1,6 +1,8 @@
 //Overrides
 // @import "./overrides/card";
 
-@import "./overrides/variables";
+// @import "./overrides/variables";
+
+@import  "./overrides/_variables.scss";
 //Main bootstrap file
 @import "~bootstrap/scss/bootstrap";

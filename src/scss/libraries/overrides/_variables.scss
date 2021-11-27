@@ -1,59 +1,88 @@
-%scope {
-  @import "~bootstrap/scss/functions";
-  @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
 
-  // Colors
-       //$blue: #2a6ada ! global;
-       //$blue: black ! global;
+$primary: $black;
+$secondary: $gray-600;
 
-  // Grayscales
-      // $gray-dark:                 lighten($blue, 10%) !global;
-      // $gray:                      lighten($blue, 21%) !global;
-      // $gray-light:                lighten($blue, 30%) !global;
-      // $gray-lighter:              lighten($blue, 40%) !global;
-      // $gray-lightest:             lighten($blue, 55%) !global;
+$theme-colors: (
+  primary: $primary,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
+);
 
-  // Symantic Color Scheme
-     //$brand-primary: $orange ! global ;
-    // $brand-primary: black !global;
+$link-color:                 $primary;
+$link-hover-color:           $secondary;
 
+// $nav-tabs-link-active-color: yellow;
+$nav-tabs-link-active-bg: lighten($primary, 90%);
 
-  //Fonts
-      // @import url(https://fonts.googleapis.com/css?family=Raleway);
-      // Font Variables
-      // $raleway: 'Raleway', sans-serif;
-      // $open-sans: 'Open Sans', sans-serif;
-      // $font-family-sans-serif: $raleway ! global;
-      // $font-family-serif:      $raleway;
-      // $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-      // $font-family-base:       $font-family-sans-serif !default;
+$card-cap-bg : lighten($primary, 90%);
+$card-cap-fg : $red;
 
+$navbar-dark-color:                 $light;
+$navbar-dark-hover-color:           $light;
+$navbar-dark-active-color:          $info;
+// $navbar-dark-disabled-color:        rgba($white, .25) !default;
 
+$list-group-active-color: $info;
+$list-group-active-bg: $primary;
 
-  // Components
-      // $component-active-color: $white !default;
-      // $component-active-bg:    lighten($brand-primary,25%);
+//
+//%scope {
+//  @import "~bootstrap/scss/functions";
+//  @import "~bootstrap/scss/variables";
 
+//  // Colors
+//       //$blue: #2a6ada ! global;
+//       //$blue: black ! global;
 
-  //nav-bar
-      //$navbar-inverse-hover-color:        $white ! global;
+//  // Grayscales
+//      // $gray-dark:                 lighten($blue, 10%) !global;
+//      // $gray:                      lighten($blue, 21%) !global;
+//      // $gray-light:                lighten($blue, 30%) !global;
+//      // $gray-lighter:              lighten($blue, 40%) !global;
+//      // $gray-lightest:             lighten($blue, 55%) !global;
 
+//  // Symantic Color Scheme
+// $brand-primary: $orange ! global ;
+// $brand-primary: black !global;
 
-  //table
-      //$table-bg-hover:                    $gray-lightest ! global;
+//Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+// Font Variables
+$raleway: 'Raleway', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
+$font-family-sans-serif: $raleway;
+$font-family-serif:      $raleway;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:       $font-family-sans-serif;
 
-  //Card
-       //$card-cap-bg :                      $gray-lightest !global;
-      // $card-spacer-x:                     1rem   ! global;
-      // $card-spacer-y:                     .5rem  ! global;
+//  // Components
+//      // $component-active-color: $white !default;
+//      // $component-active-bg:    lighten($brand-primary,25%);
 
+//  //nav-bar
+//      //$navbar-inverse-hover-color:        $white ! global;
 
-  //List group
-      // $list-group-link-color:             $gray-lig !default;
+//  //table
+//      //$table-bg-hover:                    $gray-lightest ! global;
 
-  // @debug $brand-primary;
-}
+//  //Card
+//       //$card-cap-bg :                      $gray-lightest !global;
+// $card-spacer-x:                     1rem   ! global;
+// $card-spacer-y:                     .5rem  ! global;
 
-// $blue :red;
+//  //List group
+$list-group-link-color:             $primary !default;
+
+//  // @debug $brand-primary;
+//}
+
+//// $blue :red;
 
 // @debug $brand-primary;

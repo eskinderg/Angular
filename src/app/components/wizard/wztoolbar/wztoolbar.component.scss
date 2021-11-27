@@ -1,6 +1,8 @@
+@import "../../../../scss/libraries/overrides/_variables.scss";
+
 .active{
   // font-weight: bold;
-  color:#0275d8  ! important;
+  color: $primary  ! important;
 }
 
 .fa{
@@ -20,7 +22,7 @@
 }
 
 .active-liner{
-  background:#0275d8;
+  background: $primary;
 }
 
 :host{
