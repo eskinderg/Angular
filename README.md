@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/eskinderg/Angular.svg?branch=master)](https://travis-ci.org/eskinderg/Angular) [![Build status](https://ci.appveyor.com/api/projects/status/xortrnvhoggxxsxd/branch/master?svg=true)](https://ci.appveyor.com/project/eskinderg/angular-cli/branch/master)
+[![CI](https://github.com/eskinderg/Angular/actions/workflows/CI.yml/badge.svg)](https://github.com/eskinderg/Angular/actions/workflows/CI.yml)
 
 Angular 6
 
