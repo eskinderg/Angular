@@ -21,7 +21,7 @@ export class NotesComponent {
   }
 
   @HostListener('mouseup', ['$event'])
-  onMouseUp($event) {
+  onMouseUp() {
     // console.log($event.clientX);
     // if (this._isDragging) {
     //   this._isDragging = false;
@@ -30,7 +30,7 @@ export class NotesComponent {
     //       ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
     //   }
     }
-  onAddNote(colour) {
+  onAddNote(colour: any) {
 
     const newNote = new Note({
       text: '',
@@ -49,13 +49,13 @@ export class NotesComponent {
     this.notesApiService.changeNoteText({...note, text: newText});
   }
 
-  onChangeNotePosition( {top , left} , note: Note) {
-    this.notesApiService.changeNotePosition({...note, left: left, top: top});
-  }
+  // onChangeNotePosition( {top , left} , note: Note): void {
+    // this.notesApiService.changeNotePosition({...note, left: left, top: top});
+  // }
 
-  onChangeNoteSize( {height , width} , note: Note) {
-    this.notesApiService.changeNoteSize({...note, width: width, height: height});
-  }
+  // onChangeNoteSize( {height , width} , note: Note) {
+    // this.notesApiService.changeNoteSize({...note, width: width, height: height});
+  // }
 
   onNoteDelete(note: Note) {
     this.notesApiService.deleteNote(note);

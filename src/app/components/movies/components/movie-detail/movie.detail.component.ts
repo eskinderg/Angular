@@ -11,8 +11,8 @@ import { MoviesApiService } from '../../movies.service/movies.api.service'
 })
 export class MovieDetailComponent implements OnInit {
 
-  movie: Movie;
-  movieRating;
+  movie: Movie | undefined;
+  movieRating: number | undefined;
 
   constructor(private route: ActivatedRoute) {
   }

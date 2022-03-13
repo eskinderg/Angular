@@ -10,7 +10,7 @@ import { NgaModule } from '../../theme/nga.module';
 import { MoviesApiService } from '../movies/movies.service/movies.api.service';
 import { MoviesDataService } from '../movies/movies.service/movies.data.service';
 import { TvsResolve } from '../movies/movies.service/tvs.resolve';
-import { ScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { ScrollbarModule } from 'ngx-scrollbar';
     NgaModule,
     HomeRoutingModule,
     HttpClientJsonpModule,
-    ScrollbarModule
+    NgScrollbarModule
   ],
   declarations: [
     HomeComponent,

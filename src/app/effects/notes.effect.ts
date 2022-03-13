@@ -47,18 +47,18 @@ export class NotesEffect {
       )
     )
 
-  @Effect()
-  updateNoteSize: Observable<Action> = this.actions$
-    .pipe(ofType(NotesActions.UPDATE_NOTE_SIZE),
-      switchMap((action: NotesActions.UpdateNoteSize) =>
-        this.notesApiService
-          .updateNote(action.payload)
-          .pipe(
-            map(note => new NotesActions.UpdateNoteSizeSuccess(note)),
-            catchError(err => of(new NotesActions.UpdateNoteSizeFail(err)))
-          )
-      )
-    )
+  // @Effect()
+  // updateNoteSize: Observable<Action> = this.actions$
+  //   .pipe(ofType(NotesActions.UPDATE_NOTE_SIZE),
+  //     switchMap((action: NotesActions.UpdateNoteSize) =>
+  //       this.notesApiService
+  //         .updateNote(action.payload)
+  //         .pipe(
+  //           map(note => new NotesActions.UpdateNoteSizeSuccess(note)),
+  //           catchError(err => of(new NotesActions.UpdateNoteSizeFail(err)))
+  //         )
+  //     )
+  //   )
 
   @Effect()
   update: Observable<Action> = this.actions$

@@ -17,13 +17,13 @@ export class ResizableTextAreaDirective {
   _isDragging = false;
   _hasDragged = false;
 
-  width: number;
-  height: number;
+  width: number | undefined;
+  height: number | undefined;
 
-  mouseMoveListener: Function;
+  mouseMoveListener: Function | undefined;
 
   @HostListener('mousedown', ['$event.target'])
-  onMouseDown(el) {
+  onMouseDown() {
     this._hasDragged = false;
     this._isDragging = true;
     // this.mouseMoveListener = this.renderer.listen('document', 'mousemove', () => {
@@ -35,7 +35,7 @@ export class ResizableTextAreaDirective {
     // });
   }
   @HostListener('mousemove', ['$event.target'])
-  onMouseMove(el) {
+  onMouseMove(el: { offsetWidth: number | undefined; offsetHeight: number | undefined; }) {
     if (this._isDragging) {
       this._hasDragged = true;
       this.width = el.offsetWidth;
@@ -44,7 +44,7 @@ export class ResizableTextAreaDirective {
   }
 
   @HostListener('mouseup', ['$event.target'])
-  onMouseUp(el) {
+  onMouseUp() {
     if (this._isDragging) {
       this._isDragging = false;
       if (this._hasDragged) {

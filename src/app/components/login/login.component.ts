@@ -22,9 +22,9 @@ export class LoginComponent implements OnInit {
   userName = '';
   password = '';
   loginFailed = false;
-  userProfile: object;
-  loginForm: FormGroup;
-  message: string;
+  userProfile: object | undefined;
+  loginForm: FormGroup | undefined;
+  message: string | undefined;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -73,7 +73,8 @@ export class LoginComponent implements OnInit {
       return null;
     }
 
-    return claims['given_name'];
+    return null;
+    // return claims['given_name'];
   }
 
   get familyName() {
@@ -83,7 +84,8 @@ export class LoginComponent implements OnInit {
       return null;
     }
 
-    return claims['family_name'];
+    return null;
+    // return claims['family_name'];
   }
 
   loginWithPassword() {

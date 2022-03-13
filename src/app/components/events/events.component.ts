@@ -19,7 +19,7 @@ import * as fromEvents from '../../reducers/events';
 })
 export class EventsComponent implements OnInit {
 
-  public events$;
+  public events$: any;
 
   constructor(private authService: AuthService, private store: Store<fromEvents.State>) {
     this.store.dispatch({ type: 'FETCH_EVENTS' });

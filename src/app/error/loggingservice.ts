@@ -12,7 +12,7 @@ export class LoggingService {
 
   constructor() { }
 
-  error(error) {
+  error(error:any) {
     this.onError.emit(error);
   }
   // public updateTodo(todo: Todo): Observable<Todo> {

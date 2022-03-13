@@ -31,7 +31,7 @@ export class MoviesComponent implements OnInit  {
 
     }
 
-  search(searchStr) {
+  search() {
     // this.moviesApiService.serachMovies(searchStr)
     //   .subscribe( (res) => {
     //     this.movies = res.results;

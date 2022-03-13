@@ -81,7 +81,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
     this.renderer[action](div, 'disabled');
   }
 
-  change( $event ) {
+  change( $event: any ) {
 
     // console.log(this.textData + $event.data);
     console.log($event);

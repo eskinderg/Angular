@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Event } from '../../event';
+import { Observable, of } from "rxjs";
 
 @Component(
   {
@@ -10,7 +11,7 @@ import { Event } from '../../event';
 )
 export class EventListComponent {
 
-  @Input() events: Event[];
+  @Input() events: Observable<Event[]>;
 
   @Output() remove: EventEmitter<Event> = new EventEmitter();
   @Output() toggle: EventEmitter<Event> = new EventEmitter();

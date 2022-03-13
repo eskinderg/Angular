@@ -14,7 +14,7 @@ export class BaBackTopComponent implements AfterViewInit {
   @Input() showSpeed = 500;
   @Input() moveSpeed = 1000;
 
-  @ViewChild('baBackTop', {static:true}) _selector: ElementRef;
+  @ViewChild('baBackTop', {static:true}) _selector: ElementRef | undefined;
 
   ngAfterViewInit (): void {
     this._onWindowScroll();
@@ -28,7 +28,7 @@ export class BaBackTopComponent implements AfterViewInit {
 
   @HostListener('window:scroll')
   _onWindowScroll(): void {
-    const el = this._selector.nativeElement;
-    window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
+    // const el = this._selector.nativeElement;
+    // window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
   }
 }

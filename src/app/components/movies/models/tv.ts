@@ -1,15 +1,15 @@
 export class Tv {
-  id: number;
-  name: string;
-  original_name: string;
-  title: string;
-  vote_count: string;
-  vote_average: string;
-  overview: string;
-  popularity: string;
-  backdrop_path: string;
-  poster_path: string;
-  first_air_date: string;
+  id: number | undefined;
+  name: string | undefined;
+  original_name: string | undefined;
+  title: string | undefined;
+  vote_count: string | undefined;
+  vote_average: string | undefined;
+  overview: string | undefined;
+  popularity: string | undefined;
+  backdrop_path: string | undefined;
+  poster_path: string | undefined;
+  first_air_date: string | undefined;
   origin_country: any;
 
   constructor(values: Object = {}) {

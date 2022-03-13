@@ -249,7 +249,7 @@ export class UpdateNoteSizeFail implements Action {
 
   readonly type = UPDATE_NOTE_SIZE_FAIL;
 
-  constructor (public payload: string) { }
+  // constructor (public payload: string) { }
 }
 
 export type Actions =

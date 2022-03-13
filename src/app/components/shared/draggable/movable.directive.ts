@@ -21,11 +21,11 @@ export class MovableDirective extends DraggableDirective {
 
   position: Position = {x: 0, y: 0};
 
-  private startPosition: Position;
+  private startPosition: Position | undefined;
 
   @Input('appMovableReset') reset = false;
 
-  constructor(private sanitizer: DomSanitizer, public element: ElementRef) {
+  constructor(private sanitizer: DomSanitizer, public override element: ElementRef) {
     super(element);
   }
 
@@ -39,8 +39,8 @@ export class MovableDirective extends DraggableDirective {
 
   @HostListener('dragMove', ['$event'])
   onDragMove(event: PointerEvent) {
-    this.position.x = event.clientX - this.startPosition.x;
-    this.position.y = event.clientY - this.startPosition.y;
+    // this.position.x = event.clientX - this.startPosition.x;
+    // this.position.y = event.clientY - this.startPosition.y;
   }
 
   @HostListener('dragEnd', ['$event'])

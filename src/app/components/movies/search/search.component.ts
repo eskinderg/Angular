@@ -16,7 +16,7 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUnt
 })
 export class SearchComponent implements OnInit {
 
-  movies;
+  movies: Observable<never> | undefined;
   model: any;
   searching = false;
   searchFailed = false;
@@ -28,25 +28,25 @@ export class SearchComponent implements OnInit {
   }
 
 
-  search = (text$: Observable<string>) =>
-    pipe(
-    tap.call(
-      switchMap.call(
-        tap.call(
-          distinctUntilChanged.call(
-            debounceTime.call(text$, 300)),
-          () => this.searching = true),
-        term =>
-        catchError.call(
-          tap.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
-          () => {
-            this.searchFailed = true;
-            return of.call([]);
-          }
-        )
-      ),
-      () => this.searching = false)
-    );
+  // search = (text$: Observable<string>) =>
+  //   pipe(
+  //   tap.call(
+  //     switchMap.call(
+  //       tap.call(
+  //         distinctUntilChanged.call(
+  //           debounceTime.call(text$, 300)),
+  //         () => this.searching = true),
+  //       term =>
+  //       catchError.call(
+  //         tap.call(this._moviesServices.serachMovies(term), () => this.searchFailed = false),
+  //         () => {
+  //           this.searchFailed = true;
+  //           return of.call([]);
+  //         }
+  //       )
+  //     ),
+  //     () => this.searching = false)
+  //   );
 
   ngOnInit() {
     // this.movies = this.term.valueChanges
@@ -59,7 +59,7 @@ export class SearchComponent implements OnInit {
     //   });
   }
 
-  btnSearch(value) {
+  btnSearch(value: string) {
     if (value) {
       this._moviesServices.serachMovies(value)
         .pipe(

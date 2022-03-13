@@ -1,5 +1,5 @@
 export class Genre {
-  id: number;
+  id: number | undefined;
   name: string = '';
   total_results: string = '';
   constructor(values: Object = {}) {

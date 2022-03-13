@@ -10,8 +10,8 @@ import { MoviesApiService } from '../movies.service/movies.api.service';
 })
 export class GenreComponent implements OnInit {
 
-  movies: Movie[];
-  total_movies_count: number;
+  movies: Movie[] | undefined;
+  total_movies_count: number | undefined;
 
   constructor(
     private _moviesServices: MoviesApiService,

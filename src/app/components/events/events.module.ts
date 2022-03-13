@@ -8,7 +8,7 @@ import { EventModule } from '../../theme/components/event/event.module';
 import { EventsComponent } from './events.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { ScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import { ScrollbarModule } from 'ngx-scrollbar';
     SharedModule,
     EventModule,
     NgaModule,
-    ScrollbarModule,
+    NgScrollbarModule,
     NgbModule
   ],
   exports: [],

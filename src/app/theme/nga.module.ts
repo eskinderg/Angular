@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
 import { BaCardComponent } from './components/baCard/baCard.component';
@@ -79,7 +79,7 @@ const NGA_VALIDATORS = [
   ],
   imports: [
     CommonModule,
-    ScrollbarModule
+    NgScrollbarModule
     // RouterModule,
     // FormsModule,
     // ReactiveFormsModule,
@@ -97,8 +97,8 @@ const NGA_VALIDATORS = [
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 export class NgaModule {
-  static forRoot(): ModuleWithProviders {
-    return <ModuleWithProviders> {
+  static forRoot(): ModuleWithProviders<NgaModule> {
+    return {
       ngModule: NgaModule,
       providers: [
         // BaThemeConfigProvider,

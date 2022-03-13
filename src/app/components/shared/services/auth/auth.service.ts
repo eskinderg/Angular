@@ -15,9 +15,9 @@ export class AuthService {
 
   mgr: UserManager = new UserManager(settings);
   userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
-  currentUser: User;
+  currentUser: User | undefined;
   loggedIn = false;
-  authHeaders: Headers;
+  authHeaders: Headers | undefined;
 
   constructor(private http: HttpClient , private route: Router) {
 
@@ -61,18 +61,18 @@ export class AuthService {
 
   }
 
-  isLoggedInObs(): Observable<boolean> {
-    return from(this.mgr.getUser())
-    .pipe(
-      map<User, boolean>((user) => {
-        if (user) {
-          return true;
-        } else {
-          return false;
-        }
-      })
-    )
-  }
+  // isLoggedInObs(): Observable<boolean> {
+    // return from(this.mgr.getUser())
+    // .pipe(
+    //   map<User, boolean>((user) => {
+    //     if (user) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   })
+    // )
+  // }
 
   clearState() {
     this.mgr.clearStaleState().then(function () {
@@ -83,22 +83,22 @@ export class AuthService {
   }
 
   getUser() {
-    this.mgr.getUser().then((user) => {
-      this.currentUser = user;
-      console.log('got user', user);
-      this.userLoadededEvent.emit(user);
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // this.mgr.getUser().then((user) => {
+    //   this.currentUser = user;
+    //   console.log('got user', user);
+    //   this.userLoadededEvent.emit(user);
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
   }
 
   removeUser() {
-    this.mgr.removeUser().then(() => {
-      this.userLoadededEvent.emit(null);
-      console.log('user removed');
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // this.mgr.removeUser().then(() => {
+    //   this.userLoadededEvent.emit(null);
+    //   console.log('user removed');
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
   }
 
   startSigninMainWindow() {
@@ -124,22 +124,22 @@ export class AuthService {
   }
 
   startSignoutMainWindow() {
-    this.mgr.getUser().then(user => {
-      return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
-        console.log('signed out', resp);
-        setTimeout(() => {
-          console.log('testing to see if fired...');
-        }, 5000);
-      }).catch(function (err) {
-        console.log(err);
-      });
-    });
+    // this.mgr.getUser().then(user => {
+    //   return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
+    //     console.log('signed out', resp);
+    //     setTimeout(() => {
+    //       console.log('testing to see if fired...');
+    //     }, 5000);
+    //   }).catch(function (err) {
+    //     console.log(err);
+    //   });
+    // });
   };
 
   logout() {
-    this.mgr.getUser().then(user => {
-      return this.mgr.signoutRedirect({ id_token_hint: user.id_token });
-    });
+    // this.mgr.getUser().then(user => {
+    //   return this.mgr.signoutRedirect({ id_token_hint: user.id_token });
+    // });
   };
 
   endSignoutMainWindow() {

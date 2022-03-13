@@ -26,7 +26,7 @@ export function reducer(state: State = initialState, action: EventsActions.Actio
 
     case EventsActions.FETCH_EVENTS_SUCCESS:
       return {
-        events: action.payload.reverse() || []
+        events: action.payload || [] // reverse array to show the most recent
       };
 
     case EventsActions.TOGGLE_EVENT_SUCCESS:

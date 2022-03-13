@@ -26,8 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: sudo apt-get install build-essential -y
-    - run: npm install node-gyp -g
-    - run: npm install
-    - run: ng build
+    - run: npm run build
     #- run: npm test

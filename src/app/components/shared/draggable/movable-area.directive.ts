@@ -13,24 +13,24 @@ interface Boundaries {
   selector: '[appMovableArea]'
 })
 export class MovableAreaDirective implements AfterContentInit {
-  @ContentChildren(MovableDirective) movables: QueryList<MovableDirective>;
+  @ContentChildren(MovableDirective) movables: QueryList<MovableDirective> | undefined;
 
-  private boundaries: Boundaries;
+  private boundaries: Boundaries | undefined;
   private subscriptions: Subscription[] = [];
 
   constructor(private element: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.movables.changes.subscribe(() => {
-      this.subscriptions.forEach(s => s.unsubscribe());
+    // this.movables.changes.subscribe(() => {
+    //   this.subscriptions.forEach(s => s.unsubscribe());
 
-      this.movables.forEach(movable => {
-        this.subscriptions.push(movable.dragStart.subscribe(() => this.measureBoundaries(movable)));
-        this.subscriptions.push(movable.dragMove.subscribe(() => this.maintainBoundaries(movable)));
-      });
-    });
+    //   this.movables.forEach(movable => {
+    //     this.subscriptions.push(movable.dragStart.subscribe(() => this.measureBoundaries(movable)));
+    //     this.subscriptions.push(movable.dragMove.subscribe(() => this.maintainBoundaries(movable)));
+    //   });
+    // });
 
-    this.movables.notifyOnChanges();
+    // this.movables.notifyOnChanges();
   }
 
   private measureBoundaries(movable: MovableDirective) {
@@ -46,9 +46,9 @@ export class MovableAreaDirective implements AfterContentInit {
   }
 
   private maintainBoundaries(movable: MovableDirective) {
-    movable.position.x = Math.max(this.boundaries.minX, movable.position.x);
-    movable.position.x = Math.min(this.boundaries.maxX, movable.position.x);
-    movable.position.y = Math.max(this.boundaries.minY, movable.position.y);
-    movable.position.y = Math.min(this.boundaries.maxY, movable.position.y);
+    // movable.position.x = Math.max(this.boundaries.minX, movable.position.x);
+    // movable.position.x = Math.min(this.boundaries.maxX, movable.position.x);
+    // movable.position.y = Math.max(this.boundaries.minY, movable.position.y);
+    // movable.position.y = Math.min(this.boundaries.maxY, movable.position.y);
   }
 }

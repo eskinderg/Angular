@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  public tvs: Tv[];
+  public tvs: Tv[] | undefined;
 
   constructor(private route: ActivatedRoute) {
   }

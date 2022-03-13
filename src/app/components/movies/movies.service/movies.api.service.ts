@@ -36,7 +36,7 @@ export class MoviesApiService {
     return this.api.getMoviesByGenre(id);
   }
 
-  getMovie(id) {
+  getMovie(id: string) {
     return this.api.getMovie(id);
   }
 }

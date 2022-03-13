@@ -8,7 +8,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
   exportAs: 'appDraggableHelper'
 })
 export class DraggableHelperDirective implements OnInit, OnDestroy {
-  private overlayRef: OverlayRef;
+  private overlayRef: OverlayRef | undefined;
   private positionStrategy = new GlobalPositionStrategy();
   private startPosition?: { x: number; y: number };
 
@@ -20,7 +20,7 @@ export class DraggableHelperDirective implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.draggable.dragStart.subscribe(event => this.onDragStart(event));
     this.draggable.dragMove.subscribe(event => this.onDragMove(event));
-    this.draggable.dragEnd.subscribe(() => this.onDragEnd());
+    // this.draggable.dragEnd.subscribe(() => this.onDragEnd());
 
     // create an overlay...
     this.overlayRef = this.overlay.create({
@@ -30,7 +30,7 @@ export class DraggableHelperDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     // remove the overlay...
-    this.overlayRef.dispose();
+    // this.overlayRef.dispose();
   }
 
   private onDragStart(event: PointerEvent): void {
@@ -44,19 +44,19 @@ export class DraggableHelperDirective implements OnInit, OnDestroy {
   }
 
   private onDragMove(event: PointerEvent): void {
-    if (!this.overlayRef.hasAttached()) {
+    // if (!this.overlayRef.hasAttached()) {
       // render the helper in the overlay
-      this.overlayRef.attach(new TemplatePortal(this.templateRef, this.viewContainerRef));
+      // this.overlayRef.attach(new TemplatePortal(this.templateRef, this.viewContainerRef));
     }
 
     // position the helper...
-    this.positionStrategy.left(`${event.clientX - this.startPosition.x}px`);
-    this.positionStrategy.top(`${event.clientY - this.startPosition.y}px`);
-    this.positionStrategy.apply();
-  }
+    // this.positionStrategy.left(`${event.clientX - this.startPosition.x}px`);
+    // this.positionStrategy.top(`${event.clientY - this.startPosition.y}px`);
+    // this.positionStrategy.apply();
+  // }
 
-  private onDragEnd(): void {
-    // remove the helper from the overlay
-    this.overlayRef.detach();
-  }
+  // private onDragEnd(): void {
+  //   // remove the helper from the overlay
+  //   this.overlayRef.detach();
+  // }
 }

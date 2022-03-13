@@ -2,9 +2,9 @@
   <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
   <div class="card-block p-3">
     <h4 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" >{{ movie.title }}</a></h4>
-    <p class="card-text">{{ movie.overview | truncate: 150 : true}}</p>
+    <p class="card-text">{{ movie.overview | truncate: '150' : true}}</p>
     <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-    <h4 class="card-title">{{ movie.release_date | truncate: 4 }}</h4>
+    <h4 class="card-title">{{ movie.release_date | truncate: '4':false }}</h4>
     <app-ngbd-rating-decimal [currentRate]= "movieRating"></app-ngbd-rating-decimal>
   </div>
 </div>

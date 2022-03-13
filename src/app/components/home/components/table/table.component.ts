@@ -11,10 +11,10 @@ import { Event } from '../../../../theme/components/event/event';
 export class TableComponent {
 
   @Input()
-  events: Event[];
+  events: Event[] | undefined;
 
   @Input()
-  title: string;
+  title: string | undefined;
 
   // @Output()
   // remove: EventEmitter<Event> = new EventEmitter();

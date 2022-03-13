@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { UserManager, User} from 'oidc-client';
+// import { UserManager, User} from 'oidc-client';
 // import { Headers, RequestOptions, Response } from '@angular/http';
 import { of, Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -16,12 +16,12 @@ const settings: any = environment.Auth;
 @Injectable()
 export class AuthService {
 
-  mgr: UserManager = new UserManager(settings);
+  // mgr: UserManager = new UserManager(settings);
   userLoadededEvent: EventEmitter<any> = new EventEmitter<any>();
   currentUser: any;
   loggedIn = false;
 
-  authHeaders: Headers;
+  // authHeaders: Headers;
 
   constructor(private oauthService: OAuthService, private http: HttpClient , private route: Router) {
 
@@ -36,11 +36,11 @@ export class AuthService {
   }
 
   clearState() {
-    this.mgr.clearStaleState().then(function () {
-      console.log('clearStateState success');
-    }).catch(function (e) {
-      console.log('clearStateState error', e.message);
-    });
+    // this.mgr.clearStaleState().then(function () {
+    //   console.log('clearStateState success');
+    // }).catch(function (e) {
+    //   console.log('clearStateState error', e.message);
+    // });
   }
 
   getUser() {
@@ -58,12 +58,12 @@ export class AuthService {
   }
 
   removeUser() {
-    this.mgr.removeUser().then(() => {
-      this.userLoadededEvent.emit(null);
-      console.log('user removed');
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // this.mgr.removeUser().then(() => {
+    //   this.userLoadededEvent.emit(null);
+    //   console.log('user removed');
+    // }).catch(function (err: any) {
+    //   console.log(err);
+    // });
   }
 
   startSigninMainWindow() {
@@ -72,34 +72,34 @@ export class AuthService {
     // }).catch(function(err){
     //   console.log(err);
     // });
-    this.mgr.signinRedirect({ data: 'some data' }).then(function () {
-      console.log('signinRedirect done');
-    }).catch(function (err) {
-      console.log(err);
-      return err;
-    });
+    // this.mgr.signinRedirect({ data: 'some data' }).then(function () {
+    //   console.log('signinRedirect done');
+    // }).catch(function (err: any) {
+    //   console.log(err);
+    //   return err;
+    // });
   }
 
   endSigninMainWindow() {
-    this.mgr.signinRedirectCallback().then(function (user) {
-      console.log('signed in', user);
+    // this.mgr.signinRedirectCallback().then(function (user) {
+    //   console.log('signed in', user);
 
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // }).catch(function (err: any) {
+    //   console.log(err);
+    // });
   }
 
   startSignoutMainWindow() {
-    this.mgr.getUser().then(user => {
-      return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
-        console.log('signed out', resp);
-        setTimeout(() => {
-          console.log('testing to see if fired...');
-        }, 5000);
-      }).catch(function (err) {
-        console.log(err);
-      });
-    });
+    // this.mgr.getUser().then(user => {
+    //   return this.mgr.signoutRedirect({ id_token_hint: user.id_token }).then(resp => {
+    //     console.log('signed out', resp);
+    //     setTimeout(() => {
+    //       console.log('testing to see if fired...');
+    //     }, 5000);
+    //   }).catch(function (err) {
+    //     console.log(err);
+    //   });
+    // });
   };
 
   logout() {
@@ -110,11 +110,11 @@ export class AuthService {
   };
 
   endSignoutMainWindow() {
-    this.mgr.signoutRedirectCallback().then(function (resp) {
-      console.log('signed out', resp);
-    }).catch(function (err) {
-      console.log(err);
-    });
+    // this.mgr.signoutRedirectCallback().then(function (resp) {
+    //   console.log('signed out', resp);
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
   };
 
 }

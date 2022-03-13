@@ -6,10 +6,10 @@ import { Directive, Input, Output, EventEmitter, ElementRef, HostListener } from
 export class DraggableDirective {
   _isDragging = false;
   _hasDragged = false;
-  _originalClientX: number;
-  _originalClientY: number;
-  _originalTop: number;
-  _originalLeft: number;
+  _originalClientX: number | undefined;
+  _originalClientY: number | undefined;
+  _originalTop: number | undefined;
+  _originalLeft: number | undefined;
 
   @Output('draggable') endDragEvent = new EventEmitter(false);
 
@@ -18,7 +18,7 @@ export class DraggableDirective {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown($event) {
+  onMouseDown($event: { target: { style: { position: string; left: string; top: string; }; }; clientX: number | undefined; clientY: number | undefined; }) {
     if ($event.target.style.position === 'absolute' && $event.target.style.left && $event.target.style.top) {
       this._hasDragged      = false;
       this._isDragging      = true;
@@ -33,21 +33,21 @@ export class DraggableDirective {
   }
 
   @HostListener('mousemove', ['$event'])
-  onMouseMove($event) {
+  onMouseMove() {
     if (this._isDragging) {
       this._hasDragged = true;
-      this.element.nativeElement.style.top  = (this._originalTop + ($event.clientY - this._originalClientY))  + 'px';
-      this.element.nativeElement.style.left = (this._originalLeft + ($event.clientX - this._originalClientX)) + 'px';
+      // this.element.nativeElement.style.top  = (this._originalTop + ($event.clientY - this._originalClientY))  + 'px';
+      // this.element.nativeElement.style.left = (this._originalLeft + ($event.clientX - this._originalClientX)) + 'px';
     }
   }
 
   @HostListener('mouseup', ['$event'])
-  onMouseUp($event) {
+  onMouseUp() {
     if (this._isDragging) {
       this._isDragging = false;
       if (this._hasDragged) {
-        this.endDragEvent.emit({left: this._originalLeft +
-          ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
+        // this.endDragEvent.emit({left: this._originalLeft +
+          // ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
       }
     }
   }

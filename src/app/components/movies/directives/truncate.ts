@@ -18,5 +18,6 @@ export class TruncatePipe implements PipeTransform {
     if (value) {
       return value.length > limit ? value.substring(0, limit) + trail : value;
     }
+    return value;
   }
 }

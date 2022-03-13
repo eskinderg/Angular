@@ -18,14 +18,14 @@ import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
 })
 export class NoteComponent {
 
-  @Input() note: Note;
+  @Input() note: Note | undefined;
 
   @Output() changeNoteText     = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
   @Output() changeNoteSize     = new EventEmitter(false);
   @Output() deleteNote         = new EventEmitter(false);
 
-  @ViewChild('notediv', {static:true}) textarea: ElementRef;
+  @ViewChild('notediv', {static:true}) textarea: ElementRef | undefined;
 
   constructor( private renderer: Renderer2 ) { }
 
@@ -33,10 +33,10 @@ export class NoteComponent {
     // this.textarea.nativeElement.style.top = '0px';
     // this.textarea.nativeElement.style.left = '0px';
     // alert('yes')
-    const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
+    // const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
 
     // this.changeNotePosition.emit({top: viewRect.top, left: Math.round(viewRect.left)});
-    console.log(viewRect.left - parseInt(this.textarea.nativeElement.style.left));
+    // console.log(viewRect.left - parseInt(this.textarea.nativeElement.style.left));
     console.log(eee.source)
   }
 
@@ -51,7 +51,7 @@ export class NoteComponent {
   }
 
   // @HostListener('mouseup', ['$event'])
-  onMouseUp($event) {
+  onMouseUp() {
     // console.log($event.target.style)
     // console.log($event)
     // if (this._isDragging) {
@@ -62,18 +62,18 @@ export class NoteComponent {
     //   }
   }
 
-  handleChangeNoteText(updatedText) {
+  handleChangeNoteText(updatedText: string) {
     // console.log(updatedText);
-    if (updatedText !== this.note.text) {
-      this.changeNoteText.emit(updatedText);
-    }
+    // if (updatedText !== this.note.text) {
+      // this.changeNoteText.emit(updatedText);
+    // }
   }
 
-  handleNoteDelete(note) {
+  handleNoteDelete(note: any) {
     this.deleteNote.emit(note);
   }
 
-  handleResizeNote($event) {
+  handleResizeNote($event: any) {
     this.changeNoteSize.emit($event);
   }
 

@@ -1,55 +1,35 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { TestBed } from '@angular/core/testing';
-import { APP_BASE_HREF } from '@angular/common';
-
-import { async } from '@angular/core/testing';
-import { Route } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { HeaderComponent } from './components/shared/header/header.component';
-// import { Todo } from './shared/components/todo/todo.component';
 
-export function main() {
-
-  describe('App component', () => {
-
-    const config: Route[] = [
-      { path: '', component: HomeComponent },
-      { path: 'about', component: AboutComponent }
-    ];
-    beforeEach(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, RouterTestingModule.withRoutes(config)],
-        declarations: [TestComponent,
-          HeaderComponent, AppComponent,
-          HomeComponent, AboutComponent],
-        providers: [
-          { provide: APP_BASE_HREF, useValue: '/' }
-        ]
-      });
-    });
-
-    it('should build without a problem',
-      async(() => {
-        TestBed
-          .compileComponents()
-          .then(() => {
-            const fixture = TestBed.createComponent(TestComponent);
-            const compiled = fixture.nativeElement;
-
-            expect(compiled).toBeTruthy();
-          });
-      }));
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
   });
-}
 
-@Component({
-  selector: 'app-test-cmp',
-  template: '<sd-app></sd-app>'
-})
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
 
-class TestComponent {
-}
+  it(`should have as title 'Angular'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('Angular');
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Angular app is running!');
+  });
+});
