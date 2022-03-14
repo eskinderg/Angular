@@ -23,7 +23,11 @@
           <a class="nav-link" [routerLink]="['/wizard']">Wizard</a>
         </li>
         <li  class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
-          <a class="nav-link" [routerLink]="['/events']">Events <span *ngIf="ItemsCount" class="badge badge-secondary">{{ItemsCount}}</span></a>
+          <a class="nav-link" [routerLink]="['/events']">
+            Events
+            <span *ngIf="ItemsCount" class="badge bg-secondary">{{ItemsCount}}</span>
+            <!-- <span class="badge bg-secondary">New</span> -->
+          </a>
         </li>
         <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <a class="nav-link" [routerLink]="['/movies']">Movies</a>
