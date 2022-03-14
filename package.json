@@ -49,5 +49,12 @@
     "ngx-scrollbar": "^9.0.2",
     "oidc-client": "^1.11.5",
     "typescript": "~4.5.2"
-  }
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "main": "main.js",
+  "repository": "http://www.github.com/eskinderg/Angular.git",
+  "author": "Eskinder <eskinderget@gmail.com>"
 }
