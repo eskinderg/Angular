@@ -1,10 +1,10 @@
-<div class="d-flex justify-content-end">
+<div class="d-flex justify-content-between">
 
     <div class="mr-auto p-2">
         <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
             <input
                                        type="checkbox"
-                                       class="custom-control-input"
+                                       class="form-check-input"
                                        (click)="onToggleEvent(event)"
                                        [checked]="event.complete">
 
@@ -25,7 +25,7 @@
 
         <i
          [ngClass]="IsInEditMode ? 'btn-success' : 'btn-secondary'"
-         class="btn btn-sm mr-2"
+         class="btn btn-sm me-2"
          (click)="onUpdateEvent(event)" >
 
          <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>

@@ -1,7 +1,7 @@
 <div class="form-group">
   <section class="main">
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let event of events | async " [class.completed]="event.complete">
+      <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let event of events | async " [class.completed]="event.complete">
         <app-event-list-item
           [event]="event"
           (toggle)="onToggleEvent($event)"
