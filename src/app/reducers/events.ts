@@ -1,4 +1,4 @@
-import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as EventsActions from '../actions/event';
 import { Event } from '../models/event';
 
@@ -16,33 +16,33 @@ export function reducer(state: State = initialState, action: EventsActions.Actio
 
     case EventsActions.EVENTS_CLEAR:
       return {
-        events: []
-      };
+      events: []
+    };
 
     case EventsActions.CREATE_EVENT_SUCCESS:
       return {
-        events: [ action.payload, ...state.events ]
-      };
+      events: [ action.payload, ...state.events ]
+    };
 
     case EventsActions.FETCH_EVENTS_SUCCESS:
       return {
-        events: action.payload || [] // reverse array to show the most recent
-      };
+      events: action.payload || [] // reverse array to show the most recent
+    };
 
     case EventsActions.TOGGLE_EVENT_SUCCESS:
-    case EventsActions.UPDATE_EVENT_SUCCESS:
+      case EventsActions.UPDATE_EVENT_SUCCESS:
       return Object.assign({}, state, {
-        events: state.events.map((event) => {
-          return  (event.id === action.payload.id) ? action.payload : event
-        })
-      });
+      events: state.events.map((event) => {
+        return  (event.id === action.payload.id) ? action.payload : event
+      })
+    });
 
     case EventsActions.DELETE_EVENT_SUCCESS:
       return Object.assign({}, state, {
-        events: state.events.filter((event: Event) => {
-          return event.id !== action.payload.id;
-        })
-      });
+      events: state.events.filter((event: Event) => {
+        return event.id !== action.payload.id;
+      })
+    });
 
     default:
       return state;
