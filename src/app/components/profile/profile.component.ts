@@ -18,8 +18,8 @@ export class ProfileComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  public x: number | undefined;
-  public y: number | undefined;
+  public x: number;
+  public y: number;
   public user: any;
 
   constructor(private authService: OAuthService) {

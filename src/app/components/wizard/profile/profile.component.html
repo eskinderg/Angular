@@ -1,22 +1,22 @@
-<div class="form-group row">
+<div class="row mb-3">
   <label for="example-text-input" class="col-2 col-form-label">Text</label>
   <div class="col-10">
     <input class="form-control" type="text" id="example-text-input">
   </div>
 </div>
-<div class="form-group row">
+<div class="row mb-3">
   <label for="example-search-input" class="col-2 col-form-label">Search</label>
   <div class="col-10">
     <input class="form-control" type="search"  id="example-search-input">
   </div>
 </div>
-<div class="form-group row">
+<div class="row mb-3">
   <label for="example-email-input" class="col-2 col-form-label">Email</label>
   <div class="col-10">
     <input class="form-control" type="email"  id="example-email-input">
   </div>
 </div>
-<div class="form-group row">
+<div class="row mb-3">
   <label for="example-url-input" class="col-2 col-form-label">URL</label>
   <div class="col-10">
     <input class="form-control" type="url"  id="example-url-input">
@@ -27,7 +27,12 @@
   <div class="col-6">
   </div>
   <div class="col-6 text-center">
-    <a href="#" class="btn btn-outline-primary btn-lg" [routerLink]="['/wizard/feature']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" role="button" aria-pressed="true">
+    <a href="#" class="btn btn-outline-primary btn-lg"
+                [routerLink]="['/wizard/feature']"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}"
+                role="button"
+                aria-pressed="true">
       Next
       <i class="fa fa-circle-right" aria-hidden="true"></i>
 

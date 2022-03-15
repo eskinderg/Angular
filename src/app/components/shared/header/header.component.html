@@ -1,15 +1,15 @@
 <nav  class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <button type="button" class="navbar-toggler navbar-toggler-right" (click)="isExpanded = !isExpanded" [attr.aria-expanded]="!isExpanded" aria-controls="navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <button type="button" class="navbar-toggler navbar-toggler-right" (click)="isExpanded = !isExpanded" [attr.aria-expanded]="!isExpanded" aria-controls="navbarContent">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <a class="navbar-brand" [routerLink]="['/']">Angular Seed</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
-    <ul *ngIf="IsLoggedIn" class="navbar-nav mr-auto">
-      <li class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
-        <a class="nav-link" [routerLink]="['/']" >Home</a>
-      </li>
+    <a class="navbar-brand" [routerLink]="['/']">Angular Seed</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
+      <ul *ngIf="IsLoggedIn" class="navbar-nav mr-auto">
+        <li class="nav-item"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
+          <a class="nav-link" [routerLink]="['/']" >Home</a>
+        </li>
         <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}">
           <a class="nav-link" [routerLink]="['/about']">About</a>
         </li>
@@ -41,11 +41,11 @@
         <!-- <li  class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a class="nav-link" [routerLink]="['/profile']">{{ _user ?.profile.email }}</a>
           </li> -->
-    </ul>
+      </ul>
+    </div>
+
+    <app-userinfo (signout)="onSignout()"></app-userinfo>
   </div>
-
-  <app-userinfo (signout)="onSignout()"></app-userinfo>
-
 </nav>
 <!-- {{ _user ?.id_token }} -->
 <!-- {{ _user ?.acces_token }} -->
