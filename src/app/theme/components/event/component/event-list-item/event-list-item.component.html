@@ -3,10 +3,10 @@
     <div class="mr-auto p-2">
         <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
             <input
-                                       type="checkbox"
-                                       class="form-check-input"
-                                       (click)="onToggleEvent(event)"
-                                       [checked]="event.complete">
+                type="checkbox"
+                class="form-check-input"
+                (click)="onToggleEvent(event)"
+                [checked]="event.complete">
 
             <span class="custom-control-label"></span>
             <span class="custom-control-description">
@@ -14,21 +14,21 @@
             </span>
         </label>
         <input
-                  (keyup.enter)="onUpdateEvent(event)"
-                  class="editbox form-control "
-                  [hidden]="!IsInEditMode"
-                  type="text"
-                  [(ngModel)]="editEvent.title">
+            (keyup.enter)="onUpdateEvent(event)"
+            class="editbox form-control "
+            [hidden]="!IsInEditMode"
+            type="text"
+            [(ngModel)]="editEvent.title">
     </div>
 
     <div class="p-1">
 
         <i
-         [ngClass]="IsInEditMode ? 'btn-success' : 'btn-secondary'"
-         class="btn btn-sm me-2"
-         (click)="onUpdateEvent(event)" >
+            [ngClass]="IsInEditMode ? 'btn-success' : 'btn-secondary'"
+            class="btn btn-sm me-2"
+            (click)="onUpdateEvent(event)" >
 
-         <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>
+            <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>
         </i>
         <i class="btn btn-danger btn-sm" (click)="removeEvent(event)" >
             <span class="fa fa-bin2"></span>
