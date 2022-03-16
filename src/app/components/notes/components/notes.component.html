@@ -1,16 +1,15 @@
 <div class="row mt-3">
-  <div class="col-md-12">
-    <app-add-button (add) = "onAddNote($event)" colour="yellow"></app-add-button>
-    <app-add-button (add) = "onAddNote($event)" colour="red"></app-add-button>
-    <app-add-button (add) = "onAddNote($event)" colour="green"></app-add-button>
-    <app-add-button (add) = "onAddNote($event)" colour="blue"></app-add-button>
-  </div>
+  <!-- <div class="col-md-12"> -->
+  <!--   <app-add-button (add) = "onAddNote($event)" colour="yellow"></app-add-button> -->
+  <!--   <app-add-button (add) = "onAddNote($event)" colour="red"></app-add-button> -->
+  <!--   <app-add-button (add) = "onAddNote($event)" colour="green"></app-add-button> -->
+  <!--   <app-add-button (add) = "onAddNote($event)" colour="blue"></app-add-button> -->
+  <!-- </div> -->
 </div>
 
-<!-- <app-note *ngFor="let note of $notes | async"
+ <app-note *ngFor="let note of $notes | async"
   [note] = "note"
   (changeNoteText) = "onChangeNoteText($event, note)"
   (deleteNote) = "onNoteDelete($event)"
-  (changeNotePosition) = "onChangeNotePosition($event, note)"
   >
-</app-note> -->
+</app-note>

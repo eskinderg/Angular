@@ -42,6 +42,20 @@ textarea.yellow-note{
 .header {
 }
 
+.save {
+  display: block;
+  // position:absolute;
+  right: 0px;
+  // margin: 4px;
+  cursor: pointer;
+  float:right;
+  color:#c6c9cc ;
+
+  &:hover {
+    color: rgba(255, 167, 0, 0.98);
+  }
+}
+
 .del {
   display: block;
   // position:absolute;

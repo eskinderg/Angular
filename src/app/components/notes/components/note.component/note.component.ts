@@ -18,7 +18,7 @@ import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
 })
 export class NoteComponent {
 
-  @Input() note: Note | undefined;
+  @Input() note: Note;
 
   @Output() changeNoteText     = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
@@ -71,6 +71,10 @@ export class NoteComponent {
 
   handleNoteDelete(note: any) {
     this.deleteNote.emit(note);
+  }
+
+  handleNoteSave(note:any) {
+    alert(note.text);
   }
 
   handleResizeNote($event: any) {
