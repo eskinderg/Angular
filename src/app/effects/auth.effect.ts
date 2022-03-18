@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Actions, Effect, ofType} from '@ngrx/effects'
+import { Actions, Effect, ofType } from '@ngrx/effects'
 import { empty } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
@@ -79,5 +79,5 @@ export class AuthEffect {
     private router: Router,
     private actions$: Actions,
     private store: Store<any>
-  ) {}
+  ) { }
 }

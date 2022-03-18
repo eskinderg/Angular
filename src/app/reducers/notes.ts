@@ -10,7 +10,7 @@ export const initialState: State = {
   notes: []
 };
 
-export function reducer(state = initialState , action: NotesActions.Actions): State {
+export function reducer(state = initialState, action: NotesActions.Actions): State {
 
   switch (action.type) {
 
@@ -35,7 +35,7 @@ export function reducer(state = initialState , action: NotesActions.Actions): St
     case NotesActions.UPDATE_NOTE_SUCCESS:
       return Object.assign({}, state, {
         notes: state.notes.map(note =>
-          (( note.id === action.payload.id ) || note.id === undefined) ? action.payload : note)
+          ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note)
       });
 
     case NotesActions.DELETE_NOTE_SUCCESS:
