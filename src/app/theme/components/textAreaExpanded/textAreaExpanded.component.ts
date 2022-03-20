@@ -12,6 +12,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { Note } from "../../../models/note";
+
 export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TextareaExpandedComponent),
@@ -35,7 +37,9 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
         border-right: 1px solid lightgrey;
         border-bottom: 1px solid lightgrey;
         min-height:150px;
+        height: 100%;
         padding:5px;
+        white-space: pre;
     }
     div.disabled {
         cursor: not-allowed;
@@ -49,8 +53,10 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
   @ViewChild('textarea', {static:true}) private textarea: ElementRef;
 
   @Input() textData: string;
+  @Input() note: Note;
   @Output() onChange = new EventEmitter(false);
   @Output() onTouched = new EventEmitter(false);
+  @Output() onTextChanged = new EventEmitter(false);
 
   constructor( private renderer: Renderer2 ) { }
 
@@ -60,9 +66,9 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
     // this.writeValue(this.textData);
   }
 
-  writeValue( value: any ): void {
+  writeValue( value: string ): void {
     const div = this.textarea.nativeElement;
-    this.renderer.setProperty(div, 'textContent', value);
+    this.renderer.setProperty(div, 'textContent', value );
   }
 
   registerOnChange( fn: any ): void {
@@ -81,11 +87,17 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
     this.renderer[action](div, 'disabled');
   }
 
-  change( $event: any ) {
+  change( $event ) {
 
     // console.log(this.textData + $event.data);
-    console.log($event);
+    // console.log($event);
     // this.onChange.emit($event);
+    // this.onTextChanged.emit($event.target.textContent);
+
+    // console.log($event.target.innerText);
+    this.onTextChanged.emit({...this.note, text: $event.target.innerText});
+    // console.log(this.note.text)
+
     // this.onChange($event.target.textContent);
     // this.onTouched($event.target.textContent);
   }

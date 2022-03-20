@@ -19,8 +19,12 @@ export class NotesApiService {
     return this.store.select(fromNotes.getNotes);
   }
 
+  getNote(id: number): Observable<any> {
+    return this.store.select(fromNotes.getItemById(id));
+  }
+
   addNote(newNote: Note) {
-    return this.store.dispatch(new NotesActions.CreateNewNote(newNote));
+    return this.store.dispatch(new NotesActions.CreateNote(newNote));
   }
 
   updateNote(note: Note) {

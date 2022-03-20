@@ -1,4 +1,5 @@
 export class Note {
+  header: string;
   text: string;
   colour: string;
   left: number;

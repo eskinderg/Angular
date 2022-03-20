@@ -44,6 +44,10 @@ export const TOGGLE_NOTE                  = 'TOGGLE_NOTE';
 export const TOGGLE_NOTE_SUCCESS          = 'TOGGLE_NOTE_SUCCESS';
 export const TOGGLE_NOTE_FAILURE          = 'TOGGLE_NOTE_FAILURE';
 
+export const GET_NOTE                     = 'GET_NOTE';
+export const GET_NOTE_SUCCESS             = 'GET_NOTE_SUCCESS';
+export const GET_NOTE_FAIL                = 'GET_NOTE_FAIL';
+
 // ===================================
 //  CREATE NEW NOTE
 // -----------------------------------
@@ -249,8 +253,33 @@ export class UpdateNoteSizeFail implements Action {
 
   readonly type = UPDATE_NOTE_SIZE_FAIL;
 
-  // constructor (public payload: string) { }
+  constructor (public payload: string) { }
 }
+
+//--- GET
+
+export class GetNote implements Action {
+
+  readonly type = GET_NOTE;
+
+  constructor (public payload: Note) { }
+}
+
+export class GetNoteFail implements Action {
+
+  readonly type = GET_NOTE_FAIL;
+
+  constructor (public payload: string) { }
+}
+
+export class GetNoteSuccess implements Action {
+
+  readonly type = GET_NOTE_SUCCESS;
+
+  constructor (public payload: Note) { }
+}
+
+//
 
 export type Actions =
   FetchNotes | FetchNotesSuccess | FetchNotesFailed |
@@ -261,4 +290,5 @@ export type Actions =
   UpdateNoteText | UpdateNoteTextSuccess | UpdateNoteTextFail |
   UpdateNotePositionFail | UpdateNotePositionSuccess | UpdateNotePositionFail |
   UpdateNoteSizeFail | UpdateNoteSizeSuccess | UpdateNoteSizeFail |
+  GetNote | GetNoteSuccess | GetNoteFail |
   UpdateNotePosition | UpdateNoteSuccess | UpdateNotePositionFail;

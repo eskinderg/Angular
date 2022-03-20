@@ -6,6 +6,8 @@ import { of } from 'rxjs';
 import * as NotesActions from '../actions/note';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
 import { catchError, switchMap, map } from 'rxjs/operators';
+import { Router } from '@angular/router'
+import { createEffects } from '@ngrx/effects/src/effects_module';
 
 @Injectable()
 export class NotesEffect {
@@ -19,6 +21,13 @@ export class NotesEffect {
               map(note => new NotesActions.CreateNoteSuccess(note)),
               catchError(err => of(new NotesActions.CreateNoteFail(err)))
             ))))
+
+  routeToNewNote = createEffect(() => this.actions$
+    .pipe(ofType(NotesActions.CREATE_NOTE_SUCCESS),
+      switchMap((action: NotesActions.CreateNoteSuccess) =>
+        this.router.navigate([`/notes/` + action.payload.id])
+      )
+    ), { dispatch: false })
 
   updateNoteText = createEffect(() =>
     this.actions$
@@ -89,9 +98,19 @@ export class NotesEffect {
               catchError(err => of(new NotesActions.DeleteNoteFail(err)))
             ))))
 
+  deleteSuccess = createEffect(() =>
+    this.actions$
+      .pipe(ofType(NotesActions.DELETE_NOTE_SUCCESS),
+        switchMap((action: NotesActions.DeleteNote) => {
+          console.log(action)
+          return null;
+        }
+        )), { dispatch: false })
+
   constructor(
     private actions$: Actions,
     // private store: Store<any>,
-    private notesApiService: NotesDataService
+    private notesApiService: NotesDataService,
+    private router: Router
   ) { }
 }
