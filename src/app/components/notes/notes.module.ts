@@ -13,6 +13,8 @@ import { NotesComponent } from './components/notes.component';
 import { NoteComponent } from './components/note.component/note.component';
 import { AddButtonComponent } from './components/add-button/add.button.component';
 
+import { NoteResolver } from './components/note.component/note.resolve';
+
 import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
 @NgModule({
@@ -31,6 +33,6 @@ import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
     ResizableTextAreaDirective
   ],
   exports: [NotesComponent],
-  providers: [NotesApiService, NotesResolver]
+  providers: [NotesApiService, NotesResolver, NoteResolver]
 })
 export class NotesModule { }

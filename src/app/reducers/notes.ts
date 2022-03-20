@@ -16,12 +16,12 @@ export function reducer(state = initialState, action: NotesActions.Actions): Sta
 
     case NotesActions.CREATE_NEW_NOTE:
       return {
-        notes: [...state.notes, action.payload]
+        notes: [action.payload, ...state.notes]
       };
 
     case NotesActions.CREATE_NOTE_SUCCESS:
       return {
-        notes: [...state.notes, action.payload]
+        notes: [action.payload, ...state.notes]
       };
 
     case NotesActions.FETCH_NOTES_SUCCESS:
@@ -55,3 +55,12 @@ export const getNoteSTate = createFeatureSelector<State>('notes');
 
 export const getNotes = createSelector(getNoteSTate, (state: State) => state.notes);
 
+export const getItemById = (id) => createSelector(getNoteSTate, (allItems) => {
+  if (allItems.notes) {
+    return allItems.notes.find(item => {
+      return item.id == id;
+    });
+  } else {
+    return {};
+  }
+});

@@ -1,15 +1,45 @@
 <div class="row mt-3">
-  <!-- <div class="col-md-12"> -->
-  <!--   <app-add-button (add) = "onAddNote($event)" colour="yellow"></app-add-button> -->
-  <!--   <app-add-button (add) = "onAddNote($event)" colour="red"></app-add-button> -->
-  <!--   <app-add-button (add) = "onAddNote($event)" colour="green"></app-add-button> -->
-  <!--   <app-add-button (add) = "onAddNote($event)" colour="blue"></app-add-button> -->
-  <!-- </div> -->
+  <div class="col-md-12">
+    <!-- <app-add-button (add) = "onAddNote($event)" colour="yellow"></app-add-button> -->
+    <!-- <app-add-button (add) = "onAddNote($event)" colour="red"></app-add-button> -->
+    <!-- <app-add-button (add) = "onAddNote($event)" colour="green"></app-add-button> -->
+    <!-- <app-add-button (add) = "onAddNote($event)" colour="blue"></app-add-button> -->
+    <app-add-button (add) = "onAddNote($event)"></app-add-button>
+  </div>
 </div>
 
- <app-note *ngFor="let note of $notes | async"
-  [note] = "note"
-  (changeNoteText) = "onChangeNoteText($event, note)"
-  (deleteNote) = "onNoteDelete($event)"
-  >
-</app-note>
+<div class="row mt-2 no-gutters h-100" style="height:100vh ! important">
+
+  <div class="col-lg-3 mt-3 d-none d-lg-block h-100">
+
+    <div class="list-group">
+
+      <a
+        *ngFor="let note of $notes | async"
+        [routerLink]="['/notes',note.id]"
+        class="list-group-item justify-content-between list-group-item-action"
+        [routerLinkActiveOptions]="{exact:false}"
+        [routerLinkActive]="['active']" >
+        {{ note.header }}
+      </a>
+    </div>
+  </div>
+
+  <div class="col-lg-9 mt-3 pl-3">
+
+    <!-- <app-textarea-expanded> </app-textarea-expanded> -->
+    <router-outlet></router-outlet>
+
+  </div>
+
+</div>
+
+<!-- <app-note *ngFor="let note of $notes | async" -->
+<!--   [note] = "note" -->
+<!--   (changeNoteText) = "onChangeNoteText($event, note)" -->
+<!--   (deleteNote) = "onNoteDelete($event)" -->
+<!--   (changeNotePosition) = "onChangeNotePosition($event, note)" -->
+<!--   > -->
+<!-- </app-note> -->
+
+

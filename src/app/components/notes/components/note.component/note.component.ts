@@ -1,22 +1,18 @@
-import {
-  Renderer2,
-  Component,
-  HostListener,
-  ElementRef,
-  ViewChild,
-  Input,
-  Output,
-  EventEmitter
-} from '@angular/core';
+import { Renderer2, Component, HostListener, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
+
+import { ActivatedRoute } from '@angular/router';
+import { NotesApiService } from '../../services/notes.api.service';
+
+import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
 
 @Component({
   selector: 'app-note',
   templateUrl: 'note.component.html',
   styleUrls: ['note.component.scss']
 })
-export class NoteComponent {
+export class NoteComponent implements OnInit{
 
   @Input() note: Note;
 
@@ -25,23 +21,38 @@ export class NoteComponent {
   @Output() changeNoteSize     = new EventEmitter(false);
   @Output() deleteNote         = new EventEmitter(false);
 
-  @ViewChild('notediv', {static:true}) textarea: ElementRef | undefined;
+  @ViewChild('notediv', {static:true}) textarea: ElementRef;
 
-  constructor( private renderer: Renderer2 ) { }
+  ngOnInit() { }
+
+  constructor(
+    private renderer: Renderer2,
+    private route: ActivatedRoute,
+    private noteApiService: NotesApiService,
+    private confirmService: ConfirmService
+  ) {
+    this.route.paramMap.subscribe(params => {
+      this.noteApiService.getNote(Number(params.get('id')))
+      .subscribe((n) => {
+        this.note = n;
+      })
+    });
+  }
 
   dragEnded(eee: CdkDragEnd ) {
     // this.textarea.nativeElement.style.top = '0px';
     // this.textarea.nativeElement.style.left = '0px';
     // alert('yes')
-    // const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
+    const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
 
     // this.changeNotePosition.emit({top: viewRect.top, left: Math.round(viewRect.left)});
+    // console.log(eee.source.getFreeDragPosition());
     // console.log(viewRect.left - parseInt(this.textarea.nativeElement.style.left));
-    console.log(eee.source)
+    // console.log(eee.source)
   }
 
   handleChangeNotePosition(event: PointerEvent) {
-    console.log(event)
+    // console.log(event)
     // if (left !== this.note.left || top !== this.note.top) {
     //   if(this.note.id !=undefined)
     //   {
@@ -51,7 +62,7 @@ export class NoteComponent {
   }
 
   // @HostListener('mouseup', ['$event'])
-  onMouseUp() {
+  onMouseUp($event) {
     // console.log($event.target.style)
     // console.log($event)
     // if (this._isDragging) {
@@ -62,22 +73,29 @@ export class NoteComponent {
     //   }
   }
 
-  handleChangeNoteText(updatedText: string) {
-    // console.log(updatedText);
+  handleChangeNoteText( updatedNote: Note) {
+    // alert(updatedNote.text);
     // if (updatedText !== this.note.text) {
       // this.changeNoteText.emit(updatedText);
     // }
+    this.noteApiService.updateNote(updatedNote);
   }
 
-  handleNoteDelete(note: any) {
-    this.deleteNote.emit(note);
+  handleNoteDelete(note: Note) {
+    // this.deleteNote.emit(note);
+    // alert(note.header);
+
+    this.confirmService.confirm({
+      title: 'Confirm deletion',
+      message: 'Do you really want to delete the item ' + '"' + note.header + '"?'
+    }).then(() => {
+      this.noteApiService.deleteNote(note);
+    }, () => {
+      console.log();
+    });
   }
 
-  handleNoteSave(note:any) {
-    alert(note.text);
-  }
-
-  handleResizeNote($event: any) {
+  handleResizeNote($event) {
     this.changeNoteSize.emit($event);
   }
 
