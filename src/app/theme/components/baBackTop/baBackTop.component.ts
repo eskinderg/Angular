@@ -28,7 +28,7 @@ export class BaBackTopComponent implements AfterViewInit {
 
   @HostListener('window:scroll')
   _onWindowScroll(): void {
-    // const el = this._selector.nativeElement;
-    // window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
+    const el = this._selector.nativeElement;
+    window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
   }
 }

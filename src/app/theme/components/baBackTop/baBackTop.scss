@@ -1,11 +1,12 @@
 // @import '../../../theme/sass/conf/conf';
-$height: 52px;
+@import '../../../../scss/libraries/overrides/_variables.scss';
+// $height: 52px;
 // $primary: #209e91 !default;
 
 .ba-back-top {
   position: fixed;
-  width: $height;
-  height: $height;
+  // width: $height;
+  // height: $height;
   cursor: pointer;
   z-index: 9999;
   display: none;
@@ -20,7 +21,7 @@ $height: 52px;
   // background-color: rgba(0, 0, 0, 0.75);
   border-radius: 50%;
   line-height: 40px;
-  background:#4280f7;
+  background: $primary;
   &:hover {
     opacity: 0.8;
   }
