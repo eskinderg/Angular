@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
 
   @ViewChild('spinnerElement', {static:true}) spinnerElement: ElementRef;
   errorOccured = false;
+  errorMessage ='';
+  errorStatusText ='';
 
   constructor(
     private errorLog: LoggingService,
@@ -41,6 +43,9 @@ export class AppComponent implements OnInit {
 
     errorLog.onError.subscribe((error) => {
       this.errorOccured = true;
+      console.info(error);
+      this.errorMessage = error['message'];
+      this.errorStatusText = error['statusText'];
     });
 
     router.events.subscribe((event: RouterEvent) => {

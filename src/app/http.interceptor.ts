@@ -1,7 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpInterceptor, HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
-import { Observable, pipe } from 'rxjs';
+import { Observable, pipe, throwError, catchError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoggingService } from './error/loggingservice';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
 import { ConfirmService } from './theme/components/modal/confirm.service';
@@ -13,7 +14,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
   /**
    * @param {ConfirmService} confirmService - Confirm Dialog service
    */
-  constructor(private confirmService: ConfirmService) { }
+  constructor(private confirmService: ConfirmService, private injector: Injector) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -27,7 +28,17 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
 
     // console.log(localStorage.getItem('access_token'));
 
-    return next.handle(request);
+
+    const loggingService = this.injector.get(LoggingService);
+
+    return next.handle(request).pipe(
+      catchError((error) => {
+        loggingService.error(error);
+        return throwError(error.message);
+      })
+    )
+
+    // return next.handle(request);
     // .pipe(
     //   tap(
     //     (event: HttpEvent<any>) => {

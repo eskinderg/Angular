@@ -6,7 +6,8 @@
 
 <div class="container">
   <div *ngIf="errorOccured" class="alert alert-warning" role="alert">
-    <strong>Notice</strong> An error has occured. Please try refreshing the page or try again later.
+    <strong>{{errorStatusText}}</strong>
+    {{errorMessage}}
   </div>
 
   <router-outlet></router-outlet>
