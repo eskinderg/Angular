@@ -28,7 +28,6 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
 
     // console.log(localStorage.getItem('access_token'));
 
-
     const loggingService = this.injector.get(LoggingService);
 
     return next.handle(request).pipe(

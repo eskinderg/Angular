@@ -3,17 +3,11 @@ import { environment } from '../environments/environment';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import * as AuthActions from '../app/actions/auth';
-import { Store } from '@ngrx/store';
-import * as fromRoot from '../app/reducers';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { NullValidationHandler, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { NullValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
-
 import { ToastService } from './shared/toast/toast.service';
-/**
- * This class represents the main application component.
- */
+
 @Component({
   selector: 'app-main',
   templateUrl: 'app.component.html',
@@ -21,10 +15,7 @@ import { ToastService } from './shared/toast/toast.service';
 })
 export class AppComponent implements OnInit {
 
-  @ViewChild('spinnerElement', {static:true}) spinnerElement: ElementRef;
-  errorOccured = false;
-  errorMessage ='';
-  errorStatusText ='';
+  @ViewChild('spinnerElement', { static: true }) spinnerElement: ElementRef;
 
   constructor(
     private errorLog: LoggingService,
@@ -32,24 +23,17 @@ export class AppComponent implements OnInit {
     private ngZone: NgZone,
     private renderer: Renderer2,
     private oauthService: OAuthService,
-    private store: Store<fromRoot.State>,
     private toastService: ToastService
   ) {
 
-    this.oauthService.events.subscribe(e => {
-      // if (e.type === 'token_expires') {
-        // console.log(e);
-        // this.store.dispatch(new AuthActions.TokenExpire('Your session has expired. Please login again.'));
-      // }
-    });
-
-    errorLog.onError.subscribe((error) => {
+    this.errorLog.onError.subscribe((error) => {
       this.toastService.showDanger(error['message'])
     });
 
-    router.events.subscribe((event: RouterEvent) => {
+    this.router.events.subscribe((event: RouterEvent) => {
       this._navigationInterceptor(event);
     });
+
     this.configureWithNewConfigApi();
 
     // for debugging purposes

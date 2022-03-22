@@ -15,7 +15,7 @@
     <div class="list-group">
 
       <a
-        *ngFor="let note of $notes | async"
+        *ngFor="let note of Notes | async"
         [routerLink]="['/notes',note.id]"
         class="list-group-item justify-content-between list-group-item-action"
         [routerLinkActiveOptions]="{exact:false}"
