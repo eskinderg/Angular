@@ -5,11 +5,6 @@
 </div>
 
 <div class="container">
-  <div *ngIf="errorOccured" class="alert alert-warning" role="alert">
-    <strong>{{errorStatusText}}</strong>
-    {{errorMessage}}
-  </div>
-
   <router-outlet></router-outlet>
 </div>
 
@@ -18,3 +13,4 @@
 </ng-template>
 
 <app-back-top [position]=200 [moveSpeed]=50></app-back-top>
+<ngbd-toast-global></ngbd-toast-global>

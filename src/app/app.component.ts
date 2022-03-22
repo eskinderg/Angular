@@ -10,6 +10,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { NullValidationHandler, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 
+import { ToastService } from './shared/toast/toast.service';
 /**
  * This class represents the main application component.
  */
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit {
     private ngZone: NgZone,
     private renderer: Renderer2,
     private oauthService: OAuthService,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private toastService: ToastService
   ) {
 
     this.oauthService.events.subscribe(e => {
@@ -42,10 +44,7 @@ export class AppComponent implements OnInit {
     });
 
     errorLog.onError.subscribe((error) => {
-      this.errorOccured = true;
-      console.info(error);
-      this.errorMessage = error['message'];
-      this.errorStatusText = error['statusText'];
+      this.toastService.showDanger(error['message'])
     });
 
     router.events.subscribe((event: RouterEvent) => {

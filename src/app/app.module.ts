@@ -28,11 +28,14 @@ import { EventDataService } from './theme/components/event/event.data.service/ev
 import { environment } from '../environments/environment';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
+import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     UnauthorizedModule,
+    NgbdToastGlobalModule,
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
