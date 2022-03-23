@@ -1,7 +1,7 @@
 <div *ngIf="isLoggedIn(); else logIn"  ngbDropdown placement="bottom-right" class="d-inline-block">
     <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{givenName}}</button>
     <!-- <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.given_name }}</button> -->
-    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic">
+    <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownBasic">
         <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
         <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
         <!-- <button class="dropdown-item">Something else is here</button> -->
