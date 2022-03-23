@@ -19,6 +19,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie.detail.com
 
 import { NgbdRatingDecimalComponent } from './components/rating/rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MoviesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgScrollbarModule
   ],
   declarations: [
     MoviesComponent,
