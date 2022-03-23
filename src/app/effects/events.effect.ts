@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { of, EMPTY } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 // import { Store, Action } from '@ngrx/store';
 import * as EventsActions from '../actions/event';
 import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
+import { ToastService } from '../shared/toast/toast.service';
 
 @Injectable()
 export class EventsEffect {
@@ -17,6 +18,14 @@ export class EventsEffect {
           .pipe(map(event => new EventsActions.CreateEventSuccess(event)),
             catchError(err => of(new EventsActions.CreateEventFail(err)))
           ))));
+
+  createEventSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.CREATE_EVENT_SUCCESS),
+      switchMap((action: EventsActions.CreateEventSuccess) => {
+        this.toastService.showSuccess('Event Added ' + action.payload.title)
+        return EMPTY;
+      })), { dispatch: false });
 
   update = createEffect(() =>
     this.actions$.pipe(
@@ -36,6 +45,14 @@ export class EventsEffect {
             catchError(err => of(new EventsActions.ToggleEventFail(err)))
           ))));
 
+  toggleEventSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.TOGGLE_EVENT_SUCCESS),
+      switchMap((action: EventsActions.ToggleEventSuccess) => {
+        this.toastService.showSuccess('Event Updated ' + action.payload.title)
+        return EMPTY;
+      })), { dispatch: false });
+
   fetch = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.FETCH_EVENTS),
@@ -53,6 +70,10 @@ export class EventsEffect {
             catchError(err => of(new EventsActions.DeleteEventFail(err)))
           ))));
 
-  constructor(private actions$: Actions, private eventsDataService: EventDataService) { }
+  constructor(
+    private actions$: Actions,
+    private eventsDataService: EventDataService,
+    private toastService: ToastService
+  ) { }
 
 }
