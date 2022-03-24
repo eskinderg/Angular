@@ -1,8 +1,8 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-$primary: $black;
-$secondary: $gray-600;
+// $primary: $black;
+// $secondary: $gray-600;
 
 $theme-colors: (
   primary: $primary,
@@ -29,8 +29,8 @@ $navbar-dark-hover-color:           $light;
 $navbar-dark-active-color:          $info;
 // $navbar-dark-disabled-color:        rgba($white, .25) !default;
 
-$list-group-active-color: $info;
-$list-group-active-bg: $primary;
+// $list-group-active-color: $info;
+// $list-group-active-bg: $primary;
 
 //
 //%scope {
