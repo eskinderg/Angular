@@ -145,9 +145,11 @@
   margin:5px;
   background: $primary;
   border-radius: 50%;
+  text-decoration:none;
+  background-color: $secondary;
 
   &:hover {
-    background-color: $secondary;
+    background-color: $primary;
     color: $white;
     text-decoration: none;
 
