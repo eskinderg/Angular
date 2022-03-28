@@ -1,5 +1,5 @@
 <div *ngIf="isLoggedIn(); else logIn"  ngbDropdown placement="bottom-right" class="d-inline-block">
-    <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{givenName}}</button>
+    <button class="btn btn-primary" ngbTooltip="Access your profile and other" id="main-dropdown" ngbDropdownToggle>{{givenName}}</button>
     <!-- <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.given_name }}</button> -->
     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownBasic">
         <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
@@ -9,6 +9,6 @@
 </div>
 
 <ng-template #logIn>
-    <button id="btnLogin" type="button" (click)="login()" class="btn btn-primary">Login / SignUp</button>
+    <button id="btnLogin" type="button" ngbTooltip="Login to access all your Events & Notes" (click)="login()" class="btn btn-primary">Login / SignUp</button>
 </ng-template>
 
