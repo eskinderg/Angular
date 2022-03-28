@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   ) {
 
     this.errorLog.onError.subscribe((error) => {
-      this.toastService.showDanger(error['message'])
+      this.toastService.showDanger(error['message'], "Error")
     });
 
     this.router.events.subscribe((event: RouterEvent) => {
