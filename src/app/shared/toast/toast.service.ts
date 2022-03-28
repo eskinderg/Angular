@@ -12,20 +12,20 @@ export class ToastService {
     this.toasts.splice(0, this.toasts.length);
   }
 
-  showSuccess(message: string) {
-    this.show(message, { classname: 'bg-success text-light', delay: 5000 });
+  showSuccess(message: string, header?:string) {
+    this.show(message, header, { classname: 'bg-success text-light', delay: 5000 });
   }
 
-  showDanger(message: string) {
-    this.show(message, { classname: 'bg-danger text-light', delay: 10000 });
+  showDanger(message: string, header?: string) {
+    this.show(message, header, { classname: 'bg-danger text-light', delay: 10000 });
   }
 
-  showStandard(message: string) {
-    this.show(message);
+  showStandard(message: string, header?: string) {
+    this.show(message, header);
   }
 
-  private show(textOrTpl: string, options: any = {}) {
-    this.toasts.push({ textOrTpl, ...options });
+  private show(textOrTpl: string, header?: string, options: any = {}) {
+    this.toasts.push({ textOrTpl, header: header, ...options });
   }
 
 }

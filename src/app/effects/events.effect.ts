@@ -23,7 +23,7 @@ export class EventsEffect {
     this.actions$.pipe(
       ofType(EventsActions.CREATE_EVENT_SUCCESS),
       switchMap((action: EventsActions.CreateEventSuccess) => {
-        this.toastService.showSuccess('Event Added ' + action.payload.title)
+        this.toastService.showSuccess(action.payload.title, 'Event Added')
         return EMPTY;
       })), { dispatch: false });
 
@@ -35,6 +35,14 @@ export class EventsEffect {
           .pipe(map(event => new EventsActions.UpdateEventSuccess(event)),
             catchError(err => of(new EventsActions.UpdateEventFail(err)))
           ))));
+
+  updateEventSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.UPDATE_EVENT_SUCCESS),
+      switchMap((action: EventsActions.UpdateEventSuccess) => {
+        this.toastService.showSuccess(action.payload.title, "Event Updated")
+        return EMPTY;
+      })), { dispatch: false });
 
   toggleEvent = createEffect(() =>
     this.actions$.pipe(
@@ -49,7 +57,7 @@ export class EventsEffect {
     this.actions$.pipe(
       ofType(EventsActions.TOGGLE_EVENT_SUCCESS),
       switchMap((action: EventsActions.ToggleEventSuccess) => {
-        this.toastService.showSuccess('Event Updated ' + action.payload.title)
+        this.toastService.showSuccess(action.payload.title, 'Event Updated')
         return EMPTY;
       })), { dispatch: false });
 

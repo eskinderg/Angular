@@ -1,6 +1,6 @@
 export class Event {
   id: number;
-  title: String = '';
+  title: string = '';
   complete = false;
 
   constructor(values: Object = {}) {
