@@ -36,7 +36,7 @@
 .fa-bin2:before {
   content: "\e9ad";
 }
-.fa-checkmark:before {
+.fa-checkmarkcomplete:before {
   content: "\ea10";
 }
 .fa-circle-up:before {
@@ -57,6 +57,6 @@
 .fa-plus:before {
   content: "\ea0a";
 }
-.fa-checkmark2:before {
+.fa-checkmark:before {
   content: "\ea11";
 }

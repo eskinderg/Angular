@@ -2,13 +2,9 @@
 
     <div class="mr-auto p-2">
         <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
-            <input
-                type="checkbox"
-                class="form-check-input"
-                (click)="onToggleEvent(event)"
-                [checked]="event.complete">
 
-            <span class="custom-control-label"></span>
+            <check-mark (click)="onToggleEvent(event)" [checked]="event.complete"></check-mark>
+
             <span class="custom-control-description">
                 {{event.title}}
             </span>
