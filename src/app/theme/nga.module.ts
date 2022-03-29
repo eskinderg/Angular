@@ -9,7 +9,7 @@ import { BaCardComponent } from './components/baCard/baCard.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { TextareaExpandedComponent } from './components/textAreaExpanded/textAreaExpanded.component';
-
+import { CheckMarkComponent } from './components/checkMark/checkmark.component';
 import {
   ConfirmService,
   ConfirmState,
@@ -25,7 +25,8 @@ const NGA_COMPONENTS = [
   BarchartComponent,
   ConfirmModalComponent,
   TextareaExpandedComponent,
-  ModalInfoComponent
+  ModalInfoComponent,
+  CheckMarkComponent
   // BaAmChart,
   // BaBackTop,
   // BaCard,
