@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Event } from '../../event';
-import { HostListener, NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-event-list-item',
@@ -22,7 +21,7 @@ export class EventListItemComponent {
   constructor() { }
 
   onToggleEvent(event: Event) {
-    this.toggle.emit(this.event);
+    this.toggle.emit(event);
   }
 
   onUpdateEvent(event: Event) {
