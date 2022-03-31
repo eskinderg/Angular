@@ -1,17 +1,19 @@
 <div class="d-flex justify-content-between">
 
     <div class="mr-auto p-2">
-        <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
 
-            <check-mark (click)="onToggleEvent(event)" [checked]="event.complete"></check-mark>
+        <check-mark class="px-2" (click)="onToggleEvent(event)" [checked]="event.complete"></check-mark>
+
+        <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
 
             <span class="custom-control-description">
                 {{event.title}}
             </span>
         </label>
+
         <input
             (keyup.enter)="onUpdateEvent(event)"
-            class="editbox form-control "
+            class="editbox "
             [hidden]="!IsInEditMode"
             type="text"
             [(ngModel)]="editEvent.title">
