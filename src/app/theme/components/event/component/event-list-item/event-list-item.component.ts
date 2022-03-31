@@ -26,12 +26,13 @@ export class EventListItemComponent {
 
   onUpdateEvent(event: Event) {
 
-    if (this.IsInEditMode) {
-      this.update.emit({oldValue: event, newValue: this.editEvent});
+    if (this.IsInEditMode && (event.title !== this.editEvent.title)) {
+      this.update.emit({ oldValue: event, newValue: this.editEvent });
     }
 
     this.IsInEditMode = !this.IsInEditMode;
     this.editEvent = new Event(event);
+
   }
 
   removeEvent(event: Event) {
