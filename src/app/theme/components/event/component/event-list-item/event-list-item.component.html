@@ -4,7 +4,7 @@
 
         <check-mark class="px-2" (click)="onToggleEvent(event)" [checked]="event.complete"></check-mark>
 
-        <label [hidden]="IsInEditMode" class="custom-control custom-checkbox mb-0">
+        <label [hidden]="IsInEditMode" (dblclick)="onDoubleClick(event)" class="custom-control custom-checkbox mb-0">
 
             <span class="custom-control-description">
                 {{event.title}}
@@ -13,6 +13,7 @@
 
         <input
             (keyup.enter)="onUpdateEvent(event)"
+            (keydown.esc)="onCancelEdit()"
             class="editbox "
             [hidden]="!IsInEditMode"
             type="text"

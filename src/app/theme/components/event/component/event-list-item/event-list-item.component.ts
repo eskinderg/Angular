@@ -38,4 +38,13 @@ export class EventListItemComponent {
   removeEvent(event: Event) {
     this.remove.emit(event);
   }
+
+  onDoubleClick(event: Event){
+    this.IsInEditMode= !this.IsInEditMode;
+    this.editEvent = new Event(event);
+  }
+
+  onCancelEdit(){
+    this.IsInEditMode=false;
+  }
 }
