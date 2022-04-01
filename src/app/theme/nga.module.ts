@@ -1,7 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
@@ -10,13 +8,7 @@ import { AppLoadingComponent } from './components/appLoading/appLoading.componen
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { TextareaExpandedComponent } from './components/textAreaExpanded/textAreaExpanded.component';
 import { CheckMarkComponent } from './components/checkMark/checkmark.component';
-import {
-  ConfirmService,
-  ConfirmState,
-  ConfirmModalComponent,
-  ModalInfoComponent,
-  ConfirmTemplateDirective
-} from './components/modal';
+import { ConfirmService, ConfirmState, ConfirmModalComponent, ModalInfoComponent, ConfirmTemplateDirective } from './components/modal';
 
 const NGA_COMPONENTS = [
   BaBackTopComponent,
@@ -42,7 +34,7 @@ const NGA_COMPONENTS = [
   // BaPictureUploader,
   // BaSidebar,
   // BaFileUploader
-  ];
+];
 
 const NGA_DIRECTIVES = [
   ConfirmTemplateDirective
@@ -50,13 +42,13 @@ const NGA_DIRECTIVES = [
   // BaSlimScroll,
   // BaThemeRun,
   // BaCardBlur
-  ];
+];
 
 const NGA_PIPES = [
   // BaAppPicturePipe,
   // BaKameleonPicturePipe,
   // BaProfilePicturePipe
-  ];
+];
 
 const NGA_SERVICES = [
   ConfirmService,
@@ -65,12 +57,12 @@ const NGA_SERVICES = [
   // BaThemePreloader,
   // BaThemeSpinner,
   // BaMenuService
-  ];
+];
 
 const NGA_VALIDATORS = [
   // EmailValidator,
   // EqualPasswordsValidator
-  ];
+];
 
 @NgModule({
   declarations: [
@@ -86,7 +78,7 @@ const NGA_VALIDATORS = [
     // ReactiveFormsModule,
     // AppTranslationModule,
     // NgUploaderModule
-    ],
+  ],
   exports: [
     ...NGA_PIPES,
     ...NGA_DIRECTIVES,
