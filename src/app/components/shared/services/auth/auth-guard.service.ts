@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AuthService } from './auth.service';
+// import { AuthService } from './auth.service';
 /**
  * This class represents AuthGuardService.
  */
@@ -24,8 +24,8 @@ export class AuthGuardService implements CanActivate {
     if (this.oauthService.hasValidAccessToken()) {
       return true;
     } else {
-      // this.router.navigate(['login']);
-      this.oauthService.initLoginFlow();
+      this.router.navigate(['/']);
+      // this.oauthService.initLoginFlow();
       return false
     }
 
