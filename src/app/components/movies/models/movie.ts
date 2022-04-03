@@ -14,4 +14,8 @@ export class Movie {
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
+
+  get_poster_path(){
+    return "https://image.tmdb.org/t/p/w300/" + this.poster_path;
+  }
 }

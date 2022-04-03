@@ -1,7 +1,7 @@
 <ng-template #t let-fill="fill">
-  <span *ngIf="fill === 100" class="star full">&hearts;</span>
-  <span *ngIf="fill === 0" class="star">&hearts;</span>
-  <span *ngIf="fill < 100 && fill > 0" class="star">
+  <span *ngIf="fill === 100" class="star full" [ngStyle]="{ 'font-size': size +'rem' }">&hearts;</span>
+  <span *ngIf="fill === 0" class="star" [ngStyle]="{ 'font-size': size +'rem' }">&hearts;</span>
+  <span *ngIf="fill < 100 && fill > 0" class="star" [ngStyle]="{ 'font-size': size + 'rem' }">
     <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
   </span>
 </ng-template>

@@ -9,9 +9,11 @@ import { Movie } from '../../models/movie';
 })
 export class MovieCardComponent implements OnInit {
 
+  isImgLoaded: boolean = false;
+
   @Input() movie: Movie;
 
-  movieRating;
+  movieRating: number;
 
   constructor() {
   }
@@ -20,5 +22,6 @@ export class MovieCardComponent implements OnInit {
     this.movieRating = parseFloat(this.movie.vote_average);
     this.movieRating = ((5 * this.movieRating) / 10);
   }
+
 }
 

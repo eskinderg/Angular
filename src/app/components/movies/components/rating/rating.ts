@@ -1,4 +1,4 @@
-import {Component, Input, AfterViewInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ngbd-rating-decimal',
@@ -7,7 +7,7 @@ import {Component, Input, AfterViewInit} from '@angular/core';
     .star {
       position: relative;
       display: inline-block;
-      font-size: 3rem;
+      // font-size: 1rem;
       color: #d3d3d3;
     }
       .full {
@@ -28,5 +28,8 @@ export class NgbdRatingDecimalComponent {
 
   @Input()
   currentRate: number;
+
+  @Input()
+  size: number = 3;
 
 }
