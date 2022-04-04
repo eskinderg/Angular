@@ -1,6 +1,6 @@
 <div class="card" style="">
   <!-- <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap"> -->
-  <img [hidden]="isImgLoaded" class="card-img-top" src="/assets/images/placeholder.png" >
+  <img [hidden]="isImgLoaded" class="card-img-top" src="/assets/images/placeholder.gif" >
   <img [hidden]="!isImgLoaded" class="card-img-top" [src]="movie.get_poster_path()" (load)="isImgLoaded=true">
 
   <div class="card-block p-2">

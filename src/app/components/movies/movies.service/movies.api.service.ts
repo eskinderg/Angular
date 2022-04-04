@@ -4,6 +4,7 @@ import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
 import { MoviesDataService } from './movies.data.service';
 import { Observable, empty } from 'rxjs';
+import { MovieResults } from '../models/movie-results';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class MoviesApiService {
   serachMovies(searchStr: string) {
     if (searchStr !== undefined && searchStr !== '') {
       // return this.api.searchMovies(searchStr);
-    return empty();
+      return empty();
     }
     return empty();
   }
@@ -32,8 +33,8 @@ export class MoviesApiService {
     return this.api.getGenreMovieCount(id);
   }
 
-  getMoviesByGenre(id: string): Observable<Movie[]> {
-    return this.api.getMoviesByGenre(id);
+  getMoviesByGenre(id: string, page?: number): Observable<MovieResults> {
+    return this.api.getMoviesByGenre(id, page);
   }
 
   getMovie(id: string) {

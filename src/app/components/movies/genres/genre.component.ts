@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../models/movie';
-import { MoviesApiService } from '../movies.service/movies.api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MovieResults } from '../models/movie-results';
 
 @Component({
   selector: 'app-genres',
@@ -10,17 +9,22 @@ import { MoviesApiService } from '../movies.service/movies.api.service';
 })
 export class GenreComponent implements OnInit {
 
-  movies: Movie[] | undefined;
-  total_movies_count: number | undefined;
+  movieResult: MovieResults;
 
   constructor(
-    private _moviesServices: MoviesApiService,
-    private router: ActivatedRoute ) {
-    }
+    private router: ActivatedRoute,
+    private route: Router
+  ) {
+  }
 
-    ngOnInit() {
-      this.router.params.subscribe((params) => {
-        this.movies = this.router.snapshot.data['movies'];
-      });
-    }
+  ngOnInit() {
+    this.router.params.subscribe(() => {
+      this.movieResult = this.router.snapshot.data['moviesResult']
+    });
+  }
+
+  loadPage(page: number) {
+    const url = this.router.snapshot.params;
+    this.route.navigate(['/movies/genres', url['id'], url['name'], page])
+  }
 }

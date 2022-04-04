@@ -4,10 +4,10 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { MoviesComponent } from './movies.component';
 import { GenreComponent } from './genres/genre.component';
 import { GenreResolve } from './movies.service/genres.resolve';
-import { MoviesResolve } from './movies.service/movies.resolve';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
+import { MoviesResultResolve } from './movies.service/movie-results.resolve';
 
 @NgModule({
   imports: [
@@ -18,10 +18,17 @@ import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-res
         children: [
           // {path: '', redirectTo: 'search', pathMatch: 'full'},
           {
+            path: 'genres/:id/:name/:page',
+            component: GenreComponent,
+            resolve: {
+              moviesResult: MoviesResultResolve
+            }
+          },
+          {
             path: 'genres/:id/:name',
             component: GenreComponent,
             resolve: {
-              movies: MoviesResolve
+              moviesResult: MoviesResultResolve
             }
           },
           {
@@ -43,7 +50,7 @@ import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-res
       }
     ])
   ],
-  providers: [ GenreResolve, MoviesResolve, MoviesDetailsResolve ],
+  providers: [ GenreResolve, MoviesResultResolve, MoviesDetailsResolve ],
   exports: [RouterModule]
 })
 export class MoviesRoutingModule { }
