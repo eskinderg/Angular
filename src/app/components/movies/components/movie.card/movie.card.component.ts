@@ -9,9 +9,14 @@ import { Movie } from '../../models/movie';
 })
 export class MovieCardComponent implements OnInit {
 
-  isImgLoaded: boolean = false;
-
   @Input() movie: Movie;
+
+  imageLoading: boolean = false;
+  imageLoaded: boolean = false;
+  imageUrl: string = "";
+  imageLoadingUrl: string = "";
+  noImageUrl: string = "";
+  alt: string = "";
 
   movieRating: number;
 
@@ -19,8 +24,24 @@ export class MovieCardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // console.log(this.movie.get_poster_path())
+    this.imageUrl = this.movie.get_poster_path();
+    this.imageLoadingUrl = "/assets/images/placeholder.gif"
+    this.noImageUrl = "/assets/images/placeholder.png"
+
     this.movieRating = parseFloat(this.movie.vote_average);
     this.movieRating = ((5 * this.movieRating) / 10);
+  }
+
+  onImageLoaded() {
+    this.imageLoading = false;
+    this.imageLoaded = true;
+  }
+  handleEmptyImage() {
+    this.imageLoading = false;
+    // this.imageLoaded = true
+    this.imageUrl = this.noImageUrl;
   }
 
 }
