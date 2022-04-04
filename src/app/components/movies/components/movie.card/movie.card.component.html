@@ -1,8 +1,32 @@
-<div class="card">
-  <!-- <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap"> -->
-  <!-- <img [hidden]="isImgLoaded" class="card-img-top" src="/assets/images/placeholder.gif" > -->
-  <!-- <img [hidden]="!isImgLoaded" class="card-img-top" [src]="movie.get_poster_path()" (load)="isImgLoaded=true" (error)="imgNotloaded()"> -->
+<!-- <div class="card"> -->
+<!--   <!-1- <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap"> -1-> -->
+<!--   <!-1- <img [hidden]="isImgLoaded" class="card-img-top" src="/assets/images/placeholder.gif" > -1-> -->
+<!--   <!-1- <img [hidden]="!isImgLoaded" class="card-img-top" [src]="movie.get_poster_path()" (load)="isImgLoaded=true" (error)="imgNotloaded()"> -1-> -->
 
+<!--   <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
+
+<!--   <img -->
+<!--     class="card-img-top fade-in" -->
+<!--     [src]="imageLoading ? imageLoadingUrl : imageUrl" -->
+<!--     (load)="onImageLoaded()" -->
+<!--     (error)="handleEmptyImage()" -->
+<!--     loading="lazy" -->
+<!--     /> -->
+
+<!--   <div class="card-block p-2"> -->
+
+<!--     <h6 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title | truncate : '12' : true }}</a></h6> -->
+<!--     <!-1- <p class="card-text">{{ movie.overview | truncate: '150' : true}}</p> -1-> -->
+
+<!--     <div class="d-flex justify-content-between"> -->
+<!--       <p class="card-title">{{ movie.release_date | truncate: '4':false }}</p> -->
+<!--       <app-ngbd-rating-decimal  [size]=1 [currentRate]= "movieRating"></app-ngbd-rating-decimal> -->
+<!--     </div> -->
+
+<!--   </div> -->
+<!-- </div> -->
+
+<div class="card h-100 fade-in">
   <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" >
 
   <img
@@ -12,11 +36,11 @@
     (error)="handleEmptyImage()"
     loading="lazy"
     />
+  <div class="card-body d-flex flex-column">
 
-  <div class="card-block p-2">
+    <p class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
 
-    <h6 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title | truncate : '12' : true }}</a></h6>
-    <!-- <p class="card-text">{{ movie.overview | truncate: '150' : true}}</p> -->
+    <div class="mt-auto align-self-start"> </div>
 
     <div class="d-flex justify-content-between">
       <p class="card-title">{{ movie.release_date | truncate: '4':false }}</p>

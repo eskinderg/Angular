@@ -11,8 +11,7 @@
     [collectionSize]="movieResult.total_pages"></ngb-pagination>
 
 <div class="row">
-    <div class="col-sm-3" *ngFor="let movie of movieResult.movies" >
+    <div class="col-sm-3 d-flex align-items-stretch" *ngFor="let movie of movieResult.movies" >
         <app-movie-card [movie]='movie'></app-movie-card>
     </div>
 </div>
-
