@@ -15,3 +15,9 @@
         <app-movie-card [movie]='movie'></app-movie-card>
     </div>
 </div>
+<ngb-pagination
+    [(page)]="movieResult.page"
+    [pageSize]=20
+    [maxSize]=10
+    (pageChange)="loadPage($event)"
+    [collectionSize]="movieResult.total_pages"></ngb-pagination>
