@@ -1,3 +1,14 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+.card-border {
+  border: 2px solid lighten($black, 80%);;
+}
+
+:host{
+  margin:20px ! important;
+}
+
 img{
   width:auto;
   object-fit:contain;
