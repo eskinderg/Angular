@@ -30,13 +30,14 @@
   <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
   <img
     height=450
+    width=300
     class="card-img-top fade-in"
     [src]="imageLoading ? imageLoadingUrl : imageUrl"
     (load)="onImageLoaded()"
     (error)="handleEmptyImage()"
     style="display:block"
     />
-  <div class="card-body d-flex flex-column" style="padding-top:0px">
+  <div class="card-body d-flex flex-column">
 
     <p class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
 
