@@ -26,15 +26,15 @@
 <!--   </div> -->
 <!-- </div> -->
 
-<div class="card h-100 fade-in">
-  <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" >
-
+<div class="card" style="margin:20px">
+  <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
   <img
+    height=450
     class="card-img-top fade-in"
     [src]="imageLoading ? imageLoadingUrl : imageUrl"
     (load)="onImageLoaded()"
     (error)="handleEmptyImage()"
-    loading="lazy"
+    style="display:block"
     />
   <div class="card-body d-flex flex-column">
 

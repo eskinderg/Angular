@@ -11,8 +11,7 @@ export class MovieCardComponent implements OnInit {
 
   @Input() movie: Movie;
 
-  imageLoading: boolean = false;
-  imageLoaded: boolean = false;
+  imageLoading: boolean = true;
   imageUrl: string = "";
   imageLoadingUrl: string = "";
   noImageUrl: string = "";
@@ -20,27 +19,25 @@ export class MovieCardComponent implements OnInit {
 
   movieRating: number;
 
-  constructor() {
-  }
+  constructor() { }
 
   ngOnInit() {
 
-    // console.log(this.movie.get_poster_path())
     this.imageUrl = this.movie.get_poster_path();
     this.imageLoadingUrl = "/assets/images/placeholder.gif"
     this.noImageUrl = "/assets/images/placeholder.png"
 
     this.movieRating = parseFloat(this.movie.vote_average);
     this.movieRating = ((5 * this.movieRating) / 10);
+
   }
 
   onImageLoaded() {
     this.imageLoading = false;
-    this.imageLoaded = true;
   }
+
   handleEmptyImage() {
     this.imageLoading = false;
-    // this.imageLoaded = true
     this.imageUrl = this.noImageUrl;
   }
 
