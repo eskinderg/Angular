@@ -32,7 +32,7 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
             }
           },
           {
-            path: 'movie/:id',
+            path: 'genres/:id/:name/movie/:idmovie',
             component: MovieDetailComponent,
             resolve: {
               movie: MoviesDetailsResolve
@@ -50,7 +50,11 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
       }
     ])
   ],
-  providers: [ GenreResolve, MoviesResultResolve, MoviesDetailsResolve ],
+  providers: [
+    GenreResolve,
+    MoviesResultResolve,
+    MoviesDetailsResolve
+  ],
   exports: [RouterModule]
 })
 export class MoviesRoutingModule { }

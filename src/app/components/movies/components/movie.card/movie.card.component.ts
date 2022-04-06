@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
 // import { NgbdRatingDecimal } from '../../components/rating/rating';
 
@@ -18,14 +19,19 @@ export class MovieCardComponent implements OnInit {
   alt: string = "";
 
   movieRating: number;
+  linkUrl: string = "";
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.imageUrl = this.movie.get_poster_path();
     this.imageLoadingUrl = "/assets/images/placeholder.gif"
     this.noImageUrl = "/assets/images/placeholder.png"
+
+    this.linkUrl = "/movies/genres" + "/" +
+      this.route.snapshot.paramMap.get('id') + "/" +
+      this.route.snapshot.paramMap.get('name') + "/";
 
     this.movieRating = parseFloat(this.movie.vote_average);
     this.movieRating = ((5 * this.movieRating) / 10);

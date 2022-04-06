@@ -38,7 +38,7 @@
     />
   <div class="card-body">
 
-    <p class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
+    <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
 
     <small class="card-text">{{ movie.overview | truncate: '100' : true}}</small>
 
