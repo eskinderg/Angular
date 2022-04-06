@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
-import { OperatorFunction, of, Observable, tap, switchMap, catchError, debounceTime, distinctUntilChanged } from 'rxjs';
+import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 
@@ -9,7 +9,9 @@ import { MovieResults } from '../models/movie-results';
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('searchInput') input: ElementRef;
 
   movies: Observable<never>;
   model: Movie[];
@@ -20,6 +22,18 @@ export class SearchComponent implements OnInit {
 
   constructor(private _moviesServices: MoviesApiService) { }
 
+  ngAfterViewInit() {
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        filter(Boolean),
+        debounceTime(450),
+        distinctUntilChanged(),
+        tap((text) => {
+          this.onSearch(this.input.nativeElement.value);
+        })
+      )
+      .subscribe();
+  }
 
   // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   //   text$.pipe(
@@ -63,8 +77,8 @@ export class SearchComponent implements OnInit {
   //   );
 
   onSearch(searchText: string) {
-    this._moviesServices.serachMovies(searchText).subscribe((m:MovieResults) => {
-      this.movieResult=m;
+    this._moviesServices.serachMovies(searchText).subscribe((m: MovieResults) => {
+      this.movieResult = m;
     });
   }
 

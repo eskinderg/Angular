@@ -20,7 +20,7 @@
   <!-- </div> -->
   <!-- {{ model | json }} -->
 
-  <input id="typeahead-http" type="text" class="form-control" [ngModel]="searchTerm" (ngModelChange)="onSearch($event)" placeholder="Search" />
+  <input  #searchInput type="text" class="form-control" placeholder="Search" />
 
   <!-- {{ movieSearch | json }} -->
 
