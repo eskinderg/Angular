@@ -16,7 +16,7 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
         path: '',
         component: MoviesComponent,
         children: [
-          // {path: '', redirectTo: 'search', pathMatch: 'full'},
+          {path: '', redirectTo: 'search', pathMatch: 'full'},
           {
             path: 'genres/:id/:name/:page',
             component: GenreComponent,

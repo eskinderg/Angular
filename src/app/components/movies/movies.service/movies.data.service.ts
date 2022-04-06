@@ -84,20 +84,20 @@ export class MoviesDataService {
   //   )
   // }
 
-  // searchMovies(searchStr: string) {
-  //   const search = new URLSearchParams();
-  //   search.set('sort_by', 'popularity.desc');
-  //   search.set('query', searchStr);
-  //   search.set('api_key', this.apikey);
-  //   return this._jsonp.get('https://api.themoviedb.org/3/search/movie?callback=JSONP_CALLBACK', {search})
-  //   .pipe
-  //   (
-  //     map(res => {
-  //       const movies = res.json().results;
-  //       return movies.map((movie: Movie) => movie.title);
-  //     })
-  //   )
-  // }
+  searchMovies(searchStr: string) {
+    return this.http.get<Movie[]>('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey +'&query=' + searchStr)
+      .pipe
+      (
+        map(res => {
+          const result: MovieResults = new MovieResults();
+          result.total_pages = res['total_pages'];
+          result.total_results = res['total_results'];
+          result.page = res['page']
+          result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+          return result
+        })
+      )
+  }
 
   getMovie(id: string) {
     const search = new URLSearchParams();

@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../models/movie';
 import { MoviesApiService } from '../movies.service/movies.api.service';
-import { FormControl } from '@angular/forms';
-
-import { empty } from 'rxjs';
-
-import { of, Observable, Subject, pipe } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
+import { OperatorFunction, of, Observable, tap, switchMap, catchError, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Movie } from '../models/movie';
+import { MovieResults } from '../models/movie-results';
 
 @Component({
   selector: 'app-search',
@@ -16,19 +11,38 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUnt
 })
 export class SearchComponent implements OnInit {
 
-  movies: Observable<never> | undefined;
-  model: any;
+  movies: Observable<never>;
+  model: Movie[];
   searching = false;
   searchFailed = false;
-  // term = new FormControl();
+  searchTerm: string = "";
+  movieResult: MovieResults;
 
-  constructor(
-    private _moviesServices: MoviesApiService,
-    private router: ActivatedRoute ) {
-  }
+  constructor(private _moviesServices: MoviesApiService) { }
 
 
-  // search = (text$: Observable<string>) =>
+  // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+  //   text$.pipe(
+  //     debounceTime(300),
+  //     distinctUntilChanged(),
+  //     tap(() => this.searching = true),
+  //     switchMap(term =>
+  //       this._moviesServices.serachMovies(term).pipe(
+  //         tap((m) => {
+  //           this.searchFailed = false;
+  //           // console.log('sdfsdfsdf');
+  //           // this.movieSearch.push(m);
+  //           // console.log(m)
+  //         }),
+  //         catchError(() => {
+  //           this.searchFailed = true;
+  //           return of([]);
+  //         }))
+  //     ),
+  //     tap(() => this.searching = false)
+  //   )
+
+  // search : OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
   //   pipe(
   //   tap.call(
   //     switchMap.call(
@@ -48,6 +62,12 @@ export class SearchComponent implements OnInit {
   //     () => this.searching = false)
   //   );
 
+  onSearch(searchText: string) {
+    this._moviesServices.serachMovies(searchText).subscribe((m:MovieResults) => {
+      this.movieResult=m;
+    });
+  }
+
   ngOnInit() {
     // this.movies = this.term.valueChanges
     //   .debounceTime(400)
@@ -59,20 +79,20 @@ export class SearchComponent implements OnInit {
     //   });
   }
 
-  btnSearch(value: string) {
-    if (value) {
-      this._moviesServices.serachMovies(value)
-        .pipe(
-          map(res => {
-            // const movies = res.results;
-            return empty();
-            // return movies.map((movie: Movie) => new Movie(movie));
-          })
-        )
-        .subscribe(m => {
-          this.movies = m;
-        });
-    }
-  }
+  // btnSearch(value: string) {
+  //   if (value) {
+  //     this._moviesServices.serachMovies(value)
+  //       .pipe(
+  //         map(res => {
+  //           // const movies = res.results;
+  //           return empty();
+  //           // return movies.map((movie: Movie) => new Movie(movie));
+  //         })
+  //       )
+  //       .subscribe(m => {
+  //         this.movies = m;
+  //       });
+  //   }
+  // }
 
 }

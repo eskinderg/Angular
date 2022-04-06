@@ -16,8 +16,7 @@ export class MoviesApiService {
 
   serachMovies(searchStr: string) {
     if (searchStr !== undefined && searchStr !== '') {
-      // return this.api.searchMovies(searchStr);
-      return empty();
+      return this.api.searchMovies(searchStr);
     }
     return empty();
   }
