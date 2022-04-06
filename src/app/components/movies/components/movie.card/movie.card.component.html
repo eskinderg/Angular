@@ -40,6 +40,8 @@
 
     <p class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
 
+    <small class="card-text">{{ movie.overview | truncate: '100' : true}}</small>
+
     <div class="mt-auto align-self-start"> </div>
 
     <div class="d-flex justify-content-between">
