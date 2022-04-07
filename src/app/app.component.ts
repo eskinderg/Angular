@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from '../environments/environment';
+import { Component } from '@angular/core';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { OAuthEvent, OAuthService, OAuthSuccessEvent } from 'angular-oauth2-oidc';
 import { NullValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 import { ToastService } from './shared/toast/toast.service';
+import { Store } from '@ngrx/store';
+import * as fromRoot from './reducers';
+import * as EventsActions from './actions/event';
 
 @Component({
   selector: 'app-main',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   @ViewChild('spinnerElement', { static: true }) spinnerElement: ElementRef;
 
@@ -23,7 +25,8 @@ export class AppComponent implements OnInit {
     private ngZone: NgZone,
     private renderer: Renderer2,
     private oauthService: OAuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private store: Store<fromRoot.State>
   ) {
 
     this.errorLog.onError.subscribe((error) => {
@@ -36,13 +39,11 @@ export class AppComponent implements OnInit {
 
     this.configureWithNewConfigApi();
 
-    // for debugging purposes
-    if (!environment.production) {
-      // console.log('Environment config', environment);
-    }
-  }
+    this.oauthService.events.subscribe(event => {
+      this.loadUserInfo(event);
+    });
 
-  ngOnInit() { }
+  }
 
   private configureWithNewConfigApi() {
     this.oauthService.configure(authConfig);
@@ -72,6 +73,14 @@ export class AppComponent implements OnInit {
     }
     if (event instanceof NavigationError) {
       this._hideSpinner();
+    }
+  }
+
+  private loadUserInfo(event: OAuthEvent) {
+    if (event instanceof OAuthSuccessEvent) {
+      if (event.type === "token_received" || event.type === "discovery_document_loaded")
+        if (this.oauthService.hasValidIdToken())
+          this.store.dispatch(new EventsActions.FetchEvents());
     }
   }
 
