@@ -1,4 +1,16 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 .card {
     margin: 10px;
     min-height: 100px;
+}
+
+.decoration {
+    text-decoration:none;
+}
+
+.decoration:hover {
+    color: $white;
+    background-color: $primary ! important;
 }
