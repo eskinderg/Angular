@@ -10,6 +10,7 @@ export class Movie {
   backdrop_path: string;
   poster_path: string;
   release_date: string;
+  genres: string[];
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

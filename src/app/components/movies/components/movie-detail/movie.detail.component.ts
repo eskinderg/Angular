@@ -1,8 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { ActivatedRoute } from '@angular/router';
-// import { NgbdRatingDecimal } from '../../components/rating/rating';
-import { MoviesApiService } from '../../movies.service/movies.api.service'
 
 @Component({
   selector: 'app-movie-detail',
@@ -11,8 +9,8 @@ import { MoviesApiService } from '../../movies.service/movies.api.service'
 })
 export class MovieDetailComponent implements OnInit {
 
-  movie: Movie | undefined;
-  movieRating: number | undefined;
+  movie: Movie;
+  movieRating: number;
 
   constructor(private route: ActivatedRoute) {
   }

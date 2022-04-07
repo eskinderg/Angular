@@ -7,10 +7,15 @@
   </div>
 
   <div class="col-lg-6">
+
     <app-ba-card header="{{ movie.title }} {{ movie.release_date | truncate: '4' : false}}">
       <!-- <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" ></h4> -->
       <div class="card-text">{{ movie.overview }}</div>
-      <h4 class="card-title"></h4>
+
+      <a href="" class="badge bg-secondary ms-2" *ngFor="let genere of movie.genres">
+        {{ genere['name'] }}
+      </a>
+
       <app-ngbd-rating-decimal [currentRate]= "movieRating"></app-ngbd-rating-decimal>
     </app-ba-card>
   </div>
