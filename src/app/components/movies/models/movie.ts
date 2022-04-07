@@ -11,6 +11,7 @@ export class Movie {
   poster_path: string;
   release_date: string;
   genres: string[];
+  homepage: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
