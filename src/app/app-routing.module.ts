@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
       { path: 'login', loadChildren: ()=>import('./components/login/login.module').then(m=>m.LoginModule)},
       { path: 'movies', loadChildren: ()=>import('./components/movies/movies.module').then(m=>m.MoviesModule) },
       { path: 'events', loadChildren: ()=>import('./components/events/events.module').then(m=>m.EventsModule) }
-    ], {useHash: true})
+    ])
   ],
   exports: [RouterModule]
 })
