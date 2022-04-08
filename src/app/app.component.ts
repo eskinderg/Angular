@@ -83,7 +83,6 @@ export class AppComponent {
   }
 
   private loadUserInfo(event: OAuthEvent) {
-    console.log(event);
     if (event instanceof OAuthSuccessEvent) {
       if (event.type === "token_received" || event.type === "discovery_document_loaded")
         if (this.oauthService.hasValidIdToken()) {
