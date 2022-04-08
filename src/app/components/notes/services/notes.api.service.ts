@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-
 import { Note } from '../../../models/note';
-
 import * as NotesActions from '../../../actions/note';
 import * as fromRoot from '../../../reducers';
 import * as fromNotes from '../../../reducers/notes';
@@ -11,9 +9,7 @@ import * as fromNotes from '../../../reducers/notes';
 @Injectable()
 export class NotesApiService {
 
-  constructor(private store: Store<fromRoot.State>) {
-    this.store.dispatch(new NotesActions.FetchNotes());
-  }
+  constructor(private store: Store<fromRoot.State>) { }
 
   getNotes(): Observable<Note[]> {
     return this.store.select(fromNotes.getNotes);

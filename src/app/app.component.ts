@@ -6,9 +6,10 @@ import { OAuthEvent, OAuthService, OAuthSuccessEvent } from 'angular-oauth2-oidc
 import { NullValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 import { ToastService } from './shared/toast/toast.service';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 import * as fromRoot from './reducers';
 import * as EventsActions from './actions/event';
+import * as NotesActions from './actions/note';
 
 @Component({
   selector: 'app-main',
@@ -18,6 +19,11 @@ import * as EventsActions from './actions/event';
 export class AppComponent {
 
   @ViewChild('spinnerElement', { static: true }) spinnerElement: ElementRef;
+
+  initialActions: Action[] = [
+    new EventsActions.FetchEvents(),
+    new NotesActions.FetchNotes()
+  ];
 
   constructor(
     private errorLog: LoggingService,
@@ -77,10 +83,12 @@ export class AppComponent {
   }
 
   private loadUserInfo(event: OAuthEvent) {
+    console.log(event);
     if (event instanceof OAuthSuccessEvent) {
       if (event.type === "token_received" || event.type === "discovery_document_loaded")
-        if (this.oauthService.hasValidIdToken())
-          this.store.dispatch(new EventsActions.FetchEvents());
+        if (this.oauthService.hasValidIdToken()) {
+          this.initialActions.forEach(action => this.store.dispatch(action))
+        }
     }
   }
 

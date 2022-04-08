@@ -15,8 +15,10 @@ import * as fromNotes from '../../../reducers/notes';
 })
 export class NotesComponent {
 
-  constructor(private notesApiService: NotesApiService, private store: Store<fromNotes.State>) {
-    this.store.dispatch({ type: 'FETCH_NOTES' })
+  constructor(
+    private notesApiService: NotesApiService,
+    private store: Store<fromNotes.State>
+  ) {
   }
 
   onAddNote(colour) {
