@@ -53,7 +53,11 @@ $navbar-dark-active-color:          $dark;
 // $brand-primary: black !global;
 
 //Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway);
+@font-face {
+  font-family: 'Raleway';
+  src: url(../../../assets/fonts/Raleway/Raleway-Regular.ttf)
+}
+// @import url(https://fonts.googleapis.com/css?family=Raleway);
 // Font Variables
 $raleway: 'Raleway', sans-serif;
 $open-sans: 'Open Sans', sans-serif;
