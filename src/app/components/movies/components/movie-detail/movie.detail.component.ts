@@ -21,5 +21,4 @@ export class MovieDetailComponent implements OnInit {
     this.movieRating = ((5 * this.movieRating) / 10);
   }
 
-
 }

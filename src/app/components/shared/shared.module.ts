@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TruncatePipe } from '../movies/directives/truncate';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { FormatDatePipe } from '../movies/directives/dateFormat';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -24,7 +25,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HeaderComponent,
     UserInfoComponent,
     FooterComponent,
-    TruncatePipe
+    TruncatePipe,
+    FormatDatePipe
   ],
   exports: [
     HeaderComponent,
@@ -35,7 +37,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     RouterModule,
     DragDropModule,
-    TruncatePipe
+    TruncatePipe,
+    FormatDatePipe
   ]
 })
 export class SharedModule {

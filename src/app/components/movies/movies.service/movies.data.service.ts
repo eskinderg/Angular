@@ -85,7 +85,7 @@ export class MoviesDataService {
   // }
 
   searchMovies(searchStr: string) {
-    return this.http.get<Movie[]>('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey +'&query=' + searchStr)
+    return this.http.get<Movie[]>('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr)
       .pipe
       (
         map(res => {
@@ -106,9 +106,25 @@ export class MoviesDataService {
       .pipe
       (
         map(res => {
-          return res;
+          let movie = new Movie(res);
+          this.getCasts(id).subscribe((res) => {
+            movie.casts = res;
+          })
+          return movie;
         })
       )
+  }
+
+  getCasts(movieId: string) {
+
+    return this.http.get<string[]>('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey)
+      .pipe
+      (
+        map(res => {
+          return res['cast'];
+        })
+      )
+
   }
 
   // getGenres(): Observable<Genre[]> {

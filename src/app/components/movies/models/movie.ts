@@ -12,6 +12,11 @@ export class Movie {
   release_date: string;
   genres: string[];
   homepage: string;
+  runtime: number;
+  status: string;
+  original_language: string;
+  spoken_languages: string[]
+  casts: string[]
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

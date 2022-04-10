@@ -5,6 +5,11 @@
   border: 2px solid lighten($black, 80%);;
 }
 
+.hover-shadow:hover {
+  box-shadow: 5px 5px 25px;
+  cursor: pointer;
+}
+
 :host{
   margin:20px ! important;
 }
