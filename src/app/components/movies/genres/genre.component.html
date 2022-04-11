@@ -8,7 +8,7 @@
     [pageSize]=20
     [maxSize]=10
     (pageChange)="loadPage($event)"
-    [collectionSize]="movieResult.total_pages"></ngb-pagination>
+    [collectionSize]="collectionSize"></ngb-pagination>
 
 <div class="row">
     <div class="col-lg-4" *ngFor="let movie of movieResult.movies" >
@@ -20,4 +20,4 @@
     [pageSize]=20
     [maxSize]=10
     (pageChange)="loadPage($event)"
-    [collectionSize]="movieResult.total_pages"></ngb-pagination>
+    [collectionSize]="collectionSize"></ngb-pagination>

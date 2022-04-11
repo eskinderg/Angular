@@ -27,4 +27,11 @@ export class GenreComponent implements OnInit {
     const url = this.router.snapshot.params;
     this.route.navigate(['/movies/genres', url['id'], url['name'], page])
   }
+
+  get collectionSize() {
+    if(this.movieResult.total_results / 20 > 500)
+      return 500 * 20;
+    else
+      return 375 * 20;
+  }
 }
