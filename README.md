@@ -7,10 +7,13 @@ Angular 13
 Clone this repository locally :
 
 ``` bash
-git clone https://github.com/eskinderg/angular.git
+git clone https://github.com/eskinderg/Angular.git
 ```
 
 Install dependencies with npm :
+``` bash
+cd Angular
+```
 
 ``` bash
 npm install
