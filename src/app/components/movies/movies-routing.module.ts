@@ -32,6 +32,13 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
             }
           },
           {
+            path: 'genres/:id/:name/:page/movie/:idmovie',
+            component: MovieDetailComponent,
+            resolve: {
+              movie: MoviesDetailsResolve
+            }
+          },
+          {
             path: 'genres/:id/:name/movie/:idmovie',
             component: MovieDetailComponent,
             resolve: {
