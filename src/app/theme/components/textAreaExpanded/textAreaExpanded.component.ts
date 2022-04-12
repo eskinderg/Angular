@@ -37,7 +37,6 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
         border-right: 1px solid lightgrey;
         border-bottom: 1px solid lightgrey;
         min-height:150px;
-        height: 100%;
         padding:5px;
         white-space: pre;
     }

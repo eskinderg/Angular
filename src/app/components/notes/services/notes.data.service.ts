@@ -19,6 +19,10 @@ export class NotesDataService {
     return this.http.get<Note[]>(API_ROOT);
   }
 
+  getNote( id: number )  {
+    return this.http.get<Note>(API_ROOT + id );
+  }
+
   addNote(note: Note): Observable<Note> {
 
     // if(note.id!=undefined)

@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { NotesApiService } from '../../services/notes.api.service';
 import { Note } from '../../../../models/note';
+import { NotesDataService } from '../../services/notes.data.service';
 
 @Injectable()
-export class NoteResolver implements Resolve<any> {
+export class NoteResolver implements Resolve<Note> {
 
-  constructor(private notesApiService: NotesApiService) {}
+  constructor(private notesDataService: NotesDataService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    // return null;
-    console.log(route.params['id']);
-    return this.notesApiService.getNote(route.params['id']);
+    return this.notesDataService.getNote(route.params['id']); //resolving directly from the server rather than the store
   }
 }

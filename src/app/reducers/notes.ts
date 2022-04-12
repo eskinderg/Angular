@@ -31,7 +31,7 @@ export function reducer(state = initialState, action: NotesActions.Actions): Sta
 
     case NotesActions.UPDATE_NOTE_POSITION_SUCCESS:
     case NotesActions.UPDATE_NOTE_SIZE_SUCCESS:
-    case NotesActions.UPDATE_NOTE_TEXT_SUCCESS:
+    // case NotesActions.UPDATE_NOTE_TEXT_SUCCESS:
     case NotesActions.UPDATE_NOTE_SUCCESS:
       return Object.assign({}, state, {
         notes: state.notes.map(note =>

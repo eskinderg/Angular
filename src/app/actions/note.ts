@@ -19,6 +19,10 @@ export const UPDATE_NOTE_TEXT             = 'UPDATE_NOTE_TEXT';
 export const UPDATE_NOTE_TEXT_SUCCESS     = 'UPDATE_NOTE_TEXT_SUCCESS';
 export const UPDATE_NOTE_TEXT_FAIL        = 'UPDATE_NOTE_TEXT_FAIL';
 
+export const UPDATE_NOTE_HEADER           = 'UPDATE_NOTE_HEADER';
+export const UPDATE_NOTE_HEADER_SUCCESS   = 'UPDATE_NOTE_HEADER_SUCCESS';
+export const UPDATE_NOTE_HEADER_FAIL      = 'UPDATE_NOTE_HEADER_FAIL';
+
 export const UPDATE_NOTE_POSITION         = 'UPDATE_NOTE_POSITION';
 export const UPDATE_NOTE_POSITION_SUCCESS = 'UPDATE_NOTE_POSITION_SUCCESS';
 export const UPDATE_NOTE_POSITION_FAIL    = 'UPDATE_NOTE_POSITION_FAIL';
@@ -186,6 +190,29 @@ export class UpdateNoteTextFail implements Action {
 }
 
 
+export class UpdateNoteHeader implements Action {
+
+  readonly type = UPDATE_NOTE_HEADER;
+
+  constructor (public payload: Note) { }
+}
+
+
+export class UpdateNoteHeadertSuccess implements Action {
+
+  readonly type = UPDATE_NOTE_HEADER_SUCCESS;
+
+  constructor (public payload: Note) { }
+}
+
+
+export class UpdateNoteHeaderFail implements Action {
+
+  readonly type = UPDATE_NOTE_HEADER_FAIL;
+
+  constructor (public payload: string) { }
+}
+
 export class UpdateNote implements Action {
 
   readonly type = UPDATE_NOTE;
@@ -291,4 +318,5 @@ export type Actions =
   UpdateNotePositionFail | UpdateNotePositionSuccess | UpdateNotePositionFail |
   UpdateNoteSizeFail | UpdateNoteSizeSuccess | UpdateNoteSizeFail |
   GetNote | GetNoteSuccess | GetNoteFail |
-  UpdateNotePosition | UpdateNoteSuccess | UpdateNotePositionFail;
+  UpdateNotePosition | UpdateNoteSuccess | UpdateNotePositionFail |
+  UpdateNoteHeader | UpdateNoteHeadertSuccess | UpdateNoteHeaderFail;

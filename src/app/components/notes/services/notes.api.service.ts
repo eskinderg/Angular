@@ -27,6 +27,10 @@ export class NotesApiService {
     return this.store.dispatch(new NotesActions.UpdateNote(note));
   }
 
+  updateNoteText(note: Note) {
+    return this.store.dispatch(new NotesActions.UpdateNoteText(note));
+  }
+
   deleteNote(note: Note) {
     this.store.dispatch(new NotesActions.DeleteNote(note));
   }

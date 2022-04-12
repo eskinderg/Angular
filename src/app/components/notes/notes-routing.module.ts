@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { NotesComponent } from './components/notes.component';
 // import { NotesResolver } from './services/notes.resolver';
-// import { NoteResolver } from '../notes/components/note.component/note.resolve';
+import { NoteResolver } from '../notes/components/note.component/note.resolve';
 // import { NotesApiService } from './services/notes.api.service';
 import { NoteComponent } from './components/note.component/note.component';
 
@@ -20,10 +20,10 @@ import { NoteComponent } from './components/note.component/note.component';
         children: [
           {
             path: ':id',
-            component: NoteComponent
-            // resolve: {
-            //   note: NoteResolver
-            // }
+            component: NoteComponent,
+            resolve: {
+              note: NoteResolver
+            }
           }
         ]
       }

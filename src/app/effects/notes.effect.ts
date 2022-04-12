@@ -7,7 +7,6 @@ import * as NotesActions from '../actions/note';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { Router } from '@angular/router'
-import { createEffects } from '@ngrx/effects/src/effects_module';
 
 @Injectable()
 export class NotesEffect {
