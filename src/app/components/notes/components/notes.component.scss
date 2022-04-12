@@ -1,3 +1,8 @@
+:host {
+  display:block;
+  height: calc(100vh - 100px);;
+}
+
 .box {
   background: #BADA55;
   border: 1px solid black;
@@ -21,5 +26,4 @@ button {
 .container {
     height: 100vh;
     overflow: auto;
-    border:3px solid red ! important;
 }
