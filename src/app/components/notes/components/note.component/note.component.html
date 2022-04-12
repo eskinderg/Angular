@@ -1,3 +1,25 @@
+<span  class="del fa fa-bin2" (click)="handleNoteDelete(note)"></span>
+<span *ngIf="note">{{note.header}}</span>
+<span class="clear"></span>
+<!-- <div [ngClass] = "note.colour + '-note'" class="card-block"> -->
+
+<app-textarea-expanded
+  *ngIf="note"
+  #notediv
+  [note]      = "note"
+  [(ngModel)] = "note.text"
+  (onTextChanged)  = "handleChangeNoteText($event)"
+  >
+</app-textarea-expanded>
+
+<!-- <div  contenteditable="true"> -->
+<!--     {{note.text}} -->
+<!-- </div> -->
+
+<ng-template appConfirm>
+  <app-confirm-modal-component></app-confirm-modal-component>
+</ng-template>
+
 <!-- <div  #notediv -->
 <!--       cdkDrag class     = "card" -->
 <!--       [style.width.px]  = "note.width" -->
@@ -23,28 +45,3 @@
 <!--     > -->
 <!--     </app-textarea-expanded> -->
 <!-- </div> -->
-
-    <div class="card-header">
-
-      <span  class="del fa fa-bin2" (click)="handleNoteDelete(note)"></span>
-      <span *ngIf="note">{{note.header}}</span>
-      <span class="clear"></span>
-    </div>
-    <!-- <div [ngClass] = "note.colour + '-note'" class="card-block"> -->
-
-    <app-textarea-expanded
-        *ngIf="note"
-        #notediv
-        [note]      = "note"
-        [(ngModel)] = "note.text"
-        (onTextChanged)  = "handleChangeNoteText($event)"
-    >
-    </app-textarea-expanded>
-
-    <!-- <div  contenteditable="true"> -->
-    <!--     {{note.text}} -->
-    <!-- </div> -->
-
-<ng-template appConfirm>
-  <app-confirm-modal-component></app-confirm-modal-component>
-</ng-template>
