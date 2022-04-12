@@ -23,29 +23,8 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'app-textarea-expanded',
   providers: [EPANDED_TEXTAREA_VALUE_ACCESSOR],
-  template: `
-  <div contenteditable="true"
-      #textarea
-      tabindex="1"
-      (input)="change($event)"
-  >
-  </div>
-  `,
-  styles: [`
-    div {
-        border-left: 1px solid lightgrey;
-        border-right: 1px solid lightgrey;
-        border-bottom: 1px solid lightgrey;
-        min-height:150px;
-        padding:5px;
-        white-space: pre;
-    }
-    div.disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-        pointer-events: none;
-    }
-    `]
+  templateUrl: 'textAreaExpanded.component.html',
+  styleUrls: ['textAreaExpanded.component.scss']
 })
 export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
 

@@ -1,0 +1,13 @@
+div {
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  min-height:150px;
+  padding:5px;
+  white-space: pre;
+}
+div.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
