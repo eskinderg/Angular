@@ -17,6 +17,8 @@ import { NoteResolver } from './components/note.component/note.resolve';
 
 import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,6 +26,7 @@ import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
     DraggableModule,
     NgaModule,
     SharedModule,
+    NgbModule
   ],
   declarations: [
     NotesComponent,

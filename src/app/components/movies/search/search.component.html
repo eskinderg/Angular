@@ -30,7 +30,7 @@
 <!--     [maxSize]=10 -->
 <!--     [collectionSize]="movieResult.total_pages"></ngb-pagination> -->
 
-<div class="row">
+<div class="row g-0">
     <div class="col-lg-4" *ngFor="let movie of movieResult?.movies" >
         <app-movie-card [movie]='movie'></app-movie-card>
     </div>

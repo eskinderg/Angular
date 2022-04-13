@@ -52,7 +52,7 @@ export class NotesComponent {
 
   onNoteDelete(note: Note) {
     // this.notesApiService.deleteNote(note);
-    alert(note.text);
+    // alert(note.text);
   }
 
   get Notes() {

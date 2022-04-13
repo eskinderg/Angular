@@ -1,17 +1,19 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 :host {
   display:block;
   height: calc(100vh - 150px);;
 }
 
-.box {
-  background: #BADA55;
-  border: 1px solid black;
-  padding: 10px 20px;
-  display: inline-block;
+a {
+  color: $primary;
+}
 
-  &.dragging {
-    // background: coral;
-  }
+.active {
+  background: lighten($secondary, 45%);
+  color: $black;
+  border: none;
 }
 
 .area {
@@ -19,8 +21,24 @@
   padding: 40px;
 }
 
-button {
-  // margin-top: 20px;
+.relative {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  right:0px;
+  z-index:2;
+  padding:15px;
+  color: lighten($secondary, 30%);
+}
+
+.menu:hover {
+  color: lighten($primary, 20%);
+}
+
+.menuButtonHighlight{
+  color: lighten($primary, 20%);
 }
 
 .container {

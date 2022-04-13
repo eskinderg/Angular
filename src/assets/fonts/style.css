@@ -60,3 +60,6 @@
 .fa-checkmark:before {
   content: "\ea11";
 }
+.fa-flicker:before {
+  content: "\eaa3";
+}

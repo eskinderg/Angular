@@ -10,7 +10,7 @@
     (pageChange)="loadPage($event)"
     [collectionSize]="collectionSize"></ngb-pagination>
 
-<div class="row">
+<div class="row g-0">
     <div class="col-lg-4" *ngFor="let movie of movieResult.movies" >
         <app-movie-card [routerLink]="['movie',movie.id]"[movie]='movie'></app-movie-card>
     </div>

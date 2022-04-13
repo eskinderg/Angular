@@ -1,12 +1,17 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 div {
   // border-left: 1px solid lightgrey;
   // border-right: 1px solid lightgrey;
   // border-bottom: 1px solid lightgrey;
   // border: 1px solid grey;
-  min-height: calc(100vh - 230px);
+  min-height: calc(100vh - 74px);
   padding:5px;
   white-space: pre;
   height:100%;
+
+  background: lighten($secondary, 45%);
 }
 
 div.disabled {

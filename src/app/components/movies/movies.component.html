@@ -1,5 +1,5 @@
-<div class="row mt-2">
-  <div class="col-lg-3 mt-3 hidden-md-down">
+<div class="row g-0">
+  <div class="col-lg-3 hidden-md-down">
     <div class="list-group make-me-sticky">
         <ng-container>
           <app-genre-list (select)="onSelectGenre($event)" [genres]='genres'></app-genre-list>
@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <div class="col-lg-9 mt-3">
+  <div class="col-lg-9">
     <!-- <app-ba-card  header="Movies"> -->
       <router-outlet></router-outlet>
     <!-- </app-ba-card> -->
