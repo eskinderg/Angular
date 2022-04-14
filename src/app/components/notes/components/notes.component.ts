@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { NotesApiService } from '../services/notes.api.service';
@@ -13,12 +13,14 @@ import * as fromNotes from '../../../reducers/notes';
   animations: [fadeInAnimation],
   host: { '[@routerFadeInAnimation]': '' }
 })
-export class NotesComponent {
+export class NotesComponent implements OnInit {
 
   constructor(
     private notesApiService: NotesApiService,
     private store: Store<fromNotes.State>
-  ) {
+  ) { }
+
+  ngOnInit() {
   }
 
   onAddNote(colour) {

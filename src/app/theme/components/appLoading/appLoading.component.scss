@@ -1,8 +1,15 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
-$spin-color : ( $yellow);
-$spin-color-background : lighten($red,20%);
+$spin-color :  $green;
+$spin-color-background : $red;
+
+:host {
+  position: fixed;
+  width:100%;
+  top:0;
+  z-index:4
+}
 
 /* Progress Bar */
 .progress {

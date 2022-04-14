@@ -3,7 +3,7 @@
 
 :host {
   display:block;
-  height: calc(100vh - 150px);;
+  // height: calc(100vh - 150px);;
 }
 
 a {
@@ -11,7 +11,7 @@ a {
 }
 
 .active {
-  background: lighten($secondary, 45%);
+  background: lighten($primary, 40%);
   color: $black;
   border: none;
 }
@@ -44,4 +44,8 @@ a {
 .container {
     height: 100vh;
     overflow: auto;
+}
+
+.list-group-item {
+  border: none;
 }

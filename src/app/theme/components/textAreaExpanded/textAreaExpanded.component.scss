@@ -11,7 +11,7 @@ div {
   white-space: pre;
   height:100%;
 
-  background: lighten($secondary, 45%);
+  background: lighten($primary, 40%);
 }
 
 div.disabled {
@@ -23,3 +23,32 @@ div.disabled {
 [contenteditable] {
   outline: 0px solid transparent;
 }
+
+.custom-scroll {
+  --scrollbar-size: 8px;
+  --scrollbar-thumb-color: #85aeeb;
+  --scrollbar-hover-size: 12px;
+  --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+  --scrollbar-border-radius: 0px;
+  // height: 100%;
+  // display:block;
+}
+
+// :host {
+//  ::ng-deep {
+//     ng-scrollbar.virtual-scroll {
+//       // --scrollbar-size: 8px;
+//       // --scrollbar-thumb-color: blue;
+//       // --scrollbar-hover-size: 12px;
+//       // --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+//       // --scrollbar-border-radius: 10px;
+
+//       margin: 1em;
+//       // height: 200px;
+//       // max-height: 200px;
+//       // border-radius: 6px;
+//       // border: 1px solid gray;
+//       // overflow: hidden;
+//     }
+//   }
+// }
