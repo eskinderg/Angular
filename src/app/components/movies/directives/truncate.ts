@@ -11,6 +11,9 @@ export class TruncatePipe implements PipeTransform {
 
     const limit = args ? parseInt(args, 10) : 10;
 
+    if(value==='')
+      return "\u00A0";
+
     if (trailadd) {
       trail = ' ...';
     }

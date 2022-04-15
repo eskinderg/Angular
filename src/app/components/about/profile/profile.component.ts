@@ -46,7 +46,8 @@ export class ProfileComponent implements OnInit {
     if (this.profileForm.valid) {
       this.confirmService.openInfoModal({
         title: 'Profile',
-        message: 'Profile Saved'
+        message: 'Profile Saved',
+        backdrop: true
       }).then(() => {
       }, () => {
         console.log();

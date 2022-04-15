@@ -8,7 +8,7 @@ import { ConfirmState } from './confirm.state';
 @Injectable()
 export class ConfirmService {
 
-  constructor(private modalService: NgbModal, private state: ConfirmState) {}
+  constructor(private modalService: NgbModal, private state: ConfirmState) { }
 
   /**
    * Opens a confirmation modal
@@ -18,13 +18,13 @@ export class ConfirmService {
    */
   confirm(options: ConfirmOptions): Promise<any> {
     this.state.options = options;
-    this.state.modal = this.modalService.open(this.state.template, { backdrop: false, centered: true } );
+    this.state.modal = this.modalService.open(this.state.template, { backdrop: options.backdrop, centered: true });
     return this.state.modal.result;
   }
 
   openInfoModal(options: ConfirmOptions): Promise<any> {
     this.state.options = options;
-    this.state.modal = this.modalService.open(this.state.template, { backdrop: true } );
+    this.state.modal = this.modalService.open(this.state.template, { backdrop: options.backdrop });
     return this.state.modal.result;
   }
 }

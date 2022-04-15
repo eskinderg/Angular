@@ -35,7 +35,8 @@ export class EventComponent {
   onRemoveEvent(event: Event) {
     this.confirmService.confirm({
       title: 'Confirm deletion',
-      message: 'Do you really want to delete the item ' + '"' + event.title + '"?'
+      message: 'Do you really want to delete the item ' + '"' + event.title + '"?',
+      backdrop: true,
     }).then(() => {
       this.store.dispatch(new EventsActions.DeleteEvent(event));
     }, () => {

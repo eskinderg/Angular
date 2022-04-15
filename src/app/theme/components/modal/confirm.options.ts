@@ -12,5 +12,7 @@ export interface ConfirmOptions {
   /**
    * The message in the confirmation modal
    */
-  message: string
+  message: string,
+
+  backdrop: boolean
 }

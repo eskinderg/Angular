@@ -80,14 +80,15 @@ export class NoteComponent implements OnInit {
     // this.deleteNote.emit(note);
     // alert(note.header);
 
-    this.confirmService.confirm({
-      title: 'Confirm deletion',
-      message: 'Do you really want to delete the item ' + '"' + note.header + '"?'
-    }).then(() => {
-      this.noteApiService.deleteNote(note);
-    }, () => {
-      console.log();
-    });
+    // this.confirmService.confirm({
+    //   title: 'Confirm deletion',
+    //   message: 'Do you really want to delete the item ' + '"' + note.header + '"?',
+    //   backdrop: true
+    // }).then(() => {
+    //   this.noteApiService.deleteNote(note);
+    // }, () => {
+    //   console.log();
+    // });
   }
 
   // handleResizeNote($event) {

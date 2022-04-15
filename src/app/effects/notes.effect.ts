@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 // import { Observable } from 'rxjs';
 // import { Store, Action } from '@ngrx/store';
 import * as NotesActions from '../actions/note';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { Router } from '@angular/router'
+import { ToastService } from '../shared/toast/toast.service';
 
 @Injectable()
 export class NotesEffect {
@@ -101,8 +102,8 @@ export class NotesEffect {
     this.actions$
       .pipe(ofType(NotesActions.DELETE_NOTE_SUCCESS),
         switchMap((action: NotesActions.DeleteNote) => {
-          console.log(action)
-          return null;
+          this.toastService.showSuccess('Note Deleted')
+          return EMPTY;
         }
         )), { dispatch: false })
 
@@ -110,6 +111,7 @@ export class NotesEffect {
     private actions$: Actions,
     // private store: Store<any>,
     private notesApiService: NotesDataService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) { }
 }

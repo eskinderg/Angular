@@ -5,6 +5,7 @@ import { NotesApiService } from '../services/notes.api.service';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
 import * as fromNotes from '../../../reducers/notes';
+import { ConfirmService } from 'src/app/theme/components/modal';
 
 @Component({
   selector: 'app-notes',
@@ -17,6 +18,7 @@ export class NotesComponent implements OnInit {
 
   constructor(
     private notesApiService: NotesApiService,
+    private confirmService: ConfirmService,
     private store: Store<fromNotes.State>
   ) { }
 
@@ -24,7 +26,7 @@ export class NotesComponent implements OnInit {
   }
 
   onAddNote(colour) {
-    alert(colour)
+    // alert(colour)
 
     const newNote = new Note({
       header: 'Untitled',
@@ -53,8 +55,16 @@ export class NotesComponent implements OnInit {
   }
 
   onNoteDelete(note: Note) {
-    // this.notesApiService.deleteNote(note);
-    // alert(note.text);
+
+    this.confirmService.confirm({
+      title: 'Confirm deletion',
+      message: 'Are you sure you want to delete ?',
+      backdrop: true
+    }).then(() => {
+      this.notesApiService.deleteNote(note);
+    }, () => {
+    });
+    // alert(note.id);
   }
 
   get Notes() {
