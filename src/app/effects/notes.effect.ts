@@ -102,7 +102,7 @@ export class NotesEffect {
     this.actions$
       .pipe(ofType(NotesActions.DELETE_NOTE_SUCCESS),
         switchMap((action: NotesActions.DeleteNote) => {
-          this.toastService.showSuccess('Note Deleted')
+          this.toastService.showStandard('Note Deleted', 'Info')
           return EMPTY;
         }
         )), { dispatch: false })
