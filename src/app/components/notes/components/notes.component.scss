@@ -17,12 +17,14 @@
 
 a {
   color: $primary;
+  font-style:italic;
 }
 
 .active {
   background: lighten($primary, 40%);
   color: $black;
-  border: none;
+  // border: none;
+  box-shadow: -5px 0px 0px 0px lightgrey, 5px 0px 0px 0px lightgrey;
 }
 
 .area {
