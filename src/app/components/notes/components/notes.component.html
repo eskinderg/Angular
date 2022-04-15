@@ -20,8 +20,9 @@
           [routerLink]="['/notes',note.id]"
           class="list-group-item list-group-item-action "
           [routerLinkActiveOptions]="{exact:false}"
-          [routerLinkActive]="['active']" >
-          {{ note.text | truncate : '20': true }}
+          [routerLinkActive]="['active']"
+          [innerHTML]="note.text | truncate : '20': true"
+          >
         </a>
 
         <!-- <i class="btn btn-sm me-2"> -->

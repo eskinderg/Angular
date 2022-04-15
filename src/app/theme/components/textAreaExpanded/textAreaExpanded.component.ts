@@ -46,7 +46,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
 
   writeValue( value: string ): void {
     const div = this.textarea.nativeElement;
-    this.renderer.setProperty(div, 'textContent', value );
+    this.renderer.setProperty(div, 'innerHTML', value );
   }
 
   registerOnChange( fn: any ): void {
@@ -71,9 +71,10 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
     // console.log($event);
     // this.onChange.emit($event);
     // this.onTextChanged.emit($event.target.textContent);
+    console.log($event.target.innerHTML)
 
     // console.log($event.target.innerText);
-    this.onTextChanged.emit({...this.note, text: $event.target.innerText});
+    this.onTextChanged.emit({...this.note, text: $event.target.innerHTML});
     // console.log(this.note.text)
 
     // this.onChange($event.target.textContent);
