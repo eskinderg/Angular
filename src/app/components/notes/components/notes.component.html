@@ -25,18 +25,14 @@
           >
         </a>
 
-        <!-- <i class="btn btn-sm me-2"> -->
-        <!-- <span class="fa fa-flicker menu"></span> -->
-        <!-- </i> -->
-
         <span class="fa fa-flicker menu" [ngClass]="menuDrop.isOpen()?'menuButtonHighlight': ''" ngbDropdown (click)="$event.stopPropagation(); menuDrop.open();">
         </span>
 
         <div class="d-inline-block" ngbDropdown #menuDrop="ngbDropdown">
           <div ngbDropdownMenu>
-            <button ngbDropdownItem>Rename</button>
-            <button ngbDropdownItem>Copy</button>
-            <button ngbDropdownItem (click)="onNoteDelete(note)">Delete</button>
+            <!-- <button ngbDropdownItem><span class="fa fa-circle-up">&nbsp;</span>Rename</button> -->
+            <!-- <button ngbDropdownItem><span class="fa fa-user">&nbsp;</span>Copy Text</button> -->
+            <button ngbDropdownItem (click)="onNoteDelete(note)"><span style="color:orange" class="fa fa-bin2">&nbsp;</span>Delete </button>
           </div>
         </div>
 
