@@ -15,26 +15,32 @@
 
     <ul class="list-group">
 
-      <div class="d-flex justify-content-between relative" *ngFor="let note of Notes | async">
+      <div
+        [routerLinkActiveOptions]="{exact:false}"
+        [routerLinkActive]="['active']"
+        [routerLink]="['/notes',note.id]"
+        class="d-flex justify-content-between link" *ngFor="let note of Notes | async">
         <a
-          [routerLink]="['/notes',note.id]"
           class="list-group-item list-group-item-action "
-          [routerLinkActiveOptions]="{exact:false}"
           [routerLinkActive]="['active']"
+          [routerLink]="['/notes',note.id]"
           [innerHTML]="note.text | truncate : '20': true"
           >
         </a>
 
-        <span class="fa fa-flicker menu" [ngClass]="menuDrop.isOpen()?'menuButtonHighlight': ''" ngbDropdown (click)="$event.stopPropagation(); menuDrop.open();">
+        <span class="fa fa-bin2 menu" (click)="onNoteDelete(note)">
         </span>
 
-        <div class="d-inline-block" ngbDropdown #menuDrop="ngbDropdown">
-          <div ngbDropdownMenu>
-            <!-- <button ngbDropdownItem><span class="fa fa-circle-up">&nbsp;</span>Rename</button> -->
-            <!-- <button ngbDropdownItem><span class="fa fa-user">&nbsp;</span>Copy Text</button> -->
-            <button ngbDropdownItem (click)="onNoteDelete(note)"><span style="color:orange" class="fa fa-bin2">&nbsp;</span>Delete </button>
-          </div>
-        </div>
+        <!-- <span class="fa fa-flicker menu"  > -->
+        <!-- </span> -->
+
+        <!-- <div class="d-inline-block" ngbDropdown #menuDrop="ngbDropdown"> -->
+        <!--   <div ngbDropdownMenu> -->
+        <!--     <!-1- <button ngbDropdownItem><span class="fa fa-circle-up">&nbsp;</span>Rename</button> -1-> -->
+        <!--     <!-1- <button ngbDropdownItem><span class="fa fa-user">&nbsp;</span>Copy Text</button> -1-> -->
+        <!--     <button ngbDropdownItem (click)="onNoteDelete(note)"><span style="color:orange" class="fa fa-bin2">&nbsp;</span>Delete </button> -->
+        <!--   </div> -->
+        <!-- </div> -->
 
       </div>
 

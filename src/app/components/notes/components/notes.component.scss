@@ -25,36 +25,38 @@ a:hover {
   color: lighten($primary, 20%);
 }
 
+.link {
+  color: lighten($primary, 10%);
+}
+
+.link:hover {
+  color: lighten($primary, 20%);
+}
+
 .active {
   background: lighten($primary, 40%);
   color: lighten($primary, 10%);
   // border: none;
-  box-shadow: -5px 0px 0px 0px lightgrey, 5px 0px 0px 0px lightgrey;
+  // box-shadow: -5px 0px 0px 0px lightgrey, 5px 0px 0px 0px lightgrey;
 }
 
-.area {
-  background: grey;
-  padding: 40px;
-}
+// .area {
+//   background: grey;
+//   padding: 40px;
+// }
 
-.relative {
-  position: relative;
-}
 
 .menu {
-  position: absolute;
+  // position: absolute;
   right:0px;
   z-index:2;
   padding:15px;
+  padding-left:0px;
   color: lighten($secondary, 30%);
 }
 
 .menu:hover {
-  color: lighten($primary, 20%);
-}
-
-.menuButtonHighlight{
-  color: lighten($primary, 20%);
+  color: lighten($warning, 20%);
 }
 
 .container {
