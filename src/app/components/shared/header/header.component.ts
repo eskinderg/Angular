@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import { count, takeUntil } from 'rxjs/operators';
   selector: 'app-header',
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
