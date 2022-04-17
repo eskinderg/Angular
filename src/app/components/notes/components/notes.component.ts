@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 // import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { NotesApiService } from '../services/notes.api.service';
@@ -12,7 +12,8 @@ import { ConfirmService } from 'src/app/theme/components/modal';
   templateUrl: 'notes.component.html',
   styleUrls: ['notes.component.scss'],
   animations: [fadeInAnimation],
-  host: { '[@routerFadeInAnimation]': '' }
+  host: { '[@routerFadeInAnimation]': '' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent implements OnInit {
 

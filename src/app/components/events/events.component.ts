@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 // import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,8 @@ import * as fromEvents from '../../reducers/events';
   selector: 'app-events',
   templateUrl: 'events.component.html',
   styleUrls: ['events.component.scss'],
-  animations: [fadeInAnimation]
+  animations: [fadeInAnimation],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent {
 

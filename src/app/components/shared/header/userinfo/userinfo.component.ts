@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output , OnInit} from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../../../../shared/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   selector: 'app-userinfo',
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoComponent {
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
@@ -15,6 +15,7 @@ import * as NotesActions from './actions/note';
   selector: 'app-main',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
 

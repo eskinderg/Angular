@@ -50,8 +50,8 @@ export class HeaderComponent implements OnInit {
 
   get IsLoggedIn() {
     return this.oauthService.hasValidAccessToken();
-  }
 
+  }
 
   // get EventItemCount() {
   //   // return this.store.select(fromEvents.initialState.events.length)
