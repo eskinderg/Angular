@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   selector: 'app-userinfo',
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoComponent {
 

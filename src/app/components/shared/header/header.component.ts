@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
@@ -24,9 +24,15 @@ export class HeaderComponent implements OnInit {
   // claims: any
   // public ItemsCount;
 
-  constructor (private oauthService: OAuthService, private store: Store<fromEvents.State>) {
-    var result = this.store.select(fromEvents.getEvents);
-    result.subscribe(e=> this.ItemsCount = e.length);
+  constructor (private oauthService: OAuthService, private store: Store<fromEvents.State>, private cdf: ChangeDetectorRef) {
+
+    const result = this.store.select(fromEvents.getEvents);
+
+    result.subscribe(e=> {
+      this.ItemsCount = e.length
+      this.cdf.markForCheck();
+    });
+
   }
 
   ngOnInit() {
