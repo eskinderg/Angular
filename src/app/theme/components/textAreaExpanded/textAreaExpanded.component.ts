@@ -8,7 +8,8 @@ import {
   ElementRef,
   forwardRef,
   Renderer2,
-  ViewChild
+  ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap } from 'rxjs';
@@ -25,7 +26,8 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   selector: 'app-textarea-expanded',
   providers: [EPANDED_TEXTAREA_VALUE_ACCESSOR],
   templateUrl: 'textAreaExpanded.component.html',
-  styleUrls: ['textAreaExpanded.component.scss']
+  styleUrls: ['textAreaExpanded.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
 

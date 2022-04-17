@@ -9,6 +9,7 @@ import { ConfirmService } from '../../../../theme/components/modal/confirm.servi
   selector: 'app-note',
   templateUrl: 'note.component.html',
   styleUrls: ['note.component.scss']
+
 })
 export class NoteComponent implements OnInit {
 
