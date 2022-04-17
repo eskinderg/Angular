@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieResults } from '../models/movie-results';
 
@@ -6,7 +6,6 @@ import { MovieResults } from '../models/movie-results';
   selector: 'app-genres',
   templateUrl: 'genre.component.html',
   styleUrls: ['genre.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreComponent implements OnInit {
 
@@ -30,7 +29,7 @@ export class GenreComponent implements OnInit {
   }
 
   get collectionSize() {
-    if(this.movieResult.total_results / 20 > 500)
+    if (this.movieResult.total_results / 20 > 500)
       return 500 * 20;
     else
       return 375 * 20;
