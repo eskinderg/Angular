@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Movie } from '../models/movie';
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   searchTerm: string = "";
   movieResult: MovieResults;
 
-  constructor(private _moviesServices: MoviesApiService) { }
+  constructor(private _moviesServices: MoviesApiService, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     fromEvent(this.input.nativeElement, 'keyup')
@@ -79,6 +79,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   onSearch(searchText: string) {
     this._moviesServices.serachMovies(searchText).subscribe((m: MovieResults) => {
       this.movieResult = m;
+      this.cdr.markForCheck();
     });
   }
 

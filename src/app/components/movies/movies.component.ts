@@ -1,4 +1,4 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
@@ -15,7 +15,8 @@ import { MoviesApiService } from './movies.service/movies.api.service';
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
   animations: [ fadeInAnimation ],
-  host: { '[@routerFadeInAnimation]': '' }
+  host: { '[@routerFadeInAnimation]': '' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent implements OnInit  {
 

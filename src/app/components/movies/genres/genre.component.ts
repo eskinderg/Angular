@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieResults } from '../models/movie-results';
 
 @Component({
   selector: 'app-genres',
   templateUrl: 'genre.component.html',
-  styleUrls: ['genre.component.scss']
+  styleUrls: ['genre.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreComponent implements OnInit {
 
