@@ -7,16 +7,13 @@ import { AuthService } from '../shared/services/auth/auth.service';
 import { Genre } from './models/genre';
 import { MoviesApiService } from './movies.service/movies.api.service';
 
-/**
- * This class represents the lazy loaded MoviesComponent.
- */
 @Component({
   selector: 'app-movies',
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
   animations: [ fadeInAnimation ],
-  host: { '[@routerFadeInAnimation]': '' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '[@routerFadeInAnimation]': '' }
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent implements OnInit  {
 
