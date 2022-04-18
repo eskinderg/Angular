@@ -6,12 +6,13 @@ import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
 import * as fromNotes from '../../../reducers/notes';
 import { ConfirmService } from 'src/app/theme/components/modal';
+import { FadeInOutEventNoteItem } from '../../shared/animations/fadeInAndOutNoteItem';
 
 @Component({
   selector: 'app-notes',
   templateUrl: 'notes.component.html',
   styleUrls: ['notes.component.scss'],
-  animations: [fadeInAnimation],
+  animations: [fadeInAnimation, FadeInOutEventNoteItem],
   host: { '[@routerFadeInAnimation]': '' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -19,7 +19,7 @@
         [routerLinkActiveOptions]="{exact:false}"
         [routerLinkActive]="['active']"
         [routerLink]="['/notes',note.id]"
-        class="d-flex justify-content-between link" *ngFor="let note of Notes | async">
+        class="d-flex justify-content-between link" *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]>
         <a
           class="list-group-item list-group-item-action "
           [routerLinkActive]="['active']"
