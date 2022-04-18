@@ -9,6 +9,7 @@ import * as fromEvents from '../../reducers/events';
   templateUrl: 'events.component.html',
   styleUrls: ['events.component.scss'],
   animations: [fadeInAnimation],
+  host: { '[@routerFadeInAnimation]': '' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent {

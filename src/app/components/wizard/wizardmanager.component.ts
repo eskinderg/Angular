@@ -9,8 +9,8 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
   selector: 'app-about',
   templateUrl: 'wizardmanager.component.html',
   styleUrls: ['wizardmanager.component.scss'],
-  animations: [ fadeInAnimation ]
-  // host: { '[@routerFadeInAnimation]': '' }
+  animations: [ fadeInAnimation ],
+  host: { '[@routerFadeInAnimation]': '' }
 })
 export class WizardManagerComponent {
 
