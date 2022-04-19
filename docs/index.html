@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en"><head>
+        <meta charset="utf-8">
+        <title>AngularProject</title>
+        <!-- <script>document.write('<base href="' + document.location + '" />');</script> -->
+        <base href="https://eskinderg.github.io/Angular/">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="manifest" href="/manifest.json">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#FEFEFE">
+      <link rel="manifest" href="manifest.json">
+      <meta name="theme-color" content="#1976d2">
+    <style>@charset "UTF-8";@font-face{font-family:Raleway;src:url(Raleway-Regular.62b3844539c0b3ec.ttf)}:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#343a40;--bs-primary-rgb:13, 110, 253;--bs-secondary-rgb:108, 117, 125;--bs-success-rgb:25, 135, 84;--bs-info-rgb:13, 202, 240;--bs-warning-rgb:255, 193, 7;--bs-danger-rgb:220, 53, 69;--bs-light-rgb:248, 249, 250;--bs-dark-rgb:33, 37, 41;--bs-white-rgb:255, 255, 255;--bs-black-rgb:0, 0, 0;--bs-body-color-rgb:33, 37, 41;--bs-body-bg-rgb:255, 255, 255;--bs-font-sans-serif:"Raleway", sans-serif;--bs-font-monospace:Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:Raleway, sans-serif;--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-bg:#fff}*,*:before,*:after{box-sizing:border-box}@media (prefers-reduced-motion: no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{display:block;height:100%;overflow:auto;position:absolute;width:100%}</style><link rel="stylesheet" href="styles.9641e7a7ce3da898.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.9641e7a7ce3da898.css"></noscript></head>
+    <body>
+        <app-main>
+
+            <style>
+
+                html, body, div {
+                    border: 0;
+                    margin: 0;
+                    padding: 0;
+                }
+                .loading {
+                    width: 100%;
+                    height: 100%;
+                    background: #0275d8 ;
+                    opacity: 0.9;
+                    position: fixed;
+                }
+                .loading > div {
+                    width: 60px;
+                    height: 60px;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -30px;
+                    top: 50%;
+                    margin-top: -30px;
+                }
+                .loading > div > div {
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    background: #B3C4D4;
+                    top: 10px;
+                    left: 10px;
+                    transform-origin: 20px 20px;
+                    border-radius: 8px;
+                    animation: spin-a 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
+                }
+                .loading > div > .c2 {
+                    top: 10px;
+                    left: auto;
+                    right: 10px;
+                    transform-origin: -4px 20px;
+                    animation: spin-b 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
+                }
+                .loading > div > .c3 {
+                    top: auto;
+                    left: auto;
+                    right: 10px;
+                    bottom: 10px;
+                    transform-origin: -4px -4px;
+                    animation: spin-c 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
+                }
+                .loading > div > .c4 {
+                    top: auto;
+                    bottom: 10px;
+                    transform-origin: 20px -4px;
+                    animation: spin-d 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
+                }
+                @keyframes spin-a {
+                    0% {
+                        transform: rotate(90deg);
+                    }
+                    0% {
+                        transform: rotate(90deg);
+                    }
+                    50% {
+                        transform: rotate(180deg);
+                    }
+                    75% {
+                        transform: rotate(270deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                @keyframes spin-b {
+                    0% {
+                        transform: rotate(90deg);
+                    }
+                    25% {
+                        transform: rotate(90deg);
+                    }
+                    25% {
+                        transform: rotate(180deg);
+                    }
+                    75% {
+                        transform: rotate(270deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                @keyframes spin-c {
+                    0% {
+                        transform: rotate(90deg);
+                    }
+                    25% {
+                        transform: rotate(90deg);
+                    }
+                    50% {
+                        transform: rotate(180deg);
+                    }
+                    50% {
+                        transform: rotate(270deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                @keyframes spin-d {
+                    0% {
+                        transform: rotate(90deg);
+                    }
+                    25% {
+                        transform: rotate(90deg);
+                    }
+                    50% {
+                        transform: rotate(180deg);
+                    }
+                    75% {
+                        transform: rotate(270deg);
+                    }
+                    75% {
+                        transform: rotate(360deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                .loading > span {
+                    width: 100px;
+                    height: 30px;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -50px;
+                    top: 50%;
+                    margin-top: 30px;
+                    color: #B3C4D4;
+                    font-size: 12px;
+                    text-align: center;
+                }
+            </style>
+            <div class="loading">
+                <div>
+                    <div class="c1"></div>
+                    <div class="c2"></div>
+                    <div class="c3"></div>
+                    <div class="c4"></div>
+                </div>
+                <span></span>
+        </div><app-main>
+
+        <noscript>
+          <p>
+          Sorry, Javascript must be enabled to use this app
+          </p>
+        </noscript>
+
+<script src="runtime.c6189f1539ce265d.js" type="module"></script><script src="polyfills.ef16c150f38c1caa.js" type="module"></script><script src="main.e8b13faa073ce6fb.js" type="module"></script>
+
+</app-main></app-main></body></html>
