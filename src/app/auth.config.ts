@@ -1,12 +1,13 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'http://192.168.1.5:5000/auth/realms/master',
-  requireHttps: false,
-  redirectUri: window.location.origin,
-  clientId: 'Angular6',
+  issuer: 'eskoauth.us.auth0.com',
+  requireHttps: true,
+  redirectUri: 'https://eskinderg.github.io/Angular',
+  clientId: 'CQruP3Sm2FlOMt1nLmTJRXrtZkUZrqj3',
   responseType: 'code',
   disableAtHashCheck: true,
   scope: ' openid profile api2',
-  showDebugInformation: true
+  showDebugInformation: true,
+  dummyClientSecret: 'oLLLbCpud1GbJvTlAhX0nvhGTSO9f_SOQhuTz3eUvkHwkdrPUJdOHpqpY8sEaXvT'
 }
