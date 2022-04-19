@@ -1,7 +1,7 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
-  issuer: 'eskoauth.us.auth0.com',
+  issuer: 'https://eskoauth.us.auth0.com',
   requireHttps: false,
   redirectUri: 'https://eskinderg.github.io/Angular',
   clientId: 'CQruP3Sm2FlOMt1nLmTJRXrtZkUZrqj3',
