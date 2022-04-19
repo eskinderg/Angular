@@ -10,6 +10,7 @@ export const authConfig: AuthConfig = {
   scope: ' openid profile api2',
   showDebugInformation: true,
   dummyClientSecret: 'oLLLbCpud1GbJvTlAhX0nvhGTSO9f_SOQhuTz3eUvkHwkdrPUJdOHpqpY8sEaXvT',
-  strictDiscoveryDocumentValidation: false
+  strictDiscoveryDocumentValidation: false,
+  skipIssuerCheck: true
 
 }
