@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { UserInfoComponent } from './header/userinfo/userinfo.component';
 import { FooterComponent } from './footer/footer.component';
 import { TruncatePipe } from '../movies/directives/truncate';
+import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormatDatePipe } from '../movies/directives/dateFormat';
@@ -26,6 +27,7 @@ import { FormatDatePipe } from '../movies/directives/dateFormat';
     UserInfoComponent,
     FooterComponent,
     TruncatePipe,
+    NoteTitleTruncatePipe,
     FormatDatePipe
   ],
   exports: [
@@ -38,6 +40,7 @@ import { FormatDatePipe } from '../movies/directives/dateFormat';
     RouterModule,
     DragDropModule,
     TruncatePipe,
+    NoteTitleTruncatePipe,
     FormatDatePipe
   ]
 })
