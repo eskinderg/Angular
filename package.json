@@ -42,7 +42,7 @@
     "d3": "^7.3.0",
     "jasmine-core": "~4.0.0",
     "jquery": "^3.6.0",
-    "karma": "~6.3.0",
+    "karma": "~6.3.19",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~5.0.0",
