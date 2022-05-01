@@ -34,7 +34,7 @@
     "@ngrx/store": "^13.0.2",
     "@ngrx/store-devtools": "^13.0.2",
     "@types/d3": "^7.1.0",
-    "@types/jasmine": "~3.10.0",
+    "@types/jasmine": "~4.0.3",
     "@types/jquery": "^3.5.14",
     "@types/node": "^12.11.1",
     "angular-oauth2-oidc": "^13.0.1",
