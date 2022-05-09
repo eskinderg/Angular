@@ -1,0 +1,25 @@
+#.travis.yml
+
+language: node_js
+node_js:
+  - "10.0.0"
+
+branches:
+  only:
+    - dev
+    - master
+
+before_install: if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+
+before_script:
+  - npm install
+
+script:
+  - ng build --prod
+
+after_success:
+
+notifications:
+  email:
+    on_failure: change
+    on_success: change
