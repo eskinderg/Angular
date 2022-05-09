@@ -30,7 +30,7 @@
     "@angular/compiler-cli": "~13.2.0",
     "@angular/service-worker": "^13.2.6",
     "@ng-bootstrap/ng-bootstrap": "^12.1.1",
-    "@ngrx/effects": "^13.0.2",
+    "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.0.2",
     "@ngrx/store-devtools": "^13.0.2",
     "@types/d3": "^7.1.0",
