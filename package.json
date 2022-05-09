@@ -32,7 +32,7 @@
     "@ng-bootstrap/ng-bootstrap": "^12.1.1",
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.0.2",
-    "@ngrx/store-devtools": "^13.0.2",
+    "@ngrx/store-devtools": "^13.2.0",
     "@types/d3": "^7.1.0",
     "@types/jasmine": "~4.0.3",
     "@types/jquery": "^3.5.14",
