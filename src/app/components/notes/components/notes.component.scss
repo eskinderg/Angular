@@ -3,7 +3,6 @@
 
 :host {
   display:block;
-  // height: calc(100vh - 150px);;
 }
 
 .esk {
@@ -17,8 +16,6 @@
 
 a {
   color: lighten($primary, 10%);
-  // font-style:italic;
-  // font-weight:bold;
 }
 
 a:hover {
@@ -34,20 +31,11 @@ a:hover {
 }
 
 .active {
-  background: lighten($primary, 40%);
+  background: whitesmoke;
   color: lighten($primary, 10%);
-  // border: none;
-  // box-shadow: -5px 0px 0px 0px lightgrey, 5px 0px 0px 0px lightgrey;
 }
 
-// .area {
-//   background: grey;
-//   padding: 40px;
-// }
-
-
 .menu {
-  // position: absolute;
   right:0px;
   z-index:2;
   padding:15px;
@@ -60,12 +48,14 @@ a:hover {
 }
 
 .container {
-    height: 100vh;
-    overflow: auto;
+  height: 100vh;
+  overflow: auto;
 }
 
 .list-group-item {
   border: none;
+  cursor:pointer;
+  width:100%;
 }
 
 button {

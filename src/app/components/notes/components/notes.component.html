@@ -21,9 +21,8 @@
         [routerLink]="['/notes',note.id]"
         class="d-flex justify-content-between link" *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]>
         <a
-          class="list-group-item list-group-item-action "
+          class="list-group-item"
           [routerLinkActive]="['active']"
-          [routerLink]="['/notes',note.id]"
           [innerHTML]="note.text | noteTitleTruncate : '20': true"
           >
         </a>
