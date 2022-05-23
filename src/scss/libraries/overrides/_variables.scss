@@ -1,32 +1,20 @@
 @import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
 
-// $primary: $black;
-// $secondary: $gray-600;
+$primary: #2a6ada;
+$secondary: darkgrey;
 
-$theme-colors: (
-  primary: $primary,
-  secondary: $gray-600,
-  success: $green,
-  info: $cyan,
-  warning: $yellow,
-  danger: $red,
-  light: $gray-100,
-  dark: $gray-800
-);
+// $link-color:                 $primary;
+// $link-hover-color:           $secondary;
 
-$link-color:                 $primary;
-$link-hover-color:           $secondary;
+// // $nav-tabs-link-active-color: yellow;
+// $nav-tabs-link-active-bg: lighten($primary, 90%);
 
-// $nav-tabs-link-active-color: yellow;
-$nav-tabs-link-active-bg: lighten($primary, 90%);
+// $card-cap-bg : lighten($primary, 90%);
+// $card-cap-fg : $primary;
 
-$card-cap-bg : lighten($primary, 90%);
-$card-cap-fg : $red;
-
-$navbar-dark-color:                 $light;
-$navbar-dark-hover-color:           $light;
-$navbar-dark-active-color:          $dark;
+// $navbar-dark-color:                 $light;
+// $navbar-dark-hover-color:           $light;
+// $navbar-dark-active-color:          $dark;
 // $navbar-dark-disabled-color:        rgba($white, .25) !default;
 
 // $list-group-active-color: $info;
@@ -82,7 +70,7 @@ $font-family-base:       $font-family-sans-serif;
 // $card-spacer-y:                     .5rem  ! global;
 
 //  //List group
-$list-group-link-color:             $primary !default;
+// $list-group-link-color:             $primary !default;
 
 //  // @debug $brand-primary;
 //}
@@ -90,3 +78,6 @@ $list-group-link-color:             $primary !default;
 //// $blue :red;
 
 // @debug $brand-primary;
+
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
