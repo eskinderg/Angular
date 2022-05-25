@@ -2,8 +2,6 @@ $primary:                           #060606;
 $body-bg:                           #484848;
 $body-color:                        white;
 
-// $spacer:                           0;
-
 $input-bg:                          $body-bg;
 $input-border-width:                0;
 $input-border-radius:               0;
@@ -19,13 +17,13 @@ $nav-tabs-link-active-color:        $primary;
 $nav-tabs-link-active-border-color: $primary;
 $nav-tabs-border-color:             $primary;
 
-$modal-content-bg: $primary;
+$modal-content-bg:                  $primary;
 
-$popover-bg: $primary;
+$popover-bg:                        $primary;
 
-$dropdown-bg: $primary;
-$dropdown-link-color: $body-color;
-$dropdown-link-hover-bg: $body-bg;
+$dropdown-bg:                       $primary;
+$dropdown-link-color:               $body-color;
+$dropdown-link-hover-bg:            $body-bg;
 
 // :root {
 //   --eskinder: white;
