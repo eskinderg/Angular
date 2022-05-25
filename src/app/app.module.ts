@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -9,7 +9,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { GlobalErrorHandler  } from './error/errorhandle';
+import { GlobalErrorHandler } from './error/errorhandle';
 import { LoggingService } from './error/loggingservice';
 import { AuthorizationModule } from './components/authorization/authorization.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +29,7 @@ import { environment } from '../environments/environment';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
+import { ThemeService } from './shared/theme.service';
 
 @NgModule({
   imports: [
@@ -40,7 +41,7 @@ import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
     AuthorizationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducer, { metaReducers }),
-    EffectsModule.forRoot([ NotesEffect, EventsEffect, AuthEffect ]),
+    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect]),
     StoreDevtoolsModule.instrument(),
     OAuthModule.forRoot({
       resourceServer: {
@@ -60,9 +61,25 @@ import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
     NotesDataService,
     EventDataService,
     LoggingService,
-    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true },
-    { provide: APP_BASE_HREF, useValue: '/' },
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => null,
+      deps: [ThemeService],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    }
   ],
   bootstrap: [AppComponent]
 

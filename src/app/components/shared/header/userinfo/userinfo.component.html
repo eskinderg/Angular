@@ -4,6 +4,14 @@
     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownBasic">
         <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
         <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
+
+      <div class="btn-group" role="group" aria-label="Radio Buttons to Change Theme">
+        <input type="radio" (click)="onThemeChange('light')" [formControl]="theme" [value]="'light'" class="btn-check" id="btnradio1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio1">Light</label>
+
+        <input type="radio"  (click)="onThemeChange('dark')" [formControl]="theme" [value]="'dark'" class="btn-check" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Dark</label>
+      </div>
         <!-- <button class="dropdown-item">Something else is here</button> -->
     </div>
 </div>

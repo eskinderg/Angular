@@ -1,5 +1,16 @@
 <app-ba-card header="Profile">
   <div class="row mb-3">
+    <label for="example-text-input" class="col-2 col-form-label">Theme</label>
+    <div class="col-10">
+      <div class="btn-group" role="group" aria-label="Radio Buttons to Change Theme">
+        <input type="radio" (click)="onThemeChange('light')" [formControl]="theme" [value]="'light'" class="btn-check" id="btnradio1" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio1">Light</label>
+
+        <input type="radio"  (click)="onThemeChange('dark')" [formControl]="theme" [value]="'dark'" class="btn-check" id="btnradio2" autocomplete="off">
+        <label class="btn btn-outline-primary" for="btnradio2">Dark</label>
+      </div>
+    </div>
+  </div><div class="row mb-3">
     <label for="example-text-input" class="col-2 col-form-label">Name</label>
     <div class="col-10">
       <input class="form-control" name="name" type="text" [ngModel]="user['given_name']" >

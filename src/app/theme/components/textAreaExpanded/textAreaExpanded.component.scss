@@ -11,7 +11,8 @@ div {
   height:100%;
 
   // background: lighten($primary, 40%);
-  background: whitesmoke;
+  // background: whitesmoke;
+  background: --bs-body-bg;
 }
 
 div.disabled {

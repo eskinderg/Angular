@@ -1,0 +1,34 @@
+$primary:                           #060606;
+$body-bg:                           #484848;
+$body-color:                        white;
+
+// $spacer:                           0;
+
+$input-bg:                          $body-bg;
+$input-border-width:                0;
+$input-border-radius:               0;
+
+$card-bg:                           #3c3c3c;
+
+$list-group-bg:                     #3c3c3c;
+$list-group-hover-bg:               none;
+$list-group-color:                  $body-color;
+$list-group-action-hover-color:     grey;
+
+$nav-tabs-link-active-color:        $primary;
+$nav-tabs-link-active-border-color: $primary;
+$nav-tabs-border-color:             $primary;
+
+$modal-content-bg: $primary;
+
+$popover-bg: $primary;
+
+$dropdown-bg: $primary;
+$dropdown-link-color: $body-color;
+$dropdown-link-hover-bg: $body-bg;
+
+// :root {
+//   --eskinder: white;
+// }
+
+@import '~bootstrap/scss/bootstrap';

@@ -1,4 +1,3 @@
-@import "../../../../../scss/libraries/overrides/_variables.scss";
 .yellowButton {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9efaf), color-stop(1, #f7e98d));
   background:-moz-linear-gradient(top, #f9efaf 5%, #f7e98d 100%);
@@ -141,16 +140,16 @@
 .common {
   font-size:25px;
   padding: 11px;
-  color:$white;
+  color:white;
   margin:5px;
-  background: $primary;
+  background: var(--bs-primary);
   border-radius: 50%;
   text-decoration:none;
-  background-color: $secondary;
+  background-color: var(--bs-secondary);
 
   &:hover {
-    background-color: $primary;
-    color: $white;
+    background-color: var(--bs-primary);
+    color: white;
     text-decoration: none;
 
   }

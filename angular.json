@@ -39,7 +39,17 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/fonts/style.css"
+              "src/assets/fonts/style.css",
+              {
+                "input": "src/scss/themes/light.scss",
+                "bundleName": "light",
+                "inject": false
+              },
+              {
+                "input": "src/scss/themes/dark.scss",
+                "bundleName": "dark",
+                "inject": false
+              }
             ],
             "scripts": []
           },

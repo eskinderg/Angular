@@ -1,2 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
-@import './scss/main';
+@font-face {
+  font-family: 'Raleway';
+  src: url(./assets/fonts/Raleway/Raleway-Regular.ttf)
+}
+
+$raleway: 'Raleway', sans-serif;
+$open-sans: 'Open Sans', sans-serif;
+$font-family-sans-serif: $raleway;
+$font-family-serif:      $raleway;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:       $font-family-sans-serif;

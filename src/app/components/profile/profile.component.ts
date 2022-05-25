@@ -1,18 +1,14 @@
-import { Component, HostListener, HostBinding, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SlideAnimation } from '../shared/animations/animations';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { Observable } from 'rxjs';
-import { ConfirmService } from '../../theme/components/modal/confirm.service';
 import { OAuthService } from 'angular-oauth2-oidc';
-/**
- * This class represents the lazy loaded ProfileComponent.
- */
+import { FormControl } from '@angular/forms';
+import { ThemeService } from 'src/app/shared/theme.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.component.html',
   styleUrls: ['profile.component.scss'],
-  animations: [ fadeInAnimation ]
+  animations: [fadeInAnimation]
 })
 export class ProfileComponent implements OnInit {
 
@@ -21,19 +17,17 @@ export class ProfileComponent implements OnInit {
   public x: number;
   public y: number;
   public user: any;
+  public theme: any = new FormControl();
 
-  constructor(private authService: OAuthService) {
+  constructor(private authService: OAuthService, public themeService: ThemeService) {
     this.user = this.authService.getIdentityClaims();
+    this.theme.value = this.themeService.current;
   }
 
   ngOnInit() { }
 
-
-  @HostListener('window:resize', ['$event'] )
-  public onWindowResize($event: any): void {
-    // console.log($event);
-    // this.x = $event.currentTarget.innerWidth;
-    // this.y = $event.currentTarget.innerHeight;
+  public onThemeChange(theme: any) {
+    this.themeService.current = theme;
   }
 
 }

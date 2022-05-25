@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AuthService } from '../../../../shared/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Store } from '@ngrx/store';
-import * as fromAuth from '../../../../reducers/auth';
-import * as  AuthActions from '../../../../actions/auth';
-import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
   selector: 'app-userinfo',
@@ -16,15 +13,17 @@ export class UserInfoComponent {
 
   claims: any;
   name: any;
+  public theme: any = new FormControl();
 
   @Output() signout: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private router: Router,
-    private store: Store<fromAuth.State>,
+    private themeService: ThemeService,
     private oauthService: OAuthService,
-    private authService: AuthService
-  ) { }
+  ) {
+
+    this.theme.value = this.themeService.current;
+  }
 
   login() {
     // this.router.navigate(['login']);
@@ -34,6 +33,10 @@ export class UserInfoComponent {
   logOut() {
     this.oauthService.logOut();
     // this.store.dispatch(new AuthActions.Logout());
+  }
+
+  public onThemeChange(theme: any) {
+    this.themeService.current = theme;
   }
 
   isLoggedIn() {
