@@ -4,11 +4,12 @@
 
 .esk {
   position: absolute;
+  cursor: pointer;
   z-index:100;
   right: 0;
   margin-right: 25px;
   margin-top: 10px;
-  // color: lighten($primary, 10%);
+  color: var(--bs-primary);
 }
 
 a {
@@ -38,10 +39,12 @@ a:hover {
   cursor:pointer;
   padding:15px;
   padding-left:0px;
+  // color: var(--bs-primary);
+
 }
 
 .menu:hover {
-  // color: lighten($warning, 20%);
+  color: var(--bs-red);
 }
 
 .container {
