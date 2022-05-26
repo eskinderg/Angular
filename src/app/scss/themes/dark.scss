@@ -2,13 +2,25 @@ $primary:                           #060606;
 $body-bg:                           #484848;
 $body-color:                        white;
 
+$component-active-color:            #2a6ada;
+
 $input-bg:                          $body-bg;
 $input-border-width:                0;
 $input-border-radius:               0;
 
 $card-bg:                           #3c3c3c;
 
-$list-group-bg:                     #3c3c3c;
+$pagination-bg:                     $body-bg;
+$pagination-border-color:           $primary;
+$pagination-disabled-color:         $primary;
+$pagination-disabled-bg:            $body-bg;
+$pagination-disabled-border-color:  $primary;
+$pagination-focus-bg:               null;
+$pagination-hover-bg:               $primary;
+$pagination-hover-color:            $body-color;
+$pagination-hover-border-color:     $primary;
+
+$list-group-bg:                     $body-bg;
 $list-group-hover-bg:               none;
 $list-group-color:                  $body-color;
 $list-group-action-hover-color:     grey;
@@ -21,12 +33,12 @@ $modal-content-bg:                  $primary;
 
 $popover-bg:                        $primary;
 
-$dropdown-bg:                       $primary;
+$dropdown-bg:                       $body-bg;
 $dropdown-link-color:               $body-color;
 $dropdown-link-hover-bg:            $body-bg;
 
 // :root {
-//   --eskinder: white;
+  // --eskinder: red;
 // }
 
 @import '~bootstrap/scss/bootstrap';
