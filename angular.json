@@ -27,15 +27,11 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/assets",
-              "src/manifest.json",
-              "src/favicon.ico",
               {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
-              },
-              "src/manifest.json"
+              }
             ],
             "styles": [
               "src/app/scss/styles.scss",
