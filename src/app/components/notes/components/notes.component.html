@@ -19,16 +19,17 @@
         [routerLinkActiveOptions]="{exact:false}"
         [routerLinkActive]="['active']"
         [routerLink]="['/notes',note.id]"
-        class="d-flex justify-content-between link" *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]>
-        <a
-          class="list-group-item"
+        *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]>
+        <div
+          class="d-flex justify-content-between link list-group-item"
           [routerLinkActive]="['active']"
-          [innerHTML]="note.text | noteTitleTruncate : '20': true"
           >
-        </a>
+          <span> {{ note.text | noteTitleTruncate : '20' : true }} </span>
+          <span class="fa fa-bin2 menu" (click)="onNoteDelete(note)">
+          </span>
 
-        <span class="fa fa-bin2 menu" (click)="onNoteDelete(note)">
-        </span>
+        </div>
+
 
         <!-- <span class="fa fa-flicker menu"  > -->
         <!-- </span> -->

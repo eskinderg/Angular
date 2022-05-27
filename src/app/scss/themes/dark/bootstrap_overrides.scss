@@ -4,11 +4,13 @@ $body-color:                        #adbac7;
 
 $link-color:                        #8c939b;
 
-$component-active-color:            #2a6ada;
+// $component-active-color:            #2a6ada;
+$component-active-bg:               #909dab1f;
 
 $input-bg:                          $primary;
 $input-border-width:                0;
 $input-border-radius:               0;
+$input-focus-box-shadow:            none;
 
 $card-bg:                           #2a3037;
 
