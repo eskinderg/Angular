@@ -1,6 +1,3 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-
 div {
   // border-left: 1px solid lightgrey;
   // border-right: 1px solid lightgrey;
@@ -27,7 +24,7 @@ div.disabled {
 
 .custom-scroll {
   --scrollbar-size: 8px;
-  --scrollbar-thumb-color: #85aeeb;
+  --scrollbar-thumb-color: var(--bs-primary);
   --scrollbar-hover-size: 12px;
   --scrollbar-track-color: rgba(0, 0, 0, 0.05);
   --scrollbar-border-radius: 0px;

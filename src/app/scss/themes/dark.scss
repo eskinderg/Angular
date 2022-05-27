@@ -1,14 +1,16 @@
-$primary:                           #060606;
-$body-bg:                           #484848;
-$body-color:                        white;
+$primary:                           #22272e;
+$body-bg:                           #2d333b;
+$body-color:                        #adbac7;
+
+$link-color:                        #8c939b;
 
 $component-active-color:            #2a6ada;
 
-$input-bg:                          $body-bg;
+$input-bg:                          $primary;
 $input-border-width:                0;
 $input-border-radius:               0;
 
-$card-bg:                           #3c3c3c;
+$card-bg:                           #2a3037;
 
 $pagination-bg:                     $body-bg;
 $pagination-border-color:           $primary;
@@ -20,25 +22,27 @@ $pagination-hover-bg:               $primary;
 $pagination-hover-color:            $body-color;
 $pagination-hover-border-color:     $primary;
 
+$list-group-color:                  $body-color;
 $list-group-bg:                     $body-bg;
 $list-group-hover-bg:               none;
-$list-group-color:                  $body-color;
-$list-group-action-hover-color:     grey;
 
-$nav-tabs-link-active-color:        $primary;
+$nav-tabs-link-active-color:        $body-color;
 $nav-tabs-link-active-border-color: $primary;
+$nav-tabs-link-hover-border-color:  $primary;
 $nav-tabs-border-color:             $primary;
 
-$modal-content-bg:                  $primary;
+$modal-content-bg:                  $body-bg;
+$modal-header-border-width:         0;
+$modal-footer-border-width:         0;
 
-$popover-bg:                        $primary;
+$popover-bg:                        $body-bg;
 
 $dropdown-bg:                       $body-bg;
 $dropdown-link-color:               $body-color;
 $dropdown-link-hover-bg:            $body-bg;
 
-// :root {
-  // --eskinder: red;
-// }
-
 @import '~bootstrap/scss/bootstrap';
+
+.btn-outline-primary {
+  color: $body-color; //hack quick fix
+}
