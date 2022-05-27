@@ -37,12 +37,12 @@
               "src/app/scss/styles.scss",
               "src/assets/fonts/style.css",
               {
-                "input": "src/app/scss/themes/light.scss",
+                "input": "src/app/scss/themes/light/index.scss",
                 "bundleName": "light",
                 "inject": false
               },
               {
-                "input": "src/app/scss/themes/dark.scss",
+                "input": "src/app/scss/themes/dark/index.scss",
                 "bundleName": "dark",
                 "inject": false
               }

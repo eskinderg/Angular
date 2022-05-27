@@ -40,9 +40,3 @@ $popover-bg:                        $body-bg;
 $dropdown-bg:                       $body-bg;
 $dropdown-link-color:               $body-color;
 $dropdown-link-hover-bg:            $body-bg;
-
-@import '~bootstrap/scss/bootstrap';
-
-.btn-outline-primary {
-  color: $body-color; //hack quick fix
-}
