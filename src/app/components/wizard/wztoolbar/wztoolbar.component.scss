@@ -1,5 +1,4 @@
 .active{
-  // font-weight: bold;
   color: var(--bs-primary)  ! important;
 }
 
@@ -9,7 +8,7 @@
 
 .liner{
   height: 2px;
-  background: #ddd;
+  background: var(--bs-secondary);
   position: relative;
   width: 100%;
   margin: 0 auto;
