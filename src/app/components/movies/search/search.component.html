@@ -1,28 +1,28 @@
-<!-- <div class="input-group input-group-lg">
-  <input type="text" class="form-control" [formControl]="term" placeholder="Search for...">
-  <input type="text" [formControl]="term">
-  <span class="input-group-btn">
-  <button class="btn btn-secondary" (click)="btnSearch(txtSearch.value)"type="button">Go!</button>
-  </span>
-  </div>
+<!-- <div class="input-group input-group-lg"> -->
+<!--  <input type="text" class="form-control" [formControl]="term" placeholder="Search for..."> -->
+<!--  <input type="text" [formControl]="term"> -->
+<!--  <span class="input-group-btn"> -->
+<!--  <button class="btn btn-secondary" (click)="btnSearch(txtSearch.value)"type="button">Go!</button> -->
+<!--  </span> -->
+<!--  </div> -->
 
-  {{ movies | json}}
-  <div *ngIf="movies" class="mt-2">
-  <app-ba-card>
-  <h3 *ngFor="let movie of movies | async">
-  {{movie.title}}
-  </h3>
-  </app-ba-card>
-  </div> -->
+<!--  {{ movies | json}} -->
+<!--  <div *ngIf="movies" class="mt-2"> -->
+<!--  <app-ba-card> -->
+<!--  <h3 *ngFor="let movie of movies | async"> -->
+<!--  {{movie.title}} -->
+<!--  </h3> -->
+<!--  </app-ba-card> -->
+<!--  </div> -->
 
-  <!-- <div class="input-group input-group-lg"> -->
-  <!--   <input id="typeahead-http" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search" /> -->
-  <!-- </div> -->
-  <!-- {{ model | json }} -->
+<!-- <div class="input-group input-group-lg"> -->
+<!--   <input id="typeahead-http" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search" /> -->
+<!-- </div> -->
+<!-- {{ model | json }} -->
 
-  <input  #searchInput type="text" class="form-control form-control-lg" placeholder="Search" />
+<input  #searchInput type="text" class="form-control form-control-lg" placeholder="Search" />
 
-  <!-- {{ movieSearch | json }} -->
+<!-- {{ movieSearch | json }} -->
 
 <!-- <ngb-pagination -->
 <!--     [(page)]="movieResult.page" -->
@@ -30,8 +30,8 @@
 <!--     [maxSize]=10 -->
 <!--     [collectionSize]="movieResult.total_pages"></ngb-pagination> -->
 
-<div class="row g-0">
-    <div class="col-lg-4" *ngFor="let movie of movieResult?.movies" >
-        <app-movie-card [movie]='movie'></app-movie-card>
-    </div>
+<div class="movie-cards-container">
+  <div *ngFor="let movie of movieResult?.movies" >
+    <app-movie-card [movie]='movie'></app-movie-card>
+  </div>
 </div>

@@ -7,3 +7,9 @@
 //   margin:0px;
 //   padding:0px;
 // }
+.movie-cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+}

@@ -11,7 +11,7 @@
     [collectionSize]="collectionSize"></ngb-pagination>
 
 <div class="movie-cards-container">
-    <div  *ngFor="let movie of movieResult.movies" >
+    <div *ngFor="let movie of movieResult.movies" >
         <app-movie-card [routerLink]="['movie',movie.id]"[movie]='movie'></app-movie-card>
     </div>
 </div>
