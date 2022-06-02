@@ -1,46 +1,46 @@
-$primary:                           #22272e;
-$body-bg:                           #2d333b;
-$body-color:                        #adbac7;
+$primary                           : #22272e;
+$body-bg                           : #2d333b;
+$body-color                        : #adbac7;
 
-$link-color:                        #8c939b;
+$link-color                        : #8c939b;
 
 // $component-active-color:            #2a6ada;
-$component-active-bg:               #909dab1f;
+$component-active-bg               : #909dab1f;
 
-$input-bg:                          $primary;
-$input-border-width:                0;
-$input-border-radius:               0;
-$input-focus-box-shadow:            none;
+$input-bg                          : $primary;
+$input-border-width                : 0;
+$input-border-radius               : 0;
+$input-focus-box-shadow            : none;
 
-$card-bg:                           #2a3037;
+$card-bg                           : #2a3037;
 
-$tooltip-bg:                        $primary;
+$tooltip-bg                        : $primary;
 
-$pagination-bg:                     $body-bg;
-$pagination-border-color:           $primary;
-$pagination-disabled-color:         $primary;
-$pagination-disabled-bg:            $body-bg;
-$pagination-disabled-border-color:  $primary;
-$pagination-focus-bg:               null;
-$pagination-hover-bg:               $primary;
-$pagination-hover-color:            $body-color;
-$pagination-hover-border-color:     $primary;
+$pagination-bg                     : $body-bg;
+$pagination-border-color           : $primary;
+$pagination-disabled-color         : $primary;
+$pagination-disabled-bg            : $body-bg;
+$pagination-disabled-border-color  : $primary;
+$pagination-focus-bg               : null;
+$pagination-hover-bg               : $primary;
+$pagination-hover-color            : $body-color;
+$pagination-hover-border-color     : $primary;
 
-$list-group-color:                  $body-color;
-$list-group-bg:                     $body-bg;
-$list-group-hover-bg:               none;
+$list-group-color                  : $body-color;
+$list-group-bg                     : $body-bg;
+$list-group-hover-bg               : none;
 
-$nav-tabs-link-active-color:        $body-color;
-$nav-tabs-link-active-border-color: $primary;
-$nav-tabs-link-hover-border-color:  $primary;
-$nav-tabs-border-color:             $primary;
+$nav-tabs-link-active-color        : $body-color;
+$nav-tabs-link-active-border-color : $primary;
+$nav-tabs-link-hover-border-color  : $primary;
+$nav-tabs-border-color             : $primary;
 
-$modal-content-bg:                  $body-bg;
-$modal-header-border-width:         0;
-$modal-footer-border-width:         0;
+$modal-content-bg                  : $body-bg;
+$modal-header-border-width         : 0;
+$modal-footer-border-width         : 0;
 
-$popover-bg:                        $body-bg;
+$popover-bg                        : $body-bg;
 
-$dropdown-bg:                       $body-bg;
-$dropdown-link-color:               $body-color;
-$dropdown-link-hover-bg:            $body-bg;
+$dropdown-bg                       : $body-bg;
+$dropdown-link-color               : $body-color;
+$dropdown-link-hover-bg            : $body-bg;
