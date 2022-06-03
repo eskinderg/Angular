@@ -3,7 +3,7 @@
 // }
 
 .card {
-  width: 300px;
+  width: 250px;
   margin:10px;
 }
 
@@ -18,8 +18,18 @@
 
 img{
   width:auto;
-  object-fit:contain;
+  object-fit:cover;
   // object-position: 0% 0%;
+}
+
+small {
+  font-size:13px;
+  display:block;
+  line-height: 20px;
+}
+
+.d-flex {
+  align-items: center;
 }
 
 .fade-in {
