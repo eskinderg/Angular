@@ -6,76 +6,77 @@ import { catchError, switchMap, map } from 'rxjs/operators';
 import * as EventsActions from '../actions/event';
 import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
 import { ToastService } from '../shared/toast/toast.service';
+import { Event } from '../models/event';
 
 @Injectable()
 export class EventsEffect {
 
   save = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.CREATE_EVENT),
-      switchMap((action: EventsActions.CreateEvent) =>
-        this.eventsDataService.createEvent(action.payload)
-          .pipe(map(event => new EventsActions.CreateEventSuccess(event)),
-            catchError(err => of(new EventsActions.CreateEventFail(err)))
-          ))));
+      ofType(EventsActions.createEvent),
+      switchMap(action =>
+        this.eventsDataService.createEvent(action.payload).pipe(
+          map((event: Event) => EventsActions.createEventSuccess({ payload: event })),
+          catchError(err => of(EventsActions.createEventFail(err))
+          )))));
 
   createEventSuccess = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.CREATE_EVENT_SUCCESS),
-      switchMap((action: EventsActions.CreateEventSuccess) => {
+      ofType(EventsActions.createEventSuccess),
+      switchMap((action) => {
         this.toastService.showSuccess(action.payload.title, 'Event Added')
         return EMPTY;
       })), { dispatch: false });
 
   update = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.UPDATE_EVENT),
-      switchMap((action: EventsActions.UpdateEvent) =>
+      ofType(EventsActions.updateEvent),
+      switchMap((action) =>
         this.eventsDataService.updateEvent(action.payload.newValue)
-          .pipe(map(event => new EventsActions.UpdateEventSuccess(event)),
-            catchError(err => of(new EventsActions.UpdateEventFail(err)))
+          .pipe(map(event => EventsActions.updateEventSuccess({ payload: event })),
+            catchError(err => of(EventsActions.updateEventFail(err)))
           ))));
 
   updateEventSuccess = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.UPDATE_EVENT_SUCCESS),
-      switchMap((action: EventsActions.UpdateEventSuccess) => {
+      ofType(EventsActions.updateEventSuccess),
+      switchMap((action) => {
         this.toastService.showSuccess(action.payload.title, "Event Updated")
         return EMPTY;
       })), { dispatch: false });
 
   toggleEvent = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.TOGGLE_EVENT),
-      switchMap((action: EventsActions.ToggleEvent) =>
+      ofType(EventsActions.toggleEvent),
+      switchMap((action) =>
         this.eventsDataService.toggleEvent(action.payload)
-          .pipe(map(event => new EventsActions.ToggleEventSuccess(event)),
-            catchError(err => of(new EventsActions.ToggleEventFail(err)))
+          .pipe(map(event => EventsActions.toggleEventSuccess({ payload: event })),
+            catchError(err => of(EventsActions.toggleEventFail(err)))
           ))));
 
   toggleEventSuccess = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.TOGGLE_EVENT_SUCCESS),
-      switchMap((action: EventsActions.ToggleEventSuccess) => {
+      ofType(EventsActions.toggleEventSuccess),
+      switchMap((action) => {
         this.toastService.showSuccess(action.payload.title, 'Event Updated')
         return EMPTY;
       })), { dispatch: false });
 
   fetch = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.FETCH_EVENTS),
+      ofType(EventsActions.fetchEvents),
       switchMap(() => this.eventsDataService.getAllEvents()
-        .pipe(map(events => new EventsActions.FetchEventsSuccess(events)),
-          catchError(err => of({ type: EventsActions.FETCH_EVENTS_FAILURE, payload: err }))
+        .pipe(map(events => EventsActions.fetchEventsSuccess({ payload: events })),
+          catchError(err => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
         ))));
 
   delete = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.DELETE_EVENT),
-      switchMap((action: EventsActions.DeleteEvent) =>
+      ofType(EventsActions.deleteEvent),
+      switchMap((action) =>
         this.eventsDataService.deleteEventById(action.payload)
-          .pipe(map(event => new EventsActions.DeleteEventSuccess(event)),
-            catchError(err => of(new EventsActions.DeleteEventFail(err)))
+          .pipe(map(event => EventsActions.deleteEventSuccess({ payload: event })),
+            catchError(err => of(EventsActions.deleteEventFail(err)))
           ))));
 
   constructor(

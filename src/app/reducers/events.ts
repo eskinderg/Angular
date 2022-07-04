@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as EventsActions from '../actions/event';
 import { Event } from '../models/event';
 
@@ -10,44 +10,40 @@ export const initialState: State = {
   events: []
 };
 
-export function reducer(state: State = initialState, action: EventsActions.Actions): State {
+export const reducer = createReducer(
+  initialState,
+  on(
+    EventsActions.eventsClear,
+    () => ({
+      events: []
+    })),
+  on(
+    EventsActions.createEventSuccess,
+    (state, action): State => ({
+      events: [action.payload, ...state.events]
+    })),
+  on(
+    EventsActions.fetchEventsSuccess,
+    (state, action): State => ({
+      events: action.payload.slice().reverse() || [] // reverse array to show the most recent
+    })),
+  on(
+    EventsActions.toggleEventSuccess,
+    EventsActions.updateEventSuccess,
+    (state, action): State => ({
+      events: state.events.map((event) => {
+        return (event.id === action.payload.id) ? action.payload : event
+      })
+    })),
+  on(
+    EventsActions.deleteEventSuccess,
+    (state, action): State => ({
+      events: state.events.filter((event: Event) => {
+        return event.id !== action.payload.id;
+      })
+    })),
 
-  switch (action.type) {
-
-    case EventsActions.EVENTS_CLEAR:
-      return {
-        events: []
-      };
-
-    case EventsActions.CREATE_EVENT_SUCCESS:
-      return {
-        events: [action.payload, ...state.events]
-      };
-
-    case EventsActions.FETCH_EVENTS_SUCCESS:
-      return {
-        events: action.payload.slice().reverse() || [] // reverse array to show the most recent
-      };
-
-    case EventsActions.TOGGLE_EVENT_SUCCESS:
-    case EventsActions.UPDATE_EVENT_SUCCESS:
-      return Object.assign({}, state, {
-        events: state.events.map((event) => {
-          return (event.id === action.payload.id) ? action.payload : event
-        })
-      });
-
-    case EventsActions.DELETE_EVENT_SUCCESS:
-      return Object.assign({}, state, {
-        events: state.events.filter((event: Event) => {
-          return event.id !== action.payload.id;
-        })
-      });
-
-    default:
-      return state;
-  }
-};
+)
 
 export const getEventState = createFeatureSelector<State>('events');
 

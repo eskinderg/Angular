@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Event } from '../event';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { ApiService } from '../../../../components/shared/services/api.service';
 
 import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
+import { Event } from 'src/app/models/event';
 
 const API_URL = environment.EVENTS_API;
 

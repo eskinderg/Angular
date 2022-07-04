@@ -1,322 +1,176 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { Note } from '../models/note';
 /*
  List of notes messages
  */
-export const CREATE_NEW_NOTE              = 'CREATE_NEW_NOTE';
-export const CREATE_NEW_NOTE_SUCCESS      = 'CREATE_NEW_NOTE_SUCCESS';
-export const CREATE_NEW_NOTE_FAIL         = 'CREATE_NEW_NOTE_FAIL';
-
-export const CREATE_NOTE                  = 'CREATE_NOTE';
-export const CREATE_NOTE_SUCCESS          = 'CREATE_NOTE_SUCCESS';
-export const CREATE_NOTE_FAIL             = 'CREATE_NOTE_FAIL';
-
-export const UPDATE_NOTE                  = 'UPDATE_NOTE';
-export const UPDATE_NOTE_SUCCESS          = 'UPDATE_NOTE_SUCCESS';
-export const UPDATE_NOTE_FAIL             = 'UPDATE_NOTE_FAIL';
-
-export const UPDATE_NOTE_TEXT             = 'UPDATE_NOTE_TEXT';
-export const UPDATE_NOTE_TEXT_SUCCESS     = 'UPDATE_NOTE_TEXT_SUCCESS';
-export const UPDATE_NOTE_TEXT_FAIL        = 'UPDATE_NOTE_TEXT_FAIL';
-
-export const UPDATE_NOTE_HEADER           = 'UPDATE_NOTE_HEADER';
-export const UPDATE_NOTE_HEADER_SUCCESS   = 'UPDATE_NOTE_HEADER_SUCCESS';
-export const UPDATE_NOTE_HEADER_FAIL      = 'UPDATE_NOTE_HEADER_FAIL';
-
-export const UPDATE_NOTE_POSITION         = 'UPDATE_NOTE_POSITION';
-export const UPDATE_NOTE_POSITION_SUCCESS = 'UPDATE_NOTE_POSITION_SUCCESS';
-export const UPDATE_NOTE_POSITION_FAIL    = 'UPDATE_NOTE_POSITION_FAIL';
-
-export const UPDATE_NOTE_SIZE             = 'UPDATE_NOTE_SIZE';
-export const UPDATE_NOTE_SIZE_SUCCESS     = 'UPDATE_NOTE_SIZE_SUCCESS';
-export const UPDATE_NOTE_SIZE_FAIL        = 'UPDATE_NOTE_SIZE_FAIL';
-
-export const DELETE_NOTE                  = 'DELETE_NOTE';
-export const DELETE_NOTE_SUCCESS          = 'DELETE_NOTE_SUCCESS';
-export const DELETE_NOTE_FAIL             = 'DELETE_NOTE_FAIL';
-
-export const SAVE_NOTE                    = 'SAVE_NOTE';
-export const SAVE_NOTE_SUCCESS            = 'SAVE_NOTE_SUCCESS';
-export const SAVE_NOTE_FAILURE            = 'SAVE_NOTE_FAILURE';
-export const ADD_NOTE_FROMSERVER          = 'ADD_NOTE_FROMSERVER';
-
-export const FETCH_NOTES                  = 'FETCH_NOTES';
-export const FETCH_NOTES_SUCCESS          = 'FETCH_NOTES_SUCCESS';
-export const FETCH_NOTES_FAILURE          = 'FETCH_NOTES_FAILURE';
-
-export const TOGGLE_NOTE                  = 'TOGGLE_NOTE';
-export const TOGGLE_NOTE_SUCCESS          = 'TOGGLE_NOTE_SUCCESS';
-export const TOGGLE_NOTE_FAILURE          = 'TOGGLE_NOTE_FAILURE';
-
-export const GET_NOTE                     = 'GET_NOTE';
-export const GET_NOTE_SUCCESS             = 'GET_NOTE_SUCCESS';
-export const GET_NOTE_FAIL                = 'GET_NOTE_FAIL';
 
 // ===================================
 //  CREATE NEW NOTE
 // -----------------------------------
 
-export class CreateNewNote implements Action {
+export const createNewNote = createAction(
+  'CREATE_NEW_NOTE',
+  props<{ payload: Note }>()
+)
 
-  readonly type = CREATE_NEW_NOTE;
+export const createNewNoteFail = createAction(
+  'CREATE_NEW_NOTE_FAIL',
+  props<{ payload: string }>()
+)
 
-  constructor (public payload: Note) { }
-}
-
-
-export class CreateNewNoteFail implements Action {
-
-  readonly type = CREATE_NEW_NOTE_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-
-export class CreateNewNoteSuccess implements Action {
-
-  readonly type = CREATE_NEW_NOTE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
+export const createNewNoteSuccess = createAction(
+  'CREATE_NEW_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
 
 // ===================================
 //  CREATE
 // -----------------------------------
 
-export class CreateNote implements Action {
+export const createNote = createAction(
+  'CREATE_NOTE',
+  props<{ payload: Note }>()
+)
 
-  readonly type = CREATE_NOTE;
+export const createNoteFail = createAction(
+  'CREATE_NOTE_FAIL',
+  props<{ payload: string }>()
+)
 
-  constructor (public payload: Note ) { }
-}
-
-
-export class CreateNoteFail implements Action {
-
-  readonly type = CREATE_NOTE_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-
-export class CreateNoteSuccess implements Action {
-
-  readonly type = CREATE_NOTE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
+export const createNoteSuccess = createAction(
+  'CREATE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
 
 // ===================================
 //  DELETE
 // -----------------------------------
 
+export const deleteNote = createAction(
+  'DELETE_NOTE',
+  props<{ payload: Note }>()
+)
 
-export class DeleteNote implements Action {
+export const deleteNoteFail = createAction(
+  'DELETE_NOTE_FAIL',
+  props<{ payload: string }>()
+)
 
-  readonly type = DELETE_NOTE;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class DeleteNoteFail implements Action {
-
-  readonly type = DELETE_NOTE_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-
-export class DeleteNoteSuccess implements Action {
-
-  readonly type = DELETE_NOTE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
+export const deleteNoteSuccess = createAction(
+  'DELETE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
 
 // ===================================
 //  FETCH
 // -----------------------------------
 
+export const fetchNotes = createAction(
+  'FETCH_NOTES'
+)
 
-export class FetchNotes implements Action {
+export const fetchNotesFailed = createAction(
+  'FETCH_NOTES_FAILURE',
+  props<{ payload: string }>()
+)
 
-  readonly type = FETCH_NOTES;
-
-  constructor () { }
-}
-
-
-export class FetchNotesFailed implements Action {
-
-  readonly type = FETCH_NOTES_FAILURE;
-
-  constructor (public payload: string) { }
-}
-
-
-export class FetchNotesSuccess implements Action {
-
-  readonly type = FETCH_NOTES_SUCCESS;
-
-  constructor (public payload: Note[]) { }
-}
+export const fetchNotesSuccess = createAction(
+  'FETCH_NOTES_SUCCESS',
+  props<{ payload: Note[] }>()
+)
 
 // ===================================
 //  UPDATE
 // -----------------------------------
 
-export class UpdateNoteText implements Action {
+export const updateNoteText = createAction(
+  'UPDATE_NOTE_TEXT',
+  props<{ payload: Note }>()
+)
 
-  readonly type = UPDATE_NOTE_TEXT;
+export const updateNoteTextSuccess = createAction(
+  'UPDATE_NOTE_TEXT_SUCCESS',
+  props<{ payload: Note }>()
+)
 
-  constructor (public payload: Note) { }
-}
+export const updateNoteTextFail = createAction(
+  'UPDATE_NOTE_TEXT_FAIL',
+  props<{ payload: string }>()
+)
 
+export const updateNoteHeader = createAction(
+  'UPDATE_NOTE_HEADER',
+  props<{ payload: Note }>()
+)
 
-export class UpdateNoteTextSuccess implements Action {
+export const updateNoteHeaderSuccess = createAction(
+  'UPDATE_NOTE_HEADER_SUCCESS',
+  props<{ payload: Note }>()
+)
 
-  readonly type = UPDATE_NOTE_TEXT_SUCCESS;
+export const updateNoteHeaderFail = createAction(
+  'UPDATE_NOTE_HEADER_FAIL',
+  props<{ payload: string }>()
+)
 
-  constructor (public payload: Note) { }
-}
+export const updateNote = createAction(
+  'UPDATE_NOTE',
+  props<{ payload: Note }>()
+)
 
+export const updateNoteFail = createAction(
+  'UPDATE_NOTE_FAIL',
+  props<{ payload: string }>()
+)
 
-export class UpdateNoteTextFail implements Action {
+export const updateNoteSuccess = createAction(
+  'UPDATE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
 
-  readonly type = UPDATE_NOTE_TEXT_FAIL;
+export const updateNotePosition = createAction(
+  'UPDATE_NOTE_POSITION',
+  props<{ payload: Note }>()
+)
 
-  constructor (public payload: string) { }
-}
+export const updateNotePositionSuccess = createAction(
+  'UPDATE_NOTE_POSITION_SUCCESS',
+  props<{ payload: Note }>()
+)
 
+export const updateNotePositionFail = createAction(
+  'UPDATE_NOTE_POSITION_FAIL',
+  props<{ payload: string }>()
+)
 
-export class UpdateNoteHeader implements Action {
+export const updateNoteSize = createAction(
+  'UPDATE_NOTE_SIZE',
+  props<{ payload: Note }>()
+)
 
-  readonly type = UPDATE_NOTE_HEADER;
+export const updateNoteSizeSuccess = createAction(
+  'UPDATE_NOTE_SIZE_SUCCESS',
+  props<{ payload: Note }>()
+)
 
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNoteHeadertSuccess implements Action {
-
-  readonly type = UPDATE_NOTE_HEADER_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNoteHeaderFail implements Action {
-
-  readonly type = UPDATE_NOTE_HEADER_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-export class UpdateNote implements Action {
-
-  readonly type = UPDATE_NOTE;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNoteFail implements Action {
-
-  readonly type = UPDATE_NOTE_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-
-export class UpdateNoteSuccess implements Action {
-
-  readonly type = UPDATE_NOTE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNotePosition implements Action {
-
-  readonly type = UPDATE_NOTE_POSITION;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNotePositionSuccess implements Action {
-
-  readonly type = UPDATE_NOTE_POSITION_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNotePositionFail implements Action {
-
-  readonly type = UPDATE_NOTE_POSITION_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-export class UpdateNoteSize implements Action {
-
-  readonly type = UPDATE_NOTE_SIZE;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNoteSizeSuccess implements Action {
-
-  readonly type = UPDATE_NOTE_SIZE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
-
-
-export class UpdateNoteSizeFail implements Action {
-
-  readonly type = UPDATE_NOTE_SIZE_FAIL;
-
-  constructor (public payload: string) { }
-}
+export const updateNoteSizeFail = createAction(
+  'UPDATE_NOTE_SIZE_FAIL',
+  props<{ payload: string }>()
+)
 
 //--- GET
 
-export class GetNote implements Action {
+export const getNote = createAction(
+  'GET_NOTE',
+  props<{ payload: Note }>()
+)
 
-  readonly type = GET_NOTE;
+export const getNoteFail = createAction(
+  'GET_NOTE_FAIL',
+  props<{ payload: string }>()
+)
 
-  constructor (public payload: Note) { }
-}
-
-export class GetNoteFail implements Action {
-
-  readonly type = GET_NOTE_FAIL;
-
-  constructor (public payload: string) { }
-}
-
-export class GetNoteSuccess implements Action {
-
-  readonly type = GET_NOTE_SUCCESS;
-
-  constructor (public payload: Note) { }
-}
-
-//
-
-export type Actions =
-  FetchNotes | FetchNotesSuccess | FetchNotesFailed |
-  CreateNewNote | CreateNewNoteSuccess | CreateNewNoteFail |
-  CreateNote | CreateNoteSuccess | CreateNoteFail |
-  DeleteNote | DeleteNoteSuccess | DeleteNoteFail |
-  UpdateNote | UpdateNoteSuccess | UpdateNoteFail |
-  UpdateNoteText | UpdateNoteTextSuccess | UpdateNoteTextFail |
-  UpdateNotePositionFail | UpdateNotePositionSuccess | UpdateNotePositionFail |
-  UpdateNoteSizeFail | UpdateNoteSizeSuccess | UpdateNoteSizeFail |
-  GetNote | GetNoteSuccess | GetNoteFail |
-  UpdateNotePosition | UpdateNoteSuccess | UpdateNotePositionFail |
-  UpdateNoteHeader | UpdateNoteHeadertSuccess | UpdateNoteHeaderFail;
+export const getNoteSuccess = createAction(
+  'GET_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)

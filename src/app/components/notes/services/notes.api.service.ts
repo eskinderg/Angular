@@ -20,31 +20,31 @@ export class NotesApiService {
   }
 
   addNote(newNote: Note) {
-    return this.store.dispatch(new NotesActions.CreateNote(newNote));
+    return this.store.dispatch(NotesActions.createNote({ payload: newNote }));
   }
 
   updateNote(note: Note) {
-    return this.store.dispatch(new NotesActions.UpdateNote(note));
+    return this.store.dispatch(NotesActions.updateNote({ payload: note }));
   }
 
   updateNoteText(note: Note) {
-    return this.store.dispatch(new NotesActions.UpdateNoteText(note));
+    return this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
   deleteNote(note: Note) {
-    this.store.dispatch(new NotesActions.DeleteNote(note));
+    this.store.dispatch(NotesActions.deleteNote({ payload: note }));
   }
 
   changeNoteText(note: Note) {
-    this.store.dispatch(new NotesActions.UpdateNoteText(note));
+    this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
   changeNotePosition(note: Note): void {
-    this.store.dispatch(new NotesActions.UpdateNotePosition(note));
+    this.store.dispatch(NotesActions.updateNotePosition({ payload: note }));
   }
 
   changeNoteSize(note: Note): void {
-    this.store.dispatch(new NotesActions.UpdateNoteSize(note));
+    this.store.dispatch(NotesActions.updateNoteSize({ payload: note }));
   }
 
 }

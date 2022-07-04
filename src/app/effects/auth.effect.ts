@@ -29,7 +29,7 @@ export class AuthEffect {
           .loadUserProfile()
           .then(profile => {
             this.store.dispatch(new AuthActions.LoadProfileSuccess(profile))
-            this.store.dispatch(new EventActions.FetchEvents())
+            this.store.dispatch(EventActions.fetchEvents())
             this.store.dispatch(new AuthActions.RouteToHome())
           })
           .catch(err => this.store.dispatch(new AuthActions.LoadProfileFail(err)))
@@ -48,7 +48,7 @@ export class AuthEffect {
     this.actions$.pipe(ofType(AuthActions.LOGOUT),
       switchMap((action: AuthActions.Logout) => {
         this.oauthService.logOut()
-        this.store.dispatch(new EventActions.EventsClear())
+        this.store.dispatch(EventActions.eventsClear())
         this.store.dispatch(new AuthActions.RouteToLogin(action.message))
         return EMPTY
       })

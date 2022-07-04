@@ -17,19 +17,19 @@ export class EventComponent {
 
   @Input() events: Observable<Event[]>;
 
-  constructor( private confirmService: ConfirmService,
-    private store: Store<fromRoot.State> ) { }
+  constructor(private confirmService: ConfirmService,
+    private store: Store<fromRoot.State>) { }
 
   onAddEvent(event: Event) {
-    this.store.dispatch(new EventsActions.CreateEvent(event));
+    this.store.dispatch(EventsActions.createEvent({ payload: event }));
   }
 
-  onToggleEvent(event) {
-    this.store.dispatch(new EventsActions.ToggleEvent(event));
+  onToggleEvent(event: Event) {
+    this.store.dispatch(EventsActions.toggleEvent({ payload: event }));
   }
 
   onUpdateEvent(event: Event) {
-    this.store.dispatch(new EventsActions.UpdateEvent(event));
+    this.store.dispatch(EventsActions.updateEvent({ payload: event }));
   }
 
   onRemoveEvent(event: Event) {
@@ -38,7 +38,7 @@ export class EventComponent {
       message: 'Do you really want to delete the item ' + '"' + event.title + '"?',
       backdrop: true,
     }).then(() => {
-      this.store.dispatch(new EventsActions.DeleteEvent(event));
+      this.store.dispatch(EventsActions.deleteEvent({ payload: event }));
     }, () => {
       console.log();
     });
