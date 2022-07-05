@@ -1,62 +1,64 @@
+import { Router } from '@angular/router'
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
+
+import { OAuthService } from 'angular-oauth2-oidc'
 import * as AuthActions from '../actions/auth'
 import * as EventActions from '../actions/event'
-import { OAuthService } from 'angular-oauth2-oidc'
-import { Router } from '@angular/router'
 
 @Injectable()
 export class AuthEffect {
   login = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.LOGIN_EVENT),
-      switchMap((action: AuthActions.LoginEvent) =>
+    this.actions$.pipe(
+      ofType(AuthActions.loginEvent),
+      switchMap((action) =>
         this.oauthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(
           action.username,
           action.password
         )
-          .then(() => this.store.dispatch(new AuthActions.LoginEventSuccess()))
-          .catch(err => this.store.dispatch(new AuthActions.LoginEventFail(err)))
+          .then(() => this.store.dispatch(AuthActions.loginEventSuccess()))
+          .catch(err => this.store.dispatch(AuthActions.loginEventFail({ payload: err })))
       )
     ), { dispatch: false })
 
   loginSuccess = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.LOGIN_EVENT_SUCCESS),
+    this.actions$.pipe(ofType(AuthActions.loginEventSuccess),
       switchMap(() =>
         this.oauthService
           .loadUserProfile()
           .then(profile => {
-            this.store.dispatch(new AuthActions.LoadProfileSuccess(profile))
+            this.store.dispatch(AuthActions.loadProfileSuccess({ profile: profile }))
             this.store.dispatch(EventActions.fetchEvents())
-            this.store.dispatch(new AuthActions.RouteToHome())
+            this.store.dispatch(AuthActions.routeToHome())
           })
-          .catch(err => this.store.dispatch(new AuthActions.LoadProfileFail(err)))
+          .catch(err => this.store.dispatch(AuthActions.loadProfileFail({ payload: err })))
       )
     ), { dispatch: false })
 
   tokenExpire = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.TOKEN_EXPIRE),
-      switchMap((action: AuthActions.TokenExpire) => {
-        this.store.dispatch(new AuthActions.Logout(action.message))
+    this.actions$.pipe(ofType(AuthActions.tokenExpire),
+      switchMap((action) => {
+        this.store.dispatch(AuthActions.logout({ message: action.message }))
         return EMPTY
       })
     ), { dispatch: false })
 
   logout = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.LOGOUT),
-      switchMap((action: AuthActions.Logout) => {
+    this.actions$.pipe(ofType(AuthActions.logout),
+      switchMap((action) => {
         this.oauthService.logOut()
         this.store.dispatch(EventActions.eventsClear())
-        this.store.dispatch(new AuthActions.RouteToLogin(action.message))
+        this.store.dispatch(AuthActions.routeToLogin({ message: action.message }))
         return EMPTY
       })
     ), { dispatch: false })
 
   routeToHome = createEffect(() =>
     this.actions$
-      .pipe(ofType(AuthActions.ROUTE_TO_HOME),
+      .pipe(ofType(AuthActions.routeToHome),
         switchMap(() =>
           this.router.navigate([`/`])
         )
@@ -64,8 +66,8 @@ export class AuthEffect {
 
   routeToLogin = createEffect(() =>
     this.actions$
-      .pipe(ofType(AuthActions.ROUTE_TO_LOGIN),
-        switchMap((action: AuthActions.RouteToLogin) =>
+      .pipe(ofType(AuthActions.routeToLogin),
+        switchMap((action) =>
           this.router.navigate([
             `/login`,
             { endsession: action.message, skipLocationChange: true },
@@ -74,9 +76,9 @@ export class AuthEffect {
       ), { dispatch: false })
 
   constructor(
-    private oauthService: OAuthService,
-    private router: Router,
-    private actions$: Actions,
-    private store: Store<any>
+    private oauthService : OAuthService,
+    private router       : Router,
+    private actions$     : Actions,
+    private store        : Store<any>
   ) { }
 }

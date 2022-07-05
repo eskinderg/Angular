@@ -3,6 +3,7 @@ import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of, EMPTY } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 // import { Store, Action } from '@ngrx/store';
+
 import * as EventsActions from '../actions/event';
 import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
 import { ToastService } from '../shared/toast/toast.service';
@@ -11,13 +12,13 @@ import { Event } from '../models/event';
 @Injectable()
 export class EventsEffect {
 
-  save = createEffect(() =>
+  createEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.createEvent),
       switchMap(action =>
         this.eventsDataService.createEvent(action.payload).pipe(
           map((event: Event) => EventsActions.createEventSuccess({ payload: event })),
-          catchError(err => of(EventsActions.createEventFail(err))
+          catchError(err => of(EventsActions.createEventFail({ payload: err }))
           )))));
 
   createEventSuccess = createEffect(() =>
@@ -28,13 +29,13 @@ export class EventsEffect {
         return EMPTY;
       })), { dispatch: false });
 
-  update = createEffect(() =>
+  updateEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.updateEvent),
       switchMap((action) =>
         this.eventsDataService.updateEvent(action.payload.newValue)
           .pipe(map(event => EventsActions.updateEventSuccess({ payload: event })),
-            catchError(err => of(EventsActions.updateEventFail(err)))
+            catchError(err => of(EventsActions.updateEventFail({ payload: err })))
           ))));
 
   updateEventSuccess = createEffect(() =>
@@ -51,7 +52,7 @@ export class EventsEffect {
       switchMap((action) =>
         this.eventsDataService.toggleEvent(action.payload)
           .pipe(map(event => EventsActions.toggleEventSuccess({ payload: event })),
-            catchError(err => of(EventsActions.toggleEventFail(err)))
+            catchError(err => of(EventsActions.toggleEventFail({ payload: err })))
           ))));
 
   toggleEventSuccess = createEffect(() =>
@@ -62,7 +63,7 @@ export class EventsEffect {
         return EMPTY;
       })), { dispatch: false });
 
-  fetch = createEffect(() =>
+  fetchEvents = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.fetchEvents),
       switchMap(() => this.eventsDataService.getAllEvents()
@@ -70,19 +71,19 @@ export class EventsEffect {
           catchError(err => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
         ))));
 
-  delete = createEffect(() =>
+  deleteEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.deleteEvent),
       switchMap((action) =>
         this.eventsDataService.deleteEventById(action.payload)
           .pipe(map(event => EventsActions.deleteEventSuccess({ payload: event })),
-            catchError(err => of(EventsActions.deleteEventFail(err)))
+            catchError(err => of(EventsActions.deleteEventFail({ payload: err })))
           ))));
 
   constructor(
-    private actions$: Actions,
-    private eventsDataService: EventDataService,
-    private toastService: ToastService
+    private actions$          : Actions,
+    private eventsDataService : EventDataService,
+    private toastService      : ToastService
   ) { }
 
 }

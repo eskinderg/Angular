@@ -1,22 +1,26 @@
 import { createAction, props } from '@ngrx/store';
 import { Event } from '../models/event';
 
+/*
+ List of events messages
+ */
+
 // ===================================
 //  CREATE
 // -----------------------------------
 
 export const createEvent = createAction(
-  'CREATE_EVENT',
+  '[EVENT] CREATE_EVENT',
   props<{ payload: Event }>()
 )
 
 export const createEventFail = createAction(
-  'CREATE_EVENT_FAIL',
+  '[EVENT] CREATE_EVENT_FAIL',
   props<{ payload: Event }>()
 )
 
 export const createEventSuccess = createAction(
-  'CREATE_EVENT_SUCCESS',
+  '[EVENT] CREATE_EVENT_SUCCESS',
   props<{ payload: Event }>()
 )
 
@@ -25,17 +29,17 @@ export const createEventSuccess = createAction(
 // -----------------------------------
 
 export const deleteEvent = createAction(
-  'DELETE_EVENT',
+  '[EVENT] DELETE_EVENT',
   props<{ payload: Event }>()
 )
 
 export const deleteEventFail = createAction(
-  'DELETE_EVENT_FAIL',
+  '[EVENT] DELETE_EVENT_FAIL',
   props<{ payload: Event }>()
 )
 
 export const deleteEventSuccess = createAction(
-  'DELETE_EVENT_SUCCESS',
+  '[EVENT] DELETE_EVENT_SUCCESS',
   props<{ payload: Event }>()
 )
 // ===================================
@@ -43,16 +47,16 @@ export const deleteEventSuccess = createAction(
 // -----------------------------------
 
 export const fetchEvents = createAction(
-  'FETCH_EVENTS'
+  '[EVENT] FETCH_EVENTS'
 )
 
 export const fetchEventsFailed = createAction(
-  'FETCH_EVENTS_FAILURE',
+  '[EVENT] FETCH_EVENTS_FAILURE',
   props<{ payload: Event }>()
 )
 
 export const fetchEventsSuccess = createAction(
-  'FETCH_EVENTS_SUCCESS',
+  '[EVENT] FETCH_EVENTS_SUCCESS',
   props<{ payload: Event[] }>()
 )
 
@@ -61,17 +65,17 @@ export const fetchEventsSuccess = createAction(
 // -----------------------------------
 
 export const updateEvent = createAction(
-  'UPDATE_EVENT',
+  '[EVENT] UPDATE_EVENT',
   props<{ payload: any }>()
 )
 
 export const updateEventFail = createAction(
-  'UPDATE_EVENT_FAIL',
+  '[EVENT] UPDATE_EVENT_FAIL',
   props<{ payload: Event }>()
 )
 
 export const updateEventSuccess = createAction(
-  'UPDATE_EVENT_SUCCESS',
+  '[EVENT] UPDATE_EVENT_SUCCESS',
   props<{ payload: Event }>()
 )
 
@@ -80,17 +84,17 @@ export const updateEventSuccess = createAction(
 // -----------------------------------
 
 export const toggleEvent = createAction(
-  'TOGGLE_EVENT',
+  '[EVENT] TOGGLE_EVENT',
   props<{ payload: any }>()
 )
 
 export const toggleEventFail = createAction(
-  'TOGGLE_EVENT_FAIL',
+  '[EVENT] TOGGLE_EVENT_FAIL',
   props<{ payload: Event }>()
 )
 
 export const toggleEventSuccess = createAction(
-  'TOGGLE_EVENT_SUCCESS',
+  '[EVENT] TOGGLE_EVENT_SUCCESS',
   props<{ payload: Event }>()
 )
 
@@ -99,5 +103,5 @@ export const toggleEventSuccess = createAction(
 // -----------------------------------
 
 export const eventsClear = createAction(
-  'EVENTS_CLEAR'
+  '[EVENT] EVENTS_CLEAR'
 )

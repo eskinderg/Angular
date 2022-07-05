@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+
 import { NotesApiService } from '../services/notes.api.service';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
@@ -16,16 +17,13 @@ import { FadeInOutEventNoteItem } from '../../shared/animations/fadeInAndOutNote
   host: { '[@routerFadeInAnimation]': '' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
 
   constructor(
     private notesApiService: NotesApiService,
     private confirmService: ConfirmService,
     private store: Store<fromNotes.State>
   ) { }
-
-  ngOnInit() {
-  }
 
   onAddNote(colour) {
     // alert(colour)

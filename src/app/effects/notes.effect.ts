@@ -1,12 +1,11 @@
+import { Router } from '@angular/router'
 import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
+import { catchError, switchMap, map } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
-// import { Observable } from 'rxjs';
-// import { Store, Action } from '@ngrx/store';
+
 import * as NotesActions from '../actions/note';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
-import { catchError, switchMap, map } from 'rxjs/operators';
-import { Router } from '@angular/router'
 import { ToastService } from '../shared/toast/toast.service';
 
 @Injectable()
@@ -19,7 +18,7 @@ export class NotesEffect {
           .addNote(action.payload)
           .pipe(
             map(note => NotesActions.createNoteSuccess({ payload: note })),
-            catchError(err => of(NotesActions.createNoteFail(err)))
+            catchError(err => of(NotesActions.createNoteFail({ payload: err })))
           ))))
 
   routeToNewNote = createEffect(() => this.actions$.pipe(
@@ -36,7 +35,7 @@ export class NotesEffect {
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.updateNoteTextSuccess({ payload: note })),
-            catchError(err => of(NotesActions.updateNoteTextFail(err)))
+            catchError(err => of(NotesActions.updateNoteTextFail({ payload: err })))
           ))))
 
   updateNotePosition = createEffect(() =>
@@ -47,7 +46,7 @@ export class NotesEffect {
             .updateNote(action.payload)
             .pipe(
               map(note => NotesActions.updateNotePositionSuccess({ payload: note })),
-              catchError(err => of(NotesActions.updateNotePositionFail(err)))
+              catchError(err => of(NotesActions.updateNotePositionFail({ payload: err })))
             ))))
 
   // @Effect()
@@ -71,7 +70,7 @@ export class NotesEffect {
             .updateNote(action.payload)
             .pipe(
               map(note => NotesActions.updateNoteSuccess({ payload: note })),
-              catchError(err => of(NotesActions.createNoteFail(err)))
+              catchError(err => of(NotesActions.createNoteFail({ payload: err })))
             ))))
 
   fetch = createEffect(() =>
@@ -94,7 +93,7 @@ export class NotesEffect {
             .deleteNote(action.payload)
             .pipe(
               map(note => NotesActions.deleteNoteSuccess({ payload: note })),
-              catchError(err => of(NotesActions.deleteNoteFail(err)))
+              catchError(err => of(NotesActions.deleteNoteFail({ payload: err })))
             ))))
 
   deleteSuccess = createEffect(() =>
@@ -107,10 +106,9 @@ export class NotesEffect {
         )), { dispatch: false })
 
   constructor(
-    private actions$: Actions,
-    // private store: Store<any>,
-    private notesApiService: NotesDataService,
-    private router: Router,
-    private toastService: ToastService
+    private actions$        : Actions,
+    private notesApiService : NotesDataService,
+    private router          : Router,
+    private toastService    : ToastService
   ) { }
 }

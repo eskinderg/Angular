@@ -1,133 +1,69 @@
-import { Action } from '@ngrx/store';
-// import { Event } from '../models/event';
+import { createAction, props } from '@ngrx/store';
+
 /**
  List of auth messages
  **/
-export const AUTH_INIT            = '@ngrx/store/init';
-export const AUTH_INIT_SUCCESS    = 'AUTH_INIT_SUCCESS';
 
-export const LOGIN_EVENT          = 'LOGIN_EVENT';
-export const LOGIN_EVENT_SUCCESS  = 'LOGIN_EVENT_SUCCESS';
-export const LOGIN_EVENT_FAIL     = 'LOGIN_EVENT_FAIL';
+export const tokenExpire = createAction(
+  '[AUTH] TOKEN_EXPIRE',
+  props<{ message?: string }>()
+)
 
-export const LOAD_PROFILE         = 'LOAD_PROFILE';
-export const LOAD_PROFILE_SUCCESS = 'LOAD_PROFILE_SUCCESS';
-export const LOAD_PROFILE_FAIL    = 'LOAD_PROFILE_FAIL';
+export const routeToLogin = createAction(
+  '[AUTH] ROUTE_TO_LOGIN',
+  props<{ message?: string }>()
+)
 
-export const ROUTE_TO_HOME        = 'ROUTE_TO_HOME';
-export const ROUTE_TO_LOGIN       = 'ROUTE_TO_LOGIN';
+export const routeToHome = createAction(
+  '[AUTH] ROUTE_TO_HOME'
+)
 
-export const LOGOUT               = 'LOGOUT';
-export const LOGOUT_SUCCESS       = 'LOGOUT_SUCCESS';
-export const LOGOUT_FAIL          = 'LOGOUT_FAIL';
+export const loginEvent = createAction(
+  '[AUTH] LOGIN_EVENT',
+  props<{ username: string, password: string }>()
+)
 
-export const TOKEN_EXPIRE         = 'TOKEN_EXPIRE';
+export const loginEventFail = createAction(
+  '[AUTH] LOGIN_EVENT_FAIL',
+  props<{ payload: any }>()
+)
 
-export class TokenExpire implements Action {
+export const loginEventSuccess = createAction(
+  '[AUTH] LOGIN_EVENT_SUCCESS'
+)
 
-  readonly type = TOKEN_EXPIRE;
+export const authInit = createAction(
+  '[AUTH] AUTH_INIT'
+)
 
-  constructor (public message?: string) { }
-}
+export const authInitSuccess = createAction(
+  '[AUTH] AUTH_INIT_SUCCESS',
+  props<{ payload: any }>()
+)
 
-export class RouteToLogin implements Action {
+export const loadProfile = createAction(
+  '[AUTH] LOAD_PROFILE'
+)
 
-  readonly type = ROUTE_TO_LOGIN;
+export const loadProfileSuccess = createAction(
+  '[AUTH] LOAD_PROFILE_SUCCESS',
+  props<{ profile: any }>()
+)
 
-  constructor (public message?: string) { }
-}
+export const loadProfileFail = createAction(
+  '[AUTH] LOAD_PROFILE_FAIL',
+  props<{ payload: any }>()
+)
 
-export class RouteToHome implements Action {
+export const logout = createAction(
+  '[AUTH] LOGOUT',
+  props<{ message?: string }>()
+)
 
-  readonly type = ROUTE_TO_HOME;
+export const logoutSuccess = createAction(
+  '[AUTH] LOGOUT_SUCCESS'
+)
 
-  constructor () { }
-}
-
-
-export class LoginEvent implements Action {
-
-  readonly type = LOGIN_EVENT;
-
-  constructor (public username: string, public password: string ) { }
-}
-
-export class LoginEventFail implements Action {
-
-  readonly type = LOGIN_EVENT_FAIL;
-
-  constructor (public payload: any) { }
-}
-
-export class LoginEventSuccess implements Action {
-
-  readonly type = LOGIN_EVENT_SUCCESS;
-
-  constructor () { }
-}
-
-export class AuthInit implements Action {
-
-  readonly type = AUTH_INIT;
-
-  constructor () { }
-}
-
-export class AuthInitSuccess implements Action {
-
-  readonly type = AUTH_INIT_SUCCESS;
-
-  constructor (public payload: any) { }
-}
-
-
-export class LoadProfile implements Action {
-
-  readonly type = LOAD_PROFILE;
-
-  constructor () { }
-}
-
-export class LoadProfileSuccess implements Action {
-
-  readonly type = LOAD_PROFILE_SUCCESS;
-
-  constructor (public profile: any) { }
-}
-
-export class LoadProfileFail implements Action {
-
-  readonly type = LOAD_PROFILE_FAIL;
-
-  constructor (public payload: any) { }
-}
-
-
-export class Logout implements Action {
-
-  readonly type = LOGOUT;
-
-  constructor (public message?: string ) { }
-}
-
-export class LogoutSuccess implements Action {
-
-  readonly type = LOGOUT_SUCCESS;
-
-  constructor () { }
-}
-
-export class LogoutFail implements Action {
-
-  readonly type = LOGOUT_FAIL;
-
-  constructor () { }
-}
-
-export type Actions =
-  LoginEvent  | LoginEventSuccess | LoginEventFail |
-  AuthInit    | AuthInitSuccess |
-  LoadProfile | LoadProfileSuccess | LoadProfileFail |
-  Logout      | LogoutSuccess | LogoutFail |
-  RouteToHome;
-
+export const logoutFail = createAction(
+  '[AUTH] LOGOUT_FAIL'
+)
