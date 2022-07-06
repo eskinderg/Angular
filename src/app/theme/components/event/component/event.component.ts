@@ -15,7 +15,7 @@ import * as fromRoot from '../../../../reducers';
 })
 export class EventComponent {
 
-  @Input() events: Observable<Event[]>;
+  @Input() events: Event[];
 
   constructor(private confirmService: ConfirmService,
     private store: Store<fromRoot.State>) { }

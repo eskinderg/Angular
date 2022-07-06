@@ -14,7 +14,7 @@ import { FadeInOutEventListItem } from 'src/app/components/shared/animations/fad
 )
 export class EventListComponent {
 
-  @Input() events: Observable<Event[]>;
+  @Input() events: Event[];
 
   @Output() remove: EventEmitter<Event> = new EventEmitter();
   @Output() toggle: EventEmitter<Event> = new EventEmitter();
