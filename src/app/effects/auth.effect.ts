@@ -25,7 +25,8 @@ export class AuthEffect {
     ), { dispatch: false })
 
   loginSuccess = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.loginEventSuccess),
+    this.actions$.pipe(
+      ofType(AuthActions.loginEventSuccess),
       switchMap(() =>
         this.oauthService
           .loadUserProfile()
@@ -39,7 +40,8 @@ export class AuthEffect {
     ), { dispatch: false })
 
   tokenExpire = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.tokenExpire),
+    this.actions$.pipe(
+      ofType(AuthActions.tokenExpire),
       switchMap((action) => {
         this.store.dispatch(AuthActions.logout({ message: action.message }))
         return EMPTY
@@ -47,7 +49,8 @@ export class AuthEffect {
     ), { dispatch: false })
 
   logout = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.logout),
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
       switchMap((action) => {
         this.oauthService.logOut()
         this.store.dispatch(EventActions.eventsClear())
@@ -58,7 +61,8 @@ export class AuthEffect {
 
   routeToHome = createEffect(() =>
     this.actions$
-      .pipe(ofType(AuthActions.routeToHome),
+      .pipe(
+        ofType(AuthActions.routeToHome),
         switchMap(() =>
           this.router.navigate([`/`])
         )
@@ -66,7 +70,8 @@ export class AuthEffect {
 
   routeToLogin = createEffect(() =>
     this.actions$
-      .pipe(ofType(AuthActions.routeToLogin),
+      .pipe(
+        ofType(AuthActions.routeToLogin),
         switchMap((action) =>
           this.router.navigate([
             `/login`,
