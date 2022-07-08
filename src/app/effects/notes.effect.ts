@@ -4,7 +4,7 @@ import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 
-import * as NotesActions from '../actions/note';
+import * as NotesActions from '../actions/note.action';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
 import { ToastService } from '../shared/toast/toast.service';
 

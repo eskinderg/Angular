@@ -1,5 +1,5 @@
 import { on, createFeatureSelector, createReducer, createSelector } from '@ngrx/store';
-import * as AuthActions from '../actions/auth';
+import * as AuthActions from '../actions/auth.action';
 
 export interface State {
   profile: any;

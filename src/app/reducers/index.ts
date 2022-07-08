@@ -3,9 +3,9 @@ import { ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
 
-import * as fromNotes from './notes';
-import * as fromEvents from './events';
-import * as fromAuth from './auth';
+import * as fromNotes from './notes.reducer';
+import * as fromEvents from './events.reducer';
+import * as fromAuth from './auth.reducer';
 
 export interface State {
   notes: fromNotes.State;
@@ -32,7 +32,6 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
 
 // const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
 // const productionReducer: ActionReducer<State> =  combineReducers(reducers);
-
 
 //   if (environment.production) {
 //     return productionReducer( state, action );

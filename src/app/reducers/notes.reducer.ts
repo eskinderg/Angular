@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import * as NotesActions from '../actions/note';
+import * as NotesActions from '../actions/note.action';
 import { Note } from '../models/note';
 
 export interface State {

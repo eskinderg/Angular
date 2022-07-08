@@ -8,8 +8,8 @@ import { authConfig } from './auth.config';
 import { ToastService } from './shared/toast/toast.service';
 import { Store } from '@ngrx/store';
 import * as fromRoot from './reducers';
-import * as EventsActions from './actions/event';
-import * as NotesActions from './actions/note';
+import * as EventsActions from './actions/event.action';
+import * as NotesActions from './actions/note.action';
 
 @Component({
   selector: 'app-main',

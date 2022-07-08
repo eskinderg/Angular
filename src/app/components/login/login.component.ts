@@ -3,7 +3,7 @@ import { Component, OnInit, HostBinding} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router , ActivatedRoute} from '@angular/router';
 import * as fromRoot from '../../reducers';
-import * as AuthActions from '../../actions/auth';
+import * as AuthActions from '../../actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from '../../auth.config';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';

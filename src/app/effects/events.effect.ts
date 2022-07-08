@@ -4,7 +4,7 @@ import { of, EMPTY } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 // import { Store, Action } from '@ngrx/store';
 
-import * as EventsActions from '../actions/event';
+import * as EventsActions from '../actions/event.action';
 import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
 import { ToastService } from '../shared/toast/toast.service';
 import { Event } from '../models/event';

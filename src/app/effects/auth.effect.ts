@@ -6,8 +6,8 @@ import { switchMap } from 'rxjs/operators'
 import { Store } from '@ngrx/store'
 
 import { OAuthService } from 'angular-oauth2-oidc'
-import * as AuthActions from '../actions/auth'
-import * as EventActions from '../actions/event'
+import * as AuthActions from '../actions/auth.action'
+import * as EventActions from '../actions/event.action'
 
 @Injectable()
 export class AuthEffect {

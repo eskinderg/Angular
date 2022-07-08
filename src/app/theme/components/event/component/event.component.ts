@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Event } from '../../../../models/event';
 import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
-import * as EventsActions from '../../../../actions/event';
+import * as EventsActions from '../../../../actions/event.action';
 import * as fromRoot from '../../../../reducers';
 
 @Component({

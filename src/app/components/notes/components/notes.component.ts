@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { NotesApiService } from '../services/notes.api.service';
 import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
-import * as fromNotes from '../../../reducers/notes';
+import * as fromNotes from '../../../reducers/notes.reducer';
 import { ConfirmService } from 'src/app/theme/components/modal';
 import { FadeInOutEventNoteItem } from '../../shared/animations/fadeInAndOutNoteItem';
 
