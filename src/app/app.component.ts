@@ -46,7 +46,7 @@ export class AppComponent {
     this.configureWithNewConfigApi();
 
     this.oauthService.events.subscribe(event => {
-      this.loadUserInfo(event);
+      this._loadUserInfo(event);
     });
 
   }
@@ -82,7 +82,7 @@ export class AppComponent {
     }
   }
 
-  private loadUserInfo(event: OAuthEvent) {
+  private _loadUserInfo(event: OAuthEvent) {
     if (event instanceof OAuthSuccessEvent) {
       if (event.type === "token_received" || event.type === "discovery_document_loaded")
         if (this.oauthService.hasValidIdToken()) {
