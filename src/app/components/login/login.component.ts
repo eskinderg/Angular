@@ -6,7 +6,7 @@ import * as fromRoot from '../../reducers';
 import * as AuthActions from '../../actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from '../../auth.config';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 
 @Component({
@@ -23,14 +23,14 @@ export class LoginComponent implements OnInit {
   password = '';
   loginFailed = false;
   userProfile: object | undefined;
-  loginForm: FormGroup | undefined;
+  loginForm: UntypedFormGroup | undefined;
   message: string | undefined;
 
   constructor(
     private store: Store<fromRoot.State>,
     private oauthService: OAuthService,
     private router: Router,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute
   ) {
     this.route.params

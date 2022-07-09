@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { User } from 'oidc-client';
 import { ConfirmService } from '../../../theme/components/modal/confirm.service';
@@ -11,26 +11,26 @@ import { ConfirmService } from '../../../theme/components/modal/confirm.service'
 })
 export class ProfileComponent implements OnInit {
 
-  profileForm: FormGroup;
+  profileForm: UntypedFormGroup;
   public user: any;
 
-  constructor(private fb: FormBuilder, private authService: OAuthService,
+  constructor(private fb: UntypedFormBuilder, private authService: OAuthService,
     private confirmService: ConfirmService) {
     this.user = this.authService.getIdentityClaims();
   }
 
   ngOnInit() {
-    this.profileForm = new FormGroup({
-      name: new FormControl(this.user['given_name'],[
+    this.profileForm = new UntypedFormGroup({
+      name: new UntypedFormControl(this.user['given_name'],[
         Validators.required
       ]),
-      email: new FormControl(this.user['email'],[
+      email: new UntypedFormControl(this.user['email'],[
         Validators.required
       ]),
-      lastName: new FormControl(this.user['family_name'],[
+      lastName: new UntypedFormControl(this.user['family_name'],[
         Validators.required
       ]),
-      website: new FormControl(this.user['website'],[
+      website: new UntypedFormControl(this.user['website'],[
         Validators.required
       ])
     });

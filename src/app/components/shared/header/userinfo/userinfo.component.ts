@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class UserInfoComponent {
 
   claims: any;
   name: any;
-  public theme: any = new FormControl();
+  public theme: any = new UntypedFormControl();
 
   @Output() signout: EventEmitter<any> = new EventEmitter();
 

@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ThemeService } from 'src/app/shared/theme.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   public x: number;
   public y: number;
   public user: any;
-  public theme: any = new FormControl();
+  public theme: any = new UntypedFormControl();
 
   constructor(private authService: OAuthService, public themeService: ThemeService) {
     this.user = this.authService.getIdentityClaims();
