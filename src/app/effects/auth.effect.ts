@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store'
 import { OAuthService } from 'angular-oauth2-oidc'
 import * as AuthActions from '../actions/auth.action'
 import * as EventActions from '../actions/event.action'
+import * as NotesActions from '../actions/note.action'
 
 @Injectable()
 export class AuthEffect {
@@ -24,7 +25,7 @@ export class AuthEffect {
       )
     ), { dispatch: false })
 
-  loginSuccess = createEffect(() =>
+  loginEventSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.loginEventSuccess),
       switchMap(() =>
@@ -33,6 +34,7 @@ export class AuthEffect {
           .then(profile => {
             this.store.dispatch(AuthActions.loadProfileSuccess({ profile: profile }))
             this.store.dispatch(EventActions.fetchEvents())
+            this.store.dispatch(NotesActions.fetchNotes())
             this.store.dispatch(AuthActions.routeToHome())
           })
           .catch(err => this.store.dispatch(AuthActions.loadProfileFail({ payload: err })))
@@ -60,25 +62,23 @@ export class AuthEffect {
     ), { dispatch: false })
 
   routeToHome = createEffect(() =>
-    this.actions$
-      .pipe(
-        ofType(AuthActions.routeToHome),
-        switchMap(() =>
-          this.router.navigate([`/`])
-        )
-      ), { dispatch: false })
+    this.actions$.pipe(
+      ofType(AuthActions.routeToHome),
+      switchMap(() =>
+        this.router.navigate([`/`])
+      )
+    ), { dispatch: false })
 
   routeToLogin = createEffect(() =>
-    this.actions$
-      .pipe(
-        ofType(AuthActions.routeToLogin),
-        switchMap((action) =>
-          this.router.navigate([
-            `/login`,
-            { endsession: action.message, skipLocationChange: true },
-          ])
-        )
-      ), { dispatch: false })
+    this.actions$.pipe(
+      ofType(AuthActions.routeToLogin),
+      switchMap((action) =>
+        this.router.navigate([
+          `/login`,
+          { endsession: action.message, skipLocationChange: true },
+        ])
+      )
+    ), { dispatch: false })
 
   constructor(
     private oauthService : OAuthService,
