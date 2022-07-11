@@ -1,30 +1,27 @@
 import { Store } from '@ngrx/store';
-import { Component, OnInit, HostBinding} from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router , ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as fromRoot from '../../reducers';
 import * as AuthActions from '../../actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { authConfig } from '../../auth.config';
-import { Validators, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [ fadeInAnimation ]
+  animations: [fadeInAnimation]
 })
 export class LoginComponent implements OnInit {
 
   @HostBinding('@routerFadeInAnimation')
 
-  userName = '';
-  password = '';
-  loginFailed = false;
-  userProfile: object | undefined;
-  loginForm: UntypedFormGroup | undefined;
-  message: string | undefined;
+  userProfile: object;
+  loginForm: UntypedFormGroup;
+  message: string;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -41,17 +38,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required ],
-      password: ['', Validators.required ]
+    this.loginForm = new UntypedFormGroup({
+      username: new UntypedFormControl(null, Validators.required),
+      password: new UntypedFormControl(null, Validators.required)
     })
+    // this.loginForm = this.formBuilder.group({
+    //   username: ['', Validators.required ],
+    //   password: ['', Validators.required ]
+    // })
   }
 
   loadUserProfile(): void {
     this.oauthService.loadUserProfile()
-    .then(
-      up => (this.userProfile = up)
-    );
+      .then(
+        up => (this.userProfile = up)
+      );
   }
 
   hasMessage(): boolean {
@@ -90,17 +91,20 @@ export class LoginComponent implements OnInit {
 
   loginWithPassword() {
 
-    this.oauthService.initLoginFlow();
-
-    // this.store.dispatch(
-    //   new AuthActions.LoginEvent(
-    //     this.userName,
-    //     this.password
-    //   )
-    // );
-
+    // this.oauthService.initLoginFlow();
+    if (this.loginForm.valid) {
+      this.store.dispatch(
+        AuthActions.loginEvent(
+          {
+            username: this.loginForm.get('username').value,
+            password: this.loginForm.get('password').value
+          }
+        )
+      );
+    }
   }
 
   logout() {
     this.oauthService.logOut(true);
-  }}
+  }
+}

@@ -3,7 +3,7 @@
   <div *ngIf="hasMessage()" class="alert alert-warning" role="alert">
     <strong>Oh snap!</strong> {{ message }}
   </div>
-  <div class="container pt-3">
+  <div [formGroup]="loginForm" class="container pt-3">
     <div class="row justify-content-sm-center">
       <div class="col-sm-6 col-md-4">
 
@@ -20,14 +20,14 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">Username</span>
               </div>
-              <input formControlName="username" type="text"[(ngModel)]="userName" type="text" class="form-control"  aria-describedby="basic-addon3">
+              <input formControlName="username" type="text" type="text" class="form-control"  aria-describedby="basic-addon3">
             </div>
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">Password</span>
               </div>
-              <input formControlName="password" type="password"[(ngModel)]="password" class="form-control"  aria-describedby="basic-addon3">
+              <input formControlName="password" type="password" class="form-control"  aria-describedby="basic-addon3">
             </div>
 
             <!-- <input  formControlName="username" type="text"[(ngModel)]="userName" class="form-control mb-2" placeholder="Username" required autofocus> -->
