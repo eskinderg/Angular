@@ -2,11 +2,11 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as EventsActions from '../actions/event.action';
 import { Event } from '../models/event';
 
-export interface State {
+export interface EventsState {
   events: Event[];
 }
 
-export const initialState: State = {
+export const initialState: EventsState = {
   events: []
 };
 
@@ -19,25 +19,25 @@ export const reducer = createReducer(
     })),
   on(
     EventsActions.createEventSuccess,
-    (state, action): State => ({
+    (state, action): EventsState => ({
       events: [action.payload, ...state.events]
     })),
   on(
     EventsActions.fetchEventsSuccess,
-    (state, action): State => ({
+    (state, action): EventsState => ({
       events: action.payload.slice().reverse() || [] // reverse array to show the most recent
     })),
   on(
     EventsActions.toggleEventSuccess,
     EventsActions.updateEventSuccess,
-    (state, action): State => ({
+    (state, action): EventsState => ({
       events: state.events.map((event) => {
         return (event.id === action.payload.id) ? action.payload : event
       })
     })),
   on(
     EventsActions.deleteEventSuccess,
-    (state, action): State => ({
+    (state, action): EventsState => ({
       events: state.events.filter((event: Event) => {
         return event.id !== action.payload.id;
       })
@@ -45,6 +45,6 @@ export const reducer = createReducer(
 
 )
 
-export const getEventState = createFeatureSelector<State>('events');
+export const getEventState = createFeatureSelector<EventsState>('events');
 
-export const getEvents = createSelector(getEventState, (state: State) => state.events);
+export const getEvents = createSelector(getEventState, (state: EventsState) => state.events);

@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   // claims: any
   // public ItemsCount;
 
-  constructor (private oauthService: OAuthService, private store: Store<fromEvents.State>, private cdf: ChangeDetectorRef) {
+  constructor (private oauthService: OAuthService, private store: Store<fromEvents.EventsState>, private cdf: ChangeDetectorRef) {
 
     const result = this.store.select(fromEvents.getEvents);
 

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   message: string;
 
   constructor(
-    private store: Store<fromRoot.State>,
+    private store: Store<fromRoot.AppState>,
     private oauthService: OAuthService,
     private router: Router,
     private formBuilder: UntypedFormBuilder,

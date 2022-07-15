@@ -14,7 +14,7 @@ import * as fromEvents from '../../reducers/events.reducer';
 })
 export class EventsComponent {
 
-  constructor(private store: Store<fromEvents.State>) { }
+  constructor(private store: Store<fromEvents.EventsState>) { }
 
   ngOnInit() { }
 

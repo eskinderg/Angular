@@ -7,26 +7,26 @@ import * as fromNotes from './notes.reducer';
 import * as fromEvents from './events.reducer';
 import * as fromAuth from './auth.reducer';
 
-export interface State {
-  notes: fromNotes.State;
-  events: fromEvents.State; // append more states here
-  profile: fromAuth.State;
+export interface AppState {
+  notes: fromNotes.NotesState;
+  events: fromEvents.EventsState; // append more states here
+  profile: fromAuth.AuthState;
 }
 
-export const reducer: ActionReducerMap<State> = {
+export const reducer: ActionReducerMap<AppState> = {
   notes: fromNotes.reducer,         // append additional reducers here
   events: fromEvents.reducer,
   profile: fromAuth.reducer
 }
 
 // tslint:disable-next-line:no-shadowed-variable
-export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
-  return function(state: State, action: any): State {
+export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
+  return function(state: AppState, action: any): AppState {
     return reducer(state, action);
   };
 }
 
-export const metaReducers: MetaReducer<State>[] = !environment.production
+export const metaReducers: MetaReducer<AppState>[] = !environment.production
   ? [logger]
   : [];
 

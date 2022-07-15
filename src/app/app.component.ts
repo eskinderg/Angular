@@ -32,7 +32,7 @@ export class AppComponent {
     private renderer     : Renderer2,
     private oauthService : OAuthService,
     private toastService : ToastService,
-    private store        : Store<fromRoot.State>
+    private store        : Store<fromRoot.AppState>
   ) {
 
     this.errorLog.onError.subscribe((error) => {

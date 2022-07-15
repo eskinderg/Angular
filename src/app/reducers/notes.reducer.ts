@@ -2,11 +2,11 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as NotesActions from '../actions/note.action';
 import { Note } from '../models/note';
 
-export interface State {
+export interface NotesState {
   notes: Note[];
 }
 
-export const initialState: State = {
+export const initialState: NotesState = {
   notes: []
 };
 
@@ -14,30 +14,30 @@ export const reducer = createReducer(
   initialState,
   on(
     NotesActions.createNewNote,
-    (state, action): State => ({
+    (state, action): NotesState => ({
       notes: [action.payload, ...state.notes]
     })),
   on(
     NotesActions.createNoteSuccess,
-    (state, action): State => ({
+    (state, action): NotesState => ({
       notes: [action.payload, ...state.notes]
     })),
   on(
     NotesActions.fetchNotesSuccess,
-    (state, action): State => ({
+    (state, action): NotesState => ({
       notes: action.payload || []
     })),
   on(
     NotesActions.updateNoteSuccess,
     NotesActions.updateNotePositionSuccess,
     NotesActions.updateNoteSizeSuccess,
-    (state, action): State => ({
+    (state, action): NotesState => ({
       notes: state.notes.map(note =>
         ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note)
     })),
   on(
     NotesActions.deleteNoteSuccess,
-    (state, action): State => ({
+    (state, action): NotesState => ({
       notes: state.notes.filter((note: Note) => {
         return note.id !== action.payload.id;
       })
@@ -84,9 +84,9 @@ export const reducer = createReducer(
 //   }
 // };
 
-export const getNoteSTate = createFeatureSelector<State>('notes');
+export const getNoteSTate = createFeatureSelector<NotesState>('notes');
 
-export const getNotes = createSelector(getNoteSTate, (state: State) => state.notes);
+export const getNotes = createSelector(getNoteSTate, (state: NotesState) => state.notes);
 
 export const getItemById = (id) => createSelector(getNoteSTate, (allItems) => {
   if (allItems.notes) {

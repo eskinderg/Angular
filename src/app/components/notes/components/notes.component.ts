@@ -22,7 +22,7 @@ export class NotesComponent {
   constructor(
     private notesApiService: NotesApiService,
     private confirmService: ConfirmService,
-    private store: Store<fromNotes.State>
+    private store: Store<fromNotes.NotesState>
   ) { }
 
   onAddNote(colour) {
