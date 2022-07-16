@@ -8,9 +8,9 @@ import * as fromEvents from './events.reducer';
 import * as fromAuth from './auth.reducer';
 
 export interface AppState {
-  notes: fromNotes.NotesState;
-  events: fromEvents.EventsState; // append more states here
-  profile: fromAuth.AuthState;
+  notes   : fromNotes.NotesState;
+  events  : fromEvents.EventsState; // append more states here
+  profile : fromAuth.AuthState;
 }
 
 export const reducer: ActionReducerMap<AppState> = {

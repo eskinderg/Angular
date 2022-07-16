@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 
 @Component({
@@ -7,9 +8,10 @@ import { MovieResults } from '../models/movie-results';
   templateUrl: 'genre.component.html',
   styleUrls: ['genre.component.scss'],
 })
-export class GenreComponent implements OnInit {
+export class GenreComponent implements OnDestroy, OnInit {
 
   movieResult: MovieResults;
+  routeSubscription: Subscription | undefined;
 
   constructor(
     private router: ActivatedRoute,
@@ -18,7 +20,7 @@ export class GenreComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.params.subscribe(() => {
+    this.routeSubscription = this.router.params.subscribe(() => {
       this.movieResult = this.router.snapshot.data['moviesResult']
     });
   }
@@ -34,4 +36,9 @@ export class GenreComponent implements OnInit {
     else
       return 375 * 20;
   }
+
+  ngOnDestroy() {
+    this.routeSubscription?.unsubscribe();
+  }
+
 }

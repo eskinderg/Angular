@@ -9,10 +9,11 @@ import {
   forwardRef,
   Renderer2,
   ViewChild,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { fromEvent, filter, debounceTime, distinctUntilChanged, tap } from 'rxjs';
+import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 
 import { Note } from "../../../models/note";
 
@@ -29,7 +30,7 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   styleUrls: ['textAreaExpanded.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
+export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
   @ViewChild('textarea', { static: true }) private textarea: ElementRef;
 
@@ -39,11 +40,13 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
   @Output() onTouched = new EventEmitter(false);
   @Output() onTextChanged = new EventEmitter(false);
 
+  subscription: Subscription | undefined;
+
   constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
 
-    fromEvent(this.textarea.nativeElement, 'input')
+    this.subscription = fromEvent(this.textarea.nativeElement, 'input')
       .pipe(
         filter(Boolean),
         debounceTime(450),
@@ -74,6 +77,10 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnInit {
     const div = this.textarea.nativeElement;
     const action = isDisabled ? 'addClass' : 'removeClass';
     this.renderer[action](div, 'disabled');
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   // change($event) {

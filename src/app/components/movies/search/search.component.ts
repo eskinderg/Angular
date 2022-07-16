@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
-import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged } from 'rxjs';
+import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 
@@ -9,7 +9,7 @@ import { MovieResults } from '../models/movie-results';
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss']
 })
-export class SearchComponent implements OnInit, AfterViewInit {
+export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
 
   @ViewChild('searchInput') input: ElementRef;
 
@@ -19,11 +19,12 @@ export class SearchComponent implements OnInit, AfterViewInit {
   searchFailed = false;
   searchTerm: string = "";
   movieResult: MovieResults;
+  searchSubscription$: Subscription | undefined;
 
   constructor(private _moviesServices: MoviesApiService, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
-    fromEvent(this.input.nativeElement, 'keyup')
+    this.searchSubscription$ = fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
         filter(Boolean),
         debounceTime(450),
@@ -92,6 +93,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
     //     const movies = res.results;
     //     return movies.map((movie: Movie) => new Movie(movie));
     //   });
+  }
+
+  ngOnDestroy() {
+    this.searchSubscription$.unsubscribe();
   }
 
   // btnSearch(value: string) {

@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../reducers/events.reducer';
 import { count, takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 /**
  * This class represents the Header Component.
@@ -19,27 +20,23 @@ export class HeaderComponent implements OnInit {
   @Output() signout: EventEmitter<any> = new EventEmitter();
   public isExpanded = false;
   _user: any;
-  ItemsCount = 0;
+  eventsCount$: Observable<number>;
+
   // name: any;
   // claims: any
   // public ItemsCount;
 
-  constructor (private oauthService: OAuthService, private store: Store<fromEvents.EventsState>, private cdf: ChangeDetectorRef) {
-
-    const result = this.store.select(fromEvents.getEvents);
-
-    result.subscribe(e=> {
-      this.ItemsCount = e.length
-      this.cdf.markForCheck();
-    });
-
-  }
+  constructor(
+    private oauthService: OAuthService,
+    private store: Store<fromEvents.EventsState>
+  ) { }
 
   ngOnInit() {
-     // this.claims = this.oauthService.getIdentityClaims();
+    this.eventsCount$ = this.store.select(fromEvents.getEventsLength);
+    // this.claims = this.oauthService.getIdentityClaims();
 
     // if(this.claims){
-     //  this.name = this.claims.name;
+    //  this.name = this.claims.name;
     // }
     // this.oauthService.loadUserProfile().then(profile => {
 

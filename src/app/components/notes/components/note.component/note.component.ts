@@ -1,9 +1,10 @@
-import { Renderer2, Component, HostListener, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Renderer2, Component, HostListener, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Note } from '../../../../models/note';
 // import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
 import { ActivatedRoute } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
 import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -11,14 +12,16 @@ import { ConfirmService } from '../../../../theme/components/modal/confirm.servi
   styleUrls: ['note.component.scss']
 
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent implements OnDestroy, OnInit {
 
   @Input() note: Note;
 
-  @Output() changeNoteText = new EventEmitter(false);
+  @Output() changeNoteText     = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
-  @Output() changeNoteSize = new EventEmitter(false);
-  @Output() deleteNote = new EventEmitter(false);
+  @Output() changeNoteSize     = new EventEmitter(false);
+  @Output() deleteNote         = new EventEmitter(false);
+
+  routeSubscription$: Subscription | undefined;
 
   @ViewChild('notediv', { static: true }) textarea: ElementRef;
 
@@ -30,7 +33,7 @@ export class NoteComponent implements OnInit {
     private noteApiService: NotesApiService,
     private confirmService: ConfirmService
   ) {
-    this.route.paramMap.subscribe(() => {
+    this.routeSubscription$ = this.route.paramMap.subscribe(() => {
       this.note = this.route.snapshot.data['note'];
     });
   }
@@ -90,6 +93,10 @@ export class NoteComponent implements OnInit {
     // }, () => {
     //   console.log();
     // });
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription$.unsubscribe();
   }
 
   // handleResizeNote($event) {
