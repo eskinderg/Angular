@@ -9,7 +9,7 @@ export const initialState: AuthState = {
   profile: {}
 };
 
-export const reducer = createReducer (
+export const authReducer = createReducer (
   initialState,
   on(
     AuthActions.loadProfileSuccess,

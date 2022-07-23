@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 
 import { GlobalHttpInterceptor } from './http.interceptor';
 
-import { reducer, metaReducers } from './reducers';
+import { appReducer, metaReducers } from './reducers';
 import { NotesEffect, EventsEffect, AuthEffect } from './effects';
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
@@ -40,7 +40,7 @@ import { ThemeService } from './shared/theme.service';
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducer, { metaReducers }),
+    StoreModule.forRoot(appReducer, { metaReducers }),
     EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect]),
     StoreDevtoolsModule.instrument(),
     OAuthModule.forRoot({

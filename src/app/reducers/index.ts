@@ -1,22 +1,20 @@
-import { ActionReducer} from '@ngrx/store';
-import { ActionReducerMap, MetaReducer} from '@ngrx/store';
+import { ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
-
-import * as fromNotes from './notes.reducer';
-import * as fromEvents from './events.reducer';
-import * as fromAuth from './auth.reducer';
+import { notesReducer, NotesState } from './notes.reducer';
+import { eventsReducer, EventsState } from './events.reducer';
+import { authReducer, AuthState } from './auth.reducer';
 
 export interface AppState {
-  notes   : fromNotes.NotesState;
-  events  : fromEvents.EventsState; // append more states here
-  profile : fromAuth.AuthState;
+  notes   : NotesState;
+  events  : EventsState; // append any more states here
+  profile : AuthState;
 }
 
-export const reducer: ActionReducerMap<AppState> = {
-  notes: fromNotes.reducer,         // append additional reducers here
-  events: fromEvents.reducer,
-  profile: fromAuth.reducer
+export const appReducer: ActionReducerMap<AppState> = {
+  notes   : notesReducer,         // append any additional reducers here
+  events  : eventsReducer,
+  profile : authReducer
 }
 
 // tslint:disable-next-line:no-shadowed-variable

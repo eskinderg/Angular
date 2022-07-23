@@ -10,7 +10,7 @@ export const initialState: NotesState = {
   notes: []
 };
 
-export const reducer = createReducer(
+export const notesReducer = createReducer(
   initialState,
   on(
     NotesActions.createNewNote,
@@ -88,10 +88,10 @@ export const getNoteSTate = createFeatureSelector<NotesState>('notes');
 
 export const getNotes = createSelector(getNoteSTate, (state: NotesState) => state.notes);
 
-export const getItemById = (id) => createSelector(getNoteSTate, (allItems) => {
+export const getItemById = (id: number) => createSelector(getNoteSTate, (allItems) => {
   if (allItems.notes) {
     return allItems.notes.find(item => {
-      return item.id == id;
+      return item.id === id;
     });
   } else {
     return {};
