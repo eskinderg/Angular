@@ -1,6 +1,6 @@
 [![CI](https://github.com/eskinderg/Angular/actions/workflows/CI.yml/badge.svg)](https://github.com/eskinderg/Angular/actions/workflows/CI.yml)
 
-Angular 13
+Angular 14
 
 ## Getting Started
 
