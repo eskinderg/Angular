@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
@@ -22,14 +22,15 @@ import { AppComponent } from './app.component';
 import { GlobalHttpInterceptor } from './http.interceptor';
 
 import { appReducer, metaReducers } from './reducers';
-import { NotesEffect, EventsEffect, AuthEffect } from './effects';
+import { NotesEffect, EventsEffect, AuthEffect, ProfileEffect } from './effects';
+
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
 import { environment } from '../environments/environment';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
-import { ThemeService } from './shared/theme.service';
+import { initializeApp } from './app.initializer';
 
 @NgModule({
   imports: [
@@ -41,7 +42,7 @@ import { ThemeService } from './shared/theme.service';
     AuthorizationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(appReducer, { metaReducers }),
-    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect]),
+    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, ProfileEffect]),
     StoreDevtoolsModule.instrument(),
     OAuthModule.forRoot({
       resourceServer: {
@@ -63,8 +64,8 @@ import { ThemeService } from './shared/theme.service';
     LoggingService,
     {
       provide: APP_INITIALIZER,
-      useFactory: () => () => null,
-      deps: [ThemeService],
+      useFactory: initializeApp,
+      deps: [Store],
       multi: true
     },
     {
@@ -85,4 +86,3 @@ import { ThemeService } from './shared/theme.service';
 
 })
 export class AppModule { }
-

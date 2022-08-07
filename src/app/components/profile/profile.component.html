@@ -4,10 +4,10 @@
       <label for="example-text-input" class="col-2 col-form-label">Theme</label>
       <div class="col-10">
         <div class="btn-group" role="group" aria-label="Radio Buttons to Change Theme">
-          <input type="radio" (click)="onThemeChange('light')" [formControl]="theme" [value]="'light'" class="btn-check" id="btn-profile-light" autocomplete="off">
+          <input type="radio" (click)="onThemeChange('light')" [formControl]="theme" [(ngModel)]="theme.value" [value]="'light'" class="btn-check" id="btn-profile-light" autocomplete="off">
           <label class="btn btn-outline-primary" for="btn-profile-light">Light</label>
 
-          <input type="radio"  (click)="onThemeChange('dark')" [formControl]="theme" [value]="'dark'" class="btn-check" id="btn-profile-dark" autocomplete="off">
+          <input type="radio"  (click)="onThemeChange('dark')" [formControl]="theme" [(ngModel)]="theme.value" [value]="'dark'" class="btn-check" id="btn-profile-dark" autocomplete="off">
           <label class="btn btn-outline-primary" for="btn-profile-dark">Dark</label>
         </div>
       </div>

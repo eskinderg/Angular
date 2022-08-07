@@ -1,7 +1,11 @@
-import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { UntypedFormControl } from '@angular/forms';
-import { ThemeService } from 'src/app/shared/theme.service';
+import { Store } from '@ngrx/store';
+
+import * as fromProfile from '../../../../reducers/profile.reducer';
+import * as ProfileActions from '../../../../actions/profile.action';
 
 @Component({
   selector: 'app-userinfo',
@@ -9,20 +13,23 @@ import { ThemeService } from 'src/app/shared/theme.service';
   styleUrls: ['userinfo.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UserInfoComponent {
+export class UserInfoComponent implements OnDestroy {
 
   claims: any;
   name: any;
   public theme: any = new UntypedFormControl();
+  themeSubscription: Subscription;
 
   @Output() signout: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private themeService: ThemeService,
     private oauthService: OAuthService,
+    private store: Store<fromProfile.ProfileState>
   ) {
 
-    this.theme.value = this.themeService.current;
+    this.themeSubscription = this.store.select(fromProfile.getTheme).subscribe((theme) => {
+      this.theme.value = theme;
+    })
   }
 
   login() {
@@ -36,7 +43,8 @@ export class UserInfoComponent {
   }
 
   public onThemeChange(theme: any) {
-    this.themeService.current = theme;
+    // this.themeService.current = theme;
+    this.store.dispatch(ProfileActions.setTheme({ theme: theme }))
   }
 
   isLoggedIn() {
@@ -49,6 +57,10 @@ export class UserInfoComponent {
       return null;
     }
     return claims['given_name'];
+  }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
 
 }

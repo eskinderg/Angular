@@ -1,8 +1,12 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { UntypedFormControl } from '@angular/forms';
-import { ThemeService } from 'src/app/shared/theme.service';
+
+import * as fromProfile from './../../reducers/profile.reducer';
+import * as ProfileActions from './../../actions/profile.action';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +14,7 @@ import { ThemeService } from 'src/app/shared/theme.service';
   styleUrls: ['profile.component.scss'],
   animations: [fadeInAnimation]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnDestroy {
 
   @HostBinding('@routerFadeInAnimation')
 
@@ -18,16 +22,25 @@ export class ProfileComponent implements OnInit {
   public y: number;
   public user: any;
   public theme: any = new UntypedFormControl();
+  themeSubscription: Subscription;
 
-  constructor(private authService: OAuthService, public themeService: ThemeService) {
+  constructor(
+    private authService: OAuthService,
+    private store: Store<fromProfile.ProfileState>
+  ) {
     this.user = this.authService.getIdentityClaims();
-    this.theme.value = this.themeService.current;
+
+    this.themeSubscription = this.store.select(fromProfile.getTheme).subscribe((theme) => {
+      this.theme.value = theme;
+    })
   }
 
-  ngOnInit() { }
-
   public onThemeChange(theme: any) {
-    this.themeService.current = theme;
+    this.store.dispatch(ProfileActions.setTheme({ theme: theme }))
+  }
+
+  ngOnDestroy(): void {
+    this.themeSubscription.unsubscribe();
   }
 
 }

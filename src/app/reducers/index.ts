@@ -4,17 +4,20 @@ import { environment } from '../../environments/environment';
 import { notesReducer, NotesState } from './notes.reducer';
 import { eventsReducer, EventsState } from './events.reducer';
 import { authReducer, AuthState } from './auth.reducer';
+import { profileReducer, ProfileState } from './profile.reducer';
 
 export interface AppState {
-  notes   : NotesState;
-  events  : EventsState; // append any more states here
-  profile : AuthState;
+  notes      : NotesState;
+  events     : EventsState; // append any more states here
+  profile    : AuthState;
+  preference : ProfileState;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {
-  notes   : notesReducer,         // append any additional reducers here
-  events  : eventsReducer,
-  profile : authReducer
+  notes      : notesReducer,         // append any additional reducers here
+  events     : eventsReducer,
+  profile    : authReducer,
+  preference : profileReducer
 }
 
 // tslint:disable-next-line:no-shadowed-variable
