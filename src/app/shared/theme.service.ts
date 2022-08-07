@@ -35,7 +35,11 @@ export class ThemeService {
       return "dark.css"
     else
       return "light.css"
+  }
 
+  public toggleDarkMode(): boolean {
+    this.DarkMode = !this.DarkMode
+    return this.DarkMode
   }
 
 }

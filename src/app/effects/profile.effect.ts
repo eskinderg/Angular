@@ -13,8 +13,8 @@ export class ProfileEffect {
   toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
       ofType(ProfileActions.toggleDarkMode),
-      switchMap((action) => {
-        this.themeService.DarkMode = !action.isDarkMode;
+      switchMap(() => {
+        this.themeService.toggleDarkMode()
         this.store.dispatch(ProfileActions.toggleDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
         return EMPTY;
       })
