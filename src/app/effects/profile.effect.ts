@@ -10,25 +10,25 @@ import { ThemeService } from '../shared/theme.service'
 @Injectable()
 export class ProfileEffect {
 
-  setTheme = createEffect(() =>
+  toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.setTheme),
+      ofType(ProfileActions.toggleDarkMode),
       switchMap((action) => {
-        this.themeService.current = action.theme;
-        this.store.dispatch(ProfileActions.setThemeSuccess({ theme: action.theme }))
+        this.themeService.DarkMode = !action.isDarkMode;
+        this.store.dispatch(ProfileActions.toggleDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
         return EMPTY;
       })
     ), { dispatch: false });
 
-  getTheme = createEffect(() =>
+  getDarkMode = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.getTheme),
+      ofType(ProfileActions.getDarkMode),
       switchMap(() => {
-        console.log('getthemesucc')
-        this.store.dispatch(ProfileActions.getThemeSuccess({ theme: this.themeService.current }))
+        this.store.dispatch(ProfileActions.getDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
         return EMPTY;
       })
     ), { dispatch: false });
+
   constructor(
     private actions$     : Actions,
     private store        : Store<any>,

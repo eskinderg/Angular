@@ -3,13 +3,12 @@
     <div class="row mb-3">
       <label for="example-text-input" class="col-2 col-form-label">Theme</label>
       <div class="col-10">
-        <div class="btn-group" role="group" aria-label="Radio Buttons to Change Theme">
-          <input type="radio" (click)="onThemeChange('light')" [formControl]="theme" [(ngModel)]="theme.value" [value]="'light'" class="btn-check" id="btn-profile-light" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btn-profile-light">Light</label>
+        <app-theme-option
+          [darkMode]="isDarkMode | async"
+          (onToggleDark)="onDarkModeToggle($event)"
+        >
+        </app-theme-option>
 
-          <input type="radio"  (click)="onThemeChange('dark')" [formControl]="theme" [(ngModel)]="theme.value" [value]="'dark'" class="btn-check" id="btn-profile-dark" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btn-profile-dark">Dark</label>
-        </div>
       </div>
     </div><div class="row mb-3">
       <label for="example-text-input" class="col-2 col-form-label">Name</label>

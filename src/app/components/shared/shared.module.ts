@@ -16,12 +16,13 @@ import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormatDatePipe } from '../movies/directives/dateFormat';
+import { ThemeOptionComponent } from 'src/app/theme/components/appThemeOption/appThemeOption.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, ThemeOptionComponent],
   declarations: [
     HeaderComponent,
     UserInfoComponent,

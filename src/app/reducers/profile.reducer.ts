@@ -2,30 +2,29 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as ProfileActions from '../actions/profile.action';
 
 export interface ProfileState {
-  theme: string;
+  isDarkMode: boolean;
 }
 
 export const initialState: ProfileState = {
-  theme: "light"
+  isDarkMode: false
 }
 
 export const profileReducer = createReducer(
   initialState,
   on(
-    ProfileActions.setThemeSuccess,
+    ProfileActions.toggleDarkModeSuccess,
     (state, action): ProfileState => ({
-      theme: action.theme
+      ...state, isDarkMode: action.isDarkMode
     })
   ),
   on(
-    ProfileActions.getThemeSuccess,
+    ProfileActions.getDarkModeSuccess,
     (state, action): ProfileState => ({
-      theme: action.theme
+      ...state, isDarkMode: action.isDarkMode
     })
   )
 )
 
-
 export const getProfileState = createFeatureSelector<ProfileState>('preference');
 
-export const getTheme = createSelector(getProfileState, (state: ProfileState) => state.theme)
+export const isDarkMode = createSelector(getProfileState, (state: ProfileState) => state.isDarkMode)
