@@ -22,7 +22,7 @@ import { AppComponent } from './app.component';
 import { GlobalHttpInterceptor } from './http.interceptor';
 
 import { appReducer, metaReducers } from './reducers';
-import { NotesEffect, EventsEffect, AuthEffect, ProfileEffect } from './effects';
+import { NotesEffect, EventsEffect, AuthEffect, PreferenceEffect } from './effects';
 
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
@@ -42,7 +42,7 @@ import { initializeApp } from './app.initializer';
     AuthorizationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(appReducer, { metaReducers }),
-    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, ProfileEffect]),
+    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect]),
     StoreDevtoolsModule.instrument(),
     OAuthModule.forRoot({
       resourceServer: {

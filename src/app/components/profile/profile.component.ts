@@ -2,8 +2,8 @@ import { Component, HostBinding } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import * as fromProfile from './../../reducers/profile.reducer';
-import * as ProfileActions from './../../actions/profile.action';
+import * as fromProfile from './../../reducers/preference.reducer';
+import * as ProfileActions from './../../actions/preference.action';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
@@ -24,7 +24,7 @@ export class ProfileComponent {
 
   constructor(
     private authService: OAuthService,
-    public store: Store<fromProfile.ProfileState>
+    public store: Store<fromProfile.PreferenceState>
   ) {
     this.user = this.authService.getIdentityClaims();
     this.isDarkMode = this.store.select(fromProfile.isDarkMode)

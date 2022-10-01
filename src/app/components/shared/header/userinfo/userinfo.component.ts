@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
-import * as fromProfile from '../../../../reducers/profile.reducer';
-import * as ProfileActions from '../../../../actions/profile.action';
+import * as fromProfile from '../../../../reducers/preference.reducer';
+import * as ProfileActions from '../../../../actions/preference.action';
 
 @Component({
   selector: 'app-userinfo',
@@ -22,7 +22,7 @@ export class UserInfoComponent {
 
   constructor(
     private oauthService: OAuthService,
-    public store: Store<fromProfile.ProfileState>
+    public store: Store<fromProfile.PreferenceState>
   ) {
     this.isDarkMode = this.store.select(fromProfile.isDarkMode)
   }

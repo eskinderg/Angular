@@ -4,13 +4,13 @@ import { environment } from '../../environments/environment';
 import { notesReducer, NotesState } from './notes.reducer';
 import { eventsReducer, EventsState } from './events.reducer';
 import { authReducer, AuthState } from './auth.reducer';
-import { profileReducer, ProfileState } from './profile.reducer';
+import { profileReducer, PreferenceState } from './preference.reducer';
 
 export interface AppState {
   notes      : NotesState;
   events     : EventsState; // append any more states here
   profile    : AuthState;
-  preference : ProfileState;
+  preference : PreferenceState;
 }
 
 export const appReducer: ActionReducerMap<AppState> = {

@@ -4,11 +4,11 @@ import { Store } from '@ngrx/store'
 import { EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
-import * as ProfileActions from '../actions/profile.action'
+import * as ProfileActions from '../actions/preference.action'
 import { ThemeService } from '../shared/theme.service'
 
 @Injectable()
-export class ProfileEffect {
+export class PreferenceEffect {
 
   toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
