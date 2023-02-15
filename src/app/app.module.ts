@@ -44,12 +44,7 @@ import { initializeApp } from './app.initializer';
     StoreModule.forRoot(appReducer, { metaReducers }),
     EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect]),
     StoreDevtoolsModule.instrument(),
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: ['http://localhost:3000/api'],
-        sendAccessToken: true
-      }
-    }),
+    OAuthModule.forRoot(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule,
