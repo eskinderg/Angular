@@ -4,7 +4,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../reducers/events.reducer';
 import { count, takeUntil } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { fromEvent, Observable } from 'rxjs';
 import * as fromProfile from '../../../reducers/preference.reducer';
 
 /**
@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
   @Output() signout: EventEmitter<any> = new EventEmitter();
   public isExpanded = false;
   _user: any;
-  eventsCount$: Observable<number>;
 
   // name: any;
   // claims: any
@@ -33,7 +32,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.eventsCount$ = this.store.select(fromEvents.getEventsLength);
     // this.claims = this.oauthService.getIdentityClaims();
 
     // if(this.claims){
@@ -47,6 +45,10 @@ export class HeaderComponent implements OnInit {
     // this.service.mgr.events.addUserLoaded(function (loadedUser) {
     //   this._user = loadedUser;
     // });
+  }
+
+  get EventsCount() {
+    return this.store.select(fromEvents.getEventsLength)
   }
 
   onSignout() {
