@@ -10,7 +10,7 @@ import * as ProfileActions from '../../../../actions/preference.action';
   selector: 'app-userinfo',
   templateUrl: 'userinfo.component.html',
   styleUrls: ['userinfo.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoComponent {
 
@@ -37,8 +37,8 @@ export class UserInfoComponent {
     // this.store.dispatch(new AuthActions.Logout());
   }
 
-  isLoggedIn() {
-    return this.oauthService.hasValidAccessToken();
+  get isLoggedIn() {
+    return this.store.select(fromProfile.isLoggedIn)
   }
 
   get givenName() {

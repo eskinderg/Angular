@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../reducers/events.reducer';
 import { count, takeUntil } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as fromProfile from '../../../reducers/preference.reducer';
 
 /**
  * This class represents the Header Component.
@@ -53,7 +54,8 @@ export class HeaderComponent implements OnInit {
   }
 
   get IsLoggedIn() {
-    return this.oauthService.hasValidAccessToken();
+    return this.store.select(fromProfile.isLoggedIn)
+    // return this.oauthService.hasValidAccessToken();
 
   }
 
