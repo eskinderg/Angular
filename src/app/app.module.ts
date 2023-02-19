@@ -1,6 +1,6 @@
-import { NgModule, ErrorHandler, APP_INITIALIZER } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
@@ -27,10 +27,10 @@ import { NotesEffect, EventsEffect, AuthEffect, PreferenceEffect } from './effec
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './theme/components/event/event.data.service/event.data.service';
 import { environment } from '../environments/environment';
-import { OAuthModule } from 'angular-oauth2-oidc';
+import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
-import { initializeApp } from './app.initializer';
+import { AppInit } from './app.initializer';
 
 @NgModule({
   imports: [
@@ -44,12 +44,7 @@ import { initializeApp } from './app.initializer';
     StoreModule.forRoot(appReducer, { metaReducers }),
     EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect]),
     StoreDevtoolsModule.instrument(),
-    OAuthModule.forRoot({
-      resourceServer: {
-        allowedUrls: ['http://localhost:3000/api'],
-        sendAccessToken: true
-      }
-    }),
+    OAuthModule.forRoot(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule,
@@ -62,12 +57,8 @@ import { initializeApp } from './app.initializer';
     NotesDataService,
     EventDataService,
     LoggingService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [Store],
-      multi: true
-    },
+    OAuthService,
+    AppInit,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalHttpInterceptor,

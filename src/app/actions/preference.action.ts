@@ -23,3 +23,8 @@ export const getDarkModeSuccess = createAction(
   props<{ isDarkMode: boolean }>()
 )
 
+export const logInSuccess = createAction(
+  '[PREFERENCE] LOG_IN_SUCCESS',
+  props<{ isLoggedIn: boolean }>()
+)
+

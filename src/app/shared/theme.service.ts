@@ -10,7 +10,7 @@ export class ThemeService {
   private readonly style: HTMLLinkElement;
 
   public get DarkMode(): boolean {
-    return localStorage.getItem('darkmode') === 'true' ?? ThemeService.isDarkMode
+    return localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode
   }
 
   public set DarkMode(value: boolean) {
@@ -20,9 +20,8 @@ export class ThemeService {
 
   constructor() {
 
-    this.style = document.createElement('link');
-
-    this.style.rel = 'stylesheet';
+    this.style      = document.createElement('link');
+    this.style.rel  = 'stylesheet';
     this.style.type = "text/css";
     this.style.href = this.getStyleName(this.DarkMode);
 
@@ -31,10 +30,7 @@ export class ThemeService {
   }
 
   private getStyleName(isDarkMode: boolean): string {
-    if (isDarkMode)
-      return "dark.css"
-    else
-      return "light.css"
+    return (isDarkMode ? "dark.css" : "light.css");
   }
 
   public toggleDarkMode(): boolean {
