@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store'
 import { EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
-import * as ProfileActions from '../actions/preference.action'
+import { logIn, logInSuccess, toggleDarkMode, toggleDarkModeSuccess, getDarkMode, getDarkModeSuccess, fetchEvents, fetchNotes } from "../actions";
+
 import { ThemeService } from '../shared/theme.service'
 
 @Injectable()
@@ -12,35 +13,37 @@ export class PreferenceEffect {
 
   toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.toggleDarkMode),
+      ofType(toggleDarkMode),
       switchMap(() => {
         this.themeService.toggleDarkMode()
-        this.store.dispatch(ProfileActions.toggleDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
+        this.store.dispatch(toggleDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
         return EMPTY;
       })
     ), { dispatch: false });
 
   getDarkMode = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.getDarkMode),
+      ofType(getDarkMode),
       switchMap(() => {
-        this.store.dispatch(ProfileActions.getDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
+        this.store.dispatch(getDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
         return EMPTY;
       })
     ), { dispatch: false });
 
   logIn = createEffect(() =>
     this.actions$.pipe(
-      ofType(ProfileActions.logIn),
+      ofType(logIn),
       switchMap(() => {
-        this.store.dispatch(ProfileActions.logInSuccess())
+        this.store.dispatch(logInSuccess())
+        this.store.dispatch(fetchNotes())
+        this.store.dispatch(fetchEvents())
         return EMPTY;
       })
     ), { dispatch: false });
 
   constructor(
-    private actions$     : Actions,
-    private store        : Store<any>,
-    private themeService : ThemeService
+    private actions$: Actions,
+    private store: Store<any>,
+    private themeService: ThemeService
   ) { }
 }
