@@ -29,6 +29,15 @@ export class PreferenceEffect {
       })
     ), { dispatch: false });
 
+  logIn = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProfileActions.logIn),
+      switchMap(() => {
+        this.store.dispatch(ProfileActions.logInSuccess())
+        return EMPTY;
+      })
+    ), { dispatch: false });
+
   constructor(
     private actions$     : Actions,
     private store        : Store<any>,

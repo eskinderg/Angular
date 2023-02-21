@@ -28,7 +28,7 @@ export const profileReducer = createReducer(
   on(
     PreferenceActions.logInSuccess,
     (state, action): PreferenceState => ({
-      ...state, isLoggedIn: action.isLoggedIn
+      ...state, isLoggedIn: true
     })
   )
 )
