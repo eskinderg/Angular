@@ -32,7 +32,7 @@
     "@angular/localize": "^15.2.3",
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
     "@ngrx/effects": "^15.3.0",
-    "@ngrx/store": "^15.3.0",
+    "@ngrx/store": "^15.4.0",
     "@ngrx/store-devtools": "^15.3.0",
     "@types/d3": "^7.4.0",
     "@types/jasmine": "~4.3.0",
