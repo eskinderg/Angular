@@ -1,9 +1,10 @@
 import { APP_INITIALIZER, Provider } from "@angular/core";
 import { Store, } from "@ngrx/store"
 import { NullValidationHandler, OAuthService, OAuthSuccessEvent } from "angular-oauth2-oidc";
-import { logIn, getDarkMode } from "./actions";
+import { logIn, getDarkMode, getIsLoggedIn } from "./actions";
 import { AppState } from "./reducers"
 import { authConfig } from "./auth.config";
+import { isLoggedIn } from "./reducers/preference.reducer";
 
 export const AppInit: Provider[] = [
   {
@@ -21,22 +22,29 @@ export const AppInit: Provider[] = [
 ]
 
 function initializeApp(store: Store<AppState>): () => void {
-  return () => store.dispatch(getDarkMode())
+  return () => {
+    store.dispatch(getIsLoggedIn())
+    store.dispatch(getDarkMode())
+  }
 }
 
 function initializeAppPref(oauthService: OAuthService, store: Store<AppState>): () => void {
   return () => {
-    oauthService.configure(authConfig)
-    oauthService.tokenValidationHandler = new NullValidationHandler();
-    oauthService.setStorage(localStorage);
-    oauthService.loadDiscoveryDocumentAndTryLogin();
+    store.select(isLoggedIn).subscribe((isUserLoggedIn) => {
+      if (!isUserLoggedIn) {
+        oauthService.configure(authConfig)
+        oauthService.tokenValidationHandler = new NullValidationHandler();
+        oauthService.setStorage(localStorage);
+        oauthService.loadDiscoveryDocumentAndTryLogin();
+      }
+    });
 
     oauthService.events.subscribe(event => {
       if (event instanceof OAuthSuccessEvent) {
         if (event.type === "token_received" || event.type === "discovery_document_loaded")
-          if (oauthService.hasValidIdToken()) {
-            store.dispatch(logIn());
-          }
+        if (oauthService.hasValidIdToken()) {
+          store.dispatch(logIn());
+        }
       }
     });
   }
