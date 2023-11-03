@@ -5,6 +5,7 @@ import { logIn, getDarkMode, getIsLoggedIn                      }from "./actions
 import { AppState                                               }from "./reducers"
 import { authConfig                                             }from "./auth.config";
 import { isLoggedIn                                             }from "./reducers/preference.reducer";
+import { take                                                   }from "rxjs";
 
 export const AppInit: Provider[] = [
   {
@@ -23,14 +24,14 @@ export const AppInit: Provider[] = [
 
 function initializeApp(store: Store<AppState>): () => void {
   return () => {
-    store.dispatch(getIsLoggedIn())
+    // store.dispatch(getIsLoggedIn())
     store.dispatch(getDarkMode())
   }
 }
 
 function initializeAppPref(oauthService: OAuthService, store: Store<AppState>): () => void {
   return () => {
-    store.select(isLoggedIn).subscribe((isUserLoggedIn) => {
+    store.select(isLoggedIn).pipe(take(1)).subscribe((isUserLoggedIn) => { // avaoid long observable subscription
       if (!isUserLoggedIn) {
         oauthService.configure(authConfig)
         oauthService.tokenValidationHandler = new NullValidationHandler();
