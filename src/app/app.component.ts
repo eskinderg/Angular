@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { LoggingService } from './error/loggingservice';
 import { NgZone, Renderer2, ElementRef, ViewChild } from '@angular/core';
-import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event } from '@angular/router';
 import { ToastService } from './shared/toast/toast.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -25,8 +26,14 @@ export class AppComponent {
       this.toastService.showDanger(error['message'], "Error")
     });
 
-    this.router.events.subscribe((event: RouterEvent) => {
-      this._navigationInterceptor(event);
+    // this.router.events.subscribe((event: RouterEvent) => {
+    //   console.log(event)
+    // });
+
+    this.router.events.pipe(
+       filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
+    ).subscribe((e: RouterEvent) => {
+      this._navigationInterceptor(e);
     });
 
   }

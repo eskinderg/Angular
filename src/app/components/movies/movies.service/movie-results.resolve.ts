@@ -1,11 +1,11 @@
 
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { MoviesApiService } from './movies.api.service';
 import { MovieResults } from '../models/movie-results';
 
 @Injectable()
-export class MoviesResultResolve implements Resolve<MovieResults> {
+export class MoviesResultResolve  {
 
   constructor(private moviesApiService: MoviesApiService) {}
 

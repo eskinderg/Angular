@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { EventDataService } from './event.data.service';
 import { Event } from '../event';
 import { Store } from '@ngrx/store';
@@ -9,7 +9,7 @@ import { Action } from '@ngrx/store';
 
 
 @Injectable()
-export class EventsResolve implements Resolve<any> {
+export class EventsResolve  {
 
   constructor(private action$: Actions) { }
 
