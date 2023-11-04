@@ -26,15 +26,11 @@ export class AppComponent {
       this.toastService.showDanger(error['message'], "Error")
     });
 
-    // this.router.events.subscribe((event: RouterEvent) => {
-    //   console.log(event)
-    // });
-
     this.router.events.pipe(
-       filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
+      filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
     ).subscribe((e: RouterEvent) => {
-      this._navigationInterceptor(e);
-    });
+        this._navigationInterceptor(e);
+      });
 
   }
 
