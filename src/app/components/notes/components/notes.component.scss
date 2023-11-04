@@ -49,12 +49,30 @@ a:hover {
   overflow: auto;
 }
 
+.list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-item:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-item.active {
+  color: var(--bs-list-group-action-hover-color) ! important;
+  text-decoration: none;
+  background-color: var(--bs-list-group-action-hover-bg) ! important;
+  border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
+}
+
 .list-group-item {
-  border: none;
-  cursor:pointer;
-  width:100%;
+  // border: none;
+  // cursor:pointer;
+  // width:100%;
 }
 
 button {
   color: grey;
 }
+
