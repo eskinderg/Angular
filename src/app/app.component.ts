@@ -29,8 +29,8 @@ export class AppComponent {
     this.router.events.pipe(
       filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
     ).subscribe((e: RouterEvent) => {
-        this._navigationInterceptor(e);
-      });
+      this._navigationInterceptor(e);
+    });
 
   }
 
