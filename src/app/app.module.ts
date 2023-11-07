@@ -30,7 +30,7 @@ import { environment } from '../environments/environment';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
-import { AppInit } from './app.initializer';
+import { APP_INIT } from './app.init';
 
 @NgModule({
   imports: [
@@ -58,7 +58,7 @@ import { AppInit } from './app.initializer';
     EventDataService,
     LoggingService,
     OAuthService,
-    AppInit,
+    APP_INIT,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalHttpInterceptor,
