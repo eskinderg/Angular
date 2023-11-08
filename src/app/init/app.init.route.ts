@@ -37,7 +37,6 @@ function _navigationInterceptor(event: RouterEvent, renderer: Renderer2, ngZone:
 
 function setSpinner(ngZone: NgZone, renderer: Renderer2, spinnerElement: ElementRef, visible: Boolean): void {
   ngZone.runOutsideAngular(() => {
-    let opacityValue = visible ? "1" : "0";
-    renderer.setStyle(spinnerElement.nativeElement, 'opacity', opacityValue);
+    renderer.setStyle(spinnerElement.nativeElement, 'opacity', visible ? "1" : "0");
   });
 }
