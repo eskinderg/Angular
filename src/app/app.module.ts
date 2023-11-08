@@ -1,15 +1,13 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_BASE_HREF } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { GlobalErrorHandler } from './error/errorhandle';
 import { LoggingService } from './error/loggingservice';
 import { AuthorizationModule } from './components/authorization/authorization.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +16,6 @@ import { SharedModule } from './components/shared/shared.module';
 import { UnauthorizedModule } from './components/unauthorized/unauthorized.module';
 import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
-
-import { GlobalHttpInterceptor } from './http.interceptor';
 
 import { appReducer, metaReducers } from './reducers';
 import { NotesEffect, EventsEffect, AuthEffect, PreferenceEffect } from './effects';
@@ -58,20 +54,7 @@ import { APP_INIT } from './app.init';
     EventDataService,
     LoggingService,
     OAuthService,
-    APP_INIT,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: GlobalHttpInterceptor,
-      multi: true
-    },
-    {
-      provide: APP_BASE_HREF,
-      useValue: '/'
-    },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler
-    }
+    APP_INIT
   ],
   bootstrap: [AppComponent]
 
