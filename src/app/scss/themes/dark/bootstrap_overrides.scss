@@ -2,9 +2,11 @@ $primary                           : #22272e;
 $body-bg                           : #2d333b;
 $body-color                        : #adbac7;
 
+$border-color                      : $primary;
+
 $link-color                        : #8c939b;
 
-// $component-active-color:            #2a6ada;
+// $component-active-color         : #2a6ada;
 $component-active-bg               : #909dab1f;
 
 $input-bg                          : $primary;
@@ -15,6 +17,7 @@ $input-focus-box-shadow            : none;
 $card-bg                           : #2a3037;
 
 $tooltip-bg                        : $primary;
+$tooltip-color                     : $body-color;
 
 $pagination-bg                     : $body-bg;
 $pagination-border-color           : $primary;
@@ -29,6 +32,7 @@ $pagination-hover-border-color     : $primary;
 $list-group-color                  : $body-color;
 $list-group-bg                     : $body-bg;
 $list-group-hover-bg               : none;
+$list-group-action-hover-color     : $body-color;
 
 $nav-tabs-link-active-color        : $body-color;
 $nav-tabs-link-active-border-color : $primary;
