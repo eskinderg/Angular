@@ -30,7 +30,7 @@
     "@angular/compiler-cli": "^17.0.1",
     "@angular/service-worker": "^17.0.1",
     "@angular/localize": "^17.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^15.1.2",
+    "@ng-bootstrap/ng-bootstrap": "16.0.0-rc.1",
     "@ngrx/effects": "^16.3.0",
     "@ngrx/store": "^16.3.0",
     "@ngrx/store-devtools": "^16.3.0",
