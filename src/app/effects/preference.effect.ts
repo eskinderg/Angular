@@ -4,7 +4,20 @@ import { Store } from '@ngrx/store'
 import { EMPTY } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 
-import { logIn, logInSuccess, toggleDarkMode, toggleDarkModeSuccess, getDarkMode, getDarkModeSuccess, fetchEvents, fetchNotes } from "../actions";
+import {
+  logIn,
+  logInSuccess,
+  getIsLoggedIn,
+  getIsLoggedInSuccess,
+  setIsLoggedIn,
+  setIsLoggedInSuccess,
+  toggleDarkMode,
+  toggleDarkModeSuccess,
+  getDarkMode,
+  getDarkModeSuccess,
+  fetchEvents,
+  fetchNotes
+} from "../actions";
 
 import { ThemeService } from '../shared/theme.service'
 
@@ -26,6 +39,25 @@ export class PreferenceEffect {
       ofType(getDarkMode),
       switchMap(() => {
         this.store.dispatch(getDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
+        return EMPTY;
+      })
+    ), { dispatch: false });
+
+  getIsLoggedIn = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getIsLoggedIn),
+      switchMap(() => {
+        this.store.dispatch(getIsLoggedInSuccess({ isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false }))
+        return EMPTY;
+      })
+    ), { dispatch: false });
+
+  setIsLoggedIn = createEffect(() =>
+    this.actions$.pipe(
+      ofType(setIsLoggedIn),
+      switchMap((action) => {
+        localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())
+        this.store.dispatch(getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
         return EMPTY;
       })
     ), { dispatch: false });

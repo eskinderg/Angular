@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { AuthService } from './auth.service';
 /**
  * This class represents AuthGuardService.
  */
 @Injectable()
-export class AuthGuardService implements CanActivate {
+export class AuthGuardService  {
   /**
    * Assign Router and authorization service.
    * @param {AuthService} authService - Authorization service the provied autorization

@@ -13,4 +13,5 @@ export class BaCardComponent {
   @Input() footer: String;
   @Input() scrollBar: boolean;
   @Input() margin: number;
+  @Input() padding: number;
 }

@@ -1,6 +1,8 @@
 <div style="display:block;">
   <ng-scrollbar class="custom-scroll">
+    <app-ba-card header="{{note.header || '&nbsp;'}} " [margin]=0 [padding]=0>
     <div [spellcheck]=false contenteditable="true" #textarea tabindex="1">
     </div>
+</app-ba-card>
   </ng-scrollbar>
 </div>
