@@ -31,3 +31,21 @@ export const logIn = createAction(
   '[PREFERENCE] LOG_IN'
 )
 
+export const getIsLoggedIn = createAction(
+  '[PREFERENCE] GET_IS_LOGGED_IN'
+)
+
+export const getIsLoggedInSuccess = createAction(
+  '[PREFERENCE] GET_IS_LOGGED_IN_SUCCESS',
+  props<{ isLoggedIn: boolean }>()
+)
+
+export const setIsLoggedIn = createAction(
+  '[PREFERENCE] SET_IS_LOGGED_IN',
+  props<{ isLoggedIn: boolean }>()
+)
+
+export const setIsLoggedInSuccess = createAction(
+  '[PREFERENCE] SET_IS_LOGGED_IN_SUCCESS',
+  props<{ isLoggedIn: boolean }>()
+)
