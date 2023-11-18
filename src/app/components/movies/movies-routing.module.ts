@@ -53,7 +53,7 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
         resolve: {
           genres: GenreResolve
         },
-        canActivate: [AuthGuardService]
+        // canActivate: [AuthGuardService]
       }
     ])
   ],

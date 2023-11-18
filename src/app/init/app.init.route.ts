@@ -1,31 +1,30 @@
-import { ComponentRef, ElementRef, NgZone, Renderer2, RendererFactory2 } from '@angular/core';
+import { ComponentRef } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event } from '@angular/router';
 import { filter } from 'rxjs';
 import { AppComponent } from '../app.component';
 
-export function bootstrapAppRouteFactory(router: Router, ngZone: NgZone, rendererFactory: RendererFactory2): (appComponentRef: ComponentRef<AppComponent>) => void {
+export function bootstrapAppRouteFactory(router: Router): (appComponentRef: ComponentRef<AppComponent>) => void {
   return (appComponentRef: ComponentRef<AppComponent>) => {
-    let renderer: Renderer2 = rendererFactory.createRenderer(null, null);
     router.events.pipe(
       filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
-    ).subscribe((e: RouterEvent) => {
-      _navigationInterceptor(e, renderer, ngZone, appComponentRef.instance.spinnerElement);
+    ).subscribe((routerEvent: RouterEvent) => {
+      _navigationInterceptor(routerEvent, appComponentRef.instance);
     });
   }
 }
 
-function _navigationInterceptor(event: RouterEvent, renderer: Renderer2, ngZone: NgZone, spinnerElement: ElementRef): void {
+function _navigationInterceptor(event: RouterEvent, appComponent: AppComponent): void {
 
   switch (event.constructor) {
 
-    case NavigationCancel:
     case NavigationEnd:
-    case NavigationError:
-      setSpinner(ngZone, renderer, spinnerElement, false);
+      appComponent.appLoadingComponent.loading = false
       break;
 
+    case NavigationError:
+    case NavigationCancel:
     case NavigationStart:
-      setSpinner(ngZone, renderer, spinnerElement, true);
+      appComponent.appLoadingComponent.loading = true
       break;
 
     default:
@@ -33,10 +32,4 @@ function _navigationInterceptor(event: RouterEvent, renderer: Renderer2, ngZone:
 
   }
 
-}
-
-function setSpinner(ngZone: NgZone, renderer: Renderer2, spinnerElement: ElementRef, visible: Boolean): void {
-  ngZone.runOutsideAngular(() => {
-    renderer.setStyle(spinnerElement.nativeElement, 'opacity', visible ? "1" : "0");
-  });
 }

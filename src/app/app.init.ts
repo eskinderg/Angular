@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Provider, APP_BOOTSTRAP_LISTENER, RendererFactory2, NgZone, ErrorHandler } from "@angular/core";
+import { APP_INITIALIZER, Provider, APP_BOOTSTRAP_LISTENER, ErrorHandler } from "@angular/core";
 import { APP_BASE_HREF } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -54,7 +54,7 @@ export const APP_INIT : Provider[] = [
   {
     provide           : APP_BOOTSTRAP_LISTENER,
     useFactory        : bootstrapAppRouteFactory,
-    deps              : [Router, NgZone, RendererFactory2],
+    deps              : [Router],
     multi             : true
   }
 ]

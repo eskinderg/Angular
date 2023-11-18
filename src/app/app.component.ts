@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { AppLoadingComponent } from './theme/components/appLoading/appLoading.component';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +8,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class AppComponent {
 
-  @ViewChild('spinnerElement', { static: true }) spinnerElement: ElementRef;
+  @ViewChild(AppLoadingComponent) appLoadingComponent: AppLoadingComponent;
 
   constructor() { }
 
