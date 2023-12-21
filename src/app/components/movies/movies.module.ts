@@ -17,9 +17,10 @@ import { MovieCardComponent } from './components/movie.card/movie.card.component
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 
-import { NgbdRatingDecimalComponent } from './components/rating/rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/movie-modal-wrapper.component';
+import { MovieDetailModalComponent } from './movie-modal/movie-modal.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     SearchComponent,
     MovieCardComponent,
     MovieDetailComponent,
-    NgbdRatingDecimalComponent
+    MovieModalWrapperComponent,
+    MovieDetailModalComponent
+
   ],
   exports: [MoviesComponent],
   providers: [

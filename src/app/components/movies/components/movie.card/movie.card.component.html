@@ -1,44 +1,16 @@
-<!-- <div class="card"> -->
-<!--   <!-1- <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap"> -1-> -->
-<!--   <!-1- <img [hidden]="isImgLoaded" class="card-img-top" src="/assets/images/placeholder.gif" > -1-> -->
-<!--   <!-1- <img [hidden]="!isImgLoaded" class="card-img-top" [src]="movie.get_poster_path()" (load)="isImgLoaded=true" (error)="imgNotloaded()"> -1-> -->
-
-<!--   <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
-
-<!--   <img -->
-<!--     class="card-img-top fade-in" -->
-<!--     [src]="imageLoading ? imageLoadingUrl : imageUrl" -->
-<!--     (load)="onImageLoaded()" -->
-<!--     (error)="handleEmptyImage()" -->
-<!--     loading="lazy" -->
-<!--     /> -->
-
-<!--   <div class="card-block p-2"> -->
-
-<!--     <h6 class="card-title"> <a [routerLink]="['/movies/movie',movie.id]" class="text-decoration-none" >{{ movie.title | truncate : '12' : true }}</a></h6> -->
-<!--     <!-1- <p class="card-text">{{ movie.overview | truncate: '150' : true}}</p> -1-> -->
-
-<!--     <div class="d-flex justify-content-between"> -->
-<!--       <p class="card-title">{{ movie.release_date | truncate: '4':false }}</p> -->
-<!--       <app-ngbd-rating-decimal  [size]=1 [currentRate]= "movieRating"></app-ngbd-rating-decimal> -->
-<!--     </div> -->
-
-<!--   </div> -->
-<!-- </div> -->
-
 <div class="card hover-shadow">
+
+  <h5 class="lang"> <span class="badge bg-secondary"> {{movie.original_language | uppercase}}</span> </h5>
   <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
-  <img
-    height=450
-    width=300
-    class="card-img-top fade-in"
-    [src]="imageLoading ? imageLoadingUrl : imageUrl"
-    (load)="onImageLoaded()"
-    (error)="handleEmptyImage()"
-    />
+  <!-- <img height=450 width=300 class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl" -->
+  <img class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl"
+    (load)="onImageLoaded()" (error)="handleEmptyImage()" />
   <div class="card-body">
 
-    <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p>
+    <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
+    <strong>
+      <p class="card-title"> {{ movie.title }}</p>
+    </strong>
 
     <small class="card-text">{{ movie.overview | truncate: '100' : true}}</small>
 
@@ -46,7 +18,7 @@
 
     <div class="d-flex justify-content-between">
       <p class="card-title">{{ movie.release_date | truncate: '4':false }}</p>
-      <app-ngbd-rating-decimal  [size]=2 [currentRate]= "movieRating"></app-ngbd-rating-decimal>
+      <app-ngbd-rating-decimal [size]=2 [currentRate]="movieRating"></app-ngbd-rating-decimal>
     </div>
 
   </div>

@@ -11,13 +11,15 @@ import { EventListFooterComponent} from './component/event-list-footer/event-lis
 import { EventsResolve } from './event.data.service/EventsResolve';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
     NgaModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    RouterModule
   ],
   declarations: [
     EventComponent,

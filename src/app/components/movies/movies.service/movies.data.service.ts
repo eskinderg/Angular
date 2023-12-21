@@ -190,7 +190,7 @@ export class MoviesDataService {
   // }
 
   getMoviesByGenre(id: string, page: number = 1): Observable<MovieResults> {
-    return this.http.get<MovieResults>('https://api.themoviedb.org/3/genre/' + id + '/movies?api_key=' + this.apikey + '&page=' + page.toString())
+    return this.http.get<MovieResults>(`https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`)
       .pipe(
         map(res => {
           const result: MovieResults = new MovieResults();

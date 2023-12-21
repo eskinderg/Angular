@@ -9,6 +9,10 @@ import { BarchartComponent } from './components/barchart/barchart.component';
 import { TextareaExpandedComponent } from './components/textAreaExpanded/textAreaExpanded.component';
 import { CheckMarkComponent } from './components/checkMark/checkmark.component';
 import { ConfirmService, ConfirmState, ConfirmModalComponent, ModalInfoComponent, ConfirmTemplateDirective } from './components/modal';
+import { NgbdRatingDecimalComponent } from '../components/movies/components/rating/rating';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormatDatePipe } from '../components/movies/directives/dateFormat';
+import { SharedModule } from '../components/shared/shared.module';
 
 const NGA_COMPONENTS = [
   BaBackTopComponent,
@@ -18,7 +22,8 @@ const NGA_COMPONENTS = [
   ConfirmModalComponent,
   TextareaExpandedComponent,
   ModalInfoComponent,
-  CheckMarkComponent
+  CheckMarkComponent,
+  NgbdRatingDecimalComponent
   // BaAmChart,
   // BaBackTop,
   // BaCard,
@@ -45,6 +50,7 @@ const NGA_DIRECTIVES = [
 ];
 
 const NGA_PIPES = [
+  FormatDatePipe
   // BaAppPicturePipe,
   // BaKameleonPicturePipe,
   // BaProfilePicturePipe
@@ -72,7 +78,9 @@ const NGA_VALIDATORS = [
   ],
   imports: [
     CommonModule,
-    NgScrollbarModule
+    SharedModule,
+    NgScrollbarModule,
+    NgbModule
     // RouterModule,
     // FormsModule,
     // ReactiveFormsModule,

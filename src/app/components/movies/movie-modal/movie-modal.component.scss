@@ -1,0 +1,24 @@
+.card-img-top {
+  --bs-card-inner-border-radius: 0px;
+  // border-radius:0px;
+}
+
+.btn-close-top {
+
+  position: absolute;
+  right: 10px;
+}
+
+.screen-height {
+  height: 80vh;
+  --scrollbar-thumb-color: var(--bs-primary);
+  --scrollbar-track-color: var(--bs-secondary);
+  --scrollbar-size: 12px;
+  // --scrollbar-hover-size: 50px;
+  --scrollbar-border-radius: 0px;
+  --scrollbar-padding: 0px;
+}
+
+.list-group-item > a {
+  text-decoration:none;
+}

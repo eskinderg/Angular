@@ -47,7 +47,8 @@ export class ProfileComponent implements OnInit {
       this.confirmService.openInfoModal({
         title: 'Profile',
         message: 'Profile Saved',
-        backdrop: true
+        backdrop: true,
+        centered: false
       }).then(() => {
       }, () => {
         console.log();

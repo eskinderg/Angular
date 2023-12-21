@@ -15,7 +15,6 @@ import { TruncatePipe } from '../movies/directives/truncate';
 import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { FormatDatePipe } from '../movies/directives/dateFormat';
 import { ThemeOptionComponent } from 'src/app/theme/components/appThemeOption/appThemeOption.component';
 
 /**
@@ -29,7 +28,6 @@ import { ThemeOptionComponent } from 'src/app/theme/components/appThemeOption/ap
     FooterComponent,
     TruncatePipe,
     NoteTitleTruncatePipe,
-    FormatDatePipe
   ],
   exports: [
     HeaderComponent,
@@ -42,7 +40,6 @@ import { ThemeOptionComponent } from 'src/app/theme/components/appThemeOption/ap
     DragDropModule,
     TruncatePipe,
     NoteTitleTruncatePipe,
-    FormatDatePipe
   ]
 })
 export class SharedModule {

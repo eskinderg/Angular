@@ -59,7 +59,8 @@ export class NotesComponent {
     this.confirmService.confirm({
       title: 'Confirm deletion',
       message: 'Are you sure you want to delete ?',
-      backdrop: true
+      backdrop: true,
+      centered: false
     }).then(() => {
       this.notesApiService.deleteNote(note);
     }, () => {

@@ -8,6 +8,8 @@ import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
 import { MoviesResultResolve } from './movies.service/movie-results.resolve';
+import { MovieDetailModalComponent } from './movie-modal/movie-modal.component';
+import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/movie-modal-wrapper.component';
 
 @NgModule({
   imports: [
@@ -16,20 +18,46 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
         path: '',
         component: MoviesComponent,
         children: [
-          {path: '', redirectTo: 'search', pathMatch: 'full'},
+          {
+            path: '',
+            redirectTo: 'search',
+            pathMatch: 'full'
+          },
           {
             path: 'genres/:id/:name/:page',
             component: GenreComponent,
             resolve: {
               moviesResult: MoviesResultResolve
-            }
+            }, children: [
+              {
+                path: 'modal/:movieid',
+                component: MovieModalWrapperComponent,
+                data: {
+                  component: MovieDetailModalComponent
+                },
+                resolve: {
+                  movieDetail: MoviesDetailsResolve
+                }
+              },
+            ]
           },
           {
             path: 'genres/:id/:name',
             component: GenreComponent,
             resolve: {
               moviesResult: MoviesResultResolve
-            }
+            }, children: [
+              {
+                path: 'modal/:movieid',
+                component: MovieModalWrapperComponent,
+                data: {
+                  component: MovieDetailModalComponent
+                },
+                resolve: {
+                  movieDetail: MoviesDetailsResolve
+                }
+              },
+            ]
           },
           {
             path: 'genres/:id/:name/:page/movie/:idmovie',

@@ -14,5 +14,9 @@ export interface ConfirmOptions {
    */
   message: string,
 
-  backdrop: boolean
+  backdrop: boolean,
+
+  centered?: boolean
+
+  scrollable?: boolean
 }
