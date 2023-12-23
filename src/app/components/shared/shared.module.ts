@@ -15,7 +15,7 @@ import { TruncatePipe } from '../movies/directives/truncate';
 import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ThemeOptionComponent } from 'src/app/theme/components/appThemeOption/appThemeOption.component';
+import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOption/appThemeOption.component';
 
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.

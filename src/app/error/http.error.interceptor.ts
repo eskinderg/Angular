@@ -5,7 +5,7 @@ import { Observable, pipe, throwError, catchError } from 'rxjs';
 import { LoggingService } from '../error/loggingservice';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
-import { ConfirmService } from '../theme/components/modal/confirm.service';
+import { ConfirmService } from '../fragments/components/modal/confirm.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {

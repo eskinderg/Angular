@@ -7,7 +7,7 @@ import { NotesRoutingModule } from './notes-routing.module';
 import { NotesResolver } from './services/notes.resolver';
 import { DraggableModule } from '../shared/draggable/draggable.module';
 
-import { NgaModule } from '../../theme/nga.module';
+import { NgaModule } from '../../fragments/nga.module';
 
 import { NotesComponent } from './components/notes.component';
 import { NoteComponent } from './components/note.component/note.component';

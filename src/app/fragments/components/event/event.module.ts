@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgaModule } from '../../../theme/nga.module';
+import { NgaModule } from '../../../fragments/nga.module';
 import { EventComponent } from './component/event.component';
 import { EventListComponent } from './component/event-list/event-list.component';
 import { EventListHeaderComponent } from './component/event-list-header/event-list-header.component';

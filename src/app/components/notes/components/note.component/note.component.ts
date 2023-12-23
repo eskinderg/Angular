@@ -3,7 +3,7 @@ import { Note } from '../../../../models/note';
 // import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
 import { ActivatedRoute } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
-import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
+import { ConfirmService } from '../../../../fragments/components/modal/confirm.service';
 import { Subscription } from 'rxjs';
 
 @Component({

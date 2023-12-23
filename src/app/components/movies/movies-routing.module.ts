@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
+// import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { MoviesComponent } from './movies.component';
 import { GenreComponent } from './genres/genre.component';
 import { GenreResolve } from './movies.service/genres.resolve';
@@ -76,6 +76,23 @@ import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/mo
           {
             path: 'search',
             component: SearchComponent
+          },
+          {
+            path: 'search/modal/:movieid',
+            component: MovieModalWrapperComponent,
+            data: {
+              component: MovieDetailModalComponent
+            },
+            resolve: {
+              movieDetail: MoviesDetailsResolve
+            }
+          },
+          {
+            path: 'search/:searchText',
+            component: SearchComponent,
+            data: {
+              searchText: 'asdf'
+            }
           }
         ],
         resolve: {

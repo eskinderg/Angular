@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Event } from '../../../../theme/components/event/event';
+import { Event } from '../../../../fragments/components/event/event';
 
 @Component(
   {

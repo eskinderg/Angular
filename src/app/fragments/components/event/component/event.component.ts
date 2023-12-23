@@ -1,7 +1,7 @@
 import { Component,Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Event } from '../../../../models/event';
-import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
+import { ConfirmService } from '../../../../fragments/components/modal/confirm.service';
 import * as EventsActions from '../../../../actions/event.action';
 import * as fromRoot from '../../../../reducers';
 import { ActivatedRoute, Router } from '@angular/router';

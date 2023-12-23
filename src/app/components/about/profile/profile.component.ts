@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { User } from 'oidc-client';
-import { ConfirmService } from '../../../theme/components/modal/confirm.service';
+import { ConfirmService } from '../../../fragments/components/modal/confirm.service';
 
 @Component({
   selector: 'app-profile',

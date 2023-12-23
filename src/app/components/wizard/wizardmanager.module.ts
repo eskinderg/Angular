@@ -12,7 +12,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { WzCommonComponent } from './common/common.component';
 
 import { SharedModule } from '../shared/shared.module';
-import { NgaModule } from '../../theme/nga.module';
+import { NgaModule } from '../../fragments/nga.module';
 
 @NgModule({
   imports: [

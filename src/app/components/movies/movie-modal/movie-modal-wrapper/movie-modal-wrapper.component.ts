@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil, zip } from 'rxjs';
-import { Location } from '@angular/common';
+import { Location, LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-movie-modal-wrapper',
@@ -15,7 +15,7 @@ export class MovieModalWrapperComponent implements OnDestroy, AfterViewInit {
   currentDialog: NgbModalRef;
   dialogResult: any;
 
-  constructor(private modalService: NgbModal, public route: ActivatedRoute, public location: Location) {
+  constructor(private modalService: NgbModal, public route: ActivatedRoute, public location: Location,public router: Router, public ls: LocationStrategy) {
   }
 
   ngAfterViewInit(): void {

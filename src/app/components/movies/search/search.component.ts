@@ -3,6 +3,7 @@ import { MoviesApiService } from '../movies.service/movies.api.service';
 import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -21,7 +22,7 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
   movieResult: MovieResults;
   searchSubscription$: Subscription | undefined;
 
-  constructor(private _moviesServices: MoviesApiService, private cdr: ChangeDetectorRef) { }
+  constructor(public route: Router,public router: ActivatedRoute, private _moviesServices: MoviesApiService, private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit() {
     this.searchSubscription$ = fromEvent(this.input.nativeElement, 'keyup')
@@ -85,6 +86,7 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log(this.router.snapshot)
     // this.movies = this.term.valueChanges
     //   .debounceTime(400)
     //   .distinctUntilChanged()

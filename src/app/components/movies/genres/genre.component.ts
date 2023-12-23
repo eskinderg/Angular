@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
-import { ConfirmService } from 'src/app/theme/components/modal';
+import { ConfirmService } from 'src/app/fragments/components/modal';
 
 @Component({
   selector: 'app-genres',

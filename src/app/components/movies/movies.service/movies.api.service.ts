@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Genre } from '../models/genre';
-import { Movie } from '../models/movie';
+// import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
 import { MoviesDataService } from './movies.data.service';
 import { Observable, empty, map } from 'rxjs';

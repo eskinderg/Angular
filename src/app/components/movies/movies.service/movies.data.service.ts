@@ -193,11 +193,12 @@ export class MoviesDataService {
     return this.http.get<MovieResults>(`https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`)
       .pipe(
         map(res => {
-          const result: MovieResults = new MovieResults();
-          result.total_pages = res['total_pages'];
-          result.total_results = res['total_results'];
-          result.page = res['page']
-          result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+          const result: MovieResults = {
+            total_pages: res['total_pages'],
+            total_results: res['total_results'],
+            page: res['page'],
+            movies: res['results'].map((movie: Movie) => new Movie(movie))
+          }
           return result
         })
       )

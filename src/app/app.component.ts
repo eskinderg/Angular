@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { AppLoadingComponent } from './theme/components/appLoading/appLoading.component';
+import { AppLoadingComponent } from './fragments/components/appLoading/appLoading.component';
 
 @Component({
   selector: 'app-main',

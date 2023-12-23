@@ -5,7 +5,7 @@ import { throwError as observableThrowError,  Observable } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
 // import { environment } from '../../../../../environments/environment';
 
-import { ConfirmService } from '../../../theme/components/modal/confirm.service';
+import { ConfirmService } from '../../../fragments/components/modal/confirm.service';
 
 @Injectable()
 export class ApiService {

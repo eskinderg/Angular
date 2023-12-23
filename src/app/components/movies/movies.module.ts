@@ -8,9 +8,9 @@ import { MoviesRoutingModule } from './movies-routing.module';
 import { MoviesDataService } from './movies.service/movies.data.service';
 import { MoviesApiService } from './movies.service/movies.api.service';
 
-import { NgaModule } from '../../theme/nga.module';
+import { NgaModule } from '../../fragments/nga.module';
 
-import { GenreListItemComponent } from './components/genre-list-item/genre-list-item.component';
+import { GenreListItemComponent } from './components/genre-list/genre-list-item/genre-list-item.component';
 import { GenreListComponent } from './components/genre-list/genre-list.component';
 import { GenreComponent } from './genres/genre.component';
 import { MovieCardComponent } from './components/movie.card/movie.card.component';
