@@ -1,16 +1,16 @@
 
 /**
- * Options passed when opening a confirmation modal
+ * Options passed when opening a confirmation dialog
  */
 
 export interface ConfirmOptions {
   /**
-   * The title of the confirmation modal
+   * The title of the confirmation dialog
    */
   title: string,
 
   /**
-   * The message in the confirmation modal
+   * The message in the confirmation dialog
    */
   message: string,
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
-import { ConfirmService } from 'src/app/fragments/components/modal';
+import { ConfirmService } from 'src/app/fragments/components/dialog';
 
 @Component({
   selector: 'app-genres',
@@ -17,7 +17,7 @@ export class GenreComponent implements OnDestroy, OnInit {
   constructor(
     public router: ActivatedRoute,
     public route: Router,
-    public modal: ConfirmService,
+    public dialog: ConfirmService,
   ) { }
 
   ngOnInit() {

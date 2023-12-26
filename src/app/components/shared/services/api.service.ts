@@ -5,7 +5,7 @@ import { throwError as observableThrowError,  Observable } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, switchMap, map, takeUntil, tap } from 'rxjs/operators';
 // import { environment } from '../../../../../environments/environment';
 
-import { ConfirmService } from '../../../fragments/components/modal/confirm.service';
+import { ConfirmService } from '../../../fragments/components/dialog/confirm.service';
 
 @Injectable()
 export class ApiService {
@@ -21,7 +21,7 @@ export class ApiService {
   handleError (error: Response | any) {
     // console.error('EventDataApiService Error::handleError', error);
 
-    // this.confirmService.openInfoModal({
+    // this.confirmService.openInfoDialog({
     //   title: 'Title',
     //   message: 'asdfasdfjalsdfkajlsdkfjalsdkf'
     // }).then(() => {

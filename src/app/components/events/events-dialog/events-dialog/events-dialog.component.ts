@@ -9,22 +9,22 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-events-modal',
-  templateUrl: './events-modal.component.html',
-  styleUrl: './events-modal.component.scss'
+  selector: 'app-events-dialog',
+  templateUrl: './events-dialog.component.html',
+  styleUrl: './events-dialog.component.scss'
 })
-export class EventsModalComponent {
+export class EventsDialogComponent {
 
   public Event: Event;
 
   constructor(
     private router: Router,
-    private activeModal: NgbActiveModal,
+    private activeDialog: NgbActiveModal,
     private store: Store<fromRoot.AppState>,
     private location: Location
   ) {
     if (this.router.getCurrentNavigation() == null) {
-      this.activeModal.close()
+      this.activeDialog.close()
       // this.location.go('./events');
       return;
     }
@@ -38,12 +38,12 @@ export class EventsModalComponent {
   }
 
   no() {
-    this.activeModal.close();
+    this.activeDialog.close();
   }
 
   yes() {
     this.store.dispatch(EventsActions.deleteEvent({ payload: this.Event }));
-    this.activeModal.close();
+    this.activeDialog.close();
   }
 
 }

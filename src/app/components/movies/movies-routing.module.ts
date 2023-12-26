@@ -8,8 +8,8 @@ import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
 import { MoviesResultResolve } from './movies.service/movie-results.resolve';
-import { MovieDetailModalComponent } from './movie-modal/movie-modal.component';
-import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/movie-modal-wrapper.component';
+import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.component';
+import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper/movie-dialog-wrapper.component';
 
 @NgModule({
   imports: [
@@ -30,10 +30,10 @@ import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/mo
               moviesResult: MoviesResultResolve
             }, children: [
               {
-                path: 'modal/:movieid',
-                component: MovieModalWrapperComponent,
+                path: 'dialog/:movieid',
+                component: MovieDialogWrapperComponent,
                 data: {
-                  component: MovieDetailModalComponent
+                  component: MovieDetailDialogComponent
                 },
                 resolve: {
                   movieDetail: MoviesDetailsResolve
@@ -48,10 +48,10 @@ import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/mo
               moviesResult: MoviesResultResolve
             }, children: [
               {
-                path: 'modal/:movieid',
-                component: MovieModalWrapperComponent,
+                path: 'dialog/:movieid',
+                component: MovieDialogWrapperComponent,
                 data: {
-                  component: MovieDetailModalComponent
+                  component: MovieDetailDialogComponent
                 },
                 resolve: {
                   movieDetail: MoviesDetailsResolve
@@ -78,10 +78,10 @@ import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/mo
             component: SearchComponent
           },
           {
-            path: 'search/modal/:movieid',
-            component: MovieModalWrapperComponent,
+            path: 'search/dialog/:movieid',
+            component: MovieDialogWrapperComponent,
             data: {
-              component: MovieDetailModalComponent
+              component: MovieDetailDialogComponent
             },
             resolve: {
               movieDetail: MoviesDetailsResolve

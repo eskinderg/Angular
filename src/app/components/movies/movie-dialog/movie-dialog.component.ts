@@ -3,16 +3,16 @@ import { Movie } from '../models/movie';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-movie-detail-modal',
-  templateUrl: './movie-modal.component.html',
-  styleUrl: './movie-modal.component.scss'
+  selector: 'app-movie-detail-dialog',
+  templateUrl: './movie-dialog.component.html',
+  styleUrl: './movie-dialog.component.scss'
 })
-export class MovieDetailModalComponent implements OnInit {
+export class MovieDetailDialogComponent implements OnInit {
 
   movieDetail: Movie;
   movieRating: number;
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeDialog: NgbActiveModal) {
   }
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class MovieDetailModalComponent implements OnInit {
   }
 
   close() {
-    this.activeModal.close();
+    this.activeDialog.close();
   }
 
 }

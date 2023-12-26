@@ -7,18 +7,18 @@ import * as fromEvents from '../../../../reducers/events.reducer';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-events-modal-wrapper',
-  templateUrl: './events-modal-wrapper.component.html',
-  styleUrl: './events-modal-wrapper.component.scss'
+  selector: 'app-events-dialog-wrapper',
+  templateUrl: './events-dialog-wrapper.component.html',
+  styleUrl: './events-dialog-wrapper.component.scss'
 })
-export class EventsModalWrapperComponent {
+export class EventsDialogWrapperComponent {
 
   destroy = new Subject<any>();
   currentDialog: NgbModalRef;
   dialogResult: any;
 
   constructor(
-    private modalService: NgbModal,
+    private dialogService: NgbModal,
     route: ActivatedRoute,
     private location: Location,
     private store: Store<fromEvents.EventsState>
@@ -29,7 +29,7 @@ export class EventsModalWrapperComponent {
     zip(routeParams, routeData)
       .pipe(takeUntil(this.destroy)).
       subscribe(result => {
-        this.currentDialog = this.modalService.open(
+        this.currentDialog = this.dialogService.open(
           result[1]["component"],
           {
             centered: true,

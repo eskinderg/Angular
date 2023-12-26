@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { ApiService } from '../../../../components/shared/services/api.service';
 
-import { ConfirmService } from '../../../../fragments/components/modal/confirm.service';
+import { ConfirmService } from '../../../../fragments/components/dialog/confirm.service';
 import { Event } from 'src/app/models/event';
 
 const API_URL = environment.EVENTS_API;

@@ -19,8 +19,8 @@ import { MovieDetailComponent } from './components/movie-detail/movie.detail.com
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { MovieModalWrapperComponent } from './movie-modal/movie-modal-wrapper/movie-modal-wrapper.component';
-import { MovieDetailModalComponent } from './movie-modal/movie-modal.component';
+import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper/movie-dialog-wrapper.component';
+import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.component';
 
 @NgModule({
   imports: [
@@ -40,8 +40,8 @@ import { MovieDetailModalComponent } from './movie-modal/movie-modal.component';
     SearchComponent,
     MovieCardComponent,
     MovieDetailComponent,
-    MovieModalWrapperComponent,
-    MovieDetailModalComponent
+    MovieDialogWrapperComponent,
+    MovieDetailDialogComponent
 
   ],
   exports: [MoviesComponent],

@@ -2,13 +2,13 @@ import { Component, Injectable, Directive } from '@angular/core';
 import { ConfirmOptions } from '../confirm.options';
 import { ConfirmState } from '../confirm.state';
 /**
- * The component displayed in the confirmation modal opened by the ConfirmService.
+ * The component displayed in the confirmation dialog opened by the ConfirmService.
  */
 @Component({
-  selector: 'app-modal-info-component',
-  templateUrl: './modalInfo.component.html'
+  selector: 'app-dialog-info-component',
+  templateUrl: './dialogInfo.component.html'
 })
-export class ModalInfoComponent {
+export class DialogInfoComponent {
 
   options: ConfirmOptions;
 
@@ -17,11 +17,11 @@ export class ModalInfoComponent {
   }
 
   close() {
-    this.state.modal.close('confirmed');
+    this.state.dialog.close('confirmed');
   }
 
   // no() {
-  //   this.state.modal.dismiss('not confirmed');
+  //   this.state.dialog.dismiss('not confirmed');
   // }
 }
 

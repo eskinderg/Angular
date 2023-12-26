@@ -5,17 +5,17 @@ import { Subject, takeUntil, zip } from 'rxjs';
 import { Location, LocationStrategy } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-modal-wrapper',
-  templateUrl: './movie-modal-wrapper.component.html',
-  styleUrl: './movie-modal-wrapper.component.scss'
+  selector: 'app-movie-dialog-wrapper',
+  templateUrl: './movie-dialog-wrapper.component.html',
+  styleUrl: './movie-dialog-wrapper.component.scss'
 })
-export class MovieModalWrapperComponent implements OnDestroy, AfterViewInit {
+export class MovieDialogWrapperComponent implements OnDestroy, AfterViewInit {
 
   destroy = new Subject<any>();
   currentDialog: NgbModalRef;
   dialogResult: any;
 
-  constructor(private modalService: NgbModal, public route: ActivatedRoute, public location: Location,public router: Router, public ls: LocationStrategy) {
+  constructor(private dialogService: NgbModal, public route: ActivatedRoute, public location: Location,public router: Router, public ls: LocationStrategy) {
   }
 
   ngAfterViewInit(): void {
@@ -25,12 +25,12 @@ export class MovieModalWrapperComponent implements OnDestroy, AfterViewInit {
     zip(routeParams, routeData)
       .pipe(takeUntil(this.destroy)).
       subscribe(result => {
-        this.currentDialog = this.modalService.open(
+        this.currentDialog = this.dialogService.open(
           result[1]["component"],
           {
             centered: true,
             scrollable: false,
-            container: '#movieModal',
+            container: '#movieDialog',
             size:'xl'
           });
         this.currentDialog.componentInstance.params = result[0];

@@ -1,12 +1,12 @@
 import { Directive , TemplateRef } from '@angular/core';
 import { ConfirmState } from './confirm.state';
 /**
- * Directive allowing to get a reference to the template containing the confirmation modal component,
+ * Directive allowing to get a reference to the template containing the confirmation dialog component,
  * and to store it into the internal confirm state service. Somewhere in the view, there must be
  *
  * ```
  * <template confirm>
- *   <confirm-modal-component></confirm-modal-component>
+ *   <confirm-dialog-component></confirm-dialog-component>
  * </template>
  * ```
  *

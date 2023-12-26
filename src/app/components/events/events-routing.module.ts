@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { EventsComponent } from './events.component';
 import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
-import { EventsModalWrapperComponent } from './events-modal/events-modal-wrapper/events-modal-wrapper.component';
-import { EventsModalComponent } from './events-modal/events-modal/events-modal.component';
+import { EventsDialogWrapperComponent } from './events-dialog/events-dialog-wrapper/events-dialog-wrapper.component';
+import { EventsDialogComponent } from './events-dialog/events-dialog/events-dialog.component';
 
 @NgModule({
   imports: [
@@ -14,10 +14,10 @@ import { EventsModalComponent } from './events-modal/events-modal/events-modal.c
         canActivate: [AuthGuardService],
         children: [
           {
-            path: 'modal/:eventid',
-            component: EventsModalWrapperComponent,
+            path: 'dialog/:eventid',
+            component: EventsDialogWrapperComponent,
             data: {
-              component: EventsModalComponent
+              component: EventsDialogComponent
             }
           }
         ]

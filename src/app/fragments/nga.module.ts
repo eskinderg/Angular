@@ -8,7 +8,7 @@ import { AppLoadingComponent } from './components/appLoading/appLoading.componen
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { TextareaExpandedComponent } from './components/textAreaExpanded/textAreaExpanded.component';
 import { CheckMarkComponent } from './components/checkMark/checkmark.component';
-import { ConfirmService, ConfirmState, ConfirmModalComponent, ModalInfoComponent, ConfirmTemplateDirective } from './components/modal';
+import { ConfirmService, ConfirmState, ConfirmDialogComponent, DialogInfoComponent, ConfirmTemplateDirective } from './components/dialog';
 import { NgbdRatingDecimalComponent } from '../components/movies/components/rating/rating';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormatDatePipe } from '../components/movies/directives/dateFormat';
@@ -19,9 +19,9 @@ const NGA_COMPONENTS = [
   BaCardComponent,
   AppLoadingComponent,
   BarchartComponent,
-  ConfirmModalComponent,
+  ConfirmDialogComponent,
   TextareaExpandedComponent,
-  ModalInfoComponent,
+  DialogInfoComponent,
   CheckMarkComponent,
   NgbdRatingDecimalComponent
   // BaAmChart,
