@@ -14,21 +14,37 @@
   <div class="row g-0">
     <div class="col-lg-3">
 
-      <div class="list-group">
-        <a [routerLinkActiveOptions]="{exact:false}"
-          class="list-group-item list-group-item-action flex-column align-items-start" [routerLinkActive]="['active']"
-          [routerLink]="['/notes',note.id]" *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]>
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"> {{ note.text | noteTitleTruncate : '20' : true }} </h5>
-            <!-- <small class="text-muted"> Time</small> -->
-          </div>
-          <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
-          <!-- <small class="text-muted">Test</small> -->
-          <!-- <p class="mb-1"> {{ note.text | noteTitleTruncate : '50' : true }} </p> -->
-          <!-- <small>Delete</small> -->
+      <div  class="list-group">
 
-          <small class="fa fa-bin2 menu" (click)="onNoteDelete(note)"></small>
-        </a>
+        @for(note of Notes | async ; track note){
+        <div  class="p-0 d-flex w-100 justify-content-between list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex align-items-start w-100 justify-content-between">
+            <!-- <div class="container" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]"> -->
+            <!-- <div class="container" (click)="onNoteClick(note)" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]"> -->
+            <div class="container" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]">
+              <div class="row my-2 flex-fill">
+                <div [@.disabled]="!(Animate | async)?.text" [@fadeInOutNoteListItem] class="col mb-auto">
+                  <h6 class="mb-1 note-text"> {{ note?.text | noteTitleTruncate : '20' : true }} </h6>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <small [@.disabled]="!(Animate | async)?.date" [@fadeInOutEventNoteItem] class="text-muted"> {{ note.dateModified | dateago : 'asdf' }}</small>
+                </div>
+              </div>
+            </div>
+            <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div>
+            <!-- <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div> -->
+          </div>
+        </div>
+        }
+        <!-- <small class="text-muted"> {{ note.dateModified | date : "medium" }}</small> -->
+        <!-- <small style="margin: 0.5rem" class="text-muted"> {{ note.dateModified | dateago }}</small> -->
+        <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
+        <!-- <small class="text-muted">Test</small> -->
+        <!-- <p class="mb-1"> {{ note.text | noteTitleTruncate : '50' : true }} </p> -->
+        <!-- <small>Delete</small> -->
+
+        <!-- <a [routerLink]="['/notes',{ outlets: { dialog: ['dialog'] }}]">Dialog</a> -->
       </div>
 
       <!-- <ul class="list-group"> -->
@@ -64,9 +80,10 @@
       <!-- </ul> -->
     </div>
 
-    <div class="col-lg-9">
+    <div class="px-2 col-lg-9">
 
       <!-- <app-textarea-expanded> </app-textarea-expanded> -->
+      <router-outlet name="dialog"></router-outlet>
       <router-outlet></router-outlet>
 
     </div>

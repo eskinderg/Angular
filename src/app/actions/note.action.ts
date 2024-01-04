@@ -175,3 +175,20 @@ export const getNoteSuccess = createAction(
   '[NOTE] GET_NOTE_SUCCESS',
   props<{ payload: Note }>()
 )
+
+
+export const getNoteUpdatedTimeStamp = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP',
+  props<{ payload: Note }>()
+)
+
+export const getNoteUpdatedTimestampSuccess = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const getNoteUpdatedTimestampFail = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_FAIL',
+  props<{ payload: string }>()
+)
+

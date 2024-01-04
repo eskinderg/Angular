@@ -13,6 +13,8 @@ import { NgbdRatingDecimalComponent } from '../components/movies/components/rati
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormatDatePipe } from '../components/movies/directives/dateFormat';
 import { SharedModule } from '../components/shared/shared.module';
+import { NoteTextComponent } from './components/note.text/note.text.component';
+import { AgoDatePipe } from '../components/movies/directives/dateagopipe';
 
 const NGA_COMPONENTS = [
   BaBackTopComponent,
@@ -21,6 +23,7 @@ const NGA_COMPONENTS = [
   BarchartComponent,
   ConfirmDialogComponent,
   TextareaExpandedComponent,
+  NoteTextComponent,
   DialogInfoComponent,
   CheckMarkComponent,
   NgbdRatingDecimalComponent
@@ -50,7 +53,8 @@ const NGA_DIRECTIVES = [
 ];
 
 const NGA_PIPES = [
-  FormatDatePipe
+  FormatDatePipe,
+  AgoDatePipe
   // BaAppPicturePipe,
   // BaKameleonPicturePipe,
   // BaProfilePicturePipe

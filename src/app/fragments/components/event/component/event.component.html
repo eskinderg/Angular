@@ -7,11 +7,17 @@
       [events]="events"
       (toggle)="onToggleEvent($event)"
       (remove)="onRemoveEvent($event)"
-      (update)="onUpdateEvent($event)">
+      (update)="onUpdateEvent($event)"
+      (select)="onSelectEvent($event)">
     </app-event-list>
 
   </ng-scrollbar>
 </div>
+
+<i class="btn btn-sm " [ngClass]="{'btn-outline-danger': selectedEvents.length}"
+(click)="onDeleteEvents()">
+  <span class="fa fa-bin2"></span>
+</i>
 
 <!-- <app-event-list-footer [events]="events"></app-event-list-footer> -->
 

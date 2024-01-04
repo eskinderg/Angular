@@ -1,6 +1,5 @@
 import {
   Component,
-  HostListener,
   Input,
   OnInit,
   Output,
@@ -14,8 +13,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
-
-import { Note } from "../../../models/note";
+import { Note } from 'src/app/models/note';
 
 export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -58,13 +56,12 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
       .subscribe();
   }
 
-  writeValue(value: string): void {
+  writeValue(_value: string): void {
     const div = this.textarea.nativeElement;
-    this.renderer.setProperty(div, 'innerHTML', value);
+    this.renderer.setProperty(div, 'innerHTML', this.note.text);
   }
 
   registerOnChange(fn: any): void {
-    // alert('registerOnChange')
     this.onChange = fn;
   }
 
@@ -79,23 +76,23 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     this.renderer[action](div, 'disabled');
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   // change($event) {
 
-    // console.log(this.textData + $event.data);
-    // console.log($event);
-    // this.onChange.emit($event);
-    // this.onTextChanged.emit($event.target.textContent);
-    // console.log($event.target.innerHTML)
+  // console.log(this.textData + $event.data);
+  // console.log($event);
+  // this.onChange.emit($event);
+  // this.onTextChanged.emit($event.target.textContent);
+  // console.log($event.target.innerHTML)
 
-    // console.log($event.target.innerText);
-    // this.onTextChanged.emit({ ...this.note, text: $event.target.innerHTML });
-    // console.log(this.note.text)
+  // console.log($event.target.innerText);
+  // this.onTextChanged.emit({ ...this.note, text: $event.target.innerHTML });
+  // console.log(this.note.text)
 
-    // this.onChange($event.target.textContent);
-    // this.onTouched($event.target.textContent);
+  // this.onChange($event.target.textContent);
+  // this.onTouched($event.target.textContent);
   // }
 }

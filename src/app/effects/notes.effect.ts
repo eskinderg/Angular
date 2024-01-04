@@ -39,6 +39,17 @@ export class NotesEffect {
             catchError(err => of(NotesActions.updateNoteTextFail({ payload: err })))
           ))))
 
+  updateNoteTextSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updateNoteTextSuccess),
+      switchMap((action) =>
+        this.notesApiService
+          .getNote(action.payload.id)
+          .pipe(
+            map(note => NotesActions.getNoteUpdatedTimestampSuccess({ payload: note })),
+            catchError(err => of(NotesActions.getNoteUpdatedTimestampFail({ payload: err })))
+          ))))
+
   updateNotePosition = createEffect(() =>
     this.actions$
       .pipe(
@@ -102,7 +113,8 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.deleteNoteSuccess),
       switchMap(() => {
-        this.toastService.showStandard('Note Deleted', 'Info')
+        this.toastService.showSuccess('Note Deleted', 'Info');
+        this.router.navigate([`/notes`]);
         return EMPTY;
       }
       )), { dispatch: false })

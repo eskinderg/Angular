@@ -2,15 +2,18 @@
 <!-- <span *ngIf="note">{{note.header}}</span> -->
 <!-- <span class="clear"></span> -->
 <!-- <div [ngClass] = "note.colour + '-note'" class="card-block"> -->
-
+<!-- <h1>==========</h1> -->
+  <!-- {{ (note | async)?.['text'] }} -->
 <app-textarea-expanded
   *ngIf="note"
   #notediv
   [note]      = "note"
-  [(ngModel)] = "note.text"
+  [(ngModel)] = "note"
   (onTextChanged)  = "handleChangeNoteText($event)"
   >
 </app-textarea-expanded>
+
+<!-- <app-note-text [(ngModel)] = "note.text" > </app-note-text> -->
 
 <!-- <div  contenteditable="true"> -->
 <!--     {{note.text}} -->

@@ -2,6 +2,7 @@
 @import "../../custom-bootstrap/custom-bootstrap.scss";
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
-// :root {
-//   --eskinder: black;
-// }
+:root {
+  --secondary: var(--bs-secondary);
+  --border: #2a6ada6b;
+}

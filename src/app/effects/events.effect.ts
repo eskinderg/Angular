@@ -80,6 +80,15 @@ export class EventsEffect {
             catchError(err => of(EventsActions.deleteEventFail({ payload: err })))
           ))));
 
+  deleteEvents = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.deleteEvents),
+      switchMap((action) =>
+        this.eventsDataService.deleteEvents(action.payload)
+          .pipe(map(event => EventsActions.deleteEventsSuccess({ payload: event })),
+            catchError(err => of(EventsActions.deleteEventsFail({ payload: err })))
+          ))));
+
   constructor(
     private actions$          : Actions,
     private eventsDataService : EventDataService,

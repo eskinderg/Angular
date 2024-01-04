@@ -12,6 +12,10 @@ div {
   background: --bs-body-bg;
 }
 
+.textArea {
+  border: 1px solid var(--border)
+}
+
 div.disabled {
   cursor: not-allowed;
   opacity: 0.5;

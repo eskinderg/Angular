@@ -31,11 +31,15 @@ a:hover {
 .active {
   // background: var(--bs-seconday) ! important;
   // color: lighten($primary, 10%);
+  color: var(--bs-list-group-action-hover-color) ! important;
+  text-decoration: none;
+  background-color: var(--bs-list-group-action-hover-bg) ! important;
+  // border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
 }
 
 .menu {
   cursor:pointer;
-  margin-top: 4px;
+  // margin-top: 4px;
   // color: var(--bs-primary);
 
 }
@@ -44,10 +48,23 @@ a:hover {
   color: var(--bs-red);
 }
 
-.container {
-  height: 100vh;
-  overflow: auto;
+.note-text {
+  font-size: 1.25rem;
+  color: var(--bs-body-color);
 }
+
+.del-button {
+  // width: 3rem;
+  // background: green;
+  color: var(--secondary);
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+// .container {
+//   height: 100vh;
+//   overflow: auto;
+// }
 
 .list-group-item:first-child {
     border-top-left-radius: 0;

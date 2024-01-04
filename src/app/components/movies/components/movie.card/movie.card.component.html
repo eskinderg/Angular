@@ -1,16 +1,23 @@
 <div class="card hover-shadow">
-
-  <h5 class="lang"> <span class="badge bg-secondary"> {{movie.original_language | uppercase}}</span> </h5>
+  <!-- <h5 class="lang"> <span class="badge bg-secondary"> {{movie.original_language | uppercase}}</span> </h5> -->
   <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
   <!-- <img height=450 width=300 class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl" -->
-  <img class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl"
-    (load)="onImageLoaded()" (error)="handleEmptyImage()" />
+  <img class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl" (load)="onImageLoaded()"
+    (error)="handleEmptyImage()" />
   <div class="card-body">
 
     <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
-    <strong>
-      <p class="card-title"> {{ movie.title }}</p>
-    </strong>
+    <div class="row">
+      <div class="col">
+        <strong>
+          <p class="card-title"> {{ movie.title }}</p>
+        </strong>
+      </div>
+      <div class="col-auto">
+        <span class="badge bg-secondary"> {{movie.original_language | uppercase}}</span>
+      </div>
+    </div>
+    <hr style="margin:5px 0px">
 
     <small class="card-text">{{ movie.overview | truncate: '100' : true}}</small>
 

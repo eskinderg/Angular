@@ -2,6 +2,11 @@
 @import "../../custom-bootstrap/custom-bootstrap.scss";
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
+:root {
+  --secondary: #a1a1a1;
+  --border: #717171;
+}
+
 .btn-outline-primary {
   color: $body-color; //hack quick fix
 }

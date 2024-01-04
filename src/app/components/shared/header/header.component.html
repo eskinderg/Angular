@@ -17,7 +17,10 @@
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/profile']">Profile</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/notes']">Notes</a>
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/notes']">
+            Notes
+            <span *ngIf="NotesCount | async as count" class="badge bg-secondary">{{ count }}</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/wizard']">Wizard</a>

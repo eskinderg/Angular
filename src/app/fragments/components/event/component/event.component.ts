@@ -1,7 +1,6 @@
-import { Component,Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Event } from '../../../../models/event';
-import { ConfirmService } from '../../../../fragments/components/dialog/confirm.service';
 import * as EventsActions from '../../../../actions/event.action';
 import * as fromRoot from '../../../../reducers';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +15,9 @@ export class EventComponent {
 
   @Input() events: Event[];
 
-  constructor(private confirmService: ConfirmService,
+  public selectedEvents: Event[] = [];
+
+  constructor(
     private store: Store<fromRoot.AppState>,
     public router: ActivatedRoute,
     public route: Router,
@@ -34,8 +35,22 @@ export class EventComponent {
     this.store.dispatch(EventsActions.updateEvent({ payload: event }));
   }
 
+  onDeleteEvents() {
+    this.store.dispatch(EventsActions.deleteEvents({ payload: this.selectedEvents }))
+    this.selectedEvents = []
+  }
+
+  onSelectEvent(item: { selected: boolean, event: Event }) {
+    if (item.selected) {
+      this.selectedEvents.push(item.event)
+    }
+    else {
+      this.selectedEvents = this.selectedEvents.filter((e: Event) => e.id !== item.event.id)
+    }
+  }
+
   onRemoveEvent(event: Event) {
-    this.route.navigate(['/events','dialog', event.id], { state: { event: event}})
+    this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } })
     // alert(this.route.url)
     // this.confirmService.confirm({
     //   title: 'Confirm deletion',

@@ -1,8 +1,12 @@
-<div style="display:block;">
+<div class="textArea" style="display:block;">
+  <!-- {{ (note | async)?.['text'] }} -->
+  <!-- {{ note.text }} -->
+
   <ng-scrollbar class="custom-scroll">
-    <app-ba-card header="{{note.header || '&nbsp;'}} " [margin]=0 [padding]=0>
-    <div [spellcheck]=false contenteditable="true" #textarea tabindex="1">
+    <!-- <app-ba-card header="{{note?.header || '&nbsp;'}} " [margin]=0 [padding]=0> -->
+    <div class="p-2" style="font-size: 18px" [spellcheck]=true contenteditable="true" #textarea tabindex="1">
+      <!-- {{ (note | async)?.['text'] }} -->
     </div>
-</app-ba-card>
+    <!-- </app-ba-card> -->
   </ng-scrollbar>
 </div>

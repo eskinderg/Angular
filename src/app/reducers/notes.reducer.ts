@@ -4,44 +4,85 @@ import { Note } from '../models/note';
 
 export interface NotesState {
   notes: Note[];
+  animate: {
+    text: boolean,
+    date: boolean
+  };
 }
 
 export const initialState: NotesState = {
-  notes: []
+  notes: [],
+  animate: {
+    text: false,
+    date: false
+  }
 };
 
-export const notesReducer = createReducer(
-  initialState,
-  on(
-    NotesActions.createNewNote,
-    (state, action): NotesState => ({
-      notes: [action.payload, ...state.notes]
-    })),
+export const notesReducer = createReducer(initialState,
   on(
     NotesActions.createNoteSuccess,
     (state, action): NotesState => ({
-      notes: [action.payload, ...state.notes]
+      notes: [action.payload, ...state.notes],
+      animate: {
+        text: false,
+        date: true
+      }
     })),
   on(
     NotesActions.fetchNotesSuccess,
-    (state, action): NotesState => ({
-      notes: action.payload || []
+    (_state, action): NotesState => ({
+      notes: action.payload,
+      animate: {
+        text: false,
+        date: true
+      }
     })),
   on(
     NotesActions.updateNoteSuccess,
+    NotesActions.getNoteUpdatedTimestampSuccess,
     NotesActions.updateNotePositionSuccess,
     NotesActions.updateNoteSizeSuccess,
     (state, action): NotesState => ({
       notes: state.notes.map(note =>
-        ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note)
+        ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note),
+      animate: {
+        text: false,
+        date: false
+      }
+    })),
+  on(
+    NotesActions.updateNoteTextSuccess,
+    (state, action): NotesState => {
+
+      let notes: Note[] = state.notes.map(note => {
+        return note.id === action.payload.id ? { ...note, text: action.payload.text } : note;  // First update the note text
+      })
+
+      const newState: Note[] = [ // move the newly updated note to the top of the list
+        notes.find(note => note.id === action.payload.id),
+        ...notes.filter(n => n.id !== action.payload.id),
+      ];
+
+      return { notes: newState, animate: { text: false, date: false } };
+    }
+  ),
+  on(
+    NotesActions.getNoteUpdatedTimestampSuccess,
+    (state, action): NotesState => ({
+      notes: state.notes.map(note =>
+        note.id === action.payload.id ? { ...note, dateModified: action.payload.dateModified } : note),
+      animate: {
+        text: false,
+        date: true
+      }
     })),
   on(
     NotesActions.deleteNoteSuccess,
     (state, action): NotesState => ({
       notes: state.notes.filter((note: Note) => {
         return note.id !== action.payload.id;
-      })
-    })),
+      }), animate: { text: true, date: true }
+    }))
 )
 
 // export function reducer(state = initialState, action: NotesActions.Actions): State {
@@ -88,7 +129,11 @@ export const getNoteSTate = createFeatureSelector<NotesState>('notes');
 
 export const getNotes = createSelector(getNoteSTate, (state: NotesState) => state.notes);
 
-export const getItemById = (id: number) => createSelector(getNoteSTate, (allItems) => {
+export const getNotesLength = createSelector(getNoteSTate, (state: NotesState) => state.notes.length);
+
+export const getNotesAnimate = createSelector(getNoteSTate, (state: NotesState) => state.animate);
+
+export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItems) => {
   if (allItems.notes) {
     return allItems.notes.find(item => {
       return item.id === id;

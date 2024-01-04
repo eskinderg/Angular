@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Event } from '../../event';
+import { Event } from '../../../event';
 
 @Component({
   selector: 'app-event-list-item',
@@ -15,6 +15,7 @@ export class EventListItemComponent {
   @Output() remove: EventEmitter<Event> = new EventEmitter();
   @Output() toggle: EventEmitter<Event> = new EventEmitter();
   @Output() update: EventEmitter<any> = new EventEmitter();
+  @Output() select: EventEmitter<any> = new EventEmitter();
 
   editEvent: Event = new Event();
 
@@ -22,6 +23,10 @@ export class EventListItemComponent {
 
   onToggleEvent(event: Event) {
     this.toggle.emit(event);
+  }
+
+  onSelectEvent(selected: boolean, event: Event) {
+    this.select.emit({ selected: selected, event: event });
   }
 
   onUpdateEvent(event: Event) {
@@ -39,12 +44,12 @@ export class EventListItemComponent {
     this.remove.emit(event);
   }
 
-  onDoubleClick(event: Event){
-    this.IsInEditMode= !this.IsInEditMode;
+  onDoubleClick(event: Event) {
+    this.IsInEditMode = !this.IsInEditMode;
     this.editEvent = new Event(event);
   }
 
-  onCancelEdit(){
-    this.IsInEditMode=false;
+  onCancelEdit() {
+    this.IsInEditMode = false;
   }
 }

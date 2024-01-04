@@ -6,18 +6,21 @@ import { NgaModule } from '../../../fragments/nga.module';
 import { EventComponent } from './component/event.component';
 import { EventListComponent } from './component/event-list/event-list.component';
 import { EventListHeaderComponent } from './component/event-list-header/event-list-header.component';
-import { EventListItemComponent } from './component/event-list-item/event-list-item.component';
+import { EventListItemComponent } from './component/event-list/event-list-item/event-list-item.component';
 import { EventListFooterComponent} from './component/event-list-footer/event-list-footer.component';
+import { EventListSelectComponent } from './component/event-list/event-list-item/event-list-select/event-list-select.component';
 import { EventsResolve } from './event.data.service/EventsResolve';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
     NgaModule,
+    NgbModule,
     NgScrollbarModule,
     RouterModule
   ],
@@ -26,7 +29,8 @@ import { RouterModule } from '@angular/router';
     EventListHeaderComponent,
     EventListItemComponent,
     EventListFooterComponent,
-    EventListComponent
+    EventListComponent,
+    EventListSelectComponent
   ],
   exports: [
     EventComponent,
@@ -34,6 +38,7 @@ import { RouterModule } from '@angular/router';
     EventListItemComponent,
     EventListFooterComponent,
     EventListComponent,
+    EventListSelectComponent,
     CommonModule,
     FormsModule
   ],

@@ -42,6 +42,13 @@ export const eventsReducer = createReducer(
         return event.id !== action.payload.id;
       })
     })),
+  on(
+    EventsActions.deleteEventsSuccess,
+    (state, action): EventsState => ({
+      events: state.events.filter((event: Event) => {
+        return action.payload.every(e => e.id !== event.id)
+      })
+    })),
 
 )
 

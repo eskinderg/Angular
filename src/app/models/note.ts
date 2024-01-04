@@ -8,8 +8,12 @@ export class Note {
   height: number;
   id: number;
   dirty: boolean;
+  dateCreated: Date;
+  dateModified: Date;
+
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
+
 }

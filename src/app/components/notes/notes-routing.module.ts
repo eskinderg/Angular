@@ -6,6 +6,8 @@ import { NotesComponent } from './components/notes.component';
 import { NoteResolver } from '../notes/components/note.component/note.resolve';
 // import { NotesApiService } from './services/notes.api.service';
 import { NoteComponent } from './components/note.component/note.component';
+import { NoteDialogWrapperComponent } from './components/note-dialog/note-dialog-wrapper/note-dialog-wrapper.component';
+import { NoteDetailDialogComponent as NoteDialogComponent } from './components/note-dialog/note-dialog.component';
 
 @NgModule({
   imports: [
@@ -24,7 +26,24 @@ import { NoteComponent } from './components/note.component/note.component';
             resolve: {
               note: NoteResolver
             }
-          }
+          },
+          {
+            path: 'dialog',
+            pathMatch: "full",
+            outlet: 'dialog',
+            component: NoteDialogWrapperComponent,
+            data: {
+              component: NoteDialogComponent
+            }
+          },
+          // {
+          //   path: ':id/dialog',
+          //   outlet: 'dialog',
+          //   component: NoteDialogWrapperComponent,
+          //   data: {
+          //     component: NoteDialogComponent
+          //   }
+          // }
         ]
       }
     ])

@@ -1,4 +1,5 @@
 <div class="input-group" class="mb-3">
-  <input class="form-control form-control" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newEvent.title"
-         (keyup.enter)="addEvent()">
+  <form>
+    <input name="event" type="text" autocomplete="on" class="form-control form-control" [(ngModel)]="newEvent.title" (keyup.enter)="addEvent()">
+  </form>
 </div>

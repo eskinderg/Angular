@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { Note } from '../../../../models/note';
-import { NotesDataService } from '../../services/notes.data.service';
+import * as fromNotes from '../../../../reducers/notes.reducer';
+import { Store } from '@ngrx/store';
+import { filter, first } from 'rxjs';
 
 @Injectable()
-export class NoteResolver  {
+export class NoteResolver {
 
-  constructor(private notesDataService: NotesDataService) {}
+  constructor(private store: Store<fromNotes.NotesState>) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.notesDataService.getNote(route.params['id']); //resolving directly from the server rather than the store
+    return this.store.select(fromNotes.getNoteById(Number(route.params['id']))).pipe(
+      filter(v => v !== undefined),
+      first()
+    )
   }
+
 }

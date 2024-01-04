@@ -3,6 +3,7 @@ import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../reducers/events.reducer';
+import * as fromNotes from '../../../reducers/notes.reducer';
 import { count, takeUntil } from 'rxjs/operators';
 import { fromEvent, Observable } from 'rxjs';
 import * as fromProfile from '../../../reducers/preference.reducer';
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private oauthService: OAuthService,
-    private store: Store<fromEvents.EventsState>
+    private eventStore: Store<fromEvents.EventsState>,
+    private noteStore: Store<fromNotes.NotesState>
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,11 @@ export class HeaderComponent implements OnInit {
   }
 
   get EventsCount() {
-    return this.store.select(fromEvents.getEventsLength)
+    return this.eventStore.select(fromEvents.getEventsLength)
+  }
+
+  get NotesCount() {
+    return this.noteStore.select(fromNotes.getNotesLength)
   }
 
   onSignout() {
@@ -56,7 +62,7 @@ export class HeaderComponent implements OnInit {
   }
 
   get IsLoggedIn() {
-    return this.store.select(fromProfile.isLoggedIn)
+    return this.eventStore.select(fromProfile.isLoggedIn)
     // return this.oauthService.hasValidAccessToken();
 
   }

@@ -29,7 +29,6 @@ export class EventsDialogComponent {
       return;
     }
 
-    console.log(this.router.getCurrentNavigation())
     if (this.router.getCurrentNavigation() != null) {
       this.Event = this.router.getCurrentNavigation().extras.state['event']
     }

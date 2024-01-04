@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Event } from '../../event';
-import { Observable } from "rxjs";
 import { FadeInOutEventListItem } from 'src/app/components/shared/animations/fadeInAndOutEventListItem';
 
 @Component(
@@ -19,6 +18,7 @@ export class EventListComponent {
   @Output() remove: EventEmitter<Event> = new EventEmitter();
   @Output() toggle: EventEmitter<Event> = new EventEmitter();
   @Output() update: EventEmitter<Event> = new EventEmitter();
+  @Output() select: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -32,6 +32,10 @@ export class EventListComponent {
 
   onRemoveEvent(event: Event) {
     this.remove.emit(event);
+  }
+
+  onSelectEvent(item: {selected: boolean, event: Event}) {
+    this.select.emit(item);
   }
 
 }

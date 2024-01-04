@@ -1,10 +1,8 @@
-import { Renderer2, Component, HostListener, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Note } from '../../../../models/note';
-// import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Event, NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
-import { ConfirmService } from '../../../../fragments/components/dialog/confirm.service';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -16,91 +14,38 @@ export class NoteComponent implements OnDestroy, OnInit {
 
   @Input() note: Note;
 
-  @Output() changeNoteText     = new EventEmitter(false);
+  @Output() changeNoteText = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
-  @Output() changeNoteSize     = new EventEmitter(false);
-  @Output() deleteNote         = new EventEmitter(false);
+  @Output() changeNoteSize = new EventEmitter(false);
+  @Output() deleteNote = new EventEmitter(false);
 
-  routeSubscription$: Subscription | undefined;
+  routeSubscription$: Subscription;
 
   @ViewChild('notediv', { static: true }) textarea: ElementRef;
 
-  ngOnInit() { }
 
   constructor(
-    // private renderer: Renderer2,
     private route: ActivatedRoute,
+    private router: Router,
     private noteApiService: NotesApiService,
-    private confirmService: ConfirmService
   ) {
-    this.routeSubscription$ = this.route.paramMap.subscribe(() => {
-      this.note = this.route.snapshot.data['note'];
-    });
+    this.routeSubscription$ = this.router.events.pipe(
+      filter((e: Event | RouterEvent): e is RouterEvent => e instanceof NavigationEnd)
+    ).subscribe((routerEvent: RouterEvent) => {
+      this.note = this.route.snapshot.data['note']
+    })
   }
 
-  // dragEnded(eee: CdkDragEnd ) {
-  // this.textarea.nativeElement.style.top = '0px';
-  // this.textarea.nativeElement.style.left = '0px';
-  // alert('yes')
-  // const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
-
-  // this.changeNotePosition.emit({top: viewRect.top, left: Math.round(viewRect.left)});
-  // console.log(eee.source.getFreeDragPosition());
-  // console.log(viewRect.left - parseInt(this.textarea.nativeElement.style.left));
-  // console.log(eee.source)
-  // }
-
-  // handleChangeNotePosition(event: PointerEvent) {
-  // console.log(event)
-  // if (left !== this.note.left || top !== this.note.top) {
-  //   if(this.note.id !=undefined)
-  //   {
-  //     this.changeNotePosition.emit({top: top, left: left});
-  //   }
-  // }
-  // }
-
-  // @HostListener('mouseup', ['$event'])
-  // onMouseUp($event) {
-  // console.log($event.target.style)
-  // console.log($event)
-  // if (this._isDragging) {
-  //   this._isDragging = false;
-  //   if (this._hasDragged) {
-  //     this.endDragEvent.emit({left: this._originalLeft +
-  //       ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
-  //   }
-  // }
+  ngOnInit() {
+    this.note = this.route.snapshot.data['note']
+  }
 
   handleChangeNoteText(updatedNote: Note) {
-    // alert(updatedNote.text);
-    // if (updatedText !== this.note.text) {
-    // this.changeNoteText.emit(updatedText);
-    // }
     this.noteApiService.updateNoteText(updatedNote);
-  }
-
-  handleNoteDelete(note: Note) {
-    // this.deleteNote.emit(note);
-    // alert(note.header);
-
-    // this.confirmService.confirm({
-    //   title: 'Confirm deletion',
-    //   message: 'Do you really want to delete the item ' + '"' + note.header + '"?',
-    //   backdrop: true
-    // }).then(() => {
-    //   this.noteApiService.deleteNote(note);
-    // }, () => {
-    //   console.log();
-    // });
   }
 
   ngOnDestroy() {
     this.routeSubscription$.unsubscribe();
   }
-
-  // handleResizeNote($event) {
-  //   this.changeNoteSize.emit($event);
-  // }
 
 }

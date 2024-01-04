@@ -16,7 +16,7 @@ export class NotesApiService {
   }
 
   getNote(id: number): Observable<any> {
-    return this.store.select(fromNotes.getItemById(id));
+    return this.store.select(fromNotes.getNoteById(id));
   }
 
   addNote(newNote: Note) {
