@@ -24,7 +24,7 @@ export const notesReducer = createReducer(initialState,
     (state, action): NotesState => ({
       notes: [action.payload, ...state.notes],
       animate: {
-        text: false,
+        text: true,
         date: true
       }
     })),
@@ -33,13 +33,12 @@ export const notesReducer = createReducer(initialState,
     (_state, action): NotesState => ({
       notes: action.payload,
       animate: {
-        text: false,
+        text: true,
         date: true
       }
     })),
   on(
     NotesActions.updateNoteSuccess,
-    NotesActions.getNoteUpdatedTimestampSuccess,
     NotesActions.updateNotePositionSuccess,
     NotesActions.updateNoteSizeSuccess,
     (state, action): NotesState => ({
@@ -58,12 +57,18 @@ export const notesReducer = createReducer(initialState,
         return note.id === action.payload.id ? { ...note, text: action.payload.text } : note;  // First update the note text
       })
 
+      let index = notes.findIndex(note => note.id === action.payload.id);
+
+      if (!index) {
+        return { notes: notes, animate: { text: false, date: false } };
+      }
+
       const newState: Note[] = [ // move the newly updated note to the top of the list
         notes.find(note => note.id === action.payload.id),
         ...notes.filter(n => n.id !== action.payload.id),
       ];
 
-      return { notes: newState, animate: { text: false, date: false } };
+      return { notes: newState, animate: { text: true, date: false } };
     }
   ),
   on(
@@ -72,8 +77,8 @@ export const notesReducer = createReducer(initialState,
       notes: state.notes.map(note =>
         note.id === action.payload.id ? { ...note, dateModified: action.payload.dateModified } : note),
       animate: {
-        text: false,
-        date: true
+        text: state.animate.text,
+        date: state.animate.date
       }
     })),
   on(

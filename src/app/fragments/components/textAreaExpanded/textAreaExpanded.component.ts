@@ -1,21 +1,9 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  ElementRef,
-  forwardRef,
-  Renderer2,
-  ViewChild,
-  ChangeDetectionStrategy,
-  OnDestroy
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
 
-export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
+export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TextareaExpandedComponent),
   multi: true,
@@ -23,22 +11,19 @@ export const EPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'app-textarea-expanded',
-  providers: [EPANDED_TEXTAREA_VALUE_ACCESSOR],
+  providers: [EXPANDED_TEXTAREA_VALUE_ACCESSOR],
   templateUrl: 'textAreaExpanded.component.html',
   styleUrls: ['textAreaExpanded.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit {
+export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, AfterViewInit {
 
-  @ViewChild('textarea', { static: true }) private textarea: ElementRef;
-
-  @Input() textData: string;
-  @Input() note: Note;
-  @Output() onChange = new EventEmitter(false);
-  @Output() onTouched = new EventEmitter(false);
-  @Output() onTextChanged = new EventEmitter(false);
-
+  note: Note;
   subscription: Subscription | undefined;
+
+  @ViewChild('textarea', { static: true }) public textarea: ElementRef;
+
+  @Output() onTextChanged = new EventEmitter(false);
 
   constructor(private renderer: Renderer2) { }
 
@@ -56,18 +41,21 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
       .subscribe();
   }
 
-  writeValue(_value: string): void {
-    const div = this.textarea.nativeElement;
-    this.renderer.setProperty(div, 'innerHTML', this.note.text);
+  writeValue(_value: Note): void {
+    if (_value) {
+      this.note = _value
+      const div = this.textarea.nativeElement;
+      this.renderer.setProperty(div, 'innerHTML', _value.text);
+      // this.renderer.setProperty(div, 'innerHTML', this.note.text);
+    }
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    // this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    // alert('registerOnTouched')
-    this.onTouched = fn;
+    // this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
@@ -76,23 +64,16 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     this.renderer[action](div, 'disabled');
   }
 
+  // onChange($event) {
+  //   // alert('changed')
+  // }
+
+  ngAfterViewInit(): void {
+    this.textarea.nativeElement.focus()
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  // change($event) {
-
-  // console.log(this.textData + $event.data);
-  // console.log($event);
-  // this.onChange.emit($event);
-  // this.onTextChanged.emit($event.target.textContent);
-  // console.log($event.target.innerHTML)
-
-  // console.log($event.target.innerText);
-  // this.onTextChanged.emit({ ...this.note, text: $event.target.innerHTML });
-  // console.log(this.note.text)
-
-  // this.onChange($event.target.textContent);
-  // this.onTouched($event.target.textContent);
-  // }
 }

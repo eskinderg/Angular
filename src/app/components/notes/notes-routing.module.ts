@@ -23,6 +23,9 @@ import { NoteDetailDialogComponent as NoteDialogComponent } from './components/n
           {
             path: ':id',
             component: NoteComponent,
+            data: {
+              alwaysRefresh: true
+            },
             resolve: {
               note: NoteResolver
             }
@@ -36,14 +39,6 @@ import { NoteDetailDialogComponent as NoteDialogComponent } from './components/n
               component: NoteDialogComponent
             }
           },
-          // {
-          //   path: ':id/dialog',
-          //   outlet: 'dialog',
-          //   component: NoteDialogWrapperComponent,
-          //   data: {
-          //     component: NoteDialogComponent
-          //   }
-          // }
         ]
       }
     ])

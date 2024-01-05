@@ -1,35 +1,32 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-// import { Observable } from 'rxjs';
+import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
-
 import { NotesApiService } from '../services/notes.api.service';
-import { fadeInAnimation } from '../../shared/animations/fadeInAnimation';
 import { Note } from '../../../models/note';
 import * as fromNotes from '../../../reducers/notes.reducer';
-import { ConfirmService } from 'src/app/fragments/components/dialog';
-import { FadeInOutEventNoteItem } from '../../shared/animations/fadeInAndOutNoteItem';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NoteComponent } from './note.component/note.component';
 
 @Component({
   selector: 'app-notes',
   templateUrl: 'notes.component.html',
   styleUrls: ['notes.component.scss'],
-  animations: [fadeInAnimation, FadeInOutEventNoteItem, FadeInOutNoteListItem],
-  host: { '[@routerFadeInAnimation]': '' },
+  animations: [FadeInOutNoteListItem],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent {
 
+
+  @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
+
   constructor(
     private notesApiService: NotesApiService,
-    private confirmService: ConfirmService,
     private store: Store<fromNotes.NotesState>,
     public route: Router,
     public r: ActivatedRoute
   ) { }
 
-  onAddNote(colour) {
+  onAddNote(colour: string) {
 
     const newNote = new Note({
       header: 'Untitled',
@@ -53,7 +50,7 @@ export class NotesComponent {
   }
 
   onNoteClick(note: Note) {
-    this.route.navigate(['notes', note.id]);
+    // this.route.navigate(['notes', note.id]);
   }
 
   onChangeNoteText(newText: any, note: Note) {
@@ -67,19 +64,6 @@ export class NotesComponent {
   onChangeNoteSize({ height, width }, note: Note) {
     this.notesApiService.changeNoteSize({ ...note, width: width, height: height });
   }
-
-  // onNoteDelete(note: Note) {
-  //   this.confirmService.confirm({
-  //     title: 'Confirm deletion',
-  //     message: 'Are you sure you want to delete ?',
-  //     backdrop: true,
-  //     centered: false
-  //   }).then(() => {
-  //     this.notesApiService.deleteNote(note);
-  //   }, () => {
-  //   });
-  //   // alert(note.id);
-  // }
 
   get Notes() {
     return this.store.select(fromNotes.getNotes);

@@ -38,7 +38,7 @@ export class NoteDialogWrapperComponent implements OnDestroy, AfterViewInit {
             centered: true,
             scrollable: false,
             container: '#noteDialog',
-            size:'xl'
+            size:'lg'
           });
         // this.currentDialog.componentInstance.params = result[0];
         // this.currentDialog.componentInstance.movieDetail = result[1]["movieDetail"];

@@ -8,94 +8,118 @@
 <!--   </div> -->
 <!-- </div> -->
 
-<span class="esk fa fa-plus" (click)="onAddNote('red')"></span>
-<app-ba-card header="Notes" [margin]=0 [padding]=1>
 
-  <div class="row g-0">
-    <div class="col-lg-3">
+<!-- <span class="esk fa fa-plus" (click)="onAddNote('red')"></span> -->
 
-      <div  class="list-group">
+<!-- <svg class="add-note-icon" (click)="onAddNote('red')" id="svg8" width="26" height="26" enable-background="new 0 0 40 40" version="1.1" viewBox="0 0 26 26" -->
+<!--   xml:space="preserve" xmlns="http://www.w3.org/2000/svg"> -->
+<!--   <path id="path2" -->
+<!--     d="m10 7h-10v19h11v-8h8v-2c-5 0-9-4-9-9zm3 19 6-6h-6zm6-26c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm4 8h-3v3h-2v-3h-3v-2h3v-3h2v3h3z" -->
+<!--     clip-rule="evenodd" fill-rule="evenodd" /> -->
+<!-- </svg> -->
 
-        @for(note of Notes | async ; track note){
-        <div  class="p-0 d-flex w-100 justify-content-between list-group-item list-group-item-action flex-column align-items-start">
-          <div class="d-flex align-items-start w-100 justify-content-between">
-            <!-- <div class="container" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]"> -->
-            <!-- <div class="container" (click)="onNoteClick(note)" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]"> -->
-            <div class="container" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]">
-              <div class="row my-2 flex-fill">
-                <div [@.disabled]="!(Animate | async)?.text" [@fadeInOutNoteListItem] class="col mb-auto">
-                  <h6 class="mb-1 note-text"> {{ note?.text | noteTitleTruncate : '20' : true }} </h6>
-                </div>
-                <div class="w-100"></div>
-                <div class="col">
-                  <small [@.disabled]="!(Animate | async)?.date" [@fadeInOutEventNoteItem] class="text-muted"> {{ note.dateModified | dateago : 'asdf' }}</small>
-                </div>
+<div class="row g-0">
+  <div class="col-lg-3">
+    <div class="add-note-wrapper d-flex bd-highlight">
+
+      <!-- <h4 style="margin-top: auto; margin-bottom: auto;" class="p-1 bd-highlight">Notes</h4> -->
+
+      <svg class="add-note-icon " (click)="onAddNote('red')" id="svg8" width="26" height="26"
+        enable-background="new 0 0 40 40" version="1.1" viewBox="0 0 26 26" xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg">
+        <path id="path2"
+          d="m10 7h-10v19h11v-8h8v-2c-5 0-9-4-9-9zm3 19 6-6h-6zm6-26c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm4 8h-3v3h-2v-3h-3v-2h3v-3h2v3h3z"
+          clip-rule="evenodd" fill-rule="evenodd" />
+      </svg>
+    </div>
+
+    <div class="list-group">
+
+      <!-- <h1>{{ (Animate | async)?.text }}</h1> -->
+      @for(note of Notes | async ; track note){
+      <div [@.disabled]="!(Animate | async)?.text" [@fadeInOutNoteListItem]
+        class="list-group-item list-group-item-action note-wrapper">
+        <div class="note-list" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']" [routerLink]="['/notes',note.id]">
+          <div class="container" style="padding:0">
+            <div class="note-list-item">
+              <div class="w-100"></div>
+              <div class="col">
+                <!-- <small [@.disabled]="!(Animate | async)?.date" [@fadeInOutEventNoteItem] class="text-muted"> {{ note.dateModified | dateago : 'asdf' }}</small> -->
               </div>
             </div>
-            <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div>
-            <!-- <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div> -->
           </div>
+          <!-- <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div> -->
         </div>
-        }
-        <!-- <small class="text-muted"> {{ note.dateModified | date : "medium" }}</small> -->
-        <!-- <small style="margin: 0.5rem" class="text-muted"> {{ note.dateModified | dateago }}</small> -->
-        <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
-        <!-- <small class="text-muted">Test</small> -->
-        <!-- <p class="mb-1"> {{ note.text | noteTitleTruncate : '50' : true }} </p> -->
-        <!-- <small>Delete</small> -->
 
-        <!-- <a [routerLink]="['/notes',{ outlets: { dialog: ['dialog'] }}]">Dialog</a> -->
+        <div class="item">
+          <h6 class="mb-1 note-text"> {{ note.text | noteTitleTruncate : '20' : true }} </h6>
+        </div>
+
+        <div class="fa fa-bin2 menu del-button" (click)="onNoteDelete(note)"></div>
+
+        <small class="date-modified text-muted"> {{
+          note.dateModified | dateago }}</small>
       </div>
+      }
+      <!-- <small class="text-muted"> {{ note.dateModified | date : "medium" }}</small> -->
+      <!-- <small style="margin: 0.5rem" class="text-muted"> {{ note.dateModified | dateago }}</small> -->
+      <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
+      <!-- <small class="text-muted">Test</small> -->
+      <!-- <p class="mb-1"> {{ note.text | noteTitleTruncate : '50' : true }} </p> -->
+      <!-- <small>Delete</small> -->
 
-      <!-- <ul class="list-group"> -->
-
-      <!--   <div -->
-      <!--     [routerLinkActiveOptions]="{exact:false}" -->
-      <!--     [routerLinkActive]="['active']" -->
-      <!--     [routerLink]="['/notes',note.id]" -->
-      <!--     *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]> -->
-      <!--     <div -->
-      <!--       class="d-flex justify-content-between link list-group-item" -->
-      <!--       [routerLinkActive]="['active']" -->
-      <!--       > -->
-      <!--       <span> {{ note.text | noteTitleTruncate : '20' : true }} </span> -->
-      <!--       <span class="fa fa-bin2 menu" (click)="onNoteDelete(note)"> -->
-      <!--       </span> -->
-
-      <!--     </div> -->
-
-      <!--     <!-1- <span class="fa fa-flicker menu"  > -1-> -->
-      <!--     <!-1- </span> -1-> -->
-
-      <!--     <!-1- <div class="d-inline-block" ngbDropdown #menuDrop="ngbDropdown"> -1-> -->
-      <!--     <!-1-   <div ngbDropdownMenu> -1-> -->
-      <!--     <!-1-     <!-2- <button ngbDropdownItem><span class="fa fa-circle-up">&nbsp;</span>Rename</button> -2-> -1-> -->
-      <!--     <!-1-     <!-2- <button ngbDropdownItem><span class="fa fa-user">&nbsp;</span>Copy Text</button> -2-> -1-> -->
-      <!--     <!-1-     <button ngbDropdownItem (click)="onNoteDelete(note)"><span style="color:orange" class="fa fa-bin2">&nbsp;</span>Delete </button> -1-> -->
-      <!--     <!-1-   </div> -1-> -->
-      <!--     <!-1- </div> -1-> -->
-
-      <!--   </div> -->
-
-      <!-- </ul> -->
+      <!-- <a [routerLink]="['/notes',{ outlets: { dialog: ['dialog'] }}]">Dialog</a> -->
     </div>
 
-    <div class="px-2 col-lg-9">
+    <!-- <ul class="list-group"> -->
 
-      <!-- <app-textarea-expanded> </app-textarea-expanded> -->
-      <router-outlet name="dialog"></router-outlet>
-      <router-outlet></router-outlet>
+    <!--   <div -->
+    <!--     [routerLinkActiveOptions]="{exact:false}" -->
+    <!--     [routerLinkActive]="['active']" -->
+    <!--     [routerLink]="['/notes',note.id]" -->
+    <!--     *ngFor="let note of Notes | async" [@fadeInOutEventNoteItem]> -->
+    <!--     <div -->
+    <!--       class="d-flex justify-content-between link list-group-item" -->
+    <!--       [routerLinkActive]="['active']" -->
+    <!--       > -->
+    <!--       <span> {{ note.text | noteTitleTruncate : '20' : true }} </span> -->
+    <!--       <span class="fa fa-bin2 menu" (click)="onNoteDelete(note)"> -->
+    <!--       </span> -->
 
-    </div>
+    <!--     </div> -->
+
+    <!--     <!-1- <span class="fa fa-flicker menu"  > -1-> -->
+    <!--     <!-1- </span> -1-> -->
+
+    <!--     <!-1- <div class="d-inline-block" ngbDropdown #menuDrop="ngbDropdown"> -1-> -->
+    <!--     <!-1-   <div ngbDropdownMenu> -1-> -->
+    <!--     <!-1-     <!-2- <button ngbDropdownItem><span class="fa fa-circle-up">&nbsp;</span>Rename</button> -2-> -1-> -->
+    <!--     <!-1-     <!-2- <button ngbDropdownItem><span class="fa fa-user">&nbsp;</span>Copy Text</button> -2-> -1-> -->
+    <!--     <!-1-     <button ngbDropdownItem (click)="onNoteDelete(note)"><span style="color:orange" class="fa fa-bin2">&nbsp;</span>Delete </button> -1-> -->
+    <!--     <!-1-   </div> -1-> -->
+    <!--     <!-1- </div> -1-> -->
+
+    <!--   </div> -->
+
+    <!-- </ul> -->
+  </div>
+
+  <div class="px-2 col-lg-9">
+
+    <!-- <app-textarea-expanded> </app-textarea-expanded> -->
+    <router-outlet name="dialog"></router-outlet>
+    <router-outlet></router-outlet>
 
   </div>
 
-  <!-- <app-note *ngFor="let note of $notes | async" -->
-  <!--   [note] = "note" -->
-  <!--   (changeNoteText) = "onChangeNoteText($event, note)" -->
-  <!--   (deleteNote) = "onNoteDelete($event)" -->
-  <!--   (changeNotePosition) = "onChangeNotePosition($event, note)" -->
-  <!--   > -->
-  <!-- </app-note> -->
+</div>
 
-</app-ba-card>
+<!-- <app-note *ngFor="let note of $notes | async" -->
+<!--   [note] = "note" -->
+<!--   (changeNoteText) = "onChangeNoteText($event, note)" -->
+<!--   (deleteNote) = "onNoteDelete($event)" -->
+<!--   (changeNotePosition) = "onChangeNotePosition($event, note)" -->
+<!--   > -->
+<!-- </app-note> -->
+
+<!-- </app-ba-card> -->
