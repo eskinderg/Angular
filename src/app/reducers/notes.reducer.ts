@@ -21,13 +21,16 @@ export const initialState: NotesState = {
 export const notesReducer = createReducer(initialState,
   on(
     NotesActions.createNoteSuccess,
-    (state, action): NotesState => ({
-      notes: [action.payload, ...state.notes],
-      animate: {
-        text: true,
-        date: true
+    (state, action): NotesState => {
+
+      return {
+        notes: pinnedNotes([action.payload, ...state.notes]),
+        animate: {
+          text: true,
+          date: true
+        }
       }
-    })),
+    }),
   on(
     NotesActions.fetchNotesSuccess,
     (_state, action): NotesState => ({
@@ -57,18 +60,34 @@ export const notesReducer = createReducer(initialState,
         return note.id === action.payload.id ? { ...note, text: action.payload.text } : note;  // First update the note text
       })
 
-      let index = notes.findIndex(note => note.id === action.payload.id);
+      // let index = notes.findIndex(note => note.id === action.payload.id);
 
-      if (!index) {
-        return { notes: notes, animate: { text: false, date: false } };
-      }
+      // if (!index) {
+      //   return { notes: notes, animate: { text: false, date: false } };
+      // }
 
       const newState: Note[] = [ // move the newly updated note to the top of the list
         notes.find(note => note.id === action.payload.id),
         ...notes.filter(n => n.id !== action.payload.id),
       ];
 
-      return { notes: newState, animate: { text: true, date: false } };
+      return { notes: pinnedNotes(newState), animate: { text: false, date: false } };
+    }
+  ),
+  on(
+    NotesActions.updatePinOrderSuccess,
+    (state, action): NotesState => {
+
+      let notes: Note[] = state.notes.map(note => {
+        return note.id === action.payload.id ? { ...note, pinOrder: action.payload.pinOrder } : note;  // First update the note text
+      })
+
+      const newState: Note[] = [ // move the newly updated note to the top of the list
+        notes.find(note => note.id === action.payload.id),
+        ...notes.filter(n => n.id !== action.payload.id),
+      ];
+
+      return { notes: pinnedNotes(newState), animate: { text: true, date: false } };
     }
   ),
   on(
@@ -89,6 +108,13 @@ export const notesReducer = createReducer(initialState,
       }), animate: { text: true, date: true }
     }))
 )
+
+export function pinnedNotes(notes: Note[]): Note[] {
+  return [
+    ...notes.filter(note => note.pinOrder !== null),
+    ...notes.filter(n => n.pinOrder === null),
+  ].sort((a, b) => (a.pinOrder > b.pinOrder ? -1 : 1))
+}
 
 // export function reducer(state = initialState, action: NotesActions.Actions): State {
 

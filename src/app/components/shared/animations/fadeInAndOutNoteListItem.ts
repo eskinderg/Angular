@@ -9,7 +9,7 @@ trigger('fadeInOutNoteListItem', [
     // styles at start of transition
     style({ opacity: 0 }),
     // animation and styles at end of transition
-    animate('1s ease-in-out', style({ opacity: 1 }))
+    animate('2s ease-in-out', style({ opacity: 1 }))
   ]),
 
   // transition(':leave', [

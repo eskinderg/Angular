@@ -3,8 +3,7 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="no()">
   </button>
 </div>
-<div class="modal-body">
-  Event name: <b>{{ note?.text}}</b>
+<div class="modal-body" [innerHTML]='note.text' >
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" (click)="no()">No</button>

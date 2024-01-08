@@ -86,6 +86,17 @@ export class NotesEffect {
             catchError(err => of(NotesActions.createNoteFail({ payload: err })))
           ))))
 
+  updatePinOrder = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updatePinOrder),
+      switchMap((action) =>
+        this.notesApiService
+          .updateNote(action.payload)
+          .pipe(
+            map(note => NotesActions.updatePinOrderSuccess({ payload: note })),
+            catchError(err => of(NotesActions.updatePinOrderFail({ payload: err })))
+          ))))
+
   fetch = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.fetchNotes),

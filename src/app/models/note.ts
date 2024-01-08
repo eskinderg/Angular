@@ -10,6 +10,7 @@ export class Note {
   dirty: boolean;
   dateCreated: Date;
   dateModified: Date;
+  pinOrder: Date;
 
 
   constructor(values: Object = {}) {

@@ -1,7 +1,10 @@
+<!-- <button (mousedown)="underline($event)">Underline</button> -->
+<!-- <button (mousedown)="bold($event)">Bold</button> -->
 <app-textarea-expanded
   *ngIf="note"
   #notediv
   [(ngModel)]="note"
+  (onSelectionChange)="selectionChange($event)"
   (onTextChanged)="handleChangeNoteText($event)">
 </app-textarea-expanded>
 

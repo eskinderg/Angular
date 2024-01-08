@@ -39,6 +39,13 @@ export class NotesApiService {
     this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
+  updateNotePinOrder(note: Note) {
+    if (note.pinOrder)
+      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: null } }));
+    else
+      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: new Date() } }));
+  }
+
   changeNotePosition(note: Note): void {
     this.store.dispatch(NotesActions.updateNotePosition({ payload: note }));
   }

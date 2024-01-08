@@ -33,6 +33,10 @@ $list-group-color                  : $body-color;
 $list-group-bg                     : $body-bg;
 $list-group-hover-bg               : none;
 $list-group-action-hover-color     : $body-color;
+$list-group-action-active-bg       : $primary;
+$list-group-action-hover-bg        : $primary;
+// $list-group-action-hover-bg
+// var(--bs-list-group-action-hover-bg) !important
 
 $nav-tabs-link-active-color        : $body-color;
 $nav-tabs-link-active-border-color : $primary;

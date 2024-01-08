@@ -16,7 +16,6 @@ import { NoteComponent } from './note.component/note.component';
 })
 export class NotesComponent {
 
-
   @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
   constructor(
@@ -41,10 +40,14 @@ export class NotesComponent {
     this.notesApiService.addNote(newNote);
   }
 
+  updatePinOrder(note: Note) {
+    this.notesApiService.updateNotePinOrder(note);
+  }
+
   onNoteDelete(note: Note) {
     const navigationExtras: NavigationExtras = {
       state: { note: note },
-      relativeTo: this.r.parent
+      relativeTo: this.r.parent, replaceUrl: false
     };
     this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
   }

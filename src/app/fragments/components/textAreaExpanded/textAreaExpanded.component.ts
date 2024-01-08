@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
@@ -22,8 +22,8 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
   subscription: Subscription | undefined;
 
   @ViewChild('textarea', { static: true }) public textarea: ElementRef;
-
   @Output() onTextChanged = new EventEmitter(false);
+  @Output() onSelectionChange = new EventEmitter<Selection>(false);
 
   constructor(private renderer: Renderer2) { }
 
@@ -46,7 +46,6 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
       this.note = _value
       const div = this.textarea.nativeElement;
       this.renderer.setProperty(div, 'innerHTML', _value.text);
-      // this.renderer.setProperty(div, 'innerHTML', this.note.text);
     }
   }
 
@@ -64,16 +63,18 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     this.renderer[action](div, 'disabled');
   }
 
-  // onChange($event) {
-  //   // alert('changed')
-  // }
-
   ngAfterViewInit(): void {
     this.textarea.nativeElement.focus()
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  @HostListener("focusout", ["$event.target.value"])
+  onBlur(value) {
+    this.onSelectionChange.emit(window.getSelection())
+    this.textarea.nativeElement.focus()
   }
 
 }

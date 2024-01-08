@@ -176,7 +176,6 @@ export const getNoteSuccess = createAction(
   props<{ payload: Note }>()
 )
 
-
 export const getNoteUpdatedTimeStamp = createAction(
   '[NOTE] GET_NOTE_UPDATED_TIMESTAMP',
   props<{ payload: Note }>()
@@ -189,6 +188,21 @@ export const getNoteUpdatedTimestampSuccess = createAction(
 
 export const getNoteUpdatedTimestampFail = createAction(
   '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_FAIL',
+  props<{ payload: string }>()
+)
+
+export const updatePinOrder = createAction(
+  '[NOTE] UPDATE_PIN_ORDER',
+  props<{ payload: Note }>()
+)
+
+export const updatePinOrderSuccess = createAction(
+  '[NOTE] UPDATE_PIN_ORDER_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const updatePinOrderFail = createAction(
+  '[NOTE] UPDATE_PIN_ORDER_FAIL',
   props<{ payload: string }>()
 )
 
