@@ -3,14 +3,14 @@
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
 :root {
-  --secondary: var(--bs-secondary);
-  --b-secondary: #dcdcdc;
-  --border: #dcdcdc;
-  --del-button-note: #dcdcdc;
-  --active-list-link: #2a6ada0d;
-  --active-list-link-hover: #f4f5f6;
-  --list-link-hover: #cfcfcf2b;
-  --text-area-border: #dcdcdc;
-  --note-pin-fill: #65a961;
-  --note-pin-nofill: var(--b-secondary);
+  --secondary              : var(--bs-secondary);
+  --b-secondary            : #dcdcdc;
+  --border                 : #dadada80;
+  --del-button-note        : #dcdcdc;
+  --active-list-link       : #a3a3a30d;
+  --active-list-link-hover : #a3a3a30d;
+  --list-link-hover        : #cfcfcf2b;
+  --text-area-border       : #dcdcdc;
+  --note-pin-fill          : #65a961;
+  --note-pin-nofill        : var(--b-secondary);
 }

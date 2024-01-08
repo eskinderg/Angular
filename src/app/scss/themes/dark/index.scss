@@ -3,15 +3,16 @@
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
 :root {
-  --secondary: #a1a1a1;
-  --b-secondary: #747474;
-  --border: #414141;
-  --del-button-note: #484a4b;
-  --active-list-link: #363c43a6;
-  --active-list-link-hover: #353d47a6;
-  --text-area-border: #22272e;
-  --note-pin-fill: #65a961;
-  --note-pin-nofill: #747474:
+  --secondary              : #a1a1a1;
+  --b-secondary            : #747474;
+  --border                 : var(--bs-primary);
+  --del-button-note        : #484a4b;
+  --active-list-link       : #363c43a6;
+  --active-list-link-hover : #353d47a6;
+  --list-link-hover        : #cfcfcf2b;
+  --text-area-border       : #22272e;
+  --note-pin-fill          : #65a961;
+  --note-pin-nofill        : #747474:
 }
 
 .btn-outline-primary {

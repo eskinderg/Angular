@@ -68,6 +68,7 @@
 .note-wrapper {
   padding:0;
   height: 4.25rem;
+  border: 1px solid var(--border);
 }
 
 .item {
@@ -151,10 +152,8 @@
 }
 
 .list-group-item-action:hover {
-    z-index:0;
-    background: var(--active-list-link-hover);
-    // background: #f8f9fa52;
-  }
+  z-index:0;
+}
 
 .list-group-item {
   border-bottom:none;
