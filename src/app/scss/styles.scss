@@ -10,6 +10,10 @@ $font-family-serif      : $raleway;
 $font-family-monospace  : Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 $font-family-base       : $font-family-sans-serif;
 
+html, body {
+  height: 100%;
+}
+
 .modal-backdrop {
   backdrop-filter: blur(2px);
 }

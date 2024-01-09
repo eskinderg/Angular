@@ -1,5 +1,23 @@
 :host {
   display:block;
+  flex: 1 1 auto;
+}
+
+.note-div {
+  height:100%;
+}
+
+.main-note-list {
+  padding-right:0.9rem;
+}
+
+.ng-scrollbar{
+  --scrollbar-size: 10px;
+  --scrollbar-track-color: var(--border);
+}
+
+.notes-navigation {
+  border-right: 1px solid var(--border);
 }
 
 .date-modified {
@@ -34,6 +52,7 @@
 
   & * {
     transition: all 0.25s ease;
+    transform-box: fill-box;
     transform-origin: center;
   }
 
@@ -69,6 +88,7 @@
   padding:0;
   height: 4.25rem;
   border: 1px solid var(--border);
+  border-right:none;
 }
 
 .item {

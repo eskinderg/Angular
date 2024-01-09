@@ -3,9 +3,9 @@ div {
   // border-right: 1px solid lightgrey;
   // border-bottom: 1px solid lightgrey;
   // border: 1px solid grey;
-  min-height: calc(100vh - 200px);
+  // min-height: calc(100vh - 200px);
   padding-left:5px;
-  height:100%;
+  // height:100%;
 
   // background: lighten($primary, 40%);
   // background: whitesmoke;
@@ -13,7 +13,9 @@ div {
 }
 
 .textArea {
-  border-top: 1px solid var(--border);
+  // border-top: 1px solid var(--border);
+  // border-top: 10px solid green;
+  height: 100%
 }
 
 .textArea ::spelling-error {

@@ -18,6 +18,7 @@ import { NoteResolver } from './components/note.component/note.resolve';
 import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DraggableModule,
     NgaModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgScrollbarModule
   ],
   declarations: [
     NotesComponent,
