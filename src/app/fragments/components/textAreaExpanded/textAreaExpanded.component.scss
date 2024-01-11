@@ -1,21 +1,23 @@
-div {
-  // border-left: 1px solid lightgrey;
-  // border-right: 1px solid lightgrey;
-  // border-bottom: 1px solid lightgrey;
-  // border: 1px solid grey;
-  // min-height: calc(100vh - 200px);
+.text-area-wrapper {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 1.5rem);
+  margin: auto;
   padding-left:5px;
-  // height:100%;
-
-  // background: lighten($primary, 40%);
-  // background: whitesmoke;
-  background: --bs-body-bg;
 }
 
+
 .textArea {
-  // border-top: 1px solid var(--border);
-  // border-top: 10px solid green;
-  height: 100%
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .textArea ::spelling-error {
@@ -36,6 +38,16 @@ div {
 //   text-decoration: underline;
 // }
 
+.textInput {
+  position: absolute;
+  font-size: 0.85rem;
+  text-decoration: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
 div.disabled {
   cursor: not-allowed;
   opacity: 0.5;
@@ -45,6 +57,22 @@ div.disabled {
 [contenteditable] {
   outline: 0px solid transparent;
 }
+
+*::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+*::-webkit-scrollbar-button {
+  position: absolute;
+  display:none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: 0.5rem;
+  cursor:pointer;
+}
+
 
 .custom-scroll {
   --scrollbar-size: 8px;

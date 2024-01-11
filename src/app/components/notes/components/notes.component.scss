@@ -7,31 +7,108 @@
   height:100%;
 }
 
-.main-note-list {
-  padding-right:0.9rem;
+.list-notes {
+  // width: calc(100% - 50px);
+  // --hh: calc(100%);
+  // width: var(--hh);
+  // position: absolute;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+
+  // width: calc(100% - 50px);
+  // width: 100%;
+  width: 24.5vw;
+
 }
 
-.ng-scrollbar{
-  --scrollbar-size: 10px;
-  --scrollbar-track-color: var(--border);
+.note-border {
+  position:relative;
+}
+
+.main-note-list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top:0px;
+  left:0px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  // scrollbar-gutter: auto;
+  // border: 1px solid red;
+}
+
+.main-note-list::-webkit-scrollbar {
+  // height: 16px;
+  // overflow: visible;
+  // width: 16px;
+  // display: none;
+}
+
+.filler {
+  display: block;
+  position: relative;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  // height: 100%;
+  flex-grow: 1;
+  width: 24.5vw;
+}
+
+*::-webkit-scrollbar-track {
+   background: var(--scrollbar-track-color);
+ // background: red;
+}
+
+*::-webkit-scrollbar-track-piece:end {
+
+}
+
+*::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+*::-webkit-scrollbar-button {
+  // border: 5px solid red;
+  position: absolute;
+  display:none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  // border: 1px solid #ffffff40;
+  border-radius: 0.5rem;
 }
 
 .notes-navigation {
-  border-right: 1px solid var(--border);
+  position:relative;
 }
 
 .date-modified {
   cursor:pointer;
   position: absolute;
-  bottom: 0.5rem;
+  bottom: 0.25rem;
   padding-left: 0.75rem;
 }
 
+.note-wrapper {
+  padding:0;
+  height: 3.5rem;
+  // border: 1px solid var(--border);
+  // border-right:none;
+  border-right: 1px solid var(--border);
+  // padding-right: 1rem;
+}
+
 .note-list {
-  position:absolute;
+  position:relative;
   width: 100%;
   height: 100%;
   cursor:pointer;
+  margin-right: 1rem;
 }
 
 .note-wrapper:hover {
@@ -41,14 +118,15 @@
 .pin-wrapper {
   position: absolute;
   z-index: 1;
-  top: 0.5rem;
+  top: 0.25rem;
   border: none;
-  height: 3.25rem;
-  width: 3.25rem;
+  height: 3rem;
+  width: 3rem;
   transition: all 0.5s ease;
   cursor: pointer;
   right: 0px;
   padding: 0.75rem;
+  // margin-right: 1rem;
 
   & * {
     transition: all 0.25s ease;
@@ -84,13 +162,6 @@
   padding-left: 0.75rem;
 }
 
-.note-wrapper {
-  padding:0;
-  height: 4.25rem;
-  border: 1px solid var(--border);
-  border-right:none;
-}
-
 .item {
   cursor:pointer;
   pointer-events: none;
@@ -118,7 +189,7 @@
 }
 
 .add-note-wrapper {
-  border-bottom: none;
+  border-bottom: 1px solid var(--border);
 }
 
 .add-note-icon {
@@ -137,19 +208,19 @@
 }
 
 .note-text {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--bs-card-cap-color);
 }
 
 .del-button {
   color: var(--del-button-note);
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding: 1rem;
-  padding-right:2.25rem;
+  padding-right:2rem;
   position: absolute;
   right: 1rem;
   margin: auto;
-  top: 0.25rem;
+  top: 0rem;
   bottom: 0;
 }
 

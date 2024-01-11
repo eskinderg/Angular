@@ -12,7 +12,9 @@
   --list-link-hover        : #cfcfcf2b;
   --text-area-border       : #22272e;
   --note-pin-fill          : #65a961;
-  --note-pin-nofill        : #747474:
+  --note-pin-nofill        : #747474;
+  --scrollbar-track-color  : #333941;   //rgb(from var(--b-secondary) r g b / 50%);
+  --scrollbar-thumb-color  : #51555b; //rgb(from var(--bs-primary) r g b / 80%);
 }
 
 .btn-outline-primary {
