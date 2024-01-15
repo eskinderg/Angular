@@ -5,14 +5,16 @@
 :root {
   --secondary              : var(--bs-secondary);
   --b-secondary            : #dcdcdc;
+  --b-active-link-color    : var(--bs-primary);
   --border                 : #dadada80;
   --del-button-note        : #dcdcdc;
-  --active-list-link       : #a3a3a30d;
-  --active-list-link-hover : #a3a3a30d;
-  --list-link-hover        : #cfcfcf2b;
+  --active-list-link       : #f4f4f4;
+  --active-list-link-hover : #fafafa;
+  --active-list-link-border-color: #e9e9e9;
+  --list-link-hover        : #f5f5f5;
   --text-area-border       : #dcdcdc;
-  --note-pin-fill          : #65a961;
+  --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
   --note-pin-nofill        : var(--b-secondary);
   --scrollbar-track-color  : #f3f3f3;//rgb(from var(--b-secondary) r g b / 50%);
-  --scrollbar-thumb-color  : #d9d9d9; //rgb(from var(--bs-primary) r g b / 80%);
+  --scrollbar-thumb-color  : rgb(from var(--b-active-link-color) r g b / 75%);
 }

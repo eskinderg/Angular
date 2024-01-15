@@ -2,14 +2,14 @@
   <div class="col-lg-3 col-md-4 notes-navigation">
     <!-- <ng-scrollbar class="ng-scrollbar"> -->
     <div class="main-note-list">
-      <div class="list-group list-notes">
+      <div class="list-notes">
 
         @for(note of Notes | async ; track note){
 
         <div class="note-border">
 
           <div [@.disabled]="!(Animate | async)?.text" [@fadeInOutNoteListItem]
-            class="list-group-item list-group-item-action note-wrapper">
+            class="note-wrapper">
             <div class="note-list" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['active']"
               [routerLink]="['/notes',note.id]"> </div>
 
@@ -24,12 +24,13 @@
               : '20' : true) : 'Untitled' }} </h6>
           </div>
 
-          <small [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/notes',note.id]" [routerLinkActive]="['']"
+          <small [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/notes',note.id]" [routerLinkActive]="['active-text']"
             class="date-modified text-muted" [@.disabled]="!(Animate | async)?.text" [@fadeInOutNoteListItem]
             [ngbTooltip]="note.dateModified | date: 'medium'"> {{
             note.dateModified | dateago }}</small>
 
-          <div class="pin-wrapper" (click)="updatePinOrder(note)">
+            <div class="pin-wrapper" (click)="updatePinOrder(note)" [routerLinkActiveOptions]="{exact:false}" [routerLinkActive]="['']"
+              [routerLink]="['/notes',note.id]">
             <svg id="Layer_1" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
               xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
               <path class="pin" [ngClass]="note.pinOrder ? 'pinned' : 'newpin'" id="path2"
@@ -51,7 +52,7 @@
   <div class="pl-2 col-lg-9 col-md-8 notes-detail">
     <div class="d-flex h-100 flex-column">
       <div class="add-note-wrapper">
-        <svg class="add-note-icon" (click)="onAddNote('red')" id="svg8" width="26" height="26"
+        <svg class="add-note-icon" [ngbTooltip]="'Add new note'" (click)="onAddNote('red')" id="svg8" width="26" height="26"
           enable-background="new 0 0 40 40" version="1.1" viewBox="0 0 26 26">
           <path id="path2"
             d="m10 7h-10v19h11v-8h8v-2c-5 0-9-4-9-9zm3 19 6-6h-6zm6-26c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7zm4 8h-3v3h-2v-3h-3v-2h3v-3h2v3h3z"

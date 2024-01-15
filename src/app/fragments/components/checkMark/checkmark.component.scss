@@ -13,7 +13,7 @@ span {
 }
 
 .selected {
-  color: var(--secondary);
+  color: var(--b-active-link-color);
   outline: 2px solid var(--border);
   font-weight: bold;
 }

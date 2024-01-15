@@ -1,13 +1,13 @@
 import { ActivatedRouteSnapshot, BaseRouteReuseStrategy, DetachedRouteHandle } from "@angular/router";
 
 export class AppRouteReuseStrategy implements BaseRouteReuseStrategy {
-  retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
+  retrieve(_route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
     return null;
   }
-  shouldAttach(route: ActivatedRouteSnapshot): boolean {
+  shouldAttach(_route: ActivatedRouteSnapshot): boolean {
     return false;
   }
-  shouldDetach(route: ActivatedRouteSnapshot): boolean {
+  shouldDetach(_route: ActivatedRouteSnapshot): boolean {
     return false;
   }
   shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
@@ -17,6 +17,6 @@ export class AppRouteReuseStrategy implements BaseRouteReuseStrategy {
       return false;
     }
   }
-  store(route: ActivatedRouteSnapshot, handle: DetachedRouteHandle | null): void {
+  store(_route: ActivatedRouteSnapshot, _handle: DetachedRouteHandle | null): void {
   }
 }

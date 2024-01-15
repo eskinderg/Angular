@@ -25,6 +25,7 @@
 
 .note-border {
   position:relative;
+  border-top: 1px solid var(--border);
 }
 
 .main-note-list {
@@ -68,7 +69,7 @@
 }
 
 *::-webkit-scrollbar {
-  width: 0.75rem;
+  width: 0.65rem;
 }
 
 *::-webkit-scrollbar-button {
@@ -113,6 +114,7 @@
 
 .note-wrapper:hover {
   background: var(--active-list-link-hover);
+  border:none;
 }
 
 .pin-wrapper {
@@ -152,7 +154,7 @@
 
   & .newpin {
     transform: rotate(0deg);
-    fill: var(--note-pin-fill);
+    // fill: var(--note-pin-fill);
   }
 }
 
@@ -171,13 +173,14 @@
 }
 
 .active-text {
-  color: var(--bs-body-color);
+  color: var(--b-active-link-color) ! important;
 }
 
 .active {
   color: var(--bs-list-group-action-hover-color) ! important;
   text-decoration: none;
   background-color: var(--active-list-link);
+  border: 1px solid var(--active-list-link-border-color)
 }
 
 .menu {
@@ -189,17 +192,17 @@
 }
 
 .add-note-wrapper {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 
 .add-note-icon {
-  width: 2rem;
-  height: 2rem;
+  // width: 2rem;
+  // height: 2rem;
   fill: #65a961;
   cursor: pointer;
   z-index: 100;
-  right: 0;
-  margin: 1.1rem;
+  // right: 0;
+  margin: 1rem;
 
   :hover {
     fill: #5aba5a;
@@ -209,7 +212,7 @@
 
 .note-text {
   font-size: 1rem;
-  color: var(--bs-card-cap-color);
+  // color: var(--bs-card-cap-color);
 }
 
 .del-button {
@@ -222,30 +225,4 @@
   margin: auto;
   top: 0rem;
   bottom: 0;
-}
-
-.list-group:first-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.list-group:last-child {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.list-group-item.active {
-  color: var(--bs-list-group-action-hover-color) ! important;
-  text-decoration: none;
-  background-color: var(--bs-list-group-action-hover-bg) ! important;
-  border: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color);
-}
-
-.list-group-item-action:hover {
-  z-index:0;
-}
-
-.list-group-item {
-  border-bottom:none;
 }

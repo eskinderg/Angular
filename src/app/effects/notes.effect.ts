@@ -114,7 +114,7 @@ export class NotesEffect {
       ofType(NotesActions.deleteNote),
       switchMap((action) =>
         this.notesApiService
-          .deleteNote(action.payload)
+          .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.deleteNoteSuccess({ payload: note })),
             catchError(err => of(NotesActions.deleteNoteFail({ payload: err })))

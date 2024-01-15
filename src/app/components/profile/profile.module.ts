@@ -8,7 +8,6 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOption/appThemeOption.component';
 
-
 @NgModule({
   imports: [
     CommonModule,

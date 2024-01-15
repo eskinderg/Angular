@@ -29,6 +29,7 @@ export class NotesComponent {
 
     const newNote = new Note({
       header: 'Untitled',
+      archived: false,
       text: '',
       colour: colour,
       width: 200,

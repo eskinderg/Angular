@@ -11,6 +11,7 @@ export class Note {
   dateCreated: Date;
   dateModified: Date;
   pinOrder: Date;
+  archived: boolean;
 
 
   constructor(values: Object = {}) {

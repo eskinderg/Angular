@@ -87,7 +87,7 @@ export const notesReducer = createReducer(initialState,
         ...notes.filter(n => n.id !== action.payload.id),
       ];
 
-      return { notes: pinnedNotes(newState), animate: { text: true, date: false } };
+      return { notes: pinnedNotes(dateModifiedNotes(newState)), animate: { text: true, date: false } };
     }
   ),
   on(
@@ -108,6 +108,12 @@ export const notesReducer = createReducer(initialState,
       }), animate: { text: true, date: true }
     }))
 )
+
+export function dateModifiedNotes(notes: Note[]): Note[] {
+  return [
+    ...notes
+  ].sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1))
+}
 
 export function pinnedNotes(notes: Note[]): Note[] {
   return [
@@ -158,7 +164,9 @@ export function pinnedNotes(notes: Note[]): Note[] {
 
 export const getNoteSTate = createFeatureSelector<NotesState>('notes');
 
-export const getNotes = createSelector(getNoteSTate, (state: NotesState) => state.notes);
+export const getNotes = createSelector(getNoteSTate, (state: NotesState) => {
+  return state.notes.filter(n => !n.archived);
+});
 
 export const getNotesLength = createSelector(getNoteSTate, (state: NotesState) => state.notes.length);
 
