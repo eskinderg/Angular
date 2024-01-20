@@ -1,0 +1,12 @@
+:host ::ng-deep {
+  // overflow: auto !important;
+
+  .modal-content {
+    // --bs-modal-bg: rgb(0,0,0,1);
+    --bs-modal-border-radius: 0;
+    --bs-body-bg: #ffffffe3;
+    // border:none;
+    border: 1px solid var(--border);
+  }
+
+}

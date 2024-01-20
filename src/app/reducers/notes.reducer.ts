@@ -57,7 +57,7 @@ export const notesReducer = createReducer(initialState,
     (state, action): NotesState => {
 
       let notes: Note[] = state.notes.map(note => {
-        return note.id === action.payload.id ? { ...note, text: action.payload.text } : note;  // First update the note text
+        return note.id === action.payload.id ? action.payload : note;  // First update the note text
       })
 
       // let index = notes.findIndex(note => note.id === action.payload.id);
@@ -79,7 +79,7 @@ export const notesReducer = createReducer(initialState,
     (state, action): NotesState => {
 
       let notes: Note[] = state.notes.map(note => {
-        return note.id === action.payload.id ? { ...note, pinOrder: action.payload.pinOrder } : note;  // First update the note text
+        return note.id === action.payload.id ? action.payload : note;  // First update the note text
       })
 
       const newState: Note[] = [ // move the newly updated note to the top of the list
@@ -102,11 +102,17 @@ export const notesReducer = createReducer(initialState,
     })),
   on(
     NotesActions.deleteNoteSuccess,
-    (state, action): NotesState => ({
-      notes: state.notes.filter((note: Note) => {
-        return note.id !== action.payload.id;
-      }), animate: { text: true, date: true }
-    }))
+    (state, action): NotesState => {
+
+      let notes: Note[] = state.notes.map(note => {
+        return note.id === action.payload.id ? action.payload : note;  // First update the note text
+      })
+
+      return {
+        notes: notes, animate: { text: true, date: true }
+      }
+
+    })
 )
 
 export function dateModifiedNotes(notes: Note[]): Note[] {
@@ -168,7 +174,11 @@ export const getNotes = createSelector(getNoteSTate, (state: NotesState) => {
   return state.notes.filter(n => !n.archived);
 });
 
-export const getNotesLength = createSelector(getNoteSTate, (state: NotesState) => state.notes.length);
+export const getArchivedNotes = createSelector(getNoteSTate, (state: NotesState) => {
+  return state.notes.filter(n => n.archived).sort((a, b) => (a.archivedDate > b.archivedDate ? -1 : 1));
+});
+
+export const getNotesLength = createSelector(getNoteSTate, (state: NotesState) => state.notes.filter(n => !n.archived).length);
 
 export const getNotesAnimate = createSelector(getNoteSTate, (state: NotesState) => state.animate);
 

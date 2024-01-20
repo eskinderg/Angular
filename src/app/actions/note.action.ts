@@ -206,3 +206,17 @@ export const updatePinOrderFail = createAction(
   props<{ payload: string }>()
 )
 
+export const restoreNote = createAction(
+  '[NOTE] RESTORE_NOTE',
+  props<{ payload: Note }>()
+)
+
+export const restoreNoteSuccess = createAction(
+  '[NOTE] RESTORE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const restoreNoteFail = createAction(
+  '[NOTE] RESTORE_NOTE_FAIL',
+  props<{ payload: string }>()
+)

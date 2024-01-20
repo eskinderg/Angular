@@ -35,7 +35,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
         debounceTime(450),
         distinctUntilChanged(),
         tap(() => {
-          this.onTextChanged.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML });
+          this.onTextChanged.emit({ id: this.note.id, newText: this.textarea.nativeElement.innerHTML });
         })
       )
       .subscribe();

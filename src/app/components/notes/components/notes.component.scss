@@ -23,6 +23,34 @@
 
 }
 
+.note-menu {
+  position:relative;
+  border-right: 1px solid var(--border);
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.25rem;
+  color: var(--secondary);
+  z-index:2;
+  background: var(--bs-body-bg);
+}
+
+.note-menu-fill {
+  height: 3rem;
+}
+
+.no-content {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  margin:auto;
+  color: var(--bs-secondary);
+}
+
 .note-border {
   position:relative;
   border-top: 1px solid var(--border);
@@ -30,6 +58,7 @@
 
 .main-note-list {
   position: absolute;
+  // margin-top:3rem;
   display: flex;
   flex-direction: column;
   top:0px;
@@ -39,7 +68,7 @@
   width: 100%;
   height: 100%;
   // scrollbar-gutter: auto;
-  // border: 1px solid red;
+  border-right: 1px solid var(--border);
 }
 
 .main-note-list::-webkit-scrollbar {
@@ -47,6 +76,10 @@
   // overflow: visible;
   // width: 16px;
   // display: none;
+}
+
+.router-outlet {
+  position: relative;
 }
 
 .filler {
@@ -61,6 +94,7 @@
 
 *::-webkit-scrollbar-track {
    background: var(--scrollbar-track-color);
+  margin-top: 3rem;
  // background: red;
 }
 
@@ -191,34 +225,61 @@
   color: #f3828d
 }
 
-.add-note-wrapper {
+.menu-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
   border-bottom: 2px solid var(--border);
+  padding: 1rem;
 }
 
 .add-note-icon {
-  // width: 2rem;
-  // height: 2rem;
-  fill: #65a961;
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  bottom: 0;
+
+  fill: rgb(from var(--b-active-link-color) r g b / 65%);
   cursor: pointer;
   z-index: 100;
-  // right: 0;
-  margin: 1rem;
 
   :hover {
     fill: #5aba5a;
   }
-
 }
 
+.archive-note-icon {
+  fill: var(--b-active-link-color);
+  cursor: pointer;
+  position: absolute;
+  top: 0.85rem;
+  right: 4rem;
+  bottom: 0;
+
+  :hover {
+    color: var(--list-link-hover);
+  }
+}
+
+.archive-note-button-icon {
+
+  fill: rgb(from var(--bs-warning)r g b /55%);
+
+  :hover {
+    fill:var(--bs-warning);
+  }
+
+}
 .note-text {
-  font-size: 1rem;
+  // font-size: 1rem;
   // color: var(--bs-card-cap-color);
 }
 
 .del-button {
   color: var(--del-button-note);
   font-size: 1.25rem;
-  padding: 1rem;
+  padding: 0.5rem;
   padding-right:2rem;
   position: absolute;
   right: 1rem;

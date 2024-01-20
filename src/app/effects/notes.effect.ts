@@ -39,16 +39,16 @@ export class NotesEffect {
             catchError(err => of(NotesActions.updateNoteTextFail({ payload: err })))
           ))))
 
-  updateNoteTextSuccess = createEffect(() =>
-    this.actions$.pipe(
-      ofType(NotesActions.updateNoteTextSuccess),
-      switchMap((action) =>
-        this.notesApiService
-          .getNote(action.payload.id)
-          .pipe(
-            map(note => NotesActions.getNoteUpdatedTimestampSuccess({ payload: note })),
-            catchError(err => of(NotesActions.getNoteUpdatedTimestampFail({ payload: err })))
-          ))))
+  // updateNoteTextSuccess = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(NotesActions.updateNoteTextSuccess),
+  //     switchMap((action) =>
+  //       this.notesApiService
+  //         .getNote(action.payload.id)
+  //         .pipe(
+  //           map(note => NotesActions.getNoteUpdatedTimestampSuccess({ payload: note })),
+  //           catchError(err => of(NotesActions.getNoteUpdatedTimestampFail({ payload: err })))
+  //         ))))
 
   updateNotePosition = createEffect(() =>
     this.actions$
@@ -130,10 +130,21 @@ export class NotesEffect {
       }
       )), { dispatch: false })
 
+  restoreNote = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.restoreNote),
+      switchMap((action) =>
+        this.notesApiService
+          .updateNote({ ...action.payload, archived: false })
+          .pipe(
+            map(note => NotesActions.restoreNoteSuccess({ payload: note })),
+            catchError(err => of(NotesActions.restoreNoteFail({ payload: err })))
+          ))))
+
   constructor(
-    private actions$        : Actions,
-    private notesApiService : NotesDataService,
-    private router          : Router,
-    private toastService    : ToastService
+    private actions$: Actions,
+    private notesApiService: NotesDataService,
+    private router: Router,
+    private toastService: ToastService
   ) { }
 }

@@ -53,8 +53,13 @@ export class NotesComponent {
     this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
   }
 
-  onNoteClick(note: Note) {
+  onNoteClick(_note: Note) {
     // this.route.navigate(['notes', note.id]);
+  }
+
+  archivedNotes() {
+    // this.route.navigate([{ outlets: { 'dialog': ['archive'] } }], {relativeTo: this.r.parent, replaceUrl: false});
+    this.route.navigateByUrl('notes/archive');
   }
 
   onChangeNoteText(newText: any, note: Note) {

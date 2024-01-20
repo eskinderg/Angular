@@ -19,6 +19,7 @@ import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { NoteArchiveComponent } from './components/note.archive/note.archive.component';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
   declarations: [
     NotesComponent,
     NoteComponent,
+    NoteArchiveComponent,
     AddButtonComponent,
     DraggableDirective,
     ResizableTextAreaDirective
