@@ -7,6 +7,22 @@
   height:100%;
 }
 
+.note-select-info {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: var(--secondary);
+
+  #icon-44-note-text {
+    fill: var(--active-list-link);
+  }
+}
+
 .list-notes {
   // width: calc(100% - 50px);
   // --hh: calc(100%);
