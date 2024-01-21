@@ -2,7 +2,8 @@
   <div class="col-lg-3 col-md-4 notes-navigation">
     <!-- <ng-scrollbar class="ng-scrollbar"> -->
     <div class="note-menu">
-      Notes
+
+      Notes ({{ NotesCount | async}})
 
       <svg class="archive-note-icon" [ngbTooltip]="'Archived Notes'" (click)="archivedNotes()"
         enable-background="new 0 0 256 256" version="1.1" viewBox="0 0 256 256" height="22" width="22"

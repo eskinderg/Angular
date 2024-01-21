@@ -81,4 +81,8 @@ export class NotesComponent {
   get Animate() {
     return this.store.select(fromNotes.getNotesAnimate);
   }
+
+  get NotesCount() {
+    return this.store.select(fromNotes.getNotesLength);
+  }
 }
