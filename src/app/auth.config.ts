@@ -7,6 +7,6 @@ export const authConfig: AuthConfig = {
   clientId             : 'Angular6',
   responseType         : 'code',
   disableAtHashCheck   : true,
-  scope                : 'profile api2',
+  scope                : 'openid profile api2',
   showDebugInformation : true
 }
