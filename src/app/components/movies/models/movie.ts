@@ -28,4 +28,19 @@ export class Movie {
     else
       return null;
   }
+
+  get_poster_path_w500() {
+    if (this.poster_path !== null)
+      return "https://image.tmdb.org/t/p/w500/" + this.poster_path;
+    else
+      return null;
+  }
+
+  get_poster_path_w780() {
+    if (this.poster_path !== null)
+      return "https://image.tmdb.org/t/p/w780/" + this.poster_path;
+    else
+      return null;
+  }
+
 }

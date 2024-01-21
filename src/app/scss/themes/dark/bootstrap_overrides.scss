@@ -33,18 +33,23 @@ $list-group-color                  : $body-color;
 $list-group-bg                     : $body-bg;
 $list-group-hover-bg               : none;
 $list-group-action-hover-color     : $body-color;
+$list-group-action-active-bg       : $primary;
+$list-group-action-hover-bg        : $primary;
+// $list-group-action-hover-bg
+// var(--bs-list-group-action-hover-bg) !important
 
 $nav-tabs-link-active-color        : $body-color;
 $nav-tabs-link-active-border-color : $primary;
 $nav-tabs-link-hover-border-color  : $primary;
 $nav-tabs-border-color             : $primary;
 
-$modal-content-bg                  : $body-bg;
 $modal-header-border-width         : 0;
 $modal-footer-border-width         : 0;
 
 $popover-bg                        : $body-bg;
-
+$popover-header-bg                 : #414141;
+$popover-max-width                 : auto;
+$border-color-translucent          : #555555;
 $dropdown-bg                       : $body-bg;
 $dropdown-link-color               : $body-color;
 $dropdown-link-hover-bg            : $body-bg;

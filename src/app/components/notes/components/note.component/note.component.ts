@@ -1,106 +1,91 @@
-import { Renderer2, Component, HostListener, ElementRef, ViewChild, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Note } from '../../../../models/note';
-// import { CdkDragEnd, CdkDrag } from '@angular/cdk/drag-drop'
 import { ActivatedRoute } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
-import { ConfirmService } from '../../../../theme/components/modal/confirm.service';
+import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
+import { DOCUMENT } from '@angular/common';
+import * as fromNotes from '../../../../reducers/notes.reducer';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
   templateUrl: 'note.component.html',
-  styleUrls: ['note.component.scss']
+  styleUrls: ['note.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class NoteComponent implements OnDestroy, OnInit {
+export class NoteComponent {
+
+  @ViewChild(TextareaExpandedComponent) textarea: TextareaExpandedComponent;
 
   @Input() note: Note;
 
-  @Output() changeNoteText     = new EventEmitter(false);
+  @Output() changeNoteText = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
-  @Output() changeNoteSize     = new EventEmitter(false);
-  @Output() deleteNote         = new EventEmitter(false);
+  @Output() changeNoteSize = new EventEmitter(false);
+  @Output() deleteNote = new EventEmitter(false);
 
-  routeSubscription$: Subscription | undefined;
+  subscription: Subscription;
 
-  @ViewChild('notediv', { static: true }) textarea: ElementRef;
-
-  ngOnInit() { }
-
-  constructor(
-    // private renderer: Renderer2,
-    private route: ActivatedRoute,
-    private noteApiService: NotesApiService,
-    private confirmService: ConfirmService
-  ) {
-    this.routeSubscription$ = this.route.paramMap.subscribe(() => {
-      this.note = this.route.snapshot.data['note'];
-    });
+  constructor(private store: Store<fromNotes.NotesState>, private route: ActivatedRoute, private noteApiService: NotesApiService) {
+    this.note = this.route.snapshot.data['note']
   }
 
-  // dragEnded(eee: CdkDragEnd ) {
-  // this.textarea.nativeElement.style.top = '0px';
-  // this.textarea.nativeElement.style.left = '0px';
-  // alert('yes')
-  // const viewRect: ClientRect = this.textarea.nativeElement.getBoundingClientRect();
+  handleNoteTextChange(updatedNote: { id: number, newText: string }) {
 
-  // this.changeNotePosition.emit({top: viewRect.top, left: Math.round(viewRect.left)});
-  // console.log(eee.source.getFreeDragPosition());
-  // console.log(viewRect.left - parseInt(this.textarea.nativeElement.style.left));
-  // console.log(eee.source)
-  // }
+    this.subscription = this.store.select(fromNotes.getNoteById(updatedNote.id)).subscribe(n => {
+      this.noteApiService.updateNoteText({ ...n, text: updatedNote.newText } as Note);
+    })
 
-  // handleChangeNotePosition(event: PointerEvent) {
-  // console.log(event)
-  // if (left !== this.note.left || top !== this.note.top) {
-  //   if(this.note.id !=undefined)
-  //   {
-  //     this.changeNotePosition.emit({top: top, left: left});
-  //   }
-  // }
-  // }
-
-  // @HostListener('mouseup', ['$event'])
-  // onMouseUp($event) {
-  // console.log($event.target.style)
-  // console.log($event)
-  // if (this._isDragging) {
-  //   this._isDragging = false;
-  //   if (this._hasDragged) {
-  //     this.endDragEvent.emit({left: this._originalLeft +
-  //       ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
-  //   }
-  // }
-
-  handleChangeNoteText(updatedNote: Note) {
-    // alert(updatedNote.text);
-    // if (updatedText !== this.note.text) {
-    // this.changeNoteText.emit(updatedText);
-    // }
-    this.noteApiService.updateNoteText(updatedNote);
+    this.subscription.unsubscribe();
   }
 
-  handleNoteDelete(note: Note) {
-    // this.deleteNote.emit(note);
-    // alert(note.header);
+  underline(e) {
+    e.preventDefault();
 
-    // this.confirmService.confirm({
-    //   title: 'Confirm deletion',
-    //   message: 'Do you really want to delete the item ' + '"' + note.header + '"?',
-    //   backdrop: true
-    // }).then(() => {
-    //   this.noteApiService.deleteNote(note);
-    // }, () => {
-    //   console.log();
-    // });
+    let selection = window.getSelection()
+
+    let text = selection.toString();
+    let span = document.createElement('span');
+    span.innerHTML = text;
+
+    span.style.textDecoration = selection.focusNode.parentElement.style.textDecorationLine === 'underline'
+      ? 'none' :
+      span.style.textDecoration = 'underline'
+
+    document.execCommand('insertHTML', false, span.outerHTML);
   }
 
-  ngOnDestroy() {
-    this.routeSubscription$.unsubscribe();
+  bold(e) {
+
+    let selection = window.getSelection()
+
+    let text = selection.toString();
+    let span = document.createElement('span');
+    span.innerHTML = text;
+
+    span.style.fontWeight = selection.focusNode.parentElement.style.fontWeight === 'bold'
+      ? 'normal' :
+      span.style.textDecoration = 'bold'
+
+    document.execCommand('insertHTML', false, span.outerHTML);
+    e.preventDefault();
   }
 
-  // handleResizeNote($event) {
-  //   this.changeNoteSize.emit($event);
-  // }
+  selectionChange(selection: Selection) {
+    // this.selection = selection;
+  }
+
+  saveSelection(): Range {
+    const selection = window.getSelection();
+    return selection.rangeCount === 0 ? null : selection.getRangeAt(0);
+  };
+
+  restoreSelection(range: Range) {
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  };
 
 }

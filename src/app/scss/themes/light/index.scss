@@ -1,6 +1,20 @@
 @import "./bootstrap_overrides.scss";
+@import "../../custom-bootstrap/custom-bootstrap.scss";
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
-// :root {
-//   --eskinder: black;
-// }
+:root {
+  --secondary              : var(--bs-secondary);
+  --b-secondary            : #dcdcdc;
+  --b-active-link-color    : var(--bs-primary);
+  --border                 : #dadada80;
+  --del-button-note        : #dcdcdc;
+  --active-list-link       : #edf0f7;
+  --active-list-link-hover : #fafafa;
+  --active-list-link-border-color: #adc7f5;
+  --list-link-hover        : #f5f5f5;
+  --text-area-border       : #dcdcdc;
+  --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
+  --note-pin-nofill        : var(--b-secondary);
+  --scrollbar-track-color  : #f3f3f3;//rgb(from var(--b-secondary) r g b / 50%);
+  --scrollbar-thumb-color  : #b5b5b5;
+}

@@ -42,6 +42,13 @@ export const eventsReducer = createReducer(
         return event.id !== action.payload.id;
       })
     })),
+  on(
+    EventsActions.deleteEventsSuccess,
+    (state, action): EventsState => ({
+      events: state.events.filter((event: Event) => {
+        return action.payload.every(e => e.id !== event.id)
+      })
+    })),
 
 )
 
@@ -50,3 +57,13 @@ export const getEventState = createFeatureSelector<EventsState>('events');
 export const getEvents = createSelector(getEventState, (state: EventsState) => state.events);
 
 export const getEventsLength = createSelector(getEventState, (state: EventsState) => state.events.length)
+
+export const getItemById = (id: number) => createSelector(getEventState, (allItems) => {
+  if (allItems.events) {
+    return allItems.events.find(item => {
+      return item.id === id;
+    });
+  } else {
+    return {};
+  }
+});

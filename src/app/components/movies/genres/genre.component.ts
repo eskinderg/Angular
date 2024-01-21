@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
+import { ConfirmService } from 'src/app/fragments/components/dialog';
 
 @Component({
   selector: 'app-genres',
@@ -14,10 +15,10 @@ export class GenreComponent implements OnDestroy, OnInit {
   routeSubscription: Subscription | undefined;
 
   constructor(
-    private router: ActivatedRoute,
-    private route: Router
-  ) {
-  }
+    public router: ActivatedRoute,
+    public route: Router,
+    public dialog: ConfirmService,
+  ) { }
 
   ngOnInit() {
     this.routeSubscription = this.router.params.subscribe(() => {

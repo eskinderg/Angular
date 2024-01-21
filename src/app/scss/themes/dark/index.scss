@@ -1,5 +1,22 @@
 @import "./bootstrap_overrides.scss";
+@import "../../custom-bootstrap/custom-bootstrap.scss";
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+:root {
+  --secondary              : #a1a1a1;
+  --b-secondary            : #747474;
+  --b-active-link-color    : #5f9cfb;
+  --border                 : var(--bs-primary);
+  --del-button-note        : #484a4b;
+  --active-list-link       : #363c43a6;
+  --active-list-link-hover : #353d47a6;
+  --list-link-hover        : #cfcfcf2b;
+  --text-area-border       : #22272e;
+  --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
+  --note-pin-nofill        : #747474;
+  --scrollbar-track-color  : #333941;   //rgb(from var(--b-secondary) r g b / 50%);
+  --scrollbar-thumb-color  : rgb(from var(--b-active-link-color) r g b / 65%);
+}
 
 .btn-outline-primary {
   color: $body-color; //hack quick fix

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { User } from 'oidc-client';
-import { ConfirmService } from '../../../theme/components/modal/confirm.service';
+import { ConfirmService } from '../../../fragments/components/dialog/confirm.service';
 
 @Component({
   selector: 'app-profile',
@@ -44,10 +44,11 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.confirmService.openInfoModal({
+      this.confirmService.openInfoDialog({
         title: 'Profile',
         message: 'Profile Saved',
-        backdrop: true
+        backdrop: true,
+        centered: false
       }).then(() => {
       }, () => {
         console.log();

@@ -1,0 +1,64 @@
+<div class="modal-header btn-close-top" style="position: absolute; z-index: 100; border:none;">
+  <!-- <h4 class="modal-title">{{ movieDetail.title}}</h4> -->
+  <button type="button" class="btn-close"
+    style="opacity:0.5; background: var(--bs-secondary) var(--bs-btn-close-bg) center/1em auto no-repeat"
+    aria-label="Close" (click)="close()">
+  </button>
+</div>
+
+<ng-scrollbar [appearance]="'compact'" [visibility]="'native'" class="screen-height">
+  <div class="card" style="width: calc(100% - 12px);margin:0; border:none; border-radius:0px;">
+
+    <div class="container p-0 pe-5">
+      <div class="row">
+        <div class="col-sm-8">
+          <img class="card-img-top fade-in" [src]="movieDetail.get_poster_path_w780()" />
+        </div>
+        <div class="col-sm-4">
+          <div class="card-body">
+
+            <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
+            <h2 class="card-title"> {{ movieDetail.title }} ({{ movieDetail.release_date | truncate: '4':false }}) </h2>
+            <hr>
+            <h4> <span class="badge bg-secondary"> {{movieDetail.original_language | uppercase}}</span> </h4>
+
+            <p class="card-text">{{ movieDetail.overview }}</p>
+
+            <div class="mt-auto align-self-start"> </div>
+
+            <!-- <div class="d-flex justify-content-between"> -->
+            <!--   <h4 class="card-title">{{ movieDetail.release_date }}</h4> -->
+            <!-- </div> -->
+
+            <ul class="list-group">
+              <li class="list-group-item"><b>Date Released:</b> <a class="badge bg-secondary nodecoration ms-2"> {{
+                  movieDetail.release_date }}</a></li>
+              <!-- <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ -->
+              <!--     movieDetail.original_language }}</a></li> -->
+              <li class="list-group-item"><b>Languages Spoken:</b> <a class="badge bg-secondary nodecoration ms-2"
+                  *ngFor="let language of movieDetail.spoken_languages"> {{ language['name'] }}</a></li>
+              <li class="list-group-item"><b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{
+                  movieDetail.status }}</a></li>
+              <li class="list-group-item"><b>Genres:</b>
+                <a class="badge bg-secondary nodecoration ms-2" *ngFor="let genere of movieDetail.genres">
+                  {{ genere['name'] }}
+                </a>
+              </li>
+              <li class="list-group-item">
+                <app-ngbd-rating-decimal [size]=2 [currentRate]="movieRating"></app-ngbd-rating-decimal>
+              </li>
+              <li class="list-group-item">
+                <div class="modal-footer" style="border-top:none">
+                  <button type="button" class="btn btn-primary" (click)="close()">Close </button>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
+  </div>
+</ng-scrollbar>

@@ -11,8 +11,7 @@ export class AddButtonComponent {
   @Input() colour: string | undefined;
   @Output() add: EventEmitter<string> = new EventEmitter<string>();
 
-  onClick($event: { preventDefault: () => void; }) {
-    $event.preventDefault();
+  onClick() {
     this.add.emit(this.colour);
   }
 }

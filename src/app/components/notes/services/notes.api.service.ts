@@ -16,7 +16,7 @@ export class NotesApiService {
   }
 
   getNote(id: number): Observable<any> {
-    return this.store.select(fromNotes.getItemById(id));
+    return this.store.select(fromNotes.getNoteById(id));
   }
 
   addNote(newNote: Note) {
@@ -32,11 +32,20 @@ export class NotesApiService {
   }
 
   deleteNote(note: Note) {
-    this.store.dispatch(NotesActions.deleteNote({ payload: note }));
+    this.store.dispatch(NotesActions.deleteNote({
+      payload: { ...note, archived: true, archivedDate: new Date() }
+    }));
   }
 
   changeNoteText(note: Note) {
     this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
+  }
+
+  updateNotePinOrder(note: Note) {
+    if (note.pinOrder)
+      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: null } }));
+    else
+      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: new Date() } }));
   }
 
   changeNotePosition(note: Note): void {

@@ -5,7 +5,7 @@ import { catchError, switchMap, map } from 'rxjs/operators';
 // import { Store, Action } from '@ngrx/store';
 
 import * as EventsActions from '../actions/event.action';
-import { EventDataService } from '../theme/components/event/event.data.service/event.data.service';
+import { EventDataService } from '../fragments/components/event/event.data.service/event.data.service';
 import { ToastService } from '../shared/toast/toast.service';
 import { Event } from '../models/event';
 
@@ -78,6 +78,15 @@ export class EventsEffect {
         this.eventsDataService.deleteEventById(action.payload)
           .pipe(map(event => EventsActions.deleteEventSuccess({ payload: event })),
             catchError(err => of(EventsActions.deleteEventFail({ payload: err })))
+          ))));
+
+  deleteEvents = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.deleteEvents),
+      switchMap((action) =>
+        this.eventsDataService.deleteEvents(action.payload)
+          .pipe(map(event => EventsActions.deleteEventsSuccess({ payload: event })),
+            catchError(err => of(EventsActions.deleteEventsFail({ payload: err })))
           ))));
 
   constructor(

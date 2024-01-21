@@ -17,7 +17,6 @@ import { MoviesApiService } from './movies.service/movies.api.service';
 })
 export class MoviesComponent implements OnInit  {
 
-  // public todos: Todo[];
   public movies: Array<Object>;
   public genres: Genre[];
 
@@ -37,7 +36,6 @@ export class MoviesComponent implements OnInit  {
     }
 
   ngOnInit() {
-    // this.todos = this.route.snapshot.data['todos'];
     this.genres = this.route.snapshot.data['genres'];
   }
 

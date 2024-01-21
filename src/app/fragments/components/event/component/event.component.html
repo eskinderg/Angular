@@ -1,0 +1,28 @@
+<app-event-list-header class="mb-5" (add)="onAddEvent($event)">
+</app-event-list-header>
+
+<div style="height: 400px">
+  <ng-scrollbar thumbClass="custom-scrollbars">
+    <app-event-list
+      [events]="events"
+      (toggle)="onToggleEvent($event)"
+      (remove)="onRemoveEvent($event)"
+      (update)="onUpdateEvent($event)"
+      (select)="onSelectEvent($event)">
+    </app-event-list>
+
+  </ng-scrollbar>
+</div>
+
+<i class="btn btn-sm " [ngClass]="{'btn-outline-danger': selectedEvents.length}"
+(click)="onDeleteEvents()">
+  <span class="fa fa-bin2"></span>
+</i>
+
+<!-- <app-event-list-footer [events]="events"></app-event-list-footer> -->
+
+<!-- <ng-template appConfirm> -->
+<!--   <app-confirm-dialog-component></app-confirm-dialog-component> -->
+<!-- </ng-template> -->
+
+<router-outlet></router-outlet>

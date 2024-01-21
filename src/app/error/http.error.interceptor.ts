@@ -5,7 +5,7 @@ import { Observable, pipe, throwError, catchError } from 'rxjs';
 import { LoggingService } from '../error/loggingservice';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
-import { ConfirmService } from '../theme/components/modal/confirm.service';
+import { ConfirmService } from '../fragments/components/dialog/confirm.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -41,13 +41,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     //     }, (err: any) => {
     //       if (err instanceof HttpErrorResponse) {
     //         if (err.status === 401) {
-    //           this.confirmService.openInfoModal({
+    //           this.confirmService.openInfoDialog({
     //             title: '401: Unauthorized request',
     //             message: 'From Interceptor'
     //           })
     //         }
     //         if (err.status === 403) {
-    //           this.confirmService.openInfoModal({
+    //           this.confirmService.openInfoDialog({
     //             title: '403: Forbidden request',
     //             message: 'From Interceptor'
     //           })

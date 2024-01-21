@@ -1,13 +1,11 @@
 <!-- <input tabindex="-1" autofocus="autofocus" type="text" style="position: fixed; left: -10000000px;" disabled /> -->
 <app-header></app-header>
-<div class="loading-overlay" #spinnerElement style="opacity: 1;">
-  <app-loading></app-loading>
-</div>
+<app-loading></app-loading>
 
 <router-outlet></router-outlet>
 
 <ng-template appConfirm>
-  <app-modal-info-component></app-modal-info-component>
+  <app-dialog-info-component></app-dialog-info-component>
 </ng-template>
 
 <app-back-top [position]=200 [moveSpeed]=50></app-back-top>

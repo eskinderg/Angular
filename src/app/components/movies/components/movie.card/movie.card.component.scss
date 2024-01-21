@@ -12,6 +12,13 @@
   cursor: pointer;
 }
 
+.lang {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  opacity: 0.75;
+}
+
 :host{
   margin:20px ! important;
 }
@@ -39,6 +46,7 @@ small {
   -o-animation: fadeIn ease 1s;
   -ms-animation: fadeIn ease 1s;
 }
+
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}

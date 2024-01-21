@@ -1,0 +1,19 @@
+:host {
+  padding: 4px ! important;
+  cursor: pointer;
+  margin: 2px;
+}
+
+span {
+  color: var(--secondary);
+  font-size: large;
+  outline: 1px solid var(--border);
+  border-radius: 20%;
+  padding: 4px;
+}
+
+.selected {
+  color: var(--b-active-link-color);
+  outline: 2px solid var(--border);
+  font-weight: bold;
+}

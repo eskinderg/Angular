@@ -175,3 +175,48 @@ export const getNoteSuccess = createAction(
   '[NOTE] GET_NOTE_SUCCESS',
   props<{ payload: Note }>()
 )
+
+export const getNoteUpdatedTimeStamp = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP',
+  props<{ payload: Note }>()
+)
+
+export const getNoteUpdatedTimestampSuccess = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const getNoteUpdatedTimestampFail = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_FAIL',
+  props<{ payload: string }>()
+)
+
+export const updatePinOrder = createAction(
+  '[NOTE] UPDATE_PIN_ORDER',
+  props<{ payload: Note }>()
+)
+
+export const updatePinOrderSuccess = createAction(
+  '[NOTE] UPDATE_PIN_ORDER_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const updatePinOrderFail = createAction(
+  '[NOTE] UPDATE_PIN_ORDER_FAIL',
+  props<{ payload: string }>()
+)
+
+export const restoreNote = createAction(
+  '[NOTE] RESTORE_NOTE',
+  props<{ payload: Note }>()
+)
+
+export const restoreNoteSuccess = createAction(
+  '[NOTE] RESTORE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const restoreNoteFail = createAction(
+  '[NOTE] RESTORE_NOTE_FAIL',
+  props<{ payload: string }>()
+)

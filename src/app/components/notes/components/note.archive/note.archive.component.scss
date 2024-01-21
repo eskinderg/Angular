@@ -1,0 +1,110 @@
+.card-img-top {
+  --bs-card-inner-border-radius: 0px;
+  // border-radius:0px;
+}
+
+.btn-close-top {
+
+  position: absolute;
+  right: 10px;
+}
+
+.screen-height {
+  height: 80vh;
+  --scrollbar-thumb-color: var(--bs-primary);
+  --scrollbar-track-color: var(--bs-secondary);
+  --scrollbar-size: 12px;
+  // --scrollbar-hover-size: 50px;
+  --scrollbar-border-radius: 0px;
+  --scrollbar-padding: 0px;
+}
+
+.list-group-item > a {
+  text-decoration:none;
+}
+
+* {
+  color: var(--bs-secondary);
+}
+
+.wrapper {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 1rem);
+  width: 100%;
+  margin: auto;
+  padding-left: 5px;
+  padding: 1rem;
+}
+
+.no-content {
+  width: fit-content;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: fit-content;
+  color: var(--bs-secondary);
+}
+
+.heading {
+  align-self: center;
+  color: var(--bs-secondary);
+}
+
+.note-border {
+  border: 2px solid var(--border);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  display:flex;
+  gap: 1rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  cursor: default;
+}
+
+.numbering {
+  margin-right: auto;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.left {
+  display: flex;
+  gap: 1.5rem;
+  margin-right: auto;
+}
+
+.restore-icon {
+  width: 2rem;
+  fill: var(--b-active-link-color);
+  cursor: pointer;
+
+  :hover {
+    fill: #5aba5a;
+  }
+}
+
+*::-webkit-scrollbar-track {
+   background: var(--scrollbar-track-color);
+}
+
+*::-webkit-scrollbar {
+  width: 0.65rem;
+}
+
+*::-webkit-scrollbar-button {
+  position: absolute;
+  display:none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: 0.5rem;
+}
+

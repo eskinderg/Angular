@@ -7,7 +7,7 @@ import { NotesRoutingModule } from './notes-routing.module';
 import { NotesResolver } from './services/notes.resolver';
 import { DraggableModule } from '../shared/draggable/draggable.module';
 
-import { NgaModule } from '../../theme/nga.module';
+import { NgaModule } from '../../fragments/nga.module';
 
 import { NotesComponent } from './components/notes.component';
 import { NoteComponent } from './components/note.component/note.component';
@@ -18,6 +18,8 @@ import { NoteResolver } from './components/note.component/note.resolve';
 import { DraggableDirective, ResizableTextAreaDirective} from '../shared';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { NoteArchiveComponent } from './components/note.archive/note.archive.component';
 
 @NgModule({
   imports: [
@@ -26,11 +28,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DraggableModule,
     NgaModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgScrollbarModule
   ],
   declarations: [
     NotesComponent,
     NoteComponent,
+    NoteArchiveComponent,
     AddButtonComponent,
     DraggableDirective,
     ResizableTextAreaDirective
