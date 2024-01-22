@@ -23,6 +23,10 @@
   text-decoration:none;
 }
 
+.date-modified {
+  font-size: 0.75rem;
+}
+
 * {
   color: var(--bs-secondary);
 }
@@ -53,14 +57,16 @@
 }
 
 .heading {
-  align-self: center;
+  // align-self: center;
+  margin: 1rem;
   color: var(--bs-secondary);
 }
 
 .note-border {
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   margin: 0.5rem;
   padding: 0.5rem;
+  width:30rem;
   display:flex;
   gap: 1rem;
   align-items: center;
@@ -70,8 +76,10 @@
 
 .numbering {
   margin-right: auto;
+  margin-left: 0.75rem;
   font-size: 1.5rem;
   font-weight: bolder;
+  align-self: center;
 }
 
 .left {
@@ -82,7 +90,7 @@
 
 .restore-icon {
   width: 2rem;
-  fill: var(--b-active-link-color);
+  fill: var(--scrollbar-thumb-color);
   cursor: pointer;
 
   :hover {

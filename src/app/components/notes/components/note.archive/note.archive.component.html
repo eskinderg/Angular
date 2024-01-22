@@ -3,6 +3,7 @@
   @if( (ArchivedNotes | async).length) {
   <div class="heading">
     <h3> Archived Notes</h3>
+    <hr>
   </div>
 
   <div class="notes">
@@ -10,7 +11,7 @@
 
     <div class="note-border">
 
-      <div class="left" [ngbTooltip]="'Last Modified ' + (note.dateModified | dateago)">
+      <div class="left">
         <div class="numbering"> {{$index + 1}} </div>
 
         <div class="note-detail">
@@ -20,19 +21,21 @@
               : '20' : true) : 'Untitled' }} </h6>
           </div>
 
-          <small class="date-modified text-muted"> <strong>Archived On </strong>{{
-            note.archivedDate | date: 'medium' }}</small>
+          <small  [ngbTooltip]="'Last Modified ' + (note.dateModified | dateago)" class="date-modified text-muted"> <strong>Archived On </strong>{{
+            note.dateArchived | date: 'medium' }}</small>
         </div>
       </div>
 
       <div class="restore" (click)="restore(note)">
-        <svg class="restore-icon" id="Layer_1" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
-          xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-          <g id="XMLID_5_">
-            <path id="XMLID_9_"
-              d="M307.2,0H102.4C74.5,0,51.2,23.3,51.2,51.2v409.6c0,27.9,22.3,51.2,51.2,51.2h307.2   c27.9,0,51.2-23.3,51.2-51.2V153.6L307.2,0z M256,409.6c-52.1,0-97.7-31.7-117.3-77.3h43.8c15.8,23.3,42.8,38.2,73.5,38.2   c49.3,0,89.4-40,89.4-89.4s-40-89.4-89.4-89.4c-34.4,0-64.2,19.5-79.1,48.4l41,41H115.4V178.7l33.5,33.5   c22.3-35.4,61.4-58.6,107.1-58.6c70.7,0,128.5,57.7,128.5,128.5S326.7,409.6,256,409.6z" />
-          </g>
-        </svg>
+        <div class="restore-icon">
+          <svg id="Layer_1" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
+            xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <g id="XMLID_5_">
+              <path id="XMLID_9_"
+                d="M307.2,0H102.4C74.5,0,51.2,23.3,51.2,51.2v409.6c0,27.9,22.3,51.2,51.2,51.2h307.2   c27.9,0,51.2-23.3,51.2-51.2V153.6L307.2,0z M256,409.6c-52.1,0-97.7-31.7-117.3-77.3h43.8c15.8,23.3,42.8,38.2,73.5,38.2   c49.3,0,89.4-40,89.4-89.4s-40-89.4-89.4-89.4c-34.4,0-64.2,19.5-79.1,48.4l41,41H115.4V178.7l33.5,33.5   c22.3-35.4,61.4-58.6,107.1-58.6c70.7,0,128.5,57.7,128.5,128.5S326.7,409.6,256,409.6z" />
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
 

@@ -33,7 +33,7 @@ export class NotesApiService {
 
   deleteNote(note: Note) {
     this.store.dispatch(NotesActions.deleteNote({
-      payload: { ...note, archived: true, archivedDate: new Date() }
+      payload: { ...note, archived: true }
     }));
   }
 

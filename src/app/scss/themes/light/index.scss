@@ -16,5 +16,6 @@
   --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
   --note-pin-nofill        : var(--b-secondary);
   --scrollbar-track-color  : #f3f3f3;//rgb(from var(--b-secondary) r g b / 50%);
-  --scrollbar-thumb-color  : #b5b5b5;
+  --scrollbar-thumb-color  : #dbdbdb;
+  --scrollbar-thumb-hover-color  : #7386a4; //rgb(from var(--b-active-link-color) r g b / 65%);
 }

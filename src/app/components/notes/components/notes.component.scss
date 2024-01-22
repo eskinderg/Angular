@@ -134,6 +134,10 @@
   border-radius: 0.5rem;
 }
 
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
 .notes-navigation {
   position:relative;
 }

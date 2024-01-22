@@ -26,19 +26,7 @@ export class NotesComponent {
   ) { }
 
   onAddNote(colour: string) {
-
-    const newNote = new Note({
-      header: 'Untitled',
-      archived: false,
-      text: '',
-      colour: colour,
-      width: 200,
-      height: 150,
-      left: Math.floor(Math.random() * 600),
-      top: Math.floor(Math.random() * 400)
-    });
-
-    this.notesApiService.addNote(newNote);
+    this.notesApiService.addNote(new Note());
   }
 
   updatePinOrder(note: Note) {

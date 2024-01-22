@@ -10,9 +10,9 @@ export class Note {
   dirty: boolean;
   dateCreated: Date;
   dateModified: Date;
+  dateArchived: Date;
   pinOrder: Date;
   archived: boolean;
-  archivedDate: Date;
   active: boolean;
 
   constructor(values: Object = {}) {

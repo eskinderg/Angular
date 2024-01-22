@@ -42,7 +42,7 @@ export class NoteArchiveComponent {
   }
 
   restore(note: Note) {
-    this.notesApiService.updateNote({ ...note, archived: false, archivedDate: null } as Note)
+    this.notesApiService.updateNote({ ...note, archived: false } as Note)
     // this.notesApiService.deleteNote(note);
   }
 

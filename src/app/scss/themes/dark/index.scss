@@ -15,7 +15,9 @@
   --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
   --note-pin-nofill        : #747474;
   --scrollbar-track-color  : #333941;   //rgb(from var(--b-secondary) r g b / 50%);
-  --scrollbar-thumb-color  : rgb(from var(--b-active-link-color) r g b / 65%);
+  --scrollbar-thumb-color  : #4d5460; //rgb(from var(--b-active-link-color) r g b / 65%);
+  --scrollbar-thumb-hover-color  : #7386a4; //rgb(from var(--b-active-link-color) r g b / 65%);
+
 }
 
 .btn-outline-primary {
