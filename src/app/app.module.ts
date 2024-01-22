@@ -39,7 +39,7 @@ import { APP_INIT } from './app.init';
     BrowserAnimationsModule,
     StoreModule.forRoot(appReducer, { metaReducers }),
     EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect]),
-    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({connectInZone: true}),
     OAuthModule.forRoot(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
