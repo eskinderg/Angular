@@ -5,29 +5,32 @@ import { notesReducer, NotesState } from './notes.reducer';
 import { eventsReducer, EventsState } from './events.reducer';
 import { authReducer, AuthState } from './auth.reducer';
 import { profileReducer, PreferenceState } from './preference.reducer';
+import { routerReducer, RouterReducerState } from '@ngrx/router-store';
+import { AppRouterState } from './route.reducer';
 
-export interface AppState {
+export interface IAppState {
   notes      : NotesState;
   events     : EventsState; // append any more states here
   profile    : AuthState;
   preference : PreferenceState;
+  router     : RouterReducerState<AppRouterState>;
 }
 
-export const appReducer: ActionReducerMap<AppState> = {
+export const appReducer: ActionReducerMap<IAppState> = {
   notes      : notesReducer,         // append any additional reducers here
   events     : eventsReducer,
   profile    : authReducer,
-  preference : profileReducer
+  preference : profileReducer,
+  router     : routerReducer
 }
 
-// tslint:disable-next-line:no-shadowed-variable
-export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
-  return function(state: AppState, action: any): AppState {
+export function logger(reducer: ActionReducer<IAppState>): ActionReducer<IAppState> {
+  return function(state: IAppState, action: any): IAppState {
     return reducer(state, action);
   };
 }
 
-export const metaReducers: MetaReducer<AppState>[] = !environment.production
+export const metaReducers: MetaReducer<IAppState>[] = !environment.production
   ? [logger]
   : [];
 

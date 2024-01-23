@@ -18,7 +18,7 @@ export class EventComponent {
   public selectedEvents: Event[] = [];
 
   constructor(
-    private store: Store<fromRoot.AppState>,
+    private store: Store<fromRoot.IAppState>,
     public router: ActivatedRoute,
     public route: Router,
   ) { }

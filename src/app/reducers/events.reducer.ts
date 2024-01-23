@@ -10,7 +10,7 @@ export const initialState: EventsState = {
   events: []
 };
 
-export const eventsReducer = createReducer(
+export const eventsReducer = createReducer<EventsState>(
   initialState,
   on(
     EventsActions.eventsClear,

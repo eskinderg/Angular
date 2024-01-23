@@ -3,7 +3,6 @@ import { Note } from '../../../../models/note';
 import { ActivatedRoute } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
-import { DOCUMENT } from '@angular/common';
 import * as fromNotes from '../../../../reducers/notes.reducer';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
@@ -34,7 +33,7 @@ export class NoteComponent {
 
   handleNoteTextChange(updatedNote: { id: number, newText: string }) {
 
-    this.subscription = this.store.select(fromNotes.getNoteById(updatedNote.id)).subscribe(n => {
+    this.subscription = this.store.select(fromNotes.getNoteCurrentRoute).subscribe(n => {
       this.noteApiService.updateNoteText({ ...n, text: updatedNote.newText } as Note);
     })
 

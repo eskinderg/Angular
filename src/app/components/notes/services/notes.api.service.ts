@@ -9,7 +9,7 @@ import * as fromNotes from '../../../reducers/notes.reducer';
 @Injectable()
 export class NotesApiService {
 
-  constructor(private store: Store<fromRoot.AppState>) { }
+  constructor(private store: Store<fromRoot.IAppState>) { }
 
   getNotes(): Observable<Note[]> {
     return this.store.select(fromNotes.getNotes);

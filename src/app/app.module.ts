@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -27,6 +28,7 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
+import { CustomSerializer } from './init/app.route.serilizer';
 
 @NgModule({
   imports: [
@@ -46,7 +48,10 @@ import { APP_INIT } from './app.init';
     NgbModule,
     !environment.production ? ServiceWorkerModule.register('/ngsw-worker.js') : [],
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
-    AppRoutingModule
+    AppRoutingModule,
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    })
   ],
   declarations: [AppComponent],
   providers: [

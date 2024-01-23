@@ -9,11 +9,11 @@ export const initialState: AuthState = {
   profile: {}
 };
 
-export const authReducer = createReducer (
+export const authReducer = createReducer<AuthState> (
   initialState,
   on(
     AuthActions.loadProfileSuccess,
-    (state, action): AuthState => ({
+    (_state, action): AuthState => ({
       profile: action.profile
     })
   )

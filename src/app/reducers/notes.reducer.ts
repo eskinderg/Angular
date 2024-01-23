@@ -1,6 +1,7 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as NotesActions from '../actions/note.action';
 import { Note } from '../models/note';
+import { AppRouterState, getAppRouterState } from './route.reducer';
 
 export interface NotesState {
   notes: Note[];
@@ -18,7 +19,7 @@ export const initialState: NotesState = {
   }
 };
 
-export const notesReducer = createReducer(initialState,
+export const notesReducer = createReducer<NotesState>(initialState,
   on(
     NotesActions.createNoteSuccess,
     (state, action): NotesState => {
@@ -186,6 +187,16 @@ export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItem
   if (allItems.notes) {
     return allItems.notes.find(item => {
       return item.id === id;
+    });
+  } else {
+    return {};
+  }
+});
+
+export const getNoteCurrentRoute = createSelector(getNoteSTate, getAppRouterState, (state: NotesState, routerState: AppRouterState) => {
+  if (state.notes) {
+    return state.notes.find(item => {
+      return item.id === Number(routerState.params['id'])
     });
   } else {
     return {};

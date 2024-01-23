@@ -12,7 +12,7 @@ import * as AuthActions from '../../actions/auth.action';
 })
 export class UnauthorizedComponent implements OnInit {
 
-  constructor(private location: Location, private service: AuthService, private store: Store<fromRoot.AppState>) { }
+  constructor(private location: Location, private service: AuthService, private store: Store<fromRoot.IAppState>) { }
 
   ngOnInit() {
   }

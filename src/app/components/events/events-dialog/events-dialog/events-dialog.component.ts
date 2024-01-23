@@ -20,7 +20,7 @@ export class EventsDialogComponent {
   constructor(
     private router: Router,
     private activeDialog: NgbActiveModal,
-    private store: Store<fromRoot.AppState>,
+    private store: Store<fromRoot.IAppState>,
     private location: Location
   ) {
     if (this.router.getCurrentNavigation() == null) {

@@ -11,7 +11,7 @@ export const initialState: PreferenceState = {
   isLoggedIn: false
 }
 
-export const profileReducer = createReducer(
+export const profileReducer = createReducer<PreferenceState>(
   initialState,
   on(
     PreferenceActions.toggleDarkModeSuccess,
