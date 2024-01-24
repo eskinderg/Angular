@@ -130,6 +130,26 @@ export class NotesEffect {
       }
       )), { dispatch: false })
 
+  archiveNote = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.archiveNote),
+      switchMap((action) =>
+        this.notesApiService
+          .updateNote(action.payload)
+          .pipe(
+            map(note => NotesActions.archiveNoteSuccess({ payload: note })),
+            catchError(err => of(NotesActions.archiveNoteFail({ payload: err })))
+          ))))
+
+  archiveNoteSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.archiveNoteSuccess),
+      switchMap(() => {
+        this.toastService.showSuccess('Note successfully archived', 'Info');
+        return EMPTY;
+      }
+      )), { dispatch: false })
+
   restoreNote = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.restoreNote),
@@ -140,6 +160,15 @@ export class NotesEffect {
             map(note => NotesActions.restoreNoteSuccess({ payload: note })),
             catchError(err => of(NotesActions.restoreNoteFail({ payload: err })))
           ))))
+
+  restoreNoteSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.restoreNoteSuccess),
+      switchMap(() => {
+        this.toastService.showSuccess('Note successfully restored', 'Info');
+        return EMPTY;
+      }
+      )), { dispatch: false })
 
   constructor(
     private actions$: Actions,

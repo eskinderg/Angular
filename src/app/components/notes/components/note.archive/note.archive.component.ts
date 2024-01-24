@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromNotes from '../../../../reducers/notes.reducer';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotesApiService } from '../../services/notes.api.service';
 import { Note } from 'src/app/models/note';
 
@@ -19,7 +19,8 @@ export class NoteArchiveComponent {
 
   constructor(
     private store: Store<fromNotes.NotesState>,
-    public activeDialog: NgbActiveModal,
+    private oauthService: OAuthService,
+    // public activeDialog: NgbActiveModal,
     private notesApiService: NotesApiService,
     public router: Router
   ) { }
@@ -33,7 +34,7 @@ export class NoteArchiveComponent {
   }
 
   no() {
-    this.activeDialog.close();
+    // this.activeDialog.close();
   }
 
   yes() {
@@ -41,8 +42,16 @@ export class NoteArchiveComponent {
     // this.activeDialog.close('/notes');
   }
 
+  get givenName() {
+    const claims = this.oauthService.getIdentityClaims();
+    if (!claims) {
+      return null;
+    }
+    return claims['given_name'];
+  }
+
   restore(note: Note) {
-    this.notesApiService.restoreArchivedNote({ ...note, archived: false } as Note)
+    this.notesApiService.restoreNote({ ...note, archived: false } as Note)
     // this.notesApiService.deleteNote(note);
   }
 

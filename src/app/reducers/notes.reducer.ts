@@ -8,7 +8,7 @@ export interface NotesState {
   selectedNote: Note;
   opendNote: Note;
   animate: {
-    text: boolean,
+    note: boolean,
     date: boolean
   };
 }
@@ -18,7 +18,7 @@ export const initialState: NotesState = {
   selectedNote: null,
   opendNote: null,
   animate: {
-    text: false,
+    note: false,
     date: false
   }
 };
@@ -27,6 +27,10 @@ export const notesReducer = createReducer<NotesState>(initialState,
   on(
     NotesActions.noteSelect,
     (state, action): NotesState => {
+
+      if (state.selectedNote?.id === action.payload?.id)
+        return { ...state, selectedNote: null, opendNote: null } // Toggle selection
+
       return { ...state, selectedNote: action.payload, opendNote: action.payload }
     }
   ),
@@ -44,7 +48,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
         selectedNote: action.payload,
         opendNote: action.payload,
         animate: {
-          text: true,
+          note: true,
           date: true
         }
       }
@@ -56,7 +60,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
       selectedNote: null,
       opendNote: null,
       animate: {
-        text: true,
+        note: true,
         date: true
       }
     })),
@@ -70,7 +74,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
       selectedNote: action.payload,
       opendNote: null,
       animate: {
-        text: false,
+        note: false,
         date: false
       }
     })),
@@ -84,7 +88,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
 
       const newState: Note[] = dateModifiedNotes(notes);
 
-      return { ...state, notes: pinnedNotes(newState), animate: { ...state.animate, text: false, date: false } };
+      return { ...state, notes: pinnedNotes(newState), animate: { ...state.animate, note: false, date: false } };
     }
   ),
   on(
@@ -95,22 +99,12 @@ export const notesReducer = createReducer<NotesState>(initialState,
         return note.id === action.payload.id ? action.payload : note;  // First update the note text
       })
 
-      // let index = notes.findIndex(note => note.id === action.payload.id);
-
-      // if (!index) {
-      //   return { notes: notes, animate: { text: false, date: false } };
-      // }
-
       const newState: Note[] = [ // move the newly updated note to the top of the list
         notes.find(note => note.id === action.payload.id),
         ...notes.filter(n => n.id !== action.payload.id),
       ];
 
-      // return {...state};
-      // return {...state, notes: state.notes.map(n=>n.id===action.payload.id ? {...n, text: action.payload.text} : n), animate: {...state.animate,text:false,date: false,} };
-      // return {...state, notes: state.notes.map(n=>n.id===action.payload.id ? {...n,text:action.payload.text} : n), animate: {...state.animate,text:false,date: false,} };
-      return { ...state, notes: pinnedNotes(newState), animate: { ...state.animate, text: false, date: false } };
-      // return { notes: pinnedNotes(newState), selected: state.selected, animate: { text: false, date: false } };
+      return { ...state, notes: pinnedNotes(newState), animate: { ...state.animate, note: false, date: false } };
     }
   ),
   on(
@@ -137,7 +131,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
       ];
 
       // return { notes: pinnedNotes(dateModifiedNotes(newState)), selected: action.payload, opendNote: state.opendNote, animate: { text: true, date: false } };
-      return { ...state, notes: pinnedNotes(dateModifiedNotes(newState)), animate: { text: true, date: false } };
+      return { ...state, notes: pinnedNotes(dateModifiedNotes(newState)), animate: { note: true, date: false } };
     }
   ),
   on(
@@ -148,11 +142,12 @@ export const notesReducer = createReducer<NotesState>(initialState,
       selectedNote: action.payload,
       opendNote: state.opendNote,
       animate: {
-        text: state.animate.text,
+        note: state.animate.note,
         date: state.animate.date
       }
     })),
   on(
+    NotesActions.archiveNoteSuccess,
     NotesActions.deleteNoteSuccess,
     (state, action): NotesState => {
 
@@ -161,7 +156,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
       })
 
       return {
-        notes: notes, selectedNote: null, opendNote: null, animate: { text: true, date: true }
+        notes: notes, selectedNote: null, opendNote: null, animate: { note: true, date: true }
       }
 
     })

@@ -16,11 +16,15 @@
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" [routerLink]="['/profile']">Profile</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/notes']">
+        <li ngbDropdown class="nav-item dropdown">
+          <a [ngClass]="{'active': isNotesURLActive}"  (click)="$event.preventDefault()" ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" >
             Notes
             <span *ngIf="NotesCount | async as count" class="badge bg-secondary">{{ count }}</span>
           </a>
+          <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
+            <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes']">My Notes</a></li>
+            <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes/archived']">Archived Notes</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/wizard']">Wizard</a>

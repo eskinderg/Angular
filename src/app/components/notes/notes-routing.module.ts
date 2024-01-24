@@ -10,13 +10,19 @@ import { NoteDialogWrapperComponent } from './components/note-dialog/note-dialog
 import { NoteDetailDialogComponent as NoteDialogComponent } from './components/note-dialog/note-dialog.component';
 import { NoteArchiveComponent } from './components/note.archive/note.archive.component';
 import { NoteArchiveWrapperComponent } from './components/note.archive/note-archive-wrapper/note-archive-wrapper.component';
+import { MynotesComponent } from './components/mynotes/mynotes.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: NotesComponent,
+        pathMatch: 'full',
+        redirectTo: 'mynotes',
+      },
+      {
+        path: 'mynotes',
+        component: MynotesComponent,
         canActivate: [AuthGuardService],
         resolve: {
           // notes: NotesResolver
@@ -36,16 +42,30 @@ import { NoteArchiveWrapperComponent } from './components/note.archive/note-arch
               component: NoteDialogComponent
             }
           },
-          {
-            path: 'archive',
-            pathMatch: "full",
-            // outlet: 'dialog',
-            component: NoteDialogWrapperComponent,
-            data: {
-              component: NoteArchiveComponent
-            }
-          },
+          // {
+          //   path: 'archive',
+          //   pathMatch: "full",
+          //   // outlet: 'dialog',
+          //   component: NoteDialogWrapperComponent,
+          //   data: {
+          //     component: NoteArchiveComponent
+          //   }
+          // },
+          // {
+          //   path: 'archived',
+          //   pathMatch: "full",
+          //   // outlet: 'dialog',
+          //   component: NoteDialogWrapperComponent,
+          //   data: {
+          //     component: NoteArchiveComponent
+          //   }
+          // }
         ]
+      },
+      {
+        path: 'archived',
+        pathMatch: "full",
+        component: NoteArchiveComponent
       }
     ])
   ],
