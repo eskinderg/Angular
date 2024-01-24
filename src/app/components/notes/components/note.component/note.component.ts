@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NotesApiService } from '../../services/notes.api.service';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
 import * as fromNotes from '../../../../reducers/notes.reducer';
+import * as NotesActions from '../../../../actions/note.action';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+// import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -25,19 +26,25 @@ export class NoteComponent {
   @Output() changeNoteSize = new EventEmitter(false);
   @Output() deleteNote = new EventEmitter(false);
 
-  subscription: Subscription;
+  // subscription: Subscription;
 
   constructor(private store: Store<fromNotes.NotesState>, private route: ActivatedRoute, private noteApiService: NotesApiService) {
     this.note = this.route.snapshot.data['note']
   }
 
-  handleNoteTextChange(updatedNote: { id: number, newText: string }) {
+  handleNoteTextChange(note: Note) {
 
-    this.subscription = this.store.select(fromNotes.getNoteCurrentRoute).subscribe(n => {
-      this.noteApiService.updateNoteText({ ...n, text: updatedNote.newText } as Note);
-    })
+    // this.subscription = this.store.select(fromNotes.getNoteCurrentRoute).subscribe(n => {
+    this.noteApiService.updateNoteText(note);
+    this.changeNoteText.emit(note)
+    // })
+    // alert(note.text)
 
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+  }
+
+  onUpdatOpendNote(note: Note) {
+    this.store.dispatch(NotesActions.updateOpendNote({ payload: note }))
   }
 
   underline(e) {

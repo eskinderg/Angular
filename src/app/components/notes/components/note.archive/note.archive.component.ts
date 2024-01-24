@@ -19,7 +19,7 @@ export class NoteArchiveComponent {
 
   constructor(
     private store: Store<fromNotes.NotesState>,
-    // public activeDialog: NgbActiveModal,
+    public activeDialog: NgbActiveModal,
     private notesApiService: NotesApiService,
     public router: Router
   ) { }
@@ -33,7 +33,7 @@ export class NoteArchiveComponent {
   }
 
   no() {
-    // this.activeDialog.close();
+    this.activeDialog.close();
   }
 
   yes() {
@@ -42,7 +42,7 @@ export class NoteArchiveComponent {
   }
 
   restore(note: Note) {
-    this.notesApiService.updateNote({ ...note, archived: false } as Note)
+    this.notesApiService.restoreArchivedNote({ ...note, archived: false } as Note)
     // this.notesApiService.deleteNote(note);
   }
 

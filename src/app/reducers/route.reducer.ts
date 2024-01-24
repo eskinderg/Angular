@@ -6,7 +6,7 @@ export interface AppRouterState {
   url         : string;
   params      : Params;
   queryParams : Params;
-  data        : Data;
+  // data        : Data;
 }
 
 export const routerState = createFeatureSelector<RouterReducerState<AppRouterState>>('router');

@@ -31,6 +31,10 @@ export class NotesApiService {
     return this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
+  restoreArchivedNote(note: Note) {
+    return this.store.dispatch(NotesActions.restoreNote({ payload: note }));
+  }
+
   deleteNote(note: Note) {
     this.store.dispatch(NotesActions.deleteNote({
       payload: { ...note, archived: true }

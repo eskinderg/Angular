@@ -1,8 +1,9 @@
 <div class="text-area-wrapper">
   <div class="textArea">
     <!-- <app-ba-card header="{{note?.header || '&nbsp;'}} " [margin]=0 [padding]=0> -->
-    <div [innerHTML]="note?.text" class="p-3 textInput" [spellcheck]=true contenteditable="true" #textarea tabindex="1">
-    </div>
+    <div [innerHTML]="note.text" class="p-3 textInput" [spellcheck]=true contenteditable="true" #textarea tabindex="1">
+    <!-- <div contenteditable="true" #textarea class="p-3 textInput" [textContent]="note?.text">{{note?.text}} </div>` -->
     <!-- </app-ba-card> -->
+    {{ note.text}}
   </div>
 </div>

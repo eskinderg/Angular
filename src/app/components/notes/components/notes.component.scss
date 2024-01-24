@@ -147,6 +147,7 @@
   position: absolute;
   bottom: 0.25rem;
   padding-left: 0.75rem;
+  z-index: 0;
 }
 
 .note-wrapper {
@@ -218,12 +219,19 @@
   padding-left: 0.75rem;
 }
 
+.active-note {
+  // color: var(--bs-primary) ! important;
+  // outline: 2px solid var(--bs-primary);
+  background: var(--active-list-link);
+}
+
 .item {
   cursor:pointer;
   pointer-events: none;
   position: absolute;
   top: 0.5rem;
   left: 0.75rem;
+  z-index: 0;
 }
 
 .active-text {
@@ -282,15 +290,19 @@
   }
 }
 
+
 .archive-note-button-icon {
 
   fill: rgb(from var(--bs-warning)r g b /55%);
+}
 
-  :hover {
+.del-button:hover {
+  .archive-note-button-icon {
     fill:var(--bs-warning);
   }
-
 }
+
+
 .note-text {
   // font-size: 1rem;
   // color: var(--bs-card-cap-color);

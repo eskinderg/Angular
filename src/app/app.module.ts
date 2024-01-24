@@ -29,6 +29,7 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
 import { CustomSerializer } from './init/app.route.serilizer';
+import { RouterEffect } from './effects/router.effect';
 
 @NgModule({
   imports: [
@@ -40,7 +41,7 @@ import { CustomSerializer } from './init/app.route.serilizer';
     AuthorizationModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(appReducer, { metaReducers }),
-    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect]),
+    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect]),
     StoreDevtoolsModule.instrument({connectInZone: true}),
     OAuthModule.forRoot(),
     NgaModule.forRoot(),

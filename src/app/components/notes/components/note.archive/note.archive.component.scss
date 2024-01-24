@@ -23,16 +23,22 @@
   text-decoration:none;
 }
 
+.notes {
+  position: relative;
+  height: 75vh;
+  overflow-y: auto;
+}
+
 .date-modified {
   font-size: 0.75rem;
 }
 
 * {
-  color: var(--bs-secondary);
+  // color: var(--bs-secondary);
 }
 
 .wrapper {
-  position: absolute;
+  position: relative;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
@@ -66,7 +72,7 @@
   border: 1px solid var(--border);
   margin: 0.5rem;
   padding: 0.5rem;
-  width:30rem;
+  // width:30rem;
   display:flex;
   gap: 1rem;
   align-items: center;

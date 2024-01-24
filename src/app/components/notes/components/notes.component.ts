@@ -6,6 +6,7 @@ import * as fromNotes from '../../../reducers/notes.reducer';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NoteComponent } from './note.component/note.component';
+import { noteSelect } from 'src/app/actions';
 
 @Component({
   selector: 'app-notes',
@@ -29,6 +30,11 @@ export class NotesComponent {
     this.notesApiService.addNote(new Note());
   }
 
+  onChangeNoteText( note: Note) {
+    // alert(note.text)
+    // this.notesApiService.changeNoteText({ ...note, text: newText });
+  }
+
   updatePinOrder(note: Note) {
     this.notesApiService.updateNotePinOrder(note);
   }
@@ -38,11 +44,18 @@ export class NotesComponent {
       state: { note: note },
       relativeTo: this.r.parent, replaceUrl: false
     };
-    this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
+    // this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
+    // this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
+        this.route.navigate(['/notes/dialog'], navigationExtras);
   }
 
-  onNoteClick(_note: Note) {
-    // this.route.navigate(['notes', note.id]);
+  // onNoteClick(_note: Note) {
+  //   // this.route.navigate(['notes', note.id]);
+  // }
+
+  selectNote(note: Note) {
+    // alert(note.text)
+    this.store.dispatch(noteSelect({ payload: note }))
   }
 
   archivedNotes() {
@@ -50,17 +63,13 @@ export class NotesComponent {
     this.route.navigateByUrl('notes/archive');
   }
 
-  onChangeNoteText(newText: any, note: Note) {
-    this.notesApiService.changeNoteText({ ...note, text: newText });
-  }
+  // onChangeNotePosition({ top, left }, note: Note) {
+  //   this.notesApiService.changeNotePosition({ ...note, left: left, top: top });
+  // }
 
-  onChangeNotePosition({ top, left }, note: Note) {
-    this.notesApiService.changeNotePosition({ ...note, left: left, top: top });
-  }
-
-  onChangeNoteSize({ height, width }, note: Note) {
-    this.notesApiService.changeNoteSize({ ...note, width: width, height: height });
-  }
+  // onChangeNoteSize({ height, width }, note: Note) {
+  //   this.notesApiService.changeNoteSize({ ...note, width: width, height: height });
+  // }
 
   get Notes() {
     return this.store.select(fromNotes.getNotes);
@@ -73,4 +82,13 @@ export class NotesComponent {
   get NotesCount() {
     return this.store.select(fromNotes.getNotesLength);
   }
+
+  get SelectedNote() {
+    return this.store.select(fromNotes.getSelectedNote);
+  }
+
+  get OpendNote() {
+    return this.store.select(fromNotes.getOpendNote);
+  }
+
 }

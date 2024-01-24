@@ -21,12 +21,12 @@ export class NotesEffect {
             catchError(err => of(NotesActions.createNoteFail({ payload: err })))
           ))))
 
-  routeToNewNote = createEffect(() => this.actions$.pipe(
-    ofType(NotesActions.createNoteSuccess),
-    switchMap((action) =>
-      this.router.navigate([`/notes/` + action.payload.id])
-    )
-  ), { dispatch: false })
+  // routeToNewNote = createEffect(() => this.actions$.pipe(
+  //   ofType(NotesActions.createNoteSuccess),
+  //   switchMap((action) =>
+  //     this.router.navigate([`/notes/` + action.payload.id])
+  //   )
+  // ), { dispatch: false })
 
   updateNoteText = createEffect(() =>
     this.actions$.pipe(

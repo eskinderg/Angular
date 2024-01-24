@@ -22,37 +22,27 @@ import { NoteArchiveWrapperComponent } from './components/note.archive/note-arch
           // notes: NotesResolver
         },
         children: [
-          {
-            path: 'archive',
-            pathMatch: "full",
-            outlet: 'dialog',
-            component: NoteArchiveWrapperComponent,
-            data: {
-              component: NoteArchiveComponent
-            }
-          },
-          {
-            path: 'archive',
-            pathMatch: "full",
-            component: NoteArchiveComponent,
-          },
-          {
-            path: ':id',
-            component: NoteComponent,
-            data: {
-              alwaysRefresh: true
-            },
-            resolve: {
-              note: NoteResolver
-            }
-          },
+          // {
+          //   path: 'archive',
+          //   pathMatch: "full",
+          //   component: NoteArchiveComponent,
+          // },
           {
             path: 'dialog',
             pathMatch: "full",
-            outlet: 'dialog',
+            // outlet: 'dialog',
             component: NoteDialogWrapperComponent,
             data: {
               component: NoteDialogComponent
+            }
+          },
+          {
+            path: 'archive',
+            pathMatch: "full",
+            // outlet: 'dialog',
+            component: NoteDialogWrapperComponent,
+            data: {
+              component: NoteArchiveComponent
             }
           },
         ]

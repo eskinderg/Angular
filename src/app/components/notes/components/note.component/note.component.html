@@ -16,6 +16,10 @@
 		c0-18.617,15.147-33.766,33.766-33.766c18.619,0,33.766,15.148,33.766,33.766C242.256,122.755,227.107,137.901,208.49,137.901z" />
   </g>
 </svg>
-<app-textarea-expanded *ngIf="note" #notediv [(ngModel)]="note" (onSelectionChange)="selectionChange($event)"
-  (onTextChanged)="handleNoteTextChange($event)">
+<!-- <app-textarea-expanded *ngIf="note" [note]="note" #notediv [(ngModel)]="note" (onSelectionChange)="selectionChange($event)" -->
+<app-textarea-expanded *ngIf="note" [note]="note" #notediv  (onSelectionChange)="selectionChange($event)"
+  (onTextChanged)="handleNoteTextChange($event)"
+  (onUpdatedOpendNote)="onUpdatOpendNote($event)"
+
+>
 </app-textarea-expanded>

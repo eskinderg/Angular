@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
@@ -16,16 +16,18 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   styleUrls: ['textAreaExpanded.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, AfterViewInit {
+export class TextareaExpandedComponent implements OnDestroy, OnInit, AfterViewInit {
 
-  note: Note;
+  @Input() note: Note;
   subscription: Subscription | undefined;
 
   @ViewChild('textarea', { static: true }) public textarea: ElementRef;
   @Output() onTextChanged = new EventEmitter(false);
+  @Output() onUpdatedOpendNote = new EventEmitter(false);
+
   @Output() onSelectionChange = new EventEmitter<Selection>(false);
 
-  constructor(private renderer: Renderer2) { }
+  constructor() { }
 
   ngOnInit() {
 
@@ -35,32 +37,10 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
         debounceTime(450),
         distinctUntilChanged(),
         tap(() => {
-          this.onTextChanged.emit({ id: this.note.id, newText: this.textarea.nativeElement.innerHTML });
+          this.onTextChanged.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
         })
       )
       .subscribe();
-  }
-
-  writeValue(_value: Note): void {
-    if (_value) {
-      this.note = _value
-      const div = this.textarea.nativeElement;
-      this.renderer.setProperty(div, 'innerHTML', _value.text);
-    }
-  }
-
-  registerOnChange(fn: any): void {
-    // this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    // this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    const div = this.textarea.nativeElement;
-    const action = isDisabled ? 'addClass' : 'removeClass';
-    this.renderer[action](div, 'disabled');
   }
 
   ngAfterViewInit(): void {
@@ -72,9 +52,43 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
   }
 
   @HostListener("focusout", ["$event.target.value"])
-  onBlur(value) {
-    this.onSelectionChange.emit(window.getSelection())
-    this.textarea.nativeElement.focus()
+  onFocusOut(_value: any) {
+    this.onUpdatedOpendNote.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
+    // this.onSelectionChange.emit(window.getSelection())
+    // this.textarea.nativeElement.focus()
   }
 
 }
+
+// @HostListener("focusout", ["$event.target.value"])
+// onBlur(_value: any) {
+// this.onUpdatedOpendNote.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
+// this.onSelectionChange.emit(window.getSelection())
+// this.textarea.nativeElement.focus()
+// }
+
+
+// constructor(private renderer: Renderer2) { }
+
+// writeValue(_value: Note): void {
+//   if (_value) {
+//     // this.note = { ..._value }
+//     this.note =  Object.assign({}, _value);
+//     const div = this.textarea.nativeElement;
+//     this.renderer.setProperty(div, 'innerHTML', this.note.text);
+//   }
+// }
+
+// registerOnChange(fn: any): void {
+//   // this.onChange = fn;
+// }
+
+// registerOnTouched(fn: any): void {
+//   // this.onTouched = fn;
+// }
+
+// setDisabledState(isDisabled: boolean): void {
+//   const div = this.textarea.nativeElement;
+//   const action = isDisabled ? 'addClass' : 'removeClass';
+//   this.renderer[action](div, 'disabled');
+// }

@@ -220,3 +220,13 @@ export const restoreNoteFail = createAction(
   '[NOTE] RESTORE_NOTE_FAIL',
   props<{ payload: string }>()
 )
+
+export const noteSelect = createAction(
+  '[NOTE] SELECT',
+  props<{ payload: Note }>()
+)
+
+export const updateOpendNote = createAction(
+  '[NOTE] UPDATE_OPEND_NOTE',
+  props<{ payload: Note }>()
+)
