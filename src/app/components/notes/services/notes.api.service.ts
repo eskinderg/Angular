@@ -27,12 +27,22 @@ export class NotesApiService {
     return this.store.dispatch(NotesActions.updateNote({ payload: note }));
   }
 
+  restoreNote(note: Note) {
+    return this.store.dispatch(NotesActions.restoreNote({ payload: note }));
+  }
+
   updateNoteText(note: Note) {
     return this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
   restoreArchivedNote(note: Note) {
     return this.store.dispatch(NotesActions.restoreNote({ payload: note }));
+  }
+
+  archiveNote(note: Note) {
+    this.store.dispatch(NotesActions.archiveNote({
+      payload: { ...note, archived: true }
+    }));
   }
 
   deleteNote(note: Note) {

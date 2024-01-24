@@ -1,3 +1,8 @@
+:host {
+  display:block;
+  flex: 1 1 auto;
+}
+
 .card-img-top {
   --bs-card-inner-border-radius: 0px;
   // border-radius:0px;
@@ -23,31 +28,30 @@
   text-decoration:none;
 }
 
-.notes {
-  position: relative;
-  height: 75vh;
-  overflow-y: auto;
-}
-
 .date-modified {
   font-size: 0.75rem;
 }
 
 * {
-  // color: var(--bs-secondary);
+  color: var(--bs-secondary);
 }
 
 .wrapper {
+// border: 6px solid red;
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 1rem);
+  height: 100%;
   width: 100%;
   margin: auto;
   padding-left: 5px;
   padding: 1rem;
+}
+
+.notes {
+  position: absolute;
 }
 
 .no-content {
@@ -72,7 +76,7 @@
   border: 1px solid var(--border);
   margin: 0.5rem;
   padding: 0.5rem;
-  // width:30rem;
+  width:30rem;
   display:flex;
   gap: 1rem;
   align-items: center;

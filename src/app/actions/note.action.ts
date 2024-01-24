@@ -221,6 +221,21 @@ export const restoreNoteFail = createAction(
   props<{ payload: string }>()
 )
 
+export const archiveNote = createAction(
+  '[NOTE] ARCHIVE_NOTE',
+  props<{ payload: Note }>()
+)
+
+export const archiveNoteSuccess = createAction(
+  '[NOTE] ARCHIVE_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const archiveNoteFail = createAction(
+  '[NOTE] ARCHIVE_NOTE_FAIL',
+  props<{ payload: string }>()
+)
+
 export const noteSelect = createAction(
   '[NOTE] SELECT',
   props<{ payload: Note }>()

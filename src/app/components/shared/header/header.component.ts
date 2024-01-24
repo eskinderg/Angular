@@ -7,10 +7,15 @@ import * as fromNotes from '../../../reducers/notes.reducer';
 import { count, takeUntil } from 'rxjs/operators';
 import { fromEvent, Observable } from 'rxjs';
 import * as fromProfile from '../../../reducers/preference.reducer';
+import { Router } from '@angular/router';
 
-/**
- * This class represents the Header Component.
- */
+export declare interface IsActiveMatchOptions {
+  fragment: 'exact' | 'ignored';
+  matrixParams: 'exact' | 'subset' | 'ignored';
+  paths: 'exact' | 'subset';
+  queryParams: 'exact' | 'subset' | 'ignored';
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -23,6 +28,12 @@ export class HeaderComponent implements OnInit {
   public isExpanded = false;
   _user: any;
 
+  routerLinkActiveOptions: IsActiveMatchOptions = {
+    matrixParams: 'ignored',
+    queryParams: 'subset',
+    fragment: 'ignored',
+    paths: 'subset'
+  };
   // name: any;
   // claims: any
   // public ItemsCount;
@@ -30,7 +41,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private oauthService: OAuthService,
     private eventStore: Store<fromEvents.EventsState>,
-    private noteStore: Store<fromNotes.NotesState>
+    private noteStore: Store<fromNotes.NotesState>,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,6 +59,10 @@ export class HeaderComponent implements OnInit {
     // this.service.mgr.events.addUserLoaded(function (loadedUser) {
     //   this._user = loadedUser;
     // });
+  }
+
+  get isNotesURLActive() {
+    return this.router.isActive('/notes', this.routerLinkActiveOptions)
   }
 
   get EventsCount() {
