@@ -1,7 +1,7 @@
 import { ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
-import { notesReducer, NotesState } from './notes.reducer';
+import { notesReducer, NotesState } from './note.reducer';
 import { eventsReducer, EventsState } from './events.reducer';
 import { authReducer, AuthState } from './auth.reducer';
 import { profileReducer, PreferenceState } from './preference.reducer';

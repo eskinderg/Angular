@@ -1,12 +1,9 @@
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { NotesApiService } from '../services/notes.api.service';
+import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
-import * as fromNotes from '../../../reducers/notes.reducer';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NoteComponent } from './note.component/note.component';
-import { noteSelect } from 'src/app/actions';
 
 @Component({
   selector: 'app-notes',
@@ -19,76 +16,50 @@ export class NotesComponent {
 
   @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
-  constructor(
-    private notesApiService: NotesApiService,
-    private store: Store<fromNotes.NotesState>,
-    public route: Router,
-    public r: ActivatedRoute
-  ) { }
+  constructor( public notesApiService: NoteApiService, public route: Router) { }
 
-  onAddNote(colour: string) {
-    this.notesApiService.addNote(new Note());
+  onChangeNoteText(note: Note) {
+    this.notesApiService.updateNoteText(note);
   }
 
-  onChangeNoteText( note: Note) {
-    // alert(note.text)
-    // this.notesApiService.changeNoteText({ ...note, text: newText });
+  selectNote(note: Note) {
+    this.notesApiService.selectNote(note);
+  }
+
+  createNewNote(_colour: string) {
+    this.notesApiService.createNewNote(new Note());
   }
 
   updatePinOrder(note: Note) {
     this.notesApiService.updateNotePinOrder(note);
   }
 
-  onNoteDelete(note: Note) {
-    const navigationExtras: NavigationExtras = {
-      state: { note: note },
-      relativeTo: this.r.parent, replaceUrl: false
-    };
-    // this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
-    // this.route.navigate([{ outlets: { 'dialog': ['dialog'] } }], navigationExtras);
-        this.route.navigate(['/notes/dialog'], navigationExtras);
+  onArchiveNote(note: Note) {
+    this.notesApiService.archiveNote(note);
   }
 
-  // onNoteClick(_note: Note) {
-  //   // this.route.navigate(['notes', note.id]);
-  // }
-
-  selectNote(note: Note) {
-    // alert(note.text)
-    this.store.dispatch(noteSelect({ payload: note }))
+  routeToArchivedNotes() {
+    this.route.navigateByUrl('notes/archived');
   }
-
-  archivedNotes() {
-    // this.route.navigate([{ outlets: { 'dialog': ['archive'] } }], {relativeTo: this.r.parent, replaceUrl: false});
-    this.route.navigateByUrl('notes/archive');
-  }
-
-  // onChangeNotePosition({ top, left }, note: Note) {
-  //   this.notesApiService.changeNotePosition({ ...note, left: left, top: top });
-  // }
-
-  // onChangeNoteSize({ height, width }, note: Note) {
-  //   this.notesApiService.changeNoteSize({ ...note, width: width, height: height });
-  // }
 
   get Notes() {
-    return this.store.select(fromNotes.getNotes);
+    return this.notesApiService.Notes;
   }
 
   get Animate() {
-    return this.store.select(fromNotes.getNotesAnimate);
+    return this.notesApiService.NoteAnimateState;
   }
 
   get NotesCount() {
-    return this.store.select(fromNotes.getNotesLength);
+    return this.notesApiService.NotesLength;
   }
 
   get SelectedNote() {
-    return this.store.select(fromNotes.getSelectedNote);
+    return this.notesApiService.SelectedNote;
   }
 
   get OpendNote() {
-    return this.store.select(fromNotes.getOpendNote);
+    return this.notesApiService.OpendNote;
   }
 
 }

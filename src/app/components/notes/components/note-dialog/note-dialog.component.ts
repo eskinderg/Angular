@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Note } from 'src/app/models/note';
-import { NotesApiService } from '../../services/notes.api.service';
+import { NoteApiService } from '../../services/notes.api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class NoteDetailDialogComponent implements OnInit {
 
   constructor(
     public activeDialog: NgbActiveModal,
-    private notesApiService: NotesApiService,
+    private notesApiService: NoteApiService,
     public router: Router
   ) { }
 

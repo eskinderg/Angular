@@ -40,7 +40,7 @@ export class NotesDataService {
     .delete(API_ROOT + note.id)
     .pipe
     (
-      map(response => {
+      map(_response => {
         return new Note({...note});
       })
     )

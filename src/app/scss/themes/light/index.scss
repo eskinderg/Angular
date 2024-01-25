@@ -3,19 +3,22 @@
 @import "../../../../../node_modules/bootstrap/scss/bootstrap";
 
 :root {
-  --secondary              : var(--bs-secondary);
-  --b-secondary            : #dcdcdc;
-  --b-active-link-color    : var(--bs-primary);
-  --border                 : #dadada80;
-  --del-button-note        : #dcdcdc;
-  --active-list-link       : #edf0f7;
-  --active-list-link-hover : #fafafa;
-  --active-list-link-border-color: #adc7f5;
-  --list-link-hover        : #f5f5f5;
-  --text-area-border       : #dcdcdc;
-  --note-pin-fill          : rgb(from var(--b-active-link-color) r g b / 65%);
-  --note-pin-nofill        : var(--b-secondary);
-  --scrollbar-track-color  : #f3f3f3;//rgb(from var(--b-secondary) r g b / 50%);
-  --scrollbar-thumb-color  : #dbdbdb;
-  --scrollbar-thumb-hover-color  : #7386a4; //rgb(from var(--b-active-link-color) r g b / 65%);
+  --secondary                            : var(--bs-secondary);
+  --b-secondary                          : #dcdcdc;
+  --b-active-link-color                  : var(--bs-primary);
+  --border                               : #dadada80;
+  --del-button-note                      : #dcdcdc;
+  --active-list-link                     : #edf0f7;
+  --active-list-link-hover               : #fafafa;
+  --active-list-link-border-color        : #cfddf7;
+  --selected-note-list-item-border-color : #e6e6e6;
+  --selected-note-list-item-bg-color     : #f8f9fa;
+  --list-link-hover                      : #f5f5f5;
+  --text-area-border                     : #dcdcdc;
+  --note-pin-fill                        : rgb(from var(--b-active-link-color) r g b / 65%);
+  --note-pin-nofill                      : var(--b-secondary);
+  --scrollbar-track-color                : #f3f3f3;//rgb(from var(--b-secondary) r g b / 50%);
+  --scrollbar-thumb-color                : #dbdbdb;
+  --scrollbar-thumb-hover-color          : #7386a4; //rgb(from var(--b-active-link-color) r g b / 65%);
+  --b-note-bg-color                      : #f8f9fa;
 }

@@ -66,7 +66,16 @@ export class PreferenceEffect {
     this.actions$.pipe(
       ofType(logIn),
       switchMap(() => {
-        this.store.dispatch(logInSuccess())
+        this.store.dispatch(fetchNotes())
+        this.store.dispatch(fetchEvents())
+        return EMPTY;
+      })
+    ), { dispatch: false });
+
+  logInSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(logInSuccess),
+      switchMap(() => {
         this.store.dispatch(fetchNotes())
         this.store.dispatch(fetchEvents())
         return EMPTY;

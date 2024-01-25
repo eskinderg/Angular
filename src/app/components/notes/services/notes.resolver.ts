@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { NotesApiService } from './notes.api.service';
+import { NoteApiService } from './notes.api.service';
 import { Note } from '../../../models/note';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class NotesResolver  {
 
-  constructor(private notesApiService: NotesApiService) {}
+  constructor(private notesApiService: NoteApiService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Note[] | Observable<Note[]> | Promise<Note[]> {
     throw new Error('Method not implemented.');
   }
