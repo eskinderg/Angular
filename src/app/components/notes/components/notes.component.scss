@@ -1,0 +1,195 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  height: 100%;
+  position: relative;
+}
+
+.note-div {
+  height:100%;
+  flex: 1 1 auto;
+}
+
+.note-select-info {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: var(--secondary);
+
+  #icon-44-note-text {
+    fill: var(--active-list-link);
+  }
+}
+
+.list-notes {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  // width: calc(100% - 50px);
+  // --hh: calc(100%);
+  // width: var(--hh);
+  // position: absolute;
+  // top:0px;
+  // left:0px;
+  // right:0px;
+  // bottom:0px;
+
+  // width: calc(100% - 50px);
+  // width: 100%;
+  width: 24.5vw;
+
+}
+
+.note-menu {
+  position:relative;
+  flex: 0 0 auto;
+  border-right: 1px solid var(--border);
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  font-size: 1.25rem;
+  color: var(--secondary);
+  z-index:2;
+  background: var(--bs-body-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.note-menu-fill {
+  height: 3rem;
+}
+
+.no-content {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  margin:auto;
+  color: var(--bs-secondary);
+}
+
+.main-note-list {
+  // position: absolute;
+  // margin-top:3rem;
+  flex: 1 1 3.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  // scrollbar-gutter: auto;
+  border-right: 1px solid var(--border);
+  // border: 4px solid red;
+}
+
+// .main-note-list::-webkit-scrollbar {
+  // height: 16px;
+  // overflow: visible;
+  // width: 16px;
+  // display: none;
+// }
+
+.note-outlet {
+  position: relative;
+}
+
+*::-webkit-scrollbar-track {
+   background: var(--scrollbar-track-color);
+  // margin-top: 3rem;
+ // background: red;
+}
+
+// *::-webkit-scrollbar-track-piece:end {
+// }
+
+*::-webkit-scrollbar {
+  width: 0.65rem;
+}
+
+*::-webkit-scrollbar-button {
+  // border: 5px solid red;
+  position: absolute;
+  display:none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  // border: 1px solid #ffffff40;
+  border-radius: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+.notes-navigation {
+  position:relative;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  // border: 10px solid green;
+  box-sizing: border-box;
+}
+
+.note-list-item {
+  margin-top: 0.75rem;
+  margin-bottom: 2rem;
+  padding-left: 0.75rem;
+}
+
+.active-text {
+  color: var(--b-active-link-color) ! important;
+}
+
+.active {
+  color: var(--bs-list-group-action-hover-color) ! important;
+  text-decoration: none;
+  background-color: var(--active-list-link);
+  border: 1px solid var(--active-list-link-border-color)
+}
+
+.menu-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-bottom: 2px solid var(--border);
+  padding: 1rem;
+}
+
+.add-note-icon {
+  position: absolute;
+  right: 1rem;
+  top: 0.5rem;
+  bottom: 0;
+
+  fill: rgb(from var(--b-active-link-color) r g b / 65%);
+  cursor: pointer;
+  z-index: 100;
+
+  :hover {
+    fill: #5aba5a;
+  }
+}
+
+.archive-note-icon {
+  fill: var(--b-active-link-color);
+  cursor: pointer;
+  position: absolute;
+  top: 0.85rem;
+  right: 4rem;
+  bottom: 0;
+
+  :hover {
+    color: var(--list-link-hover);
+  }
+}

@@ -2,64 +2,61 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Note } from '../../../models/note';
-import * as NotesActions from '../../../actions/note.action';
+import * as NotesActions from '../../../actions/note.actions';
 import * as fromRoot from '../../../reducers';
-import * as fromNotes from '../../../reducers/notes.reducer';
+import * as fromNotes from '../../../reducers/note.reducer';
 
 @Injectable()
-export class NotesApiService {
+export class NoteApiService {
 
   constructor(private store: Store<fromRoot.IAppState>) { }
 
-  getNotes(): Observable<Note[]> {
+  get Notes(): Observable<Note[]> {
     return this.store.select(fromNotes.getNotes);
   }
 
-  getNote(id: number): Observable<any> {
+  getNoteById(id: number): Observable<Note> {
     return this.store.select(fromNotes.getNoteById(id));
   }
 
-  addNote(newNote: Note) {
-    return this.store.dispatch(NotesActions.createNote({ payload: newNote }));
+  selectNote(note: Note): void {
+    this.store.dispatch(NotesActions.noteSelect({ payload: note }))
   }
 
-  updateNote(note: Note) {
-    return this.store.dispatch(NotesActions.updateNote({ payload: note }));
+  createNewNote(newNote: Note): void {
+    this.store.dispatch(NotesActions.createNote({ payload: newNote }));
   }
 
-  restoreNote(note: Note) {
-    return this.store.dispatch(NotesActions.restoreNote({ payload: note }));
+  updateNote(note: Note): void {
+    this.store.dispatch(NotesActions.updateNote({ payload: note }));
   }
 
-  updateNoteText(note: Note) {
-    return this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
+  restoreNote(note: Note): void {
+    this.store.dispatch(NotesActions.restoreNote({ payload: note }));
   }
 
-  restoreArchivedNote(note: Note) {
-    return this.store.dispatch(NotesActions.restoreNote({ payload: note }));
-  }
-
-  archiveNote(note: Note) {
-    this.store.dispatch(NotesActions.archiveNote({
-      payload: { ...note, archived: true }
-    }));
-  }
-
-  deleteNote(note: Note) {
-    this.store.dispatch(NotesActions.deleteNote({
-      payload: { ...note, archived: true }
-    }));
-  }
-
-  changeNoteText(note: Note) {
+  updateNoteText(note: Note): void {
     this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
   }
 
-  updateNotePinOrder(note: Note) {
-    if (note.pinOrder)
-      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: null } }));
-    else
-      this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: new Date() } }));
+  restoreArchivedNote(note: Note): void {
+    this.store.dispatch(NotesActions.restoreNote({ payload: note }));
+  }
+
+  archiveNote(note: Note): void {
+    this.store.dispatch(NotesActions.archiveNote({ payload: { ...note, archived: true } }));
+  }
+
+  deleteNote(note: Note): void {
+    this.store.dispatch(NotesActions.deleteNote({ payload: { ...note, archived: true } }));
+  }
+
+  changeNoteText(note: Note): void {
+    this.store.dispatch(NotesActions.updateNoteText({ payload: note }));
+  }
+
+  updateNotePinOrder(note: Note): void {
+    this.store.dispatch(NotesActions.updatePinOrder({ payload: { ...note, pinOrder: note.pinOrder ? null : new Date() } }));
   }
 
   changeNotePosition(note: Note): void {
@@ -69,5 +66,24 @@ export class NotesApiService {
   changeNoteSize(note: Note): void {
     this.store.dispatch(NotesActions.updateNoteSize({ payload: note }));
   }
+
+  get NoteAnimateState() {
+    return this.store.select(fromNotes.getNotesAnimate);
+  }
+
+  get NotesLength(): Observable<number> {
+    return this.store.select(fromNotes.getNotesLength);
+  }
+
+  get SelectedNote(): Observable<Note> {
+    return this.store.select(fromNotes.getSelectedNote);
+  }
+
+  get OpendNote(): Observable<Note> {
+    return this.store.select(fromNotes.getOpendNote);
+  }
+
+
+
 
 }

@@ -2,7 +2,7 @@ import { NullValidationHandler, OAuthService, OAuthSuccessEvent } from "angular-
 import { Store, } from "@ngrx/store"
 import { authConfig } from "../auth.config";
 import { isLoggedIn } from "../reducers/preference.reducer";
-import { logIn } from "../actions";
+import { logInSuccess } from "../actions";
 import { IAppState } from "../reducers"
 import { take } from "rxjs";
 
@@ -21,7 +21,7 @@ export function initializeAuth(oauthService: OAuthService, store: Store<IAppStat
       if (event instanceof OAuthSuccessEvent) {
         if (event.type === "token_received" || event.type === "discovery_document_loaded")
           if (oauthService.hasValidIdToken()) {
-            store.dispatch(logIn());
+            store.dispatch(logInSuccess());
           }
       }
     });

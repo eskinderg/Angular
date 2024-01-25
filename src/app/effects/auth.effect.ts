@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store'
 import { OAuthService } from 'angular-oauth2-oidc'
 import * as AuthActions from '../actions/auth.action'
 import * as EventActions from '../actions/event.action'
-import * as NotesActions from '../actions/note.action'
+import * as NotesActions from '../actions/note.actions'
 
 @Injectable()
 export class AuthEffect {

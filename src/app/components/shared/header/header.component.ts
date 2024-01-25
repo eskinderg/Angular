@@ -3,7 +3,7 @@ import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../reducers/events.reducer';
-import * as fromNotes from '../../../reducers/notes.reducer';
+import * as fromNotes from '../../../reducers/note.reducer';
 import { count, takeUntil } from 'rxjs/operators';
 import { fromEvent, Observable } from 'rxjs';
 import * as fromProfile from '../../../reducers/preference.reducer';

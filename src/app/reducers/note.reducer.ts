@@ -1,5 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
-import * as NotesActions from '../actions/note.action';
+import * as NotesActions from '../actions/note.actions';
 import { Note } from '../models/note';
 import { AppRouterState, getAppRouterState } from './route.reducer';
 
@@ -130,7 +130,6 @@ export const notesReducer = createReducer<NotesState>(initialState,
         ...notes.filter(n => n.id !== action.payload.id),
       ];
 
-      // return { notes: pinnedNotes(dateModifiedNotes(newState)), selected: action.payload, opendNote: state.opendNote, animate: { text: true, date: false } };
       return { ...state, notes: pinnedNotes(dateModifiedNotes(newState)), animate: { note: true, date: false } };
     }
   ),
@@ -175,46 +174,6 @@ export function pinnedNotes(notes: Note[]): Note[] {
   ].sort((a, b) => (a.pinOrder > b.pinOrder ? -1 : 1))
 }
 
-// export function reducer(state = initialState, action: NotesActions.Actions): State {
-
-//   switch (action.type) {
-
-//     case NotesActions.CREATE_NEW_NOTE:
-//       return {
-//         notes: [action.payload, ...state.notes]
-//       };
-
-//     case NotesActions.CREATE_NOTE_SUCCESS:
-//       return {
-//         notes: [action.payload, ...state.notes]
-//       };
-
-//     case NotesActions.FETCH_NOTES_SUCCESS:
-//       return {
-//         notes: action.payload || []
-//       };
-
-//     case NotesActions.UPDATE_NOTE_POSITION_SUCCESS:
-//     case NotesActions.UPDATE_NOTE_SIZE_SUCCESS:
-//     // case NotesActions.UPDATE_NOTE_TEXT_SUCCESS:
-//     case NotesActions.UPDATE_NOTE_SUCCESS:
-//       return Object.assign({}, state, {
-//         notes: state.notes.map(note =>
-//           ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note)
-//       });
-
-//     case NotesActions.DELETE_NOTE_SUCCESS:
-//       return Object.assign({}, state, {
-//         notes: state.notes.filter((note: Note) => {
-//           return note.id !== action.payload.id;
-//         })
-//       });
-
-//     default:
-//       return state;
-//   }
-// };
-
 export const getNoteSTate = createFeatureSelector<NotesState>('notes');
 
 export const getNotes = createSelector(getNoteSTate, (state: NotesState) => {
@@ -239,7 +198,7 @@ export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItem
       return item.id === id;
     });
   } else {
-    return {};
+    return {} as Note;
   }
 });
 

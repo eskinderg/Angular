@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
-import * as fromNotes from '../../../../reducers/notes.reducer';
+import * as fromNotes from '../../../../reducers/note.reducer';
 import { Router } from '@angular/router';
-import { NotesApiService } from '../../services/notes.api.service';
+import { NoteApiService } from '../../services/notes.api.service';
 import { Note } from 'src/app/models/note';
 
 @Component({
@@ -21,7 +21,7 @@ export class NoteArchiveComponent {
     private store: Store<fromNotes.NotesState>,
     private oauthService: OAuthService,
     // public activeDialog: NgbActiveModal,
-    private notesApiService: NotesApiService,
+    private notesApiService: NoteApiService,
     public router: Router
   ) { }
 

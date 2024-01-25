@@ -1,10 +1,9 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { ActivatedRoute } from '@angular/router';
-import { NotesApiService } from '../../services/notes.api.service';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
-import * as fromNotes from '../../../../reducers/notes.reducer';
-import * as NotesActions from '../../../../actions/note.action';
+import * as fromNotes from '../../../../reducers/note.reducer';
+import * as NotesActions from '../../../../actions/note.actions';
 import { Store } from '@ngrx/store';
 // import { Subscription } from 'rxjs';
 
@@ -28,19 +27,12 @@ export class NoteComponent {
 
   // subscription: Subscription;
 
-  constructor(private store: Store<fromNotes.NotesState>, private route: ActivatedRoute, private noteApiService: NotesApiService) {
+  constructor(private store: Store<fromNotes.NotesState>, private route: ActivatedRoute) {
     this.note = this.route.snapshot.data['note']
   }
 
   handleNoteTextChange(note: Note) {
-
-    // this.subscription = this.store.select(fromNotes.getNoteCurrentRoute).subscribe(n => {
-    this.noteApiService.updateNoteText(note);
     this.changeNoteText.emit(note)
-    // })
-    // alert(note.text)
-
-    // this.subscription.unsubscribe();
   }
 
   onUpdatOpendNote(note: Note) {
