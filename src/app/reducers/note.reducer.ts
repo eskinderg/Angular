@@ -110,11 +110,9 @@ export const notesReducer = createReducer<NotesState>(initialState,
   on(
     NotesActions.updatePinOrder,
     (state, action): NotesState => {
-
-      if (action.payload.id === state.opendNote?.id) // update current opend note
-        return { ...state, opendNote: { ...state.opendNote, pinOrder: action.payload.pinOrder } }
-
-      return state;
+      return (action.payload.id === state.opendNote?.id) ?                                    // update current opend note
+        { ...state, opendNote: { ...state.opendNote, pinOrder: action.payload.pinOrder } } :
+        state
     }
   ),
   on(
@@ -136,14 +134,9 @@ export const notesReducer = createReducer<NotesState>(initialState,
   on(
     NotesActions.getNoteUpdatedTimestampSuccess,
     (state, action): NotesState => ({
-      notes: state.notes.map(note =>
-        note.id === action.payload.id ? { ...note, dateModified: action.payload.dateModified } : note),
-      selectedNote: action.payload,
-      opendNote: state.opendNote,
-      animate: {
-        note: state.animate.note,
-        date: state.animate.date
-      }
+      ...state, notes: state.notes.map(note => {
+        return note.id === action.payload.id ? { ...note, dateModified: action.payload.dateModified } : note
+      }),
     })),
   on(
     NotesActions.archiveNoteSuccess,

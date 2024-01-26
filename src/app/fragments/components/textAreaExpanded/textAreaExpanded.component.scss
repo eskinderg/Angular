@@ -64,7 +64,7 @@ div.disabled {
 }
 
 *::-webkit-scrollbar {
-  width: 0.65rem;
+  width: 0.85rem;
 }
 
 *::-webkit-scrollbar-button {
@@ -76,6 +76,10 @@ div.disabled {
   background: var(--scrollbar-thumb-color);
   border-radius: 0.5rem;
   cursor:pointer;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
 }
 
 

@@ -1,11 +1,9 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Note } from '../../../../models/note';
-import { ActivatedRoute } from '@angular/router';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
 import * as fromNotes from '../../../../reducers/note.reducer';
 import * as NotesActions from '../../../../actions/note.actions';
 import { Store } from '@ngrx/store';
-// import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-note',
@@ -23,12 +21,12 @@ export class NoteComponent {
   @Output() changeNoteText = new EventEmitter(false);
   @Output() changeNotePosition = new EventEmitter(false);
   @Output() changeNoteSize = new EventEmitter(false);
-  @Output() deleteNote = new EventEmitter(false);
+  @Output() archiveNote = new EventEmitter(false);
 
-  // subscription: Subscription;
+  constructor(private store: Store<fromNotes.NotesState>) { }
 
-  constructor(private store: Store<fromNotes.NotesState>, private route: ActivatedRoute) {
-    this.note = this.route.snapshot.data['note']
+  noteArchive_click(note: Note) {
+    this.archiveNote.emit(note);
   }
 
   handleNoteTextChange(note: Note) {

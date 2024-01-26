@@ -83,7 +83,4 @@ export class NoteApiService {
     return this.store.select(fromNotes.getOpendNote);
   }
 
-
-
-
 }

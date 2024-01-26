@@ -6,13 +6,31 @@
   background: var(--b-note-bg-color);
 }
 
-.info-icon {
-  align-self: flex-end;
-  right: 0;
-  margin: 0.5rem;
+.note-header{
+  margin-top:0.5rem;
+}
+
+.note-menu {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  padding-left: 1rem;
+}
+
+.menu-icon {
+  margin:0.5rem;
   cursor: pointer;
-  fill: var(--bs-secondary);
-  z-index: 2;
+  fill: var(--bs-secondary-color);
+}
+
+.menu-icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap:nowrap;
+}
+
+.menu-icon:hover {
+  fill: var(--b-active-link-color);
 }
 
 div {
@@ -21,14 +39,7 @@ div {
 textarea  {
   resize:none;
   color: black;
-  // display: block;
   padding:10px 10px 4px;
-  // margin:25px auto 0px auto;
-  // border: 2px solid #e0d6d6;
-  // border-top:none;
-  // width:250px;
-  // height:150px;
-  // resize:both;
   font:20px 'Gloria Hallelujah', cursive;
   line-height:1.5;
   border:0;
@@ -42,44 +53,7 @@ textarea  {
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.3);
   overflow:hidden;
   transition:box-shadow 0.5s ease;
-  font-smoothing:subpixel-antialiased;
-  // max-width:520px;
-  // max-height:250px;
-  /*position: absolute;*/
 }
-
-textarea.yellow-note{
-  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
-  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
-  background: -o-linear-gradient(#F9EFAF, #F7E98D);
-  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
-  background: linear-gradient(#F9EFAF, #F7E98D);
-}
-
-.header {
-}
-
-.del {
-  display: block;
-  // position:absolute;
-  right: 0px;
-  // margin: 4px;
-  cursor: pointer;
-  float:right;
-  // color:#c6c9cc ;
-  color: var(--bs-primary);
-
-  &:hover {
-    // color: rgba(255, 167, 0, 0.98);
-    color: var(--bs-secondary);
-  }
-}
-
-.card-header {
-  border-left: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-}
-
 
 textarea.red-note{
   background: -webkit-linear-gradient(#F9AFAF, #F78D8D);
@@ -104,21 +78,14 @@ textarea.blue-note{
   background: -ms-linear-gradient(#B3AFF9, #968DF7);
   background: linear-gradient(#B3AFF9, #968DF7);
 }
+
+textarea.yellow-note{
+  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
+  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
+  background: -o-linear-gradient(#F9EFAF, #F7E98D);
+  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
+  background: linear-gradient(#F9EFAF, #F7E98D);
+}
+
 textarea:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
 textarea:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }
-
-.note-container {
-  // border-bottom-right-radius: 9px;
-  // border-bottom-left-radius: 10px;
-}
-
-.card {
-    border-left: none;
-    border-bottom: none;
-    border-right: none;
-}
-
-.clear {
-  display:block;
-  clear:both;
-}
