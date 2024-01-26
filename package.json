@@ -31,6 +31,7 @@
     "@angular/compiler-cli": "^17.1.0",
     "@angular/service-worker": "^17.1.0",
     "@angular/localize": "^17.1.0",
+    "@angular-eslint/schematics": "^17.1.0",
     "@ng-bootstrap/ng-bootstrap": "16.0.0-rc.1",
     "@ngrx/effects": "17.1.0",
     "@ngrx/store": "17.1.0",
