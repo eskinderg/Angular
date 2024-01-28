@@ -1,11 +1,12 @@
 <div class="container-fluid mt-2">
   <app-ba-card header="Profile">
     <div class="row mb-3">
-      <label for="example-text-input" class="col-2 col-form-label">Theme</label>
+      <label for="example-text-input" class="col-2 col-form-label">Dark Mode</label>
       <div class="col-10">
         <app-theme-option
           [darkMode]="isDarkMode | async"
           (onToggleDark)="onDarkModeToggle($event)"
+          [label]=""
         >
         </app-theme-option>
 

@@ -1,6 +1,5 @@
-<div class="form-check form-switch">
-  <input #toggleOption class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" [checked]="darkMode"
-    (click)="toggle()">
-  <label class="form-check-label" [ngClass]="{'text-muted': !darkMode}" for="flexSwitchCheckChecked">Dark
-    Mode</label>
+<div class="toggle-check toggle-switch">
+  <label class="form-check-label" [ngClass]="{'text-muted': !darkMode}" for="flexSwitchCheckChecked">{{ label }}</label> &nbsp; &nbsp;
+  <input #toggleOption class="toggle-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+    [checked]="darkMode" (click)="toggle()">
 </div>

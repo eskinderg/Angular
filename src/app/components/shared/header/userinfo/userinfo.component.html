@@ -1,22 +1,17 @@
-<div *ngIf="isLoggedIn | async; else logIn"  ngbDropdown placement="bottom-right" class="d-inline-block">
-  <button class="btn btn-primary" ngbTooltip="Access your profile and other" id="main-dropdown" ngbDropdownToggle>{{givenName}}</button>
-  <!-- <button class="btn btn-primary" id="main-dropdown" ngbDropdownToggle>{{ authService.currentUser.given_name }}</button> -->
-  <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownBasic">
-
-    <app-theme-option
-      [darkMode]="isDarkMode | async"
-      (onToggleDark)="onDarkModeToggle($event)"
-    >
-    </app-theme-option>
-
-    <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
-    <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
-
-    <!-- <button class="dropdown-item">Something else is here</button> -->
+@if(isLoggedIn | async) {
+<div class="btn-group">
+  <button type="button" class="btn btn-primary" [routerLink]="['/profile']">{{givenName}}</button>
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+    <div class="dropdown-menu  dropdown-menu-end" ngbDropdownMenu>
+      <app-theme-option [label]="'Dark Mode'" [darkMode]="isDarkMode | async" (onToggleDark)="onDarkModeToggle($event)">
+      </app-theme-option>
+      <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
+      <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
+    </div>
   </div>
 </div>
-
-<ng-template #logIn>
-  <button id="btnLogin" type="button" ngbTooltip="Login to access all your Events & Notes" (click)="login()" class="btn btn-primary">Login / SignUp</button>
-</ng-template>
-
+} @else() {
+<button id="btnLogin" type="button" (click)="login()" class="btn btn-primary">Login /
+  SignUp</button>
+}

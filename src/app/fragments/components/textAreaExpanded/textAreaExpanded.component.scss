@@ -19,10 +19,10 @@
 }
 
 .textArea {
+  flex: 1 1 auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 // .textArea ::spelling-error {
@@ -46,11 +46,6 @@
 .textInput {
   position: absolute;
   font-size: 0.85rem;
-  text-decoration: none;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
 }
 
 div.disabled {

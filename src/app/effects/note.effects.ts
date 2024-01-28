@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
-
 import * as NotesActions from '../actions/note.actions';
 import { NotesDataService } from '../components/notes/services/notes.data.service';
 import { ToastService } from '../shared/toast/toast.service';
@@ -14,7 +13,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.createNote),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .addNote(action.payload)
           .pipe(
             map(note => NotesActions.createNoteSuccess({ payload: note })),
@@ -32,7 +31,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.updateNoteText),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.updateNoteTextSuccess({ payload: note })),
@@ -55,7 +54,7 @@ export class NotesEffect {
       .pipe(
         ofType(NotesActions.updateNotePosition),
         switchMap((action) =>
-          this.notesApiService
+          this.notesDataService
             .updateNote(action.payload)
             .pipe(
               map(note => NotesActions.updateNotePositionSuccess({ payload: note })),
@@ -79,7 +78,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.updateNote),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.updateNoteSuccess({ payload: note })),
@@ -90,7 +89,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.updatePinOrder),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.updatePinOrderSuccess({ payload: note })),
@@ -101,7 +100,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.fetchNotes),
       switchMap(() =>
-        this.notesApiService
+        this.notesDataService
           .getNotes()
           .pipe(
             map(notes => NotesActions.fetchNotesSuccess({ payload: notes })),
@@ -113,7 +112,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.deleteNote),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.deleteNoteSuccess({ payload: note })),
@@ -134,7 +133,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.archiveNote),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote(action.payload)
           .pipe(
             map(note => NotesActions.archiveNoteSuccess({ payload: note })),
@@ -154,7 +153,7 @@ export class NotesEffect {
     this.actions$.pipe(
       ofType(NotesActions.restoreNote),
       switchMap((action) =>
-        this.notesApiService
+        this.notesDataService
           .updateNote({ ...action.payload, archived: false })
           .pipe(
             map(note => NotesActions.restoreNoteSuccess({ payload: note })),
@@ -172,7 +171,7 @@ export class NotesEffect {
 
   constructor(
     private actions$: Actions,
-    private notesApiService: NotesDataService,
+    private notesDataService: NotesDataService,
     private router: Router,
     private toastService: ToastService
   ) { }

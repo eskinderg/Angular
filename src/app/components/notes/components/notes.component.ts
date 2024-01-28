@@ -16,7 +16,7 @@ export class NotesComponent {
 
   @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
-  constructor( public notesApiService: NoteApiService, public route: Router) { }
+  constructor(public notesApiService: NoteApiService, public route: Router) { }
 
   onChangeNoteText(note: Note) {
     this.notesApiService.updateNoteText(note);

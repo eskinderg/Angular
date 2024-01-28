@@ -22,7 +22,7 @@
             <span *ngIf="NotesCount | async as count" class="badge bg-secondary">{{ count }}</span>
           </a>
           <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
-            <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes']">My Notes</a></li>
+            <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes']">Notes</a></li>
             <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes/archived']">Archived Notes</a></li>
           </ul>
         </li>

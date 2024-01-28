@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: stretch;
   height: 100%;
-  background: var(--b-note-bg-color);
+}
+
+.note-background {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .note-header{
@@ -33,29 +38,7 @@
   fill: var(--b-active-link-color);
 }
 
-div {
-  display:block;
-}
-textarea  {
-  resize:none;
-  color: black;
-  padding:10px 10px 4px;
-  font:20px 'Gloria Hallelujah', cursive;
-  line-height:1.5;
-  border:0;
-  border-radius:3px;
-  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
-  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
-  background: -o-linear-gradient(#F9EFAF, #F7E98D);
-  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
-  background: linear-gradient(#F9EFAF, #F7E98D);
-  // box-shadow:0 4px 6px rgba(0,0,0,0.1);
-  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.3);
-  overflow:hidden;
-  transition:box-shadow 0.5s ease;
-}
-
-textarea.red-note{
+.red-note{
   background: -webkit-linear-gradient(#F9AFAF, #F78D8D);
   background: -moz-linear-gradient(#F9AFAF, #F78D8D);
   background: -o-linear-gradient(#F9AFAF, #F78D8D);
@@ -63,7 +46,7 @@ textarea.red-note{
   background: linear-gradient(#F9AFAF, #F78D8D);
 }
 
-textarea.green-note{
+.green-note{
   background: -webkit-linear-gradient(#AFF9B0, #9FF78D);
   background: -moz-linear-gradient(#AFF9B0, #9FF78D);
   background: -o-linear-gradient(#AFF9B0, #9FF78D);
@@ -71,7 +54,7 @@ textarea.green-note{
   background: linear-gradient(#AFF9B0, #9FF78D);
 }
 
-textarea.blue-note{
+.blue-note{
   background: -webkit-linear-gradient(#B3AFF9, #968DF7);
   background: -moz-linear-gradient(#B3AFF9, #968DF7);
   background: -o-linear-gradient(#B3AFF9, #968DF7);
@@ -79,7 +62,7 @@ textarea.blue-note{
   background: linear-gradient(#B3AFF9, #968DF7);
 }
 
-textarea.yellow-note{
+.yellow-note{
   background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
   background: -moz-linear-gradient(#F9EFAF, #F7E98D);
   background: -o-linear-gradient(#F9EFAF, #F7E98D);

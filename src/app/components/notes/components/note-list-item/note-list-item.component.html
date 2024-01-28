@@ -1,5 +1,7 @@
-<div [@.disabled]="!animate.note" [@fadeInOutNoteListItem] class="note-border" [ngClass]="{'selected-note': selectedNote === note}">
+<div [@.disabled]="!animate.note" [@fadeInOutNoteListItem] class="note-border"
+  [ngClass]="{'selected-note': selectedNote === note}">
 
+<div class="note-colour" [ngClass]="note.colour + '-note'"> </div>
   <div class="note-wrapper" (click)="onSelectNote(note)">
   </div>
 
@@ -21,8 +23,9 @@
       : '20' : true) : 'Untitled' }} </div>
   </div>
 
-  <small (click)="onSelectNote(note)" [ngClass]="{'pinned-note-text': note.pinOrder}" class="date-modified date-text" [@.disabled]="!animate.date"
-    [@fadeInOutNoteListItem] [ngbTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')"> {{
+  <small (click)="onSelectNote(note)" [ngClass]="{'pinned-note-text': note.pinOrder}" class="date-modified date-text"
+    [@.disabled]="!animate.date" [@fadeInOutNoteListItem]
+    [ngbTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')"> {{
     note.dateModified | dateago }}</small>
 
   <div class="pin-wrapper" (click)="updatePinOrder(note)">

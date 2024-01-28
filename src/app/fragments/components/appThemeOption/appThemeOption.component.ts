@@ -13,6 +13,7 @@ export class ThemeOptionComponent {
   @Input() darkMode: boolean = false;
   @ViewChild("toggleOption") toggleOption: ElementRef;
   @Output() onToggleDark: EventEmitter<boolean> = new EventEmitter();
+  @Input() label: string;
 
   toggle() {
     (this.toggleOption.nativeElement as HTMLInputElement).blur();
