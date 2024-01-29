@@ -9,6 +9,9 @@
 .note-div {
   height:100%;
   flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .note-select-info {
@@ -44,9 +47,10 @@
   // width: 100%;
   // width: 24.5vw;
   background: var(--bs-body-bg);
+  direction: ltr;
 }
 
-.note-menu {
+.note-left-menu {
   position:relative;
   flex: 0 0 auto;
   border-right: 1px solid var(--border);
@@ -89,7 +93,9 @@
   height: 100%;
   // scrollbar-gutter: auto;
   border-right: 1px solid var(--border);
+  // padding-right: 0.25rem;
   // border: 4px solid red;
+  direction: rtl;
 }
 
 // .main-note-list::-webkit-scrollbar {
@@ -101,11 +107,12 @@
 
 .note-outlet {
   position: relative;
+  flex: 1 1 auto;
 }
 
 *::-webkit-scrollbar-track {
    // background: var(--scrollbar-track-color);
-   background: var(--bs-body-bg);
+   background: var(--scrollbar-track-bg-color);
   // margin-top: 3rem;
  // background: red;
 }
@@ -125,23 +132,38 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
+  // background: var(--scrollbar-thumb-color);
   // border: 1px solid #ffffff40;
   border-radius: 0.5rem;
+  // background: linear-gradient(#84a0d0, #2a6ada);
+  // background: linear-gradient(#5f9cfb, #698fc8);
+background: linear-gradient(#5f9cfb, #698fc8, #5f9cfb);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-color);
+  // background: var(--scrollbar-thumb-hover-color);
+  // background: linear-gradient(#52acff, #317bc4);
+  // background: linear-gradient(#5f9cfb, #435d85);
+  background: linear-gradient(#5f9cfb, #b1caf0, #5f9cfb);
 }
 
 .notes-navigation {
   position:relative;
+  flex-basis: 25%;
   display: flex;
   flex-flow: column;
   height: 100%;
   // border: 10px solid green;
   box-sizing: border-box;
   // background: var(--b-note-bg-color);
+}
+
+.notes-detail {
+  display: flex;
+  flex-direction:column;
+  flex-wrap: nowrap;
+  flex: 1 1 auto;
+  box-sizing: border-box;
 }
 
 .note-list-item {
@@ -197,3 +219,6 @@
     color: var(--list-link-hover);
   }
 }
+
+textarea:hover { box-shadow:0 5px 8px rgba(0,0,0,0.15); }
+textarea:focus { box-shadow:0 5px 12px rgba(0,0,0,0.2); outline:none; }

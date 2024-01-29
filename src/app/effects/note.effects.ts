@@ -169,10 +169,49 @@ export class NotesEffect {
       }
       )), { dispatch: false })
 
+  updateNoteColour = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updateNoteColour),
+      switchMap((action) =>
+        this.notesDataService
+          .updateNote(action.payload)
+          .pipe(
+          map(note => {
+            return NotesActions.updateNoteColourSuccess({ payload: note })
+          }),
+            catchError(err => of(NotesActions.updateNoteColourFail({ payload: err })))
+          ))))
+
+  updateNoteColourSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updateNoteColourSuccess),
+      switchMap((action) =>
+        this.notesDataService
+          .updateNote(action.payload)
+          .pipe(
+          map(note => {
+            return NotesActions.updateOpendNote({ payload: note })
+          }),
+            catchError(err => of(NotesActions.updateNoteFail({ payload: err })))
+          ))))
+
+  updateNoteHeader = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updateNoteHeader),
+      switchMap((action) =>
+        this.notesDataService
+          .updateNote(action.payload)
+          .pipe(
+          map(note => {
+            return NotesActions.updateNoteHeaderSuccess({ payload: note })
+          }),
+            catchError(err => of(NotesActions.updateNoteHeaderFail({ payload: err })))
+          ))))
+
   constructor(
     private actions$: Actions,
     private notesDataService: NotesDataService,
     private router: Router,
-    private toastService: ToastService
+    private toastService: ToastService,
   ) { }
 }

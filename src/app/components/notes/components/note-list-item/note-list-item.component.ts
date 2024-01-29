@@ -4,14 +4,14 @@ import { Note } from 'src/app/models/note';
 
 type Animate = {
   note: boolean;
-  date?: boolean;
+  date: boolean;
 };
 
 @Component({
   selector: 'app-note-list-item',
   templateUrl: './note-list-item.component.html',
   animations: [FadeInOutNoteListItem],
-  styleUrl: './note-list-item.component.scss',
+  styleUrls: ['./note-list-item.component.scss', '../notes.colour.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteListItemComponent {

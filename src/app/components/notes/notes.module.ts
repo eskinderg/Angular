@@ -21,6 +21,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NoteArchiveComponent } from './components/note.archive/note.archive.component';
 import { NotesComponent } from './components/notes.component';
 import { NoteListItemComponent } from './components/note-list-item/note-list-item.component';
+import { NoteColourSelectorComponent } from './components/note.component/note.colour.selector/note.colour.selector.component';
+import { NoteHeaderControlComponent } from './components/note.component/note.header.control/note.header.control.component';
 
 @NgModule({
   imports: [
@@ -35,6 +37,8 @@ import { NoteListItemComponent } from './components/note-list-item/note-list-ite
   declarations: [
     NotesComponent,
     NoteComponent,
+    NoteColourSelectorComponent,
+    NoteHeaderControlComponent,
     NoteArchiveComponent,
     NoteListItemComponent,
     AddButtonComponent,

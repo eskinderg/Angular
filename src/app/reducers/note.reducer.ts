@@ -68,14 +68,14 @@ export const notesReducer = createReducer<NotesState>(initialState,
     NotesActions.updateNoteSuccess,
     NotesActions.updateNotePositionSuccess,
     NotesActions.updateNoteSizeSuccess,
+    NotesActions.updateNoteHeaderSuccess,
     (state, action): NotesState => ({
+      ...state,
       notes: state.notes.map(note =>
         ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note),
-      selectedNote: action.payload,
-      opendNote: null,
       animate: {
-        note: false,
-        date: false
+        note: true,
+        date: true,
       }
     })),
   on(
@@ -89,6 +89,17 @@ export const notesReducer = createReducer<NotesState>(initialState,
       const newState: Note[] = dateModifiedNotes(notes);
 
       return { ...state, notes: pinnedNotes(newState), animate: { ...state.animate, note: false, date: false } };
+    }
+  ),
+  on(
+    NotesActions.updateNoteColourSuccess,
+    (state, action): NotesState => {
+
+      let notes: Note[] = state.notes.map(note => {
+        return note.id === action.payload.id ? action.payload : note;  // First update the note text
+      })
+
+      return { ...state, notes: notes, animate: { ...state.animate, note: false, date: false } };
     }
   ),
   on(

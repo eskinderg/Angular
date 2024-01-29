@@ -1,12 +1,8 @@
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-// import { SlideAnimation } from '../shared/animations/animations';
 import { Tv } from '../movies/models/tv';
-import { EventApiService } from '../../fragments/components/event/event.data.service/event.api.service';
-/**
- * This class represents the lazy loaded HomeComponent.
- */
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home',

@@ -8,9 +8,9 @@ import { NoteComponent } from './note.component/note.component';
 @Component({
   selector: 'app-notes',
   templateUrl: 'notes.component.html',
-  styleUrls: ['notes.component.scss'],
+  styleUrls: ['notes.component.scss', 'notes.colour.scss'],
   animations: [FadeInOutNoteListItem],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesComponent {
 
@@ -34,8 +34,16 @@ export class NotesComponent {
     this.notesApiService.updateNotePinOrder(note);
   }
 
+  updateNoteColour(note: Note) {
+    this.notesApiService.updateNoteColour(note);
+  }
+
   onArchiveNote(note: Note) {
     this.notesApiService.archiveNote(note);
+  }
+
+  onUpdateNoteHeader(note: Note) {
+    this.notesApiService.updateNoteHeader(note);
   }
 
   routeToArchivedNotes() {

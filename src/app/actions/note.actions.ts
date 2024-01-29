@@ -245,3 +245,18 @@ export const updateOpendNote = createAction(
   '[NOTE] UPDATE_OPEND_NOTE',
   props<{ payload: Note }>()
 )
+
+export const updateNoteColour = createAction(
+  '[NOTE] UPDATE_NOTE_COLOUR',
+  props<{ payload: Note }>()
+)
+
+export const updateNoteColourSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_COLOUR_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const updateNoteColourFail = createAction(
+  '[NOTE] UPDATE_NOTE_COLOUR_FAIL',
+  props<{ payload: string }>()
+)

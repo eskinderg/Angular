@@ -1,7 +1,7 @@
 <div [@.disabled]="!animate.note" [@fadeInOutNoteListItem] class="note-border"
   [ngClass]="{'selected-note': selectedNote === note}">
 
-<div class="note-colour" [ngClass]="note.colour + '-note'"> </div>
+  <div class="note-colour" [ngClass]="note.colour + '-note'"> </div>
   <div class="note-wrapper" (click)="onSelectNote(note)">
   </div>
 
@@ -18,9 +18,14 @@
   </div>
 
   <div class="item">
-    <div class="mb-1 note-text" [ngClass]="{'pinned-note-text': note.pinOrder}"> {{ (note.text) ? (note.text |
-      noteTitleTruncate
-      : '20' : true) : 'Untitled' }} </div>
+    @if(note.header){
+    <div class="mb-1 note-text" [ngClass]="{'pinned-note-text': note.pinOrder}"> {{ note.header | noteTitleTruncate : '20' : true }} </div>
+
+    }@else if(note.text){
+    <div class="mb-1 note-text" [ngClass]="{'pinned-note-text': note.pinOrder}"> {{ note.text | noteTitleTruncate : '20' : true }} </div>
+    }@else(){
+    <div class="mb-1 note-text" [ngClass]="{'pinned-note-text': note.pinOrder}">Untitled</div>
+    }
   </div>
 
   <small (click)="onSelectNote(note)" [ngClass]="{'pinned-note-text': note.pinOrder}" class="date-modified date-text"

@@ -4,24 +4,29 @@ import { TextareaExpandedComponent } from 'src/app/fragments/components/textArea
 import * as fromNotes from '../../../../reducers/note.reducer';
 import * as NotesActions from '../../../../actions/note.actions';
 import { Store } from '@ngrx/store';
+import { Colour } from './note.colour.selector/note.colour.selector.component';
+import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 
 @Component({
   selector: 'app-note',
   templateUrl: 'note.component.html',
-  styleUrls: ['note.component.scss'],
+  styleUrls: ['note.component.scss', '../notes.colour.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class NoteComponent {
 
   @ViewChild(TextareaExpandedComponent) textarea: TextareaExpandedComponent;
+  @ViewChild(NoteHeaderControlComponent) nnoteHeaderControl: NoteHeaderControlComponent;
 
   @Input() note: Note;
 
-  @Output() changeNoteText = new EventEmitter(false);
-  @Output() changeNotePosition = new EventEmitter(false);
-  @Output() changeNoteSize = new EventEmitter(false);
-  @Output() archiveNote = new EventEmitter(false);
+  @Output() changeNoteText: EventEmitter<Note> = new EventEmitter();
+  @Output() changeNotePosition: EventEmitter<Note> = new EventEmitter();
+  @Output() changeNoteSize: EventEmitter<Note> = new EventEmitter();
+  @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
+  @Output() updateNoteColour: EventEmitter<Note> = new EventEmitter();
+  @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
 
   constructor(private store: Store<fromNotes.NotesState>) { }
 
@@ -29,13 +34,22 @@ export class NoteComponent {
     this.archiveNote.emit(note);
   }
 
-  handleNoteTextChange(note: Note) {
+  handleNoteTextUpdate(note: Note) {
     this.changeNoteText.emit(note)
+  }
+
+  handleNoteColourUpdate(colour: Colour) {
+    this.updateNoteColour.emit({ ...this.note, colour: colour.name })
+  }
+
+  handleNoteHeaderUpdate(note: Note) {
+    this.updateNoteHeader.emit(note)
   }
 
   onUpdatOpendNote(note: Note) {
     this.store.dispatch(NotesActions.updateOpendNote({ payload: note }))
   }
+
 
   underline(e) {
     e.preventDefault();

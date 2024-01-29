@@ -21,12 +21,23 @@
   flex-wrap: nowrap;
 }
 
+// .note-colour {
+//   position: relative;
+//   // border: 2px solid black;
+//   width: 0.5rem;
+//   // height: 100%;
+//   z-index: 3;
+// }
+
 .note-colour {
-  position: relative;
-  // border: 2px solid black;
+  position: absolute;
   width: 0.5rem;
-  // height: 100%;
   z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  /* left: 0; */
+  /* width: 100%; */
 }
 
 .selected-note {
@@ -84,7 +95,7 @@
 .pin-wrapper {
   position: absolute;
   z-index: 1;
-  top: 0.25rem;
+  top: 0.5rem;
   border: none;
   height: 3rem;
   width: 3rem;
@@ -122,7 +133,6 @@
   }
 }
 
-
 .del-button:hover {
   .archive-note-button-icon {
     fill:var(--bs-warning);
@@ -141,38 +151,6 @@
   position: absolute;
   right: 1rem;
   margin: auto;
-  top: 0rem;
+  top: 0.25rem;
   bottom: 0;
-}
-
-.red-note{
-  background: -webkit-linear-gradient(#F9AFAF, #F78D8D);
-  background: -moz-linear-gradient(#F9AFAF, #F78D8D);
-  background: -o-linear-gradient(#F9AFAF, #F78D8D);
-  background: -ms-linear-gradient(#F9AFAF, #F78D8D);
-  background: linear-gradient(#F9AFAF, #F78D8D);
-}
-
-.green-note{
-  background: -webkit-linear-gradient(#AFF9B0, #9FF78D);
-  background: -moz-linear-gradient(#AFF9B0, #9FF78D);
-  background: -o-linear-gradient(#AFF9B0, #9FF78D);
-  background: -ms-linear-gradient(#AFF9B0, #9FF78D);
-  background: linear-gradient(#AFF9B0, #9FF78D);
-}
-
-.blue-note{
-  background: -webkit-linear-gradient(#B3AFF9, #968DF7);
-  background: -moz-linear-gradient(#B3AFF9, #968DF7);
-  background: -o-linear-gradient(#B3AFF9, #968DF7);
-  background: -ms-linear-gradient(#B3AFF9, #968DF7);
-  background: linear-gradient(#B3AFF9, #968DF7);
-}
-
-.yellow-note{
-  background: -webkit-linear-gradient(#F9EFAF, #F7E98D);
-  background: -moz-linear-gradient(#F9EFAF, #F7E98D);
-  background: -o-linear-gradient(#F9EFAF, #F7E98D);
-  background: -ms-linear-gradient(#F9EFAF, #F7E98D);
-  background: linear-gradient(#F9EFAF, #F7E98D);
 }

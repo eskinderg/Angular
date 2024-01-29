@@ -1,0 +1,35 @@
+.input-header {
+  width: 100%;
+  border: none;
+  outline:none;
+  font-size: 1.5rem;
+  // border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--b-active-link-color);
+  // background: var(--bs-body-bg) ! important;
+  background: transparent;
+  color: var(--bs-body-color);
+}
+
+.input-header:-webkit-autofill,
+.input-header:-webkit-autofill:hover,
+.input-header:-webkit-autofill:focus,
+.input-header:-webkit-autofill:active  {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: var(--bs-body-color) !important;
+}
+
+input:focus{
+  border-bottom: 1px solid var(--b-active-link-color);
+}
+
+input::placeholder{
+  color:var(--bs-border-color-translucent);
+}
+
+input:focus::placeholder{
+  color:transparent;
+}
+
+input:-internal-autofill-selected{
+  background: var(--bs-body-bg);
+}

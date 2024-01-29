@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener, Input, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
@@ -14,7 +14,7 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   providers: [EXPANDED_TEXTAREA_VALUE_ACCESSOR],
   templateUrl: 'textAreaExpanded.component.html',
   styleUrls: ['textAreaExpanded.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextareaExpandedComponent implements OnDestroy, OnInit, AfterViewInit {
 
@@ -66,7 +66,6 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, AfterViewIn
 // this.onSelectionChange.emit(window.getSelection())
 // this.textarea.nativeElement.focus()
 // }
-
 
 // constructor(private renderer: Renderer2) { }
 
