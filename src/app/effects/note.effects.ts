@@ -99,7 +99,7 @@ export class NotesEffect {
   fetchNotes = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.fetchNotes),
-      map(() => NotesActions.fetchNotesStart())
+      switchMap(() => of(NotesActions.fetchNotesStart()))
     ));
 
   fetchNotesStart = createEffect(() =>
@@ -117,7 +117,7 @@ export class NotesEffect {
   fetchNotesSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.fetchNotesSuccess),
-      map(() => NotesActions.fetchNotesComplete())
+      switchMap(() => of(NotesActions.fetchNotesComplete()))
     ));
 
   delete = createEffect(() =>

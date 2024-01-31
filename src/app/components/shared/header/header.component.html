@@ -20,7 +20,7 @@
           <a [ngClass]="{'active': isNotesURLActive}"  (click)="$event.preventDefault()" ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" >
             Notes
             @if(NoteLoading | async ) {
-            <div class="spinner-border spinner-border-sm" role="status">
+            <div class="spinner-border text-secondary spinner-border-sm" role="status">
               <span class="sr-only"></span>
             </div>
             }@else(){
@@ -39,8 +39,14 @@
         <li  class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" [routerLink]="['/events']">
             Events
-            <span *ngIf="EventsCount | async as count" class="badge bg-secondary">{{ count }}</span>
             <!-- <span class="badge bg-secondary">New</span> -->
+            @if(EventLoading | async ) {
+            <div class="spinner-border text-secondary spinner-border-sm" role="status">
+              <span class="sr-only"></span>
+            </div>
+            }@else(){
+            <span *ngIf="EventsCount | async as count" class="badge bg-secondary">{{ count }}</span>
+            }
           </a>
         </li>
         <li class="nav-item">

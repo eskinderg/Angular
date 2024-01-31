@@ -69,6 +69,10 @@ export class HeaderComponent implements OnInit {
     return this.eventStore.select(fromEvents.getEventsLength)
   }
 
+  get EventLoading() {
+    return this.eventStore.select(fromEvents.getIsLoading)
+  }
+
   get NotesCount() {
     return this.noteStore.select(fromNotes.getNotesLength)
   }

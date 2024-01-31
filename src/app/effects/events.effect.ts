@@ -66,10 +66,20 @@ export class EventsEffect {
   fetchEvents = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.fetchEvents),
+      switchMap(() => of(EventsActions.fetchEventsStart()))));
+
+  fetchEventsStart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.fetchEventsStart),
       switchMap(() => this.eventsDataService.getAllEvents()
         .pipe(map(events => EventsActions.fetchEventsSuccess({ payload: events })),
           catchError(err => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
         ))));
+
+  fetchEventsSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(EventsActions.fetchEvents),
+      switchMap(() => of(EventsActions.fetchEventsComplete()))));
 
   deleteEvent = createEffect(() =>
     this.actions$.pipe(
@@ -90,9 +100,9 @@ export class EventsEffect {
           ))));
 
   constructor(
-    private actions$          : Actions,
-    private eventsDataService : EventDataService,
-    private toastService      : ToastService
+    private actions$: Actions,
+    private eventsDataService: EventDataService,
+    private toastService: ToastService
   ) { }
 
 }

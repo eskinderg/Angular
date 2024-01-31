@@ -119,6 +119,14 @@ export const toggleEventSuccess = createAction(
 //  CLEAR
 // -----------------------------------
 
+export const fetchEventsStart = createAction(
+  '[EVENT] FETCH_EVENTS_START'
+)
+
+export const fetchEventsComplete = createAction(
+  '[EVENT] FETCH_EVENTS_COMPLETE'
+)
+
 export const eventsClear = createAction(
   '[EVENT] EVENTS_CLEAR'
 )
