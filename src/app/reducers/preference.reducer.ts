@@ -1,5 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as PreferenceActions from '../actions/preference.action';
+import { ThemeService } from '../shared/theme.service';
 
 export interface PreferenceState {
   isDarkMode: boolean;
@@ -7,7 +8,7 @@ export interface PreferenceState {
 }
 
 export const initialState: PreferenceState = {
-  isDarkMode: false,
+  isDarkMode: localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode,
   isLoggedIn: false
 }
 
@@ -15,14 +16,8 @@ export const profileReducer = createReducer<PreferenceState>(
   initialState,
   on(
     PreferenceActions.toggleDarkModeSuccess,
-    (state, action): PreferenceState => ({
-      ...state, isDarkMode: action.isDarkMode
-    })
-  ),
-  on(
-    PreferenceActions.getDarkModeSuccess,
-    (state, action): PreferenceState => ({
-      ...state, isDarkMode: action.isDarkMode
+    (state, _action): PreferenceState => ({
+      ...state, isDarkMode: !state.isDarkMode
     })
   ),
   on(

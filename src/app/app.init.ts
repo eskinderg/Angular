@@ -14,6 +14,7 @@ import { GlobalErrorHandler } from "./error/errorhandle";
 import { AuthJWT } from "./auth/auth.JWT";
 import { HttpErrorInterceptor } from "./error/http.error.interceptor";
 import { AppRouteReuseStrategy } from "./init/app.init.routeStrategy";
+import { ThemeService } from "./shared/theme.service";
 
 export const APP_INIT : Provider[] = [
   {
@@ -41,7 +42,7 @@ export const APP_INIT : Provider[] = [
   {
     provide    : APP_INITIALIZER,
     useFactory : initializePreference,
-    deps       : [Store],
+    deps       : [ThemeService],
     multi      : true
   },
   {

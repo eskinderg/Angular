@@ -1,9 +1,7 @@
-import { IAppState } from "../reducers"
-import { Store } from "@ngrx/store"
-import { getDarkMode } from "../actions"
+import { ThemeService } from "../shared/theme.service"
+import { Observable } from "rxjs";
 
-export function initializePreference(store: Store<IAppState>): () => void {
-  return () => {
-    store.dispatch(getDarkMode())
-  }
+export function initializePreference(themeService: ThemeService): () => Observable<boolean> {
+  return () => themeService.initTheme();
 }
+

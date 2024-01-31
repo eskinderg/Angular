@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
 import { Store } from '@ngrx/store'
-import { EMPTY } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import { EMPTY, of } from 'rxjs'
+import { map, switchMap } from 'rxjs/operators'
 import * as PreferenceActions from '../actions/preference.action';
 import * as NoteActions from '../actions/note.actions';
 import * as EventActions from '../actions/event.action';
@@ -14,21 +14,11 @@ export class PreferenceEffect {
   toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.toggleDarkMode),
-      switchMap(() => {
-        this.themeService.toggleDarkMode()
-        this.store.dispatch(PreferenceActions.toggleDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
-        return EMPTY;
-      })
-    ), { dispatch: false });
-
-  getDarkMode = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.getDarkMode),
-      switchMap(() => {
-        this.store.dispatch(PreferenceActions.getDarkModeSuccess({ isDarkMode: this.themeService.DarkMode }))
-        return EMPTY;
-      })
-    ), { dispatch: false });
+      switchMap((_action) =>
+        of(this.themeService.toggleDarkMode())
+          .pipe(
+            map(() => PreferenceActions.toggleDarkModeSuccess())
+          ))));
 
   getIsLoggedIn = createEffect(() =>
     this.actions$.pipe(

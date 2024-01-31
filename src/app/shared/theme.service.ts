@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ export class ThemeService {
 
   public static isDarkMode: boolean = false;
 
-  private readonly style: HTMLLinkElement;
+  private  style: HTMLLinkElement;
 
   public get DarkMode(): boolean {
     return localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode
@@ -23,9 +24,6 @@ export class ThemeService {
     this.style      = document.createElement('link');
     this.style.rel  = 'stylesheet';
     this.style.type = "text/css";
-    this.style.href = this.getStyleName(this.DarkMode);
-
-    document.head.appendChild(this.style);
 
   }
 
@@ -34,8 +32,16 @@ export class ThemeService {
   }
 
   public toggleDarkMode(): boolean {
-    this.DarkMode = !this.DarkMode
+    this.style.href = this.getStyleName(!this.DarkMode);
+    localStorage.setItem('darkmode', (!this.DarkMode).toString());
     return this.DarkMode
+  }
+
+  public initTheme(): Observable<boolean> {
+    this.style.href = this.getStyleName(this.DarkMode);
+    document.head.appendChild(this.style);
+    return of(true)
+
   }
 
 }

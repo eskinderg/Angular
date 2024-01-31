@@ -5,13 +5,11 @@ import { createAction, props } from '@ngrx/store';
  **/
 
 export const toggleDarkMode = createAction(
-  '[PREFERENCE] TOGGLE_DARK_MODE',
-  props<{ isDarkMode: boolean }>()
+  '[PREFERENCE] TOGGLE_DARK_MODE'
 )
 
 export const toggleDarkModeSuccess = createAction(
-  '[PREFERENCE] TOGGLE_DARK_MODE_SUCCESS',
-  props<{ isDarkMode: boolean }>()
+  '[PREFERENCE] TOGGLE_DARK_MODE_SUCCESS'
 )
 
 export const getDarkMode = createAction(

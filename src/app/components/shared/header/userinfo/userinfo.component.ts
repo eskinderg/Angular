@@ -49,8 +49,8 @@ export class UserInfoComponent {
     return claims['given_name'];
   }
 
-  onDarkModeToggle(isDarkMode: boolean) {
-    this.store.dispatch(ProfileActions.toggleDarkMode({ isDarkMode: isDarkMode }))
+  onDarkModeToggle() {
+    this.store.dispatch(ProfileActions.toggleDarkMode())
   }
 
 }

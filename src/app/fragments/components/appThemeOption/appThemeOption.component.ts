@@ -10,14 +10,14 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
 })
 export class ThemeOptionComponent {
 
-  @Input() darkMode: boolean = false;
+  @Input() darkMode; boolean;
   @ViewChild("toggleOption") toggleOption: ElementRef;
   @Output() onToggleDark: EventEmitter<boolean> = new EventEmitter();
   @Input() label: string;
 
   toggle() {
     (this.toggleOption.nativeElement as HTMLInputElement).blur();
-    this.onToggleDark.emit(this.darkMode);
+    this.onToggleDark.emit();
   }
 
 }
