@@ -73,6 +73,9 @@ export class HeaderComponent implements OnInit {
     return this.noteStore.select(fromNotes.getNotesLength)
   }
 
+  get NoteLoading() {
+    return this.noteStore.select(fromNotes.getIsLoading)
+  }
   onSignout() {
     // this.service.logout();
   }

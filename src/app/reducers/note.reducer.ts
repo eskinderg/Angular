@@ -7,6 +7,7 @@ export interface NotesState {
   notes: Note[];
   selectedNote: Note;
   opendNote: Note;
+  isLoading: boolean;
   animate: {
     note: boolean,
     date: boolean
@@ -17,6 +18,7 @@ export const initialState: NotesState = {
   notes: [],
   selectedNote: null,
   opendNote: null,
+  isLoading: false,
   animate: {
     note: false,
     date: false
@@ -43,7 +45,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
     NotesActions.createNoteSuccess,
     (state, action): NotesState => {
 
-      return {
+      return { ...state,
         notes: pinnedNotes([action.payload, ...state.notes]),
         selectedNote: action.payload,
         opendNote: action.payload,
@@ -54,8 +56,16 @@ export const notesReducer = createReducer<NotesState>(initialState,
       }
     }),
   on(
+    NotesActions.fetchNotesStart,
+    (state, _action): NotesState => ({ ...state, isLoading: true
+    })),
+  on(
+    NotesActions.fetchNotesComplete,
+    (state, _action): NotesState => ({ ...state, isLoading: false
+    })),
+  on(
     NotesActions.fetchNotesSuccess,
-    (_state, action): NotesState => ({
+    (state, action): NotesState => ({ ...state,
       notes: action.payload,
       selectedNote: null,
       opendNote: null,
@@ -159,7 +169,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
       })
 
       return {
-        notes: notes, selectedNote: null, opendNote: null, animate: { note: true, date: true }
+        ...state, notes: notes, selectedNote: null, opendNote: null, animate: { note: true, date: true }
       }
 
     })
@@ -195,6 +205,8 @@ export const getNotesAnimate = createSelector(getNoteSTate, (state: NotesState) 
 export const getSelectedNote = createSelector(getNoteSTate, (state: NotesState) => state.selectedNote ? state.notes.find(n => n.id === state.selectedNote.id) : new Note());
 
 export const getOpendNote = createSelector(getNoteSTate, (state: NotesState) => state.opendNote as Note);
+
+export const getIsLoading = createSelector(getNoteSTate, (state: NotesState) => state.isLoading);
 
 export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItems) => {
   if (allItems.notes) {

@@ -260,3 +260,11 @@ export const updateNoteColourFail = createAction(
   '[NOTE] UPDATE_NOTE_COLOUR_FAIL',
   props<{ payload: string }>()
 )
+
+export const fetchNotesComplete = createAction(
+  '[NOTE] FETCH_NOTES_COMPLETE',
+)
+
+export const fetchNotesStart = createAction(
+  '[NOTE] FETCH_NOTES_START',
+)

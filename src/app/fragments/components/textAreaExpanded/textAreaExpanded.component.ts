@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, AfterViewInit, HostListener, Input, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
 
@@ -27,7 +28,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, AfterViewIn
 
   @Output() onSelectionChange = new EventEmitter<Selection>(false);
 
-  constructor() { }
+  constructor(public htmlSafe: DomSanitizer) { }
 
   ngOnInit() {
 

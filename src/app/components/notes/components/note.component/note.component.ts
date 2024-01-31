@@ -50,7 +50,6 @@ export class NoteComponent {
     this.store.dispatch(NotesActions.updateOpendNote({ payload: note }))
   }
 
-
   underline(e) {
     e.preventDefault();
 

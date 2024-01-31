@@ -96,9 +96,15 @@ export class NotesEffect {
             catchError(err => of(NotesActions.updatePinOrderFail({ payload: err })))
           ))))
 
-  fetch = createEffect(() =>
+  fetchNotes = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.fetchNotes),
+      map(() => NotesActions.fetchNotesStart())
+    ));
+
+  fetchNotesStart = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.fetchNotesStart),
       switchMap(() =>
         this.notesDataService
           .getNotes()
@@ -107,6 +113,12 @@ export class NotesEffect {
             catchError(err =>
               of({ type: NotesActions.fetchNotesFailed.type, payload: err })
             )))))
+
+  fetchNotesSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.fetchNotesSuccess),
+      map(() => NotesActions.fetchNotesComplete())
+    ));
 
   delete = createEffect(() =>
     this.actions$.pipe(
@@ -176,9 +188,9 @@ export class NotesEffect {
         this.notesDataService
           .updateNote(action.payload)
           .pipe(
-          map(note => {
-            return NotesActions.updateNoteColourSuccess({ payload: note })
-          }),
+            map(note => {
+              return NotesActions.updateNoteColourSuccess({ payload: note })
+            }),
             catchError(err => of(NotesActions.updateNoteColourFail({ payload: err })))
           ))))
 
@@ -189,9 +201,9 @@ export class NotesEffect {
         this.notesDataService
           .updateNote(action.payload)
           .pipe(
-          map(note => {
-            return NotesActions.updateOpendNote({ payload: note })
-          }),
+            map(note => {
+              return NotesActions.updateOpendNote({ payload: note })
+            }),
             catchError(err => of(NotesActions.updateNoteFail({ payload: err })))
           ))))
 
@@ -202,9 +214,9 @@ export class NotesEffect {
         this.notesDataService
           .updateNote(action.payload)
           .pipe(
-          map(note => {
-            return NotesActions.updateNoteHeaderSuccess({ payload: note })
-          }),
+            map(note => {
+              return NotesActions.updateNoteHeaderSuccess({ payload: note })
+            }),
             catchError(err => of(NotesActions.updateNoteHeaderFail({ payload: err })))
           ))))
 

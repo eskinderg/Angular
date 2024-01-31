@@ -92,7 +92,7 @@
   width: 100%;
   height: 100%;
   // scrollbar-gutter: auto;
-  border-right: 1px solid var(--border);
+  // border-right: 1px solid var(--border);
   // padding-right: 0.25rem;
   // border: 4px solid red;
   direction: rtl;
@@ -164,6 +164,8 @@ background: linear-gradient(#5f9cfb, #698fc8, #5f9cfb);
   flex-wrap: nowrap;
   flex: 1 1 auto;
   box-sizing: border-box;
+  outline: 1px solid var(--border);
+  z-index: 1;
 }
 
 .note-list-item {
