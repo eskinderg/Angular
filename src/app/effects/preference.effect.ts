@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { Store } from '@ngrx/store'
-import { EMPTY, of } from 'rxjs'
+import { of } from 'rxjs'
 import { map, switchMap } from 'rxjs/operators'
 import * as PreferenceActions from '../actions/preference.action';
 import * as NoteActions from '../actions/note.actions';
@@ -23,45 +22,52 @@ export class PreferenceEffect {
   getIsLoggedIn = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.getIsLoggedIn),
-      switchMap(() => {
-        this.store.dispatch(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false }))
-        return EMPTY;
-      })
-    ), { dispatch: false });
+      switchMap(() =>
+        of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false }))
+      )
+    ));
 
   setIsLoggedIn = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.setIsLoggedIn),
-      switchMap((action) => {
-        localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())
-        this.store.dispatch(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
-        return EMPTY;
-      })
-    ), { dispatch: false });
+      switchMap((action) =>
+        of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
+          map(_ => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
+        )
+      )
+    ));
+
+  getIsLoggedInSuccess = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PreferenceActions.getIsLoggedInSuccess),
+      switchMap(
+        (action) => of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }
+        ))
+      )))
 
   logIn = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.logIn),
-      switchMap(() => {
-        this.store.dispatch(NoteActions.fetchNotes())
-        this.store.dispatch(EventActions.fetchEvents())
-        return EMPTY;
-      })
-    ), { dispatch: false });
+      switchMap(_ =>
+        of(
+          NoteActions.fetchNotes(),
+          EventActions.fetchEvents()
+        ))
+    ));
 
   logInSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.logInSuccess),
-      switchMap(() => {
-        this.store.dispatch(NoteActions.fetchNotes())
-        this.store.dispatch(EventActions.fetchEvents())
-        return EMPTY;
-      })
-    ), { dispatch: false });
+      switchMap(() => (
+        of(
+          NoteActions.fetchNotes(),
+          EventActions.fetchEvents()
+        )
+      ))
+    ));
 
   constructor(
     private actions$: Actions,
-    private store: Store<any>,
     private themeService: ThemeService
   ) { }
 }
