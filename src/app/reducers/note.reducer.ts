@@ -176,9 +176,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
 )
 
 export function dateModifiedNotes(notes: Note[]): Note[] {
-  return [
-    ...notes
-  ].sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1))
+  return notes .sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1))
 }
 
 export function pinnedNotes(notes: Note[]): Note[] {
