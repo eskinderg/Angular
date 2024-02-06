@@ -74,6 +74,17 @@ export class NotesEffect {
   //     )
   //   )
 
+  updateNoteSelection = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.updateNoteSelection),
+      switchMap((action) =>
+        this.notesDataService
+          .updateNote(action.payload)
+          .pipe(
+            map(note => NotesActions.updateNoteSelectionSuccess({ payload: note })),
+            catchError(err => of(NotesActions.updateNoteSelectionFail({ payload: err })))
+          ))))
+
   update = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNote),

@@ -30,7 +30,7 @@
         @for(note of Notes | async ; track note){
         <app-note-list-item [note]="note" [animate]="Animate | async" [selectedNote]="SelectedNote | async"
           (selectNote)="selectNote($event)" (archiveNote)="onArchiveNote($event)"
-          (changePineOrder)="updatePinOrder($event)">
+          (changePineOrder)="updatePinOrder($event)" >
 
         </app-note-list-item>
         }
@@ -46,6 +46,7 @@
       @if((OpendNote | async)) {
       <app-note (archiveNote)="onArchiveNote($event)" (changeNoteText)="onChangeNoteText($event)"
         (updateNoteColour)="updateNoteColour($event)" (updateNoteHeader)="onUpdateNoteHeader($event)"
+        (noteSelectionChange)="selectionChange($event)"
         [note]="OpendNote | async"></app-note>
       }@else{
       <div class="note-select-info">

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, HostListener, ElementRef } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -20,6 +20,26 @@ export class NotesComponent {
 
   onChangeNoteText(note: Note) {
     this.notesApiService.updateNoteText(note);
+  }
+
+  saveSelection() {
+    if (window.getSelection) {
+      var sel = window.getSelection();
+      if (sel.getRangeAt && sel.rangeCount) {
+        return sel.getRangeAt(0);
+      }
+    } else if (document.getSelection && document.getSelection().getRangeAt(0)) {
+      return null
+    }
+    return null;
+  }
+
+  selection: Range;
+  x: number;
+  y: number;
+
+  selectionChange(note: Note) {
+    this.notesApiService.updateNoteSelection(note);
   }
 
   selectNote(note: Note) {

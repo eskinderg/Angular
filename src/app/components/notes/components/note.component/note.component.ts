@@ -27,6 +27,7 @@ export class NoteComponent {
   @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
   @Output() updateNoteColour: EventEmitter<Note> = new EventEmitter();
   @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
+  @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
 
   constructor(private store: Store<fromNotes.NotesState>) { }
 
@@ -38,6 +39,9 @@ export class NoteComponent {
     this.changeNoteText.emit(note)
   }
 
+  selectionChange(selection: Note) {
+    this.noteSelectionChange.emit(selection);
+  }
   handleNoteColourUpdate(colour: Colour) {
     this.updateNoteColour.emit({ ...this.note, colour: colour.name })
   }
@@ -80,10 +84,6 @@ export class NoteComponent {
 
     document.execCommand('insertHTML', false, span.outerHTML);
     e.preventDefault();
-  }
-
-  selectionChange(selection: Selection) {
-    // this.selection = selection;
   }
 
   saveSelection(): Range {

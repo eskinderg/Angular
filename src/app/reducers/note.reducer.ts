@@ -45,7 +45,8 @@ export const notesReducer = createReducer<NotesState>(initialState,
     NotesActions.createNoteSuccess,
     (state, action): NotesState => {
 
-      return { ...state,
+      return {
+        ...state,
         notes: pinnedNotes([action.payload, ...state.notes]),
         selectedNote: action.payload,
         opendNote: action.payload,
@@ -57,15 +58,18 @@ export const notesReducer = createReducer<NotesState>(initialState,
     }),
   on(
     NotesActions.fetchNotesStart,
-    (state, _action): NotesState => ({ ...state, isLoading: true
+    (state, _action): NotesState => ({
+      ...state, isLoading: true
     })),
   on(
     NotesActions.fetchNotesComplete,
-    (state, _action): NotesState => ({ ...state, isLoading: false
+    (state, _action): NotesState => ({
+      ...state, isLoading: false
     })),
   on(
     NotesActions.fetchNotesSuccess,
-    (state, action): NotesState => ({ ...state,
+    (state, action): NotesState => ({
+      ...state,
       notes: action.payload,
       selectedNote: null,
       opendNote: null,
@@ -86,6 +90,17 @@ export const notesReducer = createReducer<NotesState>(initialState,
       animate: {
         note: true,
         date: true,
+      }
+    })),
+  on(
+    NotesActions.updateNoteSelectionSuccess,
+    (state, action): NotesState => ({
+      ...state,
+      notes: state.notes.map(note =>
+        ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note),
+      animate: {
+        note: false,
+        date: false
       }
     })),
   on(
@@ -176,7 +191,7 @@ export const notesReducer = createReducer<NotesState>(initialState,
 )
 
 export function dateModifiedNotes(notes: Note[]): Note[] {
-  return notes .sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1))
+  return notes.sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1))
 }
 
 export function pinnedNotes(notes: Note[]): Note[] {

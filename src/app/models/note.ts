@@ -4,6 +4,7 @@ export class Note {
   colour: string;
   left: number;
   top: number;
+  selection: string;
   width: number;
   height: number;
   id: number;

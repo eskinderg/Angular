@@ -43,6 +43,10 @@ export class NoteApiService {
     this.store.dispatch(NotesActions.updateNoteHeader({ payload: note }));
   }
 
+  updateNoteSelection(note: Note): void {
+    this.store.dispatch(NotesActions.updateNoteSelection({ payload: note }));
+  }
+
   restoreArchivedNote(note: Note): void {
     this.store.dispatch(NotesActions.restoreNote({ payload: note }));
   }
