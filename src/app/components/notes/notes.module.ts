@@ -23,6 +23,7 @@ import { NotesComponent } from './components/notes.component';
 import { NoteListItemComponent } from './components/note-list-item/note-list-item.component';
 import { NoteColourSelectorComponent } from './components/note.component/note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './components/note.component/note.header.control/note.header.control.component';
+import { TextSelection } from 'src/app/fragments/components/textAreaExpanded/text.selection';
 
 @NgModule({
   imports: [
@@ -45,6 +46,6 @@ import { NoteHeaderControlComponent } from './components/note.component/note.hea
     DraggableDirective,
     ResizableTextAreaDirective
   ],
-  providers: [NoteApiService, NotesResolver, NoteResolver]
+  providers: [NoteApiService, NotesResolver, NoteResolver, TextSelection]
 })
 export class NotesModule { }

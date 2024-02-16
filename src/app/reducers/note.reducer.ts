@@ -201,27 +201,27 @@ export function pinnedNotes(notes: Note[]): Note[] {
   ].sort((a, b) => (a.pinOrder > b.pinOrder ? -1 : 1))
 }
 
-export const getNoteSTate = createFeatureSelector<NotesState>('notes');
+export const getNoteState = createFeatureSelector<NotesState>('notes');
 
-export const getNotes = createSelector(getNoteSTate, (state: NotesState) => {
+export const getNotes = createSelector(getNoteState, (state: NotesState) => {
   return state.notes.filter(n => !n.archived);
 });
 
-export const getArchivedNotes = createSelector(getNoteSTate, (state: NotesState) => {
+export const getArchivedNotes = createSelector(getNoteState, (state: NotesState) => {
   return state.notes.filter(n => n.archived).sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
 });
 
-export const getNotesLength = createSelector(getNoteSTate, (state: NotesState) => state.notes.filter(n => !n.archived).length);
+export const getNotesLength = createSelector(getNoteState, (state: NotesState) => state.notes.filter(n => !n.archived).length);
 
-export const getNotesAnimate = createSelector(getNoteSTate, (state: NotesState) => state.animate);
+export const getNotesAnimate = createSelector(getNoteState, (state: NotesState) => state.animate);
 
-export const getSelectedNote = createSelector(getNoteSTate, (state: NotesState) => state.selectedNote ? state.notes.find(n => n.id === state.selectedNote.id) : new Note());
+export const getSelectedNote = createSelector(getNoteState, (state: NotesState) => state.selectedNote ? state.notes.find(n => n.id === state.selectedNote.id) : new Note());
 
-export const getOpendNote = createSelector(getNoteSTate, (state: NotesState) => state.opendNote as Note);
+export const getOpendNote = createSelector(getNoteState, (state: NotesState) => state.opendNote as Note);
 
-export const getIsLoading = createSelector(getNoteSTate, (state: NotesState) => state.isLoading);
+export const getIsLoading = createSelector(getNoteState, (state: NotesState) => state.isLoading);
 
-export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItems) => {
+export const getNoteById = (id: number) => createSelector(getNoteState, (allItems) => {
   if (allItems.notes) {
     return allItems.notes.find(item => {
       return item.id === id;
@@ -231,7 +231,7 @@ export const getNoteById = (id: number) => createSelector(getNoteSTate, (allItem
   }
 });
 
-export const getNoteCurrentRoute = createSelector(getNoteSTate, getAppRouterState, (state: NotesState, routerState: AppRouterState) => {
+export const getNoteCurrentRoute = createSelector(getNoteState, getAppRouterState, (state: NotesState, routerState: AppRouterState) => {
   if (state.notes) {
     return state.notes.find(item => {
       return item.id === Number(routerState.params['id'])

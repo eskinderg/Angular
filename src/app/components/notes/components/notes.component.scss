@@ -15,18 +15,27 @@
 }
 
 .note-select-info {
-  position: absolute;
-  width: fit-content;
-  height: fit-content;
-  margin: auto;
+  display: flex;
+  height: 100%;
+  width: -moz-fit-content;
+  height: -moz-fit-content;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
   color: var(--secondary);
 
   #icon-44-note-text {
     fill: var(--active-list-link);
+  }
+
+  svg {
+    width: 30%;
+    height: 30%;
   }
 }
 
