@@ -15,6 +15,7 @@ export class Note {
   pinOrder: Date;
   archived: boolean;
   active: boolean;
+  spellCheck: boolean;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);

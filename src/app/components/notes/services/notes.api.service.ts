@@ -27,6 +27,10 @@ export class NoteApiService {
     this.store.dispatch(NotesActions.createNote({ payload: newNote }));
   }
 
+  toggleSpellCheck(note: Note): void {
+    this.store.dispatch(NotesActions.toggleSpellCheck({ payload: note }))
+  }
+
   updateNote(note: Note): void {
     this.store.dispatch(NotesActions.updateNote({ payload: note }));
   }

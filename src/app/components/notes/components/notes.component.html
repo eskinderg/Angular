@@ -46,7 +46,7 @@
       @if((OpendNote | async)) {
       <app-note (archiveNote)="onArchiveNote($event)" (changeNoteText)="onChangeNoteText($event)"
         (updateNoteColour)="updateNoteColour($event)" (updateNoteHeader)="onUpdateNoteHeader($event)"
-        (noteSelectionChange)="selectionChange($event)" [note]="OpendNote | async"></app-note>
+        (noteSelectionChange)="selectionChange($event)" (toggleSpellCheck)="toggleSpellCheck($event)"  [note]="OpendNote | async"></app-note>
       }@else{
       <div class="note-select-info">
         <svg id="svg5" version="1.1" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">

@@ -46,6 +46,10 @@ export class NotesComponent {
     this.notesApiService.selectNote(note);
   }
 
+  toggleSpellCheck(note: Note) {
+    this.notesApiService.toggleSpellCheck(note);
+  }
+
   createNewNote(_colour: string) {
     this.notesApiService.createNewNote(new Note());
   }

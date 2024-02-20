@@ -283,3 +283,18 @@ export const updateNoteSelectionFail = createAction(
   '[NOTE] UPDATE_NOTE_SELECTION_FAIL',
   props<{ payload: string }>()
 )
+
+export const toggleSpellCheck = createAction(
+  '[NOTE] TOGGLE_SPELL_CHECK',
+  props<{ payload: Note }>()
+)
+
+export const toggleSpellCheckSuccess = createAction(
+  '[NOTE] TOGGLE_SPELL_CHECK_SUCCESS',
+  props<{ payload: Note }>()
+)
+
+export const toggleSpellCheckFail = createAction(
+  '[NOTE] TOGGLE_SPELL_CHECK_FAIL',
+  props<{ payload: string }>()
+)

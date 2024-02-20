@@ -163,6 +163,17 @@ export class NotesEffect {
             catchError(err => of(NotesActions.archiveNoteFail({ payload: err })))
           ))))
 
+  toggleSpellCheck = createEffect(() =>
+    this.actions$.pipe(
+      ofType(NotesActions.toggleSpellCheck),
+      switchMap((action) =>
+        this.notesDataService
+          .updateNote(action.payload)
+          .pipe(
+            map(note => NotesActions.toggleSpellCheckSuccess({ payload: note })),
+            catchError(err => of(NotesActions.toggleSpellCheckFail({ payload: err })))
+          ))))
+
   archiveNoteSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.archiveNoteSuccess),

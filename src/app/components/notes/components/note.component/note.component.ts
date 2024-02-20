@@ -28,11 +28,16 @@ export class NoteComponent {
   @Output() updateNoteColour: EventEmitter<Note> = new EventEmitter();
   @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
   @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
+  @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
   constructor(private store: Store<fromNotes.NotesState>) { }
 
   noteArchive_click(note: Note) {
     this.archiveNote.emit(note);
+  }
+
+  spellCheckToggle(note: Note) {
+    this.toggleSpellCheck.emit({ ...note, spellCheck: !note.spellCheck })
   }
 
   handleNoteTextUpdate(note: Note) {
