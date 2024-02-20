@@ -78,7 +78,7 @@ export class EventsEffect {
 
   fetchEventsSuccess = createEffect(() =>
     this.actions$.pipe(
-      ofType(EventsActions.fetchEvents),
+      ofType(EventsActions.fetchEventsSuccess),
       switchMap(() => of(EventsActions.fetchEventsComplete()))));
 
   deleteEvent = createEffect(() =>

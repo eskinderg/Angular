@@ -28,13 +28,9 @@ export const initialState: NotesState = {
 export const notesReducer = createReducer<NotesState>(initialState,
   on(
     NotesActions.noteSelect,
-    (state, action): NotesState => {
-
-      if (state.selectedNote?.id === action.payload?.id)
-        return { ...state, selectedNote: null, opendNote: null } // Toggle selection
-
-      return { ...state, selectedNote: action.payload, opendNote: action.payload }
-    }
+    (state, action): NotesState => ({
+      ...state, selectedNote: action.payload, opendNote: action.payload
+    })
   ),
   on(
     NotesActions.updateOpendNote,
@@ -68,16 +64,18 @@ export const notesReducer = createReducer<NotesState>(initialState,
     })),
   on(
     NotesActions.fetchNotesSuccess,
-    (state, action): NotesState => ({
-      ...state,
-      notes: action.payload,
-      selectedNote: null,
-      opendNote: null,
-      animate: {
-        note: true,
-        date: true
+    (state, action): NotesState => {
+      return {
+        ...state,
+        notes: action.payload,
+        selectedNote: action.payload.filter(n => !n.archived)[0] ?? null,
+        opendNote: action.payload.filter(n => !n.archived)[0] ?? null,
+        animate: {
+          note: true,
+          date: true
+        }
       }
-    })),
+    }),
   on(
     NotesActions.updateNoteSuccess,
     NotesActions.updateNotePositionSuccess,
@@ -87,8 +85,8 @@ export const notesReducer = createReducer<NotesState>(initialState,
       ...state,
       notes: state.notes.map(note =>
         ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note),
-        opendNote: action.payload,
-        selectedNote: action.payload,
+      opendNote: action.payload,
+      selectedNote: action.payload,
       animate: {
         note: true,
         date: true,
@@ -100,8 +98,8 @@ export const notesReducer = createReducer<NotesState>(initialState,
       ...state,
       notes: state.notes.map(note =>
         ((note.id === action.payload.id) || note.id === undefined) ? action.payload : note),
-        opendNote: action.payload,
-        selectedNote: action.payload,
+      opendNote: action.payload,
+      selectedNote: action.payload,
       animate: {
         note: false,
         date: false,
