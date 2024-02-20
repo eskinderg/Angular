@@ -18,7 +18,7 @@ export class NoteArchiveComponent {
   }
 
   constructor(
-    private store: Store<fromNotes.NotesState>,
+    private store: Store<fromNotes.INotesState>,
     private oauthService: OAuthService,
     // public activeDialog: NgbActiveModal,
     private notesApiService: NoteApiService,

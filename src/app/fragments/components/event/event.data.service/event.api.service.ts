@@ -10,7 +10,7 @@ import * as fromEvents from '../../../../reducers/events.reducer';
 @Injectable()
 export class EventApiService {
 
-  constructor(private store: Store<fromEvents.EventsState>) {
+  constructor(private store: Store<fromEvents.IEventsState>) {
     this.store.dispatch({ type: 'FETCH_EVENTS' });
   }
 

@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private oauthService: OAuthService,
-    private eventStore: Store<fromEvents.EventsState>,
-    private noteStore: Store<fromNotes.NotesState>,
+    private eventStore: Store<fromEvents.IEventsState>,
+    private noteStore: Store<fromNotes.INotesState>,
     private router: Router
   ) { }
 

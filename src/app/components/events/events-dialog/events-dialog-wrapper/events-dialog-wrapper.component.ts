@@ -21,7 +21,7 @@ export class EventsDialogWrapperComponent {
     private dialogService: NgbModal,
     route: ActivatedRoute,
     private location: Location,
-    private store: Store<fromEvents.EventsState>
+    private store: Store<fromEvents.IEventsState>
   ) {
     let routeParams = route.params;
     let routeData = route.data;

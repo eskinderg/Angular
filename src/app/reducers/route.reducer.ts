@@ -2,14 +2,14 @@ import { Data, Params } from "@angular/router";
 import { RouterReducerState } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
-export interface AppRouterState {
+export interface IAppRouterState {
   url         : string;
   params      : Params;
   queryParams : Params;
   // data        : Data;
 }
 
-export const routerState = createFeatureSelector<RouterReducerState<AppRouterState>>('router');
+export const routerState = createFeatureSelector<RouterReducerState<IAppRouterState>>('router');
 
 export const getAppRouterState = createSelector(
   routerState, router => router.state

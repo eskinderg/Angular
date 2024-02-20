@@ -24,7 +24,7 @@ export class ProfileComponent {
 
   constructor(
     private authService: OAuthService,
-    public store: Store<fromProfile.PreferenceState>
+    public store: Store<fromProfile.IPreferenceState>
   ) {
     this.user = this.authService.getIdentityClaims();
     this.isDarkMode = this.store.select(fromProfile.isDarkMode)

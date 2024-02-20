@@ -2,40 +2,40 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as PreferenceActions from '../actions/preference.action';
 import { ThemeService } from '../shared/theme.service';
 
-export interface PreferenceState {
+export interface IPreferenceState {
   isDarkMode: boolean;
   isLoggedIn: boolean;
 }
 
-export const initialState: PreferenceState = {
+export const initialState: IPreferenceState = {
   isDarkMode: localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode,
   isLoggedIn: false
 }
 
-export const profileReducer = createReducer<PreferenceState>(
+export const profileReducer = createReducer<IPreferenceState>(
   initialState,
   on(
     PreferenceActions.toggleDarkModeSuccess,
-    (state, _action): PreferenceState => ({
+    (state, _action): IPreferenceState => ({
       ...state, isDarkMode: !state.isDarkMode
     })
   ),
   on(
     PreferenceActions.logInSuccess,
-    (state, _action): PreferenceState => ({
+    (state, _action): IPreferenceState => ({
       ...state, isLoggedIn: true
     })
   ),
   on(
     PreferenceActions.getIsLoggedInSuccess,
-    (state, action): PreferenceState => ({
+    (state, action): IPreferenceState => ({
       ...state, isLoggedIn: action.isLoggedIn
     })
   )
 )
 
-export const getPreferenceState = createFeatureSelector<PreferenceState>('preference');
+export const getPreferenceState = createFeatureSelector<IPreferenceState>('preference');
 
-export const isDarkMode = createSelector(getPreferenceState, (state: PreferenceState) => state.isDarkMode)
+export const isDarkMode = createSelector(getPreferenceState, (state: IPreferenceState) => state.isDarkMode)
 
-export const isLoggedIn = createSelector(getPreferenceState, (state: PreferenceState) => state.isLoggedIn)
+export const isLoggedIn = createSelector(getPreferenceState, (state: IPreferenceState) => state.isLoggedIn)

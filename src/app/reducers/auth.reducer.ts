@@ -1,24 +1,24 @@
 import { on, createFeatureSelector, createReducer, createSelector } from '@ngrx/store';
 import * as AuthActions from '../actions/auth.action';
 
-export interface AuthState {
+export interface IAuthState {
   profile: any;
 }
 
-export const initialState: AuthState = {
+export const initialState: IAuthState = {
   profile: {}
 };
 
-export const authReducer = createReducer<AuthState> (
+export const authReducer = createReducer<IAuthState> (
   initialState,
   on(
     AuthActions.loadProfileSuccess,
-    (_state, action): AuthState => ({
+    (_state, action): IAuthState => ({
       profile: action.profile
     })
   )
 )
 
-export const getAuthState = createFeatureSelector<AuthState>('profile');
+export const getAuthState = createFeatureSelector<IAuthState>('profile');
 
-export const getProfile = createSelector(getAuthState, (state: AuthState) => state.profile);
+export const getProfile = createSelector(getAuthState, (state: IAuthState) => state.profile);

@@ -22,7 +22,7 @@ export class UserInfoComponent {
 
   constructor(
     private oauthService: OAuthService,
-    public store: Store<fromProfile.PreferenceState>
+    public store: Store<fromProfile.IPreferenceState>
   ) {
     this.isDarkMode = this.store.select(fromProfile.isDarkMode)
   }

@@ -1,9 +1,9 @@
 import { RouterStateSerializer } from "@ngrx/router-store";
 import { ActivatedRouteSnapshot, Data, RouterStateSnapshot } from "@angular/router";
-import { AppRouterState } from "../reducers/route.reducer";
+import { IAppRouterState } from "../reducers/route.reducer";
 
-export class CustomSerializer implements RouterStateSerializer<AppRouterState> {
-  serialize(routerState: RouterStateSnapshot): AppRouterState {
+export class CustomSerializer implements RouterStateSerializer<IAppRouterState> {
+  serialize(routerState: RouterStateSnapshot): IAppRouterState {
 
     let route = routerState.root;
 

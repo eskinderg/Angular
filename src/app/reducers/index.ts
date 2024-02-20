@@ -1,19 +1,19 @@
 import { ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
 
 import { environment } from '../../environments/environment';
-import { notesReducer, NotesState } from './note.reducer';
-import { eventsReducer, EventsState } from './events.reducer';
-import { authReducer, AuthState } from './auth.reducer';
-import { profileReducer, PreferenceState } from './preference.reducer';
+import { notesReducer, INotesState } from './note.reducer';
+import { eventsReducer, IEventsState } from './events.reducer';
+import { authReducer, IAuthState } from './auth.reducer';
+import { profileReducer, IPreferenceState } from './preference.reducer';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import { AppRouterState } from './route.reducer';
+import { IAppRouterState } from './route.reducer';
 
 export interface IAppState {
-  notes      : NotesState;
-  events     : EventsState; // append any more states here
-  profile    : AuthState;
-  preference : PreferenceState;
-  router     : RouterReducerState<AppRouterState>;
+  notes      : INotesState;
+  events     : IEventsState; // append any more states here
+  profile    : IAuthState;
+  preference : IPreferenceState;
+  router     : RouterReducerState<IAppRouterState>;
 }
 
 export const appReducer: ActionReducerMap<IAppState> = {

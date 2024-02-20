@@ -2,17 +2,17 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as EventsActions from '../actions/event.action';
 import { Event } from '../models/event';
 
-export interface EventsState {
+export interface IEventsState {
   events: Event[];
   isLoading: boolean;
 }
 
-export const initialState: EventsState = {
+export const initialState: IEventsState = {
   events: [],
   isLoading: false
 };
 
-export const eventsReducer = createReducer<EventsState>(
+export const eventsReducer = createReducer<IEventsState>(
   initialState,
   on(
     EventsActions.eventsClear,
@@ -22,20 +22,20 @@ export const eventsReducer = createReducer<EventsState>(
     })),
   on(
     EventsActions.createEventSuccess,
-    (state, action): EventsState => ({
+    (state, action): IEventsState => ({
       ...state,
       events: [action.payload, ...state.events]
     })),
   on(
     EventsActions.fetchEventsSuccess,
-    (state, action): EventsState => ({
+    (state, action): IEventsState => ({
       ...state,
       events: action.payload.slice().reverse() || [] // reverse array to show the most recent
     })),
   on(
     EventsActions.toggleEventSuccess,
     EventsActions.updateEventSuccess,
-    (state, action): EventsState => ({
+    (state, action): IEventsState => ({
       ...state,
       events: state.events.map((event) => {
         return (event.id === action.payload.id) ? action.payload : event
@@ -43,7 +43,7 @@ export const eventsReducer = createReducer<EventsState>(
     })),
   on(
     EventsActions.deleteEventSuccess,
-    (state, action): EventsState => ({
+    (state, action): IEventsState => ({
       ...state,
       events: state.events.filter((event: Event) => {
         return event.id !== action.payload.id;
@@ -51,13 +51,13 @@ export const eventsReducer = createReducer<EventsState>(
     })),
   on(
     EventsActions.fetchEventsStart,
-    (state, _action): EventsState => ({ ...state, isLoading: true })),
+    (state, _action): IEventsState => ({ ...state, isLoading: true })),
   on(
     EventsActions.fetchEventsComplete,
-    (state, _action): EventsState => ({ ...state, isLoading: false })),
+    (state, _action): IEventsState => ({ ...state, isLoading: false })),
   on(
     EventsActions.deleteEventsSuccess,
-    (state, action): EventsState => ({
+    (state, action): IEventsState => ({
       ...state,
       events: state.events.filter((event: Event) => {
         return action.payload.every(e => e.id !== event.id)
@@ -66,13 +66,13 @@ export const eventsReducer = createReducer<EventsState>(
 
 )
 
-export const getEventState = createFeatureSelector<EventsState>('events');
+export const getEventState = createFeatureSelector<IEventsState>('events');
 
-export const getEvents = createSelector(getEventState, (state: EventsState) => state.events);
+export const getEvents = createSelector(getEventState, (state: IEventsState) => state.events);
 
-export const getEventsLength = createSelector(getEventState, (state: EventsState) => state.events.length)
+export const getEventsLength = createSelector(getEventState, (state: IEventsState) => state.events.length)
 
-export const getIsLoading = createSelector(getEventState, (state: EventsState) => state.isLoading)
+export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading)
 
 export const getItemById = (id: number) => createSelector(getEventState, (allItems) => {
   if (allItems.events) {

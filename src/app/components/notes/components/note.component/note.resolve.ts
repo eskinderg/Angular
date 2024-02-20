@@ -6,7 +6,7 @@ import { filter, first } from 'rxjs';
 @Injectable()
 export class NoteResolver {
 
-  constructor(private store: Store<fromNotes.NotesState>) { }
+  constructor(private store: Store<fromNotes.INotesState>) { }
 
   resolve() {
     return this.store.select(fromNotes.getNoteCurrentRoute).pipe(

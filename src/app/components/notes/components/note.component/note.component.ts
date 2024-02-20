@@ -30,7 +30,7 @@ export class NoteComponent {
   @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
   @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
-  constructor(private store: Store<fromNotes.NotesState>) { }
+  constructor(private store: Store<fromNotes.INotesState>) { }
 
   noteArchive_click(note: Note) {
     this.archiveNote.emit(note);
