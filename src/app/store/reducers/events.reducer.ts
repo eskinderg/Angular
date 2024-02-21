@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as EventsActions from '../actions/event.action';
-import { Event } from '../models/event';
+import { Event } from '../../models/event';
 
 export interface IEventsState {
   events: Event[];

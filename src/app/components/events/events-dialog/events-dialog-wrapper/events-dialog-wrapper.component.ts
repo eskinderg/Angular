@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil, zip } from 'rxjs';
 import { Location } from '@angular/common';
-import * as fromEvents from '../../../../reducers/events.reducer';
+import * as fromEvents from '../../../../store/reducers/events.reducer';
 import { Store } from '@ngrx/store';
 
 @Component({

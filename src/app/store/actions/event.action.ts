@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Event } from '../models/event';
+import { Event } from '../../models/event';
 
 /*
  List of events messages

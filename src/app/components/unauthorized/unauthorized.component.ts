@@ -2,8 +2,8 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../shared/services/auth/auth.service';
-import * as fromRoot from '../../reducers';
-import * as AuthActions from '../../actions/auth.action';
+import * as fromRoot from '../../store/reducers';
+import * as AuthActions from '../../store/actions/auth.action';
 
 @Component({
   selector: 'app-unauthorized',

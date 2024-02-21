@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy} from '@angular/core';
 // import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Store } from '@ngrx/store';
-import * as fromEvents from '../../reducers/events.reducer';
+import * as fromEvents from '../../store/reducers/events.reducer';
 
 @Component({
   selector: 'app-events',

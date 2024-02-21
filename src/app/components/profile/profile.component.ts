@@ -2,8 +2,8 @@ import { Component, HostBinding } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import * as fromProfile from './../../reducers/preference.reducer';
-import * as ProfileActions from './../../actions/preference.action';
+import * as fromProfile from './../../store/reducers/preference.reducer';
+import * as ProfileActions from './../../store/actions/preference.action';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 

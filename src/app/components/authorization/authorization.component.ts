@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 // import * as AuthActions from '../../actions/auth';
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../store/reducers';
 /**
  * Class representing authorization endpoint for the client
  */

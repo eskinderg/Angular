@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Note } from '../../../models/note';
-import * as NotesActions from '../../../actions/note.actions';
-import * as fromRoot from '../../../reducers';
-import * as fromNotes from '../../../reducers/note.reducer';
+import * as NotesActions from '../../../store/actions/note.actions';
+import * as fromRoot from '../../../store/reducers';
+import * as fromNotes from '../../../store/reducers/note.reducer';
 
 @Injectable()
 export class NoteApiService {

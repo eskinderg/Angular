@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Event } from 'src/app/fragments/components/event/event';
-import * as fromRoot from '../../../../reducers';
-import * as EventsActions from '../../../../actions/event.action';
+import * as fromRoot from '../../../../store/reducers';
+import * as EventsActions from '../../../../store/actions/event.action';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 

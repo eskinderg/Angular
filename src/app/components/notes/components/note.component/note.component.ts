@@ -1,8 +1,8 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
-import * as fromNotes from '../../../../reducers/note.reducer';
-import * as NotesActions from '../../../../actions/note.actions';
+import * as fromNotes from '../../../../store/reducers/note.reducer';
+import * as NotesActions from '../../../../store/actions/note.actions';
 import { Store } from '@ngrx/store';
 import { Colour } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';

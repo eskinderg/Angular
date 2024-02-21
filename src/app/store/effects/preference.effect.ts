@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators'
 import * as PreferenceActions from '../actions/preference.action';
 import * as NoteActions from '../actions/note.actions';
 import * as EventActions from '../actions/event.action';
-import { ThemeService } from '../shared/theme.service'
+import { ThemeService } from '../../shared/theme.service'
 
 @Injectable()
 export class PreferenceEffect {

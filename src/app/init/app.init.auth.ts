@@ -1,9 +1,9 @@
 import { NullValidationHandler, OAuthService, OAuthSuccessEvent } from "angular-oauth2-oidc";
 import { Store, } from "@ngrx/store"
 import { authConfig } from "../auth.config";
-import { isLoggedIn } from "../reducers/preference.reducer";
-import { logInSuccess } from "../actions";
-import { IAppState } from "../reducers"
+import { isLoggedIn } from "../store/reducers/preference.reducer";
+import { logInSuccess } from "../store/actions";
+import { IAppState } from "../store/reducers"
 import { take } from "rxjs";
 
 export function initializeAuth(oauthService: OAuthService, store: Store<IAppState>): () => void {

@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
-import * as fromProfile from '../../../../reducers/preference.reducer';
-import * as ProfileActions from '../../../../actions/preference.action';
+import * as fromProfile from '../../../../store/reducers/preference.reducer';
+import * as ProfileActions from '../../../../store/actions/preference.action';
 
 @Component({
   selector: 'app-userinfo',

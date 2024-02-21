@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as NotesActions from '../actions/note.actions';
-import { Note } from '../models/note';
+import { Note } from '../../models/note';
 import { IAppRouterState, getAppRouterState } from './route.reducer';
 
 export interface INotesState {

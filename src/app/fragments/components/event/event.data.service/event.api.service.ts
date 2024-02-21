@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Event } from '../event';
 
 // import * as fromRoot from '../../../../reducers';
-import * as fromEvents from '../../../../reducers/events.reducer';
+import * as fromEvents from '../../../../store/reducers/events.reducer';
 
 @Injectable()
 export class EventApiService {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
-import * as fromNotes from '../../../../reducers/note.reducer';
+import * as fromNotes from '../../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Note } from 'src/app/models/note';

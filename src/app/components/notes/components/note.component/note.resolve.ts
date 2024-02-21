@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as fromNotes from '../../../../reducers/note.reducer';
+import * as fromNotes from '../../../../store/reducers/note.reducer';
 import { Store } from '@ngrx/store';
 import { filter, first } from 'rxjs';
 

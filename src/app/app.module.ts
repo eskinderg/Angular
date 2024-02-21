@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { EffectsModule } from '@ngrx/effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -18,9 +15,6 @@ import { UnauthorizedModule } from './components/unauthorized/unauthorized.modul
 import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 
-import { appReducer, metaReducers } from './reducers';
-import { NotesEffect, EventsEffect, AuthEffect, PreferenceEffect } from './effects';
-
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './fragments/components/event/event.data.service/event.data.service';
 import { environment } from '../environments/environment';
@@ -29,7 +23,7 @@ import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
 import { CustomSerializer } from './init/app.route.serilizer';
-import { RouterEffect } from './effects/router.effect';
+import { AppStoreModule } from './store/app.store.module';
 
 @NgModule({
   imports: [
@@ -40,9 +34,7 @@ import { RouterEffect } from './effects/router.effect';
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(appReducer, { metaReducers }),
-    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect]),
-    StoreDevtoolsModule.instrument({connectInZone: true}),
+    AppStoreModule,
     OAuthModule.forRoot(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
