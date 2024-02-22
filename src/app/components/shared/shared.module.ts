@@ -23,7 +23,18 @@ import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOptio
 @NgModule({
   imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, ThemeOptionComponent],
   declarations: [HeaderComponent, UserInfoComponent, FooterComponent, TruncatePipe, NoteTitleTruncatePipe],
-  exports: [HeaderComponent, UserInfoComponent, FooterComponent, CommonModule, FormsModule, ReactiveFormsModule, RouterModule, DragDropModule, TruncatePipe, NoteTitleTruncatePipe]
+  exports: [
+    HeaderComponent,
+    UserInfoComponent,
+    FooterComponent,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    DragDropModule,
+    TruncatePipe,
+    NoteTitleTruncatePipe
+  ]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders<SharedModule> {

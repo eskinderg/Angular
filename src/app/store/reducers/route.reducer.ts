@@ -11,7 +11,7 @@ export interface IAppRouterState {
 
 export const routerState = createFeatureSelector<RouterReducerState<IAppRouterState>>('router');
 
-export const getAppRouterState = createSelector(routerState, (router) => router.state);
+export const getAppRouterState = createSelector(routerState, router => router.state);
 
 // export const getRouterStateParams = createSelector(
 //   getAppRouterState,

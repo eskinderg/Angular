@@ -13,7 +13,10 @@ export const createNewNote = createAction('[NOTE] CREATE_NEW_NOTE', props<{ payl
 
 export const createNewNoteFail = createAction('[NOTE] CREATE_NEW_NOTE_FAIL', props<{ payload: string }>());
 
-export const createNewNoteSuccess = createAction('[NOTE] CREATE_NEW_NOTE_SUCCESS', props<{ payload: Note }>());
+export const createNewNoteSuccess = createAction(
+  '[NOTE] CREATE_NEW_NOTE_SUCCESS',
+  props<{ payload: Note }>()
+);
 
 // ===================================
 //  CREATE
@@ -51,15 +54,24 @@ export const fetchNotesSuccess = createAction('[NOTE] FETCH_NOTES_SUCCESS', prop
 
 export const updateNoteText = createAction('[NOTE] UPDATE_NOTE_TEXT', props<{ payload: Note }>());
 
-export const updateNoteTextSuccess = createAction('[NOTE] UPDATE_NOTE_TEXT_SUCCESS', props<{ payload: Note }>());
+export const updateNoteTextSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_TEXT_SUCCESS',
+  props<{ payload: Note }>()
+);
 
 export const updateNoteTextFail = createAction('[NOTE] UPDATE_NOTE_TEXT_FAIL', props<{ payload: string }>());
 
 export const updateNoteHeader = createAction('[NOTE] UPDATE_NOTE_HEADER', props<{ payload: Note }>());
 
-export const updateNoteHeaderSuccess = createAction('[NOTE] UPDATE_NOTE_HEADER_SUCCESS', props<{ payload: Note }>());
+export const updateNoteHeaderSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_HEADER_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const updateNoteHeaderFail = createAction('[NOTE] UPDATE_NOTE_HEADER_FAIL', props<{ payload: string }>());
+export const updateNoteHeaderFail = createAction(
+  '[NOTE] UPDATE_NOTE_HEADER_FAIL',
+  props<{ payload: string }>()
+);
 
 export const updateNote = createAction('[NOTE] UPDATE_NOTE', props<{ payload: Note }>());
 
@@ -69,13 +81,22 @@ export const updateNoteSuccess = createAction('[NOTE] UPDATE_NOTE_SUCCESS', prop
 
 export const updateNotePosition = createAction('[NOTE] UPDATE_NOTE_POSITION', props<{ payload: Note }>());
 
-export const updateNotePositionSuccess = createAction('[NOTE] UPDATE_NOTE_POSITION_SUCCESS', props<{ payload: Note }>());
+export const updateNotePositionSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_POSITION_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const updateNotePositionFail = createAction('[NOTE] UPDATE_NOTE_POSITION_FAIL', props<{ payload: string }>());
+export const updateNotePositionFail = createAction(
+  '[NOTE] UPDATE_NOTE_POSITION_FAIL',
+  props<{ payload: string }>()
+);
 
 export const updateNoteSize = createAction('[NOTE] UPDATE_NOTE_SIZE', props<{ payload: Note }>());
 
-export const updateNoteSizeSuccess = createAction('[NOTE] UPDATE_NOTE_SIZE_SUCCESS', props<{ payload: Note }>());
+export const updateNoteSizeSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_SIZE_SUCCESS',
+  props<{ payload: Note }>()
+);
 
 export const updateNoteSizeFail = createAction('[NOTE] UPDATE_NOTE_SIZE_FAIL', props<{ payload: string }>());
 
@@ -87,15 +108,27 @@ export const getNoteFail = createAction('[NOTE] GET_NOTE_FAIL', props<{ payload:
 
 export const getNoteSuccess = createAction('[NOTE] GET_NOTE_SUCCESS', props<{ payload: Note }>());
 
-export const getNoteUpdatedTimeStamp = createAction('[NOTE] GET_NOTE_UPDATED_TIMESTAMP', props<{ payload: Note }>());
+export const getNoteUpdatedTimeStamp = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP',
+  props<{ payload: Note }>()
+);
 
-export const getNoteUpdatedTimestampSuccess = createAction('[NOTE] GET_NOTE_UPDATED_TIMESTAMP_SUCCESS', props<{ payload: Note }>());
+export const getNoteUpdatedTimestampSuccess = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const getNoteUpdatedTimestampFail = createAction('[NOTE] GET_NOTE_UPDATED_TIMESTAMP_FAIL', props<{ payload: string }>());
+export const getNoteUpdatedTimestampFail = createAction(
+  '[NOTE] GET_NOTE_UPDATED_TIMESTAMP_FAIL',
+  props<{ payload: string }>()
+);
 
 export const updatePinOrder = createAction('[NOTE] UPDATE_PIN_ORDER', props<{ payload: Note }>());
 
-export const updatePinOrderSuccess = createAction('[NOTE] UPDATE_PIN_ORDER_SUCCESS', props<{ payload: Note }>());
+export const updatePinOrderSuccess = createAction(
+  '[NOTE] UPDATE_PIN_ORDER_SUCCESS',
+  props<{ payload: Note }>()
+);
 
 export const updatePinOrderFail = createAction('[NOTE] UPDATE_PIN_ORDER_FAIL', props<{ payload: string }>());
 
@@ -117,9 +150,15 @@ export const updateOpendNote = createAction('[NOTE] UPDATE_OPEND_NOTE', props<{ 
 
 export const updateNoteColour = createAction('[NOTE] UPDATE_NOTE_COLOUR', props<{ payload: Note }>());
 
-export const updateNoteColourSuccess = createAction('[NOTE] UPDATE_NOTE_COLOUR_SUCCESS', props<{ payload: Note }>());
+export const updateNoteColourSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_COLOUR_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const updateNoteColourFail = createAction('[NOTE] UPDATE_NOTE_COLOUR_FAIL', props<{ payload: string }>());
+export const updateNoteColourFail = createAction(
+  '[NOTE] UPDATE_NOTE_COLOUR_FAIL',
+  props<{ payload: string }>()
+);
 
 export const fetchNotesComplete = createAction('[NOTE] FETCH_NOTES_COMPLETE');
 
@@ -127,12 +166,24 @@ export const fetchNotesStart = createAction('[NOTE] FETCH_NOTES_START');
 
 export const updateNoteSelection = createAction('[NOTE] UPDATE_NOTE_SELECTION', props<{ payload: Note }>());
 
-export const updateNoteSelectionSuccess = createAction('[NOTE] UPDATE_NOTE_SELECTION_SUCCESS', props<{ payload: Note }>());
+export const updateNoteSelectionSuccess = createAction(
+  '[NOTE] UPDATE_NOTE_SELECTION_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const updateNoteSelectionFail = createAction('[NOTE] UPDATE_NOTE_SELECTION_FAIL', props<{ payload: string }>());
+export const updateNoteSelectionFail = createAction(
+  '[NOTE] UPDATE_NOTE_SELECTION_FAIL',
+  props<{ payload: string }>()
+);
 
 export const toggleSpellCheck = createAction('[NOTE] TOGGLE_SPELL_CHECK', props<{ payload: Note }>());
 
-export const toggleSpellCheckSuccess = createAction('[NOTE] TOGGLE_SPELL_CHECK_SUCCESS', props<{ payload: Note }>());
+export const toggleSpellCheckSuccess = createAction(
+  '[NOTE] TOGGLE_SPELL_CHECK_SUCCESS',
+  props<{ payload: Note }>()
+);
 
-export const toggleSpellCheckFail = createAction('[NOTE] TOGGLE_SPELL_CHECK_FAIL', props<{ payload: string }>());
+export const toggleSpellCheckFail = createAction(
+  '[NOTE] TOGGLE_SPELL_CHECK_FAIL',
+  props<{ payload: string }>()
+);

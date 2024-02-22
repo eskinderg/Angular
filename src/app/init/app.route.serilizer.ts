@@ -27,5 +27,8 @@ export const mergeRouteData = (route: ActivatedRouteSnapshot): Data =>
     ? {}
     : {
         ...route.data,
-        ...mergeRouteData((route.children.find(({ outlet }) => outlet === 'primary') || route.firstChild) as ActivatedRouteSnapshot)
+        ...mergeRouteData(
+          (route.children.find(({ outlet }) => outlet === 'primary') ||
+            route.firstChild) as ActivatedRouteSnapshot
+        )
       };

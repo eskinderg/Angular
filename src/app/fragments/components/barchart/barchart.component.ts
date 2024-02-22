@@ -52,14 +52,21 @@ export class BarchartComponent implements OnInit, OnChanges {
     const element = this.chartContainer.nativeElement;
     this.width = element.offsetWidth - this.margin.left - this.margin.right;
     this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
-    const svg = d3.select(element).append('svg').attr('width', element.offsetWidth).attr('height', element.offsetHeight);
+    const svg = d3
+      .select(element)
+      .append('svg')
+      .attr('width', element.offsetWidth)
+      .attr('height', element.offsetHeight);
 
     // chart plot area
-    this.chart = svg.append('g').attr('class', 'bars').attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+    this.chart = svg
+      .append('g')
+      .attr('class', 'bars')
+      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
 
     // define X & Y domains
-    const xDomain = this.data.map((d) => d[0]);
-    const yDomain = [0, d3.max(this.data, (d) => d[1])];
+    const xDomain = this.data.map(d => d[0]);
+    const yDomain = [0, d3.max(this.data, d => d[1])];
 
     // create scales
     this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
@@ -77,13 +84,17 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('class', 'axis axis-x')
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
       .call(d3.axisBottom(this.xScale));
-    this.yAxis = svg.append('g').attr('class', 'axis axis-y').attr('transform', `translate(${this.margin.left}, ${this.margin.top})`).call(d3.axisLeft(this.yScale));
+    this.yAxis = svg
+      .append('g')
+      .attr('class', 'axis axis-y')
+      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
+      .call(d3.axisLeft(this.yScale));
   }
 
   updateChart() {
     // update scales & axis
-    this.xScale.domain(this.data.map((d) => d[0]));
-    this.yScale.domain([0, d3.max(this.data, (d) => d[1])]);
+    this.xScale.domain(this.data.map(d => d[0]));
+    this.yScale.domain([0, d3.max(this.data, d => d[1])]);
     this.colors.domain([0, this.data.length]);
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));

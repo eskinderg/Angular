@@ -1,9 +1,19 @@
 {
   "trailingComma" : "none",
-  "arrowParen":"singleline",
-  "printWidth": 250,
   "bracketSpacing" : true,
   "spaceBeforeFunctionParen": false,
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
+  "bracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 110,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false,
+
   "overrides": [
     {
       "files": "*.html",

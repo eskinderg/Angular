@@ -1,6 +1,12 @@
 <div class="modal-header btn-close-top" style="position: absolute; z-index: 100; border: none">
   <!-- <h4 class="modal-title">{{ movieDetail.title}}</h4> -->
-  <button type="button" class="btn-close" style="opacity: 0.5; background: var(--bs-secondary) var(--bs-btn-close-bg) center/1em auto no-repeat" aria-label="Close" (click)="close()"></button>
+  <button
+    type="button"
+    class="btn-close"
+    style="opacity: 0.5; background: var(--bs-secondary) var(--bs-btn-close-bg) center/1em auto no-repeat"
+    aria-label="Close"
+    (click)="close()"
+  ></button>
 </div>
 
 <ng-scrollbar [appearance]="'compact'" [visibility]="'native'" class="screen-height">
@@ -13,7 +19,9 @@
         <div class="col-sm-4">
           <div class="card-body">
             <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
-            <h2 class="card-title">{{ movieDetail.title }} ({{ movieDetail.release_date | truncate: "4" : false }})</h2>
+            <h2 class="card-title">
+              {{ movieDetail.title }} ({{ movieDetail.release_date | truncate: '4' : false }})
+            </h2>
             <hr />
             <h4>
               <span class="badge bg-secondary"> {{ movieDetail.original_language | uppercase }}</span>
@@ -29,12 +37,19 @@
 
             <ul class="list-group">
               <li class="list-group-item">
-                <b>Date Released:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movieDetail.release_date }}</a>
+                <b>Date Released:</b>
+                <a class="badge bg-secondary nodecoration ms-2"> {{ movieDetail.release_date }}</a>
               </li>
               <!-- <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ -->
               <!--     movieDetail.original_language }}</a></li> -->
               <li class="list-group-item">
-                <b>Languages Spoken:</b> <a class="badge bg-secondary nodecoration ms-2" *ngFor="let language of movieDetail.spoken_languages"> {{ language["name"] }}</a>
+                <b>Languages Spoken:</b>
+                <a
+                  class="badge bg-secondary nodecoration ms-2"
+                  *ngFor="let language of movieDetail.spoken_languages"
+                >
+                  {{ language['name'] }}</a
+                >
               </li>
               <li class="list-group-item">
                 <b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movieDetail.status }}</a>
@@ -42,7 +57,7 @@
               <li class="list-group-item">
                 <b>Genres:</b>
                 <a class="badge bg-secondary nodecoration ms-2" *ngFor="let genere of movieDetail.genres">
-                  {{ genere["name"] }}
+                  {{ genere['name'] }}
                 </a>
               </li>
               <li class="list-group-item">

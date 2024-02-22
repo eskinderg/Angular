@@ -1,6 +1,14 @@
 <div class="text-area-wrapper">
   <div class="textArea">
-    <div [innerHTML]="note.text" [autofocus]="true" class="p-3 textInput" [spellcheck]="note.spellCheck" contenteditable="true" #textarea tabindex="1">
+    <div
+      [innerHTML]="note.text"
+      [autofocus]="true"
+      class="p-3 textInput"
+      [spellcheck]="note.spellCheck"
+      contenteditable="true"
+      #textarea
+      tabindex="1"
+    >
       {{ note.text }}
     </div>
   </div>

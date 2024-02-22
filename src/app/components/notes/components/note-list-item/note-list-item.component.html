@@ -1,9 +1,23 @@
-<div [@.disabled]="!animate.note" [@fadeInOutNoteListItem] class="note-border" [ngClass]="{ 'selected-note': selectedNote === note }">
+<div
+  [@.disabled]="!animate.note"
+  [@fadeInOutNoteListItem]
+  class="note-border"
+  [ngClass]="{ 'selected-note': selectedNote === note }"
+>
   <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
   <div class="note-wrapper" (click)="onSelectNote(note)"></div>
 
   <div class="menu del-button" (click)="onArchiveNote(note)">
-    <svg class="archive-note-button-icon" enable-background="new 0 0 256 256" version="1.1" viewBox="0 0 256 256" height="20" width="20" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      class="archive-note-button-icon"
+      enable-background="new 0 0 256 256"
+      version="1.1"
+      viewBox="0 0 256 256"
+      height="20"
+      width="20"
+      xml:space="preserve"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="g8">
         <g id="g6">
           <path
@@ -17,21 +31,39 @@
 
   <div class="item">
     @if(note.header){
-    <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">{{ note.header | noteTitleTruncate: "20" : true }}</div>
+    <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+      {{ note.header | noteTitleTruncate: '20' : true }}
+    </div>
 
     }@else if(note.text){
-    <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">{{ note.text | noteTitleTruncate: "20" : true }}</div>
+    <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+      {{ note.text | noteTitleTruncate: '20' : true }}
+    </div>
     }@else(){
     <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">Untitled</div>
     }
   </div>
 
-  <small (click)="onSelectNote(note)" [ngClass]="{ 'pinned-note-text': note.pinOrder }" class="date-modified date-text" [@.disabled]="!animate.date" [@fadeInOutNoteListItem] [ngbTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
+  <small
+    (click)="onSelectNote(note)"
+    [ngClass]="{ 'pinned-note-text': note.pinOrder }"
+    class="date-modified date-text"
+    [@.disabled]="!animate.date"
+    [@fadeInOutNoteListItem]
+    [ngbTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')"
+  >
     {{ note.dateModified | dateago }}</small
   >
 
   <div class="pin-wrapper" (click)="updatePinOrder(note)">
-    <svg id="Layer_1" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      id="Layer_1"
+      enable-background="new 0 0 512 512"
+      version="1.1"
+      viewBox="0 0 512 512"
+      xml:space="preserve"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         class="pin"
         [ngClass]="note.pinOrder ? 'pinned' : 'newpin'"

@@ -20,7 +20,10 @@ export class ConfirmService {
    */
   confirm(options: ConfirmOptions): Promise<any> {
     this.state.options = options;
-    this.state.dialog = this.dialogService.open(this.state.template, { backdrop: options.backdrop, centered: true });
+    this.state.dialog = this.dialogService.open(this.state.template, {
+      backdrop: options.backdrop,
+      centered: true
+    });
     return this.state.dialog.result;
   }
 

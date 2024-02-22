@@ -1,4 +1,19 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, forwardRef, Renderer2, ViewChild, ChangeDetectionStrategy, OnDestroy, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ElementRef,
+  forwardRef,
+  Renderer2,
+  ViewChild,
+  ChangeDetectionStrategy,
+  OnDestroy,
+  HostListener,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
@@ -39,7 +54,10 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
         debounceTime(450),
         distinctUntilChanged(),
         tap(() => {
-          this.textAreaTextChanged.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
+          this.textAreaTextChanged.emit({
+            ...this.note,
+            text: this.textarea.nativeElement.innerHTML
+          } as Note);
         })
       )
       .subscribe();
@@ -51,12 +69,24 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
 
   @HostListener('focusout', ['$event.target'])
   onFocusOut(target: any) {
-    this.textAreaSelectionChange.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
-    this.textAreaUpdatedOpendNote.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
+    this.textAreaSelectionChange.emit({
+      ...this.note,
+      text: target.innerHTML,
+      selection: JSON.stringify(this.txtSelection.saveSelection(target))
+    } as Note);
+    this.textAreaUpdatedOpendNote.emit({
+      ...this.note,
+      text: target.innerHTML,
+      selection: JSON.stringify(this.txtSelection.saveSelection(target))
+    } as Note);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ((changes['note'].currentValue as Note).id === this.note.id && this.note.selection !== null && (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id) {
+    if (
+      (changes['note'].currentValue as Note).id === this.note.id &&
+      this.note.selection !== null &&
+      (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
+    ) {
       setTimeout(() => {
         this.txtSelection.doRestore(this.note.selection, this.textarea.nativeElement);
       }, 100);

@@ -17,8 +17,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [FormsModule, CommonModule, NgaModule, NgbModule, NgScrollbarModule, RouterModule],
-  declarations: [EventComponent, EventListHeaderComponent, EventListItemComponent, EventListFooterComponent, EventListComponent, EventListSelectComponent],
-  exports: [EventComponent, EventListHeaderComponent, EventListItemComponent, EventListFooterComponent, EventListComponent, EventListSelectComponent, CommonModule, FormsModule],
+  declarations: [
+    EventComponent,
+    EventListHeaderComponent,
+    EventListItemComponent,
+    EventListFooterComponent,
+    EventListComponent,
+    EventListSelectComponent
+  ],
+  exports: [
+    EventComponent,
+    EventListHeaderComponent,
+    EventListItemComponent,
+    EventListFooterComponent,
+    EventListComponent,
+    EventListSelectComponent,
+    CommonModule,
+    FormsModule
+  ],
   providers: [EventsResolve]
 })
 export class EventModule {}

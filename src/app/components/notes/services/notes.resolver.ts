@@ -7,7 +7,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class NotesResolver {
   constructor(private notesApiService: NoteApiService) {}
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Note[] | Observable<Note[]> | Promise<Note[]> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Note[] | Observable<Note[]> | Promise<Note[]> {
     throw new Error('Method not implemented.');
   }
 

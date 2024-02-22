@@ -28,18 +28,20 @@ export class MoviesDataService {
     const search = new HttpParams();
     search.set('sort_by', 'popularity.desc');
     search.set('api_key', this.apikey);
-    return this.http.get('https://api.themoviedb.org/3/discover/movie?callback=JSONP_CALLBACK', { params: search }).pipe(
-      map((res) => {
-        return res;
-      })
-    );
+    return this.http
+      .get('https://api.themoviedb.org/3/discover/movie?callback=JSONP_CALLBACK', { params: search })
+      .pipe(
+        map(res => {
+          return res;
+        })
+      );
   }
 
   getPopularSeries(): Observable<Tv[]> {
     const search = new HttpParams();
     search.set('api_key', this.apikey);
     return this.http.get<Tv[]>('https://api.themoviedb.org/3/tv/popular?api_key=' + this.apikey).pipe(
-      map((data) => {
+      map(data => {
         const tvs = data['results'];
         return tvs.map((tv: Tv) => new Tv(tv));
       })
@@ -81,25 +83,29 @@ export class MoviesDataService {
   // }
 
   searchMovies(searchStr: string) {
-    return this.http.get<Movie[]>('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr).pipe(
-      map((res) => {
-        const result: MovieResults = new MovieResults();
-        result.total_pages = res['total_pages'];
-        result.total_results = res['total_results'];
-        result.page = res['page'];
-        result.movies = res['results'].map((movie: Movie) => new Movie(movie));
-        return result;
-      })
-    );
+    return this.http
+      .get<Movie[]>(
+        'https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr
+      )
+      .pipe(
+        map(res => {
+          const result: MovieResults = new MovieResults();
+          result.total_pages = res['total_pages'];
+          result.total_results = res['total_results'];
+          result.page = res['page'];
+          result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+          return result;
+        })
+      );
   }
 
   getMovie(id: string) {
     const search = new URLSearchParams();
     search.set('api_key', this.apikey);
     return this.http.get<Movie>('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + this.apikey).pipe(
-      map((res) => {
+      map(res => {
         let movie = new Movie(res);
-        this.getCasts(id).subscribe((res) => {
+        this.getCasts(id).subscribe(res => {
           movie.casts = res;
         });
         return movie;
@@ -108,11 +114,13 @@ export class MoviesDataService {
   }
 
   getCasts(movieId: string) {
-    return this.http.get<string[]>('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey).pipe(
-      map((res) => {
-        return res['cast'];
-      })
-    );
+    return this.http
+      .get<string[]>('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey)
+      .pipe(
+        map(res => {
+          return res['cast'];
+        })
+      );
   }
 
   // getGenres(): Observable<Genre[]> {
@@ -135,26 +143,30 @@ export class MoviesDataService {
     const search = new URLSearchParams();
     search.set('language', 'en-US');
     search.set('api_key', this.apikey);
-    return this.http.get<Genre[]>('https://api.themoviedb.org/3/genre/movie/list?api_key=' + this.apikey).pipe(
-      map((res) => {
-        const genres = res['genres'];
-        return genres.map((genre: Genre) => new Genre(genre));
-      })
-    );
+    return this.http
+      .get<Genre[]>('https://api.themoviedb.org/3/genre/movie/list?api_key=' + this.apikey)
+      .pipe(
+        map(res => {
+          const genres = res['genres'];
+          return genres.map((genre: Genre) => new Genre(genre));
+        })
+      );
   }
 
   getGenreMovieCount(genreId: string) {
     const search = new URLSearchParams();
     search.set('api_key', this.apikey);
     // search.set('page', '10');
-    return this.http.get('https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + this.apikey).pipe(
-      map((res) => {
-        return res['total_results'];
-        // console.log(res.json().total_results);
-        // return movies.map((movie: Movie) => new Movie(movie));
-        // return res.json();
-      })
-    );
+    return this.http
+      .get('https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + this.apikey)
+      .pipe(
+        map(res => {
+          return res['total_results'];
+          // console.log(res.json().total_results);
+          // return movies.map((movie: Movie) => new Movie(movie));
+          // return res.json();
+        })
+      );
   }
 
   // getMoviesByGenre(id: string): Observable<Movie[]> {
@@ -174,17 +186,21 @@ export class MoviesDataService {
   // }
 
   getMoviesByGenre(id: string, page: number = 1): Observable<MovieResults> {
-    return this.http.get<MovieResults>(`https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`).pipe(
-      map((res) => {
-        const result: MovieResults = {
-          total_pages: res['total_pages'],
-          total_results: res['total_results'],
-          page: res['page'],
-          movies: res['results'].map((movie: Movie) => new Movie(movie))
-        };
-        return result;
-      })
-    );
+    return this.http
+      .get<MovieResults>(
+        `https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`
+      )
+      .pipe(
+        map(res => {
+          const result: MovieResults = {
+            total_pages: res['total_pages'],
+            total_results: res['total_results'],
+            page: res['page'],
+            movies: res['results'].map((movie: Movie) => new Movie(movie))
+          };
+          return result;
+        })
+      );
   }
 
   // getMovieReviews(id: string) {

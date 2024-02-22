@@ -20,8 +20,8 @@ export class DraggableHelperDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.draggable.dragStart.subscribe((event) => this.onDragStart(event));
-    this.draggable.dragMove.subscribe((event) => this.onDragMove(event));
+    this.draggable.dragStart.subscribe(event => this.onDragStart(event));
+    this.draggable.dragMove.subscribe(event => this.onDragMove(event));
     // this.draggable.dragEnd.subscribe(() => this.onDragEnd());
 
     // create an overlay...

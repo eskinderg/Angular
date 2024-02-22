@@ -12,10 +12,10 @@ export class NotesEffect {
   save = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.createNote),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.addNote(action.payload).pipe(
-          map((note) => NotesActions.createNoteSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
+          map(note => NotesActions.createNoteSuccess({ payload: note })),
+          catchError(err => of(NotesActions.createNoteFail({ payload: err })))
         )
       )
     )
@@ -24,10 +24,10 @@ export class NotesEffect {
   updateNoteText = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNoteText),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.updateNoteTextSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.updateNoteTextFail({ payload: err })))
+          map(note => NotesActions.updateNoteTextSuccess({ payload: note })),
+          catchError(err => of(NotesActions.updateNoteTextFail({ payload: err })))
         )
       )
     )
@@ -36,10 +36,10 @@ export class NotesEffect {
   updateNotePosition = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNotePosition),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.updateNotePositionSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
+          map(note => NotesActions.updateNotePositionSuccess({ payload: note })),
+          catchError(err => of(NotesActions.updateNotePositionFail({ payload: err })))
         )
       )
     )
@@ -48,10 +48,10 @@ export class NotesEffect {
   updateNoteSelection = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNoteSelection),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.updateNoteSelectionSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
+          map(note => NotesActions.updateNoteSelectionSuccess({ payload: note })),
+          catchError(err => of(NotesActions.updateNoteSelectionFail({ payload: err })))
         )
       )
     )
@@ -60,10 +60,10 @@ export class NotesEffect {
   update = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNote),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.updateNoteSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
+          map(note => NotesActions.updateNoteSuccess({ payload: note })),
+          catchError(err => of(NotesActions.createNoteFail({ payload: err })))
         )
       )
     )
@@ -72,10 +72,10 @@ export class NotesEffect {
   updatePinOrder = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updatePinOrder),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.updatePinOrderSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.updatePinOrderFail({ payload: err })))
+          map(note => NotesActions.updatePinOrderSuccess({ payload: note })),
+          catchError(err => of(NotesActions.updatePinOrderFail({ payload: err })))
         )
       )
     )
@@ -93,8 +93,8 @@ export class NotesEffect {
       ofType(NotesActions.fetchNotesStart),
       switchMap(() =>
         this.notesDataService.getNotes().pipe(
-          map((notes) => NotesActions.fetchNotesSuccess({ payload: notes })),
-          catchError((err) => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
+          map(notes => NotesActions.fetchNotesSuccess({ payload: notes })),
+          catchError(err => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
         )
       )
     )
@@ -110,10 +110,10 @@ export class NotesEffect {
   delete = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.deleteNote),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.deleteNoteSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.deleteNoteFail({ payload: err })))
+          map(note => NotesActions.deleteNoteSuccess({ payload: note })),
+          catchError(err => of(NotesActions.deleteNoteFail({ payload: err })))
         )
       )
     )
@@ -135,10 +135,10 @@ export class NotesEffect {
   archiveNote = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.archiveNote),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.archiveNoteSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.archiveNoteFail({ payload: err })))
+          map(note => NotesActions.archiveNoteSuccess({ payload: note })),
+          catchError(err => of(NotesActions.archiveNoteFail({ payload: err })))
         )
       )
     )
@@ -147,10 +147,10 @@ export class NotesEffect {
   toggleSpellCheck = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.toggleSpellCheck),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => NotesActions.toggleSpellCheckSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
+          map(note => NotesActions.toggleSpellCheckSuccess({ payload: note })),
+          catchError(err => of(NotesActions.toggleSpellCheckFail({ payload: err })))
         )
       )
     )
@@ -171,10 +171,10 @@ export class NotesEffect {
   restoreNote = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.restoreNote),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote({ ...action.payload, archived: false }).pipe(
-          map((note) => NotesActions.restoreNoteSuccess({ payload: note })),
-          catchError((err) => of(NotesActions.restoreNoteFail({ payload: err })))
+          map(note => NotesActions.restoreNoteSuccess({ payload: note })),
+          catchError(err => of(NotesActions.restoreNoteFail({ payload: err })))
         )
       )
     )
@@ -195,12 +195,12 @@ export class NotesEffect {
   updateNoteColour = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNoteColour),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => {
+          map(note => {
             return NotesActions.updateNoteColourSuccess({ payload: note });
           }),
-          catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
+          catchError(err => of(NotesActions.updateNoteColourFail({ payload: err })))
         )
       )
     )
@@ -209,12 +209,12 @@ export class NotesEffect {
   updateNoteColourSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNoteColourSuccess),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => {
+          map(note => {
             return NotesActions.updateOpendNote({ payload: note });
           }),
-          catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
+          catchError(err => of(NotesActions.updateNoteFail({ payload: err })))
         )
       )
     )
@@ -223,12 +223,12 @@ export class NotesEffect {
   updateNoteHeader = createEffect(() =>
     this.actions$.pipe(
       ofType(NotesActions.updateNoteHeader),
-      switchMap((action) =>
+      switchMap(action =>
         this.notesDataService.updateNote(action.payload).pipe(
-          map((note) => {
+          map(note => {
             return NotesActions.updateNoteHeaderSuccess({ payload: note });
           }),
-          catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
+          catchError(err => of(NotesActions.updateNoteHeaderFail({ payload: err })))
         )
       )
     )

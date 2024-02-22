@@ -12,7 +12,9 @@ interface Position {
 })
 export class MovableDirective extends DraggableDirective {
   @HostBinding('style.transform') get transform(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(`translateX(${this.position.x}px) translateY(${this.position.y}px)`);
+    return this.sanitizer.bypassSecurityTrustStyle(
+      `translateX(${this.position.x}px) translateY(${this.position.y}px)`
+    );
   }
 
   @HostBinding('class.movable') movable = false;

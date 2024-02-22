@@ -3,13 +3,25 @@
 <!-- <h1>{{movieResult.total_pages }}</h1> -->
 <!-- <h1>{{movieResult.page }}</h1> -->
 
-<ngb-pagination [(page)]="movieResult.page" [pageSize]="20" [maxSize]="10" (pageChange)="loadPage($event)" [collectionSize]="collectionSize"></ngb-pagination>
+<ngb-pagination
+  [(page)]="movieResult.page"
+  [pageSize]="20"
+  [maxSize]="10"
+  (pageChange)="loadPage($event)"
+  [collectionSize]="collectionSize"
+></ngb-pagination>
 
 <div class="movie-cards-container">
   <div *ngFor="let movie of movieResult.movies">
     <app-movie-card [movie]="movie" [routerLink]="[route.url, 'dialog', movie.id]"></app-movie-card>
   </div>
 </div>
-<ngb-pagination [(page)]="movieResult.page" [pageSize]="20" [maxSize]="10" (pageChange)="loadPage($event)" [collectionSize]="collectionSize"></ngb-pagination>
+<ngb-pagination
+  [(page)]="movieResult.page"
+  [pageSize]="20"
+  [maxSize]="10"
+  (pageChange)="loadPage($event)"
+  [collectionSize]="collectionSize"
+></ngb-pagination>
 
 <router-outlet></router-outlet>

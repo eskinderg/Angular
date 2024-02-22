@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute
   ) {
-    this.route.params.subscribe((params) => (this.message = params['endsession']));
+    this.route.params.subscribe(params => (this.message = params['endsession']));
   }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   loadUserProfile(): void {
-    this.oauthService.loadUserProfile().then((up) => (this.userProfile = up));
+    this.oauthService.loadUserProfile().then(up => (this.userProfile = up));
   }
 
   hasMessage(): boolean {

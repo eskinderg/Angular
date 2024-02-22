@@ -6,6 +6,10 @@ import { appReducer, metaReducers } from '../store/reducers';
 import { NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect } from '../store/effects';
 
 @NgModule({
-  imports: [StoreModule.forRoot(appReducer, { metaReducers }), EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect]), StoreDevtoolsModule.instrument({ connectInZone: true })]
+  imports: [
+    StoreModule.forRoot(appReducer, { metaReducers }),
+    EffectsModule.forRoot([NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect]),
+    StoreDevtoolsModule.instrument({ connectInZone: true })
+  ]
 })
 export class AppStoreModule {}

@@ -33,7 +33,7 @@ export class EventDataService extends ApiService {
 
   public updateEvent(event: Event): Observable<Event> {
     return this.http.put<Event>(API_URL, event).pipe(
-      map((response) => {
+      map(response => {
         return response;
       }),
       catchError(this.handleError)
@@ -42,7 +42,7 @@ export class EventDataService extends ApiService {
 
   public toggleEvent(event: Event): Observable<Event> {
     return this.http.put<Event>(API_URL + 'toggle/', event).pipe(
-      map((response) => {
+      map(response => {
         return response;
       }),
       catchError(this.handleError)
@@ -51,7 +51,7 @@ export class EventDataService extends ApiService {
 
   public deleteEventById(event: Event): Observable<Event> {
     return this.http.delete<Event>(API_URL + event.id).pipe(
-      map((response) => {
+      map(response => {
         return event;
       }),
       catchError(this.handleError)
@@ -60,7 +60,7 @@ export class EventDataService extends ApiService {
 
   public deleteEvents(events: Event[]): Observable<Event[]> {
     return this.http.delete<Event[]>(API_URL, { body: events }).pipe(
-      map((response) => {
+      map(response => {
         return response;
       }),
       catchError(this.handleError)

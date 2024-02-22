@@ -1,6 +1,26 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
-import { OperatorFunction, of, Observable, tap, switchMap, catchError, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import {
+  OperatorFunction,
+  of,
+  Observable,
+  tap,
+  switchMap,
+  catchError,
+  fromEvent,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  Subscription
+} from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,7 +54,7 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
         filter(Boolean),
         debounceTime(450),
         distinctUntilChanged(),
-        tap((text) => {
+        tap(text => {
           this.onSearch(this.input.nativeElement.value);
         })
       )

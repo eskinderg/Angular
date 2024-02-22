@@ -2,7 +2,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 
 export type Colour = { name: string };
 
-export const Colours: Colour[] = [{ name: 'red' }, { name: 'green' }, { name: 'yellow' }, { name: 'violet' }, { name: 'blue' }, { name: 'none' }];
+export const Colours: Colour[] = [
+  { name: 'red' },
+  { name: 'green' },
+  { name: 'yellow' },
+  { name: 'violet' },
+  { name: 'blue' },
+  { name: 'none' }
+];
 
 @Component({
   selector: 'app-note-colour-selector',

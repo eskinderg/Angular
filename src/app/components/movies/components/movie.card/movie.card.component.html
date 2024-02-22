@@ -2,7 +2,12 @@
   <!-- <h5 class="lang"> <span class="badge bg-secondary"> {{movie.original_language | uppercase}}</span> </h5> -->
   <!-- <img [hidden]="imageLoaded" class="card-img-top fade-in" src="/assets/images/placeholder.gif" > -->
   <!-- <img height=450 width=300 class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl" -->
-  <img class="card-img-top fade-in" [src]="imageLoading ? imageLoadingUrl : imageUrl" (load)="onImageLoaded()" (error)="handleEmptyImage()" />
+  <img
+    class="card-img-top fade-in"
+    [src]="imageLoading ? imageLoadingUrl : imageUrl"
+    (load)="onImageLoaded()"
+    (error)="handleEmptyImage()"
+  />
   <div class="card-body">
     <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
     <div class="row">
@@ -17,12 +22,12 @@
     </div>
     <hr style="margin: 5px 0px" />
 
-    <small class="card-text">{{ movie.overview | truncate: "100" : true }}</small>
+    <small class="card-text">{{ movie.overview | truncate: '100' : true }}</small>
 
     <div class="mt-auto align-self-start"></div>
 
     <div class="d-flex justify-content-between">
-      <p class="card-title">{{ movie.release_date | truncate: "4" : false }}</p>
+      <p class="card-title">{{ movie.release_date | truncate: '4' : false }}</p>
       <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal>
     </div>
   </div>

@@ -16,7 +16,14 @@ import { NgaModule } from '../../fragments/nga.module';
 
 @NgModule({
   imports: [CommonModule, WizardManagerRoutingModule, SharedModule, NgaModule],
-  declarations: [WizardManagerComponent, WzToolbarComponent, ProfileComponent, PaymentComponent, FeatureComponent, WzCommonComponent],
+  declarations: [
+    WizardManagerComponent,
+    WzToolbarComponent,
+    ProfileComponent,
+    PaymentComponent,
+    FeatureComponent,
+    WzCommonComponent
+  ],
   exports: [WizardManagerComponent]
 })
 export class WizardManagerModule {}

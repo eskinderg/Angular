@@ -27,7 +27,13 @@ export class MovieCardComponent implements OnInit {
     this.imageLoadingUrl = '/assets/images/placeholder.gif';
     this.noImageUrl = '/assets/images/placeholder.png';
 
-    this.linkUrl = '/movies/genres' + '/' + this.route.snapshot.paramMap.get('id') + '/' + this.route.snapshot.paramMap.get('name') + '/';
+    this.linkUrl =
+      '/movies/genres' +
+      '/' +
+      this.route.snapshot.paramMap.get('id') +
+      '/' +
+      this.route.snapshot.paramMap.get('name') +
+      '/';
 
     this.movieRating = parseFloat(this.movie.vote_average);
     this.movieRating = (5 * this.movieRating) / 10;

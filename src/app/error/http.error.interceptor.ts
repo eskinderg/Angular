@@ -1,5 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpErrorResponse, HttpEvent, HttpInterceptor, HttpResponse, HttpHandler, HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpInterceptor,
+  HttpResponse,
+  HttpHandler,
+  HttpRequest
+} from '@angular/common/http';
 import { Observable, pipe, throwError, catchError } from 'rxjs';
 // import { tap } from 'rxjs/operators';
 import { LoggingService } from '../error/loggingservice';
@@ -26,7 +33,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     const loggingService = this.injector.get(LoggingService);
 
     return next.handle(request).pipe(
-      catchError((error) => {
+      catchError(error => {
         loggingService.error(error);
         return throwError(() => error.message);
       })

@@ -1,4 +1,12 @@
-import { Component, Input, ChangeDetectionStrategy, forwardRef, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  forwardRef,
+  Renderer2,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 
 import { Note } from '../../../models/note';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

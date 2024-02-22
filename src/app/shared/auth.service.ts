@@ -46,7 +46,7 @@ export class AuthService {
   getUser() {
     this.oauthService
       .loadUserProfile()
-      .then((profile) => {
+      .then(profile => {
         this.currentUser = profile;
         console.log('got user', profile);
         this.userLoadededEvent.emit(profile);

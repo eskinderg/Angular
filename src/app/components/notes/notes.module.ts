@@ -26,8 +26,26 @@ import { NoteHeaderControlComponent } from './components/note.component/note.hea
 import { TextSelection } from 'src/app/fragments/components/textAreaExpanded/text.selection';
 
 @NgModule({
-  imports: [CommonModule, NotesRoutingModule, DraggableModule, NgaModule, SharedModule, NgbModule, NgScrollbarModule],
-  declarations: [NotesComponent, NoteComponent, NoteColourSelectorComponent, NoteHeaderControlComponent, NoteArchiveComponent, NoteListItemComponent, AddButtonComponent, DraggableDirective, ResizableTextAreaDirective],
+  imports: [
+    CommonModule,
+    NotesRoutingModule,
+    DraggableModule,
+    NgaModule,
+    SharedModule,
+    NgbModule,
+    NgScrollbarModule
+  ],
+  declarations: [
+    NotesComponent,
+    NoteComponent,
+    NoteColourSelectorComponent,
+    NoteHeaderControlComponent,
+    NoteArchiveComponent,
+    NoteListItemComponent,
+    AddButtonComponent,
+    DraggableDirective,
+    ResizableTextAreaDirective
+  ],
   providers: [NoteApiService, NotesResolver, NoteResolver, TextSelection]
 })
 export class NotesModule {}

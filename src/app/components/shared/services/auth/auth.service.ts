@@ -24,7 +24,7 @@ export class AuthService {
   ) {
     this.mgr
       .getUser()
-      .then((user) => {
+      .then(user => {
         if (user) {
           this.loggedIn = true;
           this.currentUser = user;
@@ -33,12 +33,12 @@ export class AuthService {
           this.loggedIn = false;
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
         this.loggedIn = false;
       });
 
-    this.mgr.events.addUserLoaded((user) => {
+    this.mgr.events.addUserLoaded(user => {
       this.currentUser = user;
       localStorage.setItem('token', user.id_token);
       localStorage.setItem('access_token', user.access_token);

@@ -1,13 +1,25 @@
 import { ComponentRef } from '@angular/core';
-import { Router, RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError, Event } from '@angular/router';
+import {
+  Router,
+  RouterEvent,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+  Event
+} from '@angular/router';
 import { filter } from 'rxjs';
 import { AppComponent } from '../app.component';
 
-export function bootstrapAppRouteFactory(router: Router): (appComponentRef: ComponentRef<AppComponent>) => void {
+export function bootstrapAppRouteFactory(
+  router: Router
+): (appComponentRef: ComponentRef<AppComponent>) => void {
   return (appComponentRef: ComponentRef<AppComponent>) => {
-    router.events.pipe(filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)).subscribe((routerEvent: RouterEvent) => {
-      _navigationInterceptor(routerEvent, appComponentRef.instance);
-    });
+    router.events
+      .pipe(filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent))
+      .subscribe((routerEvent: RouterEvent) => {
+        _navigationInterceptor(routerEvent, appComponentRef.instance);
+      });
   };
 }
 

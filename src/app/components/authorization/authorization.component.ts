@@ -29,12 +29,12 @@ export class AuthorizationComponent implements OnInit {
    */
   ngOnInit() {
     from(this.authService.mgr.signinRedirectCallback()).subscribe(
-      (user) => {
+      user => {
         this.authService.userLoadededEvent.emit(user); // Notifying User has loggedIn Successfully
         // this.store.dispatch(new AuthActions.loginEventSuccess(user));
         this.router.navigate(['/']);
       },
-      (error) => {
+      error => {
         console.log(error);
         this.router.navigate(['/404']);
       }

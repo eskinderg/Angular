@@ -11,7 +11,7 @@ export function initializeAuth(oauthService: OAuthService, store: Store<IAppStat
     store
       .select(isLoggedIn)
       .pipe(take(1))
-      .subscribe((isUserLoggedIn) => {
+      .subscribe(isUserLoggedIn => {
         // avaoid long observable subscription
         if (!isUserLoggedIn) {
           oauthService.configure(authConfig);
@@ -21,7 +21,7 @@ export function initializeAuth(oauthService: OAuthService, store: Store<IAppStat
         }
       });
 
-    oauthService.events.subscribe((event) => {
+    oauthService.events.subscribe(event => {
       if (event instanceof OAuthSuccessEvent) {
         if (event.type === 'token_received' || event.type === 'discovery_document_loaded')
           if (oauthService.hasValidIdToken()) {

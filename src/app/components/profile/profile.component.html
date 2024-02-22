@@ -3,7 +3,12 @@
     <div class="row mb-3">
       <label for="example-text-input" class="col-2 col-form-label">Dark Mode</label>
       <div class="col-10">
-        <app-theme-option [darkMode]="isDarkMode | async" (themeToggleDark)="onDarkModeToggle($event)" [label]=""> </app-theme-option>
+        <app-theme-option
+          [darkMode]="isDarkMode | async"
+          (themeToggleDark)="onDarkModeToggle($event)"
+          [label]=""
+        >
+        </app-theme-option>
       </div>
     </div>
     <div class="row mb-3">
@@ -32,6 +37,14 @@
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 
-    <button class="ms-4 btn btn-outline-primary" ngbPopover="You see, I show up on hover!" triggers="mouseenter:mouseleave" popoverTitle="Pop title" placement="right">Mouse Over</button>
+    <button
+      class="ms-4 btn btn-outline-primary"
+      ngbPopover="You see, I show up on hover!"
+      triggers="mouseenter:mouseleave"
+      popoverTitle="Pop title"
+      placement="right"
+    >
+      Mouse Over
+    </button>
   </app-ba-card>
 </div>

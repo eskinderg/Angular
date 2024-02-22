@@ -18,7 +18,11 @@ export class DraggableDirective {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown($event: { target: { style: { position: string; left: string; top: string } }; clientX: number | undefined; clientY: number | undefined }) {
+  onMouseDown($event: {
+    target: { style: { position: string; left: string; top: string } };
+    clientX: number | undefined;
+    clientY: number | undefined;
+  }) {
     if ($event.target.style.position === 'absolute' && $event.target.style.left && $event.target.style.top) {
       this._hasDragged = false;
       this._isDragging = true;

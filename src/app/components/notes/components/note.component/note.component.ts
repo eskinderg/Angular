@@ -66,7 +66,10 @@ export class NoteComponent {
     let span = document.createElement('span');
     span.innerHTML = text;
 
-    span.style.textDecoration = selection.focusNode.parentElement.style.textDecorationLine === 'underline' ? 'none' : (span.style.textDecoration = 'underline');
+    span.style.textDecoration =
+      selection.focusNode.parentElement.style.textDecorationLine === 'underline'
+        ? 'none'
+        : (span.style.textDecoration = 'underline');
 
     document.execCommand('insertHTML', false, span.outerHTML);
   }
@@ -78,7 +81,10 @@ export class NoteComponent {
     let span = document.createElement('span');
     span.innerHTML = text;
 
-    span.style.fontWeight = selection.focusNode.parentElement.style.fontWeight === 'bold' ? 'normal' : (span.style.textDecoration = 'bold');
+    span.style.fontWeight =
+      selection.focusNode.parentElement.style.fontWeight === 'bold'
+        ? 'normal'
+        : (span.style.textDecoration = 'bold');
 
     document.execCommand('insertHTML', false, span.outerHTML);
     e.preventDefault();

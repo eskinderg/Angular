@@ -29,7 +29,10 @@ export const deleteEvents = createAction('[EVENT] DELETE_EVENTS', props<{ payloa
 
 export const deleteEventsFail = createAction('[EVENT] DELETE_EVENTS_FAIL', props<{ payload: Event[] }>());
 
-export const deleteEventsSuccess = createAction('[EVENT] DELETE_EVENTS_SUCCESS', props<{ payload: Event[] }>());
+export const deleteEventsSuccess = createAction(
+  '[EVENT] DELETE_EVENTS_SUCCESS',
+  props<{ payload: Event[] }>()
+);
 
 // ===================================
 //  FETCH

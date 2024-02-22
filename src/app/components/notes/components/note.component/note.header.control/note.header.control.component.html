@@ -1,1 +1,9 @@
-<input #inputHeader name="note" (keyup.enter)="updateNoteHeader($event)" type="text" class="input-header" [ngModel]="note.header" [placeholder]="'Untitled'" />
+<input
+  #inputHeader
+  name="note"
+  (keyup.enter)="updateNoteHeader($event)"
+  type="text"
+  class="input-header"
+  [ngModel]="note.header"
+  [placeholder]="'Untitled'"
+/>
