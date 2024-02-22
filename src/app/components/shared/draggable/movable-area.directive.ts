@@ -12,7 +12,7 @@ interface Boundaries {
 @Directive({
   selector: '[appMovableArea]'
 })
-export class MovableAreaDirective implements AfterContentInit {
+export class MovableAreaDirective {
   @ContentChildren(MovableDirective) movables: QueryList<MovableDirective> | undefined;
 
   private boundaries: Boundaries | undefined;
@@ -20,16 +20,16 @@ export class MovableAreaDirective implements AfterContentInit {
 
   constructor(private element: ElementRef) {}
 
-  ngAfterContentInit(): void {
-    // this.movables.changes.subscribe(() => {
-    //   this.subscriptions.forEach(s => s.unsubscribe());
-    //   this.movables.forEach(movable => {
-    //     this.subscriptions.push(movable.dragStart.subscribe(() => this.measureBoundaries(movable)));
-    //     this.subscriptions.push(movable.dragMove.subscribe(() => this.maintainBoundaries(movable)));
-    //   });
-    // });
-    // this.movables.notifyOnChanges();
-  }
+  // ngAfterContentInit(): void {
+  // this.movables.changes.subscribe(() => {
+  //   this.subscriptions.forEach(s => s.unsubscribe());
+  //   this.movables.forEach(movable => {
+  //     this.subscriptions.push(movable.dragStart.subscribe(() => this.measureBoundaries(movable)));
+  //     this.subscriptions.push(movable.dragMove.subscribe(() => this.maintainBoundaries(movable)));
+  //   });
+  // });
+  // this.movables.notifyOnChanges();
+  // }
 
   private measureBoundaries(movable: MovableDirective) {
     const viewRect: ClientRect = this.element.nativeElement.getBoundingClientRect();

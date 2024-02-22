@@ -11,8 +11,8 @@ import { MoviesApiService } from './movies.service/movies.api.service';
   selector: 'app-movies',
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
-  animations: [fadeInAnimation],
-  host: { '[@routerFadeInAnimation]': '' }
+  animations: [fadeInAnimation]
+  // host: { '[@routerFadeInAnimation]': '' }
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent implements OnInit {

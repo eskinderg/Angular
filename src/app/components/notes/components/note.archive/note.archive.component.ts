@@ -24,9 +24,9 @@ export class NoteArchiveComponent {
     public router: Router
   ) {}
 
-  ngOnInit() {
-    // this.note = history.state['note']
-  }
+  // ngOnInit() {
+  // this.note = history.state['note']
+  // }
 
   close() {
     // this.activeDialog.close();

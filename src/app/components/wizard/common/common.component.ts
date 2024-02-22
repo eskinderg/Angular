@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 /**
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: 'common.component.html',
   styleUrls: ['common.component.scss']
 })
-export class WzCommonComponent implements OnInit {
+export class WzCommonComponent {
   public isExpanded = false;
   _user: any;
   activeRoute: string;
@@ -19,12 +19,12 @@ export class WzCommonComponent implements OnInit {
     // console.log(this.router.routerState);
   }
 
-  ngOnInit() {
-    // this.service.userLoadededEvent
-    //   .subscribe(user => {
-    //     this._user = user;
-    // });
-  }
+  // ngOnInit() {
+  // this.service.userLoadededEvent
+  //   .subscribe(user => {
+  //     this._user = user;
+  // });
+  // }
 
   isUserLoggedIn() {
     return false;

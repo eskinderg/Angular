@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 // import { UserManager} from 'oidc-client';
 // import * as Oidc from 'oidc-client/lib/oidc-client.js';
 import { AuthService } from '../services/auth/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth/auth.service';
   templateUrl: './404.component.html',
   styleUrls: ['./404.component.scss']
 })
-export class NotfoundComponent implements OnInit {
+export class NotfoundComponent {
   // userMgr: Oidc = new Oidc.UserManager();
 
   constructor(private authService: AuthService) {
@@ -26,5 +26,5 @@ export class NotfoundComponent implements OnInit {
     // }
   }
 
-  ngOnInit() {}
+  // ngOnInit() {}
 }

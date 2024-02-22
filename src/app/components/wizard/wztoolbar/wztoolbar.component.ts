@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 /**
  * This class represents the HeaderComponent.
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: 'wztoolbar.component.html',
   styleUrls: ['wztoolbar.component.scss']
 })
-export class WzToolbarComponent implements OnInit {
+export class WzToolbarComponent {
   public isExpanded = false;
   _user: any;
   activeRoute: string;
@@ -18,12 +18,12 @@ export class WzToolbarComponent implements OnInit {
     // console.log(this.router.routerState);
   }
 
-  ngOnInit() {
-    // this.service.userLoadededEvent
-    //   .subscribe(user => {
-    //     this._user = user;
-    // });
-  }
+  // ngOnInit() {
+  // this.service.userLoadededEvent
+  //   .subscribe(user => {
+  //     this._user = user;
+  // });
+  // }
 
   isUserLoggedIn() {
     return false;

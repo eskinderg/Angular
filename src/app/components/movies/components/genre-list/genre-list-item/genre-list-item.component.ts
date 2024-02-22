@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Genre } from '../../../models/genre';
 import { MoviesApiService } from '../../../movies.service/movies.api.service';
 
@@ -7,7 +7,7 @@ import { MoviesApiService } from '../../../movies.service/movies.api.service';
   templateUrl: './genre-list-item.component.html',
   styleUrls: ['./genre-list-item.component.scss']
 })
-export class GenreListItemComponent implements AfterViewInit {
+export class GenreListItemComponent {
   @Input() genre: Genre;
 
   @Output()
@@ -15,12 +15,12 @@ export class GenreListItemComponent implements AfterViewInit {
 
   constructor(private moviesApiService: MoviesApiService) {}
 
-  ngAfterViewInit() {
-    // this.moviesApiService.getMoviesCountByGenre(this.genre.id.toString())
-    //   .subscribe(res => {
-    //     this.genre.total_results = res;
-    //   });
-  }
+  // ngAfterViewInit() {
+  // this.moviesApiService.getMoviesCountByGenre(this.genre.id.toString())
+  //   .subscribe(res => {
+  //     this.genre.total_results = res;
+  //   });
+  // }
 
   selectGenre(genre: Genre, $event: any) {
     $event.preventDefault();

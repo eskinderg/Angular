@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'check-mark',
+  selector: 'app-check-mark',
   templateUrl: 'checkmark.component.html',
   styleUrls: ['checkmark.component.scss']
 })

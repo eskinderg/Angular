@@ -7,7 +7,7 @@ import { TemplatePortal } from '@angular/cdk/portal';
   selector: '[appDraggableHelper]',
   exportAs: 'appDraggableHelper'
 })
-export class DraggableHelperDirective implements OnInit, OnDestroy {
+export class DraggableHelperDirective implements OnInit {
   private overlayRef: OverlayRef | undefined;
   private positionStrategy = new GlobalPositionStrategy();
   private startPosition?: { x: number; y: number };
@@ -30,10 +30,10 @@ export class DraggableHelperDirective implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    // remove the overlay...
-    // this.overlayRef.dispose();
-  }
+  // ngOnDestroy(): void {
+  // remove the overlay...
+  // this.overlayRef.dispose();
+  // }
 
   private onDragStart(event: PointerEvent): void {
     // determine relative start position

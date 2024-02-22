@@ -1,8 +1,8 @@
 <!-- <app-event-list-select [event]="event"></app-event-list-select> -->
 <div class="d-flex justify-content-between">
   <div class="mr-auto p-2">
-    <check-mark ngbTooltip="" class="px-2" (selectValue)="onSelectEvent($event, event)"></check-mark>
-    <check-mark class="px-2" (click)="onToggleEvent(event)" [checked]="event.complete"></check-mark>
+    <app-check-mark ngbTooltip="" class="px-2" (selectValue)="onSelectEvent($event, event)"></app-check-mark>
+    <app-check-mark class="px-2" (click)="onToggleEvent(event)" [checked]="event.complete"></app-check-mark>
 
     <label [hidden]="IsInEditMode" (dblclick)="onDoubleClick(event)" class="custom-control custom-checkbox mb-0">
       <span class="custom-control-description">

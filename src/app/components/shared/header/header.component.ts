@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
@@ -22,7 +22,7 @@ export declare interface IsActiveMatchOptions {
   styleUrls: ['header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Output() signout: EventEmitter<any> = new EventEmitter();
   public isExpanded = false;
   _user: any;
@@ -44,19 +44,19 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    // this.claims = this.oauthService.getIdentityClaims();
-    // if(this.claims){
-    //  this.name = this.claims.name;
-    // }
-    // this.oauthService.loadUserProfile().then(profile => {
-    //   this._user = profile;
-    //   // console.log(this._user);
-    // })
-    // this.service.mgr.events.addUserLoaded(function (loadedUser) {
-    //   this._user = loadedUser;
-    // });
-  }
+  // ngOnInit() {
+  // this.claims = this.oauthService.getIdentityClaims();
+  // if(this.claims){
+  //  this.name = this.claims.name;
+  // }
+  // this.oauthService.loadUserProfile().then(profile => {
+  //   this._user = profile;
+  //   // console.log(this._user);
+  // })
+  // this.service.mgr.events.addUserLoaded(function (loadedUser) {
+  //   this._user = loadedUser;
+  // });
+  // }
 
   get isNotesURLActive() {
     return this.router.isActive('/notes', this.routerLinkActiveOptions);
