@@ -1,0 +1,21 @@
+{
+  "trailingComma" : "none",
+  "arrowParen":"singleline",
+  "printWidth": 250,
+  "bracketSpacing" : true,
+  "spaceBeforeFunctionParen": false,
+  "overrides": [
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": "*.component.html",
+      "options": {
+        "parser": "angular"
+      }
+    }
+  ]
+}
