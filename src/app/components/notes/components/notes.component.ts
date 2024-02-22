@@ -10,13 +10,15 @@ import { NoteComponent } from './note.component/note.component';
   templateUrl: 'notes.component.html',
   styleUrls: ['notes.component.scss', 'notes.colour.scss'],
   animations: [FadeInOutNoteListItem],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent {
-
   @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
-  constructor(public notesApiService: NoteApiService, public route: Router) { }
+  constructor(
+    public notesApiService: NoteApiService,
+    public route: Router
+  ) {}
 
   onChangeNoteText(note: Note) {
     this.notesApiService.updateNoteText(note);
@@ -29,7 +31,7 @@ export class NotesComponent {
         return sel.getRangeAt(0);
       }
     } else if (document.getSelection && document.getSelection().getRangeAt(0)) {
-      return null
+      return null;
     }
     return null;
   }
@@ -93,5 +95,4 @@ export class NotesComponent {
   get OpendNote() {
     return this.notesApiService.OpendNote;
   }
-
 }

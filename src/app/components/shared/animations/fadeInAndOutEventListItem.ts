@@ -1,8 +1,6 @@
-
 import { trigger, animate, transition, style } from '@angular/animations';
 
-export const FadeInOutEventListItem =
-trigger('fadeInOutEventListItem', [
+export const FadeInOutEventListItem = trigger('fadeInOutEventListItem', [
   // route 'enter' transition
   // state('*', style({position:'relative'}) ),
 
@@ -18,5 +16,5 @@ trigger('fadeInOutEventListItem', [
     style({ opacity: 1 }),
     // animation and styles at end of transition
     animate('1s ease-in-out', style({ opacity: 0 }))
-  ]),
+  ])
 ]);

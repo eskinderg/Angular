@@ -11,16 +11,12 @@ import { Tv } from '../movies/models/tv';
   animations: [fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
-
   @HostBinding('@routerFadeInAnimation')
-
   public tvs: Tv[] | undefined;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.tvs = this.route.snapshot.data['tvs'];
   }
-
 }

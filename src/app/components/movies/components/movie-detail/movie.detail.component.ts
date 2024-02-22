@@ -8,17 +8,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./movie.detail.component.scss']
 })
 export class MovieDetailComponent implements OnInit {
-
   movie: Movie;
   movieRating: number;
 
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.movie = this.route.snapshot.data['movie'];
     this.movieRating = parseFloat(this.movie.vote_average);
-    this.movieRating = ((5 * this.movieRating) / 10);
+    this.movieRating = (5 * this.movieRating) / 10;
   }
-
 }

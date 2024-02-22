@@ -12,12 +12,9 @@ describe('EventListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventListComponent ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    })
-      .compileComponents();
+      declarations: [EventListComponent],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,11 +22,9 @@ describe('EventListComponent', () => {
     component = fixture.componentInstance;
 
     fixture.whenStable().then(() => {
-      component.events = [
-        new Event({ id: 1, title: 'Test', complete: false })
-      ];
+      component.events = [new Event({ id: 1, title: 'Test', complete: false })];
       // fixture.detectChanges();
-      });
+    });
   });
 
   it('should create', () => {

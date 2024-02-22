@@ -13,22 +13,9 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    NgaModule,
-    HomeRoutingModule,
-    HttpClientJsonpModule,
-    NgScrollbarModule
-  ],
-  declarations: [
-    HomeComponent,
-    TableComponent
-  ],
+  imports: [SharedModule, NgaModule, HomeRoutingModule, HttpClientJsonpModule, NgScrollbarModule],
+  declarations: [HomeComponent, TableComponent],
   exports: [HomeComponent],
-  providers: [
-    MoviesDataService,
-    MoviesApiService,
-    TvsResolve
-  ]
+  providers: [MoviesDataService, MoviesApiService, TvsResolve]
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -15,7 +15,6 @@ type Animate = {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteListItemComponent {
-
   @Input() note: Note;
   @Input() animate: Animate;
   @Input() selectedNote: Note;
@@ -25,18 +24,17 @@ export class NoteListItemComponent {
   @Output() changeNoteText = new EventEmitter(false);
   @Output() changePineOrder = new EventEmitter(false);
 
-  constructor() { }
+  constructor() {}
 
   onSelectNote(note: Note) {
-    this.selectNote.emit(note)
+    this.selectNote.emit(note);
   }
 
   onArchiveNote(note: Note) {
-    this.archiveNote.emit(note)
+    this.archiveNote.emit(note);
   }
 
   updatePinOrder(note: Note) {
-    this.changePineOrder.emit(note)
+    this.changePineOrder.emit(note);
   }
-
 }

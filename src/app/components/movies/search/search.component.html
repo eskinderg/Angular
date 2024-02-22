@@ -20,7 +20,7 @@
 <!-- </div> -->
 <!-- {{ model | json }} -->
 
-<input  #searchInput type="text" class="form-control form-control-lg" placeholder="Search" />
+<input #searchInput type="text" class="form-control form-control-lg" placeholder="Search" />
 
 <!-- {{ movieSearch | json }} -->
 
@@ -31,8 +31,7 @@
 <!--     [collectionSize]="movieResult.total_pages"></ngb-pagination> -->
 
 <div class="movie-cards-container">
-  <div *ngFor="let movie of movieResult?.movies" >
-    <app-movie-card [movie]='movie' [routerLink]="[route.url,'dialog',movie.id]"></app-movie-card>
+  <div *ngFor="let movie of movieResult?.movies">
+    <app-movie-card [movie]="movie" [routerLink]="[route.url, 'dialog', movie.id]"></app-movie-card>
   </div>
 </div>
-

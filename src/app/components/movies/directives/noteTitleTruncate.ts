@@ -4,9 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'noteTitleTruncate'
 })
 export class NoteTitleTruncatePipe implements PipeTransform {
-
   transform(value: string, args: string, trailadd: boolean): string {
-
     // Cleaning up html tags
     const temp = document.createElement('div');
     temp.innerHTML = value;
@@ -16,8 +14,7 @@ export class NoteTitleTruncatePipe implements PipeTransform {
 
     const limit = args ? parseInt(args, 10) : 10;
 
-    if (value === '')
-      return "\u00A0";
+    if (value === '') return '\u00A0';
 
     if (trailadd) {
       trail = ' ...';

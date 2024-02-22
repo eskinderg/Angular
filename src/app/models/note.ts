@@ -20,5 +20,4 @@ export class Note {
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
-
 }

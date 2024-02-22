@@ -9,9 +9,8 @@ describe('EventListSelectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EventListSelectComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(EventListSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

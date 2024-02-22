@@ -1,4 +1,4 @@
-import { Directive , TemplateRef } from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 import { ConfirmState } from './confirm.state';
 /**
  * Directive allowing to get a reference to the template containing the confirmation dialog component,

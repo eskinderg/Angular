@@ -13,11 +13,11 @@ export class GlobalErrorHandler implements ErrorHandler {
    * @param {Injector} injector - service for injecting LoggingService
    */
   constructor(private injector: Injector) {
-    this.injector.get(OAuthService).events.subscribe(e => {
+    this.injector.get(OAuthService).events.subscribe((e) => {
       if (e.type === 'discovery_document_load_error') {
-        this.handleError(e)
+        this.handleError(e);
       }
-    })
+    });
   }
 
   /**
@@ -25,7 +25,6 @@ export class GlobalErrorHandler implements ErrorHandler {
    * @param {error} error - error thrown
    */
   handleError(error: any) {
-
     const loggingService = this.injector.get(LoggingService);
     const location = this.injector.get(LocationStrategy);
     const message = error.message ? error.message : error.toString();

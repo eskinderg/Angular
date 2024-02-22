@@ -7,30 +7,28 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-wz-common',
   templateUrl: 'common.component.html',
-  styleUrls: ['common.component.scss'],
+  styleUrls: ['common.component.scss']
 })
 export class WzCommonComponent implements OnInit {
-
   public isExpanded = false;
   _user: any;
   activeRoute: string;
 
-  constructor (private router: Router) {
+  constructor(private router: Router) {
     // this.activeRoute = this.router.url;
     // console.log(this.router.routerState);
-    }
+  }
 
   ngOnInit() {
     // this.service.userLoadededEvent
     //   .subscribe(user => {
     //     this._user = user;
     // });
-    }
+  }
 
   isUserLoggedIn() {
     return false;
     // let isLoggedIn = this.service.isLoggedInObs();
     // return isLoggedIn;
-    }
-
+  }
 }

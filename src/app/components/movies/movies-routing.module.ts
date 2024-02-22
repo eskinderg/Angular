@@ -28,7 +28,8 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
             component: GenreComponent,
             resolve: {
               moviesResult: MoviesResultResolve
-            }, children: [
+            },
+            children: [
               {
                 path: 'dialog/:movieid',
                 component: MovieDialogWrapperComponent,
@@ -38,7 +39,7 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
                 resolve: {
                   movieDetail: MoviesDetailsResolve
                 }
-              },
+              }
             ]
           },
           {
@@ -46,7 +47,8 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
             component: GenreComponent,
             resolve: {
               moviesResult: MoviesResultResolve
-            }, children: [
+            },
+            children: [
               {
                 path: 'dialog/:movieid',
                 component: MovieDialogWrapperComponent,
@@ -56,7 +58,7 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
                 resolve: {
                   movieDetail: MoviesDetailsResolve
                 }
-              },
+              }
             ]
           },
           {
@@ -97,16 +99,12 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
         ],
         resolve: {
           genres: GenreResolve
-        },
+        }
         // canActivate: [AuthGuardService]
       }
     ])
   ],
-  providers: [
-    GenreResolve,
-    MoviesResultResolve,
-    MoviesDetailsResolve
-  ],
+  providers: [GenreResolve, MoviesResultResolve, MoviesDetailsResolve],
   exports: [RouterModule]
 })
-export class MoviesRoutingModule { }
+export class MoviesRoutingModule {}

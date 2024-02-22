@@ -16,9 +16,7 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
   animations: [fadeInAnimation]
 })
 export class LoginComponent implements OnInit {
-
   @HostBinding('@routerFadeInAnimation')
-
   userProfile: object;
   loginForm: UntypedFormGroup;
   message: string;
@@ -30,18 +28,14 @@ export class LoginComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute
   ) {
-    this.route.params
-      .subscribe(
-        params => this.message = params['endsession']
-      );
+    this.route.params.subscribe((params) => (this.message = params['endsession']));
   }
 
   ngOnInit() {
-
     this.loginForm = new UntypedFormGroup({
       username: new UntypedFormControl(null, Validators.required),
       password: new UntypedFormControl(null, Validators.required)
-    })
+    });
     // this.loginForm = this.formBuilder.group({
     //   username: ['', Validators.required ],
     //   password: ['', Validators.required ]
@@ -49,14 +43,11 @@ export class LoginComponent implements OnInit {
   }
 
   loadUserProfile(): void {
-    this.oauthService.loadUserProfile()
-      .then(
-        up => (this.userProfile = up)
-      );
+    this.oauthService.loadUserProfile().then((up) => (this.userProfile = up));
   }
 
   hasMessage(): boolean {
-    return (this.message !== undefined && this.message !== 'undefined');
+    return this.message !== undefined && this.message !== 'undefined';
   }
 
   get access_token() {
@@ -90,16 +81,13 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithPassword() {
-
     // this.oauthService.initLoginFlow();
     if (this.loginForm.valid) {
       this.store.dispatch(
-        AuthActions.loginEvent(
-          {
-            username: this.loginForm.get('username').value,
-            password: this.loginForm.get('password').value
-          }
-        )
+        AuthActions.loginEvent({
+          username: this.loginForm.get('username').value,
+          password: this.loginForm.get('password').value
+        })
       );
     }
   }

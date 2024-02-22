@@ -7,14 +7,13 @@ import { MoviesApiService } from '../../../movies.service/movies.api.service';
   templateUrl: './genre-list-item.component.html',
   styleUrls: ['./genre-list-item.component.scss']
 })
-export class GenreListItemComponent implements AfterViewInit  {
-
+export class GenreListItemComponent implements AfterViewInit {
   @Input() genre: Genre;
 
   @Output()
   select: EventEmitter<Genre> = new EventEmitter();
 
-  constructor(private moviesApiService: MoviesApiService) { }
+  constructor(private moviesApiService: MoviesApiService) {}
 
   ngAfterViewInit() {
     // this.moviesApiService.getMoviesCountByGenre(this.genre.id.toString())

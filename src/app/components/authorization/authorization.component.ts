@@ -19,20 +19,25 @@ export class AuthorizationComponent implements OnInit {
    * @param {AuthService} authService - Authorization service used of authService
    * @param {Router} router - Injected router for user redirection based on user login status
    */
-  constructor(private authService: AuthService, private router: Router, private store: Store<fromRoot.IAppState>) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private store: Store<fromRoot.IAppState>
+  ) {}
   /**
    * Invoked during class initialization and redirects the user
    */
   ngOnInit() {
-    from(this.authService.mgr.signinRedirectCallback())
-      .subscribe((user) => {
+    from(this.authService.mgr.signinRedirectCallback()).subscribe(
+      (user) => {
         this.authService.userLoadededEvent.emit(user); // Notifying User has loggedIn Successfully
         // this.store.dispatch(new AuthActions.loginEventSuccess(user));
         this.router.navigate(['/']);
-      }, (error) => {
+      },
+      (error) => {
         console.log(error);
         this.router.navigate(['/404']);
-      });
+      }
+    );
   }
-
 }

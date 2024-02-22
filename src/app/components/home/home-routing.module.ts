@@ -11,7 +11,7 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
         path: '',
         component: HomeComponent,
         resolve: {
-          tvs: TvsResolve,
+          tvs: TvsResolve
         }
       }
     ])
@@ -19,4 +19,4 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
   providers: [MoviesApiService],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class HomeRoutingModule {}

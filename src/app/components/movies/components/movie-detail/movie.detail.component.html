@@ -1,48 +1,46 @@
 <div class="row">
-
   <div class="col-lg-6">
     <div class="card" style="">
-      <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}" alt="Card image cap">
+      <img class="card-img-top" src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}" alt="Card image cap" />
     </div>
   </div>
 
   <div class="col-lg-6">
+    <h4 class="card-title" [routerLink]="['/movies/movie', movie.id]">{{ movie.title }}</h4>
 
-    <h4 class="card-title" [routerLink]="['/movies/movie',movie.id]" >{{movie.title}}</h4>
-
-    <div class="card-text muted mb-3"> <small> {{ movie.overview }}</small></div>
+    <div class="card-text muted mb-3">
+      <small> {{ movie.overview }}</small>
+    </div>
 
     <ul class="list-group">
-      <li class="list-group-item"><b>Date Released:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.release_date | format }}</a></li>
-      <li class="list-group-item"><b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.status }}</a></li>
-      <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.original_language }}</a></li>
-      <li class="list-group-item"><b>Languages Spoken </b> <a class="badge bg-secondary nodecoration ms-2" *ngFor="let language of movie.spoken_languages"> {{ language['name'] }}</a></li>
+      <li class="list-group-item">
+        <b>Date Released:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.release_date | format }}</a>
+      </li>
+      <li class="list-group-item">
+        <b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.status }}</a>
+      </li>
+      <li class="list-group-item">
+        <b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.original_language }}</a>
+      </li>
+      <li class="list-group-item">
+        <b>Languages Spoken </b> <a class="badge bg-secondary nodecoration ms-2" *ngFor="let language of movie.spoken_languages"> {{ language["name"] }}</a>
+      </li>
     </ul>
 
-    <p><app-ngbd-rating-decimal [currentRate]= "movieRating"></app-ngbd-rating-decimal></p>
+    <p><app-ngbd-rating-decimal [currentRate]="movieRating"></app-ngbd-rating-decimal></p>
 
-    <a
-      [routerLink]="['/movies/genres/',genere['id'], genere['name']]"
-      class="badge bg-secondary nodecoration ms-2"
-      *ngFor="let genere of movie.genres">
-      {{ genere['name'] }}
+    <a [routerLink]="['/movies/genres/', genere['id'], genere['name']]" class="badge bg-secondary nodecoration ms-2" *ngFor="let genere of movie.genres">
+      {{ genere["name"] }}
     </a>
 
-    <p class="mt-3"><a
-       rel="noopener"
-       target="_blank"
-       *ngIf="movie.homepage"
-       href="{{movie.homepage}}"
-       class="link-primary clearfix">
-        Home Page
-      </a></p>
+    <p class="mt-3"><a rel="noopener" target="_blank" *ngIf="movie.homepage" href="{{ movie.homepage }}" class="link-primary clearfix"> Home Page </a></p>
 
-      <!-- <div class="row"> -->
-      <!--   <div  *ngFor="let cast of movie.casts" class="col-lg-4"> -->
-      <!--     <app-ba-card header="{{cast['name']}}"> -->
-      <!--       <img [src]="'https://www.themoviedb.org/t/p/w138_and_h175_face' + cast['profile_path']"/> -->
-      <!--     </app-ba-card> -->
-      <!--   </div> -->
-      <!-- </div> -->
+    <!-- <div class="row"> -->
+    <!--   <div  *ngFor="let cast of movie.casts" class="col-lg-4"> -->
+    <!--     <app-ba-card header="{{cast['name']}}"> -->
+    <!--       <img [src]="'https://www.themoviedb.org/t/p/w138_and_h175_face' + cast['profile_path']"/> -->
+    <!--     </app-ba-card> -->
+    <!--   </div> -->
+    <!-- </div> -->
   </div>
 </div>

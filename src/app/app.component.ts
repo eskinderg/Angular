@@ -4,12 +4,10 @@ import { AppLoadingComponent } from './fragments/components/appLoading/appLoadin
 @Component({
   selector: 'app-main',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-
   @ViewChild(AppLoadingComponent) appLoadingComponent: AppLoadingComponent;
 
-  constructor() { }
-
+  constructor() {}
 }

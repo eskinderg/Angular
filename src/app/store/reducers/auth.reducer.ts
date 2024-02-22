@@ -9,7 +9,7 @@ export const initialState: IAuthState = {
   profile: {}
 };
 
-export const authReducer = createReducer<IAuthState> (
+export const authReducer = createReducer<IAuthState>(
   initialState,
   on(
     AuthActions.loadProfileSuccess,
@@ -17,7 +17,7 @@ export const authReducer = createReducer<IAuthState> (
       profile: action.profile
     })
   )
-)
+);
 
 export const getAuthState = createFeatureSelector<IAuthState>('profile');
 

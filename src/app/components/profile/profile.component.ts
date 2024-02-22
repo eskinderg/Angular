@@ -14,9 +14,7 @@ import { Store } from '@ngrx/store';
   animations: [fadeInAnimation]
 })
 export class ProfileComponent {
-
   @HostBinding('@routerFadeInAnimation')
-
   public x: number;
   public y: number;
   public user: any;
@@ -27,11 +25,10 @@ export class ProfileComponent {
     public store: Store<fromProfile.IPreferenceState>
   ) {
     this.user = this.authService.getIdentityClaims();
-    this.isDarkMode = this.store.select(fromProfile.isDarkMode)
+    this.isDarkMode = this.store.select(fromProfile.isDarkMode);
   }
 
   onDarkModeToggle(isDarkMode: boolean) {
     this.store.dispatch(ProfileActions.toggleDarkMode());
   }
-
 }

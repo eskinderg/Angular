@@ -18,12 +18,12 @@ export class DraggableDirective {
   }
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown($event: { target: { style: { position: string; left: string; top: string; }; }; clientX: number | undefined; clientY: number | undefined; }) {
+  onMouseDown($event: { target: { style: { position: string; left: string; top: string } }; clientX: number | undefined; clientY: number | undefined }) {
     if ($event.target.style.position === 'absolute' && $event.target.style.left && $event.target.style.top) {
-      this._hasDragged      = false;
-      this._isDragging      = true;
-      this._originalLeft    = parseInt($event.target.style.left, 10);
-      this._originalTop     = parseInt($event.target.style.top, 10);
+      this._hasDragged = false;
+      this._isDragging = true;
+      this._originalLeft = parseInt($event.target.style.left, 10);
+      this._originalTop = parseInt($event.target.style.top, 10);
       this._originalClientX = $event.clientX;
       this._originalClientY = $event.clientY;
     } else {
@@ -47,7 +47,7 @@ export class DraggableDirective {
       this._isDragging = false;
       if (this._hasDragged) {
         // this.endDragEvent.emit({left: this._originalLeft +
-          // ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
+        // ($event.clientX - this._originalClientX), top: this._originalTop + ($event.clientY - this._originalClientY)});
       }
     }
   }

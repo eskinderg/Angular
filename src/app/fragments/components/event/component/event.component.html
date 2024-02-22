@@ -1,21 +1,12 @@
-<app-event-list-header class="mb-5" (add)="onAddEvent($event)">
-</app-event-list-header>
+<app-event-list-header class="mb-5" (add)="onAddEvent($event)"> </app-event-list-header>
 
 <div style="height: 400px">
   <ng-scrollbar thumbClass="custom-scrollbars">
-    <app-event-list
-      [events]="events"
-      (toggle)="onToggleEvent($event)"
-      (remove)="onRemoveEvent($event)"
-      (update)="onUpdateEvent($event)"
-      (select)="onSelectEvent($event)">
-    </app-event-list>
-
+    <app-event-list [events]="events" (toggle)="onToggleEvent($event)" (remove)="onRemoveEvent($event)" (update)="onUpdateEvent($event)" (select)="onSelectEvent($event)"> </app-event-list>
   </ng-scrollbar>
 </div>
 
-<i class="btn btn-sm " [ngClass]="{'btn-outline-danger': selectedEvents.length}"
-(click)="onDeleteEvents()">
+<i class="btn btn-sm" [ngClass]="{ 'btn-outline-danger': selectedEvents.length }" (click)="onDeleteEvents()">
   <span class="fa fa-bin2"></span>
 </i>
 

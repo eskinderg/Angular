@@ -6,7 +6,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
  * This class represents AuthGuardService.
  */
 @Injectable()
-export class AuthGuardService  {
+export class AuthGuardService {
   /**
    * Assign Router and authorization service.
    * @param {AuthService} authService - Authorization service the provied autorization
@@ -15,21 +15,19 @@ export class AuthGuardService  {
   constructor(
     private oauthService: OAuthService,
     private router: Router
-  ) { }
+  ) {}
   /**
    *  Checks if the user is loggedin.
    */
   canActivate() {
-
     if (this.oauthService.hasValidAccessToken()) {
       return true;
     } else {
       this.router.navigate(['/']);
       // this.oauthService.initLoginFlow();
-      return false
+      return false;
     }
 
     // return this.authService.isLoggedInObs();
   }
-
 }

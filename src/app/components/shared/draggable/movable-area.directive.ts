@@ -23,13 +23,11 @@ export class MovableAreaDirective implements AfterContentInit {
   ngAfterContentInit(): void {
     // this.movables.changes.subscribe(() => {
     //   this.subscriptions.forEach(s => s.unsubscribe());
-
     //   this.movables.forEach(movable => {
     //     this.subscriptions.push(movable.dragStart.subscribe(() => this.measureBoundaries(movable)));
     //     this.subscriptions.push(movable.dragMove.subscribe(() => this.maintainBoundaries(movable)));
     //   });
     // });
-
     // this.movables.notifyOnChanges();
   }
 

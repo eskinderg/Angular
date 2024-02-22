@@ -12,10 +12,8 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
   templateUrl: 'note.component.html',
   styleUrls: ['note.component.scss', '../notes.colour.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
-
 })
 export class NoteComponent {
-
   @ViewChild(TextareaExpandedComponent) textarea: TextareaExpandedComponent;
   @ViewChild(NoteHeaderControlComponent) nnoteHeaderControl: NoteHeaderControlComponent;
 
@@ -30,62 +28,57 @@ export class NoteComponent {
   @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
   @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
-  constructor(private store: Store<fromNotes.INotesState>) { }
+  constructor(private store: Store<fromNotes.INotesState>) {}
 
   noteArchive_click(note: Note) {
     this.archiveNote.emit(note);
   }
 
   spellCheckToggle(note: Note) {
-    this.toggleSpellCheck.emit({ ...note, spellCheck: !note.spellCheck })
+    this.toggleSpellCheck.emit({ ...note, spellCheck: !note.spellCheck });
   }
 
   handleNoteTextUpdate(note: Note) {
-    this.changeNoteText.emit(note)
+    this.changeNoteText.emit(note);
   }
 
   selectionChange(selection: Note) {
     this.noteSelectionChange.emit(selection);
   }
   handleNoteColourUpdate(colour: Colour) {
-    this.updateNoteColour.emit({ ...this.note, colour: colour.name })
+    this.updateNoteColour.emit({ ...this.note, colour: colour.name });
   }
 
   handleNoteHeaderUpdate(note: Note) {
-    this.updateNoteHeader.emit(note)
+    this.updateNoteHeader.emit(note);
   }
 
   onUpdatOpendNote(note: Note) {
-    this.store.dispatch(NotesActions.updateOpendNote({ payload: note }))
+    this.store.dispatch(NotesActions.updateOpendNote({ payload: note }));
   }
 
   underline(e) {
     e.preventDefault();
 
-    let selection = window.getSelection()
+    let selection = window.getSelection();
 
     let text = selection.toString();
     let span = document.createElement('span');
     span.innerHTML = text;
 
-    span.style.textDecoration = selection.focusNode.parentElement.style.textDecorationLine === 'underline'
-      ? 'none' :
-      span.style.textDecoration = 'underline'
+    span.style.textDecoration = selection.focusNode.parentElement.style.textDecorationLine === 'underline' ? 'none' : (span.style.textDecoration = 'underline');
 
     document.execCommand('insertHTML', false, span.outerHTML);
   }
 
   bold(e) {
-
-    let selection = window.getSelection()
+    let selection = window.getSelection();
 
     let text = selection.toString();
     let span = document.createElement('span');
     span.innerHTML = text;
 
-    span.style.fontWeight = selection.focusNode.parentElement.style.fontWeight === 'bold'
-      ? 'normal' :
-      span.style.textDecoration = 'bold'
+    span.style.fontWeight = selection.focusNode.parentElement.style.fontWeight === 'bold' ? 'normal' : (span.style.textDecoration = 'bold');
 
     document.execCommand('insertHTML', false, span.outerHTML);
     e.preventDefault();
@@ -94,12 +87,11 @@ export class NoteComponent {
   saveSelection(): Range {
     const selection = window.getSelection();
     return selection.rangeCount === 0 ? null : selection.getRangeAt(0);
-  };
+  }
 
   restoreSelection(range: Range) {
     const selection = window.getSelection();
     selection.removeAllRanges();
     selection.addRange(range);
-  };
-
+  }
 }

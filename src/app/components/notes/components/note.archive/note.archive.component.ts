@@ -12,7 +12,6 @@ import { Note } from 'src/app/models/note';
   styleUrl: './note.archive.component.scss'
 })
 export class NoteArchiveComponent {
-
   get ArchivedNotes() {
     return this.store.select(fromNotes.getArchivedNotes);
   }
@@ -23,7 +22,7 @@ export class NoteArchiveComponent {
     // public activeDialog: NgbActiveModal,
     private notesApiService: NoteApiService,
     public router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     // this.note = history.state['note']
@@ -51,8 +50,7 @@ export class NoteArchiveComponent {
   }
 
   restore(note: Note) {
-    this.notesApiService.restoreNote({ ...note, archived: false } as Note)
+    this.notesApiService.restoreNote({ ...note, archived: false } as Note);
     // this.notesApiService.deleteNote(note);
   }
-
 }

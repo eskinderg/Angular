@@ -7,10 +7,9 @@ import { FormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 
-
 @NgModule({
   imports: [CommonModule, UnauthorizedRoutingModule, SharedModule],
   declarations: [UnauthorizedComponent],
   exports: [UnauthorizedComponent]
 })
-export class UnauthorizedModule { }
+export class UnauthorizedModule {}

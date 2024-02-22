@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MoviesComponent } from './movies.component';
 import { SharedModule } from '../shared/shared.module';
@@ -23,31 +23,9 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
 import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.component';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    NgaModule,
-    NgbModule,
-    MoviesRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgScrollbarModule
-  ],
-  declarations: [
-    MoviesComponent,
-    GenreListItemComponent,
-    GenreListComponent,
-    GenreComponent,
-    SearchComponent,
-    MovieCardComponent,
-    MovieDetailComponent,
-    MovieDialogWrapperComponent,
-    MovieDetailDialogComponent
-
-  ],
+  imports: [SharedModule, NgaModule, NgbModule, MoviesRoutingModule, FormsModule, ReactiveFormsModule, NgScrollbarModule],
+  declarations: [MoviesComponent, GenreListItemComponent, GenreListComponent, GenreComponent, SearchComponent, MovieCardComponent, MovieDetailComponent, MovieDialogWrapperComponent, MovieDetailDialogComponent],
   exports: [MoviesComponent],
-  providers: [
-    MoviesApiService,
-    MoviesDataService
-  ]
+  providers: [MoviesApiService, MoviesDataService]
 })
-export class MoviesModule { }
+export class MoviesModule {}

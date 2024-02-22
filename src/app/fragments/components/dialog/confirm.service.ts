@@ -7,8 +7,10 @@ import { ConfirmState } from './confirm.state';
  */
 @Injectable()
 export class ConfirmService {
-
-  constructor(private dialogService: NgbModal, private state: ConfirmState) { }
+  constructor(
+    private dialogService: NgbModal,
+    private state: ConfirmState
+  ) {}
 
   /**
    * Opens a confirmation dialog

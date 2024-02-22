@@ -8,54 +8,46 @@ import { ProfileComponent } from './profile.component';
 
 export function main() {
   describe('Profile component', () => {
-
     beforeEach(() => {
-
       TestBed.configureTestingModule({
         imports: [FormsModule],
         declarations: [ProfileComponent]
         // providers: [
         //   { provide: NameListService, useValue: new MockNameListService() }
         // ]
-        });
-
+      });
     });
 
-    it('should work',
-      async(() => {
-        TestBed
-          .compileComponents()
-          .then(() => {
-            const fixture = TestBed.createComponent(ProfileComponent);
-            const homeInstance = fixture.debugElement.componentInstance;
-            const homeDOMEl = fixture.debugElement.nativeElement;
-            // let mockNameListService =
-            // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
-            // let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();
+    it('should work', async(() => {
+      TestBed.compileComponents().then(() => {
+        const fixture = TestBed.createComponent(ProfileComponent);
+        const homeInstance = fixture.debugElement.componentInstance;
+        const homeDOMEl = fixture.debugElement.nativeElement;
+        // let mockNameListService =
+        // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
+        // let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();
 
-            // mockNameListService.returnValue = ['1', '2', '3'];
+        // mockNameListService.returnValue = ['1', '2', '3'];
 
-            // fixture.detectChanges();
+        // fixture.detectChanges();
 
-            // expect(homeInstance.nameListService).toEqual(jasmine.any(MockNameListService));
-            // expect(homeDOMEl.querySelectorAll('li').length).toEqual(3);
-            // expect(nameListServiceSpy.calls.count()).toBe(1);
+        // expect(homeInstance.nameListService).toEqual(jasmine.any(MockNameListService));
+        // expect(homeDOMEl.querySelectorAll('li').length).toEqual(3);
+        // expect(nameListServiceSpy.calls.count()).toBe(1);
 
-            // homeInstance.newName = 'Minko';
-            // homeInstance.addName();
+        // homeInstance.newName = 'Minko';
+        // homeInstance.addName();
 
-            fixture.detectChanges();
+        fixture.detectChanges();
 
-            // expect(homeDOMEl.querySelectorAll('li').length).toEqual(4);
-            // expect(homeDOMEl.querySelectorAll('li')[3].textContent).toEqual('Minko');
-            });
-
-      }));
+        // expect(homeDOMEl.querySelectorAll('li').length).toEqual(4);
+        // expect(homeDOMEl.querySelectorAll('li')[3].textContent).toEqual('Minko');
+      });
+    }));
   });
 }
 
 class MockNameListService {
-
   returnValue: string[];
 
   get(): Observable<string[]> {

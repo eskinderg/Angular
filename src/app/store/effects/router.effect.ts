@@ -6,17 +6,16 @@ import * as fromRouter from '@ngrx/router-store';
 
 @Injectable()
 export class RouterEffect {
+  deleteSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromRouter.ROUTER_REQUEST),
+        switchMap((_action) => {
+          return EMPTY;
+        })
+      ),
+    { dispatch: false }
+  );
 
-  deleteSuccess = createEffect(() =>
-    this.actions$.pipe(
-      ofType(fromRouter.ROUTER_REQUEST),
-      switchMap((_action) => {
-        return EMPTY;
-      }
-      )), { dispatch: false })
-
-  constructor(
-    private actions$: Actions,
-  ) { }
-
+  constructor(private actions$: Actions) {}
 }

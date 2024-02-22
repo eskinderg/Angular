@@ -10,32 +10,35 @@ export interface IPreferenceState {
 export const initialState: IPreferenceState = {
   isDarkMode: localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode,
   isLoggedIn: false
-}
+};
 
 export const profileReducer = createReducer<IPreferenceState>(
   initialState,
   on(
     PreferenceActions.toggleDarkModeSuccess,
     (state, _action): IPreferenceState => ({
-      ...state, isDarkMode: !state.isDarkMode
+      ...state,
+      isDarkMode: !state.isDarkMode
     })
   ),
   on(
     PreferenceActions.logInSuccess,
     (state, _action): IPreferenceState => ({
-      ...state, isLoggedIn: true
+      ...state,
+      isLoggedIn: true
     })
   ),
   on(
     PreferenceActions.getIsLoggedInSuccess,
     (state, action): IPreferenceState => ({
-      ...state, isLoggedIn: action.isLoggedIn
+      ...state,
+      isLoggedIn: action.isLoggedIn
     })
   )
-)
+);
 
 export const getPreferenceState = createFeatureSelector<IPreferenceState>('preference');
 
-export const isDarkMode = createSelector(getPreferenceState, (state: IPreferenceState) => state.isDarkMode)
+export const isDarkMode = createSelector(getPreferenceState, (state: IPreferenceState) => state.isDarkMode);
 
-export const isLoggedIn = createSelector(getPreferenceState, (state: IPreferenceState) => state.isLoggedIn)
+export const isLoggedIn = createSelector(getPreferenceState, (state: IPreferenceState) => state.isLoggedIn);

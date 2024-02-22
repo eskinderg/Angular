@@ -12,17 +12,14 @@ describe('EventListFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventListFooterComponent ]
-    })
-      .compileComponents();
+      declarations: [EventListFooterComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EventListFooterComponent);
     component = fixture.componentInstance;
-    component.events = [
-      new Event({ id: 1, title: 'Test', complete: false })
-    ];
+    component.events = [new Event({ id: 1, title: 'Test', complete: false })];
     fixture.detectChanges();
   });
 

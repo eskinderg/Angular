@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
-import { UserManager, User} from 'oidc-client';
+import { UserManager, User } from 'oidc-client';
 // import { Headers, RequestOptions } from '@angular/http';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,16 +12,18 @@ const settings: any = environment.Auth;
 
 @Injectable()
 export class AuthService {
-
   mgr: UserManager = new UserManager(settings);
   userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
   currentUser: User | undefined;
   loggedIn = false;
   authHeaders: Headers | undefined;
 
-  constructor(private http: HttpClient , private route: Router) {
-
-    this.mgr.getUser()
+  constructor(
+    private http: HttpClient,
+    private route: Router
+  ) {
+    this.mgr
+      .getUser()
       .then((user) => {
         if (user) {
           this.loggedIn = true;
@@ -30,7 +32,8 @@ export class AuthService {
         } else {
           this.loggedIn = false;
         }
-      }).catch((err) => {
+      })
+      .catch((err) => {
         console.error(err);
         this.loggedIn = false;
       });
@@ -43,7 +46,6 @@ export class AuthService {
       if (!environment.production) {
         console.log('authService addUserLoaded', user);
       }
-
     });
 
     // this.mgr.events.addUserUnloaded((e) => {
@@ -58,28 +60,30 @@ export class AuthService {
     //   this.route.navigate(['/']);
     //   this.loggedIn = false;
     // });
-
   }
 
   // isLoggedInObs(): Observable<boolean> {
-    // return from(this.mgr.getUser())
-    // .pipe(
-    //   map<User, boolean>((user) => {
-    //     if (user) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   })
-    // )
+  // return from(this.mgr.getUser())
+  // .pipe(
+  //   map<User, boolean>((user) => {
+  //     if (user) {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  //   })
+  // )
   // }
 
   clearState() {
-    this.mgr.clearStaleState().then(function () {
-      console.log('clearStateState success');
-    }).catch(function (e) {
-      console.log('clearStateState error', e.message);
-    });
+    this.mgr
+      .clearStaleState()
+      .then(function () {
+        console.log('clearStateState success');
+      })
+      .catch(function (e) {
+        console.log('clearStateState error', e.message);
+      });
   }
 
   getUser() {
@@ -107,20 +111,25 @@ export class AuthService {
     // }).catch(function(err){
     //   console.log(err);
     // });
-    this.mgr.signinRedirect({ data: 'some data' }).then(function () {
-      console.log('signinRedirect done');
-    }).catch(function (err) {
-      console.log(err);
-      return err;
-    });
+    this.mgr
+      .signinRedirect({ data: 'some data' })
+      .then(function () {
+        console.log('signinRedirect done');
+      })
+      .catch(function (err) {
+        console.log(err);
+        return err;
+      });
   }
   endSigninMainWindow() {
-    this.mgr.signinRedirectCallback().then(function (user) {
-      console.log('signed in', user);
-
-    }).catch(function (err) {
-      console.log(err);
-    });
+    this.mgr
+      .signinRedirectCallback()
+      .then(function (user) {
+        console.log('signed in', user);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
   startSignoutMainWindow() {
@@ -134,21 +143,24 @@ export class AuthService {
     //     console.log(err);
     //   });
     // });
-  };
+  }
 
   logout() {
     // this.mgr.getUser().then(user => {
     //   return this.mgr.signoutRedirect({ id_token_hint: user.id_token });
     // });
-  };
+  }
 
   endSignoutMainWindow() {
-    this.mgr.signoutRedirectCallback().then(function (resp) {
-      console.log('signed out', resp);
-    }).catch(function (err) {
-      console.log(err);
-    });
-  };
+    this.mgr
+      .signoutRedirectCallback()
+      .then(function (resp) {
+        console.log('signed out', resp);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
   /**
    * Example of how you can make auth request using angulars http methods.
    * @param options if options are not supplied the default content type is application/json
@@ -203,12 +215,10 @@ export class AuthService {
   // return this.http.post(url, body, options);
   // }
 
-
   private _setAuthHeaders(user: any): void {
     this.authHeaders = new Headers();
     this.authHeaders.append('Authorization', user.token_type + ' ' + user.access_token);
     if (this.authHeaders.get('Content-Type')) {
-
     } else {
       this.authHeaders.append('Content-Type', 'application/json');
     }
@@ -226,5 +236,4 @@ export class AuthService {
 
   //   return options;
   // }
-
 }

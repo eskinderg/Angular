@@ -12,7 +12,7 @@ import { NotesComponent } from './components/notes.component';
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'mynotes',
+        redirectTo: 'mynotes'
       },
       {
         path: 'mynotes',
@@ -21,21 +21,21 @@ import { NotesComponent } from './components/notes.component';
         children: [
           {
             path: 'dialog',
-            pathMatch: "full",
+            pathMatch: 'full',
             component: NoteDialogWrapperComponent,
             data: {
               component: NoteDialogComponent
             }
-          },
+          }
         ]
       },
       {
         path: 'archived',
-        pathMatch: "full",
+        pathMatch: 'full',
         component: NoteArchiveComponent
       }
     ])
   ],
   exports: [RouterModule]
 })
-export class NotesRoutingModule { }
+export class NotesRoutingModule {}

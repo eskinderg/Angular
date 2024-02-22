@@ -4,15 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'truncate'
 })
 export class TruncatePipe implements PipeTransform {
-
   transform(value: string, args: string, trailadd: boolean): string {
-
     let trail = '';
 
     const limit = args ? parseInt(args, 10) : 10;
 
-    if(value==='')
-      return "\u00A0";
+    if (value === '') return '\u00A0';
 
     if (trailadd) {
       trail = ' ...';

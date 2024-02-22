@@ -12,9 +12,8 @@ describe('EventListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EventListItemComponent ]
-    })
-      .compileComponents();
+      declarations: [EventListItemComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

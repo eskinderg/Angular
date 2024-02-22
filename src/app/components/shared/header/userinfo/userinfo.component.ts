@@ -13,7 +13,6 @@ import * as ProfileActions from '../../../../store/actions/preference.action';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserInfoComponent {
-
   claims: any;
   name: any;
   isDarkMode: Observable<boolean>;
@@ -24,7 +23,7 @@ export class UserInfoComponent {
     private oauthService: OAuthService,
     public store: Store<fromProfile.IPreferenceState>
   ) {
-    this.isDarkMode = this.store.select(fromProfile.isDarkMode)
+    this.isDarkMode = this.store.select(fromProfile.isDarkMode);
   }
 
   login() {
@@ -38,7 +37,7 @@ export class UserInfoComponent {
   }
 
   get isLoggedIn() {
-    return this.store.select(fromProfile.isLoggedIn)
+    return this.store.select(fromProfile.isLoggedIn);
   }
 
   get givenName() {
@@ -50,7 +49,6 @@ export class UserInfoComponent {
   }
 
   onDarkModeToggle() {
-    this.store.dispatch(ProfileActions.toggleDarkMode())
+    this.store.dispatch(ProfileActions.toggleDarkMode());
   }
-
 }

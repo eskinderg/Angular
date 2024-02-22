@@ -14,33 +14,34 @@ export const initialState: IEventsState = {
 
 export const eventsReducer = createReducer<IEventsState>(
   initialState,
-  on(
-    EventsActions.eventsClear,
-    (state, _action) => ({
-      ...state,
-      events: []
-    })),
+  on(EventsActions.eventsClear, (state, _action) => ({
+    ...state,
+    events: []
+  })),
   on(
     EventsActions.createEventSuccess,
     (state, action): IEventsState => ({
       ...state,
       events: [action.payload, ...state.events]
-    })),
+    })
+  ),
   on(
     EventsActions.fetchEventsSuccess,
     (state, action): IEventsState => ({
       ...state,
       events: action.payload.slice().reverse() || [] // reverse array to show the most recent
-    })),
+    })
+  ),
   on(
     EventsActions.toggleEventSuccess,
     EventsActions.updateEventSuccess,
     (state, action): IEventsState => ({
       ...state,
       events: state.events.map((event) => {
-        return (event.id === action.payload.id) ? action.payload : event
+        return event.id === action.payload.id ? action.payload : event;
       })
-    })),
+    })
+  ),
   on(
     EventsActions.deleteEventSuccess,
     (state, action): IEventsState => ({
@@ -48,38 +49,36 @@ export const eventsReducer = createReducer<IEventsState>(
       events: state.events.filter((event: Event) => {
         return event.id !== action.payload.id;
       })
-    })),
-  on(
-    EventsActions.fetchEventsStart,
-    (state, _action): IEventsState => ({ ...state, isLoading: true })),
-  on(
-    EventsActions.fetchEventsComplete,
-    (state, _action): IEventsState => ({ ...state, isLoading: false })),
+    })
+  ),
+  on(EventsActions.fetchEventsStart, (state, _action): IEventsState => ({ ...state, isLoading: true })),
+  on(EventsActions.fetchEventsComplete, (state, _action): IEventsState => ({ ...state, isLoading: false })),
   on(
     EventsActions.deleteEventsSuccess,
     (state, action): IEventsState => ({
       ...state,
       events: state.events.filter((event: Event) => {
-        return action.payload.every(e => e.id !== event.id)
+        return action.payload.every((e) => e.id !== event.id);
       })
-    })),
-
-)
+    })
+  )
+);
 
 export const getEventState = createFeatureSelector<IEventsState>('events');
 
 export const getEvents = createSelector(getEventState, (state: IEventsState) => state.events);
 
-export const getEventsLength = createSelector(getEventState, (state: IEventsState) => state.events.length)
+export const getEventsLength = createSelector(getEventState, (state: IEventsState) => state.events.length);
 
-export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading)
+export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading);
 
-export const getItemById = (id: number) => createSelector(getEventState, (allItems) => {
-  if (allItems.events) {
-    return allItems.events.find(item => {
-      return item.id === id;
-    });
-  } else {
-    return {};
-  }
-});
+export const getItemById = (id: number) =>
+  createSelector(getEventState, (allItems) => {
+    if (allItems.events) {
+      return allItems.events.find((item) => {
+        return item.id === id;
+      });
+    } else {
+      return {};
+    }
+  });

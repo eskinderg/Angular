@@ -2,17 +2,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Event } from '../../event';
 import { FadeInOutEventListItem } from 'src/app/components/shared/animations/fadeInAndOutEventListItem';
 
-@Component(
-  {
-    selector: 'app-event-list',
-    templateUrl: './event-list.component.html',
-    styleUrls: ['./event-list.component.scss'],
-    animations: [ FadeInOutEventListItem ],
-    changeDetection: ChangeDetectionStrategy.OnPush
-  }
-)
+@Component({
+  selector: 'app-event-list',
+  templateUrl: './event-list.component.html',
+  styleUrls: ['./event-list.component.scss'],
+  animations: [FadeInOutEventListItem],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class EventListComponent {
-
   @Input() events: Event[];
 
   @Output() remove: EventEmitter<Event> = new EventEmitter();
@@ -20,10 +17,10 @@ export class EventListComponent {
   @Output() update: EventEmitter<Event> = new EventEmitter();
   @Output() select: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   onToggleEvent(event: Event) {
-    this.toggle.emit( event );
+    this.toggle.emit(event);
   }
 
   onUpdateEvent(event: Event) {
@@ -34,8 +31,7 @@ export class EventListComponent {
     this.remove.emit(event);
   }
 
-  onSelectEvent(item: {selected: boolean, event: Event}) {
+  onSelectEvent(item: { selected: boolean; event: Event }) {
     this.select.emit(item);
   }
-
 }

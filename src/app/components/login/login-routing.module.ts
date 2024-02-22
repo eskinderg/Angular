@@ -12,4 +12,4 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
   ],
   exports: [RouterModule]
 })
-export class LoginRoutingModule { }
+export class LoginRoutingModule {}

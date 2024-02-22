@@ -8,14 +8,12 @@ import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 
-
 import { environment } from './../../environments/environment';
 
 const settings: any = environment.Auth;
 
 @Injectable()
 export class AuthService {
-
   // mgr: UserManager = new UserManager(settings);
   userLoadededEvent: EventEmitter<any> = new EventEmitter<any>();
   currentUser: any;
@@ -23,9 +21,11 @@ export class AuthService {
 
   // authHeaders: Headers;
 
-  constructor(private oauthService: OAuthService, private http: HttpClient , private route: Router) {
-
-  }
+  constructor(
+    private oauthService: OAuthService,
+    private http: HttpClient,
+    private route: Router
+  ) {}
 
   isLoggedInObs(): Observable<boolean> {
     return of(this.oauthService.hasValidAccessToken());
@@ -44,13 +44,16 @@ export class AuthService {
   }
 
   getUser() {
-    this.oauthService.loadUserProfile().then(profile => {
-      this.currentUser = profile;
-      console.log('got user', profile);
-      this.userLoadededEvent.emit(profile);
-    }).catch(function (err) {
-      console.log(err);
-    });
+    this.oauthService
+      .loadUserProfile()
+      .then((profile) => {
+        this.currentUser = profile;
+        console.log('got user', profile);
+        this.userLoadededEvent.emit(profile);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
   }
 
   getProfile() {
@@ -83,7 +86,6 @@ export class AuthService {
   endSigninMainWindow() {
     // this.mgr.signinRedirectCallback().then(function (user) {
     //   console.log('signed in', user);
-
     // }).catch(function (err: any) {
     //   console.log(err);
     // });
@@ -100,14 +102,14 @@ export class AuthService {
     //     console.log(err);
     //   });
     // });
-  };
+  }
 
   logout() {
     this.oauthService.logOut();
     // this.mgr.getUser().then(user => {
     //   return this.mgr.signoutRedirect({ id_token_hint: user.id_token });
     // });
-  };
+  }
 
   endSignoutMainWindow() {
     // this.mgr.signoutRedirectCallback().then(function (resp) {
@@ -115,6 +117,5 @@ export class AuthService {
     // }).catch(function (err) {
     //   console.log(err);
     // });
-  };
-
+  }
 }

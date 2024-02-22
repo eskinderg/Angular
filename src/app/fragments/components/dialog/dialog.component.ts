@@ -8,10 +8,9 @@ import { ConfirmState } from './confirm.state';
 @Component({
   selector: 'app-confirm-dialog-component',
   templateUrl: './dialog.component.html',
-  styleUrls: ['dialog.component.scss'],
+  styleUrls: ['dialog.component.scss']
 })
 export class ConfirmDialogComponent {
-
   options: ConfirmOptions;
 
   constructor(private state: ConfirmState) {
@@ -26,4 +25,3 @@ export class ConfirmDialogComponent {
     this.state.dialog.dismiss('not confirmed');
   }
 }
-

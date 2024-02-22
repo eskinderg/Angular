@@ -8,7 +8,7 @@ import { TextSelection } from './text.selection';
 export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => TextareaExpandedComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -16,10 +16,9 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
   providers: [EXPANDED_TEXTAREA_VALUE_ACCESSOR],
   templateUrl: 'textAreaExpanded.component.html',
   styleUrls: ['textAreaExpanded.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
-
   @Input() note: Note;
   subscription: Subscription | undefined;
 
@@ -28,10 +27,12 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
   @Output() onUpdatedOpendNote = new EventEmitter(false);
   @Output() onSelectionChange = new EventEmitter<Note>(false);
 
-  constructor(public htmlSafe: DomSanitizer, private txtSelection: TextSelection) { }
+  constructor(
+    public htmlSafe: DomSanitizer,
+    private txtSelection: TextSelection
+  ) {}
 
   ngOnInit() {
-
     this.subscription = fromEvent(this.textarea.nativeElement, 'input')
       .pipe(
         filter(Boolean),
@@ -48,23 +49,17 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     this.subscription.unsubscribe();
   }
 
-  @HostListener("focusout", ["$event.target"])
+  @HostListener('focusout', ['$event.target'])
   onFocusOut(target: any) {
-    this.onSelectionChange.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note)
+    this.onSelectionChange.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
     this.onUpdatedOpendNote.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-
-    if (
-      ((changes['note'].currentValue as Note).id === this.note.id) &&
-      (this.note.selection !== null) &&
-      ((changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id)
-    ) {
+    if ((changes['note'].currentValue as Note).id === this.note.id && this.note.selection !== null && (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id) {
       setTimeout(() => {
         this.txtSelection.doRestore(this.note.selection, this.textarea.nativeElement);
-      }, 100)
+      }, 100);
     }
   }
-
 }

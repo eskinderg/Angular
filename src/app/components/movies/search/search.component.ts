@@ -11,18 +11,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['search.component.scss']
 })
 export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
-
   @ViewChild('searchInput') input: ElementRef;
 
   movies: Observable<never>;
   model: Movie[];
   searching = false;
   searchFailed = false;
-  searchTerm: string = "";
+  searchTerm: string = '';
   movieResult: MovieResults;
   searchSubscription$: Subscription | undefined;
 
-  constructor(public route: Router,public router: ActivatedRoute, private _moviesServices: MoviesApiService, private cdr: ChangeDetectorRef) { }
+  constructor(
+    public route: Router,
+    public router: ActivatedRoute,
+    private _moviesServices: MoviesApiService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit() {
     this.searchSubscription$ = fromEvent(this.input.nativeElement, 'keyup')
@@ -86,7 +90,7 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.router.snapshot)
+    console.log(this.router.snapshot);
     // this.movies = this.term.valueChanges
     //   .debounceTime(400)
     //   .distinctUntilChanged()
@@ -116,5 +120,4 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
   //       });
   //   }
   // }
-
 }

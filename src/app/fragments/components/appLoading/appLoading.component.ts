@@ -2,17 +2,14 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
 
 @Component({
   selector: 'app-loading',
-  template: `<div [ngClass]="{'hide':!loading}" class="progress"> <div class="loading"></div>  </div>`,
+  template: `<div [ngClass]="{ hide: !loading }" class="progress"><div class="loading"></div></div>`,
   styleUrls: ['appLoading.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppLoadingComponent {
-
   private _loading: boolean = true;
 
-  constructor(
-    private cd: ChangeDetectorRef,
-  ) { }
+  constructor(private cd: ChangeDetectorRef) {}
 
   @Input()
   public set loading(val: boolean) {
@@ -23,5 +20,4 @@ export class AppLoadingComponent {
   public get loading() {
     return this._loading;
   }
-
 }

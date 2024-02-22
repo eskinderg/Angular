@@ -9,15 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOption/appThemeOption.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ProfileRoutingModule,
-    SharedModule,
-    NgaModule,
-    NgbModule,
-    ThemeOptionComponent
-  ],
+  imports: [CommonModule, ProfileRoutingModule, SharedModule, NgaModule, NgbModule, ThemeOptionComponent],
   exports: [],
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent]
 })
-export class ProfileModule { }
+export class ProfileModule {}

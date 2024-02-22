@@ -7,11 +7,8 @@ import { Event } from '../../event';
   styleUrls: ['./event-list-footer.component.scss']
 })
 export class EventListFooterComponent {
-
   @Input()
   events: Event[];
 
-  constructor() {
-  }
-
+  constructor() {}
 }

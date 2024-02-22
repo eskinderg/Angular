@@ -10,17 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './note-dialog.component.scss'
 })
 export class NoteDetailDialogComponent implements OnInit {
-
   note: Note;
 
   constructor(
     public activeDialog: NgbActiveModal,
     private notesApiService: NoteApiService,
     public router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.note = history.state['note']
+    this.note = history.state['note'];
   }
 
   close() {
@@ -35,5 +34,4 @@ export class NoteDetailDialogComponent implements OnInit {
     this.notesApiService.deleteNote(this.note);
     // this.activeDialog.close('/notes');
   }
-
 }

@@ -3,11 +3,10 @@ import { HeaderComponent } from './header.component';
 import { EventEmitter } from '@angular/core';
 
 describe('Header Component', () => {
-
   let component: HeaderComponent;
   let fakeUserService: any;
 
-  beforeEach (() => {
+  beforeEach(() => {
     fakeUserService = {
       userLoadededEvent: new EventEmitter()
     };
@@ -26,5 +25,4 @@ describe('Header Component', () => {
     component.ngOnInit();
     expect(component._user).toBeUndefined();
   });
-
 });

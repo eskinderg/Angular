@@ -7,12 +7,11 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class LoggingService {
-
   public onError: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  error(error:any) {
+  error(error: any) {
     this.onError.emit(error);
   }
   // public updateTodo(todo: Todo): Observable<Todo> {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core'
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'check-mark',
@@ -6,7 +6,6 @@ import { Component, EventEmitter, HostListener, Input, Output } from '@angular/c
   styleUrls: ['checkmark.component.scss']
 })
 export class CheckMarkComponent {
-
   @Input() checked: boolean = false;
 
   @Output() selectValue: EventEmitter<boolean> = new EventEmitter();
@@ -16,5 +15,4 @@ export class CheckMarkComponent {
     this.checked = !this.checked;
     this.selectValue.emit(this.checked);
   }
-
 }

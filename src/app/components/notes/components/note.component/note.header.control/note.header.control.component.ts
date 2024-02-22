@@ -8,15 +8,13 @@ import { Note } from 'src/app/models/note';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteHeaderControlComponent {
-
-  @Input() note: Note
+  @Input() note: Note;
   @Output() onUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
-  constructor() { }
+  constructor() {}
 
   updateNoteHeader(event: Event) {
-    const headerText: string = ((event.target) as HTMLInputElement).value;
-    this.onUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note)
+    const headerText: string = (event.target as HTMLInputElement).value;
+    this.onUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
   }
-
 }

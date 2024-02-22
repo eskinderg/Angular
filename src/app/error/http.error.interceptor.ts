@@ -9,15 +9,16 @@ import { ConfirmService } from '../fragments/components/dialog/confirm.service';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
-
   // constructor(public auth: AuthService) {}
   /**
    * @param {ConfirmService} confirmService - Confirm Dialog service
    */
-  constructor(private confirmService: ConfirmService, private injector: Injector) { }
+  constructor(
+    private confirmService: ConfirmService,
+    private injector: Injector
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     // const auth  = this.injector.get(AuthService);
 
     // console.log(localStorage.getItem('access_token'));
@@ -29,7 +30,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         loggingService.error(error);
         return throwError(() => error.message);
       })
-    )
+    );
 
     // return next.handle(request);
     // .pipe(
@@ -55,6 +56,5 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     //       }
     //     }
     //   ));
-
   }
 }

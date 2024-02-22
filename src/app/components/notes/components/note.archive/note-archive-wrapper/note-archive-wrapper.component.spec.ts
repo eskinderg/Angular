@@ -9,8 +9,7 @@ describe('MovieDialogWrapperComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MovieDialogWrapperComponent]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MovieDialogWrapperComponent);
     component = fixture.componentInstance;

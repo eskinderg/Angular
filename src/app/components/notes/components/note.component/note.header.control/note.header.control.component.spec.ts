@@ -9,9 +9,8 @@ describe('NoteHeaderControlComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteHeaderControlComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NoteHeaderControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

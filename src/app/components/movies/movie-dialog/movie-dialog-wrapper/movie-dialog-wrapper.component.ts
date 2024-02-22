@@ -10,42 +10,46 @@ import { Location, LocationStrategy } from '@angular/common';
   styleUrl: './movie-dialog-wrapper.component.scss'
 })
 export class MovieDialogWrapperComponent implements OnDestroy, AfterViewInit {
-
   destroy = new Subject<any>();
   currentDialog: NgbModalRef;
   dialogResult: any;
 
-  constructor(private dialogService: NgbModal, public route: ActivatedRoute, public location: Location,public router: Router, public ls: LocationStrategy) {
-  }
+  constructor(
+    private dialogService: NgbModal,
+    public route: ActivatedRoute,
+    public location: Location,
+    public router: Router,
+    public ls: LocationStrategy
+  ) {}
 
   ngAfterViewInit(): void {
     let routeParams = this.route.params;
     let routeData = this.route.data;
 
     zip(routeParams, routeData)
-      .pipe(takeUntil(this.destroy)).
-      subscribe(result => {
-        this.currentDialog = this.dialogService.open(
-          result[1]["component"],
-          {
-            centered: true,
-            scrollable: false,
-            container: '#movieDialog',
-            size:'xl'
-          });
+      .pipe(takeUntil(this.destroy))
+      .subscribe((result) => {
+        this.currentDialog = this.dialogService.open(result[1]['component'], {
+          centered: true,
+          scrollable: false,
+          container: '#movieDialog',
+          size: 'xl'
+        });
         this.currentDialog.componentInstance.params = result[0];
-        this.currentDialog.componentInstance.movieDetail = result[1]["movieDetail"];
+        this.currentDialog.componentInstance.movieDetail = result[1]['movieDetail'];
         this.currentDialog.componentInstance.stateParams = window.history.state['data'];
 
-        this.dialogResult = this.currentDialog.result.then(result => {
-          if (result !== -1) {
+        this.dialogResult = this.currentDialog.result.then(
+          (result) => {
+            if (result !== -1) {
+              this.location.back();
+            }
+          },
+          () => {
             this.location.back();
           }
-        }, () => {
-          this.location.back();
-        });
+        );
       });
-
   }
 
   ngOnDestroy() {
@@ -53,5 +57,4 @@ export class MovieDialogWrapperComponent implements OnDestroy, AfterViewInit {
     this.currentDialog?.close(-1);
     this.dialogResult = null;
   }
-
 }

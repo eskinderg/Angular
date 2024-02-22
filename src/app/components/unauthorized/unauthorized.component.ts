@@ -11,11 +11,13 @@ import * as AuthActions from '../../store/actions/auth.action';
   styleUrls: ['./unauthorized.component.scss']
 })
 export class UnauthorizedComponent implements OnInit {
+  constructor(
+    private location: Location,
+    private service: AuthService,
+    private store: Store<fromRoot.IAppState>
+  ) {}
 
-  constructor(private location: Location, private service: AuthService, private store: Store<fromRoot.IAppState>) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
     // this.store.dispatch(new AuthActions.loginEvent());
@@ -29,5 +31,4 @@ export class UnauthorizedComponent implements OnInit {
     // this.service.startSignoutMainWindow();
     this.service.logout();
   }
-
 }

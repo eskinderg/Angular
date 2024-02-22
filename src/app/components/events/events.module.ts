@@ -11,16 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    EventsRoutingModule,
-    SharedModule,
-    EventModule,
-    NgaModule,
-    NgScrollbarModule,
-    NgbModule
-  ],
+  imports: [CommonModule, EventsRoutingModule, SharedModule, EventModule, NgaModule, NgScrollbarModule, NgbModule],
   exports: [],
-  declarations: [EventsComponent],
+  declarations: [EventsComponent]
 })
-export class EventsModule { }
+export class EventsModule {}

@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { AuthorizationComponent } from './authorization.component';
 
 class AuthServiceStub {
-
   isLoggedInObs(): boolean {
     return false;
   }
@@ -14,7 +13,7 @@ class AuthServiceStub {
   // mgr(): () => eskinder{
   //    return null;
   // }
-  }
+}
 
 describe('AuthorizationComponent', () => {
   let component: AuthorizationComponent;
@@ -23,19 +22,13 @@ describe('AuthorizationComponent', () => {
   // let authserviceSpy = { mgr: jasmine.createSpy('mgr') };
   let myServiceDependency: AuthService;
 
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthorizationComponent ],
-      providers: [
-        { provide: AuthService },
-        { provide: Router, useValue: mockRouter }
-      ]
-    })
-      .compileComponents();
+      declarations: [AuthorizationComponent],
+      providers: [{ provide: AuthService }, { provide: Router, useValue: mockRouter }]
+    }).compileComponents();
 
-      myServiceDependency = TestBed.get(AuthService);
-
+    myServiceDependency = TestBed.get(AuthService);
   }));
 
   beforeEach(() => {

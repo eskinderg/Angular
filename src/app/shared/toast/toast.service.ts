@@ -5,14 +5,14 @@ export class ToastService {
   toasts: any[] = [];
 
   remove(toast) {
-    this.toasts = this.toasts.filter(t => t !== toast);
+    this.toasts = this.toasts.filter((t) => t !== toast);
   }
 
   clear() {
     this.toasts.splice(0, this.toasts.length);
   }
 
-  showSuccess(message: string, header?:string) {
+  showSuccess(message: string, header?: string) {
     this.show(message, header, { classname: 'bg-success text-light', delay: 5000 });
   }
 
@@ -27,5 +27,4 @@ export class ToastService {
   private show(textOrTpl: string, header?: string, options: any = {}) {
     this.toasts.push({ textOrTpl, header: header, ...options });
   }
-
 }

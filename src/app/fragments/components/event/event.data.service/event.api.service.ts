@@ -9,7 +9,6 @@ import * as fromEvents from '../../../../store/reducers/events.reducer';
 
 @Injectable()
 export class EventApiService {
-
   constructor(private store: Store<fromEvents.IEventsState>) {
     this.store.dispatch({ type: 'FETCH_EVENTS' });
   }
@@ -25,5 +24,4 @@ export class EventApiService {
   // toggleEventComplete(event: Event) {
   // return this.api.updateEvent(event);
   // }
-
 }

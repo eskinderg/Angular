@@ -14,4 +14,4 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
   ],
   exports: [RouterModule]
 })
-export class UnauthorizedRoutingModule { }
+export class UnauthorizedRoutingModule {}

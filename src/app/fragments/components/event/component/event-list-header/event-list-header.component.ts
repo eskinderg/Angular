@@ -11,18 +11,17 @@ import { Event } from '../../event';
   styleUrls: ['./event-list-header.component.scss']
 })
 export class EventListHeaderComponent {
-
   newEvent: Event = new Event();
 
   @Output()
   add: EventEmitter<Event> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   addEvent() {
     if (this.newEvent.title.length > 0) {
       this.add.emit(this.newEvent);
-      this.newEvent = new Event();    // clear entry
+      this.newEvent = new Event(); // clear entry
     }
   }
 }

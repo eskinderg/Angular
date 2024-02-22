@@ -12,20 +12,21 @@ interface Position {
 })
 export class MovableDirective extends DraggableDirective {
   @HostBinding('style.transform') get transform(): SafeStyle {
-    return this.sanitizer.bypassSecurityTrustStyle(
-      `translateX(${this.position.x}px) translateY(${this.position.y}px)`
-    );
+    return this.sanitizer.bypassSecurityTrustStyle(`translateX(${this.position.x}px) translateY(${this.position.y}px)`);
   }
 
   @HostBinding('class.movable') movable = false;
 
-  position: Position = {x: 0, y: 0};
+  position: Position = { x: 0, y: 0 };
 
   private startPosition: Position | undefined;
 
   @Input('appMovableReset') reset = false;
 
-  constructor(private sanitizer: DomSanitizer, public override element: ElementRef) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    public override element: ElementRef
+  ) {
     super(element);
   }
 
@@ -34,7 +35,7 @@ export class MovableDirective extends DraggableDirective {
     this.startPosition = {
       x: event.clientX - this.position.x,
       y: event.clientY - this.position.y
-    }
+    };
   }
 
   @HostListener('dragMove', ['$event'])
@@ -46,7 +47,7 @@ export class MovableDirective extends DraggableDirective {
   @HostListener('dragEnd', ['$event'])
   onDragEnd(event: PointerEvent) {
     if (this.reset) {
-      this.position = {x: 0, y: 0};
+      this.position = { x: 0, y: 0 };
     }
   }
 }

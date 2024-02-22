@@ -13,4 +13,4 @@ import { NotfoundComponent } from './404.component';
   ],
   exports: [RouterModule]
 })
-export class NotfoundRoutingModule { }
+export class NotfoundRoutingModule {}

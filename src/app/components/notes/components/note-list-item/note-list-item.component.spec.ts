@@ -9,9 +9,8 @@ describe('NoteListItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteListItemComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NoteListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

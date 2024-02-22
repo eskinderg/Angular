@@ -4,8 +4,7 @@ import { MoviesApiService } from './movies.api.service';
 import { Tv } from '../models/tv';
 
 @Injectable()
-export class TvsResolve  {
-
+export class TvsResolve {
   constructor(private moviesApiService: MoviesApiService) {}
 
   resolve() {

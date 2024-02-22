@@ -11,13 +11,15 @@ import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: '', component: WizardManagerComponent ,
+      {
+        path: '',
+        component: WizardManagerComponent,
         children: [
-          {path: '', redirectTo: 'profile', pathMatch: 'full'},
+          { path: '', redirectTo: 'profile', pathMatch: 'full' },
           // {path: 'about-us', component: AboutUsComponent},
-          {path: 'profile', component: ProfileComponent},
-          {path: 'feature', component: FeatureComponent},
-          {path: 'payment', component: PaymentComponent}
+          { path: 'profile', component: ProfileComponent },
+          { path: 'feature', component: FeatureComponent },
+          { path: 'payment', component: PaymentComponent }
         ],
         canActivate: [AuthGuardService]
       }
@@ -25,4 +27,4 @@ import { PaymentComponent } from './payment/payment.component';
   ],
   exports: [RouterModule]
 })
-export class WizardManagerRoutingModule { }
+export class WizardManagerRoutingModule {}

@@ -7,5 +7,5 @@ import { Event } from 'src/app/models/event';
   styleUrl: './event-list-select.component.scss'
 })
 export class EventListSelectComponent {
-  @Input() event: Event
+  @Input() event: Event;
 }

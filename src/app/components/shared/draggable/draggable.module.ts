@@ -7,21 +7,8 @@ import { MovableAreaDirective } from './movable-area.directive';
 import { DraggableHelperDirective } from './draggable-helper.directive';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    OverlayModule
-  ],
-  declarations: [
-    DraggableDirective,
-    MovableDirective,
-    MovableAreaDirective,
-    DraggableHelperDirective
-  ],
-  exports: [
-    DraggableDirective,
-    MovableDirective,
-    MovableAreaDirective,
-    DraggableHelperDirective
-  ]
+  imports: [CommonModule, OverlayModule],
+  declarations: [DraggableDirective, MovableDirective, MovableAreaDirective, DraggableHelperDirective],
+  exports: [DraggableDirective, MovableDirective, MovableAreaDirective, DraggableHelperDirective]
 })
-export class DraggableModule { }
+export class DraggableModule {}

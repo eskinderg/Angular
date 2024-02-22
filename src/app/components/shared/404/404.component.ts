@@ -9,10 +9,9 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./404.component.scss']
 })
 export class NotfoundComponent implements OnInit {
-
   // userMgr: Oidc = new Oidc.UserManager();
 
-  constructor( private authService: AuthService ) {
+  constructor(private authService: AuthService) {
     // this.service.mgr.signoutRedirectCallback()
     // if(this.authService.loggedIn)
     // {
@@ -25,10 +24,7 @@ export class NotfoundComponent implements OnInit {
     //       console.log(err);
     // });
     // }
-    }
-
-  ngOnInit() {
-
   }
 
+  ngOnInit() {}
 }

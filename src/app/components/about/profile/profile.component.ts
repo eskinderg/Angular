@@ -10,29 +10,23 @@ import { ConfirmService } from '../../../fragments/components/dialog/confirm.ser
   styleUrls: ['profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
   profileForm: UntypedFormGroup;
   public user: any;
 
-  constructor(private fb: UntypedFormBuilder, private authService: OAuthService,
-    private confirmService: ConfirmService) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private authService: OAuthService,
+    private confirmService: ConfirmService
+  ) {
     this.user = this.authService.getIdentityClaims();
   }
 
   ngOnInit() {
     this.profileForm = new UntypedFormGroup({
-      name: new UntypedFormControl(this.user['given_name'],[
-        Validators.required
-      ]),
-      email: new UntypedFormControl(this.user['email'],[
-        Validators.required
-      ]),
-      lastName: new UntypedFormControl(this.user['family_name'],[
-        Validators.required
-      ]),
-      website: new UntypedFormControl(this.user['website'],[
-        Validators.required
-      ])
+      name: new UntypedFormControl(this.user['given_name'], [Validators.required]),
+      email: new UntypedFormControl(this.user['email'], [Validators.required]),
+      lastName: new UntypedFormControl(this.user['family_name'], [Validators.required]),
+      website: new UntypedFormControl(this.user['website'], [Validators.required])
     });
     // this.profileForm = this.fb.group({
     //   'name': ['', [Validators.required]],
@@ -44,16 +38,19 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     if (this.profileForm.valid) {
-      this.confirmService.openInfoDialog({
-        title: 'Profile',
-        message: 'Profile Saved',
-        backdrop: true,
-        centered: false
-      }).then(() => {
-      }, () => {
-        console.log();
-      });
+      this.confirmService
+        .openInfoDialog({
+          title: 'Profile',
+          message: 'Profile Saved',
+          backdrop: true,
+          centered: false
+        })
+        .then(
+          () => {},
+          () => {
+            console.log();
+          }
+        );
     }
   }
-
 }

@@ -26,4 +26,4 @@ import { EventsDialogComponent } from './events-dialog/events-dialog/events-dial
   ],
   exports: [RouterModule]
 })
-export class EventsRoutingModule { }
+export class EventsRoutingModule {}

@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
   styleUrl: './events-dialog.component.scss'
 })
 export class EventsDialogComponent {
-
   public Event: Event;
 
   constructor(
@@ -24,13 +23,13 @@ export class EventsDialogComponent {
     private location: Location
   ) {
     if (this.router.getCurrentNavigation() == null) {
-      this.activeDialog.close()
+      this.activeDialog.close();
       // this.location.go('./events');
       return;
     }
 
     if (this.router.getCurrentNavigation() != null) {
-      this.Event = this.router.getCurrentNavigation().extras.state['event']
+      this.Event = this.router.getCurrentNavigation().extras.state['event'];
     }
     // this.location.go('./events')
     // console.log(this.Event)
@@ -44,5 +43,4 @@ export class EventsDialogComponent {
     this.store.dispatch(EventsActions.deleteEvent({ payload: this.Event }));
     this.activeDialog.close();
   }
-
 }

@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Event } from '../../../../fragments/components/event/event';
 
-@Component(
-  {
-    selector: 'app-table-event-list',
-    templateUrl: './table.component.html',
-    styleUrls: ['./table.component.scss']
-  }
-)
+@Component({
+  selector: 'app-table-event-list',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
+})
 export class TableComponent {
-
   @Input()
   events: Event[] | undefined;
 
@@ -22,8 +19,7 @@ export class TableComponent {
   // @Output()
   // toggleComplete: EventEmitter<Event> = new EventEmitter();
 
-  constructor() {
-  }
+  constructor() {}
 
   // onToggleEventComplete(event: Event) {
   //   this.toggleComplete.emit(event);
@@ -32,5 +28,4 @@ export class TableComponent {
   // onRemoveEvent(event: Event) {
   //   this.remove.emit(event);
   // }
-
 }

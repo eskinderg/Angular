@@ -5,31 +5,25 @@ import { AppComponent } from '../app.component';
 
 export function bootstrapAppRouteFactory(router: Router): (appComponentRef: ComponentRef<AppComponent>) => void {
   return (appComponentRef: ComponentRef<AppComponent>) => {
-    router.events.pipe(
-      filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)
-    ).subscribe((routerEvent: RouterEvent) => {
+    router.events.pipe(filter((e: Event | RouterEvent): e is RouterEvent => e instanceof RouterEvent)).subscribe((routerEvent: RouterEvent) => {
       _navigationInterceptor(routerEvent, appComponentRef.instance);
     });
-  }
+  };
 }
 
 function _navigationInterceptor(event: RouterEvent, appComponent: AppComponent): void {
-
   switch (event.constructor) {
-
     case NavigationEnd:
-      appComponent.appLoadingComponent.loading = false
+      appComponent.appLoadingComponent.loading = false;
       break;
 
     case NavigationError:
     case NavigationCancel:
     case NavigationStart:
-      appComponent.appLoadingComponent.loading = true
+      appComponent.appLoadingComponent.loading = true;
       break;
 
     default:
       break;
-
   }
-
 }

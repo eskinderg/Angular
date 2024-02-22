@@ -6,13 +6,9 @@ import { MoviesDataService } from './movies.data.service';
 import { Observable, empty, map } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 
-
 @Injectable()
 export class MoviesApiService {
-
-  constructor(
-    private api: MoviesDataService
-  ) { }
+  constructor(private api: MoviesDataService) {}
 
   serachMovies(searchStr: string) {
     if (searchStr !== undefined && searchStr !== '') {
@@ -33,7 +29,7 @@ export class MoviesApiService {
   }
 
   getMoviesByGenre(id: string, page?: number): Observable<MovieResults> {
-    return this.api.getMoviesByGenre(id, page)
+    return this.api.getMoviesByGenre(id, page);
     // .pipe(
     //     map((mr:MovieResults) => {
     //       mr.movies = mr.movies.filter((m:Movie) => m.original_language=="en" || m.original_language=="uk" )

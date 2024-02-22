@@ -9,9 +9,8 @@ describe('NoteColourSelectorComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoteColourSelectorComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NoteColourSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

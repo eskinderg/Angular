@@ -6,12 +6,9 @@ import { Store } from '@ngrx/store';
 import { Actions } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 
-
-
 @Injectable()
-export class EventsResolve  {
-
-  constructor(private action$: Actions) { }
+export class EventsResolve {
+  constructor(private action$: Actions) {}
 
   resolve(route: ActivatedRouteSnapshot) {
     // this.store.dispatch({ type: 'FETCH_EVENTS', payload: {} });

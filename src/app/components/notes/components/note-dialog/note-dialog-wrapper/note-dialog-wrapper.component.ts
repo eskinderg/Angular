@@ -11,7 +11,6 @@ import { Note } from 'src/app/models/note';
   styleUrl: './note-dialog-wrapper.component.scss'
 })
 export class NoteDialogWrapperComponent implements OnDestroy, AfterViewInit {
-
   destroy = new Subject<any>();
   currentDialog: NgbModalRef;
   dialogResult: any;
@@ -22,41 +21,38 @@ export class NoteDialogWrapperComponent implements OnDestroy, AfterViewInit {
     public location: Location,
     public router: Router,
     public ls: LocationStrategy
-  ) {
-  }
+  ) {}
 
   ngAfterViewInit(): void {
     let routeParams = this.route.params;
     let routeData = this.route.data;
 
     zip(routeParams, routeData)
-      .pipe(takeUntil(this.destroy)).
-      subscribe(result => {
-        this.currentDialog = this.dialogService.open(
-          result[1]["component"],
-          {
-            centered: true,
-            scrollable: false,
-            container: '#noteDialog',
-            size:'lg'
-          });
+      .pipe(takeUntil(this.destroy))
+      .subscribe((result) => {
+        this.currentDialog = this.dialogService.open(result[1]['component'], {
+          centered: true,
+          scrollable: false,
+          container: '#noteDialog',
+          size: 'lg'
+        });
         // this.currentDialog.componentInstance.params = result[0];
         // this.currentDialog.componentInstance.movieDetail = result[1]["movieDetail"];
         // this.currentDialog.componentInstance.stateParams = window.history.state['data'];
 
-        this.dialogResult = this.currentDialog.result.then(result => {
-
-        // console.log(result);
-        // console.log(this.route);
-          if (result !== -1) {
+        this.dialogResult = this.currentDialog.result.then(
+          (result) => {
+            // console.log(result);
+            // console.log(this.route);
+            if (result !== -1) {
+              this.location.back();
+            }
+          },
+          () => {
             this.location.back();
           }
-        }, () => {
-          this.location.back();
-        });
-
+        );
       });
-
   }
 
   ngOnDestroy() {
@@ -64,5 +60,4 @@ export class NoteDialogWrapperComponent implements OnDestroy, AfterViewInit {
     this.currentDialog?.close(-1);
     this.dialogResult = null;
   }
-
 }

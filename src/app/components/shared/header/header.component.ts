@@ -23,7 +23,6 @@ export declare interface IsActiveMatchOptions {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-
   @Output() signout: EventEmitter<any> = new EventEmitter();
   public isExpanded = false;
   _user: any;
@@ -43,16 +42,14 @@ export class HeaderComponent implements OnInit {
     private eventStore: Store<fromEvents.IEventsState>,
     private noteStore: Store<fromNotes.INotesState>,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     // this.claims = this.oauthService.getIdentityClaims();
-
     // if(this.claims){
     //  this.name = this.claims.name;
     // }
     // this.oauthService.loadUserProfile().then(profile => {
-
     //   this._user = profile;
     //   // console.log(this._user);
     // })
@@ -62,37 +59,35 @@ export class HeaderComponent implements OnInit {
   }
 
   get isNotesURLActive() {
-    return this.router.isActive('/notes', this.routerLinkActiveOptions)
+    return this.router.isActive('/notes', this.routerLinkActiveOptions);
   }
 
   get EventsCount() {
-    return this.eventStore.select(fromEvents.getEventsLength)
+    return this.eventStore.select(fromEvents.getEventsLength);
   }
 
   get EventLoading() {
-    return this.eventStore.select(fromEvents.getIsLoading)
+    return this.eventStore.select(fromEvents.getIsLoading);
   }
 
   get NotesCount() {
-    return this.noteStore.select(fromNotes.getNotesLength)
+    return this.noteStore.select(fromNotes.getNotesLength);
   }
 
   get NoteLoading() {
-    return this.noteStore.select(fromNotes.getIsLoading)
+    return this.noteStore.select(fromNotes.getIsLoading);
   }
   onSignout() {
     // this.service.logout();
   }
 
   get IsLoggedIn() {
-    return this.eventStore.select(fromProfile.isLoggedIn)
+    return this.eventStore.select(fromProfile.isLoggedIn);
     // return this.oauthService.hasValidAccessToken();
-
   }
 
   // get EventItemCount() {
   //   // return this.store.select(fromEvents.initialState.events.length)
   //   return 1;
   // }
-
 }

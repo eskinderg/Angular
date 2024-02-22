@@ -1,5 +1,5 @@
 <div class="list-group">
-  <a class="list-group-item list-group-item-action flex-column align-items-start ">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">List group item heading</h5>
       <small>3 days ago</small>
@@ -7,7 +7,7 @@
     <p class="mb-1">The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog</p>
     <small>Small Text</small>
   </a>
-  <a  class="list-group-item list-group-item-action flex-column align-items-start">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">List group item heading</h5>
       <small class="text-muted">3 days ago</small>
@@ -15,7 +15,7 @@
     <p class="mb-1">The quick brown fox jumps over the lazy dog The quick brown fox jumps over the lazy dog</p>
     <small class="text-muted">Small Text</small>
   </a>
-  <a  class="list-group-item list-group-item-action flex-column align-items-start">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">List group item heading</h5>
       <small class="text-muted">3 days ago</small>
@@ -27,20 +27,18 @@
 
 <app-wz-common>
   <div class="col-6 text-center">
-    <a href="#" class="btn btn-outline-primary btn-lg" [routerLink]="['/wizard/profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" role="button" aria-pressed="true">
+    <a href="#" class="btn btn-outline-primary btn-lg" [routerLink]="['/wizard/profile']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" role="button" aria-pressed="true">
       <i class="fa fa-circle-left" aria-hidden="true"></i>
       Back
     </a>
   </div>
 
   <div class="col-6 text-center">
-    <a href="#" class="btn btn-outline-primary btn-lg" [routerLink]="['/wizard/payment']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" role="button" aria-pressed="true">
+    <a href="#" class="btn btn-outline-primary btn-lg" [routerLink]="['/wizard/payment']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" role="button" aria-pressed="true">
       Next
       <i class="fa fa-circle-right" aria-hidden="true"></i>
-
     </a>
   </div>
-
 </app-wz-common>
 
 <!-- <button class="btn btn-outline-primary btn-md">Back</button> -->

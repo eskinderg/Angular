@@ -4,7 +4,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-add-button',
   templateUrl: 'add.button.component.html',
-  styleUrls: ['add.button.component.scss'],
+  styleUrls: ['add.button.component.scss']
   // directives: [NgClass]
 })
 export class AddButtonComponent {

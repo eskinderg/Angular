@@ -1,13 +1,4 @@
-import {
-  Component,
-  HostBinding,
-  Renderer2,
-  HostListener,
-  Output,
-  ElementRef,
-  EventEmitter,
-  Directive
-} from '@angular/core';
+import { Component, HostBinding, Renderer2, HostListener, Output, ElementRef, EventEmitter, Directive } from '@angular/core';
 @Directive({
   selector: 'textarea[resize]'
 })
@@ -35,7 +26,7 @@ export class ResizableTextAreaDirective {
     // });
   }
   @HostListener('mousemove', ['$event.target'])
-  onMouseMove(el: { offsetWidth: number | undefined; offsetHeight: number | undefined; }) {
+  onMouseMove(el: { offsetWidth: number | undefined; offsetHeight: number | undefined }) {
     if (this._isDragging) {
       this._hasDragged = true;
       this.width = el.offsetWidth;
@@ -48,7 +39,7 @@ export class ResizableTextAreaDirective {
     if (this._isDragging) {
       this._isDragging = false;
       if (this._hasDragged) {
-        this.resize.emit({width: this.width, height : this.height});
+        this.resize.emit({ width: this.width, height: this.height });
         // this.resize.emit({ width: el.offsetWidth, height: el.offsetHeight });
       }
     }

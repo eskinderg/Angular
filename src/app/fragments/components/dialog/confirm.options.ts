@@ -1,4 +1,3 @@
-
 /**
  * Options passed when opening a confirmation dialog
  */
@@ -7,16 +6,16 @@ export interface ConfirmOptions {
   /**
    * The title of the confirmation dialog
    */
-  title: string,
+  title: string;
 
   /**
    * The message in the confirmation dialog
    */
-  message: string,
+  message: string;
 
-  backdrop: boolean,
+  backdrop: boolean;
 
-  centered?: boolean
+  centered?: boolean;
 
-  scrollable?: boolean
+  scrollable?: boolean;
 }

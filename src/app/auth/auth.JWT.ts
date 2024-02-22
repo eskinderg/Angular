@@ -4,11 +4,9 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthJWT implements HttpInterceptor {
-
-  constructor() { }
+  constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -16,6 +14,5 @@ export class AuthJWT implements HttpInterceptor {
     });
 
     return next.handle(request);
-
   }
 }

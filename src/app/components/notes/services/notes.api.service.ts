@@ -8,8 +8,7 @@ import * as fromNotes from '../../../store/reducers/note.reducer';
 
 @Injectable()
 export class NoteApiService {
-
-  constructor(private store: Store<fromRoot.IAppState>) { }
+  constructor(private store: Store<fromRoot.IAppState>) {}
 
   get Notes(): Observable<Note[]> {
     return this.store.select(fromNotes.getNotes);
@@ -20,7 +19,7 @@ export class NoteApiService {
   }
 
   selectNote(note: Note): void {
-    this.store.dispatch(NotesActions.noteSelect({ payload: note }))
+    this.store.dispatch(NotesActions.noteSelect({ payload: note }));
   }
 
   createNewNote(newNote: Note): void {
@@ -28,7 +27,7 @@ export class NoteApiService {
   }
 
   toggleSpellCheck(note: Note): void {
-    this.store.dispatch(NotesActions.toggleSpellCheck({ payload: note }))
+    this.store.dispatch(NotesActions.toggleSpellCheck({ payload: note }));
   }
 
   updateNote(note: Note): void {
@@ -98,5 +97,4 @@ export class NoteApiService {
   get OpendNote(): Observable<Note> {
     return this.store.select(fromNotes.getOpendNote);
   }
-
 }

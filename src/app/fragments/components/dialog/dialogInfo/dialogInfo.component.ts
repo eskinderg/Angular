@@ -9,7 +9,6 @@ import { ConfirmState } from '../confirm.state';
   templateUrl: './dialogInfo.component.html'
 })
 export class DialogInfoComponent {
-
   options: ConfirmOptions;
 
   constructor(private state: ConfirmState) {
@@ -24,4 +23,3 @@ export class DialogInfoComponent {
   //   this.state.dialog.dismiss('not confirmed');
   // }
 }
-

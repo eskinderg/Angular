@@ -7,7 +7,7 @@ import { EventComponent } from './component/event.component';
 import { EventListComponent } from './component/event-list/event-list.component';
 import { EventListHeaderComponent } from './component/event-list-header/event-list-header.component';
 import { EventListItemComponent } from './component/event-list/event-list-item/event-list-item.component';
-import { EventListFooterComponent} from './component/event-list-footer/event-list-footer.component';
+import { EventListFooterComponent } from './component/event-list-footer/event-list-footer.component';
 import { EventListSelectComponent } from './component/event-list/event-list-item/event-list-select/event-list-select.component';
 import { EventsResolve } from './event.data.service/EventsResolve';
 
@@ -16,32 +16,9 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
-    NgaModule,
-    NgbModule,
-    NgScrollbarModule,
-    RouterModule
-  ],
-  declarations: [
-    EventComponent,
-    EventListHeaderComponent,
-    EventListItemComponent,
-    EventListFooterComponent,
-    EventListComponent,
-    EventListSelectComponent
-  ],
-  exports: [
-    EventComponent,
-    EventListHeaderComponent,
-    EventListItemComponent,
-    EventListFooterComponent,
-    EventListComponent,
-    EventListSelectComponent,
-    CommonModule,
-    FormsModule
-  ],
+  imports: [FormsModule, CommonModule, NgaModule, NgbModule, NgScrollbarModule, RouterModule],
+  declarations: [EventComponent, EventListHeaderComponent, EventListItemComponent, EventListFooterComponent, EventListComponent, EventListSelectComponent],
+  exports: [EventComponent, EventListHeaderComponent, EventListItemComponent, EventListFooterComponent, EventListComponent, EventListSelectComponent, CommonModule, FormsModule],
   providers: [EventsResolve]
 })
-export class EventModule { }
+export class EventModule {}

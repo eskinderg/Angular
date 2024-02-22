@@ -13,4 +13,4 @@ import { AuthorizationComponent } from './authorization.component';
   ],
   exports: [RouterModule]
 })
-export class AuthorizationRoutingModule { }
+export class AuthorizationRoutingModule {}

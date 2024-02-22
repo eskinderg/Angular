@@ -9,12 +9,14 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: '', component: AboutComponent ,
+      {
+        path: '',
+        component: AboutComponent,
         children: [
-          {path: '', redirectTo: 'about-us', pathMatch: 'full'},
-          {path: 'about-us', component: AboutUsComponent},
-          {path: 'profile', component: ProfileComponent},
-          {path: 'feature', component: FeatureComponent}
+          { path: '', redirectTo: 'about-us', pathMatch: 'full' },
+          { path: 'about-us', component: AboutUsComponent },
+          { path: 'profile', component: ProfileComponent },
+          { path: 'feature', component: FeatureComponent }
         ],
         canActivate: [AuthGuardService]
       }
@@ -22,4 +24,4 @@ import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
   ],
   exports: [RouterModule]
 })
-export class AboutRoutingModule { }
+export class AboutRoutingModule {}

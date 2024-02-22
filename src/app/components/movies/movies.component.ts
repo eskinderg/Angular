@@ -11,12 +11,11 @@ import { MoviesApiService } from './movies.service/movies.api.service';
   selector: 'app-movies',
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
-  animations: [ fadeInAnimation ],
+  animations: [fadeInAnimation],
   host: { '[@routerFadeInAnimation]': '' }
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MoviesComponent implements OnInit  {
-
+export class MoviesComponent implements OnInit {
   public movies: Array<Object>;
   public genres: Genre[];
 
@@ -25,22 +24,20 @@ export class MoviesComponent implements OnInit  {
     // .subscribe(res => {
     //   this.genres = res;
     // });
-
-    }
+  }
 
   search() {
     // this.moviesApiService.serachMovies(searchStr)
     //   .subscribe( (res) => {
     //     this.movies = res.results;
     //   });
-    }
+  }
 
   ngOnInit() {
     this.genres = this.route.snapshot.data['genres'];
   }
 
-  onSelectGenre (genre: Genre) {
+  onSelectGenre(genre: Genre) {
     // alert(genre.name);
-    }
-
+  }
 }

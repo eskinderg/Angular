@@ -1,5 +1,4 @@
-
-import { Injectable , TemplateRef } from '@angular/core';
+import { Injectable, TemplateRef } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmOptions } from './confirm.options';
 /**

@@ -1,7 +1,6 @@
-import { Movie } from './movie'
+import { Movie } from './movie';
 
 export class MovieResults {
-
   movies: Movie[];
   page: number;
   total_pages: number;
@@ -10,5 +9,4 @@ export class MovieResults {
   constructor(values: Object = {}) {
     Object.assign(this, values);
   }
-
 }

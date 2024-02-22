@@ -5,13 +5,12 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class ThemeService {
-
   public static isDarkMode: boolean = false;
 
-  private  style: HTMLLinkElement;
+  private style: HTMLLinkElement;
 
   public get DarkMode(): boolean {
-    return localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode
+    return localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode;
   }
 
   public set DarkMode(value: boolean) {
@@ -20,28 +19,24 @@ export class ThemeService {
   }
 
   constructor() {
-
-    this.style      = document.createElement('link');
-    this.style.rel  = 'stylesheet';
-    this.style.type = "text/css";
-
+    this.style = document.createElement('link');
+    this.style.rel = 'stylesheet';
+    this.style.type = 'text/css';
   }
 
   private getStyleName(isDarkMode: boolean): string {
-    return (isDarkMode ? "dark.css" : "light.css");
+    return isDarkMode ? 'dark.css' : 'light.css';
   }
 
   public toggleDarkMode(): boolean {
     this.style.href = this.getStyleName(!this.DarkMode);
     localStorage.setItem('darkmode', (!this.DarkMode).toString());
-    return this.DarkMode
+    return this.DarkMode;
   }
 
   public initTheme(): Observable<boolean> {
     this.style.href = this.getStyleName(this.DarkMode);
     document.head.appendChild(this.style);
-    return of(true)
-
+    return of(true);
   }
-
 }

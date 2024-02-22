@@ -1,17 +1,15 @@
 @if(isLoggedIn | async) {
 <div class="btn-group">
-  <button type="button" class="btn btn-primary" [routerLink]="['/profile']">{{givenName}}</button>
+  <button type="button" class="btn btn-primary" [routerLink]="['/profile']">{{ givenName }}</button>
   <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
     <button type="button" class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
-    <div class="dropdown-menu  dropdown-menu-end" ngbDropdownMenu>
-      <app-theme-option [label]="'Dark Mode'" [darkMode]="isDarkMode | async" (onToggleDark)="onDarkModeToggle()">
-      </app-theme-option>
+    <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+      <app-theme-option [label]="'Dark Mode'" [darkMode]="isDarkMode | async" (onToggleDark)="onDarkModeToggle()"> </app-theme-option>
       <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
       <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>
     </div>
   </div>
 </div>
 } @else() {
-<button id="btnLogin" type="button" (click)="login()" class="btn btn-primary">Login /
-  SignUp</button>
+<button id="btnLogin" type="button" (click)="login()" class="btn btn-primary">Login / SignUp</button>
 }

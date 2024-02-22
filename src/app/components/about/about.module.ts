@@ -12,12 +12,7 @@ import { NgaModule } from '../../fragments/nga.module';
 
 @NgModule({
   imports: [CommonModule, AboutRoutingModule, SharedModule, NgaModule],
-  declarations: [
-    AboutComponent,
-    AboutUsComponent,
-    ProfileComponent,
-    FeatureComponent
-  ],
+  declarations: [AboutComponent, AboutUsComponent, ProfileComponent, FeatureComponent],
   exports: [AboutComponent]
 })
-export class AboutModule { }
+export class AboutModule {}

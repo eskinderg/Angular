@@ -1,8 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TextSelection {
-
   public saveSelection(containerEl: any) {
     var range = window.getSelection().getRangeAt(0);
     var preSelectionRange = range.cloneRange();
@@ -13,14 +12,18 @@ export class TextSelection {
     return {
       start: start,
       end: start + range.toString().length
-    }
-  };
+    };
+  }
 
   public restoreSelection(containerEl: any, savedSel: any) {
-    var charIndex = 0, range = document.createRange();
+    var charIndex = 0,
+      range = document.createRange();
     range.setStart(containerEl, 0);
     range.collapse(true);
-    var nodeStack = [containerEl], node: any, foundStart = false, stop = false;
+    var nodeStack = [containerEl],
+      node: any,
+      foundStart = false,
+      stop = false;
 
     while (!stop && (node = nodeStack.pop())) {
       if (node.nodeType == 3) {
@@ -52,5 +55,4 @@ export class TextSelection {
       this.restoreSelection(elementRef, JSON.parse(selection));
     }
   }
-
 }

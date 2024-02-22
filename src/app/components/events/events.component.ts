@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import { SlideAnimation } from '../shared/animations/animations';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Store } from '@ngrx/store';
@@ -13,13 +13,11 @@ import * as fromEvents from '../../store/reducers/events.reducer';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent {
+  constructor(private store: Store<fromEvents.IEventsState>) {}
 
-  constructor(private store: Store<fromEvents.IEventsState>) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   get EventItems() {
     return this.store.select(fromEvents.getEvents);
   }
-
 }

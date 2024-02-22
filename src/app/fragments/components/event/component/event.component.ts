@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['event.component.scss']
 })
 export class EventComponent {
-
   @Input() events: Event[];
 
   public selectedEvents: Event[] = [];
@@ -20,8 +19,8 @@ export class EventComponent {
   constructor(
     private store: Store<fromRoot.IAppState>,
     public router: ActivatedRoute,
-    public route: Router,
-  ) { }
+    public route: Router
+  ) {}
 
   onAddEvent(event: Event) {
     this.store.dispatch(EventsActions.createEvent({ payload: event }));
@@ -36,21 +35,20 @@ export class EventComponent {
   }
 
   onDeleteEvents() {
-    this.store.dispatch(EventsActions.deleteEvents({ payload: this.selectedEvents }))
-    this.selectedEvents = []
+    this.store.dispatch(EventsActions.deleteEvents({ payload: this.selectedEvents }));
+    this.selectedEvents = [];
   }
 
-  onSelectEvent(item: { selected: boolean, event: Event }) {
+  onSelectEvent(item: { selected: boolean; event: Event }) {
     if (item.selected) {
-      this.selectedEvents.push(item.event)
-    }
-    else {
-      this.selectedEvents = this.selectedEvents.filter((e: Event) => e.id !== item.event.id)
+      this.selectedEvents.push(item.event);
+    } else {
+      this.selectedEvents = this.selectedEvents.filter((e: Event) => e.id !== item.event.id);
     }
   }
 
   onRemoveEvent(event: Event) {
-    this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } })
+    this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } });
     // alert(this.route.url)
     // this.confirmService.confirm({
     //   title: 'Confirm deletion',
@@ -63,5 +61,4 @@ export class EventComponent {
     //   console.log();
     // });
   }
-
 }

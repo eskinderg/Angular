@@ -5,8 +5,7 @@ import { Note } from '../../../models/note';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class NotesResolver  {
-
+export class NotesResolver {
   constructor(private notesApiService: NoteApiService) {}
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Note[] | Observable<Note[]> | Promise<Note[]> {
     throw new Error('Method not implemented.');

@@ -1,10 +1,8 @@
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
-export const fadeInAnimation =
-trigger('routerFadeInAnimation', [
+export const fadeInAnimation = trigger('routerFadeInAnimation', [
   // route 'enter' transition
   // state('*', style({position:'relative'}) ),
-
   // transition(':enter', [
   //   // styles at start of transition
   //   style({ opacity: 0 }),

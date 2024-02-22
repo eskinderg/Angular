@@ -5,8 +5,8 @@ import { ToastService } from './toast.service';
   selector: 'ngbd-toast-global',
   templateUrl: './toast.global.component.html',
   host: {
-    'class': 'toast-container position-fixed bottom-0 end-0 p-3',
-    'style': 'z-index: 1200'
+    class: 'toast-container position-fixed bottom-0 end-0 p-3',
+    style: 'z-index: 1200'
   }
 })
 export class NgbdToastGlobalComponent {

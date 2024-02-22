@@ -10,8 +10,8 @@ export class DraggableDirective {
   @HostBinding('attr.touch-action') touchAction = 'none';
 
   @Output() dragStart = new EventEmitter<PointerEvent>();
-  @Output() dragMove  = new EventEmitter<PointerEvent>();
-  @Output() dragEnd   = new EventEmitter<PointerEvent>();
+  @Output() dragMove = new EventEmitter<PointerEvent>();
+  @Output() dragEnd = new EventEmitter<PointerEvent>();
 
   @HostBinding('class.dragging') dragging = false;
 

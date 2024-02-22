@@ -75,11 +75,7 @@ const NGA_VALIDATORS = [
 ];
 
 @NgModule({
-  declarations: [
-    ...NGA_PIPES,
-    ...NGA_DIRECTIVES,
-    ...NGA_COMPONENTS
-  ],
+  declarations: [...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS],
   imports: [
     CommonModule,
     SharedModule,
@@ -91,11 +87,7 @@ const NGA_VALIDATORS = [
     // AppTranslationModule,
     // NgUploaderModule
   ],
-  exports: [
-    ...NGA_PIPES,
-    ...NGA_DIRECTIVES,
-    ...NGA_COMPONENTS
-  ]
+  exports: [...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS]
 })
 
 /**
@@ -110,7 +102,7 @@ export class NgaModule {
         // BaThemeConfig,
         ...NGA_VALIDATORS,
         ...NGA_SERVICES
-      ],
+      ]
     };
   }
 }
