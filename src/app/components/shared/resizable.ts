@@ -1,6 +1,6 @@
 import { Component, HostBinding, Renderer2, HostListener, Output, ElementRef, EventEmitter, Directive } from '@angular/core';
 @Directive({
-  selector: 'textarea[resize]'
+  selector: '[appTextAreaResize]'
 })
 export class ResizableTextAreaDirective {
   @Output() resize = new EventEmitter();

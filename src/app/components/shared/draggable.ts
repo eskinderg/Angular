@@ -11,7 +11,7 @@ export class DraggableDirective {
   _originalTop: number | undefined;
   _originalLeft: number | undefined;
 
-  @Output('draggable') endDragEvent = new EventEmitter(false);
+  @Output() endDragEvent = new EventEmitter(false);
 
   constructor(public element: ElementRef) {
     this.element.nativeElement.style.position = 'absolute';

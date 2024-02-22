@@ -9,12 +9,12 @@ import { Note } from 'src/app/models/note';
 })
 export class NoteHeaderControlComponent {
   @Input() note: Note;
-  @Output() onUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
+  @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
   constructor() {}
 
   updateNoteHeader(event: Event) {
     const headerText: string = (event.target as HTMLInputElement).value;
-    this.onUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
+    this.noteUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
   }
 }

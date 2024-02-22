@@ -11,12 +11,12 @@ export const Colours: Colour[] = [{ name: 'red' }, { name: 'green' }, { name: 'y
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteColourSelectorComponent {
-  @Output() onColourUpdate = new EventEmitter(false);
+  @Output() noteColourUpdate = new EventEmitter(false);
 
   constructor() {}
 
   onClick(colour: Colour) {
-    this.onColourUpdate.emit(colour);
+    this.noteColourUpdate.emit(colour);
   }
 
   get Colours(): Colour[] {

@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './events-dialog-wrapper.component.html',
   styleUrl: './events-dialog-wrapper.component.scss'
 })
-export class EventsDialogWrapperComponent {
+export class EventsDialogWrapperComponent implements OnDestroy {
   destroy = new Subject<any>();
   currentDialog: NgbModalRef;
   dialogResult: any;
@@ -55,7 +55,7 @@ export class EventsDialogWrapperComponent {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy.next(undefined);
     this.currentDialog?.close(-1);
     this.dialogResult = null;

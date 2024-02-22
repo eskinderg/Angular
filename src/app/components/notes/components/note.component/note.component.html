@@ -7,7 +7,7 @@
 <div class="note-background" [ngClass]="note.colour + '-note'">
   <div class="note-menu">
     <div class="note-header">
-      <app-note-header-control [note]="note" (onUpdateNoteHeader)="handleNoteHeaderUpdate($event)"> </app-note-header-control>
+      <app-note-header-control [note]="note" (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)"> </app-note-header-control>
     </div>
     <!-- <div class="note-header"></div> -->
     <div class="menu-icons">
@@ -21,7 +21,7 @@
         </svg>
       </div>
 
-      <app-note-colour-selector (onColourUpdate)="handleNoteColourUpdate($event)" class="menu-icon"></app-note-colour-selector>
+      <app-note-colour-selector (noteColourUpdate)="handleNoteColourUpdate($event)" class="menu-icon"></app-note-colour-selector>
 
       <div class="trash-icon menu-icon" (click)="noteArchive_click(note)">
         <svg id="svg6" width="1.75rem" height="1.75rem" version="1.1" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
@@ -46,5 +46,5 @@
     </div>
   </div>
   <!-- <app-textarea-expanded *ngIf="note" [note]="note" #notediv [(ngModel)]="note" (onSelectionChange)="selectionChange($event)" -->
-  <app-textarea-expanded *ngIf="note" [note]="note" #notediv (onSelectionChange)="selectionChange($event)" (onTextChanged)="handleNoteTextUpdate($event)" (onUpdatedOpendNote)="onUpdatOpendNote($event)"> </app-textarea-expanded>
+  <app-textarea-expanded *ngIf="note" [note]="note" #notediv (textAreaSelectionChange)="selectionChange($event)" (textAreaTextChanged)="handleNoteTextUpdate($event)" (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)"> </app-textarea-expanded>
 </div>

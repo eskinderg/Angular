@@ -23,9 +23,9 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
   subscription: Subscription | undefined;
 
   @ViewChild('textarea', { static: true }) public textarea: ElementRef;
-  @Output() onTextChanged = new EventEmitter(false);
-  @Output() onUpdatedOpendNote = new EventEmitter(false);
-  @Output() onSelectionChange = new EventEmitter<Note>(false);
+  @Output() textAreaTextChanged = new EventEmitter(false);
+  @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
+  @Output() textAreaSelectionChange = new EventEmitter<Note>(false);
 
   constructor(
     public htmlSafe: DomSanitizer,
@@ -39,7 +39,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
         debounceTime(450),
         distinctUntilChanged(),
         tap(() => {
-          this.onTextChanged.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
+          this.textAreaTextChanged.emit({ ...this.note, text: this.textarea.nativeElement.innerHTML } as Note);
         })
       )
       .subscribe();
@@ -51,8 +51,8 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
 
   @HostListener('focusout', ['$event.target'])
   onFocusOut(target: any) {
-    this.onSelectionChange.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
-    this.onUpdatedOpendNote.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
+    this.textAreaSelectionChange.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
+    this.textAreaUpdatedOpendNote.emit({ ...this.note, text: target.innerHTML, selection: JSON.stringify(this.txtSelection.saveSelection(target)) } as Note);
   }
 
   ngOnChanges(changes: SimpleChanges) {
