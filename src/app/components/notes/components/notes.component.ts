@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, HostListener, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';

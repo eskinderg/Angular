@@ -1,13 +1,4 @@
-import {
-  Component,
-  HostBinding,
-  Renderer2,
-  HostListener,
-  Output,
-  ElementRef,
-  EventEmitter,
-  Directive
-} from '@angular/core';
+import { Renderer2, HostListener, Output, EventEmitter, Directive } from '@angular/core';
 @Directive({
   selector: '[appTextAreaResize]'
 })

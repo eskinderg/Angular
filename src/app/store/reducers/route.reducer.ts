@@ -1,4 +1,4 @@
-import { Data, Params } from '@angular/router';
+import { Params } from '@angular/router';
 import { RouterReducerState } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 

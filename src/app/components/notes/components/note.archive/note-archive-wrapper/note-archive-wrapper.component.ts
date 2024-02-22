@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil, zip } from 'rxjs';
 import { Location, LocationStrategy } from '@angular/common';
-import { Note } from 'src/app/models/note';
 
 @Component({
   selector: 'app-note-archive-wrapper',

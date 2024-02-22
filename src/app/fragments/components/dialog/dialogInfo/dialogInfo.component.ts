@@ -1,4 +1,4 @@
-import { Component, Injectable, Directive } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfirmOptions } from '../confirm.options';
 import { ConfirmState } from '../confirm.state';
 /**

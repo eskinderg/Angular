@@ -1,8 +1,8 @@
 import { AuthGuardService } from './auth-guard.service';
 import { AuthService } from './auth.service'; // dependency service
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 // import {  } from 'rxjs';
 
 class AuthServiceStub {

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { Router } from '@angular/router';

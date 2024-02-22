@@ -6,7 +6,6 @@ import { Event } from 'src/app/fragments/components/event/event';
 import * as fromRoot from '../../../../store/reducers';
 import * as EventsActions from '../../../../store/actions/event.action';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-events-dialog',

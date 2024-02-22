@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';

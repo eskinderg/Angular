@@ -5,7 +5,6 @@ import {
   EventEmitter,
   ElementRef,
   forwardRef,
-  Renderer2,
   ViewChild,
   ChangeDetectionStrategy,
   OnDestroy,
@@ -14,8 +13,8 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
 import { TextSelection } from './text.selection';

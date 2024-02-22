@@ -1,11 +1,7 @@
-import { Component, OnInit, ComponentFactoryResolver, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { SlideAnimation } from '../shared/animations/animations';
-import { AuthService } from '../shared/services/auth/auth.service';
 import { Genre } from './models/genre';
-import { MoviesApiService } from './movies.service/movies.api.service';
 
 @Component({
   selector: 'app-movies',

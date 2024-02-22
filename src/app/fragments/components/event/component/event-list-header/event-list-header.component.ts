@@ -1,6 +1,4 @@
-import { NgModule, Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { Event } from '../../event';
 

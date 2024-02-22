@@ -1,7 +1,6 @@
-import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DraggableDirective } from './draggable.directive';
 import { GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
 
 @Directive({
   selector: '[appDraggableHelper]',

@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { HeaderComponent } from './header.component';
 import { EventEmitter } from '@angular/core';
 

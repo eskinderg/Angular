@@ -1,16 +1,8 @@
 import { Injectable } from '@angular/core';
 // import { Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
-import { throwError as observableThrowError, Observable } from 'rxjs';
-import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  map,
-  takeUntil,
-  tap
-} from 'rxjs/operators';
+import { throwError as observableThrowError } from 'rxjs';
+
 // import { environment } from '../../../../../environments/environment';
 
 import { ConfirmService } from '../../../fragments/components/dialog/confirm.service';

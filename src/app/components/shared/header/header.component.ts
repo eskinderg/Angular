@@ -4,8 +4,6 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../store/reducers/events.reducer';
 import * as fromNotes from '../../../store/reducers/note.reducer';
-import { count, takeUntil } from 'rxjs/operators';
-import { fromEvent, Observable } from 'rxjs';
 import * as fromProfile from '../../../store/reducers/preference.reducer';
 import { Router } from '@angular/router';
 

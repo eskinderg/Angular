@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { EventListFooterComponent } from './event-list-footer.component';
 import { Event } from '../../event';

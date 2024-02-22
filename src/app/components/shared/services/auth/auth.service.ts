@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { Injectable, EventEmitter } from '@angular/core';
 import { UserManager, User } from 'oidc-client';
 // import { Headers, RequestOptions } from '@angular/http';
-import { Observable, from } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { environment } from '../../../../../environments/environment';
 

@@ -1,11 +1,9 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { authConfig } from '../../auth.config';
 import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 

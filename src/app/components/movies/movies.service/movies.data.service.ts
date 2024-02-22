@@ -6,7 +6,7 @@ import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
 
-import { tap, catchError, retry, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 
