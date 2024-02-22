@@ -104,7 +104,7 @@ export class MoviesDataService {
     search.set('api_key', this.apikey);
     return this.http.get<Movie>('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + this.apikey).pipe(
       map(res => {
-        let movie = new Movie(res);
+        const movie = new Movie(res);
         this.getCasts(id).subscribe(res => {
           movie.casts = res;
         });

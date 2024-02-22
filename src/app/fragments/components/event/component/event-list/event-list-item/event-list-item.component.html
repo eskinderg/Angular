@@ -7,8 +7,7 @@
     <label
       [hidden]="IsInEditMode"
       (dblclick)="onDoubleClick(event)"
-      class="custom-control custom-checkbox mb-0"
-    >
+      class="custom-control custom-checkbox mb-0">
       <span class="custom-control-description">
         {{ event.title }}
       </span>
@@ -20,16 +19,14 @@
       class="editbox"
       [hidden]="!IsInEditMode"
       type="text"
-      [(ngModel)]="editEvent.title"
-    />
+      [(ngModel)]="editEvent.title" />
   </div>
 
   <div class="p-1">
     <i
       [ngClass]="IsInEditMode ? 'btn-success' : 'btn-outline-secondary'"
       class="btn btn-sm me-2"
-      (click)="onUpdateEvent(event)"
-    >
+      (click)="onUpdateEvent(event)">
       <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>
     </i>
     <!-- <i class="btn btn-danger btn-sm" (click)="removeEvent(event)" > -->

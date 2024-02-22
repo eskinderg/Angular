@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TextSelection {
   public saveSelection(containerEl: any) {
-    var range = window.getSelection().getRangeAt(0);
-    var preSelectionRange = range.cloneRange();
+    const range = window.getSelection().getRangeAt(0);
+    const preSelectionRange = range.cloneRange();
     preSelectionRange.selectNodeContents(containerEl);
     preSelectionRange.setEnd(range.startContainer, range.startOffset);
-    var start = preSelectionRange.toString().length;
+    const start = preSelectionRange.toString().length;
 
     return {
       start: start,
@@ -16,18 +16,18 @@ export class TextSelection {
   }
 
   public restoreSelection(containerEl: any, savedSel: any) {
-    var charIndex = 0,
+    let charIndex = 0,
       range = document.createRange();
     range.setStart(containerEl, 0);
     range.collapse(true);
-    var nodeStack = [containerEl],
+    let nodeStack = [containerEl],
       node: any,
       foundStart = false,
       stop = false;
 
     while (!stop && (node = nodeStack.pop())) {
       if (node.nodeType == 3) {
-        var nextCharIndex = charIndex + node.length;
+        const nextCharIndex = charIndex + node.length;
         if (!foundStart && savedSel.start >= charIndex && savedSel.start <= nextCharIndex) {
           range.setStart(node, savedSel.start - charIndex);
           foundStart = true;
@@ -38,14 +38,14 @@ export class TextSelection {
         }
         charIndex = nextCharIndex;
       } else {
-        var i = node.childNodes.length;
+        let i = node.childNodes.length;
         while (i--) {
           nodeStack.push(node.childNodes[i]);
         }
       }
     }
 
-    var sel = window.getSelection();
+    const sel = window.getSelection();
     sel.removeAllRanges();
     sel.addRange(range);
   }

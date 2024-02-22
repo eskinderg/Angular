@@ -26,7 +26,7 @@ export class NotesComponent {
 
   saveSelection() {
     if (window.getSelection) {
-      var sel = window.getSelection();
+      const sel = window.getSelection();
       if (sel.getRangeAt && sel.rangeCount) {
         return sel.getRangeAt(0);
       }

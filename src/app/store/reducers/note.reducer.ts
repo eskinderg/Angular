@@ -123,7 +123,7 @@ export const notesReducer = createReducer<INotesState>(
     })
   ),
   on(NotesActions.restoreNoteSuccess, (state, action): INotesState => {
-    let notes: Note[] = state.notes.map(note => {
+    const notes: Note[] = state.notes.map(note => {
       return note.id === action.payload.id ? action.payload : note; // First update the note text
     });
 
@@ -136,14 +136,14 @@ export const notesReducer = createReducer<INotesState>(
     };
   }),
   on(NotesActions.updateNoteColourSuccess, (state, action): INotesState => {
-    let notes: Note[] = state.notes.map(note => {
+    const notes: Note[] = state.notes.map(note => {
       return note.id === action.payload.id ? action.payload : note; // First update the note text
     });
 
     return { ...state, notes: notes, animate: { ...state.animate, note: false, date: false } };
   }),
   on(NotesActions.updateNoteTextSuccess, (state, action): INotesState => {
-    let notes: Note[] = state.notes.map(note => {
+    const notes: Note[] = state.notes.map(note => {
       return note.id === action.payload.id ? action.payload : note; // First update the note text
     });
 
@@ -165,7 +165,7 @@ export const notesReducer = createReducer<INotesState>(
       : state;
   }),
   on(NotesActions.updatePinOrderSuccess, (state, action): INotesState => {
-    let notes: Note[] = state.notes.map(note => {
+    const notes: Note[] = state.notes.map(note => {
       return note.id === action.payload.id ? action.payload : note; // First update the note text
     });
 
@@ -191,7 +191,7 @@ export const notesReducer = createReducer<INotesState>(
     })
   ),
   on(NotesActions.archiveNoteSuccess, NotesActions.deleteNoteSuccess, (state, action): INotesState => {
-    let notes: Note[] = state.notes.map(note => {
+    const notes: Note[] = state.notes.map(note => {
       return note.id === action.payload.id ? action.payload : note;
     });
 

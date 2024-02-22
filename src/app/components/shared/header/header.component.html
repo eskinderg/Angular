@@ -5,8 +5,7 @@
       class="navbar-toggler navbar-toggler-right"
       (click)="isExpanded = !isExpanded"
       [attr.aria-expanded]="!isExpanded"
-      aria-controls="navbarContent"
-    >
+      aria-controls="navbarContent">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -50,8 +49,7 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
             [routerLinkActive]="['active']"
-            [routerLinkActiveOptions]="{ exact: false }"
-          >
+            [routerLinkActiveOptions]="{ exact: false }">
             Notes @if(NoteLoading | async ) {
             <div class="spinner-border text-secondary spinner-border-sm" role="status">
               <span class="sr-only"></span>
@@ -81,8 +79,7 @@
             class="nav-link"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: false }"
-            [routerLink]="['/events']"
-          >
+            [routerLink]="['/events']">
             Events
             <!-- <span class="badge bg-secondary">New</span> -->
             @if(EventLoading | async ) {

@@ -22,8 +22,8 @@ export class EventsDialogWrapperComponent implements OnDestroy {
     private location: Location,
     private store: Store<fromEvents.IEventsState>
   ) {
-    let routeParams = route.params;
-    let routeData = route.data;
+    const routeParams = route.params;
+    const routeData = route.data;
 
     zip(routeParams, routeData)
       .pipe(takeUntil(this.destroy))

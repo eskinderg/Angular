@@ -60,10 +60,10 @@ export class NoteComponent {
   underline(e) {
     e.preventDefault();
 
-    let selection = window.getSelection();
+    const selection = window.getSelection();
 
-    let text = selection.toString();
-    let span = document.createElement('span');
+    const text = selection.toString();
+    const span = document.createElement('span');
     span.innerHTML = text;
 
     span.style.textDecoration =
@@ -75,10 +75,10 @@ export class NoteComponent {
   }
 
   bold(e) {
-    let selection = window.getSelection();
+    const selection = window.getSelection();
 
-    let text = selection.toString();
-    let span = document.createElement('span');
+    const text = selection.toString();
+    const span = document.createElement('span');
     span.innerHTML = text;
 
     span.style.fontWeight =

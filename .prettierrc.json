@@ -4,7 +4,7 @@
   "spaceBeforeFunctionParen": false,
   "arrowParens": "avoid",
   "endOfLine": "lf",
-  "bracketSameLine": false,
+  "bracketSameLine": true,
   "jsxSingleQuote": false,
   "printWidth": 110,
   "proseWrap": "preserve",
@@ -13,6 +13,7 @@
   "singleQuote": true,
   "tabWidth": 2,
   "useTabs": false,
+  "htmlWhiteSpaceSensitivity": "ignore",
 
   "overrides": [
     {

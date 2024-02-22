@@ -6,11 +6,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['baCard.component.scss']
 })
 export class BaCardComponent {
-  @Input() title: String;
-  @Input() baCardClass: String;
-  @Input() cardType: String;
-  @Input() header: String;
-  @Input() footer: String;
+  @Input() title: string;
+  @Input() baCardClass: string;
+  @Input() cardType: string;
+  @Input() header: string;
+  @Input() footer: string;
   @Input() scrollBar: boolean;
   @Input() margin: number;
   @Input() padding: number;

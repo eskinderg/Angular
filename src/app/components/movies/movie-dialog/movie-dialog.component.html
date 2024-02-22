@@ -5,8 +5,7 @@
     class="btn-close"
     style="opacity: 0.5; background: var(--bs-secondary) var(--bs-btn-close-bg) center/1em auto no-repeat"
     aria-label="Close"
-    (click)="close()"
-  ></button>
+    (click)="close()"></button>
 </div>
 
 <ng-scrollbar [appearance]="'compact'" [visibility]="'native'" class="screen-height">
@@ -46,8 +45,7 @@
                 <b>Languages Spoken:</b>
                 <a
                   class="badge bg-secondary nodecoration ms-2"
-                  *ngFor="let language of movieDetail.spoken_languages"
-                >
+                  *ngFor="let language of movieDetail.spoken_languages">
                   {{ language['name'] }}</a
                 >
               </li>

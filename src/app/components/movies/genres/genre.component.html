@@ -8,8 +8,7 @@
   [pageSize]="20"
   [maxSize]="10"
   (pageChange)="loadPage($event)"
-  [collectionSize]="collectionSize"
-></ngb-pagination>
+  [collectionSize]="collectionSize"></ngb-pagination>
 
 <div class="movie-cards-container">
   <div *ngFor="let movie of movieResult.movies">
@@ -21,7 +20,6 @@
   [pageSize]="20"
   [maxSize]="10"
   (pageChange)="loadPage($event)"
-  [collectionSize]="collectionSize"
-></ngb-pagination>
+  [collectionSize]="collectionSize"></ngb-pagination>
 
 <router-outlet></router-outlet>

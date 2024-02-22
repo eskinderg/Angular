@@ -4,8 +4,7 @@
       <img
         class="card-img-top"
         src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}"
-        alt="Card image cap"
-      />
+        alt="Card image cap" />
     </div>
   </div>
 
@@ -40,8 +39,7 @@
     <a
       [routerLink]="['/movies/genres/', genere['id'], genere['name']]"
       class="badge bg-secondary nodecoration ms-2"
-      *ngFor="let genere of movie.genres"
-    >
+      *ngFor="let genere of movie.genres">
       {{ genere['name'] }}
     </a>
 
@@ -51,8 +49,7 @@
         target="_blank"
         *ngIf="movie.homepage"
         href="{{ movie.homepage }}"
-        class="link-primary clearfix"
-      >
+        class="link-primary clearfix">
         Home Page
       </a>
     </p>

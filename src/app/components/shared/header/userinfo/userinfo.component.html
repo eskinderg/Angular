@@ -7,8 +7,7 @@
       <app-theme-option
         [label]="'Dark Mode'"
         [darkMode]="isDarkMode | async"
-        (themeToggleDark)="onDarkModeToggle()"
-      >
+        (themeToggleDark)="onDarkModeToggle()">
       </app-theme-option>
       <button class="dropdown-item" [routerLink]="['/profile']">Profile</button>
       <button class="dropdown-item" id="btnLogout" (click)="logOut()">Logout</button>

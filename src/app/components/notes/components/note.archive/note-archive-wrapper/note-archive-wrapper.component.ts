@@ -24,8 +24,8 @@ export class NoteArchiveWrapperComponent implements OnDestroy, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    let routeParams = this.route.params;
-    let routeData = this.route.data;
+    const routeParams = this.route.params;
+    const routeData = this.route.data;
 
     zip(routeParams, routeData)
       .pipe(takeUntil(this.destroy))

@@ -6,8 +6,7 @@
     class="card-img-top fade-in"
     [src]="imageLoading ? imageLoadingUrl : imageUrl"
     (load)="onImageLoaded()"
-    (error)="handleEmptyImage()"
-  />
+    (error)="handleEmptyImage()" />
   <div class="card-body">
     <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
     <div class="row">

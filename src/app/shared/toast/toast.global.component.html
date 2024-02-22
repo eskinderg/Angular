@@ -5,7 +5,6 @@
   [delay]="toast.delay || 5000"
   [header]="toast.header"
   [animation]="false"
-  (hidden)="toastService.remove(toast)"
->
+  (hidden)="toastService.remove(toast)">
   {{ toast.textOrTpl }}
 </ngb-toast>

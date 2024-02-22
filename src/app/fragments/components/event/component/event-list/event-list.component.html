@@ -4,16 +4,14 @@
       <li
         class="list-group-item d-flex justify-content-between align-items-center"
         *ngFor="let event of events"
-        [class.completed]="event.complete"
-      >
+        [class.completed]="event.complete">
         <app-event-list-item
           [@fadeInOutEventListItem]
           [event]="event"
           (toggle)="onToggleEvent($event)"
           (remove)="onRemoveEvent($event)"
           (update)="onUpdateEvent($event)"
-          (select)="onSelectEvent($event)"
-        >
+          (select)="onSelectEvent($event)">
         </app-event-list-item>
       </li>
     </ul>
