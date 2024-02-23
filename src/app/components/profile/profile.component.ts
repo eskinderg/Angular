@@ -28,7 +28,7 @@ export class ProfileComponent {
     this.isDarkMode = this.store.select(fromProfile.isDarkMode);
   }
 
-  onDarkModeToggle(isDarkMode: boolean) {
+  onDarkModeToggle() {
     this.store.dispatch(ProfileActions.toggleDarkMode());
   }
 }

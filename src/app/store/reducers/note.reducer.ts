@@ -52,14 +52,14 @@ export const notesReducer = createReducer<INotesState>(
   }),
   on(
     NotesActions.fetchNotesStart,
-    (state, _action): INotesState => ({
+    (state): INotesState => ({
       ...state,
       isLoading: true
     })
   ),
   on(
     NotesActions.fetchNotesComplete,
-    (state, _action): INotesState => ({
+    (state): INotesState => ({
       ...state,
       isLoading: false
     })

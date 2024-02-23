@@ -1,15 +1,7 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-  forwardRef,
-  Renderer2,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { Note } from '../../../models/note';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-note-text',
@@ -24,11 +16,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteTextComponent implements ControlValueAccessor {
-  @ViewChild('textarea', { static: true }) private textarea: ElementRef;
+  // @ViewChild('textarea', { static: true }) private textarea: ElementRef;
   @Input() note: Note;
   textData: string;
 
-  constructor(private renderer: Renderer2) {}
+  constructor() {}
 
   writeValue(value: string): void {
     // const div = this.textarea.nativeElement;
@@ -50,10 +42,10 @@ export class NoteTextComponent implements ControlValueAccessor {
     this.onTouch = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    // alert('d')
-    // const div = this.textarea.nativeElement;
-    // const action = isDisabled ? 'addClass' : 'removeClass';
-    // this.renderer[action](div, 'disabled');
-  }
+  // setDisabledState(isDisabled: boolean): void {
+  // alert('d')
+  // const div = this.textarea.nativeElement;
+  // const action = isDisabled ? 'addClass' : 'removeClass';
+  // this.renderer[action](div, 'disabled');
+  // }
 }

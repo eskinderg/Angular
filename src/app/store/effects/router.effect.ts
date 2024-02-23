@@ -10,7 +10,7 @@ export class RouterEffect {
     () =>
       this.actions$.pipe(
         ofType(fromRouter.ROUTER_REQUEST),
-        switchMap(_action => {
+        switchMap(() => {
           return EMPTY;
         })
       ),

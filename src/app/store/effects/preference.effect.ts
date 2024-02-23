@@ -12,7 +12,7 @@ export class PreferenceEffect {
   toggleDarkMode = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.toggleDarkMode),
-      switchMap(_action =>
+      switchMap(() =>
         of(this.themeService.toggleDarkMode()).pipe(map(() => PreferenceActions.toggleDarkModeSuccess()))
       )
     )
@@ -36,7 +36,7 @@ export class PreferenceEffect {
       ofType(PreferenceActions.setIsLoggedIn),
       switchMap(action =>
         of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
-          map(_ => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
+          map(() => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
         )
       )
     )

@@ -14,7 +14,7 @@ export const initialState: IEventsState = {
 
 export const eventsReducer = createReducer<IEventsState>(
   initialState,
-  on(EventsActions.eventsClear, (state, _action) => ({
+  on(EventsActions.eventsClear, state => ({
     ...state,
     events: []
   })),
@@ -51,8 +51,8 @@ export const eventsReducer = createReducer<IEventsState>(
       })
     })
   ),
-  on(EventsActions.fetchEventsStart, (state, _action): IEventsState => ({ ...state, isLoading: true })),
-  on(EventsActions.fetchEventsComplete, (state, _action): IEventsState => ({ ...state, isLoading: false })),
+  on(EventsActions.fetchEventsStart, (state): IEventsState => ({ ...state, isLoading: true })),
+  on(EventsActions.fetchEventsComplete, (state): IEventsState => ({ ...state, isLoading: false })),
   on(
     EventsActions.deleteEventsSuccess,
     (state, action): IEventsState => ({
