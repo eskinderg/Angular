@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   pure: true
 })
 export class AgoDatePipe implements PipeTransform {
-  transform(value: any, args?: any): any {
+  transform(value: any): any {
     if (value) {
       const seconds = Math.floor((+new Date() - +new Date(value)) / 1000);
       if (seconds < 29)
@@ -20,7 +20,7 @@ export class AgoDatePipe implements PipeTransform {
         minute: 60,
         second: 1
       };
-      let counter;
+      let counter: any;
       for (const i in intervals) {
         counter = Math.floor(seconds / intervals[i]);
         if (counter > 0)

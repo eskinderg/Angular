@@ -42,7 +42,7 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
         filter(Boolean),
         debounceTime(450),
         distinctUntilChanged(),
-        tap(text => {
+        tap(() => {
           this.onSearch(this.input.nativeElement.value);
         })
       )

@@ -43,10 +43,10 @@ export class MovableAreaDirective {
     };
   }
 
-  private maintainBoundaries(movable: MovableDirective) {
-    // movable.position.x = Math.max(this.boundaries.minX, movable.position.x);
-    // movable.position.x = Math.min(this.boundaries.maxX, movable.position.x);
-    // movable.position.y = Math.max(this.boundaries.minY, movable.position.y);
-    // movable.position.y = Math.min(this.boundaries.maxY, movable.position.y);
-  }
+  // private maintainBoundaries() {
+  // movable.position.x = Math.max(this.boundaries.minX, movable.position.x);
+  // movable.position.x = Math.min(this.boundaries.maxX, movable.position.x);
+  // movable.position.y = Math.max(this.boundaries.minY, movable.position.y);
+  // movable.position.y = Math.min(this.boundaries.maxY, movable.position.y);
+  // }
 }

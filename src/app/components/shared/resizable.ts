@@ -11,7 +11,7 @@ export class ResizableTextAreaDirective {
   width: number | undefined;
   height: number | undefined;
 
-  mouseMoveListener: Function | undefined;
+  // mouseMoveListener: Function | undefined;
 
   @HostListener('mousedown', ['$event.target'])
   onMouseDown() {

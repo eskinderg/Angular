@@ -3,7 +3,7 @@ export class Event {
   title: string = '';
   complete = false;
 
-  constructor(values: Object = {}) {
+  constructor(values: object = {}) {
     Object.assign(this, values);
   }
 }

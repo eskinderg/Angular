@@ -6,9 +6,9 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import { environment } from './../../environments/environment';
+// import { environment } from './../../environments/environment';
 
-const settings: any = environment.Auth;
+// const settings: any = environment.Auth;
 
 @Injectable()
 export class AuthService {

@@ -16,14 +16,14 @@ export const profileReducer = createReducer<IPreferenceState>(
   initialState,
   on(
     PreferenceActions.toggleDarkModeSuccess,
-    (state, _action): IPreferenceState => ({
+    (state): IPreferenceState => ({
       ...state,
       isDarkMode: !state.isDarkMode
     })
   ),
   on(
     PreferenceActions.logInSuccess,
-    (state, _action): IPreferenceState => ({
+    (state): IPreferenceState => ({
       ...state,
       isLoggedIn: true
     })

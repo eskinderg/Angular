@@ -213,14 +213,13 @@ export class AuthService {
   // return this.http.post(url, body, options);
   // }
 
-  private _setAuthHeaders(user: any): void {
-    this.authHeaders = new Headers();
-    this.authHeaders.append('Authorization', user.token_type + ' ' + user.access_token);
-    if (this.authHeaders.get('Content-Type')) {
-    } else {
-      this.authHeaders.append('Content-Type', 'application/json');
-    }
-  }
+  // private _setAuthHeaders(user: any): void {
+  //   this.authHeaders = new Headers();
+  //   this.authHeaders.append('Authorization', user.token_type + ' ' + user.access_token);
+  //   if (!this.authHeaders.get('Content-Type')) {
+  //     this.authHeaders.append('Content-Type', 'application/json');
+  //   }
+  // }
 
   // private _setRequestOptions(options?: RequestOptions) {
   //   if (this.loggedIn) {

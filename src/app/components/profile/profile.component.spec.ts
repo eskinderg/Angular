@@ -1,7 +1,7 @@
 import { FormsModule } from '@angular/forms';
 import { async, TestBed } from '@angular/core/testing';
 
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 
 import { ProfileComponent } from './profile.component';
 // import { NameListService } from '../shared/name-list/name-list.service';
@@ -21,8 +21,8 @@ export function main() {
     it('should work', async(() => {
       TestBed.compileComponents().then(() => {
         const fixture = TestBed.createComponent(ProfileComponent);
-        const homeInstance = fixture.debugElement.componentInstance;
-        const homeDOMEl = fixture.debugElement.nativeElement;
+        // const homeInstance = fixture.debugElement.componentInstance;
+        // const homeDOMEl = fixture.debugElement.nativeElement;
         // let mockNameListService =
         // fixture.debugElement.injector.get<any>(NameListService) as MockNameListService;
         // let nameListServiceSpy = spyOn(mockNameListService, 'get').and.callThrough();
@@ -47,13 +47,13 @@ export function main() {
   });
 }
 
-class MockNameListService {
-  returnValue: string[];
+// class MockNameListService {
+//   returnValue: string[];
 
-  get(): Observable<string[]> {
-    return Observable.create((observer: any) => {
-      observer.next(this.returnValue);
-      observer.complete();
-    });
-  }
-}
+//   get(): Observable<string[]> {
+//     return Observable.create((observer: any) => {
+//       observer.next(this.returnValue);
+//       observer.complete();
+//     });
+//   }
+// }

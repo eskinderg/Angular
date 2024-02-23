@@ -18,13 +18,13 @@ export class DraggableDirective {
   constructor(public element: ElementRef) {}
 
   @HostListener('pointerdown', ['$event'])
-  onPointerDown(event: PointerEvent): void {
+  onPointerDown(): void {
     this.dragging = true;
     // this.dragStart.emit(event);
   }
 
   @HostListener('document:pointermove', ['$event'])
-  onPointerMove(event: PointerEvent): void {
+  onPointerMove(): void {
     if (!this.dragging) {
       return;
     }

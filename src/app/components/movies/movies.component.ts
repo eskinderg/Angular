@@ -12,7 +12,7 @@ import { Genre } from './models/genre';
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent implements OnInit {
-  public movies: Array<Object>;
+  public movies: Array<object>;
   public genres: Genre[];
 
   constructor(private route: ActivatedRoute) {
@@ -33,7 +33,7 @@ export class MoviesComponent implements OnInit {
     this.genres = this.route.snapshot.data['genres'];
   }
 
-  onSelectGenre(genre: Genre) {
+  onSelectGenre() {
     // alert(genre.name);
   }
 }

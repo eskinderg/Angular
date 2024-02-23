@@ -4,22 +4,22 @@ import { Router } from '@angular/router';
 
 import { AuthorizationComponent } from './authorization.component';
 
-class AuthServiceStub {
-  isLoggedInObs(): boolean {
-    return false;
-  }
+// class AuthServiceStub {
+//   isLoggedInObs(): boolean {
+//     return false;
+//   }
 
-  // mgr(): () => eskinder{
-  //    return null;
-  // }
-}
+// mgr(): () => eskinder{
+//    return null;
+// }
+// }
 
 describe('AuthorizationComponent', () => {
   let component: AuthorizationComponent;
   let fixture: ComponentFixture<AuthorizationComponent>;
   const mockRouter = { navigate: jasmine.createSpy('navigate') };
   // let authserviceSpy = { mgr: jasmine.createSpy('mgr') };
-  let myServiceDependency: AuthService;
+  // let myServiceDependency: AuthService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,7 +27,7 @@ describe('AuthorizationComponent', () => {
       providers: [{ provide: AuthService }, { provide: Router, useValue: mockRouter }]
     }).compileComponents();
 
-    myServiceDependency = TestBed.get(AuthService);
+    // myServiceDependency = TestBed.get(AuthService);
   }));
 
   beforeEach(() => {

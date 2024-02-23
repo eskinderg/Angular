@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MovieResults } from '../models/movie-results';
 
-const API_URL = environment.MOVIES_API;
+// const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
 
 @Injectable()

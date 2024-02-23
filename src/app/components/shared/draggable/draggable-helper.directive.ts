@@ -20,7 +20,7 @@ export class DraggableHelperDirective implements OnInit {
 
   ngOnInit(): void {
     this.draggable.dragStart.subscribe(event => this.onDragStart(event));
-    this.draggable.dragMove.subscribe(event => this.onDragMove(event));
+    // this.draggable.dragMove.subscribe(event => this.onDragMove(event));
     // this.draggable.dragEnd.subscribe(() => this.onDragEnd());
 
     // create an overlay...
@@ -44,11 +44,11 @@ export class DraggableHelperDirective implements OnInit {
     };
   }
 
-  private onDragMove(event: PointerEvent): void {
-    // if (!this.overlayRef.hasAttached()) {
-    // render the helper in the overlay
-    // this.overlayRef.attach(new TemplatePortal(this.templateRef, this.viewContainerRef));
-  }
+  // private onDragMove(): void {
+  // if (!this.overlayRef.hasAttached()) {
+  // render the helper in the overlay
+  // this.overlayRef.attach(new TemplatePortal(this.templateRef, this.viewContainerRef));
+  // }
 
   // position the helper...
   // this.positionStrategy.left(`${event.clientX - this.startPosition.x}px`);

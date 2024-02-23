@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+// import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoggingService } from './loggingservice';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -26,9 +26,9 @@ export class GlobalErrorHandler implements ErrorHandler {
    */
   handleError(error: any) {
     const loggingService = this.injector.get(LoggingService);
-    const location = this.injector.get(LocationStrategy);
-    const message = error.message ? error.message : error.toString();
-    const url = location instanceof PathLocationStrategy ? location.path() : '';
+    // const location = this.injector.get(LocationStrategy);
+    // const message = error.message ? error.message : error.toString();
+    // const url = location instanceof PathLocationStrategy ? location.path() : '';
 
     loggingService.error(error);
 

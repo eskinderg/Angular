@@ -12,7 +12,7 @@ export class Tv {
   first_air_date: string | undefined;
   origin_country: any;
 
-  constructor(values: Object = {}) {
+  constructor(values: object = {}) {
     Object.assign(this, values);
   }
 }

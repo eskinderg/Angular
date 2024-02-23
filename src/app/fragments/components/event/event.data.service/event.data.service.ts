@@ -5,18 +5,15 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { ApiService } from '../../../../components/shared/services/api.service';
 
-import { ConfirmService } from '../../../../fragments/components/dialog/confirm.service';
+// import { ConfirmService } from '../../../../fragments/components/dialog/confirm.service';
 import { Event } from 'src/app/models/event';
 
 const API_URL = environment.EVENTS_API;
 
 @Injectable()
 export class EventDataService extends ApiService {
-  constructor(
-    private http: HttpClient,
-    confirmService: ConfirmService
-  ) {
-    super(http, confirmService);
+  constructor(private http: HttpClient) {
+    super();
   }
 
   public getAllEvents() {
@@ -51,7 +48,7 @@ export class EventDataService extends ApiService {
 
   public deleteEventById(event: Event): Observable<Event> {
     return this.http.delete<Event>(API_URL + event.id).pipe(
-      map(response => {
+      map(() => {
         return event;
       }),
       catchError(this.handleError)

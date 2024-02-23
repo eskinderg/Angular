@@ -6,7 +6,7 @@ export class MovieResults {
   total_pages: number;
   total_results: number;
 
-  constructor(values: Object = {}) {
+  constructor(values: object = {}) {
     Object.assign(this, values);
   }
 }
