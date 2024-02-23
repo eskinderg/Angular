@@ -27,7 +27,7 @@ export class EventsDialogWrapperComponent implements OnDestroy {
 
     zip(routeParams, routeData)
       .pipe(takeUntil(this.destroy))
-      .subscribe(result => {
+      .subscribe((result) => {
         this.currentDialog = this.dialogService.open(result[1]['component'], {
           centered: true,
           size: 'lg'
@@ -43,7 +43,7 @@ export class EventsDialogWrapperComponent implements OnDestroy {
         // this.currentDialog.componentInstance.stateParams = window.history.state['data'];
 
         this.dialogResult = this.currentDialog.result.then(
-          result => {
+          (result) => {
             if (result !== -1) {
               this.location.back();
             }

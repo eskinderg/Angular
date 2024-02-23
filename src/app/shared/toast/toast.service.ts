@@ -5,7 +5,7 @@ export class ToastService {
   toasts: any[] = [];
 
   remove(toast) {
-    this.toasts = this.toasts.filter(t => t !== toast);
+    this.toasts = this.toasts.filter((t) => t !== toast);
   }
 
   clear() {

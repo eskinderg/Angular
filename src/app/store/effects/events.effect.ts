@@ -12,10 +12,10 @@ export class EventsEffect {
   createEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.createEvent),
-      switchMap(action =>
+      switchMap((action) =>
         this.eventsDataService.createEvent(action.payload).pipe(
           map((event: Event) => EventsActions.createEventSuccess({ payload: event })),
-          catchError(err => of(EventsActions.createEventFail({ payload: err })))
+          catchError((err) => of(EventsActions.createEventFail({ payload: err })))
         )
       )
     )
@@ -25,7 +25,7 @@ export class EventsEffect {
     () =>
       this.actions$.pipe(
         ofType(EventsActions.createEventSuccess),
-        switchMap(action => {
+        switchMap((action) => {
           this.toastService.showSuccess(action.payload.title, 'Event Added');
           return EMPTY;
         })
@@ -36,10 +36,10 @@ export class EventsEffect {
   updateEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.updateEvent),
-      switchMap(action =>
+      switchMap((action) =>
         this.eventsDataService.updateEvent(action.payload.newValue).pipe(
-          map(event => EventsActions.updateEventSuccess({ payload: event })),
-          catchError(err => of(EventsActions.updateEventFail({ payload: err })))
+          map((event) => EventsActions.updateEventSuccess({ payload: event })),
+          catchError((err) => of(EventsActions.updateEventFail({ payload: err })))
         )
       )
     )
@@ -49,7 +49,7 @@ export class EventsEffect {
     () =>
       this.actions$.pipe(
         ofType(EventsActions.updateEventSuccess),
-        switchMap(action => {
+        switchMap((action) => {
           this.toastService.showSuccess(action.payload.title, 'Event Updated');
           return EMPTY;
         })
@@ -60,10 +60,10 @@ export class EventsEffect {
   toggleEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.toggleEvent),
-      switchMap(action =>
+      switchMap((action) =>
         this.eventsDataService.toggleEvent(action.payload).pipe(
-          map(event => EventsActions.toggleEventSuccess({ payload: event })),
-          catchError(err => of(EventsActions.toggleEventFail({ payload: err })))
+          map((event) => EventsActions.toggleEventSuccess({ payload: event })),
+          catchError((err) => of(EventsActions.toggleEventFail({ payload: err })))
         )
       )
     )
@@ -73,7 +73,7 @@ export class EventsEffect {
     () =>
       this.actions$.pipe(
         ofType(EventsActions.toggleEventSuccess),
-        switchMap(action => {
+        switchMap((action) => {
           this.toastService.showSuccess(action.payload.title, 'Event Updated');
           return EMPTY;
         })
@@ -93,8 +93,8 @@ export class EventsEffect {
       ofType(EventsActions.fetchEventsStart),
       switchMap(() =>
         this.eventsDataService.getAllEvents().pipe(
-          map(events => EventsActions.fetchEventsSuccess({ payload: events })),
-          catchError(err => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
+          map((events) => EventsActions.fetchEventsSuccess({ payload: events })),
+          catchError((err) => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
         )
       )
     )
@@ -110,10 +110,10 @@ export class EventsEffect {
   deleteEvent = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.deleteEvent),
-      switchMap(action =>
+      switchMap((action) =>
         this.eventsDataService.deleteEventById(action.payload).pipe(
-          map(event => EventsActions.deleteEventSuccess({ payload: event })),
-          catchError(err => of(EventsActions.deleteEventFail({ payload: err })))
+          map((event) => EventsActions.deleteEventSuccess({ payload: event })),
+          catchError((err) => of(EventsActions.deleteEventFail({ payload: err })))
         )
       )
     )
@@ -122,10 +122,10 @@ export class EventsEffect {
   deleteEvents = createEffect(() =>
     this.actions$.pipe(
       ofType(EventsActions.deleteEvents),
-      switchMap(action =>
+      switchMap((action) =>
         this.eventsDataService.deleteEvents(action.payload).pipe(
-          map(event => EventsActions.deleteEventsSuccess({ payload: event })),
-          catchError(err => of(EventsActions.deleteEventsFail({ payload: err })))
+          map((event) => EventsActions.deleteEventsSuccess({ payload: event })),
+          catchError((err) => of(EventsActions.deleteEventsFail({ payload: err })))
         )
       )
     )

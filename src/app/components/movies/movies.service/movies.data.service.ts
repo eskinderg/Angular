@@ -31,7 +31,7 @@ export class MoviesDataService {
     return this.http
       .get('https://api.themoviedb.org/3/discover/movie?callback=JSONP_CALLBACK', { params: search })
       .pipe(
-        map(res => {
+        map((res) => {
           return res;
         })
       );
@@ -41,7 +41,7 @@ export class MoviesDataService {
     const search = new HttpParams();
     search.set('api_key', this.apikey);
     return this.http.get<Tv[]>('https://api.themoviedb.org/3/tv/popular?api_key=' + this.apikey).pipe(
-      map(data => {
+      map((data) => {
         const tvs = data['results'];
         return tvs.map((tv: Tv) => new Tv(tv));
       })
@@ -88,7 +88,7 @@ export class MoviesDataService {
         'https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr
       )
       .pipe(
-        map(res => {
+        map((res) => {
           const result: MovieResults = new MovieResults();
           result.total_pages = res['total_pages'];
           result.total_results = res['total_results'];
@@ -103,9 +103,9 @@ export class MoviesDataService {
     const search = new URLSearchParams();
     search.set('api_key', this.apikey);
     return this.http.get<Movie>('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + this.apikey).pipe(
-      map(res => {
+      map((res) => {
         const movie = new Movie(res);
-        this.getCasts(id).subscribe(res => {
+        this.getCasts(id).subscribe((res) => {
           movie.casts = res;
         });
         return movie;
@@ -117,7 +117,7 @@ export class MoviesDataService {
     return this.http
       .get<string[]>('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey)
       .pipe(
-        map(res => {
+        map((res) => {
           return res['cast'];
         })
       );
@@ -146,7 +146,7 @@ export class MoviesDataService {
     return this.http
       .get<Genre[]>('https://api.themoviedb.org/3/genre/movie/list?api_key=' + this.apikey)
       .pipe(
-        map(res => {
+        map((res) => {
           const genres = res['genres'];
           return genres.map((genre: Genre) => new Genre(genre));
         })
@@ -160,7 +160,7 @@ export class MoviesDataService {
     return this.http
       .get('https://api.themoviedb.org/3/genre/' + genreId + '/movies?api_key=' + this.apikey)
       .pipe(
-        map(res => {
+        map((res) => {
           return res['total_results'];
           // console.log(res.json().total_results);
           // return movies.map((movie: Movie) => new Movie(movie));
@@ -191,7 +191,7 @@ export class MoviesDataService {
         `https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`
       )
       .pipe(
-        map(res => {
+        map((res) => {
           const result: MovieResults = {
             total_pages: res['total_pages'],
             total_results: res['total_results'],

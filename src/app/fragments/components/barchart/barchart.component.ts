@@ -65,8 +65,8 @@ export class BarchartComponent implements OnInit, OnChanges {
       .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
 
     // define X & Y domains
-    const xDomain = this.data.map(d => d[0]);
-    const yDomain = [0, d3.max(this.data, d => d[1])];
+    const xDomain = this.data.map((d) => d[0]);
+    const yDomain = [0, d3.max(this.data, (d) => d[1])];
 
     // create scales
     this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
@@ -93,8 +93,8 @@ export class BarchartComponent implements OnInit, OnChanges {
 
   updateChart() {
     // update scales & axis
-    this.xScale.domain(this.data.map(d => d[0]));
-    this.yScale.domain([0, d3.max(this.data, d => d[1])]);
+    this.xScale.domain(this.data.map((d) => d[0]));
+    this.yScale.domain([0, d3.max(this.data, (d) => d[1])]);
     this.colors.domain([0, this.data.length]);
     this.xAxis.transition().call(d3.axisBottom(this.xScale));
     this.yAxis.transition().call(d3.axisLeft(this.yScale));

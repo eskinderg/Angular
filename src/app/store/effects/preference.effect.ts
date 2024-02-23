@@ -34,7 +34,7 @@ export class PreferenceEffect {
   setIsLoggedIn = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.setIsLoggedIn),
-      switchMap(action =>
+      switchMap((action) =>
         of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
           map(() => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
         )
@@ -45,7 +45,7 @@ export class PreferenceEffect {
   getIsLoggedInSuccess = createEffect(() =>
     this.actions$.pipe(
       ofType(PreferenceActions.getIsLoggedInSuccess),
-      switchMap(action => of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn })))
+      switchMap((action) => of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn })))
     )
   );
 

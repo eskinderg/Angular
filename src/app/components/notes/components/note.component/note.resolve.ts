@@ -9,7 +9,7 @@ export class NoteResolver {
 
   resolve() {
     return this.store.select(fromNotes.getNoteCurrentRoute).pipe(
-      filter(v => v !== undefined),
+      filter((v) => v !== undefined),
       first()
     );
   }

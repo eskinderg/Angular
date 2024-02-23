@@ -26,7 +26,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
     const loggingService = this.injector.get(LoggingService);
 
     return next.handle(request).pipe(
-      catchError(error => {
+      catchError((error) => {
         loggingService.error(error);
         return throwError(() => error.message);
       })

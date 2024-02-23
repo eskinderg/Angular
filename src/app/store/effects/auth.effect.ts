@@ -16,11 +16,11 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.loginEvent),
-        switchMap(action =>
+        switchMap((action) =>
           this.oauthService
             .fetchTokenUsingPasswordFlowAndLoadUserProfile(action.username, action.password)
             .then(() => this.store.dispatch(AuthActions.loginEventSuccess()))
-            .catch(err => this.store.dispatch(AuthActions.loginEventFail({ payload: err })))
+            .catch((err) => this.store.dispatch(AuthActions.loginEventFail({ payload: err })))
         )
       ),
     { dispatch: false }
@@ -33,13 +33,13 @@ export class AuthEffect {
         switchMap(() =>
           this.oauthService
             .loadUserProfile()
-            .then(profile => {
+            .then((profile) => {
               this.store.dispatch(AuthActions.loadProfileSuccess({ profile: profile }));
               this.store.dispatch(EventActions.fetchEvents());
               this.store.dispatch(NotesActions.fetchNotes());
               this.store.dispatch(AuthActions.routeToHome());
             })
-            .catch(err => this.store.dispatch(AuthActions.loadProfileFail({ payload: err })))
+            .catch((err) => this.store.dispatch(AuthActions.loadProfileFail({ payload: err })))
         )
       ),
     { dispatch: false }
@@ -49,7 +49,7 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.tokenExpire),
-        switchMap(action => {
+        switchMap((action) => {
           this.store.dispatch(AuthActions.logout({ message: action.message }));
           return EMPTY;
         })
@@ -61,7 +61,7 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
-        switchMap(action => {
+        switchMap((action) => {
           this.oauthService.logOut();
           this.store.dispatch(EventActions.eventsClear());
           this.store.dispatch(AuthActions.routeToLogin({ message: action.message }));
@@ -84,7 +84,7 @@ export class AuthEffect {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.routeToLogin),
-        switchMap(action =>
+        switchMap((action) =>
           this.router.navigate([`/login`, { endsession: action.message, skipLocationChange: true }])
         )
       ),

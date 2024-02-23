@@ -24,14 +24,14 @@ export class NotesDataService {
   }
 
   deleteNote(note: Note): Observable<Note> {
-    return this.http.delete(API_ROOT + note.id).pipe(map(_response => new Note(_response)));
+    return this.http.delete(API_ROOT + note.id).pipe(map((_response) => new Note(_response)));
   }
 
   addOrUpdateNote(note: Note): Observable<Note> {
-    return this.http.post(API_ROOT, JSON.stringify(note)).pipe(map(response => new Note(response)));
+    return this.http.post(API_ROOT, JSON.stringify(note)).pipe(map((response) => new Note(response)));
   }
 
   updateNote(note: Note): Observable<Note> {
-    return this.http.put(API_ROOT, note).pipe(map(response => new Note(response)));
+    return this.http.put(API_ROOT, note).pipe(map((response) => new Note(response)));
   }
 }

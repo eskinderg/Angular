@@ -43,4 +43,6 @@ import { AppStoreModule } from './store/app.store.module';
   providers: [NotesDataService, EventDataService, LoggingService, OAuthService, APP_INIT],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {}
+}

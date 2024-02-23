@@ -2,7 +2,7 @@
   "trailingComma" : "none",
   "bracketSpacing" : true,
   "spaceBeforeFunctionParen": false,
-  "arrowParens": "avoid",
+  "arrowParens": "always",
   "endOfLine": "auto",
   "bracketSameLine": true,
   "jsxSingleQuote": false,

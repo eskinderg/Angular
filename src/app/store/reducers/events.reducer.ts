@@ -14,7 +14,7 @@ export const initialState: IEventsState = {
 
 export const eventsReducer = createReducer<IEventsState>(
   initialState,
-  on(EventsActions.eventsClear, state => ({
+  on(EventsActions.eventsClear, (state) => ({
     ...state,
     events: []
   })),
@@ -37,7 +37,7 @@ export const eventsReducer = createReducer<IEventsState>(
     EventsActions.updateEventSuccess,
     (state, action): IEventsState => ({
       ...state,
-      events: state.events.map(event => {
+      events: state.events.map((event) => {
         return event.id === action.payload.id ? action.payload : event;
       })
     })
@@ -58,7 +58,7 @@ export const eventsReducer = createReducer<IEventsState>(
     (state, action): IEventsState => ({
       ...state,
       events: state.events.filter((event: Event) => {
-        return action.payload.every(e => e.id !== event.id);
+        return action.payload.every((e) => e.id !== event.id);
       })
     })
   )
@@ -73,9 +73,9 @@ export const getEventsLength = createSelector(getEventState, (state: IEventsStat
 export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading);
 
 export const getItemById = (id: number) =>
-  createSelector(getEventState, allItems => {
+  createSelector(getEventState, (allItems) => {
     if (allItems.events) {
-      return allItems.events.find(item => {
+      return allItems.events.find((item) => {
         return item.id === id;
       });
     } else {
