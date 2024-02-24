@@ -1,6 +1,6 @@
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
-import { authConfig } from '../auth.config';
+import { authConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
 import { ToastService } from '../shared/toast/toast.service';
 import { LoggingService } from '../error/loggingservice';
@@ -24,7 +24,7 @@ export function initializeAuth(
     if (oauthService.hasValidAccessToken()) {
       store.dispatch(logInSuccess());
     } else {
-      toast.showStandard('no ValidAccessToken');
+      toast.showStandard('No valid access_token');
     }
     return true;
   };

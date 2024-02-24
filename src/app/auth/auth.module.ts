@@ -1,5 +1,5 @@
-import { APP_INITIALIZER, ModuleWithProviders, NgModule } from '@angular/core';
-import { NullValidationHandler, OAuthModule, OAuthService, ValidationHandler } from 'angular-oauth2-oidc';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import { initializeAuth } from './auth.init';
 import { ToastService } from '../shared/toast/toast.service';
@@ -11,28 +11,16 @@ import { LoggingService } from '../error/loggingservice';
   imports: [OAuthModule.forRoot()],
   providers: [
     {
-      provide: ValidationHandler,
-      useClass: NullValidationHandler
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthJWT,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAuth,
+      deps: [OAuthService, Store, ToastService, LoggingService],
+      multi: true
     }
   ]
 })
-export class AuthModule {
-  static forRoot(): ModuleWithProviders<AuthModule> {
-    return {
-      ngModule: AuthModule,
-      providers: [
-        {
-          provide: APP_INITIALIZER,
-          useFactory: initializeAuth,
-          deps: [OAuthService, Store, ToastService, LoggingService],
-          multi: true
-        },
-        {
-          provide: HTTP_INTERCEPTORS,
-          useClass: AuthJWT,
-          multi: true
-        }
-      ]
-    };
-  }
-}
+export class AuthModule {}
