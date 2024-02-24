@@ -14,11 +14,11 @@ import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 import { NotesDataService } from './components/notes/services/notes.data.service';
 import { EventDataService } from './fragments/components/event/event.data.service/event.data.service';
-import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
 import { CustomSerializer } from './init/app.route.serilizer';
 import { AppStoreModule } from './store/app.store.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   imports: [
@@ -30,7 +30,7 @@ import { AppStoreModule } from './store/app.store.module';
     AuthorizationModule,
     BrowserAnimationsModule,
     AppStoreModule,
-    OAuthModule.forRoot(),
+    AuthModule.forRoot(),
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule,
@@ -40,7 +40,7 @@ import { AppStoreModule } from './store/app.store.module';
     })
   ],
   declarations: [AppComponent],
-  providers: [NotesDataService, EventDataService, LoggingService, OAuthService, APP_INIT],
+  providers: [NotesDataService, EventDataService, LoggingService, APP_INIT],
   bootstrap: [AppComponent]
 })
 export class AppModule {
