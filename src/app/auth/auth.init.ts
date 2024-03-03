@@ -12,7 +12,6 @@ export function initializeAuth(
   loggingService: LoggingService
 ) {
   oauthService.configure(authConfig);
-  oauthService.setStorage(localStorage);
 
   return async () => {
     await oauthService.loadDiscoveryDocumentAndTryLogin({
