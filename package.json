@@ -34,7 +34,7 @@
     "@angular-eslint/schematics": "17.2.1",
     "@angular-eslint/template-parser": "17.2.1",
     "@angular/cli": "^17.1.0",
-    "@angular/compiler-cli": "^17.1.0",
+    "@angular/compiler-cli": "^17.3.5",
     "@angular/localize": "^17.1.0",
     "@angular/service-worker": "^17.1.0",
     "@ng-bootstrap/ng-bootstrap": "16.0.0",
