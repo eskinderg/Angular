@@ -68,13 +68,11 @@ div.disabled {
 *::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thumb-color);
   border-radius: 0.5rem;
-  cursor:pointer;
 }
 
 *::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover-color);
 }
-
 
 .custom-scroll {
   --scrollbar-size: 8px;
