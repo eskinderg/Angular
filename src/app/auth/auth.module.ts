@@ -15,7 +15,7 @@ export class OAuthAppLogger extends OAuthLogger {
 
   override debug(message?: any, ...optionalParams: any[]): void {
     console.info(optionalParams);
-    this.logg.showSuccess(message, 'OAuth Debug');
+    // this.logg.showSuccess(message, 'OAuth Debug');
   }
   override info(message?: any, ...optionalParams: any[]): void {
     console.log(optionalParams);

@@ -29,7 +29,8 @@ export const eventsReducer = createReducer<IEventsState>(
     EventsActions.fetchEventsSuccess,
     (state, action): IEventsState => ({
       ...state,
-      events: action.payload.slice().reverse() || [] // reverse array to show the most recent
+      // events: action.payload.slice().reverse() || [] // reverse array to show the most recent
+      events: action.payload || [] // reverse array to show the most recent
     })
   ),
   on(

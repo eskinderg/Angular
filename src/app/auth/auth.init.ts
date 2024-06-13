@@ -1,6 +1,6 @@
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
-import { authConfig } from './auth.config';
+import { authGoogleConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
 import { ToastService } from '../shared/toast/toast.service';
 import { LoggingService } from '../error/loggingservice';
@@ -11,7 +11,8 @@ export function initializeAuth(
   toast: ToastService,
   loggingService: LoggingService
 ) {
-  oauthService.configure(authConfig);
+  oauthService.configure(authGoogleConfig);
+  oauthService.setupAutomaticSilentRefresh();
 
   return async () => {
     await oauthService.loadDiscoveryDocumentAndTryLogin({
