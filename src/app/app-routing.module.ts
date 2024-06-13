@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'Angular', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', loadChildren: () => import('./components/home/home.module').then((m) => m.HomeModule) },
+      {
+        path: 'Angular',
+        loadChildren: () => import('./components/home/home.module').then((m) => m.HomeModule)
+      },
       {
         path: 'profile',
         loadChildren: () => import('./components/profile/profile.module').then((m) => m.ProfileModule)
