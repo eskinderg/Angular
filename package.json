@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "build-prod": "ng build --prod --base-href https://eskinderg.github.io/Angular/",
+    "build": "ng build --base-href https://eskinderg.github.io/Angular/",
+    "build-prod": "ng build --base-href https://eskinderg.github.io/Angular/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
