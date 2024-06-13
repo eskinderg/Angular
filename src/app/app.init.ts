@@ -15,7 +15,7 @@ import { ThemeService } from './shared/theme.service';
 export const APP_INIT: Provider[] = [
   {
     provide: APP_BASE_HREF,
-    useValue: '/'
+    useValue: '/Angular'
   },
   {
     provide: RouteReuseStrategy,
