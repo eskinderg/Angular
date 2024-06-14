@@ -8,7 +8,7 @@
     "minor": "npm version minor && git push",
     "patch": "npm version patch && git push",
     "preversion": "",
-    "version": "npm run lint && npm run build",
+    "version": "npm run lint && npm run build  &&git add docs",
     "postversion": "git push && git push --tags",
     "build": "ng build --base-href https://eskinderg.github.io/Angular/",
     "build-prod": "ng build --base-href https://eskinderg.github.io/Angular/",
