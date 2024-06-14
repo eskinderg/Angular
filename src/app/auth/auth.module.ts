@@ -28,7 +28,7 @@ export class OAuthAppLogger extends OAuthLogger {
   }
   override warn(message?: any, ...optionalParams: any[]): void {
     console.log(optionalParams);
-    this.logg.showSuccess(message, 'OAuth Warn');
+    // this.logg.showSuccess(message, 'OAuth Warn');
   }
   override error(message?: any, ...optionalParams: any[]): void {
     console.log(optionalParams);
