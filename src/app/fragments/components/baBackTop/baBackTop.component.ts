@@ -1,5 +1,5 @@
 import { Component, ViewChild, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
-import * as jQuery from 'jquery';
+// import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-back-top',
@@ -19,13 +19,15 @@ export class BaBackTopComponent implements AfterViewInit {
 
   @HostListener('click')
   _onClick(): boolean {
-    jQuery('html, body').animate({ scrollTop: 0 }, { duration: this.moveSpeed });
+    // jQuery('html, body').animate({ scrollTop: 0 }, { duration: this.moveSpeed });
+
+    this._selector.nativeElement.scroll({ top: 0, left: 0, behavior: 'smooth' });
     return false;
   }
 
   @HostListener('window:scroll')
   _onWindowScroll(): void {
-    const el = this._selector.nativeElement;
-    window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
+    // const el = this._selector.nativeElement;
+    // window.scrollY > this.position ? jQuery(el).fadeIn(this.showSpeed) : jQuery(el).fadeOut(this.showSpeed);
   }
 }
