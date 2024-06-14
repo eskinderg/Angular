@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, isDevMode } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
 // import { NgbdRatingDecimal } from '../../components/rating/rating';
@@ -23,9 +23,15 @@ export class MovieCardComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.imageUrl = this.movie.get_poster_path();
-    this.imageLoadingUrl = '/assets/images/placeholder.gif';
-    this.noImageUrl = '/assets/images/placeholder.png';
+    if (isDevMode()) {
+      this.imageUrl = this.movie.get_poster_path();
+      this.imageLoadingUrl = '/assets/images/placeholder.gif';
+      this.noImageUrl = '/assets/images/placeholder.png';
+    } else {
+      this.imageUrl = this.movie.get_poster_path();
+      this.imageLoadingUrl = '/Angular/assets/images/placeholder.gif';
+      this.noImageUrl = '/angular/assets/images/placeholder.png';
+    }
 
     this.linkUrl =
       '/movies/genres' +
