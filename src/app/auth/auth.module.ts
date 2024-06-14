@@ -6,6 +6,7 @@ import { ToastService } from '../shared/toast/toast.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthJWT } from './auth.JWT';
 import { LoggingService } from '../error/loggingservice';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Injectable()
 export class OAuthAppLogger extends OAuthLogger {
@@ -52,6 +53,10 @@ export class OAuthAppLogger extends OAuthLogger {
     {
       provide: OAuthStorage,
       useValue: localStorage
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: 'Angular'
     },
     {
       provide: OAuthLogger,
