@@ -4,6 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
+  appVersion: require('../../package.json').version + '-dev',
   production: false,
   EVENTS_API: 'http://localhost:3000/api/events/',
   NOTES_API: 'http://localhost:3000/api/notes/',
