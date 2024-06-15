@@ -3,7 +3,9 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 export const environment = {
+  appVersion: require('../../package.json').version + '-dev',
   production: false,
   EVENTS_API: 'http://localhost:3000/api/events/',
   NOTES_API: 'http://localhost:3000/api/notes/',
