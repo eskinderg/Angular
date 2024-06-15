@@ -84,9 +84,9 @@ export class MoviesDataService {
 
   searchMovies(searchStr: string) {
     return this.http
-      .get<Movie[]>(
-        'https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr
-      )
+      .get<
+        Movie[]
+      >('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr)
       .pipe(
         map((res) => {
           const result: MovieResults = new MovieResults();

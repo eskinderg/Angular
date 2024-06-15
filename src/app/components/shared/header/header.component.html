@@ -50,12 +50,13 @@
             aria-expanded="false"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: false }">
-            Notes @if(NoteLoading | async ) {
-            <div class="spinner-border text-secondary spinner-border-sm" role="status">
-              <span class="sr-only"></span>
-            </div>
-            }@else(){
-            <span *ngIf="NotesCount | async as count" class="badge bg-secondary">{{ count }}</span>
+            Notes
+            @if (NoteLoading | async) {
+              <div class="spinner-border text-secondary spinner-border-sm" role="status">
+                <span class="sr-only"></span>
+              </div>
+            } @else {
+              <span *ngIf="NotesCount | async as count" class="badge bg-secondary">{{ count }}</span>
             }
           </a>
           <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
@@ -82,12 +83,12 @@
             [routerLink]="['/events']">
             Events
             <!-- <span class="badge bg-secondary">New</span> -->
-            @if(EventLoading | async ) {
-            <div class="spinner-border text-secondary spinner-border-sm" role="status">
-              <span class="sr-only"></span>
-            </div>
-            }@else(){
-            <span *ngIf="EventsCount | async as count" class="badge bg-secondary">{{ count }}</span>
+            @if (EventLoading | async) {
+              <div class="spinner-border text-secondary spinner-border-sm" role="status">
+                <span class="sr-only"></span>
+              </div>
+            } @else {
+              <span *ngIf="EventsCount | async as count" class="badge bg-secondary">{{ count }}</span>
             }
           </a>
         </li>
