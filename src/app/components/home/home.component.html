@@ -5,16 +5,16 @@
         <div style="height: 460px">
           <ng-scrollbar thumbClass="custom-scrollbars">
             <div class="list-group">
-              <a
-                *ngFor="let tv of tvs"
-                class="list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1">{{ tv.name }}</h5>
-                  <small class="text-muted">Aired {{ tv.first_air_date }}</small>
-                </div>
-                <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
-                <small class="text-muted">country {{ tv.origin_country[0] }}</small>
-              </a>
+              @for (tv of tvs; track tv) {
+                <a class="list-group-item list-group-item-action flex-column align-items-start">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ tv.name }}</h5>
+                    <small class="text-muted">Aired {{ tv.first_air_date }}</small>
+                  </div>
+                  <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
+                  <small class="text-muted">country {{ tv.origin_country[0] }}</small>
+                </a>
+              }
             </div>
           </ng-scrollbar>
         </div>

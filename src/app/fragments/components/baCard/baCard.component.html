@@ -3,16 +3,20 @@
     {{ header }}
   </div>
   <div [style.margin.rem]="margin" [style.padding.rem]="padding" class="card-block">
-    <h4 *ngIf="title" class="card-title">
-      {{ title }}
-    </h4>
+    @if (title) {
+      <h4 class="card-title">
+        {{ title }}
+      </h4>
+    }
 
     <p class="card-text">
       <ng-content></ng-content>
     </p>
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
-  <div *ngIf="footer" class="card-footer">
-    {{ footer }}
-  </div>
+  @if (footer) {
+    <div class="card-footer">
+      {{ footer }}
+    </div>
+  }
 </div>

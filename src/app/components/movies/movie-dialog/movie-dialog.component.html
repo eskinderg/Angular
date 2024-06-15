@@ -43,20 +43,20 @@
               <!--     movieDetail.original_language }}</a></li> -->
               <li class="list-group-item">
                 <b>Languages Spoken:</b>
-                <a
-                  class="badge bg-secondary nodecoration ms-2"
-                  *ngFor="let language of movieDetail.spoken_languages">
-                  {{ language['name'] }}</a
-                >
+                @for (language of movieDetail.spoken_languages; track language) {
+                  <a class="badge bg-secondary nodecoration ms-2"> {{ language['name'] }}</a>
+                }
               </li>
               <li class="list-group-item">
                 <b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movieDetail.status }}</a>
               </li>
               <li class="list-group-item">
                 <b>Genres:</b>
-                <a class="badge bg-secondary nodecoration ms-2" *ngFor="let genere of movieDetail.genres">
-                  {{ genere['name'] }}
-                </a>
+                @for (genere of movieDetail.genres; track genere) {
+                  <a class="badge bg-secondary nodecoration ms-2">
+                    {{ genere['name'] }}
+                  </a>
+                }
               </li>
               <li class="list-group-item">
                 <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal>

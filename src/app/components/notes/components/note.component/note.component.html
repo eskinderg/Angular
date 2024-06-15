@@ -79,12 +79,13 @@
     </div>
   </div>
   <!-- <app-textarea-expanded *ngIf="note" [note]="note" #notediv [(ngModel)]="note" (onSelectionChange)="selectionChange($event)" -->
-  <app-textarea-expanded
-    *ngIf="note"
-    [note]="note"
-    #notediv
-    (textAreaSelectionChange)="selectionChange($event)"
-    (textAreaTextChanged)="handleNoteTextUpdate($event)"
-    (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)">
-  </app-textarea-expanded>
+  @if (note) {
+    <app-textarea-expanded
+      [note]="note"
+      #notediv
+      (textAreaSelectionChange)="selectionChange($event)"
+      (textAreaTextChanged)="handleNoteTextUpdate($event)"
+      (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)">
+    </app-textarea-expanded>
+  }
 </div>

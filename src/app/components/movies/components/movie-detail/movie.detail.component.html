@@ -28,30 +28,28 @@
       </li>
       <li class="list-group-item">
         <b>Languages Spoken </b>
-        <a class="badge bg-secondary nodecoration ms-2" *ngFor="let language of movie.spoken_languages">
-          {{ language['name'] }}</a
-        >
+        @for (language of movie.spoken_languages; track language) {
+          <a class="badge bg-secondary nodecoration ms-2"> {{ language['name'] }}</a>
+        }
       </li>
     </ul>
 
     <p><app-ngbd-rating-decimal [currentRate]="movieRating"></app-ngbd-rating-decimal></p>
 
-    <a
-      [routerLink]="['/movies/genres/', genere['id'], genere['name']]"
-      class="badge bg-secondary nodecoration ms-2"
-      *ngFor="let genere of movie.genres">
-      {{ genere['name'] }}
-    </a>
+    @for (genere of movie.genres; track genere) {
+      <a
+        [routerLink]="['/movies/genres/', genere['id'], genere['name']]"
+        class="badge bg-secondary nodecoration ms-2">
+        {{ genere['name'] }}
+      </a>
+    }
 
     <p class="mt-3">
-      <a
-        rel="noopener"
-        target="_blank"
-        *ngIf="movie.homepage"
-        href="{{ movie.homepage }}"
-        class="link-primary clearfix">
-        Home Page
-      </a>
+      @if (movie.homepage) {
+        <a rel="noopener" target="_blank" href="{{ movie.homepage }}" class="link-primary clearfix">
+          Home Page
+        </a>
+      }
     </p>
 
     <!-- <div class="row"> -->
