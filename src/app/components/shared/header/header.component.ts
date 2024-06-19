@@ -36,7 +36,7 @@ export class HeaderComponent {
   // public ItemsCount;
 
   constructor(
-    private oauthService: OAuthService,
+    // private oauthService: OAuthService,
     private eventStore: Store<fromEvents.IEventsState>,
     private noteStore: Store<fromNotes.INotesState>,
     private router: Router

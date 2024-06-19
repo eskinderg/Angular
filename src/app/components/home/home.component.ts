@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Tv } from '../movies/models/tv';
+import { environment } from 'src/environments/environment';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,6 +12,7 @@ import { Tv } from '../movies/models/tv';
   animations: [fadeInAnimation]
 })
 export class HomeComponent implements OnInit {
+  public appVersion: string;
   @HostBinding('@routerFadeInAnimation')
   public tvs: Tv[] | undefined;
 
@@ -18,5 +20,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.tvs = this.route.snapshot.data['tvs'];
+    this.appVersion = environment.appVersion;
   }
 }

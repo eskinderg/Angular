@@ -83,7 +83,9 @@
               [routerLinkActiveOptions]="{ exact: false }"
               [routerLink]="['/events']">
               @if (EventLoading | async) {
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <div class="spinner-grow" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
               } @else {
                 @if (EventsCount | async; as count) {
                   <span class="badge bg-secondary">{{ count }}</span>
