@@ -4,6 +4,8 @@ import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
 import { Router } from '@angular/router';
 import { NoteComponent } from './note.component/note.component';
+import { Store } from '@ngrx/store';
+import * as fromNotes from 'src/app/store/reducers/note.reducer';
 
 @Component({
   selector: 'app-notes',
@@ -17,6 +19,7 @@ export class NotesComponent {
 
   constructor(
     public notesApiService: NoteApiService,
+    private noteStore: Store<fromNotes.INotesState>,
     public route: Router
   ) {}
 
@@ -83,6 +86,10 @@ export class NotesComponent {
 
   get Animate() {
     return this.notesApiService.NoteAnimateState;
+  }
+
+  get NoteLoading() {
+    return this.noteStore.select(fromNotes.getIsLoading);
   }
 
   get NotesCount() {

@@ -51,16 +51,14 @@
               aria-expanded="false"
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: false }">
-              Notes
               @if (NoteLoading | async) {
-                <div class="spinner-border text-secondary spinner-border-sm" role="status">
-                  <span class="sr-only"></span>
-                </div>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
               } @else {
                 @if (NotesCount | async; as count) {
                   <span class="badge bg-secondary">{{ count }}</span>
                 }
               }
+              Notes
             </a>
             <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
               <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes']">Notes</a></li>
@@ -84,17 +82,14 @@
               [routerLinkActive]="['active']"
               [routerLinkActiveOptions]="{ exact: false }"
               [routerLink]="['/events']">
-              Events
-              <!-- <span class="badge bg-secondary">New</span> -->
               @if (EventLoading | async) {
-                <div class="spinner-border text-secondary spinner-border-sm" role="status">
-                  <span class="sr-only"></span>
-                </div>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
               } @else {
                 @if (EventsCount | async; as count) {
                   <span class="badge bg-secondary">{{ count }}</span>
                 }
               }
+              Events
             </a>
           </li>
           <li class="nav-item">

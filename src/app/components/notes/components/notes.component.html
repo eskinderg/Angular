@@ -39,7 +39,15 @@
     </div>
     <div class="main-note-list">
       <div class="list-notes">
-        @if ((Notes | async).length) {
+        @if (NoteLoading | async) {
+          <div class="no-content">
+            <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
+              <!-- <span class="visually-hidden">Loading...</span> -->
+            </div>
+          </div>
+        } @else if ((Notes | async).length === 0) {
+          <div class="no-content">No notes</div>
+        } @else {
           @for (note of Notes | async; track note) {
             <app-note-list-item
               [note]="note"
@@ -50,8 +58,6 @@
               (changePineOrder)="updatePinOrder($event)">
             </app-note-list-item>
           }
-        } @else {
-          <div class="no-content">No notes</div>
         }
       </div>
     </div>
