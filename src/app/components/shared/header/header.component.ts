@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
-import { OAuthService } from 'angular-oauth2-oidc';
+// import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../store/reducers/events.reducer';
 import * as fromNotes from '../../../store/reducers/note.reducer';
