@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import * as fromNotes from '../../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
@@ -18,7 +17,6 @@ export class NoteArchiveComponent {
 
   constructor(
     private store: Store<fromNotes.INotesState>,
-    private oauthService: OAuthService,
     // public activeDialog: NgbActiveModal,
     private notesApiService: NoteApiService,
     public router: Router
@@ -39,14 +37,6 @@ export class NoteArchiveComponent {
   yes() {
     // this.notesApiService.deleteNote(this.note);
     // this.activeDialog.close('/notes');
-  }
-
-  get givenName() {
-    const claims = this.oauthService.getIdentityClaims();
-    if (!claims) {
-      return null;
-    }
-    return claims['given_name'];
   }
 
   restore(note: Note) {

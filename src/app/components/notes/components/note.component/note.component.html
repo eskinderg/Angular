@@ -2,7 +2,8 @@
   Last Modified &nbsp;: &nbsp; {{ note?.dateModified | date: 'medium' }}<br />
   Date Created &nbsp; : &nbsp; {{ note?.dateCreated | date: 'medium' }}<br />
   Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinOrder ? 'Yes' : 'No' }}<br />
-  Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.colour ? note?.colour : 'none' }}
+  Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.colour ? note?.colour : 'none' }}<br />
+  Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.owner }}
 </ng-template>
 <div class="note-background" [ngClass]="note.colour + '-note'">
   <div class="note-menu">

@@ -12,7 +12,7 @@
                   {{ note.text ? (note.text | noteTitleTruncate: '20' : true) : 'Untitled' }}
                 </h6>
               </div>
-              <small>Author: {{ givenName }}</small>
+              <small>Author: {{ note.owner }}</small>
               <br />
               <small
                 [ngbTooltip]="'Last Modified ' + (note.dateModified | dateago)"

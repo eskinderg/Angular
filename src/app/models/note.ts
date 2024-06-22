@@ -16,6 +16,7 @@ export class Note {
   archived: boolean;
   active: boolean;
   spellCheck: boolean;
+  owner: string;
 
   constructor(values: object = {}) {
     Object.assign(this, values);
