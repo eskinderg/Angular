@@ -59,9 +59,7 @@ export class NotesComponent {
   }
 
   createNewNote() {
-    this.notesApiService.createNewNote(
-      new Note({ owner: this.oauthService.getIdentityClaims()['given_name'] })
-    );
+    this.notesApiService.createNewNote(new Note());
   }
 
   updatePinOrder(note: Note) {
