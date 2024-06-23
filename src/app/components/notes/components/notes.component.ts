@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { NoteComponent } from './note.component/note.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
-import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-notes',
@@ -19,7 +18,6 @@ export class NotesComponent {
   @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
   constructor(
-    private oauthService: OAuthService,
     public notesApiService: NoteApiService,
     private noteStore: Store<fromNotes.INotesState>,
     public route: Router
