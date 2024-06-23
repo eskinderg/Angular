@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,11 +18,12 @@ import { APP_INIT } from './app.init';
 import { CustomSerializer } from './init/app.route.serilizer';
 import { AppStoreModule } from './store/app.store.module';
 import { AuthModule } from './auth/auth.module';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpErrorInterceptor } from './error/http.error.interceptor';
 
 @NgModule({
   imports: [
     BrowserModule,
-    HttpClientModule,
     AuthModule,
     UnauthorizedModule,
     NgbdToastGlobalModule,
@@ -40,7 +40,13 @@ import { AuthModule } from './auth/auth.module';
     })
   ],
   declarations: [AppComponent],
-  providers: [NotesDataService, EventDataService, LoggingService, APP_INIT],
+  providers: [
+    provideHttpClient(withInterceptors([HttpErrorInterceptor])),
+    NotesDataService,
+    EventDataService,
+    LoggingService,
+    APP_INIT
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

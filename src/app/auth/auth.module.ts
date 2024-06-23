@@ -3,7 +3,7 @@ import { OAuthLogger, OAuthModule, OAuthService, OAuthStorage } from 'angular-oa
 import { Store } from '@ngrx/store';
 import { initializeAuth } from './auth.init';
 import { ToastService } from '../shared/toast/toast.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthJWT } from './auth.JWT';
 import { LoggingService } from '../error/loggingservice';
 
@@ -38,11 +38,7 @@ export class OAuthAppLogger extends OAuthLogger {
 @NgModule({
   imports: [OAuthModule.forRoot()],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthJWT,
-      multi: true
-    },
+    provideHttpClient(withInterceptors([AuthJWT])),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeAuth,
