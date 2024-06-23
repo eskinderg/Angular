@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -21,31 +21,28 @@ import { NotesModule } from './components/notes/notes.module';
 import { EventsModule } from './components/events/events.module';
 
 @NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AuthModule,
-    NotesModule,
-    EventsModule,
     UnauthorizedModule,
     NgbdToastGlobalModule,
     NotfoundModule,
     AuthorizationModule,
     BrowserAnimationsModule,
     AppStoreModule,
-    NotesModule,
-    EventsModule,
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule,
     AppRoutingModule,
+    NotesModule,
+    EventsModule,
     StoreRouterConnectingModule.forRoot({
       serializer: CustomSerializer
     })
   ],
-  declarations: [AppComponent],
-  providers: [LoggingService, APP_INIT],
-  bootstrap: [AppComponent]
+  providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptorsFromDi())]
 })
 export class AppModule {
   constructor() {}

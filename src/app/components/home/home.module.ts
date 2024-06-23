@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientJsonpModule } from '@angular/common/http';
+import { provideHttpClient, withJsonpSupport } from '@angular/common/http';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
@@ -13,9 +13,9 @@ import { TvsResolve } from '../movies/movies.service/tvs.resolve';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
-  imports: [SharedModule, NgaModule, HomeRoutingModule, HttpClientJsonpModule, NgScrollbarModule],
   declarations: [HomeComponent, TableComponent],
   exports: [HomeComponent],
-  providers: [MoviesDataService, MoviesApiService, TvsResolve]
+  imports: [SharedModule, NgaModule, HomeRoutingModule, NgScrollbarModule],
+  providers: [MoviesDataService, MoviesApiService, TvsResolve, provideHttpClient(withJsonpSupport())]
 })
 export class HomeModule {}

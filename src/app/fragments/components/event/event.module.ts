@@ -9,7 +9,6 @@ import { EventListHeaderComponent } from './component/event-list-header/event-li
 import { EventListItemComponent } from './component/event-list/event-list-item/event-list-item.component';
 import { EventListFooterComponent } from './component/event-list-footer/event-list-footer.component';
 import { EventListSelectComponent } from './component/event-list/event-list-item/event-list-select/event-list-select.component';
-import { EventsResolve } from './event.data.service/EventsResolve';
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { RouterModule } from '@angular/router';
@@ -31,10 +30,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EventListItemComponent,
     EventListFooterComponent,
     EventListComponent,
-    EventListSelectComponent,
-    CommonModule,
-    FormsModule
-  ],
-  providers: [EventsResolve]
+    EventListSelectComponent
+  ]
 })
 export class EventModule {}
