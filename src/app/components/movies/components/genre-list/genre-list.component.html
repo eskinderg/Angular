@@ -1,8 +1,8 @@
 <!-- <app-ba-card margin="-1" title="" header="Genres"> -->
 <app-ba-card class="screen-height" title="" header="Genres">
-  <ng-scrollbar class="screen-height">
-    @for (genre of genres; track genre) {
-      <app-genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></app-genre-list-item>
-    }
-  </ng-scrollbar>
+    <ng-scrollbar class="screen-height">
+        @for (genre of genres; track genre) {
+            <app-genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></app-genre-list-item>
+        }
+    </ng-scrollbar>
 </app-ba-card>

@@ -8,37 +8,37 @@ import { MovieResults } from '../models/movie-results';
 
 @Injectable()
 export class MoviesApiService {
-  constructor(private api: MoviesDataService) {}
+    constructor(private api: MoviesDataService) {}
 
-  serachMovies(searchStr: string) {
-    if (searchStr !== undefined && searchStr !== '') {
-      return this.api.searchMovies(searchStr);
+    serachMovies(searchStr: string) {
+        if (searchStr !== undefined && searchStr !== '') {
+            return this.api.searchMovies(searchStr);
+        }
+        return empty();
     }
-    return empty();
-  }
-  getPopularSeries(): Observable<Tv[]> {
-    return this.api.getPopularSeries();
-  }
+    getPopularSeries(): Observable<Tv[]> {
+        return this.api.getPopularSeries();
+    }
 
-  getGenres(): Observable<Genre[]> {
-    return this.api.getGenres();
-  }
+    getGenres(): Observable<Genre[]> {
+        return this.api.getGenres();
+    }
 
-  getMoviesCountByGenre(id: string) {
-    return this.api.getGenreMovieCount(id);
-  }
+    getMoviesCountByGenre(id: string) {
+        return this.api.getGenreMovieCount(id);
+    }
 
-  getMoviesByGenre(id: string, page?: number): Observable<MovieResults> {
-    return this.api.getMoviesByGenre(id, page);
-    // .pipe(
-    //     map((mr:MovieResults) => {
-    //       mr.movies = mr.movies.filter((m:Movie) => m.original_language=="en" || m.original_language=="uk" )
-    //       return mr;
-    //     })
-    //   )
-  }
+    getMoviesByGenre(id: string, page?: number): Observable<MovieResults> {
+        return this.api.getMoviesByGenre(id, page);
+        // .pipe(
+        //     map((mr:MovieResults) => {
+        //       mr.movies = mr.movies.filter((m:Movie) => m.original_language=="en" || m.original_language=="uk" )
+        //       return mr;
+        //     })
+        //   )
+    }
 
-  getMovie(id: string) {
-    return this.api.getMovie(id);
-  }
+    getMovie(id: string) {
+        return this.api.getMovie(id);
+    }
 }

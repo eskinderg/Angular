@@ -9,22 +9,22 @@ import { FeatureComponent } from './feature/feature.component';
 import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        component: WizardManagerComponent,
-        children: [
-          { path: '', redirectTo: 'profile', pathMatch: 'full' },
-          // {path: 'about-us', component: AboutUsComponent},
-          { path: 'profile', component: ProfileComponent },
-          { path: 'feature', component: FeatureComponent },
-          { path: 'payment', component: PaymentComponent }
-        ],
-        canActivate: [AuthGuardService]
-      }
-    ])
-  ],
-  exports: [RouterModule]
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                component: WizardManagerComponent,
+                children: [
+                    { path: '', redirectTo: 'profile', pathMatch: 'full' },
+                    // {path: 'about-us', component: AboutUsComponent},
+                    { path: 'profile', component: ProfileComponent },
+                    { path: 'feature', component: FeatureComponent },
+                    { path: 'payment', component: PaymentComponent }
+                ],
+                canActivate: [AuthGuardService]
+            }
+        ])
+    ],
+    exports: [RouterModule]
 })
 export class WizardManagerRoutingModule {}

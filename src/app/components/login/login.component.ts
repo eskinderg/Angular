@@ -8,89 +8,89 @@ import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } 
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  animations: [fadeInAnimation]
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    animations: [fadeInAnimation]
 })
 export class LoginComponent implements OnInit {
-  @HostBinding('@routerFadeInAnimation')
-  userProfile: object;
-  loginForm: UntypedFormGroup;
-  message: string;
+    @HostBinding('@routerFadeInAnimation')
+    userProfile: object;
+    loginForm: UntypedFormGroup;
+    message: string;
 
-  constructor(
-    private store: Store<fromRoot.IAppState>,
-    private oauthService: OAuthService,
-    private router: Router,
-    private formBuilder: UntypedFormBuilder,
-    private route: ActivatedRoute
-  ) {
-    this.route.params.subscribe((params) => (this.message = params['endsession']));
-  }
-
-  ngOnInit() {
-    this.loginForm = new UntypedFormGroup({
-      username: new UntypedFormControl(null, Validators.required),
-      password: new UntypedFormControl(null, Validators.required)
-    });
-    // this.loginForm = this.formBuilder.group({
-    //   username: ['', Validators.required ],
-    //   password: ['', Validators.required ]
-    // })
-  }
-
-  loadUserProfile(): void {
-    this.oauthService.loadUserProfile().then((up) => (this.userProfile = up));
-  }
-
-  hasMessage(): boolean {
-    return this.message !== undefined && this.message !== 'undefined';
-  }
-
-  get access_token() {
-    return this.oauthService.getAccessToken();
-  }
-
-  get access_token_expiration() {
-    return this.oauthService.getAccessTokenExpiration();
-  }
-
-  get givenName() {
-    const claims = this.oauthService.getIdentityClaims();
-
-    if (!claims) {
-      return null;
+    constructor(
+        private store: Store<fromRoot.IAppState>,
+        private oauthService: OAuthService,
+        private router: Router,
+        private formBuilder: UntypedFormBuilder,
+        private route: ActivatedRoute
+    ) {
+        this.route.params.subscribe((params) => (this.message = params['endsession']));
     }
 
-    return null;
-    // return claims['given_name'];
-  }
-
-  get familyName() {
-    const claims = this.oauthService.getIdentityClaims();
-
-    if (!claims) {
-      return null;
+    ngOnInit() {
+        this.loginForm = new UntypedFormGroup({
+            username: new UntypedFormControl(null, Validators.required),
+            password: new UntypedFormControl(null, Validators.required)
+        });
+        // this.loginForm = this.formBuilder.group({
+        //   username: ['', Validators.required ],
+        //   password: ['', Validators.required ]
+        // })
     }
 
-    return null;
-    // return claims['family_name'];
-  }
-
-  loginWithPassword() {
-    // this.oauthService.initLoginFlow();
-    if (this.loginForm.valid) {
-      this.store.dispatch(
-        AuthActions.loginEvent({
-          username: this.loginForm.get('username').value,
-          password: this.loginForm.get('password').value
-        })
-      );
+    loadUserProfile(): void {
+        this.oauthService.loadUserProfile().then((up) => (this.userProfile = up));
     }
-  }
 
-  logout() {
-    this.oauthService.logOut(true);
-  }
+    hasMessage(): boolean {
+        return this.message !== undefined && this.message !== 'undefined';
+    }
+
+    get access_token() {
+        return this.oauthService.getAccessToken();
+    }
+
+    get access_token_expiration() {
+        return this.oauthService.getAccessTokenExpiration();
+    }
+
+    get givenName() {
+        const claims = this.oauthService.getIdentityClaims();
+
+        if (!claims) {
+            return null;
+        }
+
+        return null;
+        // return claims['given_name'];
+    }
+
+    get familyName() {
+        const claims = this.oauthService.getIdentityClaims();
+
+        if (!claims) {
+            return null;
+        }
+
+        return null;
+        // return claims['family_name'];
+    }
+
+    loginWithPassword() {
+        // this.oauthService.initLoginFlow();
+        if (this.loginForm.valid) {
+            this.store.dispatch(
+                AuthActions.loginEvent({
+                    username: this.loginForm.get('username').value,
+                    password: this.loginForm.get('password').value
+                })
+            );
+        }
+    }
+
+    logout() {
+        this.oauthService.logOut(true);
+    }
 }

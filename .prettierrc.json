@@ -11,7 +11,7 @@
   "quoteProps": "as-needed",
   "semi": true,
   "singleQuote": true,
-  "tabWidth": 2,
+  "tabWidth": 4,
   "useTabs": false,
   "htmlWhiteSpaceSensitivity": "ignore",
 

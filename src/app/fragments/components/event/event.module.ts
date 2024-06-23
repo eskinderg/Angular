@@ -15,22 +15,22 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  imports: [FormsModule, CommonModule, NgaModule, NgbModule, NgScrollbarModule, RouterModule],
-  declarations: [
-    EventComponent,
-    EventListHeaderComponent,
-    EventListItemComponent,
-    EventListFooterComponent,
-    EventListComponent,
-    EventListSelectComponent
-  ],
-  exports: [
-    EventComponent,
-    EventListHeaderComponent,
-    EventListItemComponent,
-    EventListFooterComponent,
-    EventListComponent,
-    EventListSelectComponent
-  ]
+    imports: [FormsModule, CommonModule, NgaModule, NgbModule, NgScrollbarModule, RouterModule],
+    declarations: [
+        EventComponent,
+        EventListHeaderComponent,
+        EventListItemComponent,
+        EventListFooterComponent,
+        EventListComponent,
+        EventListSelectComponent
+    ],
+    exports: [
+        EventComponent,
+        EventListHeaderComponent,
+        EventListItemComponent,
+        EventListFooterComponent,
+        EventListComponent,
+        EventListSelectComponent
+    ]
 })
 export class EventModule {}

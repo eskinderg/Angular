@@ -12,99 +12,99 @@ import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.componen
 import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper/movie-dialog-wrapper.component';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        component: MoviesComponent,
-        children: [
-          {
-            path: '',
-            redirectTo: 'search',
-            pathMatch: 'full'
-          },
-          {
-            path: 'genres/:id/:name/:page',
-            component: GenreComponent,
-            resolve: {
-              moviesResult: MoviesResultResolve
-            },
-            children: [
-              {
-                path: 'dialog/:movieid',
-                component: MovieDialogWrapperComponent,
-                data: {
-                  component: MovieDetailDialogComponent
-                },
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                component: MoviesComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'search',
+                        pathMatch: 'full'
+                    },
+                    {
+                        path: 'genres/:id/:name/:page',
+                        component: GenreComponent,
+                        resolve: {
+                            moviesResult: MoviesResultResolve
+                        },
+                        children: [
+                            {
+                                path: 'dialog/:movieid',
+                                component: MovieDialogWrapperComponent,
+                                data: {
+                                    component: MovieDetailDialogComponent
+                                },
+                                resolve: {
+                                    movieDetail: MoviesDetailsResolve
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        path: 'genres/:id/:name',
+                        component: GenreComponent,
+                        resolve: {
+                            moviesResult: MoviesResultResolve
+                        },
+                        children: [
+                            {
+                                path: 'dialog/:movieid',
+                                component: MovieDialogWrapperComponent,
+                                data: {
+                                    component: MovieDetailDialogComponent
+                                },
+                                resolve: {
+                                    movieDetail: MoviesDetailsResolve
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        path: 'genres/:id/:name/:page/movie/:idmovie',
+                        component: MovieDetailComponent,
+                        resolve: {
+                            movie: MoviesDetailsResolve
+                        }
+                    },
+                    {
+                        path: 'genres/:id/:name/movie/:idmovie',
+                        component: MovieDetailComponent,
+                        resolve: {
+                            movie: MoviesDetailsResolve
+                        }
+                    },
+                    {
+                        path: 'search',
+                        component: SearchComponent
+                    },
+                    {
+                        path: 'search/dialog/:movieid',
+                        component: MovieDialogWrapperComponent,
+                        data: {
+                            component: MovieDetailDialogComponent
+                        },
+                        resolve: {
+                            movieDetail: MoviesDetailsResolve
+                        }
+                    },
+                    {
+                        path: 'search/:searchText',
+                        component: SearchComponent,
+                        data: {
+                            searchText: 'asdf'
+                        }
+                    }
+                ],
                 resolve: {
-                  movieDetail: MoviesDetailsResolve
+                    genres: GenreResolve
                 }
-              }
-            ]
-          },
-          {
-            path: 'genres/:id/:name',
-            component: GenreComponent,
-            resolve: {
-              moviesResult: MoviesResultResolve
-            },
-            children: [
-              {
-                path: 'dialog/:movieid',
-                component: MovieDialogWrapperComponent,
-                data: {
-                  component: MovieDetailDialogComponent
-                },
-                resolve: {
-                  movieDetail: MoviesDetailsResolve
-                }
-              }
-            ]
-          },
-          {
-            path: 'genres/:id/:name/:page/movie/:idmovie',
-            component: MovieDetailComponent,
-            resolve: {
-              movie: MoviesDetailsResolve
+                // canActivate: [AuthGuardService]
             }
-          },
-          {
-            path: 'genres/:id/:name/movie/:idmovie',
-            component: MovieDetailComponent,
-            resolve: {
-              movie: MoviesDetailsResolve
-            }
-          },
-          {
-            path: 'search',
-            component: SearchComponent
-          },
-          {
-            path: 'search/dialog/:movieid',
-            component: MovieDialogWrapperComponent,
-            data: {
-              component: MovieDetailDialogComponent
-            },
-            resolve: {
-              movieDetail: MoviesDetailsResolve
-            }
-          },
-          {
-            path: 'search/:searchText',
-            component: SearchComponent,
-            data: {
-              searchText: 'asdf'
-            }
-          }
-        ],
-        resolve: {
-          genres: GenreResolve
-        }
-        // canActivate: [AuthGuardService]
-      }
-    ])
-  ],
-  providers: [GenreResolve, MoviesResultResolve, MoviesDetailsResolve],
-  exports: [RouterModule]
+        ])
+    ],
+    providers: [GenreResolve, MoviesResultResolve, MoviesDetailsResolve],
+    exports: [RouterModule]
 })
 export class MoviesRoutingModule {}

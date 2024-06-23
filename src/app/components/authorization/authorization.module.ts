@@ -5,8 +5,8 @@ import { AuthorizationRoutingModule } from './authorization-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, AuthorizationRoutingModule, SharedModule],
-  declarations: [AuthorizationComponent],
-  exports: [AuthorizationComponent]
+    imports: [CommonModule, AuthorizationRoutingModule, SharedModule],
+    declarations: [AuthorizationComponent],
+    exports: [AuthorizationComponent]
 })
 export class AuthorizationModule {}

@@ -9,55 +9,59 @@ import { ThemeService } from '../../shared/theme.service';
 
 @Injectable()
 export class PreferenceEffect {
-  toggleDarkMode = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.toggleDarkMode),
-      switchMap(() =>
-        of(this.themeService.toggleDarkMode()).pipe(map(() => PreferenceActions.toggleDarkModeSuccess()))
-      )
-    )
-  );
-
-  getIsLoggedIn = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.getIsLoggedIn),
-      switchMap(() =>
-        of(
-          PreferenceActions.getIsLoggedInSuccess({
-            isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false
-          })
+    toggleDarkMode = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.toggleDarkMode),
+            switchMap(() =>
+                of(this.themeService.toggleDarkMode()).pipe(
+                    map(() => PreferenceActions.toggleDarkModeSuccess())
+                )
+            )
         )
-      )
-    )
-  );
+    );
 
-  setIsLoggedIn = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.setIsLoggedIn),
-      switchMap((action) =>
-        of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
-          map(() => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
+    getIsLoggedIn = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.getIsLoggedIn),
+            switchMap(() =>
+                of(
+                    PreferenceActions.getIsLoggedInSuccess({
+                        isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false
+                    })
+                )
+            )
         )
-      )
-    )
-  );
+    );
 
-  getIsLoggedInSuccess = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.getIsLoggedInSuccess),
-      switchMap((action) => of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn })))
-    )
-  );
+    setIsLoggedIn = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.setIsLoggedIn),
+            switchMap((action) =>
+                of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
+                    map(() => PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
+                )
+            )
+        )
+    );
 
-  logInSuccess = createEffect(() =>
-    this.actions$.pipe(
-      ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-      switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
-    )
-  );
+    getIsLoggedInSuccess = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.getIsLoggedInSuccess),
+            switchMap((action) =>
+                of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
+            )
+        )
+    );
 
-  constructor(
-    private actions$: Actions,
-    private themeService: ThemeService
-  ) {}
+    logInSuccess = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
+            switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
+        )
+    );
+
+    constructor(
+        private actions$: Actions,
+        private themeService: ThemeService
+    ) {}
 }

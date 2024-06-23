@@ -6,24 +6,24 @@ import { EventsDialogWrapperComponent } from './events-dialog/events-dialog-wrap
 import { EventsDialogComponent } from './events-dialog/events-dialog/events-dialog.component';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        component: EventsComponent,
-        canActivate: [AuthGuardService],
-        children: [
-          {
-            path: 'dialog/:eventid',
-            component: EventsDialogWrapperComponent,
-            data: {
-              component: EventsDialogComponent
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                component: EventsComponent,
+                canActivate: [AuthGuardService],
+                children: [
+                    {
+                        path: 'dialog/:eventid',
+                        component: EventsDialogWrapperComponent,
+                        data: {
+                            component: EventsDialogComponent
+                        }
+                    }
+                ]
             }
-          }
-        ]
-      }
-    ])
-  ],
-  exports: [RouterModule]
+        ])
+    ],
+    exports: [RouterModule]
 })
 export class EventsRoutingModule {}

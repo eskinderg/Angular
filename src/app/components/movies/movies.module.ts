@@ -23,27 +23,27 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
 import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.component';
 
 @NgModule({
-  imports: [
-    SharedModule,
-    NgaModule,
-    NgbModule,
-    MoviesRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgScrollbarModule
-  ],
-  declarations: [
-    MoviesComponent,
-    GenreListItemComponent,
-    GenreListComponent,
-    GenreComponent,
-    SearchComponent,
-    MovieCardComponent,
-    MovieDetailComponent,
-    MovieDialogWrapperComponent,
-    MovieDetailDialogComponent
-  ],
-  exports: [MoviesComponent],
-  providers: [MoviesApiService, MoviesDataService]
+    imports: [
+        SharedModule,
+        NgaModule,
+        NgbModule,
+        MoviesRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgScrollbarModule
+    ],
+    declarations: [
+        MoviesComponent,
+        GenreListItemComponent,
+        GenreListComponent,
+        GenreComponent,
+        SearchComponent,
+        MovieCardComponent,
+        MovieDetailComponent,
+        MovieDialogWrapperComponent,
+        MovieDetailDialogComponent
+    ],
+    exports: [MoviesComponent],
+    providers: [MoviesApiService, MoviesDataService]
 })
 export class MoviesModule {}

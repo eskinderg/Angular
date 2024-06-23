@@ -5,23 +5,23 @@ import { EventListHeaderComponent } from './event-list-header.component';
 import { FormsModule } from '@angular/forms';
 
 describe('EventListHeaderComponent', () => {
-  let component: EventListHeaderComponent;
-  let fixture: ComponentFixture<EventListHeaderComponent>;
+    let component: EventListHeaderComponent;
+    let fixture: ComponentFixture<EventListHeaderComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [FormsModule],
-      declarations: [EventListHeaderComponent]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [FormsModule],
+            declarations: [EventListHeaderComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EventListHeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EventListHeaderComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

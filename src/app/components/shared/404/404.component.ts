@@ -4,27 +4,27 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
-  selector: 'app-notfound',
-  templateUrl: './404.component.html',
-  styleUrls: ['./404.component.scss']
+    selector: 'app-notfound',
+    templateUrl: './404.component.html',
+    styleUrls: ['./404.component.scss']
 })
 export class NotfoundComponent {
-  // userMgr: Oidc = new Oidc.UserManager();
+    // userMgr: Oidc = new Oidc.UserManager();
 
-  constructor(private authService: AuthService) {
-    // this.service.mgr.signoutRedirectCallback()
-    // if(this.authService.loggedIn)
-    // {
-    // this.userMgr
-    // .signinRedirectCallback()
-    // .then((user)=>{
-    //    console.log(user);
-    //    location.href ='/'
-    // }).catch(function(err){
-    //       console.log(err);
-    // });
-    // }
-  }
+    constructor(private authService: AuthService) {
+        // this.service.mgr.signoutRedirectCallback()
+        // if(this.authService.loggedIn)
+        // {
+        // this.userMgr
+        // .signinRedirectCallback()
+        // .then((user)=>{
+        //    console.log(user);
+        //    location.href ='/'
+        // }).catch(function(err){
+        //       console.log(err);
+        // });
+        // }
+    }
 
-  // ngOnInit() {}
+    // ngOnInit() {}
 }

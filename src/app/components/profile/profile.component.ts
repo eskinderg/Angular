@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: 'profile.component.html',
-  styleUrls: ['profile.component.scss'],
-  animations: [fadeInAnimation]
+    selector: 'app-profile',
+    templateUrl: 'profile.component.html',
+    styleUrls: ['profile.component.scss'],
+    animations: [fadeInAnimation]
 })
 export class ProfileComponent {
-  @HostBinding('@routerFadeInAnimation')
-  public x: number;
-  public y: number;
-  public user: any;
-  isDarkMode: Observable<boolean>;
+    @HostBinding('@routerFadeInAnimation')
+    public x: number;
+    public y: number;
+    public user: any;
+    isDarkMode: Observable<boolean>;
 
-  constructor(
-    private authService: OAuthService,
-    public store: Store<fromProfile.IPreferenceState>
-  ) {
-    this.user = this.authService.getIdentityClaims();
-    this.isDarkMode = this.store.select(fromProfile.isDarkMode);
-  }
+    constructor(
+        private authService: OAuthService,
+        public store: Store<fromProfile.IPreferenceState>
+    ) {
+        this.user = this.authService.getIdentityClaims();
+        this.isDarkMode = this.store.select(fromProfile.isDarkMode);
+    }
 
-  onDarkModeToggle() {
-    this.store.dispatch(ProfileActions.toggleDarkMode());
-  }
+    onDarkModeToggle() {
+        this.store.dispatch(ProfileActions.toggleDarkMode());
+    }
 }

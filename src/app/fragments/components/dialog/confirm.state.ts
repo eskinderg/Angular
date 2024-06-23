@@ -9,18 +9,18 @@ import { ConfirmOptions } from './confirm.options';
  */
 @Injectable()
 export class ConfirmState {
-  /**
-   * The last options passed ConfirmService.confirm()
-   */
-  options: ConfirmOptions;
+    /**
+     * The last options passed ConfirmService.confirm()
+     */
+    options: ConfirmOptions;
 
-  /**
-   * The last opened confirmation dialog
-   */
-  dialog: NgbModalRef;
+    /**
+     * The last opened confirmation dialog
+     */
+    dialog: NgbModalRef;
 
-  /**
-   * The template containing the confirmation dialog component
-   */
-  template: TemplateRef<any>;
+    /**
+     * The template containing the confirmation dialog component
+     */
+    template: TemplateRef<any>;
 }

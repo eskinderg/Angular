@@ -6,27 +6,27 @@ import { EventListComponent } from './event-list.component';
 import { Event } from '../../event';
 
 describe('EventListComponent', () => {
-  let component: EventListComponent;
-  let fixture: ComponentFixture<EventListComponent>;
+    let component: EventListComponent;
+    let fixture: ComponentFixture<EventListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [EventListComponent],
-      schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [EventListComponent],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EventListComponent);
-    component = fixture.componentInstance;
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EventListComponent);
+        component = fixture.componentInstance;
 
-    fixture.whenStable().then(() => {
-      component.events = [new Event({ id: 1, title: 'Test', complete: false })];
-      // fixture.detectChanges();
+        fixture.whenStable().then(() => {
+            component.events = [new Event({ id: 1, title: 'Test', complete: false })];
+            // fixture.detectChanges();
+        });
     });
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

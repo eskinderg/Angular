@@ -1,121 +1,123 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <button
-      type="button"
-      class="navbar-toggler navbar-toggler-right"
-      (click)="isExpanded = !isExpanded"
-      [attr.aria-expanded]="!isExpanded"
-      aria-controls="navbarContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container-fluid">
+        <button
+            type="button"
+            class="navbar-toggler navbar-toggler-right"
+            (click)="isExpanded = !isExpanded"
+            [attr.aria-expanded]="!isExpanded"
+            aria-controls="navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <a class="navbar-brand" [routerLink]="['/']">Angular</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
-      @if (IsLoggedIn | async) {
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/home']"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: false }"
-              [routerLink]="['/about']"
-              >About</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-              [routerLink]="['/profile']"
-              >Profile</a
-            >
-          </li>
-          <li ngbDropdown class="nav-item dropdown">
-            <a
-              [ngClass]="{ active: isNotesURLActive }"
-              (click)="$event.preventDefault()"
-              ngbDropdownToggle
-              class="nav-link dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: false }">
-              @if (NoteLoading | async) {
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-              } @else {
-                @if (NotesCount | async; as count) {
-                  <span class="badge bg-secondary">{{ count }}</span>
-                }
-              }
-              Notes
-            </a>
-            <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
-              <li ngbDropdownItem><a class="dropdown-item" [routerLink]="['/notes']">Notes</a></li>
-              <li ngbDropdownItem>
-                <a class="dropdown-item" [routerLink]="['/notes/archived']">Archived Notes</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: false }"
-              [routerLink]="['/wizard']"
-              >Wizard</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: false }"
-              [routerLink]="['/events']">
-              @if (EventLoading | async) {
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-              } @else {
-                @if (EventsCount | async; as count) {
-                  <span class="badge bg-secondary">{{ count }}</span>
-                }
-              }
-              Events
-            </a>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              [routerLinkActive]="['active']"
-              [routerLinkActiveOptions]="{ exact: false }"
-              [routerLink]="['/movies']"
-              >Movies</a
-            >
-          </li>
-          <!-- <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> -->
-          <!--     <a class="nav-link" [routerLink]="['/unauthorized']">access</a> -->
-          <!-- </li> -->
-          <!-- <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> -->
-          <!--     <a class="nav-link" [routerLink]="['/login']">login</a> -->
-          <!-- </li> -->
-          <!-- <li  class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a class="navbar-brand" [routerLink]="['/']">Angular</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="!isExpanded">
+            @if (IsLoggedIn | async) {
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/home']"
+                            >Home</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: false }"
+                            [routerLink]="['/about']"
+                            >About</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/profile']"
+                            >Profile</a
+                        >
+                    </li>
+                    <li ngbDropdown class="nav-item dropdown">
+                        <a
+                            [ngClass]="{ active: isNotesURLActive }"
+                            (click)="$event.preventDefault()"
+                            ngbDropdownToggle
+                            class="nav-link dropdown-toggle"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: false }">
+                            @if (NoteLoading | async) {
+                                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            } @else {
+                                @if (NotesCount | async; as count) {
+                                    <span class="badge bg-secondary">{{ count }}</span>
+                                }
+                            }
+                            Notes
+                        </a>
+                        <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
+                            <li ngbDropdownItem>
+                                <a class="dropdown-item" [routerLink]="['/notes']">Notes</a>
+                            </li>
+                            <li ngbDropdownItem>
+                                <a class="dropdown-item" [routerLink]="['/notes/archived']">Archived Notes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: false }"
+                            [routerLink]="['/wizard']"
+                            >Wizard</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: false }"
+                            [routerLink]="['/events']">
+                            @if (EventLoading | async) {
+                                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                            } @else {
+                                @if (EventsCount | async; as count) {
+                                    <span class="badge bg-secondary">{{ count }}</span>
+                                }
+                            }
+                            Events
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            class="nav-link"
+                            [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{ exact: false }"
+                            [routerLink]="['/movies']"
+                            >Movies</a
+                        >
+                    </li>
+                    <!-- <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> -->
+                    <!--     <a class="nav-link" [routerLink]="['/unauthorized']">access</a> -->
+                    <!-- </li> -->
+                    <!-- <li class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"> -->
+                    <!--     <a class="nav-link" [routerLink]="['/login']">login</a> -->
+                    <!-- </li> -->
+                    <!-- <li  class="nav-item"[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
                 <a class="nav-link" [routerLink]="['/profile']">{{ _user ?.profile.email }}</a>
               </li> -->
-        </ul>
-      }
-    </div>
+                </ul>
+            }
+        </div>
 
-    <app-userinfo (signout)="onSignout()"></app-userinfo>
-  </div>
+        <app-userinfo (signout)="onSignout()"></app-userinfo>
+    </div>
 </nav>
 <!-- {{ _user ?.id_token }} -->
 <!-- {{ _user ?.acces_token }} -->

@@ -8,99 +8,99 @@ import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 
 @Component({
-  selector: 'app-notes',
-  templateUrl: 'notes.component.html',
-  styleUrls: ['notes.component.scss', 'notes.colour.scss'],
-  animations: [FadeInOutNoteListItem],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-notes',
+    templateUrl: 'notes.component.html',
+    styleUrls: ['notes.component.scss', 'notes.colour.scss'],
+    animations: [FadeInOutNoteListItem],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent {
-  @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
+    @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
 
-  constructor(
-    public notesApiService: NoteApiService,
-    private noteStore: Store<fromNotes.INotesState>,
-    public route: Router
-  ) {}
+    constructor(
+        public notesApiService: NoteApiService,
+        private noteStore: Store<fromNotes.INotesState>,
+        public route: Router
+    ) {}
 
-  onChangeNoteText(note: Note) {
-    this.notesApiService.updateNoteText(note);
-  }
-
-  saveSelection() {
-    if (window.getSelection) {
-      const sel = window.getSelection();
-      if (sel.getRangeAt && sel.rangeCount) {
-        return sel.getRangeAt(0);
-      }
-    } else if (document.getSelection && document.getSelection().getRangeAt(0)) {
-      return null;
+    onChangeNoteText(note: Note) {
+        this.notesApiService.updateNoteText(note);
     }
-    return null;
-  }
 
-  selection: Range;
-  x: number;
-  y: number;
+    saveSelection() {
+        if (window.getSelection) {
+            const sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) {
+                return sel.getRangeAt(0);
+            }
+        } else if (document.getSelection && document.getSelection().getRangeAt(0)) {
+            return null;
+        }
+        return null;
+    }
 
-  selectionChange(note: Note) {
-    this.notesApiService.updateNoteSelection(note);
-  }
+    selection: Range;
+    x: number;
+    y: number;
 
-  selectNote(note: Note) {
-    this.notesApiService.selectNote(note);
-  }
+    selectionChange(note: Note) {
+        this.notesApiService.updateNoteSelection(note);
+    }
 
-  toggleSpellCheck(note: Note) {
-    this.notesApiService.toggleSpellCheck(note);
-    this.appNoteComponent.textarea.textarea.nativeElement.focus();
-  }
+    selectNote(note: Note) {
+        this.notesApiService.selectNote(note);
+    }
 
-  createNewNote() {
-    this.notesApiService.createNewNote(new Note());
-  }
+    toggleSpellCheck(note: Note) {
+        this.notesApiService.toggleSpellCheck(note);
+        this.appNoteComponent.textarea.textarea.nativeElement.focus();
+    }
 
-  updatePinOrder(note: Note) {
-    this.notesApiService.updateNotePinOrder(note);
-  }
+    createNewNote() {
+        this.notesApiService.createNewNote(new Note());
+    }
 
-  updateNoteColour(note: Note) {
-    this.notesApiService.updateNoteColour(note);
-  }
+    updatePinOrder(note: Note) {
+        this.notesApiService.updateNotePinOrder(note);
+    }
 
-  onArchiveNote(note: Note) {
-    this.notesApiService.archiveNote(note);
-  }
+    updateNoteColour(note: Note) {
+        this.notesApiService.updateNoteColour(note);
+    }
 
-  onUpdateNoteHeader(note: Note) {
-    this.notesApiService.updateNoteHeader(note);
-  }
+    onArchiveNote(note: Note) {
+        this.notesApiService.archiveNote(note);
+    }
 
-  routeToArchivedNotes() {
-    this.route.navigateByUrl('notes/archived');
-  }
+    onUpdateNoteHeader(note: Note) {
+        this.notesApiService.updateNoteHeader(note);
+    }
 
-  get Notes() {
-    return this.notesApiService.Notes;
-  }
+    routeToArchivedNotes() {
+        this.route.navigateByUrl('notes/archived');
+    }
 
-  get Animate() {
-    return this.notesApiService.NoteAnimateState;
-  }
+    get Notes() {
+        return this.notesApiService.Notes;
+    }
 
-  get NoteLoading() {
-    return this.noteStore.select(fromNotes.getIsLoading);
-  }
+    get Animate() {
+        return this.notesApiService.NoteAnimateState;
+    }
 
-  get NotesCount() {
-    return this.notesApiService.NotesLength;
-  }
+    get NoteLoading() {
+        return this.noteStore.select(fromNotes.getIsLoading);
+    }
 
-  get SelectedNote() {
-    return this.notesApiService.SelectedNote;
-  }
+    get NotesCount() {
+        return this.notesApiService.NotesLength;
+    }
 
-  get OpendNote() {
-    return this.notesApiService.OpendNote;
-  }
+    get SelectedNote() {
+        return this.notesApiService.SelectedNote;
+    }
+
+    get OpendNote() {
+        return this.notesApiService.OpendNote;
+    }
 }

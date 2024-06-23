@@ -4,9 +4,9 @@ import { MoviesApiService } from './movies.api.service';
 
 @Injectable()
 export class TvsResolve {
-  constructor(private moviesApiService: MoviesApiService) {}
+    constructor(private moviesApiService: MoviesApiService) {}
 
-  resolve() {
-    return this.moviesApiService.getPopularSeries();
-  }
+    resolve() {
+        return this.moviesApiService.getPopularSeries();
+    }
 }

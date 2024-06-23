@@ -15,29 +15,29 @@ import { AuthorizationComponent } from './authorization.component';
 // }
 
 describe('AuthorizationComponent', () => {
-  let component: AuthorizationComponent;
-  let fixture: ComponentFixture<AuthorizationComponent>;
-  const mockRouter = { navigate: jasmine.createSpy('navigate') };
-  // let authserviceSpy = { mgr: jasmine.createSpy('mgr') };
-  // let myServiceDependency: AuthService;
+    let component: AuthorizationComponent;
+    let fixture: ComponentFixture<AuthorizationComponent>;
+    const mockRouter = { navigate: jasmine.createSpy('navigate') };
+    // let authserviceSpy = { mgr: jasmine.createSpy('mgr') };
+    // let myServiceDependency: AuthService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [AuthorizationComponent],
-      providers: [{ provide: AuthService }, { provide: Router, useValue: mockRouter }]
-    }).compileComponents();
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [AuthorizationComponent],
+            providers: [{ provide: AuthService }, { provide: Router, useValue: mockRouter }]
+        }).compileComponents();
 
-    // myServiceDependency = TestBed.get(AuthService);
-  }));
+        // myServiceDependency = TestBed.get(AuthService);
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AuthorizationComponent);
-    component = fixture.componentInstance;
-    spyOn(component, 'ngOnInit');
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AuthorizationComponent);
+        component = fixture.componentInstance;
+        spyOn(component, 'ngOnInit');
+        fixture.detectChanges();
+    });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', () => {
+        expect(component).toBeTruthy();
+    });
 });

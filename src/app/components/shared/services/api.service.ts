@@ -9,22 +9,22 @@ import { throwError as observableThrowError } from 'rxjs';
 
 @Injectable()
 export class ApiService {
-  constructor() {}
+    constructor() {}
 
-  ShowDialog() {}
+    ShowDialog() {}
 
-  handleError(error: Response | any) {
-    // console.error('EventDataApiService Error::handleError', error);
+    handleError(error: Response | any) {
+        // console.error('EventDataApiService Error::handleError', error);
 
-    // this.confirmService.openInfoDialog({
-    //   title: 'Title',
-    //   message: 'asdfasdfjalsdfkajlsdkfjalsdkf'
-    // }).then(() => {
-    //   // this.store.dispatch(new EventsActions.deleteEvent(event));
-    // }, () => {
-    //   console.log();
-    // });
+        // this.confirmService.openInfoDialog({
+        //   title: 'Title',
+        //   message: 'asdfasdfjalsdfkajlsdkfjalsdkf'
+        // }).then(() => {
+        //   // this.store.dispatch(new EventsActions.deleteEvent(event));
+        // }, () => {
+        //   console.log();
+        // });
 
-    return observableThrowError(error);
-  }
+        return observableThrowError(error);
+    }
 }

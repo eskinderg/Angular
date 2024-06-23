@@ -3,10 +3,10 @@ import { RouterReducerState } from '@ngrx/router-store';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export interface IAppRouterState {
-  url: string;
-  params: Params;
-  queryParams: Params;
-  // data        : Data;
+    url: string;
+    params: Params;
+    queryParams: Params;
+    // data        : Data;
 }
 
 export const routerState = createFeatureSelector<RouterReducerState<IAppRouterState>>('router');

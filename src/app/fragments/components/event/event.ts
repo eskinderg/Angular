@@ -1,9 +1,9 @@
 export class Event {
-  id: number;
-  title: string = '';
-  complete = false;
+    id: number;
+    title: string = '';
+    complete = false;
 
-  constructor(values: object = {}) {
-    Object.assign(this, values);
-  }
+    constructor(values: object = {}) {
+        Object.assign(this, values);
+    }
 }

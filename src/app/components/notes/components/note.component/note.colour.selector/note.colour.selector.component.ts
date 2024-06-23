@@ -3,30 +3,30 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angul
 export type Colour = { name: string };
 
 export const Colours: Colour[] = [
-  { name: 'red' },
-  { name: 'green' },
-  { name: 'yellow' },
-  { name: 'violet' },
-  { name: 'blue' },
-  { name: 'none' }
+    { name: 'red' },
+    { name: 'green' },
+    { name: 'yellow' },
+    { name: 'violet' },
+    { name: 'blue' },
+    { name: 'none' }
 ];
 
 @Component({
-  selector: 'app-note-colour-selector',
-  templateUrl: './note.colour.selector.component.html',
-  styleUrls: ['./note.colour.selector.component.scss', '../../notes.colour.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-note-colour-selector',
+    templateUrl: './note.colour.selector.component.html',
+    styleUrls: ['./note.colour.selector.component.scss', '../../notes.colour.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteColourSelectorComponent {
-  @Output() noteColourUpdate = new EventEmitter(false);
+    @Output() noteColourUpdate = new EventEmitter(false);
 
-  constructor() {}
+    constructor() {}
 
-  onClick(colour: Colour) {
-    this.noteColourUpdate.emit(colour);
-  }
+    onClick(colour: Colour) {
+        this.noteColourUpdate.emit(colour);
+    }
 
-  get Colours(): Colour[] {
-    return Colours;
-  }
+    get Colours(): Colour[] {
+        return Colours;
+    }
 }

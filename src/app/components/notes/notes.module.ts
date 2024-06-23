@@ -27,26 +27,26 @@ import { TextSelection } from 'src/app/fragments/components/textAreaExpanded/tex
 import { NotesDataService } from './services/notes.data.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NotesRoutingModule,
-    DraggableModule,
-    NgaModule,
-    SharedModule,
-    NgbModule,
-    NgScrollbarModule
-  ],
-  declarations: [
-    NotesComponent,
-    NoteComponent,
-    NoteColourSelectorComponent,
-    NoteHeaderControlComponent,
-    NoteArchiveComponent,
-    NoteListItemComponent,
-    AddButtonComponent,
-    DraggableDirective,
-    ResizableTextAreaDirective
-  ],
-  providers: [NoteApiService, NotesDataService, NotesResolver, NoteResolver, TextSelection]
+    imports: [
+        CommonModule,
+        NotesRoutingModule,
+        DraggableModule,
+        NgaModule,
+        SharedModule,
+        NgbModule,
+        NgScrollbarModule
+    ],
+    declarations: [
+        NotesComponent,
+        NoteComponent,
+        NoteColourSelectorComponent,
+        NoteHeaderControlComponent,
+        NoteArchiveComponent,
+        NoteListItemComponent,
+        AddButtonComponent,
+        DraggableDirective,
+        ResizableTextAreaDirective
+    ],
+    providers: [NoteApiService, NotesDataService, NotesResolver, NoteResolver, TextSelection]
 })
 export class NotesModule {}

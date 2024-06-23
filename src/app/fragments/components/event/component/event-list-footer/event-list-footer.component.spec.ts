@@ -5,23 +5,23 @@ import { EventListFooterComponent } from './event-list-footer.component';
 import { Event } from '../../event';
 
 describe('EventListFooterComponent', () => {
-  let component: EventListFooterComponent;
-  let fixture: ComponentFixture<EventListFooterComponent>;
+    let component: EventListFooterComponent;
+    let fixture: ComponentFixture<EventListFooterComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [EventListFooterComponent]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [EventListFooterComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EventListFooterComponent);
-    component = fixture.componentInstance;
-    component.events = [new Event({ id: 1, title: 'Test', complete: false })];
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EventListFooterComponent);
+        component = fixture.componentInstance;
+        component.events = [new Event({ id: 1, title: 'Test', complete: false })];
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

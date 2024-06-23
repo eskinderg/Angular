@@ -11,34 +11,34 @@ import { AppRouteReuseStrategy } from './init/app.init.routeStrategy';
 import { ThemeService } from './shared/theme.service';
 
 export const APP_INIT: Provider[] = [
-  {
-    provide: APP_BASE_HREF,
-    useValue: '/'
-  },
-  {
-    provide: RouteReuseStrategy,
-    useClass: AppRouteReuseStrategy
-  },
-  {
-    provide: ErrorHandler,
-    useClass: GlobalErrorHandler
-  },
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializePreference,
-    deps: [ThemeService],
-    multi: true
-  },
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initializeToast,
-    deps: [LoggingService, ToastService],
-    multi: true
-  },
-  {
-    provide: APP_BOOTSTRAP_LISTENER,
-    useFactory: bootstrapAppRouteFactory,
-    deps: [Router],
-    multi: true
-  }
+    {
+        provide: APP_BASE_HREF,
+        useValue: '/'
+    },
+    {
+        provide: RouteReuseStrategy,
+        useClass: AppRouteReuseStrategy
+    },
+    {
+        provide: ErrorHandler,
+        useClass: GlobalErrorHandler
+    },
+    {
+        provide: APP_INITIALIZER,
+        useFactory: initializePreference,
+        deps: [ThemeService],
+        multi: true
+    },
+    {
+        provide: APP_INITIALIZER,
+        useFactory: initializeToast,
+        deps: [LoggingService, ToastService],
+        multi: true
+    },
+    {
+        provide: APP_BOOTSTRAP_LISTENER,
+        useFactory: bootstrapAppRouteFactory,
+        deps: [Router],
+        multi: true
+    }
 ];

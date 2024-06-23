@@ -3,19 +3,19 @@
  */
 
 export interface ConfirmOptions {
-  /**
-   * The title of the confirmation dialog
-   */
-  title: string;
+    /**
+     * The title of the confirmation dialog
+     */
+    title: string;
 
-  /**
-   * The message in the confirmation dialog
-   */
-  message: string;
+    /**
+     * The message in the confirmation dialog
+     */
+    message: string;
 
-  backdrop: boolean;
+    backdrop: boolean;
 
-  centered?: boolean;
+    centered?: boolean;
 
-  scrollable?: boolean;
+    scrollable?: boolean;
 }

@@ -7,35 +7,35 @@ import { NoteArchiveComponent } from './components/note.archive/note.archive.com
 import { NotesComponent } from './components/notes.component';
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'mynotes'
-      },
-      {
-        path: 'mynotes',
-        component: NotesComponent,
-        canActivate: [AuthGuardService],
-        children: [
-          {
-            path: 'dialog',
-            pathMatch: 'full',
-            component: NoteDialogWrapperComponent,
-            data: {
-              component: NoteDialogComponent
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'mynotes'
+            },
+            {
+                path: 'mynotes',
+                component: NotesComponent,
+                canActivate: [AuthGuardService],
+                children: [
+                    {
+                        path: 'dialog',
+                        pathMatch: 'full',
+                        component: NoteDialogWrapperComponent,
+                        data: {
+                            component: NoteDialogComponent
+                        }
+                    }
+                ]
+            },
+            {
+                path: 'archived',
+                pathMatch: 'full',
+                component: NoteArchiveComponent
             }
-          }
-        ]
-      },
-      {
-        path: 'archived',
-        pathMatch: 'full',
-        component: NoteArchiveComponent
-      }
-    ])
-  ],
-  exports: [RouterModule]
+        ])
+    ],
+    exports: [RouterModule]
 })
 export class NotesRoutingModule {}

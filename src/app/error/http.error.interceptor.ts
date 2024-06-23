@@ -8,17 +8,17 @@ import { LoggingService } from '../error/loggingservice';
 // import { ConfirmService } from '../fragments/components/dialog/confirm.service';
 
 export const HttpErrorInterceptor: HttpInterceptorFn = (
-  request: HttpRequest<any>,
-  next: HttpHandlerFn
+    request: HttpRequest<any>,
+    next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
-  const loggingService = inject(LoggingService);
+    const loggingService = inject(LoggingService);
 
-  return next(request).pipe(
-    catchError((error) => {
-      loggingService.error(error);
-      return throwError(() => error.message);
-    })
-  );
+    return next(request).pipe(
+        catchError((error) => {
+            loggingService.error(error);
+            return throwError(() => error.message);
+        })
+    );
 };
 // @Injectable()
 // export class HttpErrorInterceptor implements HttpInterceptor {

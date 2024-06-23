@@ -12,55 +12,55 @@ const API_URL = environment.EVENTS_API;
 
 @Injectable()
 export class EventDataService extends ApiService {
-  constructor(private http: HttpClient) {
-    super();
-  }
+    constructor(private http: HttpClient) {
+        super();
+    }
 
-  public getAllEvents() {
-    return this.http.get<Event[]>(API_URL);
-  }
+    public getAllEvents() {
+        return this.http.get<Event[]>(API_URL);
+    }
 
-  public createEvent(event: Event): Observable<Event> {
-    return this.http.post<Event>(API_URL, event);
-  }
+    public createEvent(event: Event): Observable<Event> {
+        return this.http.post<Event>(API_URL, event);
+    }
 
-  public getEventById(eventId: number): Observable<Event> {
-    return this.http.get<Event>(API_URL + eventId);
-  }
+    public getEventById(eventId: number): Observable<Event> {
+        return this.http.get<Event>(API_URL + eventId);
+    }
 
-  public updateEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(API_URL, event).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError(this.handleError)
-    );
-  }
+    public updateEvent(event: Event): Observable<Event> {
+        return this.http.put<Event>(API_URL, event).pipe(
+            map((response) => {
+                return response;
+            }),
+            catchError(this.handleError)
+        );
+    }
 
-  public toggleEvent(event: Event): Observable<Event> {
-    return this.http.put<Event>(API_URL + 'toggle/', event).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError(this.handleError)
-    );
-  }
+    public toggleEvent(event: Event): Observable<Event> {
+        return this.http.put<Event>(API_URL + 'toggle/', event).pipe(
+            map((response) => {
+                return response;
+            }),
+            catchError(this.handleError)
+        );
+    }
 
-  public deleteEventById(event: Event): Observable<Event> {
-    return this.http.delete<Event>(API_URL + event.id).pipe(
-      map(() => {
-        return event;
-      }),
-      catchError(this.handleError)
-    );
-  }
+    public deleteEventById(event: Event): Observable<Event> {
+        return this.http.delete<Event>(API_URL + event.id).pipe(
+            map(() => {
+                return event;
+            }),
+            catchError(this.handleError)
+        );
+    }
 
-  public deleteEvents(events: Event[]): Observable<Event[]> {
-    return this.http.delete<Event[]>(API_URL, { body: events }).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError(this.handleError)
-    );
-  }
+    public deleteEvents(events: Event[]): Observable<Event[]> {
+        return this.http.delete<Event[]>(API_URL, { body: events }).pipe(
+            map((response) => {
+                return response;
+            }),
+            catchError(this.handleError)
+        );
+    }
 }

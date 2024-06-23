@@ -2,21 +2,21 @@ import { on, createFeatureSelector, createReducer, createSelector } from '@ngrx/
 import * as AuthActions from '../actions/auth.action';
 
 export interface IAuthState {
-  profile: any;
+    profile: any;
 }
 
 export const initialState: IAuthState = {
-  profile: {}
+    profile: {}
 };
 
 export const authReducer = createReducer<IAuthState>(
-  initialState,
-  on(
-    AuthActions.loadProfileSuccess,
-    (_state, action): IAuthState => ({
-      profile: action.profile
-    })
-  )
+    initialState,
+    on(
+        AuthActions.loadProfileSuccess,
+        (_state, action): IAuthState => ({
+            profile: action.profile
+        })
+    )
 );
 
 export const getAuthState = createFeatureSelector<IAuthState>('profile');

@@ -12,17 +12,17 @@ import { EventDataService } from 'src/app/fragments/components/event/event.data.
 import { EventsResolve } from 'src/app/fragments/components/event/event.data.service/EventsResolve';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    EventsRoutingModule,
-    SharedModule,
-    EventModule,
-    NgaModule,
-    NgScrollbarModule,
-    NgbModule
-  ],
-  exports: [],
-  declarations: [EventsComponent],
-  providers: [EventDataService, EventsResolve]
+    imports: [
+        CommonModule,
+        EventsRoutingModule,
+        SharedModule,
+        EventModule,
+        NgaModule,
+        NgScrollbarModule,
+        NgbModule
+    ],
+    exports: [],
+    declarations: [EventsComponent],
+    providers: [EventDataService, EventsResolve]
 })
 export class EventsModule {}

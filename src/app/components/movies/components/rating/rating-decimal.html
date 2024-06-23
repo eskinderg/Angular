@@ -1,15 +1,15 @@
 <ng-template #t let-fill="fill">
-  @if (fill === 100) {
-    <span class="star full" [ngStyle]="{ 'font-size': size + 'rem' }">&hearts;</span>
-  }
-  @if (fill === 0) {
-    <span class="star" [ngStyle]="{ 'font-size': size + 'rem' }">&hearts;</span>
-  }
-  @if (fill < 100 && fill > 0) {
-    <span class="star" [ngStyle]="{ 'font-size': size + 'rem' }">
-      <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-    </span>
-  }
+    @if (fill === 100) {
+        <span class="star full" [ngStyle]="{ 'font-size': size + 'rem' }">&hearts;</span>
+    }
+    @if (fill === 0) {
+        <span class="star" [ngStyle]="{ 'font-size': size + 'rem' }">&hearts;</span>
+    }
+    @if (fill < 100 && fill > 0) {
+        <span class="star" [ngStyle]="{ 'font-size': size + 'rem' }">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+        </span>
+    }
 </ng-template>
 
 <ngb-rating [rate]="currentRate" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>

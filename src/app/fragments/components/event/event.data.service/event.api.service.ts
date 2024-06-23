@@ -9,19 +9,19 @@ import * as fromEvents from '../../../../store/reducers/events.reducer';
 
 @Injectable()
 export class EventApiService {
-  constructor(private store: Store<fromEvents.IEventsState>) {
-    this.store.dispatch({ type: 'FETCH_EVENTS' });
-  }
+    constructor(private store: Store<fromEvents.IEventsState>) {
+        this.store.dispatch({ type: 'FETCH_EVENTS' });
+    }
 
-  getAllEvents(): Observable<Event[]> {
-    return this.store.select(fromEvents.getEvents);
-  }
+    getAllEvents(): Observable<Event[]> {
+        return this.store.select(fromEvents.getEvents);
+    }
 
-  // getEventById(eventId: number): Observable<Event> {
-  // return this.api.getEventById(eventId);
-  // }
+    // getEventById(eventId: number): Observable<Event> {
+    // return this.api.getEventById(eventId);
+    // }
 
-  // toggleEventComplete(event: Event) {
-  // return this.api.updateEvent(event);
-  // }
+    // toggleEventComplete(event: Event) {
+    // return this.api.updateEvent(event);
+    // }
 }

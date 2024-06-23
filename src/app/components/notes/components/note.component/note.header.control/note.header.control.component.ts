@@ -2,19 +2,19 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Note } from 'src/app/models/note';
 
 @Component({
-  selector: 'app-note-header-control',
-  templateUrl: './note.header.control.component.html',
-  styleUrl: './note.header.control.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-note-header-control',
+    templateUrl: './note.header.control.component.html',
+    styleUrl: './note.header.control.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteHeaderControlComponent {
-  @Input() note: Note;
-  @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
+    @Input() note: Note;
+    @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
-  constructor() {}
+    constructor() {}
 
-  updateNoteHeader(event: Event) {
-    const headerText: string = (event.target as HTMLInputElement).value;
-    this.noteUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
-  }
+    updateNoteHeader(event: Event) {
+        const headerText: string = (event.target as HTMLInputElement).value;
+        this.noteUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
+    }
 }

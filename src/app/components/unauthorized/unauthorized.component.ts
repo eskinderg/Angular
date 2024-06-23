@@ -5,27 +5,27 @@ import { AuthService } from '../shared/services/auth/auth.service';
 import * as fromRoot from '../../store/reducers';
 
 @Component({
-  selector: 'app-unauthorized',
-  templateUrl: './unauthorized.component.html',
-  styleUrls: ['./unauthorized.component.scss']
+    selector: 'app-unauthorized',
+    templateUrl: './unauthorized.component.html',
+    styleUrls: ['./unauthorized.component.scss']
 })
 export class UnauthorizedComponent {
-  constructor(
-    private location: Location,
-    private service: AuthService,
-    private store: Store<fromRoot.IAppState>
-  ) {}
+    constructor(
+        private location: Location,
+        private service: AuthService,
+        private store: Store<fromRoot.IAppState>
+    ) {}
 
-  login() {
-    // this.store.dispatch(new AuthActions.loginEvent());
-  }
+    login() {
+        // this.store.dispatch(new AuthActions.loginEvent());
+    }
 
-  goback() {
-    this.location.back();
-  }
+    goback() {
+        this.location.back();
+    }
 
-  startSignoutMainWindow() {
-    // this.service.startSignoutMainWindow();
-    this.service.logout();
-  }
+    startSignoutMainWindow() {
+        // this.service.startSignoutMainWindow();
+        this.service.logout();
+    }
 }

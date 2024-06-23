@@ -9,25 +9,25 @@ import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { IAppRouterState } from './route.reducer';
 
 export interface IAppState {
-  notes: INotesState;
-  events: IEventsState; // append any more states here
-  profile: IAuthState;
-  preference: IPreferenceState;
-  router: RouterReducerState<IAppRouterState>;
+    notes: INotesState;
+    events: IEventsState; // append any more states here
+    profile: IAuthState;
+    preference: IPreferenceState;
+    router: RouterReducerState<IAppRouterState>;
 }
 
 export const appReducer: ActionReducerMap<IAppState> = {
-  notes: notesReducer, // append any additional reducers here
-  events: eventsReducer,
-  profile: authReducer,
-  preference: profileReducer,
-  router: routerReducer
+    notes: notesReducer, // append any additional reducers here
+    events: eventsReducer,
+    profile: authReducer,
+    preference: profileReducer,
+    router: routerReducer
 };
 
 export function logger(reducer: ActionReducer<IAppState>): ActionReducer<IAppState> {
-  return function (state: IAppState, action: any): IAppState {
-    return reducer(state, action);
-  };
+    return function (state: IAppState, action: any): IAppState {
+        return reducer(state, action);
+    };
 }
 
 export const metaReducers: MetaReducer<IAppState>[] = !environment.production ? [logger] : [];

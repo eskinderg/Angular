@@ -5,58 +5,58 @@ import { Subject, takeUntil, zip } from 'rxjs';
 import { Location, LocationStrategy } from '@angular/common';
 
 @Component({
-  selector: 'app-note-archive-wrapper',
-  templateUrl: './note-archive-wrapper.component.html',
-  styleUrl: './note-archive-wrapper.component.scss'
+    selector: 'app-note-archive-wrapper',
+    templateUrl: './note-archive-wrapper.component.html',
+    styleUrl: './note-archive-wrapper.component.scss'
 })
 export class NoteArchiveWrapperComponent implements OnDestroy, AfterViewInit {
-  destroy = new Subject<any>();
-  currentDialog: NgbModalRef;
-  dialogResult: any;
+    destroy = new Subject<any>();
+    currentDialog: NgbModalRef;
+    dialogResult: any;
 
-  constructor(
-    private dialogService: NgbModal,
-    public route: ActivatedRoute,
-    public location: Location,
-    public router: Router,
-    public ls: LocationStrategy
-  ) {}
+    constructor(
+        private dialogService: NgbModal,
+        public route: ActivatedRoute,
+        public location: Location,
+        public router: Router,
+        public ls: LocationStrategy
+    ) {}
 
-  ngAfterViewInit(): void {
-    const routeParams = this.route.params;
-    const routeData = this.route.data;
+    ngAfterViewInit(): void {
+        const routeParams = this.route.params;
+        const routeData = this.route.data;
 
-    zip(routeParams, routeData)
-      .pipe(takeUntil(this.destroy))
-      .subscribe((result) => {
-        this.currentDialog = this.dialogService.open(result[1]['component'], {
-          centered: true,
-          scrollable: false,
-          container: '#noteDialog',
-          size: 'xl'
-        });
-        // this.currentDialog.componentInstance.params = result[0];
-        // this.currentDialog.componentInstance.movieDetail = result[1]["movieDetail"];
-        // this.currentDialog.componentInstance.stateParams = window.history.state['data'];
+        zip(routeParams, routeData)
+            .pipe(takeUntil(this.destroy))
+            .subscribe((result) => {
+                this.currentDialog = this.dialogService.open(result[1]['component'], {
+                    centered: true,
+                    scrollable: false,
+                    container: '#noteDialog',
+                    size: 'xl'
+                });
+                // this.currentDialog.componentInstance.params = result[0];
+                // this.currentDialog.componentInstance.movieDetail = result[1]["movieDetail"];
+                // this.currentDialog.componentInstance.stateParams = window.history.state['data'];
 
-        this.dialogResult = this.currentDialog.result.then(
-          (result) => {
-            // console.log(result);
-            // console.log(this.route);
-            if (result !== -1) {
-              this.location.back();
-            }
-          },
-          () => {
-            this.location.back();
-          }
-        );
-      });
-  }
+                this.dialogResult = this.currentDialog.result.then(
+                    (result) => {
+                        // console.log(result);
+                        // console.log(this.route);
+                        if (result !== -1) {
+                            this.location.back();
+                        }
+                    },
+                    () => {
+                        this.location.back();
+                    }
+                );
+            });
+    }
 
-  ngOnDestroy() {
-    this.destroy.next(undefined);
-    this.currentDialog?.close(-1);
-    this.dialogResult = null;
-  }
+    ngOnDestroy() {
+        this.destroy.next(undefined);
+        this.currentDialog?.close(-1);
+        this.dialogResult = null;
+    }
 }

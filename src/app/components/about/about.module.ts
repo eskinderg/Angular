@@ -11,8 +11,8 @@ import { SharedModule } from '../shared/shared.module';
 import { NgaModule } from '../../fragments/nga.module';
 
 @NgModule({
-  imports: [CommonModule, AboutRoutingModule, SharedModule, NgaModule],
-  declarations: [AboutComponent, AboutUsComponent, ProfileComponent, FeatureComponent],
-  exports: [AboutComponent]
+    imports: [CommonModule, AboutRoutingModule, SharedModule, NgaModule],
+    declarations: [AboutComponent, AboutUsComponent, ProfileComponent, FeatureComponent],
+    exports: [AboutComponent]
 })
 export class AboutModule {}

@@ -9,23 +9,23 @@ import { LoggingService } from '../error/loggingservice';
 import { OAuthAppLogger } from './auth.logger';
 
 @NgModule({
-  imports: [OAuthModule.forRoot()],
-  providers: [
-    provideHttpClient(withInterceptors([AuthJWT])),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeAuth,
-      deps: [OAuthService, Store, ToastService, LoggingService],
-      multi: true
-    },
-    {
-      provide: OAuthStorage,
-      useValue: localStorage
-    },
-    {
-      provide: OAuthLogger,
-      useClass: OAuthAppLogger
-    }
-  ]
+    imports: [OAuthModule.forRoot()],
+    providers: [
+        provideHttpClient(withInterceptors([AuthJWT])),
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initializeAuth,
+            deps: [OAuthService, Store, ToastService, LoggingService],
+            multi: true
+        },
+        {
+            provide: OAuthStorage,
+            useValue: localStorage
+        },
+        {
+            provide: OAuthLogger,
+            useClass: OAuthAppLogger
+        }
+    ]
 })
 export class AuthModule {}

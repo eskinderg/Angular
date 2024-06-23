@@ -5,12 +5,12 @@ import { filter, first } from 'rxjs';
 
 @Injectable()
 export class NoteResolver {
-  constructor(private store: Store<fromNotes.INotesState>) {}
+    constructor(private store: Store<fromNotes.INotesState>) {}
 
-  resolve() {
-    return this.store.select(fromNotes.getNoteCurrentRoute).pipe(
-      filter((v) => v !== undefined),
-      first()
-    );
-  }
+    resolve() {
+        return this.store.select(fromNotes.getNoteCurrentRoute).pipe(
+            filter((v) => v !== undefined),
+            first()
+        );
+    }
 }

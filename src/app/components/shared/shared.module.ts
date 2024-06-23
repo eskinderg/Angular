@@ -21,26 +21,26 @@ import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOptio
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, ThemeOptionComponent],
-  declarations: [HeaderComponent, UserInfoComponent, FooterComponent, TruncatePipe, NoteTitleTruncatePipe],
-  exports: [
-    HeaderComponent,
-    UserInfoComponent,
-    FooterComponent,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    DragDropModule,
-    TruncatePipe,
-    NoteTitleTruncatePipe
-  ]
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, ThemeOptionComponent],
+    declarations: [HeaderComponent, UserInfoComponent, FooterComponent, TruncatePipe, NoteTitleTruncatePipe],
+    exports: [
+        HeaderComponent,
+        UserInfoComponent,
+        FooterComponent,
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        DragDropModule,
+        TruncatePipe,
+        NoteTitleTruncatePipe
+    ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders<SharedModule> {
-    return {
-      ngModule: SharedModule,
-      providers: [AuthService, AuthGuardService]
-    };
-  }
+    static forRoot(): ModuleWithProviders<SharedModule> {
+        return {
+            ngModule: SharedModule,
+            providers: [AuthService, AuthGuardService]
+        };
+    }
 }

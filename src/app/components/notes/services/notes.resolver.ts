@@ -6,13 +6,13 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class NotesResolver {
-  constructor() {}
-  resolve(): Note[] | Observable<Note[]> | Promise<Note[]> {
-    throw new Error('Method not implemented.');
-  }
+    constructor() {}
+    resolve(): Note[] | Observable<Note[]> | Promise<Note[]> {
+        throw new Error('Method not implemented.');
+    }
 
-  // resolve(route: ActivatedRouteSnapshot) {
-  //   return null;
-  //   // return this.notesApiService.getNotes();
-  // }
+    // resolve(route: ActivatedRouteSnapshot) {
+    //   return null;
+    //   // return this.notesApiService.getNotes();
+    // }
 }

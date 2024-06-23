@@ -22,29 +22,29 @@ import { EventsModule } from './components/events/events.module';
 import { HttpErrorInterceptor } from './error/http.error.interceptor';
 
 @NgModule({
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  imports: [
-    BrowserModule,
-    AuthModule,
-    UnauthorizedModule,
-    NgbdToastGlobalModule,
-    NotfoundModule,
-    AuthorizationModule,
-    BrowserAnimationsModule,
-    AppStoreModule,
-    NgaModule.forRoot(),
-    SharedModule.forRoot(),
-    NgbModule,
-    AppRoutingModule,
-    NotesModule,
-    EventsModule,
-    StoreRouterConnectingModule.forRoot({
-      serializer: AppRouterStateSerializer
-    })
-  ],
-  providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptors([HttpErrorInterceptor]))]
+    declarations: [AppComponent],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AuthModule,
+        UnauthorizedModule,
+        NgbdToastGlobalModule,
+        NotfoundModule,
+        AuthorizationModule,
+        BrowserAnimationsModule,
+        AppStoreModule,
+        NgaModule.forRoot(),
+        SharedModule.forRoot(),
+        NgbModule,
+        AppRoutingModule,
+        NotesModule,
+        EventsModule,
+        StoreRouterConnectingModule.forRoot({
+            serializer: AppRouterStateSerializer
+        })
+    ],
+    providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptors([HttpErrorInterceptor]))]
 })
 export class AppModule {
-  constructor() {}
+    constructor() {}
 }

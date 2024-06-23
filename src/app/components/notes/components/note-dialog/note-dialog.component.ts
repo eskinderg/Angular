@@ -5,33 +5,33 @@ import { NoteApiService } from '../../services/notes.api.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-note-detail-dialog',
-  templateUrl: './note-dialog.component.html',
-  styleUrl: './note-dialog.component.scss'
+    selector: 'app-note-detail-dialog',
+    templateUrl: './note-dialog.component.html',
+    styleUrl: './note-dialog.component.scss'
 })
 export class NoteDetailDialogComponent implements OnInit {
-  note: Note;
+    note: Note;
 
-  constructor(
-    public activeDialog: NgbActiveModal,
-    private notesApiService: NoteApiService,
-    public router: Router
-  ) {}
+    constructor(
+        public activeDialog: NgbActiveModal,
+        private notesApiService: NoteApiService,
+        public router: Router
+    ) {}
 
-  ngOnInit() {
-    this.note = history.state['note'];
-  }
+    ngOnInit() {
+        this.note = history.state['note'];
+    }
 
-  close() {
-    this.activeDialog.close();
-  }
+    close() {
+        this.activeDialog.close();
+    }
 
-  no() {
-    this.activeDialog.close();
-  }
+    no() {
+        this.activeDialog.close();
+    }
 
-  yes() {
-    this.notesApiService.deleteNote(this.note);
-    // this.activeDialog.close('/notes');
-  }
+    yes() {
+        this.notesApiService.deleteNote(this.note);
+        // this.activeDialog.close('/notes');
+    }
 }
