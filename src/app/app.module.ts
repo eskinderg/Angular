@@ -14,7 +14,7 @@ import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
 import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
-import { CustomSerializer } from './init/app.route.serilizer';
+import { AppRouterStateSerializer } from './init/app.route.serilizer';
 import { AppStoreModule } from './store/app.store.module';
 import { AuthModule } from './auth/auth.module';
 import { NotesModule } from './components/notes/notes.module';
@@ -40,7 +40,7 @@ import { HttpErrorInterceptor } from './error/http.error.interceptor';
     NotesModule,
     EventsModule,
     StoreRouterConnectingModule.forRoot({
-      serializer: CustomSerializer
+      serializer: AppRouterStateSerializer
     })
   ],
   providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptors([HttpErrorInterceptor]))]
