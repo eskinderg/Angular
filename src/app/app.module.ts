@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,7 @@ import { AppStoreModule } from './store/app.store.module';
 import { AuthModule } from './auth/auth.module';
 import { NotesModule } from './components/notes/notes.module';
 import { EventsModule } from './components/events/events.module';
+import { HttpErrorInterceptor } from './error/http.error.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +43,7 @@ import { EventsModule } from './components/events/events.module';
       serializer: CustomSerializer
     })
   ],
-  providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptorsFromDi())]
+  providers: [LoggingService, APP_INIT, provideHttpClient(withInterceptors([HttpErrorInterceptor]))]
 })
 export class AppModule {
   constructor() {}
