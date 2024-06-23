@@ -8,6 +8,7 @@ import { EventsComponent } from './events.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { EventDataService } from 'src/app/fragments/components/event/event.data.service/event.data.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     NgbModule
   ],
   exports: [],
-  declarations: [EventsComponent]
+  declarations: [EventsComponent],
+  providers: [EventDataService]
 })
 export class EventsModule {}

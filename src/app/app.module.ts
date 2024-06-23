@@ -20,6 +20,8 @@ import { AppStoreModule } from './store/app.store.module';
 import { AuthModule } from './auth/auth.module';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpErrorInterceptor } from './error/http.error.interceptor';
+import { NotesModule } from './components/notes/notes.module';
+import { EventsModule } from './components/events/events.module';
 
 @NgModule({
   imports: [
@@ -31,6 +33,8 @@ import { HttpErrorInterceptor } from './error/http.error.interceptor';
     AuthorizationModule,
     BrowserAnimationsModule,
     AppStoreModule,
+    NotesModule,
+    EventsModule,
     NgaModule.forRoot(),
     SharedModule.forRoot(),
     NgbModule,
@@ -40,13 +44,7 @@ import { HttpErrorInterceptor } from './error/http.error.interceptor';
     })
   ],
   declarations: [AppComponent],
-  providers: [
-    provideHttpClient(withInterceptors([HttpErrorInterceptor])),
-    NotesDataService,
-    EventDataService,
-    LoggingService,
-    APP_INIT
-  ],
+  providers: [provideHttpClient(withInterceptors([HttpErrorInterceptor])), LoggingService, APP_INIT],
   bootstrap: [AppComponent]
 })
 export class AppModule {
