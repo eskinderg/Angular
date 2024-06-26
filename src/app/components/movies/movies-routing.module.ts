@@ -26,6 +26,9 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
                     {
                         path: 'genres/:id/:name/:page',
                         component: MovieListViewComponent,
+                        data: {
+                            alwaysRefresh: true
+                        },
                         resolve: {
                             moviesResult: MoviesResultResolve
                         },
