@@ -36,7 +36,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     @Input() note: Note;
     subscription: Subscription | undefined;
 
-    textarea = viewChild.required<ElementRef>('textArea');
+    textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
 
     @Output() textAreaTextChanged = new EventEmitter(false);
     @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
@@ -48,7 +48,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     ) {}
 
     ngOnInit() {
-        this.subscription = fromEvent(this.textarea().nativeElement, 'input')
+        this.subscription = fromEvent(this.textAreaElementRef().nativeElement, 'input')
             .pipe(
                 filter(Boolean),
                 debounceTime(450),
@@ -56,7 +56,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
                 tap(() => {
                     this.textAreaTextChanged.emit({
                         ...this.note,
-                        text: this.textarea().nativeElement.innerHTML
+                        text: this.textAreaElementRef().nativeElement.innerHTML
                     } as Note);
                 })
             )
@@ -88,7 +88,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
             (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
         ) {
             setTimeout(() => {
-                this.txtSelection.doRestore(this.note.selection, this.textarea().nativeElement);
+                this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
             }, 100);
         }
     }

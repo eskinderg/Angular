@@ -14,8 +14,8 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteComponent {
-    textarea = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
-    nnoteHeaderControl = viewChild.required<NoteHeaderControlComponent>('noteHeader');
+    textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
+    noteHeaderControlComponent = viewChild.required<NoteHeaderControlComponent>('noteHeader');
 
     @Input() note: Note;
 

@@ -53,7 +53,7 @@ export class NotesComponent {
 
     toggleSpellCheck(note: Note) {
         this.notesApiService.toggleSpellCheck(note);
-        this.appNoteComponent().textarea().textarea().nativeElement.focus();
+        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
     }
 
     createNewNote() {
