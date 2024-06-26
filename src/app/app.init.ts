@@ -3,12 +3,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { LoggingService } from './error/loggingservice';
 import { ToastService } from './shared/toast/toast.service';
-import { initializePreference } from './init/app.init.preference';
 import { bootstrapAppRouteFactory } from './init/app.init.route';
 import { initializeToast } from './init/app.init.toast';
 import { GlobalErrorHandler } from './error/errorhandle';
 import { AppRouteReuseStrategy } from './init/app.init.routeStrategy';
-import { ThemeService } from './shared/theme.service';
 
 export const APP_INIT: Provider[] = [
     {
@@ -22,12 +20,6 @@ export const APP_INIT: Provider[] = [
     {
         provide: ErrorHandler,
         useClass: GlobalErrorHandler
-    },
-    {
-        provide: APP_INITIALIZER,
-        useFactory: initializePreference,
-        deps: [ThemeService],
-        multi: true
     },
     {
         provide: APP_INITIALIZER,

@@ -20,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
 import { NotesModule } from './components/notes/notes.module';
 import { EventsModule } from './components/events/events.module';
 import { HttpErrorInterceptor } from './error/http.error.interceptor';
+import { ThemeModule } from './theme/theme.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -37,6 +38,7 @@ import { HttpErrorInterceptor } from './error/http.error.interceptor';
         SharedModule.forRoot(),
         NgbModule,
         AppRoutingModule,
+        ThemeModule,
         NotesModule,
         EventsModule,
         StoreRouterConnectingModule.forRoot({

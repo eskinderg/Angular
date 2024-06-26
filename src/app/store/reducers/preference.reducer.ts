@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as PreferenceActions from '../actions/preference.action';
-import { ThemeService } from '../../shared/theme.service';
+import { ThemeService } from '../../theme/theme.service';
 
 export interface IPreferenceState {
     isDarkMode: boolean;
