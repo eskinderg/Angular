@@ -5,11 +5,11 @@ import { MovieResults } from '../models/movie-results';
 import { ConfirmService } from 'src/app/fragments/components/dialog';
 
 @Component({
-    selector: 'app-genres',
-    templateUrl: 'genre.component.html',
-    styleUrls: ['genre.component.scss']
+    selector: 'app-movie-view',
+    templateUrl: 'movie-view.component.html',
+    styleUrls: ['movie-view.component.scss']
 })
-export class GenreComponent implements OnDestroy, OnInit {
+export class MovieListViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
     routeSubscription: Subscription | undefined;
 

@@ -12,7 +12,7 @@ import { NgaModule } from '../../fragments/nga.module';
 
 import { GenreListItemComponent } from './components/genre-list/genre-list-item/genre-list-item.component';
 import { GenreListComponent } from './components/genre-list/genre-list.component';
-import { GenreComponent } from './genres/genre.component';
+import { MovieListViewComponent } from './movieView/movie-view.component';
 import { MovieCardComponent } from './components/movie.card/movie.card.component';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
@@ -36,7 +36,7 @@ import { MovieDetailDialogComponent } from './movie-dialog/movie-dialog.componen
         MoviesComponent,
         GenreListItemComponent,
         GenreListComponent,
-        GenreComponent,
+        MovieListViewComponent,
         SearchComponent,
         MovieCardComponent,
         MovieDetailComponent,

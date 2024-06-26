@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 // import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
 import { MoviesComponent } from './movies.component';
-import { GenreComponent } from './genres/genre.component';
+import { MovieListViewComponent } from './movieView/movie-view.component';
 import { GenreResolve } from './movies.service/genres.resolve';
 import { SearchComponent } from './search/search.component';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
@@ -25,7 +25,7 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
                     },
                     {
                         path: 'genres/:id/:name/:page',
-                        component: GenreComponent,
+                        component: MovieListViewComponent,
                         resolve: {
                             moviesResult: MoviesResultResolve
                         },
@@ -44,7 +44,7 @@ import { MovieDialogWrapperComponent } from './movie-dialog/movie-dialog-wrapper
                     },
                     {
                         path: 'genres/:id/:name',
-                        component: GenreComponent,
+                        component: MovieListViewComponent,
                         resolve: {
                             moviesResult: MoviesResultResolve
                         },
