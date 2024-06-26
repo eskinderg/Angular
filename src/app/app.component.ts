@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, viewChild } from '@angular/core';
 import { AppLoadingComponent } from './fragments/components/appLoading/appLoading.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { AppLoadingComponent } from './fragments/components/appLoading/appLoadin
 })
 export class AppComponent {
     public appVersion: string;
-    @ViewChild(AppLoadingComponent) appLoadingComponent: AppLoadingComponent;
+    appLoadingComponent = viewChild.required<AppLoadingComponent>('appLoading');
 
     constructor() {}
 }

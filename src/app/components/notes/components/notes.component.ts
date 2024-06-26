@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, viewChild } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -15,7 +15,7 @@ import * as fromNotes from 'src/app/store/reducers/note.reducer';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotesComponent {
-    @ViewChild(NoteComponent) appNoteComponent: NoteComponent;
+    appNoteComponent = viewChild.required<NoteComponent>('appNote');
 
     constructor(
         public notesApiService: NoteApiService,
@@ -53,7 +53,7 @@ export class NotesComponent {
 
     toggleSpellCheck(note: Note) {
         this.notesApiService.toggleSpellCheck(note);
-        this.appNoteComponent.textarea.textarea.nativeElement.focus();
+        this.appNoteComponent().textarea().textarea().nativeElement.focus();
     }
 
     createNewNote() {

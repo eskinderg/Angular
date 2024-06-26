@@ -16,7 +16,6 @@ import { Note } from '../../../models/note';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteTextComponent implements ControlValueAccessor {
-    // @ViewChild('textarea', { static: true }) private textarea: ElementRef;
     @Input() note: Note;
     textData: string;
 

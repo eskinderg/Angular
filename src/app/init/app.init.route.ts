@@ -26,13 +26,13 @@ export function bootstrapAppRouteFactory(
 function _navigationInterceptor(event: RouterEvent, appComponent: AppComponent): void {
     switch (event.constructor) {
         case NavigationEnd:
-            appComponent.appLoadingComponent.loading = false;
+            appComponent.appLoadingComponent().loading = false;
             break;
 
         case NavigationError:
         case NavigationCancel:
         case NavigationStart:
-            appComponent.appLoadingComponent.loading = true;
+            appComponent.appLoadingComponent().loading = true;
             break;
 
         default:

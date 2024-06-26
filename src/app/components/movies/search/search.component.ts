@@ -5,7 +5,7 @@ import {
     ElementRef,
     OnDestroy,
     OnInit,
-    ViewChild
+    viewChild
 } from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
@@ -19,7 +19,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['search.component.scss']
 })
 export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
-    @ViewChild('searchInput') input: ElementRef;
+    input = viewChild.required<ElementRef>('searchInput');
 
     movies: Observable<never>;
     model: Movie[];
@@ -37,13 +37,13 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
     ) {}
 
     ngAfterViewInit() {
-        this.searchSubscription$ = fromEvent(this.input.nativeElement, 'keyup')
+        this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')
             .pipe(
                 filter(Boolean),
                 debounceTime(450),
                 distinctUntilChanged(),
                 tap(() => {
-                    this.onSearch(this.input.nativeElement.value);
+                    this.onSearch(this.input().nativeElement.value);
                 })
             )
             .subscribe();

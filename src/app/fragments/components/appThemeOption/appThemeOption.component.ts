@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, viewChild } from '@angular/core';
 
 @Component({
     selector: 'app-theme-option',
@@ -9,13 +9,13 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@
     imports: [CommonModule]
 })
 export class ThemeOptionComponent {
+    toggleOption = viewChild.required<ElementRef>('toggleOption');
     @Input() darkMode: boolean;
-    @ViewChild('toggleOption') toggleOption: ElementRef;
     @Output() themeToggleDark: EventEmitter<boolean> = new EventEmitter();
     @Input() label: string;
 
     toggle() {
-        (this.toggleOption.nativeElement as HTMLInputElement).blur();
+        (this.toggleOption().nativeElement as HTMLInputElement).blur();
         this.themeToggleDark.emit();
     }
 }

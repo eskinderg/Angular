@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnChanges, ElementRef, Input, ViewEncapsulation, viewChild } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -8,7 +8,7 @@ import * as d3 from 'd3';
     encapsulation: ViewEncapsulation.None
 })
 export class BarchartComponent implements OnInit, OnChanges {
-    @ViewChild('chart', { static: true }) private chartContainer: ElementRef;
+    chartContainer = viewChild.required<ElementRef>('chart');
 
     @Input() private data: Array<any> = this.generateSampleData();
 
@@ -49,7 +49,7 @@ export class BarchartComponent implements OnInit, OnChanges {
     }
 
     createChart() {
-        const element = this.chartContainer.nativeElement;
+        const element = this.chartContainer().nativeElement;
         this.width = element.offsetWidth - this.margin.left - this.margin.right;
         this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
         const svg = d3

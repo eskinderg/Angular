@@ -66,6 +66,7 @@
         <div class="note-outlet">
             @if (OpendNote | async) {
                 <app-note
+                    #appNote
                     (archiveNote)="onArchiveNote($event)"
                     (changeNoteText)="onChangeNoteText($event)"
                     (updateNoteColour)="updateNoteColour($event)"

@@ -5,13 +5,13 @@ import {
     EventEmitter,
     ElementRef,
     forwardRef,
-    ViewChild,
     ChangeDetectionStrategy,
     OnDestroy,
     HostListener,
     Input,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    viewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -36,7 +36,8 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     @Input() note: Note;
     subscription: Subscription | undefined;
 
-    @ViewChild('textarea', { static: true }) public textarea: ElementRef;
+    textarea = viewChild.required<ElementRef>('textArea');
+
     @Output() textAreaTextChanged = new EventEmitter(false);
     @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
     @Output() textAreaSelectionChange = new EventEmitter<Note>(false);
@@ -47,7 +48,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     ) {}
 
     ngOnInit() {
-        this.subscription = fromEvent(this.textarea.nativeElement, 'input')
+        this.subscription = fromEvent(this.textarea().nativeElement, 'input')
             .pipe(
                 filter(Boolean),
                 debounceTime(450),
@@ -55,7 +56,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
                 tap(() => {
                     this.textAreaTextChanged.emit({
                         ...this.note,
-                        text: this.textarea.nativeElement.innerHTML
+                        text: this.textarea().nativeElement.innerHTML
                     } as Note);
                 })
             )
@@ -87,7 +88,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
             (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
         ) {
             setTimeout(() => {
-                this.txtSelection.doRestore(this.note.selection, this.textarea.nativeElement);
+                this.txtSelection.doRestore(this.note.selection, this.textarea().nativeElement);
             }, 100);
         }
     }

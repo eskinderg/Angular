@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, viewChild } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { TextareaExpandedComponent } from 'src/app/fragments/components/textAreaExpanded/textAreaExpanded.component';
 import * as fromNotes from '../../../../store/reducers/note.reducer';
@@ -14,8 +14,8 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteComponent {
-    @ViewChild(TextareaExpandedComponent) textarea: TextareaExpandedComponent;
-    @ViewChild(NoteHeaderControlComponent) nnoteHeaderControl: NoteHeaderControlComponent;
+    textarea = viewChild.required<TextareaExpandedComponent>('textArea');
+    nnoteHeaderControl = viewChild.required<NoteHeaderControlComponent>('noteHeader');
 
     @Input() note: Note;
 

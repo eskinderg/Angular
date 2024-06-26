@@ -1,4 +1,4 @@
-import { Component, ViewChild, HostListener, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, HostListener, Input, ElementRef, AfterViewInit, viewChild } from '@angular/core';
 import * as jQuery from 'jquery';
 
 @Component({
@@ -11,7 +11,7 @@ export class BaBackTopComponent implements AfterViewInit {
     @Input() showSpeed = 500;
     @Input() moveSpeed = 1000;
 
-    @ViewChild('baBackTop', { static: true }) _selector: ElementRef | undefined;
+    _selector = viewChild.required<ElementRef>('baBackTop');
 
     ngAfterViewInit(): void {
         this._onWindowScroll();
@@ -25,7 +25,7 @@ export class BaBackTopComponent implements AfterViewInit {
 
     @HostListener('window:scroll')
     _onWindowScroll(): void {
-        const el = this._selector.nativeElement;
+        const el = this._selector().nativeElement;
         window.scrollY > this.position
             ? jQuery(el).fadeIn(this.showSpeed)
             : jQuery(el).fadeOut(this.showSpeed);
