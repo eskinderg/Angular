@@ -8,7 +8,10 @@
 <div class="note-background" [ngClass]="note.colour + '-note'">
     <div class="note-menu">
         <div class="note-header">
-            <app-note-header-control [note]="note" (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)">
+            <app-note-header-control
+                #noteHeader
+                [note]="note"
+                (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)">
             </app-note-header-control>
         </div>
         <!-- <div class="note-header"></div> -->
@@ -83,7 +86,7 @@
     @if (note) {
         <app-textarea-expanded
             [note]="note"
-            #notediv
+            #textAreaExpanded
             (textAreaSelectionChange)="selectionChange($event)"
             (textAreaTextChanged)="handleNoteTextUpdate($event)"
             (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)">
