@@ -1,20 +1,20 @@
-<div (click)="close($event)" id="backDrop">
+<div [tabIndex]="0" (click)="close($event)" id="backDrop">
     <div id="scrollWrapper">
         <button
             type="button"
             id="modalClose"
             class="btn-close"
-            style="
-                opacity: 0.5;
-                background: var(--bs-secondary) var(--bs-btn-close-bg) center/1em auto no-repeat;
-            "
             aria-label="Close"
             (click)="close($event)"></button>
         <div class="card" style="">
             <div class="container p-0 pe-5">
                 <div class="row">
                     <div class="col-sm-8">
-                        <img class="card-img-top fade-in" [src]="movieDetail.get_poster_path_w780()" />
+                        <img
+                            class="card-img-top fade-in"
+                            [src]="imageLoading ? imageLoadingUrl : imageUrl"
+                            (load)="onImageLoaded()"
+                            (error)="handleEmptyImage()" />
                     </div>
                     <div class="col-sm-4">
                         <div class="card-body">

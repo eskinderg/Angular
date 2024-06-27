@@ -41,10 +41,9 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
 
     onClick(movie: Movie) {
         this.apiSubscription = this.movieApiService.getMovie(movie.id.toString()).subscribe((md) => {
-            const comp = this.viewContainer.createComponent(MovieModalComponent);
-            comp.instance.movieDetail = md;
-            comp.instance.movieRating = parseFloat(comp.instance.movieDetail.vote_average);
-            comp.instance.movieRating = (5 * comp.instance.movieRating) / 10;
+            this.viewContainer.clear();
+            const comp = this.viewContainer.createComponent(MovieModalComponent).instance;
+            comp.movieDetail = md;
         });
     }
 
