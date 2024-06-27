@@ -18,6 +18,8 @@
         <div class="menu-icons">
             <div
                 class="spell-check"
+                ngbTooltip="Toggle Spell Check"
+                placement="left"
                 [ngClass]="{ 'spell-check-active': note.spellCheck }"
                 (click)="spellCheckToggle(note)">
                 <svg

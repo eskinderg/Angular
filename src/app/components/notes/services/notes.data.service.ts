@@ -5,33 +5,35 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Note } from '../../../models/note';
 
-const API_ROOT = environment.NOTES_API;
+const NOTES_API_URL = environment.NOTES_API_URL;
 
 @Injectable()
 export class NotesDataService {
     constructor(public http: HttpClient) {}
 
     getNotes(): Observable<Note[]> {
-        return this.http.get<Note[]>(API_ROOT);
+        return this.http.get<Note[]>(NOTES_API_URL);
     }
 
     getNote(id: number) {
-        return this.http.get<Note>(API_ROOT + id);
+        return this.http.get<Note>(NOTES_API_URL + id);
     }
 
     addNote(note: Note): Observable<Note> {
-        return this.http.post<Note>(API_ROOT, note);
+        return this.http.post<Note>(NOTES_API_URL, note);
     }
 
     deleteNote(note: Note): Observable<Note> {
-        return this.http.delete(API_ROOT + note.id).pipe(map((_response) => new Note(_response)));
+        return this.http.delete(NOTES_API_URL + note.id).pipe(map((_response) => new Note(_response)));
     }
 
     addOrUpdateNote(note: Note): Observable<Note> {
-        return this.http.post(API_ROOT, JSON.stringify(note)).pipe(map((response) => new Note(response)));
+        return this.http
+            .post(NOTES_API_URL, JSON.stringify(note))
+            .pipe(map((response) => new Note(response)));
     }
 
     updateNote(note: Note): Observable<Note> {
-        return this.http.put(API_ROOT, note).pipe(map((response) => new Note(response)));
+        return this.http.put(NOTES_API_URL, note).pipe(map((response) => new Note(response)));
     }
 }

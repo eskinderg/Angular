@@ -6,7 +6,7 @@ export const AuthJWT: HttpInterceptorFn = (
     request: HttpRequest<any>,
     next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
-    if (request.url.includes(environment.API)) {
+    if (request.url.includes(environment.API_URL)) {
         request = request.clone({
             setHeaders: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`
