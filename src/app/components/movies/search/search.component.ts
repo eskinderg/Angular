@@ -1,9 +1,18 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    OnDestroy,
+    ViewContainerRef,
+    viewChild
+} from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MovieModalComponent } from '../movieView/movie-modal/movie-modal.component';
 
 @Component({
     selector: 'app-search',
@@ -20,12 +29,14 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     searchTerm: string = '';
     movieResult: MovieResults;
     searchSubscription$: Subscription | undefined;
+    apiSubscription: Subscription;
 
     constructor(
         public route: Router,
         public router: ActivatedRoute,
         private _moviesServices: MoviesApiService,
-        private cdr: ChangeDetectorRef
+        private cdr: ChangeDetectorRef,
+        public viewContainer: ViewContainerRef
     ) {}
 
     ngAfterViewInit() {
@@ -39,6 +50,15 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
                 })
             )
             .subscribe();
+    }
+
+    onClick(movie: Movie) {
+        this.apiSubscription = this._moviesServices.getMovie(movie.id.toString()).subscribe((md) => {
+            const comp = this.viewContainer.createComponent(MovieModalComponent);
+            comp.instance.movieDetail = md;
+            comp.instance.movieRating = parseFloat(comp.instance.movieDetail.vote_average);
+            comp.instance.movieRating = (5 * comp.instance.movieRating) / 10;
+        });
     }
 
     // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
@@ -102,7 +122,8 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     // }
 
     ngOnDestroy() {
-        this.searchSubscription$.unsubscribe();
+        this.apiSubscription?.unsubscribe();
+        this.searchSubscription$?.unsubscribe();
     }
 
     // btnSearch(value: string) {

@@ -1,0 +1,72 @@
+.card-img-top {
+    --bs-card-inner-border-radius: 0px;
+    // border-radius:0px;
+}
+
+#backDrop {
+    height: 100%;
+    // border: 10px solid yellow;
+}
+#scrollWrapper {
+    position: fixed;
+    // border: 10px solid green;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 80%;
+    width: 60%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bs-body-bg);
+    outline: 10px solid var(--border);
+    // box-shadow: 9px 10px 13px 0px var(--b-active-list-link-border-color);
+    box-shadow: 5px 20px 19px -8px var(--bs-primary);
+}
+
+.btn-close-top {
+    position: absolute;
+    right: 10px;
+}
+
+.list-group-item > a {
+    text-decoration: none;
+}
+
+.btn-close {
+    margin: 1rem;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+}
+
+:host {
+    border: 1px solid var(--border);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    display: block;
+    // border: 10px solid red;
+}
+
+#scrollWrapper::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-color);
+}
+
+#scrollWrapper::-webkit-scrollbar {
+    width: 1rem;
+}
+
+#scrollWrapper::-webkit-scrollbar-button {
+    position: absolute;
+    display: none;
+}
+
+#scrollWrapper::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 0.5rem;
+}

@@ -1,8 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
-import { ConfirmService } from 'src/app/fragments/components/dialog';
+import { Movie } from '../models/movie';
+import { MovieModalComponent } from './movie-modal/movie-modal.component';
+import { MoviesApiService } from '../movies.service/movies.api.service';
 
 @Component({
     selector: 'app-movie-view',
@@ -11,12 +13,14 @@ import { ConfirmService } from 'src/app/fragments/components/dialog';
 })
 export class MovieListViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
-    routeSubscription: Subscription | undefined;
+    routeSubscription: Subscription;
+    apiSubscription: Subscription;
 
     constructor(
         public router: ActivatedRoute,
         public route: Router,
-        public dialog: ConfirmService
+        public viewContainer: ViewContainerRef,
+        public movieApiService: MoviesApiService
     ) {}
 
     ngOnInit() {
@@ -35,7 +39,17 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
         else return 375 * 20;
     }
 
+    onClick(movie: Movie) {
+        this.apiSubscription = this.movieApiService.getMovie(movie.id.toString()).subscribe((md) => {
+            const comp = this.viewContainer.createComponent(MovieModalComponent);
+            comp.instance.movieDetail = md;
+            comp.instance.movieRating = parseFloat(comp.instance.movieDetail.vote_average);
+            comp.instance.movieRating = (5 * comp.instance.movieRating) / 10;
+        });
+    }
+
     ngOnDestroy() {
         this.routeSubscription?.unsubscribe();
+        this.apiSubscription?.unsubscribe();
     }
 }

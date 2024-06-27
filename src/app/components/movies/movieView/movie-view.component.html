@@ -13,7 +13,8 @@
 <div class="movie-cards-container">
     @for (movie of movieResult.movies; track movie) {
         <div>
-            <app-movie-card [movie]="movie" [routerLink]="[route.url, 'dialog', movie.id]"></app-movie-card>
+            <!-- <app-movie-card [movie]="movie" [routerLink]="[route.url, 'dialog', movie.id]"></app-movie-card> -->
+            <app-movie-card [movie]="movie" (click)=(onClick(movie))></app-movie-card>
         </div>
     }
 </div>
@@ -25,3 +26,4 @@
     [collectionSize]="collectionSize"></ngb-pagination>
 
 <router-outlet></router-outlet>
+
