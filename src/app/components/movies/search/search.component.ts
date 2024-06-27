@@ -1,12 +1,4 @@
-import {
-    AfterViewInit,
-    ChangeDetectorRef,
-    Component,
-    ElementRef,
-    OnDestroy,
-    OnInit,
-    viewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
 import { MoviesApiService } from '../movies.service/movies.api.service';
 import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Movie } from '../models/movie';
@@ -18,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss']
 })
-export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
+export class SearchComponent implements OnDestroy, AfterViewInit {
     input = viewChild.required<ElementRef>('searchInput');
 
     movies: Observable<never>;
@@ -97,17 +89,17 @@ export class SearchComponent implements OnDestroy, OnInit, AfterViewInit {
         });
     }
 
-    ngOnInit() {
-        console.log(this.router.snapshot);
-        // this.movies = this.term.valueChanges
-        //   .debounceTime(400)
-        //   .distinctUntilChanged()
-        //   .switchMap(term => this._moviesServices.serachMovies(term))
-        //   .map(res => {
-        //     const movies = res.results;
-        //     return movies.map((movie: Movie) => new Movie(movie));
-        //   });
-    }
+    // ngOnInit() {
+    //     console.log(this.router.snapshot);
+    //     this.movies = this.term.valueChanges
+    //       .debounceTime(400)
+    //       .distinctUntilChanged()
+    //       .switchMap(term => this._moviesServices.serachMovies(term))
+    //       .map(res => {
+    //         const movies = res.results;
+    //         return movies.map((movie: Movie) => new Movie(movie));
+    //       });
+    // }
 
     ngOnDestroy() {
         this.searchSubscription$.unsubscribe();
