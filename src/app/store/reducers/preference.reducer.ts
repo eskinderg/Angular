@@ -3,12 +3,12 @@ import * as PreferenceActions from '../actions/preference.action';
 import { ThemeService } from '../../theme/theme.service';
 
 export interface IPreferenceState {
-    isDarkMode: boolean;
+    isDarkMode: string;
     isLoggedIn: boolean;
 }
 
 export const initialState: IPreferenceState = {
-    isDarkMode: localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode,
+    isDarkMode: localStorage.getItem('darkmode') ?? String(ThemeService.isDarkMode),
     isLoggedIn: false
 };
 
@@ -18,7 +18,7 @@ export const profileReducer = createReducer<IPreferenceState>(
         PreferenceActions.toggleDarkModeSuccess,
         (state): IPreferenceState => ({
             ...state,
-            isDarkMode: !state.isDarkMode
+            isDarkMode: String(!JSON.parse(state.isDarkMode))
         })
     ),
     on(

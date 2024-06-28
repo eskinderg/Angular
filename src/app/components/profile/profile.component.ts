@@ -18,7 +18,7 @@ export class ProfileComponent {
     public x: number;
     public y: number;
     public user: any;
-    isDarkMode: Observable<boolean>;
+    isDarkMode: Observable<string>;
 
     constructor(
         private authService: OAuthService,

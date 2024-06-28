@@ -36,8 +36,8 @@ export class MovieModalComponent implements OnInit, OnDestroy {
 
     close(event: any) {
         if (
-            (event.srcElement as HTMLElement).id == 'backDrop' ||
-            (event.srcElement as HTMLElement).id == 'footerClose' ||
+            (event.srcElement as HTMLElement).id === 'backDrop' ||
+            (event.srcElement as HTMLElement).id === 'footerClose' ||
             (event.srcElement as HTMLElement).id === 'modalClose'
         ) {
             this.host.nativeElement.remove();

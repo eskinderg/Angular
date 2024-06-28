@@ -9,12 +9,12 @@ export class ThemeService {
 
     private style: HTMLLinkElement;
 
-    public get DarkMode(): boolean {
-        return localStorage.getItem('darkmode') === 'true' || ThemeService.isDarkMode;
+    public get DarkMode(): string {
+        return localStorage.getItem('darkmode') ?? String(ThemeService.isDarkMode);
     }
 
-    public set DarkMode(value: boolean) {
-        localStorage.setItem('darkmode', value.toString());
+    public set DarkMode(value: string) {
+        localStorage.setItem('darkmode', value);
         this.style.href = this.getStyleName(this.DarkMode);
     }
 
@@ -24,13 +24,13 @@ export class ThemeService {
         this.style.type = 'text/css';
     }
 
-    private getStyleName(isDarkMode: boolean): string {
-        return isDarkMode ? 'dark.css' : 'light.css';
+    private getStyleName(isDarkMode: string): string {
+        return JSON.parse(isDarkMode) ? 'dark.css' : 'light.css';
     }
 
-    public toggleDarkMode(): boolean {
-        this.style.href = this.getStyleName(!this.DarkMode);
-        localStorage.setItem('darkmode', (!this.DarkMode).toString());
+    public toggleDarkMode(): string {
+        this.style.href = this.getStyleName(String(!JSON.parse(this.DarkMode)));
+        localStorage.setItem('darkmode', String(!JSON.parse(this.DarkMode)));
         return this.DarkMode;
     }
 

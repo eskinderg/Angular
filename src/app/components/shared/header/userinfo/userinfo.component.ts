@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
@@ -15,15 +14,16 @@ import * as ProfileActions from '../../../../store/actions/preference.action';
 export class UserInfoComponent {
     claims: any;
     name: any;
-    isDarkMode: Observable<boolean>;
 
     @Output() signout: EventEmitter<any> = new EventEmitter();
 
     constructor(
         private oauthService: OAuthService,
         public store: Store<fromProfile.IPreferenceState>
-    ) {
-        this.isDarkMode = this.store.select(fromProfile.isDarkMode);
+    ) {}
+
+    get DarkMode() {
+        return this.store.select(fromProfile.isDarkMode);
     }
 
     login() {
