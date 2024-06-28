@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
@@ -15,11 +15,12 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
     routeSubscription: Subscription;
     apiSubscription: Subscription;
+    movieModalComponent: ComponentRef<MovieModalComponent>;
 
     constructor(
+        public viewContainer: ViewContainerRef,
         public router: ActivatedRoute,
         public route: Router,
-        public viewContainer: ViewContainerRef,
         public movieApiService: MoviesApiService
     ) {}
 
@@ -42,13 +43,17 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
     onClick(movie: Movie) {
         this.apiSubscription = this.movieApiService.getMovie(movie.id.toString()).subscribe((md) => {
             this.viewContainer.clear();
-            const comp = this.viewContainer.createComponent(MovieModalComponent).instance;
-            comp.movieDetail = md;
+            this.movieModalComponent = this.viewContainer.createComponent(MovieModalComponent);
+            this.movieModalComponent.instance.movieDetail = md;
         });
     }
 
     ngOnDestroy() {
         this.routeSubscription?.unsubscribe();
         this.apiSubscription?.unsubscribe();
+
+        if (this.movieModalComponent) {
+            this.movieModalComponent.destroy();
+        }
     }
 }

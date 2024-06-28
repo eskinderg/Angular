@@ -13,9 +13,9 @@ export class MovieModalComponent implements OnInit, OnDestroy {
 
     imageLoading: boolean = true;
     imageUrl: string = '';
-    imageLoadingUrl: string = '';
-    noImageUrl: string = '';
     apiSubscription: Subscription;
+    imageLoadingUrl: string = '/assets/images/placeholder.gif';
+    noImageUrl: string = '/assets/images/placeholder.png';
 
     constructor(
         private host: ElementRef<HTMLElement>,
@@ -27,11 +27,9 @@ export class MovieModalComponent implements OnInit, OnDestroy {
             this.close(event);
         });
 
+        this.imageUrl = this.movieDetail.get_poster_path_w780();
         this.movieRating = parseFloat(this.movieDetail.vote_average);
         this.movieRating = (5 * this.movieRating) / 10;
-        this.imageUrl = this.movieDetail.get_poster_path_w780();
-        this.imageLoadingUrl = '/assets/images/placeholder.gif';
-        this.noImageUrl = '/assets/images/placeholder.png';
     }
 
     close(event: any) {

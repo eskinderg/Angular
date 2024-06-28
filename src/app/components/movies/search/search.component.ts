@@ -2,6 +2,7 @@ import {
     AfterViewInit,
     ChangeDetectorRef,
     Component,
+    ComponentRef,
     ElementRef,
     OnDestroy,
     ViewContainerRef,
@@ -30,13 +31,14 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieResult: MovieResults;
     searchSubscription$: Subscription | undefined;
     apiSubscription: Subscription;
+    movieModalComponent: ComponentRef<MovieModalComponent>;
 
     constructor(
+        public viewContainer: ViewContainerRef,
         public route: Router,
         public router: ActivatedRoute,
         private _moviesServices: MoviesApiService,
-        private cdr: ChangeDetectorRef,
-        public viewContainer: ViewContainerRef
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngAfterViewInit() {
@@ -54,10 +56,9 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
 
     onClick(movie: Movie) {
         this.apiSubscription = this._moviesServices.getMovie(movie.id.toString()).subscribe((md) => {
-            const comp = this.viewContainer.createComponent(MovieModalComponent);
-            comp.instance.movieDetail = md;
-            comp.instance.movieRating = parseFloat(comp.instance.movieDetail.vote_average);
-            comp.instance.movieRating = (5 * comp.instance.movieRating) / 10;
+            this.viewContainer.clear();
+            this.movieModalComponent = this.viewContainer.createComponent(MovieModalComponent);
+            this.movieModalComponent.instance.movieDetail = md;
         });
     }
 
@@ -124,6 +125,10 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     ngOnDestroy() {
         this.apiSubscription?.unsubscribe();
         this.searchSubscription$?.unsubscribe();
+
+        if (this.movieModalComponent) {
+            this.movieModalComponent.destroy();
+        }
     }
 
     // btnSearch(value: string) {
