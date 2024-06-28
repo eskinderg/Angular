@@ -1,11 +1,13 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
+import { FadeInOut } from './animation';
 
 @Component({
     selector: 'app-movie-modal',
     templateUrl: './movie-modal.component.html',
-    styleUrl: './movie-modal.component.scss'
+    styleUrl: './movie-modal.component.scss',
+    animations: [FadeInOut(1000, 1000, true)]
 })
 export class MovieModalComponent implements OnInit, OnDestroy {
     public movieDetail: Movie;

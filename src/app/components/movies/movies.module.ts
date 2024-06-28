@@ -20,6 +20,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie.detail.com
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { MovieModalComponent } from './movieView/movie-modal/movie-modal.component';
+import { MovieModalService } from './movieView/movieModalService/movie.modal.service';
 
 @NgModule({
     imports: [
@@ -42,6 +43,6 @@ import { MovieModalComponent } from './movieView/movie-modal/movie-modal.compone
         MovieModalComponent
     ],
     exports: [MoviesComponent],
-    providers: [MoviesApiService, MoviesDataService]
+    providers: [MovieModalService, MoviesApiService, MoviesDataService]
 })
 export class MoviesModule {}

@@ -14,6 +14,7 @@ import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieModalComponent } from '../movieView/movie-modal/movie-modal.component';
+import { MovieModalService } from '../movieView/movieModalService/movie.modal.service';
 
 @Component({
     selector: 'app-search',
@@ -35,6 +36,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
 
     constructor(
         public viewContainer: ViewContainerRef,
+        public movieModalService: MovieModalService,
         public route: Router,
         public router: ActivatedRoute,
         private _moviesServices: MoviesApiService,
@@ -55,11 +57,9 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     }
 
     onClick(movie: Movie) {
-        this.apiSubscription = this._moviesServices.getMovie(movie.id.toString()).subscribe((md) => {
-            this.viewContainer.clear();
-            this.movieModalComponent = this.viewContainer.createComponent(MovieModalComponent);
-            this.movieModalComponent.instance.movieDetail = md;
-        });
+        this.movieModalService.setMovieId(movie.id.toString());
+        this.movieModalService.setViewContainer(this.viewContainer);
+        this.movieModalService.showDialog();
     }
 
     // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
@@ -123,12 +123,8 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     // }
 
     ngOnDestroy() {
-        this.apiSubscription?.unsubscribe();
         this.searchSubscription$?.unsubscribe();
-
-        if (this.movieModalComponent) {
-            this.movieModalComponent.destroy();
-        }
+        this.movieModalService.destroy();
     }
 
     // btnSearch(value: string) {

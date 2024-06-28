@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieModalComponent } from './movie-modal/movie-modal.component';
-import { MoviesApiService } from '../movies.service/movies.api.service';
+import { MovieModalService } from './movieModalService/movie.modal.service';
 
 @Component({
     selector: 'app-movie-view',
@@ -21,7 +21,7 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
         public viewContainer: ViewContainerRef,
         public router: ActivatedRoute,
         public route: Router,
-        public movieApiService: MoviesApiService
+        public movieModalService: MovieModalService
     ) {}
 
     ngOnInit() {
@@ -41,19 +41,13 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
     }
 
     onClick(movie: Movie) {
-        this.apiSubscription = this.movieApiService.getMovie(movie.id.toString()).subscribe((md) => {
-            this.viewContainer.clear();
-            this.movieModalComponent = this.viewContainer.createComponent(MovieModalComponent);
-            this.movieModalComponent.instance.movieDetail = md;
-        });
+        this.movieModalService.setMovieId(movie.id.toString());
+        this.movieModalService.setViewContainer(this.viewContainer);
+        this.movieModalService.showDialog();
     }
 
     ngOnDestroy() {
         this.routeSubscription?.unsubscribe();
-        this.apiSubscription?.unsubscribe();
-
-        if (this.movieModalComponent) {
-            this.movieModalComponent.destroy();
-        }
+        this.movieModalService.destroy();
     }
 }
