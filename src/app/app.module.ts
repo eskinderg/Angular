@@ -12,7 +12,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { UnauthorizedModule } from './components/unauthorized/unauthorized.module';
 import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
-import { NgbdToastGlobalModule } from './shared/toast/toast.global.module';
+import { ToastGlobalModule } from './shared/toast/toast.global.module';
 import { APP_INIT } from './app.init';
 import { AppRouterStateSerializer } from './init/app.route.serilizer';
 import { AppStoreModule } from './store/app.store.module';
@@ -29,7 +29,7 @@ import { ThemeModule } from './theme/theme.module';
         BrowserModule,
         AuthModule,
         UnauthorizedModule,
-        NgbdToastGlobalModule,
+        ToastGlobalModule,
         NotfoundModule,
         AuthorizationModule,
         BrowserAnimationsModule,

@@ -5,7 +5,7 @@ import { ToastService } from './toast.service';
     selector: 'app-toast-global',
     templateUrl: './toast.global.component.html'
 })
-export class NgbdToastGlobalComponent {
+export class ToastGlobalComponent {
     constructor(public toastService: ToastService) {}
 
     @HostBinding('class') class: string = 'toast-container position-fixed bottom-0 end-0 p-3';

@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbdToastGlobalComponent } from './toast.global.component';
+import { ToastGlobalComponent } from './toast.global.component';
 import { ToastService } from './toast.service';
 
 @NgModule({
     imports: [BrowserModule, NgbModule],
-    declarations: [NgbdToastGlobalComponent],
-    exports: [NgbdToastGlobalComponent],
+    declarations: [ToastGlobalComponent],
+    exports: [ToastGlobalComponent],
     providers: [ToastService]
 })
-export class NgbdToastGlobalModule {}
+export class ToastGlobalModule {}
