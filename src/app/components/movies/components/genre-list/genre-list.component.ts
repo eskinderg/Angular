@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Genre } from '../../models/genre';
 
 @Component({
     selector: 'app-genre-list',
     templateUrl: './genre-list.component.html',
-    styleUrls: ['./genre-list.component.scss']
+    styleUrls: ['./genre-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GenreListComponent {
     @Input()

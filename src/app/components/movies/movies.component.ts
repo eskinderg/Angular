@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Genre } from './models/genre';
@@ -7,9 +7,9 @@ import { Genre } from './models/genre';
     selector: 'app-movies',
     templateUrl: 'movies.component.html',
     styleUrls: ['movies.component.scss'],
-    animations: [fadeInAnimation]
+    animations: [fadeInAnimation],
     // host: { '[@routerFadeInAnimation]': '' }
-    // changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MoviesComponent implements OnInit {
     public movies: Array<object>;

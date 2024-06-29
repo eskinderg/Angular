@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 /**
  * This class represents the HeaderComponent.
@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-toolbar',
     templateUrl: 'wztoolbar.component.html',
-    styleUrls: ['wztoolbar.component.scss']
+    styleUrls: ['wztoolbar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WzToolbarComponent {
     public isExpanded = false;

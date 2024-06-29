@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ConfirmOptions } from '../confirm.options';
 import { ConfirmState } from '../confirm.state';
 /**
@@ -6,7 +6,8 @@ import { ConfirmState } from '../confirm.state';
  */
 @Component({
     selector: 'app-dialog-info-component',
-    templateUrl: './dialogInfo.component.html'
+    templateUrl: './dialogInfo.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogInfoComponent {
     options: ConfirmOptions;

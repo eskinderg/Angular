@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ComponentRef,
@@ -19,7 +20,8 @@ import { MovieModalService } from '../movieView/movieModalService/movie.modal.se
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
-    styleUrls: ['search.component.scss']
+    styleUrls: ['search.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {
     input = viewChild.required<ElementRef>('searchInput');

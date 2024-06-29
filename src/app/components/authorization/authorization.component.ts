@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { from } from 'rxjs';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,8 @@ import * as fromRoot from '../../store/reducers';
 @Component({
     selector: 'app-authorization',
     templateUrl: './authorization.component.html',
-    styleUrls: ['./authorization.component.scss']
+    styleUrls: ['./authorization.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthorizationComponent implements OnInit {
     /**

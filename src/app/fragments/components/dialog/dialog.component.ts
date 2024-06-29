@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ConfirmOptions } from './confirm.options';
 import { ConfirmState } from './confirm.state';
 
@@ -8,7 +8,8 @@ import { ConfirmState } from './confirm.state';
 @Component({
     selector: 'app-confirm-dialog-component',
     templateUrl: './dialog.component.html',
-    styleUrls: ['dialog.component.scss']
+    styleUrls: ['dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ConfirmDialogComponent {
     options: ConfirmOptions;

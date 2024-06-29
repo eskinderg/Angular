@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
@@ -10,7 +10,8 @@ import { Location } from '@angular/common';
 @Component({
     selector: 'app-events-dialog',
     templateUrl: './events-dialog.component.html',
-    styleUrl: './events-dialog.component.scss'
+    styleUrl: './events-dialog.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsDialogComponent {
     public Event: Event;

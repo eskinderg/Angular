@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../shared/services/auth/auth.service';
 import * as fromRoot from '../../store/reducers';
@@ -7,7 +7,8 @@ import * as fromRoot from '../../store/reducers';
 @Component({
     selector: 'app-unauthorized',
     templateUrl: './unauthorized.component.html',
-    styleUrls: ['./unauthorized.component.scss']
+    styleUrls: ['./unauthorized.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UnauthorizedComponent {
     constructor(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { User } from 'oidc-client';
@@ -7,7 +7,8 @@ import { ConfirmService } from '../../../fragments/components/dialog/confirm.ser
 @Component({
     selector: 'app-profile',
     templateUrl: 'profile.component.html',
-    styleUrls: ['profile.component.scss']
+    styleUrls: ['profile.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent implements OnInit {
     profileForm: UntypedFormGroup;

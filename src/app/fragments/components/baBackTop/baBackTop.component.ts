@@ -1,10 +1,19 @@
-import { Component, HostListener, Input, ElementRef, AfterViewInit, viewChild } from '@angular/core';
+import {
+    Component,
+    HostListener,
+    Input,
+    ElementRef,
+    AfterViewInit,
+    viewChild,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import * as jQuery from 'jquery';
 
 @Component({
     selector: 'app-back-top',
     styleUrls: ['./baBackTop.scss'],
-    template: ` <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i> `
+    template: ` <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i> `,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaBackTopComponent implements AfterViewInit {
     @Input() position = 400;

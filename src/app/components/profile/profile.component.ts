@@ -1,4 +1,4 @@
-import { Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -11,7 +11,8 @@ import { Store } from '@ngrx/store';
     selector: 'app-profile',
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
-    animations: [fadeInAnimation]
+    animations: [fadeInAnimation],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileComponent {
     @HostBinding('@routerFadeInAnimation')

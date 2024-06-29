@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil, zip } from 'rxjs';
@@ -9,7 +9,8 @@ import { Store } from '@ngrx/store';
 @Component({
     selector: 'app-events-dialog-wrapper',
     templateUrl: './events-dialog-wrapper.component.html',
-    styleUrl: './events-dialog-wrapper.component.scss'
+    styleUrl: './events-dialog-wrapper.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsDialogWrapperComponent implements OnDestroy {
     destroy = new Subject<any>();

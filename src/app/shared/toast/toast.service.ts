@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class ToastService {
     toasts: any[] = [];
 
-    remove(toast) {
+    remove(toast: any) {
         this.toasts = this.toasts.filter((t) => t !== toast);
     }
 
@@ -12,12 +12,12 @@ export class ToastService {
         this.toasts.splice(0, this.toasts.length);
     }
 
-    showSuccess(message: string, header?: string) {
-        this.show(message, header, { classname: 'bg-success text-light', delay: 5000 });
+    showSuccess(message: string, header?: string, delay: number = 5000) {
+        this.show(message, header, { classname: 'bg-success text-light', delay: delay });
     }
 
-    showDanger(message: string, header?: string) {
-        this.show(message, header, { classname: 'bg-danger text-light', delay: 10000 });
+    showDanger(message: string, header?: string, delay: number = 10000) {
+        this.show(message, header, { classname: 'bg-danger text-light', delay: delay });
     }
 
     showStandard(message: string, header?: string) {

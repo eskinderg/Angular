@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-ba-card',
     templateUrl: './baCard.component.html',
-    styleUrls: ['baCard.component.scss']
+    styleUrls: ['baCard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaCardComponent {
     @Input() title: string;

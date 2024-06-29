@@ -1,12 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, Output, viewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    Output,
+    viewChild
+} from '@angular/core';
 
 @Component({
     selector: 'app-theme-option',
     templateUrl: './appThemeOption.component.html',
     styleUrls: ['appThemeOption.component.scss'],
-    standalone: true,
-    imports: [CommonModule]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThemeOptionComponent {
     toggleOption = viewChild.required<ElementRef>('toggleOption');

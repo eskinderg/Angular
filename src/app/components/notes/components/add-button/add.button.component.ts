@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'app-add-button',
     templateUrl: 'add.button.component.html',
-    styleUrls: ['add.button.component.scss']
+    styleUrls: ['add.button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
     // directives: [NgClass]
 })
 export class AddButtonComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 /**
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-wz-common',
     templateUrl: 'common.component.html',
-    styleUrls: ['common.component.scss']
+    styleUrls: ['common.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WzCommonComponent {
     public isExpanded = false;

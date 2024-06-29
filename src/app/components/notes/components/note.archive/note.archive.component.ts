@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromNotes from '../../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
@@ -8,7 +8,8 @@ import { Note } from 'src/app/models/note';
 @Component({
     selector: 'app-note.archive',
     templateUrl: './note.archive.component.html',
-    styleUrl: './note.archive.component.scss'
+    styleUrl: './note.archive.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteArchiveComponent {
     get ArchivedNotes() {

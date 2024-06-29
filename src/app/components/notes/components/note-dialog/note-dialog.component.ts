@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-note-detail-dialog',
     templateUrl: './note-dialog.component.html',
-    styleUrl: './note-dialog.component.scss'
+    styleUrl: './note-dialog.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteDetailDialogComponent implements OnInit {
     note: Note;

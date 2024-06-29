@@ -21,8 +21,15 @@ import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOptio
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
 @NgModule({
-    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule, ThemeOptionComponent],
-    declarations: [HeaderComponent, UserInfoComponent, FooterComponent, TruncatePipe, NoteTitleTruncatePipe],
+    imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NgbModule],
+    declarations: [
+        HeaderComponent,
+        UserInfoComponent,
+        FooterComponent,
+        TruncatePipe,
+        NoteTitleTruncatePipe,
+        ThemeOptionComponent
+    ],
     exports: [
         HeaderComponent,
         UserInfoComponent,
@@ -33,7 +40,8 @@ import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOptio
         RouterModule,
         DragDropModule,
         TruncatePipe,
-        NoteTitleTruncatePipe
+        NoteTitleTruncatePipe,
+        ThemeOptionComponent
     ]
 })
 export class SharedModule {

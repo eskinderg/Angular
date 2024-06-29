@@ -1,4 +1,11 @@
-import { Component, ComponentRef, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ComponentRef,
+    OnDestroy,
+    OnInit,
+    ViewContainerRef
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
@@ -9,7 +16,8 @@ import { MovieModalService } from './movieModalService/movie.modal.service';
 @Component({
     selector: 'app-movie-view',
     templateUrl: 'movie-view.component.html',
-    styleUrls: ['movie-view.component.scss']
+    styleUrls: ['movie-view.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MovieListViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;

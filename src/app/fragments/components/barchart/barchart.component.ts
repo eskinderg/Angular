@@ -1,11 +1,21 @@
-import { Component, OnInit, OnChanges, ElementRef, Input, ViewEncapsulation, viewChild } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    OnChanges,
+    ElementRef,
+    Input,
+    ViewEncapsulation,
+    viewChild,
+    ChangeDetectionStrategy
+} from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-barchart',
     templateUrl: './barchart.component.html',
     styleUrls: ['./barchart.component.scss'],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BarchartComponent implements OnInit, OnChanges {
     chartContainer = viewChild.required<ElementRef>('chart');

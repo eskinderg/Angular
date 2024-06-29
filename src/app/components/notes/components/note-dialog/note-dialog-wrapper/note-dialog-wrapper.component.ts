@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, takeUntil, zip } from 'rxjs';
@@ -7,7 +7,8 @@ import { Location, LocationStrategy } from '@angular/common';
 @Component({
     selector: 'app-note-dialog-wrapper',
     templateUrl: './note-dialog-wrapper.component.html',
-    styleUrl: './note-dialog-wrapper.component.scss'
+    styleUrl: './note-dialog-wrapper.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteDialogWrapperComponent implements OnDestroy, AfterViewInit {
     destroy = new Subject<any>();
