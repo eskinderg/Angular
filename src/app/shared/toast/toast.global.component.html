@@ -4,7 +4,7 @@
         [autohide]="true"
         [delay]="toast.delay"
         [header]="toast.header"
-        [animation]="true"
+        [animation]="toast.animate"
         (hidden)="toastService.remove(toast)">
         {{ toast.textOrTpl }}
     </ngb-toast>

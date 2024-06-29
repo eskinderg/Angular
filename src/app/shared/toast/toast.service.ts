@@ -17,9 +17,10 @@ export class ToastService {
      * @param {string} message - text message for the toast to display
      * @param {string} header - optional param for setting the toast header.
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
+     * @param {boolean} animate - optional param to set animation
      */
-    showSuccess(message: string, header?: string, delay: number = 5000) {
-        this.show(message, header, { classname: 'bg-success text-light', delay: delay });
+    showSuccess(message: string, header?: string, delay: number = 5000, animate: boolean = true) {
+        this.show(message, header, { classname: 'bg-success text-light', delay: delay, animate: animate });
     }
 
     /**
@@ -27,9 +28,10 @@ export class ToastService {
      * @param {string} message - text message for the toast to display
      * @param {string} header - optional param for setting the toast header.
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is (10000)
+     * @param {boolean} animate - optional param to set animation
      */
-    showDanger(message: string, header?: string, delay: number = 10000) {
-        this.show(message, header, { classname: 'bg-danger text-light', delay: delay });
+    showDanger(message: string, header?: string, delay: number = 10000, animate: boolean = true) {
+        this.show(message, header, { classname: 'bg-danger text-light', delay: delay, animate: animate });
     }
 
     showStandard(message: string, header?: string) {
