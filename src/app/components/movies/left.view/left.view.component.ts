@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Genre } from '../../models/genre';
+import { Genre } from '../models/genre';
 
 @Component({
-    selector: 'app-genre-list',
-    templateUrl: './genre-list.component.html',
-    styleUrls: ['./genre-list.component.scss'],
+    selector: 'app-left-view',
+    templateUrl: './left.view.component.html',
+    styleUrls: ['./left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GenreListComponent {
+export class LeftViewComponent {
     @Input()
     genres: Genre[];
 

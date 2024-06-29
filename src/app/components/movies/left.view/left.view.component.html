@@ -1,0 +1,3 @@
+@for (genre of genres; track genre) {
+    <app-genre-list-item [genre]="genre" (select)="onSelectGenre($event)"></app-genre-list-item>
+}

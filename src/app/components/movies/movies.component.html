@@ -2,16 +2,12 @@
     <div class="row mt-2">
         <div class="col-lg-3 hidden-md-down">
             <div class="list-group make-me-sticky">
-                <ng-container>
-                    <app-genre-list (select)="onSelectGenre()" [genres]="genres"></app-genre-list>
-                </ng-container>
+                <app-left-view (select)="onSelectGenre()" [genres]="genres"></app-left-view>
             </div>
         </div>
 
         <div class="col-lg-9">
-            <!-- <app-ba-card  header="Movies"> -->
             <router-outlet></router-outlet>
-            <!-- </app-ba-card> -->
         </div>
     </div>
 </div>

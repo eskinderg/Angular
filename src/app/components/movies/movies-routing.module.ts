@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MoviesComponent } from './movies.component';
-import { MovieListViewComponent } from './movieView/movie-view.component';
-import { GenreResolve } from './movies.service/genres.resolve';
+import { RightViewComponent } from './right.view/right-view.component';
+import { GenreResolve } from './service/genres.resolve';
 import { SearchComponent } from './search/search.component';
 import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
-import { MoviesResultResolve } from './movies.service/movie-results.resolve';
+import { MoviesResultResolve } from './service/movie-results.resolve';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
                     },
                     {
                         path: 'genres/:id/:name/:page',
-                        component: MovieListViewComponent,
+                        component: RightViewComponent,
                         data: {
                             alwaysRefresh: true
                         },
@@ -34,7 +34,7 @@ import { MoviesResultResolve } from './movies.service/movie-results.resolve';
                         data: {
                             alwaysRefresh: true
                         },
-                        component: MovieListViewComponent,
+                        component: RightViewComponent,
                         resolve: {
                             moviesResult: MoviesResultResolve
                         }

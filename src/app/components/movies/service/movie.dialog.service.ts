@@ -1,11 +1,11 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
-import { MoviesApiService } from '../../movies.service/movies.api.service';
 import { Subscription } from 'rxjs';
-import { Movie } from '../../models/movie';
+import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
+import { MoviesApiService } from './movies.api.service';
+import { Movie } from '../models/movie';
 
 @Injectable()
-export class MovieModalService {
+export class MovieDialogService {
     private movieId: string;
     private viewContainer: ViewContainerRef;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;

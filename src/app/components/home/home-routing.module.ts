@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { MoviesApiService } from '../movies/movies.service/movies.api.service';
-import { TvsResolve } from '../movies/movies.service/tvs.resolve';
+import { MoviesApiService } from '../movies/service/movies.api.service';
+import { TvsResolve } from '../movies/service/tvs.resolve';
 
 @NgModule({
     imports: [

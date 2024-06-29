@@ -10,16 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
-import { MovieDialogComponent } from './movie-dialog/movie-dialog.component';
-import { MovieModalService } from './movieModalService/movie.modal.service';
+import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
+import { MovieDialogService } from '../service/movie.dialog.service';
 
 @Component({
-    selector: 'app-movie-view',
-    templateUrl: 'movie-view.component.html',
-    styleUrls: ['movie-view.component.scss'],
+    selector: 'app-right-view',
+    templateUrl: 'right-view.component.html',
+    styleUrls: ['right-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieListViewComponent implements OnDestroy, OnInit {
+export class RightViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
     routeSubscription: Subscription;
     apiSubscription: Subscription;
@@ -29,7 +29,7 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
         public viewContainer: ViewContainerRef,
         public router: ActivatedRoute,
         public route: Router,
-        public movieModalService: MovieModalService
+        public movieModalService: MovieDialogService
     ) {}
 
     ngOnInit() {

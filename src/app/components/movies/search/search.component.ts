@@ -9,13 +9,13 @@ import {
     ViewContainerRef,
     viewChild
 } from '@angular/core';
-import { MoviesApiService } from '../movies.service/movies.api.service';
+import { MoviesApiService } from '../service/movies.api.service';
 import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieDialogComponent } from '../movieView/movie-dialog/movie-dialog.component';
-import { MovieModalService } from '../movieView/movieModalService/movie.modal.service';
+import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
+import { MovieDialogService } from '../service/movie.dialog.service';
 
 @Component({
     selector: 'app-search',
@@ -38,7 +38,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
 
     constructor(
         public viewContainer: ViewContainerRef,
-        public movieModalService: MovieModalService,
+        public movieModalService: MovieDialogService,
         public route: Router,
         public router: ActivatedRoute,
         private _moviesServices: MoviesApiService,

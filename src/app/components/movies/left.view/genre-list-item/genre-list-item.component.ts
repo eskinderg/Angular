@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Genre } from '../../../models/genre';
-import { MoviesApiService } from '../../../movies.service/movies.api.service';
+import { Genre } from '../../models/genre';
+import { MoviesApiService } from '../../service/movies.api.service';
 
 @Component({
     selector: 'app-genre-list-item',
