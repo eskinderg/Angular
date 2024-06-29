@@ -2,9 +2,9 @@
     <ngb-toast
         [class]="toast.classname"
         [autohide]="true"
-        [delay]="toast.delay || 5000"
+        [delay]="toast.delay"
         [header]="toast.header"
-        [animation]="false"
+        [animation]="true"
         (hidden)="toastService.remove(toast)">
         {{ toast.textOrTpl }}
     </ngb-toast>
