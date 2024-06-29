@@ -1,26 +1,6 @@
 .make-me-sticky {
+    /* parent element should also be sticky */
     position: -webkit-sticky;
     position: sticky;
     top:0;
-    height: 95vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.make-me-sticky::-webkit-scrollbar {
-  width: 0.85rem;
-}
-
-.make-me-sticky::-webkit-scrollbar-button {
-  position: absolute;
-  display:none;
-}
-
-.make-me-sticky::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
-  border-radius: 0.5rem;
-}
-
-.make-me-sticky::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover-color);
 }
