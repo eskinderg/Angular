@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
-import { MovieModalComponent } from './movie-modal/movie-modal.component';
+import { MovieDialogComponent } from './movie-dialog/movie-dialog.component';
 import { MovieModalService } from './movieModalService/movie.modal.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class MovieListViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
     routeSubscription: Subscription;
     apiSubscription: Subscription;
-    movieModalComponent: ComponentRef<MovieModalComponent>;
+    movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     constructor(
         public viewContainer: ViewContainerRef,

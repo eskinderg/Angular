@@ -5,12 +5,12 @@ import { FadeInOut } from './animation';
 
 @Component({
     selector: 'app-movie-modal',
-    templateUrl: './movie-modal.component.html',
-    styleUrl: './movie-modal.component.scss',
+    templateUrl: './movie-dialog.component.html',
+    styleUrl: './movie-dialog.component.scss',
     animations: [FadeInOut(1000, 1000, true)],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieModalComponent implements OnInit, OnDestroy {
+export class MovieDialogComponent implements OnInit, OnDestroy {
     public movieDetail: Movie;
     public movieRating: number;
 

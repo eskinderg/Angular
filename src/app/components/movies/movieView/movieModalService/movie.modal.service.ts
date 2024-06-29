@@ -1,5 +1,5 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { MovieModalComponent } from '../movie-modal/movie-modal.component';
+import { MovieDialogComponent } from '../movie-dialog/movie-dialog.component';
 import { MoviesApiService } from '../../movies.service/movies.api.service';
 import { Subscription } from 'rxjs';
 import { Movie } from '../../models/movie';
@@ -8,7 +8,7 @@ import { Movie } from '../../models/movie';
 export class MovieModalService {
     private movieId: string;
     private viewContainer: ViewContainerRef;
-    private movieModalComponentRef: ComponentRef<MovieModalComponent>;
+    private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
     private apiSubscription: Subscription;
 
     constructor(public movieApiService: MoviesApiService) {}
@@ -17,7 +17,7 @@ export class MovieModalService {
         this.apiSubscription = this.movieApiService.getMovie(this.movieId).subscribe((movieDetail: Movie) => {
             this.viewContainer.clear();
             this.movieModalComponentRef =
-                this.viewContainer.createComponent<MovieModalComponent>(MovieModalComponent);
+                this.viewContainer.createComponent<MovieDialogComponent>(MovieDialogComponent);
             this.movieModalComponentRef.instance.movieDetail = movieDetail;
         });
     }

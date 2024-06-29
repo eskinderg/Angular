@@ -14,7 +14,7 @@ import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged,
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MovieModalComponent } from '../movieView/movie-modal/movie-modal.component';
+import { MovieDialogComponent } from '../movieView/movie-dialog/movie-dialog.component';
 import { MovieModalService } from '../movieView/movieModalService/movie.modal.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieResult: MovieResults;
     searchSubscription$: Subscription | undefined;
     apiSubscription: Subscription;
-    movieModalComponent: ComponentRef<MovieModalComponent>;
+    movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     constructor(
         public viewContainer: ViewContainerRef,
