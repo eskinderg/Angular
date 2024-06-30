@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, viewChild } from '@angular/core';
-import { Note } from '../../../models/note';
-import { TextareaExpandedComponent } from 'src/app/components/notes/right.view/textAreaExpanded/textAreaExpanded.component';
-import * as fromNotes from '../../../store/reducers/note.reducer';
-import * as NotesActions from '../../../store/actions/note.actions';
+import { Note } from '../../../../models/note';
+import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
+import * as fromNotes from '../../../../store/reducers/note.reducer';
+import * as NotesActions from '../../../../store/actions/note.actions';
 import { Store } from '@ngrx/store';
 import { Colour } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
@@ -10,7 +10,7 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
 @Component({
     selector: 'app-note-right-view',
     templateUrl: 'note.right.view.component.html',
-    styleUrls: ['note.right.view.component.scss', '../scss/notes.colour.scss'],
+    styleUrls: ['note.right.view.component.scss', '../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteRightViewComponent {

@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import * as fromNotes from '../../../../store/reducers/note.reducer';
+import * as fromNotes from '../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
-import { NoteApiService } from '../../services/notes.api.service';
+import { NoteApiService } from '../services/notes.api.service';
 import { Note } from 'src/app/models/note';
 
 @Component({

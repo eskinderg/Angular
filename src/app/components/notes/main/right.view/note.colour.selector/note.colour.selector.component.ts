@@ -14,7 +14,7 @@ export const Colours: Colour[] = [
 @Component({
     selector: 'app-note-colour-selector',
     templateUrl: './note.colour.selector.component.html',
-    styleUrls: ['./note.colour.selector.component.scss', '../../scss/notes.colour.scss'],
+    styleUrls: ['./note.colour.selector.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteColourSelectorComponent {
