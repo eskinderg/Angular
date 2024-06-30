@@ -11,7 +11,7 @@ type Animate = {
     selector: 'app-note-list-item',
     templateUrl: './note-list-item.component.html',
     animations: [FadeInOutNoteListItem],
-    styleUrls: ['./note-list-item.component.scss', '../notes.colour.scss'],
+    styleUrls: ['./note-list-item.component.scss', '../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NoteListItemComponent {

@@ -1,0 +1,101 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: 100%;
+    position: relative;
+}
+
+.note-div {
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.note-select-info {
+    display: flex;
+    height: 100%;
+    width: -moz-fit-content;
+    height: -moz-fit-content;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--secondary);
+
+    #icon-44-note-text {
+        fill: var(--active-list-link);
+    }
+
+    svg {
+        width: 30%;
+        height: 30%;
+    }
+}
+
+.note-menu-fill {
+    height: 3rem;
+}
+
+.note-outlet {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+.notes-navigation {
+    position: relative;
+    flex-basis: 25%;
+    flex-flow: column;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.notes-detail {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex: 1 1 auto;
+    box-sizing: border-box;
+    outline: 1px solid var(--border);
+    z-index: 1;
+}
+
+.note-list-item {
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+    padding-left: 0.75rem;
+}
+
+.active-text {
+    color: var(--b-active-link-color) !important;
+}
+
+.active {
+    color: var(--bs-list-group-action-hover-color) !important;
+    text-decoration: none;
+    background-color: var(--active-list-link);
+    border: 1px solid var(--active-list-link-border-color);
+}
+
+.menu-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 2px solid var(--border);
+    padding: 1rem;
+}
+
+textarea:hover {
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+}
+textarea:focus {
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    outline: none;
+}

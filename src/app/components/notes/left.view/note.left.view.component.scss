@@ -1,0 +1,122 @@
+:host {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+:host::-webkit-scrollbar {
+    width: 0.85rem;
+}
+
+:host::-webkit-scrollbar-button {
+    position: absolute;
+    display: none;
+}
+
+:host::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 0.5rem;
+}
+
+:host::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+}
+
+.note-left-menu {
+    position: relative;
+    flex: 0 0 auto;
+    border-right: 1px solid var(--border);
+    text-align: center;
+    height: 3rem;
+    line-height: 3rem;
+    font-size: 1.25rem;
+    color: var(--secondary);
+    z-index: 2;
+    background: var(--bs-body-bg);
+    border-bottom: 1px solid var(--border);
+    // margin-right: 0.65rem;
+}
+
+.archive-note-icon {
+    fill: var(--b-active-link-color);
+    cursor: pointer;
+    position: absolute;
+    top: 0.85rem;
+    right: 4rem;
+    bottom: 0;
+
+    :hover {
+        color: var(--list-link-hover);
+    }
+}
+
+.add-note-icon {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    bottom: 0;
+
+    fill: rgb(from var(--b-active-link-color) r g b / 65%);
+    cursor: pointer;
+    z-index: 100;
+
+    :hover {
+        fill: #5aba5a;
+    }
+}
+
+.main-note-list {
+    flex: 1 1 3.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    // height: 100%;
+    direction: rtl;
+}
+
+.list-notes {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bs-body-bg);
+    direction: ltr;
+}
+
+.no-content {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: var(--bs-secondary);
+}
+
+.main-note-list::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-bg-color);
+}
+
+.main-note-list::-webkit-scrollbar {
+    margin-top: 3.5rem;
+    width: 0.65rem;
+}
+
+.main-note-list::-webkit-scrollbar-button {
+    display: none;
+}
+
+.main-note-list::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background: linear-gradient(#5f9cfb, #698fc8, #5f9cfb);
+}
+
+.main-note-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(#5f9cfb, #b1caf0, #5f9cfb);
+}

@@ -1,0 +1,155 @@
+.note-wrapper:hover {
+    background: var(--active-list-link-hover);
+}
+
+.note-wrapper {
+    position: relative;
+    padding: 0;
+    height: 3.5rem;
+    cursor: pointer;
+    width: 100%;
+    // z-index:0;
+    padding: 0.15rem;
+}
+
+.note-border {
+    position: relative;
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+// .note-colour {
+//   position: relative;
+//   // border: 2px solid black;
+//   width: 0.5rem;
+//   // height: 100%;
+//   z-index: 3;
+// }
+
+.note-colour {
+    position: absolute;
+    width: 0.5rem;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    /* left: 0; */
+    /* width: 100%; */
+}
+
+.selected-note {
+    background: var(--selected-note-list-item-bg-color) !important;
+    // outline: 2px solid var(--selected-note-list-item-border-color);
+    z-index: 1;
+    // font-weight: bold;
+    color: var(--b-active-link-color) !important;
+
+    .date-text {
+        color: var(--b-active-link-color) !important;
+    }
+
+    .note-wrapper {
+        opacity: 0;
+    }
+}
+
+.date-text {
+    color: var(--bs-secondary-color);
+}
+
+.menu {
+    cursor: pointer;
+}
+
+.menu:hover {
+    color: #f3828d;
+}
+
+.item {
+    cursor: pointer;
+    pointer-events: none;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.75rem;
+    z-index: 0;
+}
+
+.date-modified {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0.25rem;
+    padding-left: 0.75rem;
+    z-index: 0;
+}
+
+.note-text {
+}
+
+.pinned-note-text {
+    // font-weight: bold;
+}
+
+.pin-wrapper {
+    position: absolute;
+    z-index: 1;
+    top: 0.5rem;
+    border: none;
+    height: 3rem;
+    width: 3rem;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    right: 0px;
+    padding: 0.75rem;
+    // margin-right: 1rem;
+
+    & * {
+        transition: all 0.25s ease;
+        transform-box: fill-box;
+        transform-origin: center;
+    }
+
+    & .newpin {
+        fill: #c7c7c7;
+        transform: rotate(90deg);
+    }
+
+    & .pinned {
+        fill: var(--note-pin-fill);
+    }
+}
+
+.pin-wrapper:hover {
+    & .pinned {
+        fill: var(--note-pin-fill);
+    }
+
+    & .newpin {
+        transform: rotate(0deg);
+        // fill: var(--note-pin-fill);
+    }
+}
+
+.del-button:hover {
+    .archive-note-button-icon {
+        fill: var(--bs-warning);
+    }
+}
+
+.archive-note-button-icon {
+    fill: rgb(from var(--bs-warning) r g b / 55%);
+}
+
+.del-button {
+    color: var(--del-button-note);
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    padding-right: 2rem;
+    position: absolute;
+    right: 1rem;
+    margin: auto;
+    top: 0.25rem;
+    bottom: 0;
+}

@@ -9,7 +9,6 @@ import { DraggableModule } from '../shared/draggable/draggable.module';
 
 import { NgaModule } from '../../fragments/nga.module';
 
-import { NoteComponent } from './components/note.component/note.component';
 import { AddButtonComponent } from './components/add-button/add.button.component';
 
 import { NoteResolver } from './components/note.component/note.resolve';
@@ -19,12 +18,11 @@ import { DraggableDirective, ResizableTextAreaDirective } from '../shared';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NoteArchiveComponent } from './components/note.archive/note.archive.component';
-import { NotesComponent } from './components/notes.component';
-import { NoteListItemComponent } from './components/note-list-item/note-list-item.component';
-import { NoteColourSelectorComponent } from './components/note.component/note.colour.selector/note.colour.selector.component';
-import { NoteHeaderControlComponent } from './components/note.component/note.header.control/note.header.control.component';
-import { TextSelection } from 'src/app/fragments/components/textAreaExpanded/text.selection';
+import { NotesComponent } from './notes.component';
+import { TextSelection } from 'src/app/components/notes/right.view/textAreaExpanded/text.selection';
 import { NotesDataService } from './services/notes.data.service';
+import { NoteLeftViewModule } from './left.view/note.left.view.module';
+import { NoteRightViewModule } from './right.view/note.right.view.module';
 
 @NgModule({
     imports: [
@@ -34,15 +32,13 @@ import { NotesDataService } from './services/notes.data.service';
         NgaModule,
         SharedModule,
         NgbModule,
-        NgScrollbarModule
+        NgScrollbarModule,
+        NoteLeftViewModule,
+        NoteRightViewModule
     ],
     declarations: [
         NotesComponent,
-        NoteComponent,
-        NoteColourSelectorComponent,
-        NoteHeaderControlComponent,
         NoteArchiveComponent,
-        NoteListItemComponent,
         AddButtonComponent,
         DraggableDirective,
         ResizableTextAreaDirective

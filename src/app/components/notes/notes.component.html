@@ -1,0 +1,32 @@
+<div class="note-div">
+    <div class="notes-navigation">
+        <app-note-left-view></app-note-left-view>
+    </div>
+    <div class="notes-detail">
+        <div class="note-outlet">
+            @if (OpendNote | async) {
+                <app-note-right-view
+                    #appNote
+                    (archiveNote)="onArchiveNote($event)"
+                    (changeNoteText)="onChangeNoteText($event)"
+                    (updateNoteColour)="updateNoteColour($event)"
+                    (updateNoteHeader)="onUpdateNoteHeader($event)"
+                    (noteSelectionChange)="selectionChange($event)"
+                    (toggleSpellCheck)="toggleSpellCheck($event)"
+                    [note]="OpendNote | async"></app-note-right-view>
+            } @else {
+                <div class="note-select-info">
+                    <svg id="svg5" version="1.1" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">
+                        <g id="Page-1" transform="translate(-4.9998,-5)" fill="none" fill-rule="evenodd">
+                            <g id="icon-44-note-text" fill="#929292">
+                                <path
+                                    id="note-text"
+                                    d="m5 11v14.999c0 1.0992 0.89277 2.0009 1.9941 2.0009h14.006v-6.0019c0-1.1114 0.89808-1.9981 2.0059-1.9981h4.9941v-9h-23zm0-1v-2.9991c0-1.105 0.90163-2.0009 2.0009-2.0009h18.998c1.105 0 2.0009 0.8934 2.0009 1.9919v3.0081h-23zm17 18v-5.9971c0-0.5539 0.45098-1.0029 0.99078-1.0029h5.0092l-6 7zm-14-14v1h17v-1zm0 3v1h17v-1zm0 3v1h11v-1zm0 3v1h11v-1z" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            }
+        </div>
+    </div>
+</div>

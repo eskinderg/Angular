@@ -1,21 +1,20 @@
-import { Component, ChangeDetectionStrategy, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, viewChild } from '@angular/core';
+import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../services/notes.api.service';
-import { Note } from '../../../models/note';
-import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
-import { Router } from '@angular/router';
-import { NoteComponent } from './note.component/note.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
+import { Router } from '@angular/router';
+import { NoteRightViewComponent } from '../right.view/note.right.view.component';
+// import { Genre } from '../models/genre';
 
 @Component({
-    selector: 'app-notes',
-    templateUrl: 'notes.component.html',
-    styleUrls: ['notes.component.scss', 'notes.colour.scss'],
-    animations: [FadeInOutNoteListItem],
+    selector: 'app-note-left-view',
+    templateUrl: './note.left.view.component.html',
+    styleUrls: ['./note.left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotesComponent {
-    appNoteComponent = viewChild.required<NoteComponent>('appNote');
+export class NoteLeftViewComponent {
+    appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
 
     constructor(
         public notesApiService: NoteApiService,

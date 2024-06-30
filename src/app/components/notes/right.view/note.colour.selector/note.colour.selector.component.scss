@@ -1,0 +1,13 @@
+.w {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
+}
+
+.c {
+    border: 0.2rem solid var(--bs-primary-bg-subtle);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+}

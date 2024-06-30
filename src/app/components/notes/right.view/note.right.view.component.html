@@ -1,8 +1,11 @@
 <ng-template #popContent>
+    Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
+    {{ note?.header ? note?.header : 'none' }}<br />
     Last Modified &nbsp;: &nbsp; {{ note?.dateModified | date: 'medium' }}<br />
     Date Created &nbsp; : &nbsp; {{ note?.dateCreated | date: 'medium' }}<br />
     Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinOrder ? 'Yes' : 'No' }}<br />
     Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.colour ? note?.colour : 'none' }}<br />
+    Spell Check &nbsp; &nbsp; : &nbsp; {{ note?.spellCheck ? 'on' : 'off' }}<br />
     Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.owner }}
 </ng-template>
 <div class="note-background" [ngClass]="note.colour + '-note'">
@@ -14,7 +17,7 @@
                 (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)">
             </app-note-header-control>
         </div>
-        <!-- <div class="note-header"></div> -->
+
         <div class="menu-icons">
             <div
                 class="spell-check"
@@ -84,7 +87,7 @@
             </div>
         </div>
     </div>
-    <!-- <app-textarea-expanded *ngIf="note" [note]="note" #notediv [(ngModel)]="note" (onSelectionChange)="selectionChange($event)" -->
+
     @if (note) {
         <app-textarea-expanded
             [note]="note"
