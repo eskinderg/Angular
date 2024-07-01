@@ -39,6 +39,7 @@ export class HeaderComponent {
         // private oauthService: OAuthService,
         private eventStore: Store<fromEvents.IEventsState>,
         private noteStore: Store<fromNotes.INotesState>,
+        private preferenceState: Store<fromProfile.IPreferenceState>,
         private router: Router
     ) {}
 
@@ -80,7 +81,7 @@ export class HeaderComponent {
     }
 
     get IsLoggedIn() {
-        return this.eventStore.select(fromProfile.isLoggedIn);
+        return this.preferenceState.select(fromProfile.isLoggedIn);
         // return this.oauthService.hasValidAccessToken();
     }
 

@@ -4,7 +4,7 @@ import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.v
 import * as fromNotes from '../../../../store/reducers/note.reducer';
 import * as NotesActions from '../../../../store/actions/note.actions';
 import { Store } from '@ngrx/store';
-import { Colour } from './note.colour.selector/note.colour.selector.component';
+import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 
 @Component({
@@ -16,6 +16,7 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
 export class NoteRightViewComponent {
     textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
     noteHeaderControlComponent = viewChild.required<NoteHeaderControlComponent>('noteHeader');
+    noteColourSelectorComponent = viewChild<NoteColourSelectorComponent>('noteColourSelector');
 
     @Input() note: Note;
 
