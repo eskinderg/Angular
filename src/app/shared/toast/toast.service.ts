@@ -27,10 +27,10 @@ export class ToastService {
      * Displays error toast message
      * @param {string} message - text message for the toast to display
      * @param {string} header - optional param for setting the toast header.
-     * @param {number} delay - optional param for delay setting in milliseconds. Default value is (10000)
+     * @param {number} delay - optional param for delay setting in milliseconds. Default value is five minutes
      * @param {boolean} animate - optional param to set animation
      */
-    showDanger(message: string, header?: string, delay: number = 10000, animate: boolean = true) {
+    showDanger(message: string, header?: string, delay: number = 5 * 60 * 1000, animate: boolean = true) {
         this.show(message, header, { classname: 'bg-danger text-light', delay: delay, animate: animate });
     }
 
