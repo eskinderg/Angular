@@ -30,12 +30,12 @@ export class ToastService {
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is five minutes
      * @param {boolean} animate - optional param to set animation
      */
-    showDanger(message: string, header?: string, delay: number = 5 * 60 * 1000, animate: boolean = true) {
+    showError(message: string, header?: string, delay: number = 5 * 60 * 1000, animate: boolean = true) {
         this.show(message, header, { classname: 'bg-danger text-light', delay: delay, animate: animate });
     }
 
-    showStandard(message: string, header?: string) {
-        this.show(message, header);
+    showStandard(message: string, header?: string, delay: number = 5000) {
+        this.show(message, header, { delay: delay });
     }
 
     private show(textOrTpl: string, header?: string, options: any = {}) {

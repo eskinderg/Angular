@@ -3,43 +3,22 @@ import { Store } from '@ngrx/store';
 import { authConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
 import { ToastService } from '../shared/toast/toast.service';
-import { LoggingService } from '../error/loggingservice';
 
-export function initializeAuth(
-    oauthService: OAuthService,
-    store: Store,
-    toast: ToastService,
-    loggingService: LoggingService
-) {
+export function initializeAuth(oauthService: OAuthService, store: Store, toast: ToastService) {
     oauthService.configure(authConfig);
 
     return async () => {
-        await oauthService.loadDiscoveryDocumentAndTryLogin({
-            onLoginError: (err: AuthorizationErrorResponse) => {
-                loggingService.error(`Error Code: ${err.error}, Error Description: ${err.error_description}`);
-            }
-        });
+        await oauthService
+            .loadDiscoveryDocumentAndTryLogin()
+            .then(() => {
+                if (oauthService.hasValidAccessToken()) {
+                    store.dispatch(logInSuccess());
+                } else {
+                    toast.showError('No valid access_token', 'No valid token');
+                }
+            })
+            .catch((e) => console.error('Auth Error======================:', e));
 
-        if (oauthService.hasValidAccessToken()) {
-            store.dispatch(logInSuccess());
-        } else {
-            toast.showStandard('No valid access_token');
-        }
         return true;
     };
-}
-type AuthorizationError =
-    | 'invalid_request'
-    | 'unauthorized_client'
-    | 'access_denied'
-    | 'unsupported_response_type'
-    | 'invalid_scope'
-    | 'server_error'
-    | 'temporarily_unavailable';
-
-export interface AuthorizationErrorResponse {
-    error: AuthorizationError;
-    error_description?: string;
-    error_uri?: URL;
-    state?: string;
 }
