@@ -56,8 +56,8 @@ export class ToastService {
         });
     }
 
-    showStandard(message: string, header?: string, delay: number = 5000) {
-        this.show(message, header, { delay: delay });
+    showStandard(message: string, header?: string, delay: number = 5000, autoHide: boolean = true) {
+        this.show(message, header, { delay: delay, autoHide: autoHide });
     }
 
     private show(text: string, header?: string, options: any = {}) {
