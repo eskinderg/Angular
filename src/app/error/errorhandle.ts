@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable, Injector } from '@angular/core';
 // import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoggingService } from './loggingservice';
-import { OAuthService } from 'angular-oauth2-oidc';
+// import { OAuthService } from 'angular-oauth2-oidc';
 
 // import * as StackTrace from 'stacktrace-js';
 /**
@@ -12,13 +12,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     /**
      * @param {Injector} injector - service for injecting LoggingService
      */
-    constructor(private injector: Injector) {
-        this.injector.get(OAuthService).events.subscribe((e) => {
-            if (e.type === 'discovery_document_load_error') {
-                this.handleError(e);
-            }
-        });
-    }
+    constructor(private injector: Injector) {}
 
     /**
      * Handles error

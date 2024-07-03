@@ -19,26 +19,48 @@ export class ToastService {
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
      * @param {boolean} animate - optional param to set animation
      */
-    showSuccess(message: string, header?: string, delay: number = 5000, animate: boolean = true) {
-        this.show(message, header, { classname: 'bg-success text-light', delay: delay, animate: animate });
+    showSuccess(
+        message: string,
+        header?: string,
+        delay: number = 5000,
+        animate: boolean = true,
+        autoHide: boolean = true
+    ) {
+        this.show(message, header, {
+            classname: 'bg-success text-light',
+            delay: delay,
+            animate: animate,
+            autoHide: autoHide
+        });
     }
 
     /**
      * Displays error toast message
      * @param {string} message - text message for the toast to display
      * @param {string} header - optional param for setting the toast header.
-     * @param {number} delay - optional param for delay setting in milliseconds. Default value is (10000)
+     * @param {number} delay - optional param for delay setting in milliseconds. Default value is five minutes
      * @param {boolean} animate - optional param to set animation
      */
-    showDanger(message: string, header?: string, delay: number = 10000, animate: boolean = true) {
-        this.show(message, header, { classname: 'bg-danger text-light', delay: delay, animate: animate });
+    showError(
+        message: string,
+        header?: string,
+        delay: number = 1000,
+        animate: boolean = true,
+        autoHide: boolean = false
+    ) {
+        this.show(message, header, {
+            classname: 'bg-danger text-light',
+            delay: delay,
+            autoHide: autoHide,
+            animate: animate
+        });
     }
 
-    showStandard(message: string, header?: string) {
-        this.show(message, header);
+    showStandard(message: string, header?: string, delay: number = 5000, autoHide: boolean = true) {
+        this.show(message, header, { delay: delay, autoHide: autoHide });
     }
 
-    private show(textOrTpl: string, header?: string, options: any = {}) {
-        this.toasts.push({ textOrTpl, header: header, ...options });
+    private show(text: string, header?: string, options: any = {}) {
+        this.toasts.push({ text, header: header, ...options });
     }
 }

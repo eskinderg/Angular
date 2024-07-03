@@ -10,22 +10,26 @@ export class OAuthAppLogger extends OAuthLogger {
 
     override debug(message?: any, ...optionalParams: any[]): void {
         console.info(optionalParams);
-        this.toast.showSuccess(message, 'OAuth Debug');
+        this.toast.showStandard(message, 'OAuth Debug');
     }
+
     override info(message?: any, ...optionalParams: any[]): void {
         console.log(optionalParams);
         this.toast.showSuccess(message, 'OAuth Info');
     }
+
     override log(message?: any, ...optionalParams: any[]): void {
         console.log(optionalParams);
         this.toast.showSuccess(message, 'OAuth Log');
     }
+
     override warn(message?: any, ...optionalParams: any[]): void {
         console.log(optionalParams);
         this.toast.showSuccess(message, 'OAuth Warn');
     }
+
     override error(message?: any, ...optionalParams: any[]): void {
         console.log(optionalParams);
-        this.toast.showSuccess(message, 'OAuth Error');
+        this.toast.showError(message, 'OAuth Error');
     }
 }
