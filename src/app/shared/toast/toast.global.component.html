@@ -1,11 +1,11 @@
 @for (toast of toastService.toasts; track toast) {
     <ngb-toast
         [class]="toast.classname"
-        [autohide]="true"
+        [autohide]="toast.autoHide"
         [delay]="toast.delay"
         [header]="toast.header"
         [animation]="toast.animate"
         (hidden)="toastService.remove(toast)">
-        {{ toast.textOrTpl }}
+        {{ toast.text }}
     </ngb-toast>
 }

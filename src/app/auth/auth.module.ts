@@ -2,7 +2,6 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { OAuthLogger, OAuthModule, OAuthService, OAuthStorage } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import { initializeAuth } from './auth.init';
-import { ToastService } from '../shared/toast/toast.service';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { AuthJWT } from './auth.JWT';
 import { LoggingService } from '../error/loggingservice';
@@ -15,7 +14,7 @@ import { OAuthAppLogger } from './auth.logger';
         {
             provide: APP_INITIALIZER,
             useFactory: initializeAuth,
-            deps: [OAuthService, Store, ToastService, LoggingService],
+            deps: [OAuthService, Store, LoggingService],
             multi: true
         },
         {
