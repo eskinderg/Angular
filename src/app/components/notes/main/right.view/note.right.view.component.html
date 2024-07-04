@@ -1,6 +1,6 @@
 <ng-template #popContent>
     Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
-    {{ note?.header ? note?.header : 'none' }}<br />
+    {{ note?.header ? note?.header : 'Untitled' }}<br />
     Last Modified &nbsp;: &nbsp; {{ note?.dateModified | date: 'medium' }}<br />
     Date Created &nbsp; : &nbsp; {{ note?.dateCreated | date: 'medium' }}<br />
     Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinOrder ? 'Yes' : 'No' }}<br />
