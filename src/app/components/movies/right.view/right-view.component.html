@@ -1,12 +1,7 @@
-<!-- <h1>{{movieResult.movies}}</h1> -->
-<!-- <h6> Page {{movieResult.page}} </h6> -->
-<!-- <h1>{{movieResult.total_pages }}</h1> -->
-<!-- <h1>{{movieResult.page }}</h1> -->
-
 <ngb-pagination
     [(page)]="movieResult.page"
     [pageSize]="20"
-    [maxSize]="10"
+    [maxSize]="15"
     (pageChange)="loadPage($event)"
     [collectionSize]="collectionSize"></ngb-pagination>
 
@@ -21,7 +16,7 @@
 <ngb-pagination
     [(page)]="movieResult.page"
     [pageSize]="20"
-    [maxSize]="10"
+    [maxSize]="15"
     (pageChange)="loadPage($event)"
     [collectionSize]="collectionSize"></ngb-pagination>
 
