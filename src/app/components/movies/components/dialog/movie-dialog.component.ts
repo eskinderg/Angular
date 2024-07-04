@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    Renderer2
+} from '@angular/core';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { FadeInOut } from './animation';
@@ -10,7 +18,7 @@ import { FadeInOut } from './animation';
     animations: [FadeInOut(1000, 1000, true)],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MovieDialogComponent implements OnInit, OnDestroy {
+export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public movieDetail: Movie;
     public movieRating: number;
 
@@ -24,6 +32,10 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
         private host: ElementRef<HTMLElement>,
         private renderer: Renderer2
     ) {}
+
+    ngAfterViewInit(): void {
+        (this.host.nativeElement.firstElementChild as HTMLElement).focus();
+    }
 
     ngOnInit(): void {
         this.renderer.listen(this.host.nativeElement, 'keydown.esc', (event) => {
