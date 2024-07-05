@@ -5,7 +5,7 @@ import { catchError, switchMap, map } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 import * as NotesActions from '../actions/note.actions';
 import { NotesDataService } from '../../components/notes/services/notes.data.service';
-import { ToastService } from '../../shared/toast/toast.service';
+import { NotificationService } from '../../shared/notification/notification.service';
 
 @Injectable()
 export class NotesEffect {
@@ -124,7 +124,7 @@ export class NotesEffect {
             this.actions$.pipe(
                 ofType(NotesActions.deleteNoteSuccess),
                 switchMap(() => {
-                    this.toastService.showSuccess('Note Deleted', 'Info');
+                    this.notificationService.showSuccess('Note Deleted', 'Info');
                     this.router.navigate([`/notes`]);
                     return EMPTY;
                 })
@@ -161,7 +161,7 @@ export class NotesEffect {
             this.actions$.pipe(
                 ofType(NotesActions.archiveNoteSuccess),
                 switchMap(() => {
-                    this.toastService.showSuccess('Note successfully archived', 'Info');
+                    this.notificationService.showSuccess('Note successfully archived', 'Info');
                     return EMPTY;
                 })
             ),
@@ -185,7 +185,7 @@ export class NotesEffect {
             this.actions$.pipe(
                 ofType(NotesActions.restoreNoteSuccess),
                 switchMap(() => {
-                    this.toastService.showSuccess('Note successfully restored', 'Info');
+                    this.notificationService.showSuccess('Note successfully restored', 'Info');
                     return EMPTY;
                 })
             ),
@@ -238,6 +238,6 @@ export class NotesEffect {
         private actions$: Actions,
         private notesDataService: NotesDataService,
         private router: Router,
-        private toastService: ToastService
+        private notificationService: NotificationService
     ) {}
 }

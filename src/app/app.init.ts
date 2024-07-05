@@ -2,9 +2,9 @@ import { APP_INITIALIZER, APP_BOOTSTRAP_LISTENER, ErrorHandler } from '@angular/
 import { APP_BASE_HREF } from '@angular/common';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { LoggingService } from './error/loggingservice';
-import { ToastService } from './shared/toast/toast.service';
+import { NotificationService } from './shared/notification/notification.service';
 import { bootstrapAppRouteFactory } from './init/app.init.route';
-import { initializeErrorLogger } from './init/app.init.toast';
+import { initializeErrorLogger } from './init/app.init.logger';
 import { GlobalErrorHandler } from './error/errorhandle';
 import { AppRouteReuseStrategy } from './init/app.init.routeStrategy';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -28,7 +28,7 @@ export const APP_INIT = [
     {
         provide: APP_INITIALIZER,
         useFactory: initializeErrorLogger,
-        deps: [LoggingService, ToastService],
+        deps: [LoggingService, NotificationService],
         multi: true
     },
     {

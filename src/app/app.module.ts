@@ -10,7 +10,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { UnauthorizedModule } from './components/unauthorized/unauthorized.module';
 import { NotfoundModule } from './components/shared/404/404.module';
 import { AppComponent } from './app.component';
-import { ToastGlobalModule } from './shared/toast/toast.global.module';
+import { GlobalNotificationModule } from './shared/notification/global.notification.module';
 import { APP_INIT } from './app.init';
 import { AppRouterStateSerializer } from './init/app.route.serilizer';
 import { AppStoreModule } from './store/app.store.module';
@@ -26,7 +26,7 @@ import { ThemeModule } from './theme/theme.module';
         BrowserModule,
         AuthModule,
         UnauthorizedModule,
-        ToastGlobalModule,
+        GlobalNotificationModule,
         NotfoundModule,
         AuthorizationModule,
         BrowserAnimationsModule,

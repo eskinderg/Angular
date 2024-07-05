@@ -4,7 +4,7 @@ import { of, EMPTY } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import * as EventsActions from '../actions/event.action';
 import { EventDataService } from '../../fragments/components/event/event.data.service/event.data.service';
-import { ToastService } from '../../shared/toast/toast.service';
+import { NotificationService } from '../../shared/notification/notification.service';
 import { Event } from '../../models/event';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class EventsEffect {
             this.actions$.pipe(
                 ofType(EventsActions.createEventSuccess),
                 switchMap((action) => {
-                    this.toastService.showSuccess(action.payload.title, 'Event Added');
+                    this.notificationService.showSuccess(action.payload.title, 'Event Added');
                     return EMPTY;
                 })
             ),
@@ -50,7 +50,7 @@ export class EventsEffect {
             this.actions$.pipe(
                 ofType(EventsActions.updateEventSuccess),
                 switchMap((action) => {
-                    this.toastService.showSuccess(action.payload.title, 'Event Updated');
+                    this.notificationService.showSuccess(action.payload.title, 'Event Updated');
                     return EMPTY;
                 })
             ),
@@ -74,7 +74,7 @@ export class EventsEffect {
             this.actions$.pipe(
                 ofType(EventsActions.toggleEventSuccess),
                 switchMap((action) => {
-                    this.toastService.showSuccess(action.payload.title, 'Event Updated');
+                    this.notificationService.showSuccess(action.payload.title, 'Event Updated');
                     return EMPTY;
                 })
             ),
@@ -134,6 +134,6 @@ export class EventsEffect {
     constructor(
         private actions$: Actions,
         private eventsDataService: EventDataService,
-        private toastService: ToastService
+        private notificationService: NotificationService
     ) {}
 }

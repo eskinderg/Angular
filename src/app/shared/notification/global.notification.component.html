@@ -1,0 +1,11 @@
+@for (notification of notificationService.Notifications | async; track notification) {
+    <ngb-toast
+        [class]="notification.classname"
+        [autohide]="notification.autoHide"
+        [delay]="notification.delay"
+        [header]="notification.header"
+        [animation]="notification.animate"
+        (hidden)="notificationService.remove(notification)">
+        {{ notification.text }}
+    </ngb-toast>
+}

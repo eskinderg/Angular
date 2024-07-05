@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromNotifications from 'src/app/store/reducers/notification.reducer';
+import * as NotificationActions from 'src/app/store/actions/notification.action';
 
 @Injectable({ providedIn: 'root' })
-export class ToastService {
-    toasts: any[] = [];
+export class NotificationService {
+    constructor(private notificationStore: Store<fromNotifications.INotificationState>) {}
 
-    remove(toast: any) {
-        this.toasts = this.toasts.filter((t) => t !== toast);
-    }
-
-    clear() {
-        this.toasts.splice(0, this.toasts.length);
+    get Notifications() {
+        return this.notificationStore.select(fromNotifications.getNotifications);
     }
 
     /**
-     * Displays success toast message
-     * @param {string} message - text message for the toast to display
-     * @param {string} header - optional param for setting the toast header.
+     * Displays success notification message
+     * @param {string} message - text message for the notification to display
+     * @param {string} header - optional param for setting the notification header.
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
      * @param {boolean} animate - optional param to set animation
      */
@@ -35,9 +34,9 @@ export class ToastService {
     }
 
     /**
-     * Displays error toast message
-     * @param {string} message - text message for the toast to display
-     * @param {string} header - optional param for setting the toast header.
+     * Displays error notification message
+     * @param {string} message - text message for the notification to display
+     * @param {string} header - optional param for setting the notification header.
      * @param {number} delay - optional param for delay setting in milliseconds. Default value is five minutes
      * @param {boolean} animate - optional param to set animation
      */
@@ -61,6 +60,18 @@ export class ToastService {
     }
 
     private show(text: string, header?: string, options: any = {}) {
-        this.toasts.push({ text, header: header, ...options });
+        this.notificationStore.dispatch(
+            NotificationActions.newNotification({
+                payload: { text, header: header, ...options }
+            })
+        );
+    }
+
+    remove(notification: any) {
+        this.notificationStore.dispatch(NotificationActions.removeNotification({ payload: notification }));
+    }
+
+    clear() {
+        this.notificationStore.dispatch(NotificationActions.clearNotification());
     }
 }
