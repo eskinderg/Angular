@@ -1,33 +1,43 @@
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MoviesApiService } from './movies.api.service';
 import { Movie } from '../models/movie';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class MovieDialogService {
     private movieId: string;
-    private viewContainer: ViewContainerRef;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
     private apiSubscription: Subscription;
 
-    constructor(public movieApiService: MoviesApiService) {}
-
-    showDialog() {
-        this.apiSubscription = this.movieApiService.getMovie(this.movieId).subscribe((movieDetail: Movie) => {
-            this.viewContainer.clear();
-            this.movieModalComponentRef =
-                this.viewContainer.createComponent<MovieDialogComponent>(MovieDialogComponent);
-            this.movieModalComponentRef.instance.movieDetail = movieDetail;
-        });
-    }
+    constructor(
+        public movieApiService: MoviesApiService,
+        public appRef: ApplicationRef,
+        public injector: Injector
+    ) {}
 
     setMovieId(value: string) {
         this.movieId = value;
     }
 
-    setViewContainer(view: ViewContainerRef) {
-        this.viewContainer = view;
+    showDialog() {
+        console.log(this.appRef.components[0]);
+
+        this.apiSubscription = this.movieApiService.getMovie(this.movieId).subscribe((movieDetail: Movie) => {
+            const rootElement = document.getElementsByTagName('app-main')[0];
+
+            this.movieModalComponentRef = createComponent(MovieDialogComponent, {
+                environmentInjector: this.appRef.injector
+            });
+
+            this.movieModalComponentRef.instance.movieDetail = movieDetail;
+
+            this.appRef.attachView(this.movieModalComponentRef.hostView);
+
+            rootElement.append(this.movieModalComponentRef.location.nativeElement);
+        });
     }
 
     destroy() {

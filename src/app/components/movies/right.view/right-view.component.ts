@@ -1,16 +1,8 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    ComponentRef,
-    OnDestroy,
-    OnInit,
-    ViewContainerRef
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
-import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
 
 @Component({
@@ -23,10 +15,8 @@ export class RightViewComponent implements OnDestroy, OnInit {
     movieResult: MovieResults;
     routeSubscription: Subscription;
     apiSubscription: Subscription;
-    movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     constructor(
-        public viewContainer: ViewContainerRef,
         public router: ActivatedRoute,
         public route: Router,
         public movieModalService: MovieDialogService
@@ -50,7 +40,6 @@ export class RightViewComponent implements OnDestroy, OnInit {
 
     onClick(movie: Movie) {
         this.movieModalService.setMovieId(movie.id.toString());
-        this.movieModalService.setViewContainer(this.viewContainer);
         this.movieModalService.showDialog();
     }
 

@@ -6,7 +6,6 @@ import {
     ComponentRef,
     ElementRef,
     OnDestroy,
-    ViewContainerRef,
     viewChild
 } from '@angular/core';
 import { MoviesApiService } from '../service/movies.api.service';
@@ -37,7 +36,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     constructor(
-        public viewContainer: ViewContainerRef,
         public movieModalService: MovieDialogService,
         public route: Router,
         public router: ActivatedRoute,
@@ -60,7 +58,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
 
     onClick(movie: Movie) {
         this.movieModalService.setMovieId(movie.id.toString());
-        this.movieModalService.setViewContainer(this.viewContainer);
         this.movieModalService.showDialog();
     }
 
