@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, viewChild } from '@angular/core';
-import { AppLoadingComponent } from './fragments/components/appLoading/appLoading.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'app-main',
@@ -9,5 +8,4 @@ import { AppLoadingComponent } from './fragments/components/appLoading/appLoadin
 })
 export class AppComponent {
     public appVersion: string;
-    appLoadingComponent = viewChild.required<AppLoadingComponent>('appLoading');
 }
