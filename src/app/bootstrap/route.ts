@@ -9,7 +9,7 @@ import {
     Event
 } from '@angular/router';
 import { filter } from 'rxjs';
-import { AppComponent } from '../../app.component';
+import { AppComponent } from '../app.component';
 
 export function bootstrapAppRouteFactory(
     router: Router

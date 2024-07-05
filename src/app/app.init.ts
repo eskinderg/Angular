@@ -4,12 +4,12 @@ import { APP_BASE_HREF } from '@angular/common';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { LoggingService } from './error/loggingservice';
 import { NotificationService } from './shared/notification/notification.service';
-import { bootstrapAppRouteFactory } from './init/bootstrap/app.bootstrap.route';
+import { bootstrapAppRouteFactory } from './bootstrap/route';
 import { initializeErrorLogger } from './init/app.init.logger';
 import { GlobalErrorHandler } from './error/errorhandle';
 import { AppRouteReuseStrategy } from './init/app.init.routeStrategy';
 import { HttpErrorInterceptor } from './error/http.error.interceptor';
-import { bootstrapAppNotificationFactory } from './init/bootstrap/app.bootstrap.notification';
+import { bootstrapAppNotificationFactory } from './bootstrap/notification';
 
 export const APP_INIT = [
     {
