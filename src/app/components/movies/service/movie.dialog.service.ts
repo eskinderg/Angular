@@ -23,10 +23,8 @@ export class MovieDialogService {
     }
 
     showDialog() {
-        console.log(this.appRef.components[0]);
-
         this.apiSubscription = this.movieApiService.getMovie(this.movieId).subscribe((movieDetail: Movie) => {
-            const rootElement = document.getElementsByTagName('app-main')[0];
+            const rootElement = this.appRef.components[0].location.nativeElement;
 
             this.movieModalComponentRef = createComponent(MovieDialogComponent, {
                 environmentInjector: this.appRef.injector

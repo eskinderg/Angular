@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewContainerRef, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, viewChild } from '@angular/core';
 import { AppLoadingComponent } from './fragments/components/appLoading/appLoading.component';
 
 @Component({
@@ -9,6 +9,5 @@ import { AppLoadingComponent } from './fragments/components/appLoading/appLoadin
 })
 export class AppComponent {
     public appVersion: string;
-    public appViewContainerRef = inject(ViewContainerRef);
     appLoadingComponent = viewChild.required<AppLoadingComponent>('appLoading');
 }

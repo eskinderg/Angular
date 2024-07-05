@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, APP_BOOTSTRAP_LISTENER, ErrorHandler } from '@angular/core';
+import { APP_INITIALIZER, APP_BOOTSTRAP_LISTENER, ErrorHandler, ApplicationRef } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouteReuseStrategy, Router } from '@angular/router';
@@ -41,6 +41,7 @@ export const APP_INIT = [
     {
         provide: APP_BOOTSTRAP_LISTENER,
         useFactory: bootstrapAppNotificationFactory,
+        deps: [ApplicationRef],
         multi: true
     }
 ];
