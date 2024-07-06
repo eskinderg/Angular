@@ -15,7 +15,7 @@ export const notificationReducer = createReducer<INotificationState>(
         NotificationActions.newNotification,
         (state, action): INotificationState => ({
             ...state,
-            notifications: [action.payload, ...state.notifications]
+            notifications: [...state.notifications, action.payload]
         })
     ),
     on(
