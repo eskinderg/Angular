@@ -52,7 +52,7 @@
     "@types/jasmine": "~5.1.4",
     "@types/jquery": "^3.5.30",
     "@types/node": "^20.14.2",
-    "@typescript-eslint/eslint-plugin": "7.15.0",
+    "@typescript-eslint/eslint-plugin": "7.16.0",
     "@typescript-eslint/parser": "7.15.0",
     "angular-oauth2-oidc": "^17.0.2",
     "bootstrap": "^5.3.3",
