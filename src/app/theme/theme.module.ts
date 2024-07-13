@@ -1,12 +1,12 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { initializePreference } from './init.theme';
 import { ThemeService } from './theme.service';
 
 @NgModule({
     providers: [
+        ThemeService,
         {
             provide: APP_INITIALIZER,
-            useFactory: initializePreference,
+            useFactory: (themeService: ThemeService) => () => themeService.initUserPreference(),
             deps: [ThemeService],
             multi: true
         }

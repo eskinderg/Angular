@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <button
             type="button"
@@ -51,6 +51,7 @@
                             aria-expanded="false"
                             [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{ exact: false }">
+                            Notes
                             @if (NoteLoading | async) {
                                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                             } @else {
@@ -58,7 +59,6 @@
                                     <span class="badge bg-secondary">{{ count }}</span>
                                 }
                             }
-                            Notes
                         </a>
                         <ul ngbDropdownMenu class="dropdown-menu dropdown-menu">
                             <li ngbDropdownItem>
@@ -84,6 +84,7 @@
                             [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{ exact: false }"
                             [routerLink]="['/events']">
+                            Events
                             @if (EventLoading | async) {
                                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                             } @else {
@@ -91,7 +92,6 @@
                                     <span class="badge bg-secondary">{{ count }}</span>
                                 }
                             }
-                            Events
                         </a>
                     </li>
                     <li class="nav-item">

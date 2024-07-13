@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -7,36 +7,32 @@ import { Observable, of } from 'rxjs';
 export class ThemeService {
     public static isDarkMode: boolean = false;
 
-    private style: HTMLLinkElement;
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
-    public get DarkMode(): string {
-        return localStorage.getItem('darkmode') ?? String(ThemeService.isDarkMode);
+    public get DarkMode(): boolean {
+        return JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;
     }
 
-    public set DarkMode(value: string) {
-        localStorage.setItem('darkmode', value);
-        this.style.href = this.getStyleName(this.DarkMode);
+    public set DarkMode(value: boolean) {
+        localStorage.setItem('darkmode', value.toString());
+
+        if (value) {
+            const root = this.document.querySelector(':root');
+            root.classList.toggle('dark');
+        }
     }
 
-    constructor() {
-        this.style = document.createElement('link');
-        this.style.rel = 'stylesheet';
-        this.style.type = 'text/css';
-    }
-
-    private getStyleName(isDarkMode: string): string {
-        return JSON.parse(isDarkMode) ? 'dark.css' : 'light.css';
-    }
-
-    public toggleDarkMode(): string {
-        this.style.href = this.getStyleName(String(!JSON.parse(this.DarkMode)));
-        localStorage.setItem('darkmode', String(!JSON.parse(this.DarkMode)));
+    public toggleDarkMode(): boolean {
+        const root = this.document.querySelector(':root');
+        root.classList.toggle('dark');
+        localStorage.setItem('darkmode', (!this.DarkMode).toString());
         return this.DarkMode;
     }
 
-    public initTheme(): Observable<boolean> {
-        this.style.href = this.getStyleName(this.DarkMode);
-        document.head.appendChild(this.style);
-        return of(true);
+    public initUserPreference() {
+        if (this.DarkMode) {
+            const root = this.document.querySelector(':root');
+            root.classList.toggle('dark');
+        }
     }
 }

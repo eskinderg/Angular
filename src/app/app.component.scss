@@ -1,10 +1,11 @@
 :host {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-  position: relative;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    position: relative;
+    background: var(--body-bg);
 }
 
-.container{
-  margin-top:5px;
+.container {
+    margin-top: 5px;
 }

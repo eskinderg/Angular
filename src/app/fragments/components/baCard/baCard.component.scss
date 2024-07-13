@@ -2,6 +2,11 @@
   margin: 1rem;
 }
 
+.card {
+    border-color: var(--card-border-color);
+    background-color: var(--card-bg);
+}
+
 .panel-default {
     border-color: #ddd;
 }

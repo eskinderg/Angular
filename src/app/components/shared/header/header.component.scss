@@ -20,3 +20,18 @@
 // nav a.router-link-active {
 //   color: #106cc8;
 // }
+.navbar {
+    background-color: var(--primary);
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: var(--navbar-active-color);
+}
+
+.nav-link {
+    color: var(--nav-link-color);
+}
+.navbar-brand {
+    color: var(--navbar-brand-color);
+}

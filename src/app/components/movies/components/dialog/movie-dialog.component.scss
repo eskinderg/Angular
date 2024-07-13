@@ -1,3 +1,7 @@
+.card {
+    background-color: var(--card-bg);
+}
+
 .card-img-top {
     --bs-card-inner-border-radius: 0px;
 }
@@ -14,7 +18,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: var(--bs-body-bg);
+    background: var(--body-bg);
     outline: 10px solid var(--border);
     box-shadow: 5px 20px 19px -8px var(--bs-primary);
     border-radius: 0.25rem;
