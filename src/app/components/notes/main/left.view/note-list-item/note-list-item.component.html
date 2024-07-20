@@ -4,9 +4,9 @@
     class="note-border"
     [ngClass]="{ 'selected-note': selectedNote === note }">
     <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
-    <div class="note-wrapper" (click)="onSelectNote(note)"></div>
+    <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
 
-    <div class="menu del-button" (click)="onArchiveNote(note)">
+    <div class="menu del-button" (mouseup)="onArchiveNote(note)">
         <svg
             class="archive-note-button-icon"
             enable-background="new 0 0 256 256"
@@ -41,7 +41,7 @@
     </div>
 
     <small
-        (click)="onSelectNote(note)"
+        (mouseup)="onSelectNote(note)"
         [ngClass]="{ 'pinned-note-text': note.pinOrder }"
         class="date-modified date-text"
         [@.disabled]="!animate.date"
@@ -50,7 +50,7 @@
         {{ note.dateModified | dateago }}</small
     >
 
-    <div class="pin-wrapper" (click)="updatePinOrder(note)">
+    <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
         <svg
             id="Layer_1"
             enable-background="new 0 0 512 512"
