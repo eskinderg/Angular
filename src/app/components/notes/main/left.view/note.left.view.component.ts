@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteRightViewComponent } from '../right.view/note.right.view.component';
+import { NoteDialogService } from '../../components/note-dialog/note.dialog.service';
 // import { Genre } from '../models/genre';
 
 @Component({
@@ -19,6 +20,7 @@ export class NoteLeftViewComponent {
     constructor(
         public notesApiService: NoteApiService,
         private noteStore: Store<fromNotes.INotesState>,
+        private noteDialogService: NoteDialogService,
         public route: Router
     ) {}
 
@@ -68,7 +70,8 @@ export class NoteLeftViewComponent {
     }
 
     onArchiveNote(note: Note) {
-        this.notesApiService.archiveNote(note);
+        // this.notesApiService.archiveNote(note);
+        this.noteDialogService.showDialog(note);
     }
 
     onUpdateNoteHeader(note: Note) {

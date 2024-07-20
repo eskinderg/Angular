@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    OnInit,
+    Renderer2
+} from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-note-detail-dialog',
@@ -10,29 +15,35 @@ import { Router } from '@angular/router';
     styleUrl: './note-dialog.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NoteDetailDialogComponent implements OnInit {
-    note: Note;
+export class NoteDialogComponent implements OnInit, AfterViewInit {
+    public note: Note;
 
     constructor(
-        public activeDialog: NgbActiveModal,
         private notesApiService: NoteApiService,
-        public router: Router
+        private host: ElementRef<HTMLElement>,
+        private renderer: Renderer2
     ) {}
 
-    ngOnInit() {
-        this.note = history.state['note'];
+    ngOnInit(): void {
+        this.renderer.listen(this.host.nativeElement, 'keydown.esc', () => {
+            this.close();
+        });
+    }
+
+    ngAfterViewInit(): void {
+        (this.host.nativeElement.firstElementChild as HTMLElement).focus();
     }
 
     close() {
-        this.activeDialog.close();
+        this.host.nativeElement.remove();
     }
 
     no() {
-        this.activeDialog.close();
+        this.host.nativeElement.remove();
     }
 
     yes() {
-        this.notesApiService.deleteNote(this.note);
-        // this.activeDialog.close('/notes');
+        this.notesApiService.archiveNote(this.note);
+        this.host.nativeElement.remove();
     }
 }

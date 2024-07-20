@@ -15,6 +15,7 @@ import { NotesComponent } from './main/notes.component';
 import { NotesDataService } from './services/notes.data.service';
 import { NoteLeftViewModule } from './main/left.view/note.left.view.module';
 import { NoteRightViewModule } from './main/right.view/note.right.view.module';
+import { NoteDialogModule } from './components/note-dialog/note.dialog.module';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { NoteRightViewModule } from './main/right.view/note.right.view.module';
         NgaModule,
         SharedModule,
         NgbModule,
+        NoteDialogModule,
         NoteLeftViewModule,
         NoteRightViewModule
     ],

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, viewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, viewChild, OnDestroy } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NoteRightViewComponent } from './right.view/note.right.view.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
+import { NoteDialogService } from '../components/note-dialog/note.dialog.service';
 
 @Component({
     selector: 'app-notes',
@@ -14,12 +15,13 @@ import * as fromNotes from 'src/app/store/reducers/note.reducer';
     animations: [FadeInOutNoteListItem],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotesComponent {
+export class NotesComponent implements OnDestroy {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
 
     constructor(
         public notesApiService: NoteApiService,
         private noteStore: Store<fromNotes.INotesState>,
+        private noteDialogService: NoteDialogService,
         public route: Router
     ) {}
 
@@ -69,7 +71,7 @@ export class NotesComponent {
     }
 
     onArchiveNote(note: Note) {
-        this.notesApiService.archiveNote(note);
+        this.noteDialogService.showDialog(note);
     }
 
     onUpdateNoteHeader(note: Note) {
@@ -102,5 +104,9 @@ export class NotesComponent {
 
     get OpendNote() {
         return this.notesApiService.OpendNote;
+    }
+
+    ngOnDestroy(): void {
+        this.noteDialogService.destroy();
     }
 }
