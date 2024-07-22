@@ -27,17 +27,9 @@
     </div>
 
     <div class="item">
-        @if (note.header) {
-            <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
-                {{ note.header | noteTitleTruncate: '20' : true }}
-            </div>
-        } @else if (note.text) {
-            <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
-                {{ note.text | noteTitleTruncate: '20' : true }}
-            </div>
-        } @else {
-            <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">Untitled</div>
-        }
+        <div class="mb-1 note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+            {{ note | noteTitleTruncate: '20' : true }}
+        </div>
     </div>
 
     <small

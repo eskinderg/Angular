@@ -1,2 +1,8 @@
-// @import '../../../scss/variables';
-// @import '../../../scss/mixins';
+.eventWrapper {
+    display: flex;
+    padding: 1rem;
+}
+
+.event {
+    flex: 0 1 50%;
+}

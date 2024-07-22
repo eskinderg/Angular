@@ -8,11 +8,9 @@
 
                         <div class="note-detail">
                             <div class="item">
-                                <h6 class="mb-1 note-text">
-                                    {{
-                                        note.text ? (note.text | noteTitleTruncate: '20' : true) : 'Untitled'
-                                    }}
-                                </h6>
+                                <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+                                    {{ note | noteTitleTruncate: '20' : true }}
+                                </div>
                             </div>
                             <small>Author: {{ note.owner }}</small>
                             <br />

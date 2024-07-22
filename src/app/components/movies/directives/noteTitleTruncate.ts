@@ -1,12 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Note } from 'src/app/models/note';
 
 @Pipe({
     name: 'noteTitleTruncate'
 })
 export class NoteTitleTruncatePipe implements PipeTransform {
-    transform(value: string, args: string, trailadd: boolean): string {
+    transform(note: Note, args: string, trailadd: boolean): string {
         // Cleaning up html tags
         const temp = document.createElement('div');
+        let value = note.header ? note.header : note.text;
+
+        if (value === '') {
+            value = 'Untitled';
+        }
+
         temp.innerHTML = value;
         value = temp.textContent || temp.innerText || '';
 
