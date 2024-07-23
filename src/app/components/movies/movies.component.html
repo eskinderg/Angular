@@ -1,12 +1,10 @@
-<div class="container-fluid">
-    <div class="row mt-2">
-        <div class="col-lg-3 hidden-md-down">
-            <div class="list-group make-me-sticky">
-                <app-left-view (select)="onGenreSelect()" [genres]="genres"></app-left-view>
-            </div>
+<div class="movie-container">
+    <div class="mov">
+        <div class="leftView make-me-sticky">
+            <app-left-view (select)="onGenreSelect()" [genres]="genres"></app-left-view>
         </div>
 
-        <div class="col-lg-9">
+        <div class="rightView">
             <router-outlet></router-outlet>
         </div>
     </div>

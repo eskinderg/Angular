@@ -2,9 +2,9 @@
 @import '../../../../node_modules/bootstrap/scss/bootstrap';
 
 :root {
-    --bs-card-cap-bg: #21252908;
     --primary: #2a6ada;
     --secondary: #6c757d;
+    --bs-card-cap-bg: #21252908;
     --dropdown-bg: var(--body-bg);
     --dropdown-link-hover-bg: var(--body-bg);
     --navbar-active-color: #fff;
@@ -44,14 +44,14 @@
 }
 
 .dark {
+    --primary: #22272e;
+    --secondary: #6c757d;
     --bs-body-color: #adbac7;
     --bs-body-bg: #2d333b;
     --dropdown-bg: #2d333b;
     --dropdown-link-hover-bg: #2d333b;
     --bs-secondary-color: #6c757d;
-    --primary: #22272e;
     --bs-primary: var(--primary);
-    --secondary: #6c757d;
     --body-bg: #2d333b;
     --body-color: #adbac7;
     --bs-secondary-bg: var(--primary);
@@ -131,6 +131,10 @@
     --bs-dropdown-link-hover-bg: var(--body-bg);
     --bs-list-group-active-color: var(--primary);
     color-scheme: dark;
+}
+
+.page-link {
+    z-index: 0 ! important;
 }
 
 .list-group {

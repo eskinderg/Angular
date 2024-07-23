@@ -25,6 +25,7 @@ import { ThemeModule } from './theme/theme.module';
     imports: [
         BrowserModule,
         AuthModule,
+        ThemeModule,
         UnauthorizedModule,
         GlobalNotificationModule,
         NotfoundModule,
@@ -35,7 +36,6 @@ import { ThemeModule } from './theme/theme.module';
         SharedModule.forRoot(),
         NgbModule,
         AppRoutingModule,
-        ThemeModule,
         NotesModule,
         EventsModule,
         StoreRouterConnectingModule.forRoot({

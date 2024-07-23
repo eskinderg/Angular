@@ -1,7 +1,7 @@
 <div class="navigationBar">
     @if (isLoggedIn | async) {
         <div class="subnav">
-            <div class="subnavbtn" role="button" aria-expanded="false" [routerLink]="['/profile']">
+            <div class="subnavbtn">
                 {{ givenName }}
 
                 <div class="subnav-content">

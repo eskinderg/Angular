@@ -1,11 +1,29 @@
-// .card-border {
-// border: 2px solid lighten($black, 80%);;
-// }
-
-.card {
+.card-view {
     width: 250px;
     margin: 10px;
     background-color: var(--card-bg);
+    border: 1px solid var(--card-border-color);
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 0.5rem;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.year-rating {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .hover-shadow:hover {

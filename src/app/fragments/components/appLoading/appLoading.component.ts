@@ -2,8 +2,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
 
 @Component({
     selector: 'app-loading',
-    template: `<div [ngClass]="{ hide: !loading }" class="progress">
-        <div class="loading"></div>
+    template: `<div [ngClass]="{ hide: !loading }" class="appProgress">
+        <div class="appLoading"></div>
     </div>`,
     styleUrls: ['appLoading.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

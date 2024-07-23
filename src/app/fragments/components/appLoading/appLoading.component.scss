@@ -16,7 +16,7 @@ $spin-color-background : $red;
 }
 
 /* Progress Bar */
-.progress {
+.appProgress {
   position: relative;
   height: 4px;
   display:block;
@@ -28,7 +28,7 @@ $spin-color-background : $red;
   overflow: hidden;
 }
 
-.progress .determinate {
+.appProgress .determinate {
   position: absolute;
   background-color: inherit;
   top: 0;
@@ -37,11 +37,11 @@ $spin-color-background : $red;
   transition: width .3s linear;
 }
 
-.progress .loading {
+.appProgress .appLoading {
   background-color: $spin-color;
 }
 
-.progress .loading:before {
+.appProgress .appLoading:before {
   content: '';
   position: absolute;
   background-color: inherit;
@@ -53,7 +53,7 @@ $spin-color-background : $red;
   animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 
-.progress .loading:after {
+.appProgress .appLoading:after {
   content: '';
   position: absolute;
   background-color: inherit;
