@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Event } from 'src/app/fragments/components/event/event';
 import * as fromRoot from '../../../../store/reducers';
@@ -18,12 +17,10 @@ export class EventsDialogComponent {
 
     constructor(
         private router: Router,
-        private activeDialog: NgbActiveModal,
         private store: Store<fromRoot.IAppState>,
         private location: Location
     ) {
         if (this.router.getCurrentNavigation() == null) {
-            this.activeDialog.close();
             // this.location.go('./events');
             return;
         }
@@ -35,12 +32,9 @@ export class EventsDialogComponent {
         // console.log(this.Event)
     }
 
-    no() {
-        this.activeDialog.close();
-    }
+    no() {}
 
     yes() {
         this.store.dispatch(EventsActions.deleteEvent({ payload: this.Event }));
-        this.activeDialog.close();
     }
 }

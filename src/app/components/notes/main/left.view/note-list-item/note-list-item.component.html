@@ -38,7 +38,7 @@
         class="date-modified date-text"
         [@.disabled]="!animate.date"
         [@fadeInOutNoteListItem]
-        [ngbTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
+        [appTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
         {{ note.dateModified | dateago }}</small
     >
 

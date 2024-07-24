@@ -1,9 +1,9 @@
-<ngb-pagination
+<app-pagination
     [(page)]="movieResult.page"
     [pageSize]="20"
     [maxSize]="15"
     (pageChange)="loadPage($event)"
-    [collectionSize]="collectionSize"></ngb-pagination>
+    [collectionSize]="collectionSize"></app-pagination>
 
 <div class="movie-cards-container">
     @for (movie of movieResult.movies; track movie) {
@@ -13,11 +13,11 @@
         </div>
     }
 </div>
-<ngb-pagination
+<app-pagination
     [(page)]="movieResult.page"
     [pageSize]="20"
     [maxSize]="15"
     (pageChange)="loadPage($event)"
-    [collectionSize]="collectionSize"></ngb-pagination>
+    [collectionSize]="collectionSize"></app-pagination>
 
 <router-outlet></router-outlet>

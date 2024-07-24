@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../shared/shared.module';
 import { NoteApiService } from './services/notes.api.service';
 import { NotesRoutingModule } from './notes-routing.module';
@@ -24,7 +23,6 @@ import { NoteDialogModule } from './components/note-dialog/note.dialog.module';
         DraggableModule,
         NgaModule,
         SharedModule,
-        NgbModule,
         NoteDialogModule,
         NoteLeftViewModule,
         NoteRightViewModule

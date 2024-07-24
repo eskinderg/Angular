@@ -1,5 +1,5 @@
 @for (notification of notificationService.Notifications | async; track notification) {
-    <ngb-toast
+    <app-toast
         [class]="notification.classname"
         [autohide]="notification.autoHide"
         [delay]="notification.delay"
@@ -7,5 +7,5 @@
         [animation]="notification.animate"
         (hidden)="notificationService.remove(notification)">
         {{ notification.text }}
-    </ngb-toast>
+    </app-toast>
 }

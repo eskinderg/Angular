@@ -44,7 +44,6 @@
     "@angular/compiler-cli": "^18.0.4",
     "@angular/localize": "^18.0.4",
     "@angular/service-worker": "^18.0.4",
-    "@ng-bootstrap/ng-bootstrap": "17.0.0",
     "@ngrx/effects": "18.0.0",
     "@ngrx/store": "18.0.0",
     "@ngrx/store-devtools": "18.0.0",

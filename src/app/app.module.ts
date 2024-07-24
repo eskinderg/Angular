@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorizationModule } from './components/authorization/authorization.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +33,6 @@ import { ThemeModule } from './theme/theme.module';
         AppStoreModule,
         NgaModule.forRoot(),
         SharedModule.forRoot(),
-        NgbModule,
         AppRoutingModule,
         NotesModule,
         EventsModule,

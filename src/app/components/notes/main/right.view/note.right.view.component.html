@@ -21,7 +21,7 @@
         <div class="menu-icons">
             <div
                 class="spell-check"
-                ngbTooltip="Toggle Spell Check"
+                appTooltip="Toggle Spell Check"
                 placement="left"
                 [ngClass]="{ 'spell-check-active': note.spellCheck }"
                 (click)="spellCheckToggle(note)">
@@ -65,7 +65,7 @@
             <div
                 class="info-icon menu-icon popover-content"
                 placement="auto"
-                [ngbPopover]="popContent"
+                [appPopover]="popContent"
                 popoverTitle="Info">
                 <svg
                     version="1.1"

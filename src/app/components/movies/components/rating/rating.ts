@@ -24,7 +24,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
         `
     ]
 })
-export class NgbdRatingDecimalComponent {
+export class RatingDecimalComponent {
     @Input()
     rating: string;
 

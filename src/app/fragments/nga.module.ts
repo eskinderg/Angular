@@ -14,12 +14,15 @@ import {
     DialogInfoComponent,
     ConfirmTemplateDirective
 } from './components/dialog';
-import { NgbdRatingDecimalComponent } from '../components/movies/components/rating/rating';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingDecimalComponent } from '../components/movies/components/rating/rating';
 import { FormatDatePipe } from '../components/movies/directives/dateFormat';
 import { SharedModule } from '../components/shared/shared.module';
 import { NoteTextComponent } from './components/note.text/note.text.component';
 import { AgoDatePipe } from '../components/movies/directives/dateagopipe';
+import { TooltipModule } from './components/tooltip/tooltip.module';
+import { PopoverModule } from './components/popover/popover.module';
+import { RatingModule } from './components/rating/rating.module';
+import { PaginationModule } from './components/pagination/pagination.module';
 
 const NGA_COMPONENTS = [
     BaBackTopComponent,
@@ -30,7 +33,7 @@ const NGA_COMPONENTS = [
     NoteTextComponent,
     DialogInfoComponent,
     CheckMarkComponent,
-    NgbdRatingDecimalComponent
+    RatingDecimalComponent
     // BaAmChart,
     // BaBackTop,
     // BaCard,
@@ -84,14 +87,25 @@ const NGA_VALIDATORS = [
         CommonModule,
         SharedModule,
         NgScrollbarModule,
-        NgbModule
+        TooltipModule,
+        PopoverModule,
+        RatingModule,
+        PaginationModule
         // RouterModule,
         // FormsModule,
         // ReactiveFormsModule,
         // AppTranslationModule,
         // NgUploaderModule
     ],
-    exports: [...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS]
+    exports: [
+        ...NGA_PIPES,
+        ...NGA_DIRECTIVES,
+        ...NGA_COMPONENTS,
+        TooltipModule,
+        PopoverModule,
+        RatingModule,
+        PaginationModule
+    ]
 })
 
 /**

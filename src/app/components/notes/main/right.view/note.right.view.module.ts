@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../../../shared/shared.module';
 import { NoteRightViewComponent } from './note.right.view.component';
 import { NgaModule } from 'src/app/fragments/nga.module';
@@ -9,7 +8,7 @@ import { TextareaExpandedComponent } from './textAreaExpanded/textAreaExpanded.c
 import { TextSelection } from './textAreaExpanded/text.selection';
 
 @NgModule({
-    imports: [SharedModule, NgaModule, NgbPopoverModule],
+    imports: [SharedModule, NgaModule],
     declarations: [
         NoteRightViewComponent,
         NoteHeaderControlComponent,

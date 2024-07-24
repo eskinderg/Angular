@@ -18,11 +18,7 @@ export class ConfirmDialogComponent {
         this.options = state.options;
     }
 
-    yes() {
-        this.state.dialog.close('confirmed');
-    }
+    yes() {}
 
-    no() {
-        this.state.dialog.dismiss('not confirmed');
-    }
+    no() {}
 }

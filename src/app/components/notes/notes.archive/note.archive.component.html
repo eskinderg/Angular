@@ -15,7 +15,7 @@
                             <small>Author: {{ note.owner }}</small>
                             <br />
                             <small
-                                [ngbTooltip]="'Last Modified ' + (note.dateModified | dateago)"
+                                [appTooltip]="'Last Modified ' + (note.dateModified | dateago)"
                                 class="date-modified text-muted">
                                 <strong>Archived On </strong>{{ note.dateArchived | date: 'medium' }}</small
                             >

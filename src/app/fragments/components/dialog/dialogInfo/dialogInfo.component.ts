@@ -16,9 +16,7 @@ export class DialogInfoComponent {
         this.options = state.options;
     }
 
-    close() {
-        this.state.dialog.close('confirmed');
-    }
+    close() {}
 
     // no() {
     //   this.state.dialog.dismiss('not confirmed');

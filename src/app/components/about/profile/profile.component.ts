@@ -38,20 +38,7 @@ export class ProfileComponent implements OnInit {
     }
 
     onSubmit() {
-        if (this.profileForm.valid) {
-            this.confirmService
-                .openInfoDialog({
-                    title: 'Profile',
-                    message: 'Profile Saved',
-                    backdrop: true,
-                    centered: false
-                })
-                .then(
-                    () => {},
-                    () => {
-                        console.log();
-                    }
-                );
-        }
+        // if (this.profileForm.valid) {
+        // }
     }
 }

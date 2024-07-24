@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgaModule } from '../../fragments/nga.module';
 
 import { EventModule } from '../../fragments/components/event/event.module';
@@ -12,15 +11,7 @@ import { EventDataService } from 'src/app/fragments/components/event/event.data.
 import { EventsResolve } from 'src/app/fragments/components/event/event.data.service/EventsResolve';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        EventsRoutingModule,
-        SharedModule,
-        EventModule,
-        NgaModule,
-        NgScrollbarModule,
-        NgbModule
-    ],
+    imports: [CommonModule, EventsRoutingModule, SharedModule, EventModule, NgaModule, NgScrollbarModule],
     exports: [],
     declarations: [EventsComponent],
     providers: [EventDataService, EventsResolve]

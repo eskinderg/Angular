@@ -12,10 +12,9 @@ import { EventListSelectComponent } from './component/event-list/event-list-item
 
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, NgaModule, NgbModule, NgScrollbarModule, RouterModule],
+    imports: [FormsModule, CommonModule, NgaModule, NgScrollbarModule, RouterModule],
     declarations: [
         EventComponent,
         EventListHeaderComponent,

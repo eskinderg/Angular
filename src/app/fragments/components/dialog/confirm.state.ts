@@ -1,5 +1,4 @@
 import { Injectable, TemplateRef } from '@angular/core';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmOptions } from './confirm.options';
 /**
  * An internal service allowing to access, from the confirm dialog component, the options and the dialog reference.
@@ -17,8 +16,6 @@ export class ConfirmState {
     /**
      * The last opened confirmation dialog
      */
-    dialog: NgbModalRef;
-
     /**
      * The template containing the confirmation dialog component
      */
