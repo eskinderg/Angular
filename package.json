@@ -27,7 +27,7 @@
     "@angular/language-service": "^18.0.4",
     "@angular/platform-browser": "^18.0.4",
     "@angular/platform-browser-dynamic": "^18.0.4",
-    "@angular/router": "^18.0.4",
+    "@angular/router": "^18.1.2",
     "@ngrx/router-store": "^18.0.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.3",
