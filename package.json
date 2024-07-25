@@ -41,7 +41,7 @@
     "@angular-eslint/schematics": "18.1.0",
     "@angular-eslint/template-parser": "18.1.0",
     "@angular/cli": "^18.0.5",
-    "@angular/compiler-cli": "^18.0.4",
+    "@angular/compiler-cli": "^18.1.2",
     "@angular/localize": "^18.0.4",
     "@angular/service-worker": "^18.0.4",
     "@ngrx/effects": "18.0.0",
