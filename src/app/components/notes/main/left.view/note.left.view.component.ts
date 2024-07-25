@@ -6,7 +6,6 @@ import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteRightViewComponent } from '../right.view/note.right.view.component';
 import { NoteDialogService } from '../../components/note-dialog/note.dialog.service';
-// import { Genre } from '../models/genre';
 
 @Component({
     selector: 'app-note-left-view',
@@ -27,22 +26,6 @@ export class NoteLeftViewComponent {
     onChangeNoteText(note: Note) {
         this.notesApiService.updateNoteText(note);
     }
-
-    saveSelection() {
-        if (window.getSelection) {
-            const sel = window.getSelection();
-            if (sel.getRangeAt && sel.rangeCount) {
-                return sel.getRangeAt(0);
-            }
-        } else if (document.getSelection && document.getSelection().getRangeAt(0)) {
-            return null;
-        }
-        return null;
-    }
-
-    selection: Range;
-    x: number;
-    y: number;
 
     selectionChange(note: Note) {
         this.notesApiService.updateNoteSelection(note);

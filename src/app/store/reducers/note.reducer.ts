@@ -68,8 +68,8 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: action.payload,
-            selectedNote: action.payload.filter((n) => !n.archived)[0] ?? null,
-            opendNote: action.payload.filter((n) => !n.archived)[0] ?? null,
+            selectedNote: action.payload.filter((n) => !n.archived).at(0) ?? null,
+            opendNote: action.payload.filter((n) => !n.archived).at(0) ?? null,
             animate: {
                 note: true,
                 date: true

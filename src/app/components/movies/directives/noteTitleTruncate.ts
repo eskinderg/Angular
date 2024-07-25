@@ -8,20 +8,18 @@ export class NoteTitleTruncatePipe implements PipeTransform {
     transform(note: Note, args: string, trailadd: boolean): string {
         // Cleaning up html tags
         const temp = document.createElement('div');
-        let value = note.header ? note.header : note.text;
 
-        if (value === '') {
-            value = 'Untitled';
-        }
+        temp.innerHTML = note.header ? note.header : note.text;
 
-        temp.innerHTML = value;
-        value = temp.textContent || temp.innerText || '';
+        const value = temp.textContent || temp.innerText || '';
 
         let trail = '';
 
         const limit = args ? parseInt(args, 10) : 10;
 
-        if (value === '') return '\u00A0';
+        if (value.trim() === '') {
+            return 'Untitled';
+        }
 
         if (trailadd) {
             trail = ' ...';
