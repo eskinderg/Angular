@@ -1,6 +1,5 @@
 import {
     afterNextRender,
-    AfterRenderPhase,
     ApplicationRef,
     ComponentRef,
     inject,
@@ -55,14 +54,13 @@ export class PopupService<T> {
 
         const nextRenderSubject = new Subject<void>();
         afterNextRender(
-            () => {
-                nextRenderSubject.next();
-                nextRenderSubject.complete();
-            },
             {
-                injector: this._injector,
-                phase: AfterRenderPhase.MixedReadWrite
-            }
+                mixedReadWrite: () => {
+                    nextRenderSubject.next();
+                    nextRenderSubject.complete();
+                }
+            },
+            { injector: this._injector }
         );
         const transition$ = nextRenderSubject.pipe(
             mergeMap(() =>
