@@ -1,7 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgScrollbarModule } from 'ngx-scrollbar';
-
 import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
 import { BaCardComponent } from './components/baCard/baCard.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
@@ -86,7 +84,6 @@ const NGA_VALIDATORS = [
     imports: [
         CommonModule,
         SharedModule,
-        NgScrollbarModule,
         TooltipModule,
         PopoverModule,
         RatingModule,

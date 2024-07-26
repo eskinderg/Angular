@@ -1,21 +1,17 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { DraggableDirective } from './draggable.directive';
-import { GlobalPositionStrategy, Overlay, OverlayRef } from '@angular/cdk/overlay';
 
 @Directive({
     selector: '[appDraggableHelper]',
     exportAs: 'appDraggableHelper'
 })
 export class DraggableHelperDirective implements OnInit {
-    private overlayRef: OverlayRef | undefined;
-    private positionStrategy = new GlobalPositionStrategy();
     private startPosition?: { x: number; y: number };
 
     constructor(
         private draggable: DraggableDirective,
         private templateRef: TemplateRef<any>,
-        private viewContainerRef: ViewContainerRef,
-        private overlay: Overlay
+        private viewContainerRef: ViewContainerRef
     ) {}
 
     ngOnInit(): void {
@@ -24,9 +20,6 @@ export class DraggableHelperDirective implements OnInit {
         // this.draggable.dragEnd.subscribe(() => this.onDragEnd());
 
         // create an overlay...
-        this.overlayRef = this.overlay.create({
-            positionStrategy: this.positionStrategy
-        });
     }
 
     // ngOnDestroy(): void {

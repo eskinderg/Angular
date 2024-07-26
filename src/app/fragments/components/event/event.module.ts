@@ -10,11 +10,10 @@ import { EventListItemComponent } from './component/event-list/event-list-item/e
 import { EventListFooterComponent } from './component/event-list-footer/event-list-footer.component';
 import { EventListSelectComponent } from './component/event-list/event-list-item/event-list-select/event-list-select.component';
 
-import { NgScrollbarModule } from 'ngx-scrollbar';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, NgaModule, NgScrollbarModule, RouterModule],
+    imports: [FormsModule, CommonModule, NgaModule, RouterModule],
     declarations: [
         EventComponent,
         EventListHeaderComponent,

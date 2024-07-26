@@ -10,12 +10,11 @@ import { NgaModule } from '../../fragments/nga.module';
 import { MoviesApiService } from '../movies/service/movies.api.service';
 import { MoviesDataService } from '../movies/service/movies.data.service';
 import { TvsResolve } from '../movies/service/tvs.resolve';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
     declarations: [HomeComponent, TableComponent],
     exports: [HomeComponent],
-    imports: [SharedModule, NgaModule, HomeRoutingModule, NgScrollbarModule],
+    imports: [SharedModule, NgaModule, HomeRoutingModule],
     providers: [MoviesDataService, MoviesApiService, TvsResolve, provideHttpClient(withJsonpSupport())]
 })
 export class HomeModule {}

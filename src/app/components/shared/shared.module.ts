@@ -13,7 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import { TruncatePipe } from '../movies/directives/truncate';
 import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOption/appThemeOption.component';
 
 /**
@@ -37,7 +36,6 @@ import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOptio
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        DragDropModule,
         TruncatePipe,
         NoteTitleTruncatePipe,
         ThemeOptionComponent
