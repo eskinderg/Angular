@@ -1,6 +1,10 @@
+:host {
+    box-sizing: border-box;
+}
+
 .eventWrapper {
     display: flex;
-    padding: 1rem;
+    // padding: 1rem;
 }
 
 .event {

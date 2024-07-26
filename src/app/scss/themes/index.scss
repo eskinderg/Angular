@@ -1,10 +1,9 @@
-@import '../custom-bootstrap/custom-bootstrap.scss';
-@import '../../../../node_modules/bootstrap/scss/bootstrap';
-
 :root {
     --primary: #2a6ada;
     --secondary: #6c757d;
+    --warning: #ffc107;
     --bs-card-cap-bg: #21252908;
+    --body-color: #000;
     --dropdown-bg: var(--body-bg);
     --dropdown-link-hover-bg: var(--body-bg);
     --navbar-active-color: #fff;
@@ -18,7 +17,7 @@
     --list-group-border-color: #dce5ef;
     --body-bg: #fff;
     --b-secondary: #dcdcdc;
-    --b-active-link-color: var(--bs-primary);
+    --b-active-link-color: var(--primary);
     --border: #dadada80;
     --del-button-note: #dcdcdc;
     --active-list-link: #edf0f7;
@@ -28,7 +27,7 @@
     --selected-note-list-item-bg-color: #f8f9fa;
     --list-link-hover: #f5f5f5;
     --text-area-border: #dcdcdc;
-    --note-pin-fill: rgb(from var(--b-active-link-color) r g b / 65%);
+    --note-pin-fill: rgb(from var(--primary) r g b / 65%);
     --note-pin-nofill: var(--b-secondary);
     --scrollbar-track-bg-color: #dddddd; //rgb(from var(--b-secondary) r g b / 50%);
     --scrollbar-thumb-color: #83a6e4;
@@ -46,7 +45,7 @@
 .dark {
     --primary: #22272e;
     --secondary: #6c757d;
-    --bs-body-color: #adbac7;
+    --body-color: #adbac7;
     --bs-body-bg: #2d333b;
     --dropdown-bg: #2d333b;
     --dropdown-link-hover-bg: #2d333b;
@@ -134,7 +133,7 @@
 }
 
 .page-link {
-    z-index: 0 ! important;
+    z-index: 0 !important;
 }
 
 .list-group {
@@ -145,14 +144,6 @@
     background-color: var(--list-group-bg);
     color: var(--list-group-color);
     border-color: var(--list-group-border-color);
-}
-
-.popover-header {
-    background-color: var(--popover-header-bg);
-}
-
-.popover {
-    background-color: var(--popover-bg);
 }
 
 .dropdown-menu {
@@ -184,4 +175,42 @@
 .text-muted {
     --bs-text-opacity: 1;
     color: var(--secondary) !important;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.375rem;
+}
+
+.bg-secondary {
+    background-color: rgba(108, 117, 125, 1) !important;
+}
+
+.spinner-border {
+    border: 0.2em solid rgba(255, 255, 255, 55%);
+    border-right-color: transparent;
+}
+
+.spinner-grow,
+.spinner-border {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    vertical-align: -0.125em;
+    border-radius: 50%;
+    animation: 0.75s linear infinite spinner-border;
+}
+
+@keyframes spinner-border {
+    100% {
+        transform: rotate(360deg) /* rtl:ignore */;
+    }
 }

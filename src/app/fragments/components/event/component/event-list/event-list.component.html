@@ -1,20 +1,16 @@
 <div class="form-group">
     <section class="main">
-        <ul class="list-group">
-            @for (event of events; track event) {
-                <li
-                    class="list-group-item d-flex justify-content-between align-items-center"
-                    [class.completed]="event.complete">
-                    <app-event-list-item
-                        [@fadeInOutEventListItem]
-                        [event]="event"
-                        (toggle)="onToggleEvent($event)"
-                        (remove)="onRemoveEvent($event)"
-                        (update)="onUpdateEvent($event)"
-                        (select)="onSelectEvent($event)">
-                    </app-event-list-item>
-                </li>
-            }
-        </ul>
+        @for (event of events; track event) {
+            <li [class.completed]="event.complete">
+                <app-event-list-item
+                    [@fadeInOutEventListItem]
+                    [event]="event"
+                    (toggle)="onToggleEvent($event)"
+                    (remove)="onRemoveEvent($event)"
+                    (update)="onUpdateEvent($event)"
+                    (select)="onSelectEvent($event)">
+                </app-event-list-item>
+            </li>
+        }
     </section>
 </div>

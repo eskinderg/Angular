@@ -1,9 +1,3 @@
-@import "../../../../../node_modules/bootstrap/scss/functions";
-@import "../../../../../node_modules/bootstrap/scss/variables";
-
-$spin-color :  $green;
-$spin-color-background : $red;
-
 :host {
   position: fixed;
   width:100%;
@@ -21,7 +15,7 @@ $spin-color-background : $red;
   height: 4px;
   display:block;
   width: 100%;
-  background-color: $spin-color-background;
+  background-color: #dc3545;
   border-radius: 2px;
   background-clip: padding-box;
 
@@ -33,12 +27,12 @@ $spin-color-background : $red;
   background-color: inherit;
   top: 0;
   bottom: 0;
-  background-color: $spin-color;
+  background-color: #198754;
   transition: width .3s linear;
 }
 
 .appProgress .appLoading {
-  background-color: $spin-color;
+  background-color: #198754;
 }
 
 .appProgress .appLoading:before {

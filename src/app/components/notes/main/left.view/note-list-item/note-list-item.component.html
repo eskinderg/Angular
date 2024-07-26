@@ -3,62 +3,65 @@
     [@fadeInOutNoteListItem]
     class="note-border"
     [ngClass]="{ 'selected-note': selectedNote === note }">
-    <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
     <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
-
-    <div class="menu del-button" (mouseup)="onArchiveNote(note)">
-        <svg
-            class="archive-note-button-icon"
-            enable-background="new 0 0 256 256"
-            version="1.1"
-            viewBox="0 0 256 256"
-            height="20"
-            width="20"
-            xml:space="preserve"
-            xmlns="http://www.w3.org/2000/svg">
-            <g id="g8">
-                <g id="g6">
-                    <path
-                        id="path4"
-                        d="m172.2 54.3h-88.5v14.7h88.5v-14.7zm51.7-44.3h-191.8l-22.1 132.8v103.2h236v-103.2l-22.1-132.8zm-179.1 14.8h166.5l17.7 118h-64.1v29.4h-73.8v-29.4h-64.1l17.8-118zm186.4 206.4h-206.5v-73.2l0.1-0.6h51.5v29.6h103.2v-29.5h51.5l0.1 0.6 0.1 73.1zm-44.2-132.7h-118v14.7h118v-14.7z" />
-                </g>
-            </g>
-        </svg>
-    </div>
-
-    <div class="item">
-        <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
-            {{ note | noteTitleTruncate: '20' : true }}
+    <div class="left">
+        <div class="item" (mouseup)="onSelectNote(note)">
+            <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+                {{ note | noteTitleTruncate: '20' : true }}
+            </div>
         </div>
+
+        <small
+            (mouseup)="onSelectNote(note)"
+            [ngClass]="{ 'pinned-note-text': note.pinOrder }"
+            class="date-modified date-text"
+            [@.disabled]="!animate.date"
+            [@fadeInOutNoteListItem]
+            [appTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
+            {{ note.dateModified | dateago }}</small
+        >
     </div>
+    <div class="right">
+        <div class="menu del-button" (mouseup)="onArchiveNote(note)">
+            <svg
+                class="archive-note-button-icon"
+                enable-background="new 0 0 256 256"
+                version="1.1"
+                viewBox="0 0 256 256"
+                height="20"
+                width="20"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="g8">
+                    <g id="g6">
+                        <path
+                            id="path4"
+                            d="m172.2 54.3h-88.5v14.7h88.5v-14.7zm51.7-44.3h-191.8l-22.1 132.8v103.2h236v-103.2l-22.1-132.8zm-179.1 14.8h166.5l17.7 118h-64.1v29.4h-73.8v-29.4h-64.1l17.8-118zm186.4 206.4h-206.5v-73.2l0.1-0.6h51.5v29.6h103.2v-29.5h51.5l0.1 0.6 0.1 73.1zm-44.2-132.7h-118v14.7h118v-14.7z" />
+                    </g>
+                </g>
+            </svg>
+        </div>
 
-    <small
-        (mouseup)="onSelectNote(note)"
-        [ngClass]="{ 'pinned-note-text': note.pinOrder }"
-        class="date-modified date-text"
-        [@.disabled]="!animate.date"
-        [@fadeInOutNoteListItem]
-        [appTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
-        {{ note.dateModified | dateago }}</small
-    >
+        <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
+            <svg
+                id="Layer_1"
+                enable-background="new 0 0 512 512"
+                version="1.1"
+                viewBox="0 0 512 512"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    class="pin"
+                    [ngClass]="note.pinOrder ? 'pinned' : 'newpin'"
+                    id="path2"
+                    d="m130.29 4.535c2.8148-2.5879 6.6209-4.0478 10.595-4.0582l209.48-1.0023c8.2668-0.039556 14.963 6.0727 14.963 13.659 0 18.673-10.231 32.289-19.33 40.708-3.7687 3.4506-7.4812 6.1887-10.595 8.2374v121.68l2.3379 1.3104c6.0785 3.455 14.242 8.5562 22.472 15.133 15.888 12.659 35.04 33.214 35.04 59.937 0 7.586-6.6957 13.762-14.963 13.802l-119.7 0.57276v123.57c0 7.5774-6.7051 41.223-14.963 41.262-8.2574 0.0395-14.963-33.542-14.963-41.119v-123.57l-119.7 0.57276c-8.2668 0.03956-14.963-6.0727-14.963-13.659 0-26.723 19.152-47.461 35.012-60.28 7.7431-6.2071 16.057-11.782 24.838-16.681v-121.68c-3.778-2.4362-7.3129-5.1568-10.595-8.136-9.0991-8.3233-19.33-21.867-19.33-40.515-9e-3 -3.6471 1.5617-7.1472 4.3672-9.7436z"
+                    fill="none"
+                    stroke="#000"
+                    stroke-opacity=".063583"
+                    stroke-width=".996" />
+            </svg>
+        </div>
 
-    <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
-        <svg
-            id="Layer_1"
-            enable-background="new 0 0 512 512"
-            version="1.1"
-            viewBox="0 0 512 512"
-            xml:space="preserve"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-                class="pin"
-                [ngClass]="note.pinOrder ? 'pinned' : 'newpin'"
-                id="path2"
-                d="m130.29 4.535c2.8148-2.5879 6.6209-4.0478 10.595-4.0582l209.48-1.0023c8.2668-0.039556 14.963 6.0727 14.963 13.659 0 18.673-10.231 32.289-19.33 40.708-3.7687 3.4506-7.4812 6.1887-10.595 8.2374v121.68l2.3379 1.3104c6.0785 3.455 14.242 8.5562 22.472 15.133 15.888 12.659 35.04 33.214 35.04 59.937 0 7.586-6.6957 13.762-14.963 13.802l-119.7 0.57276v123.57c0 7.5774-6.7051 41.223-14.963 41.262-8.2574 0.0395-14.963-33.542-14.963-41.119v-123.57l-119.7 0.57276c-8.2668 0.03956-14.963-6.0727-14.963-13.659 0-26.723 19.152-47.461 35.012-60.28 7.7431-6.2071 16.057-11.782 24.838-16.681v-121.68c-3.778-2.4362-7.3129-5.1568-10.595-8.136-9.0991-8.3233-19.33-21.867-19.33-40.515-9e-3 -3.6471 1.5617-7.1472 4.3672-9.7436z"
-                fill="none"
-                stroke="#000"
-                stroke-opacity=".063583"
-                stroke-width=".996" />
-        </svg>
+        <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
     </div>
 </div>

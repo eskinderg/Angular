@@ -24,19 +24,17 @@ import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 
 import { listenToTriggers } from './util/triggers';
 import { ngbAutoClose } from './util/autoclose';
-import { ngbPositioning } from './util/positioning';
 import { PopupService } from './util/popup';
 import { isString } from './util/util';
 
 import { NgbPopoverConfig } from './popover-config';
-
-import { addPopperOffset } from './util/positioning-util';
 
 let nextId = 0;
 
 @Component({
     selector: 'app-popover-window',
     standalone: true,
+    styleUrls: ['popover.component.scss'],
     imports: [NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
@@ -45,7 +43,7 @@ let nextId = 0;
         '[class.fade]': 'animation',
         role: 'tooltip',
         '[id]': 'id',
-        style: 'position: absolute;'
+        style: 'position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(-44px, 10px)'
     },
     template: `
         <div class="popover-arrow" data-popper-arrow></div>
@@ -132,8 +130,6 @@ export class PopoverDirective implements OnInit, OnDestroy, OnChanges {
      *
      * @since 13.1.0
      */
-    @Input() popperOptions = this._config.popperOptions;
-
     /**
      * Specifies events that should trigger the tooltip.
      *
@@ -214,7 +210,6 @@ export class PopoverDirective implements OnInit, OnDestroy, OnChanges {
     private _popupService = new PopupService(PopoverWindowComponent);
     private _windowRef: ComponentRef<PopoverWindowComponent> | null = null;
     private _unregisterListenersFn;
-    private _positioning = ngbPositioning();
     private _afterRenderRef: AfterRenderRef;
 
     /**
@@ -258,23 +253,12 @@ export class PopoverDirective implements OnInit, OnDestroy, OnChanges {
 
             // Setting up popper and scheduling updates when zone is stable
             this._ngZone.runOutsideAngular(() => {
-                this._positioning.createPopper({
-                    hostElement: this._getPositionTargetElement(),
-                    targetElement: this._windowRef!.location.nativeElement,
-                    placement: this.placement,
-                    baseClass: 'bs-popover',
-                    updatePopperOptions: (options) => this.popperOptions(addPopperOffset([0, 8])(options))
-                });
-
                 Promise.resolve().then(() => {
                     // This update is required for correct arrow placement
-                    this._positioning.update();
                 });
                 this._afterRenderRef = afterRender(
                     {
-                        mixedReadWrite: () => {
-                            this._positioning.update();
-                        }
+                        mixedReadWrite: () => {}
                     },
                     { injector: this._injector }
                 );
@@ -298,7 +282,6 @@ export class PopoverDirective implements OnInit, OnDestroy, OnChanges {
             this._getPositionTargetElement().removeAttribute('aria-describedby');
             this._popupService.close(animation).subscribe(() => {
                 this._windowRef = null;
-                this._positioning.destroy();
                 this._afterRenderRef?.destroy();
                 this.hidden.emit();
                 this._changeDetector.markForCheck();

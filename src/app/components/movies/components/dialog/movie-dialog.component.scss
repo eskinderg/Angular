@@ -6,6 +6,53 @@
     --bs-card-inner-border-radius: 0px;
 }
 
+.row {
+    display: flex;
+}
+
+.col-sm-4 {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 30%;
+    padding: 1rem;
+}
+
+.col-sm-8 {
+    flex: 0 0 auto;
+    width: 70%;
+}
+
+.card-img-top {
+    width: 100%;
+}
+
+li {
+    list-style: none;
+}
+
+.badge {
+    font-size: 1rem;
+}
+
+.gen {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+}
+
+.list-group {
+    padding: 0;
+    display: flex;
+    row-gap: 0.5rem;
+    flex-direction: column;
+}
+
+.list-group-item {
+    display: flex;
+    column-gap: 0.5rem;
+}
+
 #backDrop {
     height: 100%;
 }

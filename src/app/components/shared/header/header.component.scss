@@ -3,7 +3,7 @@
 }
 
 .brand {
-    font-size: 1.25rem ! important;
+    font-size: 1.25rem !important;
 }
 
 .navigationBar {
@@ -66,6 +66,7 @@
     display: flex;
     column-gap: 1rem;
     padding: 1rem;
+    box-sizing: border-box;
 }
 
 .activeLink {

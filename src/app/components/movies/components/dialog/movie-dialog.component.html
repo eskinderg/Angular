@@ -1,11 +1,8 @@
 <div [tabIndex]="0" (click)="close($event)" id="backDrop">
     <div id="scrollWrapper">
-        <button
-            type="button"
-            id="modalClose"
-            class="btn-close"
-            aria-label="Close"
-            (click)="close($event)"></button>
+        <button type="button" id="modalClose" class="btn-close" aria-label="Close" (click)="close($event)">
+            X
+        </button>
         <div [@fadeInOut] class="card" style="">
             <div class="container p-0 pe-5">
                 <div class="row">
@@ -64,11 +61,13 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Genres:</b>
-                                    @for (genere of movieDetail.genres; track genere) {
-                                        <a class="badge bg-secondary nodecoration ms-2">
-                                            {{ genere['name'] }}
-                                        </a>
-                                    }
+                                    <div class="gen">
+                                        @for (genere of movieDetail.genres; track genere) {
+                                            <a class="badge bg-secondary nodecoration ms-2">
+                                                {{ genere['name'] }}
+                                            </a>
+                                        }
+                                    </div>
                                 </li>
                                 <li class="list-group-item">
                                     <app-ngbd-rating-decimal

@@ -65,7 +65,9 @@ export class ToastHeaderDirective {}
                     class="btn-close"
                     aria-label="Close"
                     i18n-aria-label="@@ngb.toast.close-aria"
-                    (click)="hide()"></button>
+                    (click)="hide()">
+                    x
+                </button>
             </div>
         }
         <div class="toast-body">

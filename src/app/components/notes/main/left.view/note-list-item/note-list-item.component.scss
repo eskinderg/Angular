@@ -1,42 +1,57 @@
+:host * {
+    box-sizing: border-box;
+}
+
 .note-wrapper:hover {
     background: var(--active-list-link-hover);
 }
 
 .note-wrapper {
-    position: relative;
+    position: absolute;
     padding: 0;
     height: 3.5rem;
     cursor: pointer;
     width: 100%;
-    // z-index:0;
+    z-index: 1;
     padding: 0.15rem;
 }
 
 .note-border {
     position: relative;
     border-bottom: 1px solid var(--border);
-
+    height: 3.5rem;
+    padding: 0 0 0 0.75rem;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    z-index: 2;
+}
+
+.right {
+    display: flex;
+    column-gap: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    z-index: 2;
 }
 
 .note-colour {
-    position: absolute;
     width: 0.5rem;
+    height: 3.5rem;
     z-index: 3;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    /* left: 0; */
-    /* width: 100%; */
 }
 
 .selected-note {
     background: var(--selected-note-list-item-bg-color) !important;
-    // outline: 2px solid var(--selected-note-list-item-border-color);
     z-index: 1;
-    // font-weight: bold;
     color: var(--b-active-link-color) !important;
 
     .date-text {
@@ -62,18 +77,11 @@
 
 .item {
     cursor: pointer;
-    pointer-events: none;
-    position: absolute;
-    top: 0.5rem;
-    left: 0.75rem;
     z-index: 0;
 }
 
 .date-modified {
     cursor: pointer;
-    position: absolute;
-    bottom: 0.25rem;
-    padding-left: 0.75rem;
     z-index: 0;
 }
 
@@ -85,17 +93,17 @@
 }
 
 .pin-wrapper {
-    position: absolute;
     z-index: 1;
-    top: 0.5rem;
     border: none;
-    height: 3rem;
-    width: 3rem;
+    height: 1.75rem;
+    width: 1.75rem;
     transition: all 0.5s ease;
     cursor: pointer;
-    right: 0px;
-    padding: 0.75rem;
-    // margin-right: 1rem;
+
+    svg {
+        height: 1.75rem;
+        width: 1.75rem;
+    }
 
     & * {
         transition: all 0.25s ease;
@@ -126,22 +134,22 @@
 
 .del-button:hover {
     .archive-note-button-icon {
-        fill: var(--bs-warning);
+        fill: var(--warning);
     }
 }
 
 .archive-note-button-icon {
-    fill: rgb(from var(--bs-warning) r g b / 55%);
+    fill: rgb(from var(--warning) r g b / 55%);
 }
 
 .del-button {
     color: var(--del-button-note);
     font-size: 1.25rem;
     padding: 0.5rem;
-    padding-right: 2rem;
-    position: absolute;
-    right: 1rem;
-    margin: auto;
-    top: 0.25rem;
-    bottom: 0;
+    // padding-right: 2rem;
+    // position: absolute;
+    // right: 1rem;
+    // margin: auto;
+    // top: 0.75rem;
+    // bottom: 0;
 }

@@ -1,6 +1,5 @@
-<!-- <app-event-list-select [event]="event"></app-event-list-select> -->
-<div class="d-flex justify-content-between">
-    <div class="mr-auto p-2">
+<div class="flex">
+    <div class="left">
         <app-check-mark
             appTooltip=""
             class="px-2"
@@ -28,7 +27,7 @@
             [(ngModel)]="editEvent.title" />
     </div>
 
-    <div class="p-1">
+    <div class="right">
         <i
             [ngClass]="IsInEditMode ? 'btn-success' : 'btn-outline-secondary'"
             class="btn btn-sm me-2"

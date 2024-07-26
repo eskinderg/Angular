@@ -4,6 +4,7 @@ import { NotificationService } from './notification.service';
 @Component({
     selector: 'app-global-notification',
     templateUrl: './global.notification.component.html',
+    styleUrls: ['./global.notification.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GlobalNotificationComponent {

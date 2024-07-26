@@ -1,14 +1,26 @@
-:host{
-  width: 100%;
+:host {
+    width: 100%;
+    display: block;
 }
 
-a:hover, a:focus{
-  color:white;
+a:hover,
+a:focus {
+    color: white;
 }
 
 .editbox {
-  border: 0px ;
-  padding: 0px;
-  line-height:0px;
-  background:#ece9e9;
+    border: 0px;
+    padding: 0px;
+    line-height: 0px;
+    background: #ece9e9;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.right i {
+    padding: 0.5rem;
 }

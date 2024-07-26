@@ -5,6 +5,11 @@
     src: url(../../assets/fonts/Raleway/Raleway-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'Pacifico';
+    src: url(../../assets/fonts/Raleway/Pacifico-Regular.woff2);
+}
+
 $raleway: 'Raleway', sans-serif;
 $open-sans: 'Open Sans', sans-serif;
 $font-family-sans-serif: $raleway;
@@ -14,12 +19,14 @@ $font-family-base: $font-family-sans-serif;
 
 html,
 body {
+    font-family: "system-ui";
     height: 100%;
     border: 0;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: var(--primary);
+    color: var(--body-color);
 }
 
 .loading {

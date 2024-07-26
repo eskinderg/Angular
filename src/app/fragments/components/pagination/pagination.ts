@@ -154,6 +154,7 @@ export class PaginationPagesDirective {
 @Component({
     selector: 'app-pagination',
     standalone: true,
+    styleUrls: ['pagination.component.scss'],
     imports: [NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {

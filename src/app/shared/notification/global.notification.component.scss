@@ -1,0 +1,12 @@
+:host{
+    z-index: 1200;
+    padding: 1rem !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    position: fixed !important;
+    position: absolute;
+    z-index: 1090;
+    width: max-content;
+    max-width: 100%;
+    pointer-events: none;
+}
