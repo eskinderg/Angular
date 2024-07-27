@@ -15,4 +15,5 @@ export class BaCardComponent {
     @Input() scrollBar: boolean;
     @Input() margin: number;
     @Input() padding: number;
+    @Input() height: number;
 }

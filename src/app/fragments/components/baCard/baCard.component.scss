@@ -1,10 +1,27 @@
+:host {
+    display: block;
+}
+
 .card-block {
-  margin: 1rem;
+    margin: 1rem;
 }
 
 .card {
-    border-color: var(--card-border-color);
+    border: 1px solid var(--card-border-color);
     background-color: var(--card-bg);
+    border-radius: 0.375rem;
+}
+
+.card-content{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.card-header {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    background-color: rgb(from var(--secondary) r g b / 6%);
+    border-bottom: 1px solid var(--border);
 }
 
 .panel-default {
@@ -16,7 +33,7 @@
     background-color: #fff;
     border: 1px solid transparent;
     border-radius: 4px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .panel-default > .panel-heading {
@@ -34,4 +51,22 @@
 
 .panel-body {
     padding: 15px;
+}
+
+*::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+*::-webkit-scrollbar-button {
+    position: absolute;
+    display: none;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 0.5rem;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
 }

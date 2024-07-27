@@ -17,9 +17,13 @@ $font-family-serif: $raleway;
 $font-family-monospace: Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 $font-family-base: $font-family-sans-serif;
 
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
-    font-family: "system-ui";
+    font-family: 'system-ui';
     height: 100%;
     border: 0;
     margin: 0;

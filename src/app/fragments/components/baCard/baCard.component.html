@@ -9,9 +9,9 @@
             </h4>
         }
 
-        <p class="card-text">
+        <div class="card-content" [style.height.rem]="height">
             <ng-content></ng-content>
-        </p>
+        </div>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
     @if (footer) {

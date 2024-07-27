@@ -1,12 +1,11 @@
 <div class="home-wrapper">
     <div class="tvSeries">
-        <app-ba-card header="Popular Series">
-            <div style="height: 460px">
-                <!-- <ng-scrollbar thumbClass="custom-scrollbars"> -->
+        <app-ba-card header="Popular Series" [height]="27">
+            <div class="wrap">
                 <div class="list-group">
                     @for (tv of tvs; track tv) {
                         <a class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
+                            <div class="list">
                                 <h5 class="mb-1">{{ tv.name }}</h5>
                                 <small class="text-muted">Aired {{ tv.first_air_date }}</small>
                             </div>
@@ -15,7 +14,6 @@
                         </a>
                     }
                 </div>
-                <!-- </ng-scrollbar> -->
             </div>
         </app-ba-card>
     </div>
