@@ -4,6 +4,7 @@ import { Event } from '../../../../models/event';
 import * as EventsActions from '../../../../store/actions/event.action';
 import * as fromRoot from '../../../../store/reducers';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EventDialogService } from 'src/app/components/events/event-dialog/event.dialog.service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +20,8 @@ export class EventComponent {
     constructor(
         private store: Store<fromRoot.IAppState>,
         public router: ActivatedRoute,
-        public route: Router
+        public route: Router,
+        public eventDialogService: EventDialogService
     ) {}
 
     onAddEvent(event: Event) {
@@ -48,7 +50,8 @@ export class EventComponent {
     }
 
     onRemoveEvent(event: Event) {
-        this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } });
+        // this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } });
+        this.eventDialogService.showDialog(event);
         // alert(this.route.url)
         // this.confirmService.confirm({
         //   title: 'Confirm deletion',
