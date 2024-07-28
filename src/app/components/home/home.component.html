@@ -1,6 +1,6 @@
 <div class="home-wrapper">
     <div class="tvSeries">
-        <app-ba-card header="Popular Series" [height]="27">
+        <app-card header="Popular Series" [height]="27">
             <div class="wrap">
                 <div class="list-group">
                     @for (tv of tvs; track tv) {
@@ -15,13 +15,13 @@
                     }
                 </div>
             </div>
-        </app-ba-card>
+        </app-card>
     </div>
 
     <div class="chart">
-        <app-ba-card header="Chart Area">
+        <app-card header="Chart Area">
             <app-barchart></app-barchart>
-        </app-ba-card>
+        </app-card>
     </div>
 </div>
 <div>{{ appVersion }}</div>

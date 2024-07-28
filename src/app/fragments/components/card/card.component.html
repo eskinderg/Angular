@@ -1,0 +1,19 @@
+<div class="card" [style.margin.rem]="outerMargin" [style.padding.rem]="outerPadding">
+    @if (showHeader) {
+        <div class="card-header">
+            {{ header }}
+        </div>
+    }
+    <div
+        [style.margin.rem]="innerMargin"
+        [style.padding.rem]="innerPadding"
+        class="card-content"
+        [style.height.rem]="height">
+        <ng-content></ng-content>
+    </div>
+    @if (footer) {
+        <div class="card-footer">
+            {{ footer }}
+        </div>
+    }
+</div>

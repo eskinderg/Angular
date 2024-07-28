@@ -1,19 +1,21 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-ba-card',
-    templateUrl: './baCard.component.html',
-    styleUrls: ['baCard.component.scss'],
+    selector: 'app-card',
+    templateUrl: './card.component.html',
+    styleUrls: ['card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BaCardComponent {
-    @Input() title: string;
+export class CardComponent {
     @Input() baCardClass: string;
     @Input() cardType: string;
     @Input() header: string;
     @Input() footer: string;
     @Input() scrollBar: boolean;
-    @Input() margin: number;
-    @Input() padding: number;
+    @Input() innerMargin: number;
+    @Input() innerPadding: number = 1;
+    @Input() outerMargin: number;
+    @Input() outerPadding: number;
     @Input() height: number;
+    @Input() showHeader: boolean = true;
 }

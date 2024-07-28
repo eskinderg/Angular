@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
-import { BaCardComponent } from './components/baCard/baCard.component';
+import { CardComponent } from './components/card/card.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
 import { CheckMarkComponent } from './components/checkMark/checkmark.component';
@@ -24,7 +24,7 @@ import { PaginationModule } from './components/pagination/pagination.module';
 
 const NGA_COMPONENTS = [
     BaBackTopComponent,
-    BaCardComponent,
+    CardComponent,
     AppLoadingComponent,
     BarchartComponent,
     ConfirmDialogComponent,

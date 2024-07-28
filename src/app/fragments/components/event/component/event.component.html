@@ -1,6 +1,6 @@
 <app-event-list-header class="mb-5" (add)="onAddEvent($event)"> </app-event-list-header>
 
-<div style="height: 400px">
+<app-card [height]="20" [showHeader]="false" [outerMargin]="0.5">
     <app-event-list
         [events]="events"
         (toggle)="onToggleEvent($event)"
@@ -8,7 +8,7 @@
         (update)="onUpdateEvent($event)"
         (select)="onSelectEvent($event)">
     </app-event-list>
-</div>
+</app-card>
 
 <i class="btn btn-sm" [ngClass]="{ 'btn-outline-danger': selectedEvents.length }" (click)="onDeleteEvents()">
     <span class="fa fa-bin2"></span>
