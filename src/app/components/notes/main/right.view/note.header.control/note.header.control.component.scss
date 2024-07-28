@@ -22,6 +22,7 @@ input:focus {
     border-bottom: 1px solid var(--b-active-link-color);
     box-shadow: none;
     border-radius: 0;
+    background: transparent;
 }
 
 input::placeholder {
