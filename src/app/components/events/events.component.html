@@ -1,6 +1,6 @@
 <div class="eventWrapper">
     <div class="event">
-        <app-card header="Events List">
+        <app-card header="Events List" [innerPadding]="0.5">
             <app-event [events]="EventItems | async"></app-event>
         </app-card>
     </div>
