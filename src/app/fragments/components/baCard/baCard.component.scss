@@ -20,7 +20,7 @@
 .card-header {
     padding: 0.75rem;
     border-radius: 0.375rem;
-    background-color: rgb(from var(--secondary) r g b / 6%);
+    background-color: var(--card-cap-bg);
     border-bottom: 1px solid var(--border);
 }
 

@@ -10,14 +10,16 @@
     --navbar-active-color: #fff;
     --nav-link-color: #ffffff8c;
     --navbar-brand-color: #fff;
+    --btn-color: #fff;
     --card-border-color: #0000002d;
     --card-bg: #fff;
+    --card-cap-bg: rgb(from var(--secondary) r g b / 6%);
     --card-cap-color: black;
     --list-group-bg: #fff;
     --list-group-color: #212529;
     --list-group-border-color: #dce5ef;
     --body-bg: #fff;
-    --bs-border-color-translucent: rgba(0,0,0, 0.15);
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.15);
     --b-secondary: #dcdcdc;
     --b-active-link-color: var(--primary);
     --border: #dadada80;
@@ -65,9 +67,9 @@
     --bs-tertiary-bg: var(--primary);
     --bs-toast-color: var(--primary);
     --popover-header-bg: var(--primary);
-
     --bs-card-bg: var(--card-bg);
     --card-cap-color: black;
+    --card-cap-bg: var(--primary);
     --list-group-bg: #2d333b;
     --list-group-color: #adbac7;
     --list-group-border-color: #22272e;
@@ -215,4 +217,60 @@
     100% {
         transform: rotate(360deg) /* rtl:ignore */;
     }
+}
+
+button {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    // font-family: var(--bs-btn-font-family);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--btn-color);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    background-color: var(--primary);
+    transition:
+        color 0.15s ease-in-out,
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+}
+
+input[type='text'],
+[type='email'],
+[type='tel'] {
+    display: block;
+    width: 98%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--body-color);
+    appearance: none;
+    background-color: var(--body-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    transition:
+        border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+input[type='text']:focus,
+[type='email']:focus,
+[type='tel']:focus {
+    color: var(--body-color);
+    background-color: var(--body-bg);
+    border-color: #f8f9fa8f;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #2a6ada40;
 }

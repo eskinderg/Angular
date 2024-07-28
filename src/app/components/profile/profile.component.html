@@ -1,4 +1,4 @@
-<div class="container-fluid mt-2">
+<div class="container">
     <app-ba-card header="Profile">
         <div class="row mb-3">
             <label for="example-text-input" class="col-2 col-form-label">Dark Mode</label>
@@ -34,15 +34,17 @@
                 <input class="form-control" type="text" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="control">
+            <button type="submit" class="btn btn-primary">Save</button>
 
-        <button
-            class="ms-4 btn btn-outline-primary"
-            appPopover="You see, I show up on hover!"
-            triggers="mouseenter:mouseleave"
-            popoverTitle="Pop title"
-            placement="right">
-            Mouse Over
-        </button>
+            <button
+                class="ms-4 btn btn-outline-primary"
+                appPopover="You see, I show up on hover!"
+                triggers="mouseenter:mouseleave"
+                popoverTitle="Pop title"
+                placement="right">
+                Mouse Over
+            </button>
+        </div>
     </app-ba-card>
 </div>

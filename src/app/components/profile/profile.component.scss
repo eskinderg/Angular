@@ -1,2 +1,21 @@
-// @import '../../../scss/variables';
-// @import '../../../scss/mixins';
+.container {
+    padding: 1rem;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.col-10 {
+    flex: 0 0 80%;
+}
+
+label {
+    flex: 0 0 20%;
+}
+
+.control {
+    display: flex;
+    column-gap: 1rem;
+}
