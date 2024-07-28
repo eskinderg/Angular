@@ -9,18 +9,14 @@
             (click)="onToggleEvent(event)"
             [checked]="event.complete"></app-check-mark>
 
-        <label
-            [hidden]="IsInEditMode"
-            (dblclick)="onDoubleClick(event)"
-            class="custom-control custom-checkbox mb-0">
-            <span class="custom-control-description">
-                {{ event.title }}
-            </span>
-        </label>
+        <div class="custom-control" [hidden]="IsInEditMode" (dblclick)="onDoubleClick(event)">
+            {{ event.title }}
+        </div>
 
         <input
             (keyup.enter)="onUpdateEvent(event)"
             (keydown.esc)="onCancelEdit()"
+            spellcheck="false"
             class="editbox"
             [hidden]="!IsInEditMode"
             type="text"

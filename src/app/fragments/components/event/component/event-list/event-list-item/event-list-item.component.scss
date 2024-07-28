@@ -12,7 +12,16 @@ a:focus {
     border: 0px;
     padding: 0px;
     line-height: 0px;
-    background: #ece9e9;
+    background: rgb(from var(--body-color) r g b / 10%);
+    margin: 0;
+    padding: 0.3rem;
+}
+
+.custom-control {
+    padding: 0.3rem;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .flex {
@@ -23,4 +32,9 @@ a:focus {
 
 .right i {
     padding: 0.5rem;
+}
+
+.left {
+    display: flex;
+    align-items: center;
 }

@@ -62,11 +62,11 @@ export class ToastHeaderDirective {}
                 <ng-template [ngTemplateOutlet]="contentHeaderTpl || headerTpl" />
                 <button
                     type="button"
-                    class="btn-close"
+                    class="btn-toast-close"
                     aria-label="Close"
                     i18n-aria-label="@@ngb.toast.close-aria"
                     (click)="hide()">
-                    x
+                    X
                 </button>
             </div>
         }
