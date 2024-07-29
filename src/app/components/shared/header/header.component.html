@@ -1,83 +1,119 @@
-<nav class="navigationBar">
-    <a class="brand" [routerLink]="['/']" [routerLinkActive]="['activeLink']">Angular</a>
-    @if (IsLoggedIn | async) {
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [routerLink]="['/home']"
-            >Home</a
-        >
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: false }"
-            [routerLink]="['/about']"
-            >About</a
-        >
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [routerLink]="['/profile']"
-            >Profile</a
-        >
-        <a class="subnav">
-            <a
-                [ngClass]="{ active: isNotesURLActive }"
-                (click)="$event.preventDefault()"
-                class="subnavbtn"
-                aria-expanded="false"
-                [routerLinkActive]="['activeLink']"
-                [routerLinkActiveOptions]="{ exact: false }">
-                Notes
-                @if (NoteLoading | async) {
-                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                } @else {
-                    @if (NotesCount | async; as count) {
-                        <span class="badge bg-secondary">{{ count }}</span>
-                    }
-                }
-
-                <div class="subnav-content">
+<nav class="menu">
+    <ul>
+        <a class="brand" [routerLink]="['/']" [routerLinkActive]="['activeLink']">Angular</a>
+        @if (IsLoggedIn | async) {
+            <div class="menuLoggedIn">
+                <li>
                     <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        [routerLink]="['/home']"
+                        >Home</a
+                    >
+                </li>
+                <li>
+                    <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: false }"
+                        [routerLink]="['/about']"
+                        >About</a
+                    >
+                </li>
+                <li>
+                    <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        [routerLink]="['/profile']"
+                        >Profile</a
+                    >
+                </li>
+                <li>
+                    <a
+                        [ngClass]="{ active: isNotesURLActive }"
+                        aria-expanded="false"
                         [routerLink]="['/mynotes']"
                         [routerLinkActive]="['activeLink']"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Notes</a
-                    >
-                    <a
-                        [routerLink]="['/notes/archived']"
-                        [routerLinkActive]="['activeLink']"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Archived Notes</a
-                    >
-                </div>
-            </a>
-        </a>
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: false }"
-            [routerLink]="['/wizard']"
-            >Wizard</a
-        >
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: false }"
-            [routerLink]="['/events']">
-            Events
-            @if (EventLoading | async) {
-                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-            } @else {
-                @if (EventsCount | async; as count) {
-                    <span class="badge bg-secondary">{{ count }}</span>
-                }
-            }
-        </a>
-        <a
-            [routerLinkActive]="['activeLink']"
-            [routerLinkActiveOptions]="{ exact: false }"
-            [routerLink]="['/movies']"
-            >Movies</a
-        >
-    }
+                        [routerLinkActiveOptions]="{ exact: false }">
+                        Notes
+                        @if (NoteLoading | async) {
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        } @else {
+                            @if (NotesCount | async; as count) {
+                                <span class="badge bg-secondary">{{ count }}</span>
+                            }
+                        }
+                    </a>
 
-    <app-userinfo class="userInfo" (signout)="onSignout()"></app-userinfo>
+                    <ul>
+                        <li>
+                            <a
+                                [routerLink]="['/mynotes']"
+                                [routerLinkActive]="['activeLink']"
+                                [routerLinkActiveOptions]="{ exact: true }"
+                                >Notes</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                [routerLink]="['/notes/archived']"
+                                [routerLinkActive]="['activeLink']"
+                                [routerLinkActiveOptions]="{ exact: true }"
+                                >Archived Notes</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: false }"
+                        [routerLink]="['/wizard']"
+                        >Wizard</a
+                    >
+                </li>
+                <li>
+                    <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: false }"
+                        [routerLink]="['/events']">
+                        Events
+                        @if (EventLoading | async) {
+                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        } @else {
+                            @if (EventsCount | async; as count) {
+                                <span class="badge bg-secondary">{{ count }}</span>
+                            }
+                        }
+                    </a>
+                </li>
+                <li>
+                    <a
+                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActiveOptions]="{ exact: false }"
+                        [routerLink]="['/movies']"
+                        >Movies</a
+                    >
+                </li>
+            </div>
+        }
+
+        <app-userinfo class="userInfo" (signout)="onSignout()"></app-userinfo>
+    </ul>
 </nav>
+
+<!-- <nav> -->
+<!--     <ul> -->
+<!--         <li><a href="#">Home</a></li> -->
+<!--         <li><a href="#">About</a></li> -->
+<!--         <li><a href="#">Profile</a></li> -->
+<!--         <li> -->
+<!--             <a href="#">Notes</a> -->
+<!--             <ul> -->
+<!--                 <li><a href="#">My Notes</a></li> -->
+<!--                 <li><a href="#">Archives</a></li> -->
+<!--             </ul> -->
+<!--         </li> -->
+<!--         <li><a href="#">Events</a></li> -->
+<!--         <li><a href="#">Movies</a></li> -->
+<!--     </ul> -->
+<!-- </nav> -->

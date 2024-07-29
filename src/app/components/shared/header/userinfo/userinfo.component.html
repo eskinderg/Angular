@@ -1,21 +1,22 @@
-<div class="navigationBar">
+<li>
     @if (isLoggedIn | async) {
-        <div class="subnav">
-            <div class="subnavbtn">
-                {{ givenName }}
-
-                <div class="subnav-content">
+        <a>
+            {{ givenName }}
+        </a>
+        <ul>
+            <li>
+                <a>
                     <app-theme-option
                         [label]="'Dark Mode'"
                         [darkMode]="DarkMode | async"
                         (themeToggleDark)="onDarkModeToggle()">
                     </app-theme-option>
-                    <a [routerLink]="['/profile']">Profile</a>
-                    <a id="btnLogout" (click)="logOut()">Logout</a>
-                </div>
-            </div>
-        </div>
+                </a>
+            </li>
+            <li><a [routerLink]="['/profile']">Profile</a></li>
+            <li><a id="btnLogout" (click)="logOut()">Logout</a></li>
+        </ul>
     } @else {
         <a (click)="login()">Login / SignUp</a>
     }
-</div>
+</li>

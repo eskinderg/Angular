@@ -4,75 +4,83 @@
 
 .brand {
     font-size: 1.25rem !important;
-}
-
-.navigationBar {
-    padding: 0.75rem;
-    background: var(--primary);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    column-gap: 1rem;
-}
-
-.navigationBar a {
-    font-size: 16px;
-    color: #ffffff8c;
-    text-align: center;
     text-decoration: none;
-    cursor: pointer;
-}
-
-.subnav {
-    display: flex;
-    overflow: hidden;
-}
-
-.subnav .subnavbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: #ffffff8c;
-    background-color: inherit;
-    font-family: inherit;
-    margin: 0;
-}
-
-.navigationBar a:hover,
-.subnav:hover .subnavbtn {
-    background-color: var(--primary);
-}
-
-.subnav-content {
-    display: none;
-    position: absolute;
-    left: 0;
-    background-color: var(--primary);
-    width: 100%;
-    z-index: 1;
-}
-
-.subnav-content a {
-    // float: left;
-    color: #ffffff8c;
-    text-decoration: none;
-}
-
-.subnav-content a:hover {
-    color: var(--b-secondary);
-}
-
-.subnav:hover .subnav-content {
-    display: flex;
-    column-gap: 1rem;
-    padding: 1rem;
-    box-sizing: border-box;
+    padding: 0.65rem;
 }
 
 .activeLink {
     color: white !important;
 }
 
-.userInfo {
-    margin-left: auto;
+nav {
+    background-color: var(--primary);
+}
+
+nav > ul {
+    margin: 0;
+    padding: 0.25rem;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // color: #ffffff8c;
+}
+
+nav > ul ul a {
+    margin: 0;
+    background-color: var(--body-bg);
+    color: var(--body-color) !important;
+}
+
+nav ul li ul li {
+    display: block;
+    white-space: nowrap;
+}
+
+nav ul li ul li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #ffffff8c;
+    transition: background-color 0.3s;
+}
+
+nav ul li ul li a:hover {
+    background: var(--bg-hover);
+}
+
+nav ul li:has(> ul) > a:after {
+    /* select element that has ul in them*/
+    content: '';
+    position: absolute;
+    top: 1.2rem;
+    right: 0;
+    border-left: 3px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 3px solid var(--b-secondary);
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border);
+}
+
+nav ul li:hover ul {
+    padding: 0;
+    display: block;
+}
+
+nav ul li a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: #ffffff8c;
+    transition: background-color 0.3s;
+}
+
+nav ul li {
+    display: inline-block;
+    position: relative;
 }

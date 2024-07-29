@@ -18,4 +18,5 @@ export class CardComponent {
     @Input() outerPadding: number;
     @Input() height: number;
     @Input() showHeader: boolean = true;
+    @Input() marginBottomOuter: number;
 }

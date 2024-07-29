@@ -1,6 +1,6 @@
 <app-event-list-header class="mb-5" (add)="onAddEvent($event)"> </app-event-list-header>
 
-<app-card [height]="20" [showHeader]="false" [outerMargin]="0.5">
+<app-card [height]="20" [showHeader]="false" [outerMargin]="0.5" [marginBottomOuter]="3">
     <app-event-list
         [events]="events"
         (toggle)="onToggleEvent($event)"

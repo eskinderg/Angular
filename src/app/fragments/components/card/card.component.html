@@ -1,4 +1,8 @@
-<div class="card" [style.margin.rem]="outerMargin" [style.padding.rem]="outerPadding">
+<div
+    class="card"
+    [style.margin.rem]="outerMargin"
+    [style.padding.rem]="outerPadding"
+    [style.margin-bottom.rem]="marginBottomOuter">
     @if (showHeader) {
         <div class="card-header">
             {{ header }}
