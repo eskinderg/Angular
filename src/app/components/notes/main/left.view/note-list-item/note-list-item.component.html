@@ -4,7 +4,7 @@
     class="note-border"
     [ngClass]="{ 'selected-note': selectedNote === note }">
     <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
-    <div class="left">
+    <div class="left" (mouseup)="onSelectNote(note)">
         <div class="item" (mouseup)="onSelectNote(note)">
             <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
                 {{ note | noteTitleTruncate: '20' : true }}
