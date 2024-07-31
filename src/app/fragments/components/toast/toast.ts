@@ -82,7 +82,7 @@ export class ToastComponent implements AfterContentInit, OnChanges {
 
     private _timeoutID;
 
-    @Input() cls: string = 'sample';
+    @Input() cls: string = '';
 
     /**
      * If `true`, toast opening and closing will be animated.

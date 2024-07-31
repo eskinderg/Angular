@@ -17,7 +17,6 @@
     flex-direction: column;
     flex-wrap: nowrap;
     position: fixed;
-    height: 19rem;
     width: 40rem;
     top: 30%;
     left: 50%;
@@ -49,16 +48,19 @@
 
 .note-modal-title {
     padding: 1rem;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .note-modal-footer {
     display: flex;
     margin: 1rem;
     column-gap: 1rem;
+    justify-content: flex-end;
 }
 
 .note-modal-body {
-    padding: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 }
 
 .noBtn {
