@@ -11,8 +11,8 @@
     <div
         [style.margin.rem]="innerMargin"
         [style.padding.rem]="innerPadding"
-        class="card-content"
-        [style.height.rem]="height">
+        [style.height.rem]="height"
+        [ngClass]="{ 'scroll-content': scrollBar }">
         <ng-content></ng-content>
     </div>
     @if (footer) {
