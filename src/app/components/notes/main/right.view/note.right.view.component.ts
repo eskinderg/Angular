@@ -6,6 +6,7 @@ import * as NotesActions from '../../../../store/actions/note.actions';
 import { Store } from '@ngrx/store';
 import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
+import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
 
 @Component({
     selector: 'app-note-right-view',
@@ -17,6 +18,7 @@ export class NoteRightViewComponent {
     textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
     noteHeaderControlComponent = viewChild.required<NoteHeaderControlComponent>('noteHeader');
     noteColourSelectorComponent = viewChild<NoteColourSelectorComponent>('noteColourSelector');
+    tooltipPosition: TooltipPosition = TooltipPosition.LEFT;
 
     @Input() note: Note;
 
