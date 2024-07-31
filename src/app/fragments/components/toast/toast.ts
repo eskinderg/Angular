@@ -14,8 +14,7 @@ import {
     OnChanges,
     Output,
     SimpleChanges,
-    TemplateRef,
-    ViewEncapsulation
+    TemplateRef
 } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -45,12 +44,11 @@ export class ToastHeaderDirective {}
     exportAs: 'appToast',
     standalone: true,
     imports: [NgTemplateOutlet],
-    encapsulation: ViewEncapsulation.None,
     host: {
         role: 'alert',
         '[attr.aria-live]': 'ariaLive',
         'aria-atomic': 'true',
-        class: 'toast',
+        '[class]': 'toast',
         '[class.fade]': 'animation'
     },
     template: `
@@ -70,7 +68,7 @@ export class ToastHeaderDirective {}
                 </button>
             </div>
         }
-        <div class="toast-body">
+        <div class="toast-body" [class]="cls">
             <ng-content />
         </div>
     `,
@@ -83,6 +81,9 @@ export class ToastComponent implements AfterContentInit, OnChanges {
     private _element = inject(ElementRef);
 
     private _timeoutID;
+
+    @Input() cls: string = 'sample';
+
     /**
      * If `true`, toast opening and closing will be animated.
      *

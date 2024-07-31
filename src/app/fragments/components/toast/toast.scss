@@ -1,34 +1,5 @@
-app-toast {
+:host { /* using instead of .toast */
     display: block;
-
-    .toast-header .close {
-        margin-left: auto;
-        margin-bottom: 0.25rem;
-    }
-
-    .toast-header {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 0.75rem;
-        color: rgb(33, 37, 41);
-        background-color: rgba(255, 255, 255, 0.85);
-        background-clip: padding-box;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.175);
-        border-top-left-radius: calc(0.375rem - 1px);
-        border-top-right-radius: calc(0.375rem - 1px);
-    }
-
-    .me-auto {
-        margin-right: auto !important;
-    }
-
-    .toast-body {
-        padding: 0.75rem;
-        word-wrap: break-word;
-    }
-}
-
-.toast {
     width: 350px;
     max-width: 100%;
     font-size: 0.875rem;
@@ -42,13 +13,39 @@ app-toast {
     margin-top: 1.5rem;
 }
 
+.toast-header .close {
+    margin-left: auto;
+    margin-bottom: 0.25rem;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: rgb(33, 37, 41);
+    background-color: rgba(255, 255, 255, 0.85);
+    background-clip: padding-box;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+    border-top-left-radius: calc(0.375rem - 1px);
+    border-top-right-radius: calc(0.375rem - 1px);
+}
+
+.me-auto {
+    margin-right: auto !important;
+}
+
+.toast-body {
+    padding: 0.75rem;
+    word-wrap: break-word;
+}
+
 .btn-toast-close {
     background: none;
     color: var(--body-color);
     border: none;
     outline: none;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 .bg-success {
