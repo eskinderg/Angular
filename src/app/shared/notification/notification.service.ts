@@ -26,7 +26,7 @@ export class NotificationService {
         autoHide: boolean = true
     ) {
         this.show(message, header, {
-            classname: 'bg-success text-light',
+            classname: 'bg-success',
             delay: delay,
             animate: animate,
             autoHide: autoHide
@@ -48,7 +48,7 @@ export class NotificationService {
         autoHide: boolean = false
     ) {
         this.show(message, header, {
-            classname: 'bg-danger text-light',
+            classname: 'bg-danger',
             delay: delay,
             autoHide: autoHide,
             animate: animate
