@@ -4,6 +4,7 @@ import { BaBackTopComponent } from './components/baBackTop/baBackTop.component';
 import { CardComponent } from './components/card/card.component';
 import { AppLoadingComponent } from './components/appLoading/appLoading.component';
 import { BarchartComponent } from './components/barchart/barchart.component';
+import { ScatterPlotChartComponent } from './components/scatterPlotChart/scatterPlotChart.component';
 import { CheckMarkComponent } from './components/checkMark/checkmark.component';
 import {
     ConfirmService,
@@ -27,6 +28,7 @@ const NGA_COMPONENTS = [
     CardComponent,
     AppLoadingComponent,
     BarchartComponent,
+    ScatterPlotChartComponent,
     ConfirmDialogComponent,
     NoteTextComponent,
     DialogInfoComponent,
