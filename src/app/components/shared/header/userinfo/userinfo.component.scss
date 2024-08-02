@@ -7,6 +7,10 @@
     margin: 0.25rem;
 }
 
+:host > li a {
+    color: #fff;
+}
+
 nav {
     background-color: var(--primary);
 }
