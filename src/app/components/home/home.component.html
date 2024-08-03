@@ -1,29 +1,27 @@
 <div class="home-wrapper">
     <div class="tvSeries">
         <app-card header="Popular Series" [height]="27">
-            <div class="wrap">
-                <div class="list-group">
-                    @for (tv of tvs; track tv) {
-                        <a class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="list">
-                                <h5 class="mb-1">{{ tv.name }}</h5>
-                                <small class="text-muted">Aired {{ tv.first_air_date }}</small>
-                            </div>
-                            <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
-                            <small class="text-muted">country {{ tv.origin_country[0] }}</small>
-                        </a>
-                    }
-                </div>
+            <div class="list-group">
+                @for (tv of tvs; track tv) {
+                    <a class="list-group-item">
+                        <div class="list">
+                            <h5>{{ tv.name }}</h5>
+                            <small class="text-muted">Aired {{ tv.first_air_date }}</small>
+                        </div>
+                        <!-- <p class="mb-1">{{ tv.overview | truncate : 100 : true }}</p> -->
+                        <small class="text-muted">country {{ tv.origin_country[0] }}</small>
+                    </a>
+                }
             </div>
         </app-card>
     </div>
 
-    <div class="chart">
+    <div class="barChart">
         <app-card header="Bar Chart">
             <app-barchart></app-barchart>
         </app-card>
     </div>
-    <div class="chart">
+    <div class="scatterChart">
         <app-card header="Scatter Plot">
             <app-scatterchart></app-scatterchart>
         </app-card>
