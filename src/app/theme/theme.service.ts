@@ -13,26 +13,24 @@ export class ThemeService {
         return JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;
     }
 
-    public set DarkMode(value: boolean) {
-        localStorage.setItem('darkmode', value.toString());
+    public set DarkMode(isDarkMode: boolean) {
+        const root = this.document.querySelector(':root');
 
-        if (value) {
-            const root = this.document.querySelector(':root');
-            root.classList.toggle('dark');
+        if (isDarkMode) {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
         }
+
+        localStorage.setItem('darkmode', isDarkMode.toString());
     }
 
     public toggleDarkMode(): boolean {
-        const root = this.document.querySelector(':root');
-        root.classList.toggle('dark');
-        localStorage.setItem('darkmode', (!this.DarkMode).toString());
+        this.DarkMode = !this.DarkMode;
         return this.DarkMode;
     }
 
     public initUserPreference() {
-        if (this.DarkMode) {
-            const root = this.document.querySelector(':root');
-            root.classList.toggle('dark');
-        }
+        this.DarkMode = JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;
     }
 }
