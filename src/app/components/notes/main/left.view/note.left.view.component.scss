@@ -99,6 +99,11 @@
     color: var(--bs-secondary);
 }
 
+.spinner-border {
+    border: 0.2em solid var(--primary);
+    border-right-color: transparent;
+}
+
 .main-note-list::-webkit-scrollbar-track {
     background: none;
 }

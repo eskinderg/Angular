@@ -67,7 +67,7 @@ export const notesReducer = createReducer<INotesState>(
     on(NotesActions.fetchNotesSuccess, (state, action): INotesState => {
         return {
             ...state,
-            notes: action.payload,
+            notes: pinnedNotes(action.payload),
             selectedNote: action.payload.filter((n) => !n.archived).at(0) ?? null,
             opendNote: action.payload.filter((n) => !n.archived).at(0) ?? null,
             animate: {
