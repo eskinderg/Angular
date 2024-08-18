@@ -221,7 +221,7 @@ export function pinnedNotes(notes: Note[]): Note[] {
     return [
         ...notes.filter((note) => note.pinOrder !== null),
         ...notes.filter((n) => n.pinOrder === null)
-    ].sort((a, b) => (a.pinOrder > b.pinOrder ? -1 : 1));
+    ].sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1));
 }
 
 export const getNoteState = createFeatureSelector<INotesState>('notes');
