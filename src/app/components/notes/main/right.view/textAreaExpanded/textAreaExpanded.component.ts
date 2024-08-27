@@ -7,7 +7,6 @@ import {
     forwardRef,
     ChangeDetectionStrategy,
     OnDestroy,
-    HostListener,
     Input,
     OnChanges,
     SimpleChanges,
@@ -37,6 +36,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     subscription: Subscription | undefined;
 
     textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
+    lastModified: Date;
 
     @Output() textAreaTextChanged = new EventEmitter(false);
     @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
@@ -54,8 +54,13 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
                 debounceTime(450),
                 distinctUntilChanged(),
                 tap(() => {
+                    const date = new Date();
+                    const offset = date.getTimezoneOffset();
+                    this.lastModified = new Date(date.getTime() - offset * 60 * 1000);
+
                     this.textAreaTextChanged.emit({
                         ...this.note,
+                        dateModified: this.lastModified ?? this.note.dateModified,
                         text: this.textAreaElementRef().nativeElement.innerHTML
                     } as Note);
                 })
@@ -67,19 +72,20 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
         this.subscription.unsubscribe();
     }
 
-    @HostListener('focusout', ['$event.target'])
-    onFocusOut(target: any) {
-        this.textAreaSelectionChange.emit({
-            ...this.note,
-            text: target.innerHTML,
-            selection: JSON.stringify(this.txtSelection.saveSelection(target))
-        } as Note);
-        this.textAreaUpdatedOpendNote.emit({
-            ...this.note,
-            text: target.innerHTML,
-            selection: JSON.stringify(this.txtSelection.saveSelection(target))
-        } as Note);
-    }
+    // @HostListener('focusout', ['$event.target'])
+    // onFocusOut(target: any) {
+    // this.textAreaSelectionChange.emit({
+    //     ...this.note,
+    //     dateModified: this.lastModified ? this.lastModified : this.note.dateModified,
+    //     text: target.innerHTML,
+    //     selection: JSON.stringify(this.txtSelection.saveSelection(target))
+    // } as Note);
+    // this.textAreaUpdatedOpendNote.emit({
+    //     ...this.note,
+    //     text: target.innerHTML,
+    //     selection: JSON.stringify(this.txtSelection.saveSelection(target))
+    // } as Note);
+    // }
 
     ngOnChanges(changes: SimpleChanges) {
         if (

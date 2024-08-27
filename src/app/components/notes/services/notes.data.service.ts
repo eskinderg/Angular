@@ -35,5 +35,12 @@ export class NotesDataService {
 
     updateNote(note: Note): Observable<Note> {
         return this.http.put(NOTES_API_URL, note).pipe(map((response) => new Note(response)));
+        // const date = new Date();
+        // const offset = date.getTimezoneOffset();
+        // const syncDate = new Date(date.getTime() - offset * 60 * 1000);
+
+        // return this.http
+        //     .put(NOTES_API_URL, { ...note, dateSync: syncDate })
+        //     .pipe(map((response) => new Note(response)));
     }
 }

@@ -6,6 +6,7 @@ import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteRightViewComponent } from '../right.view/note.right.view.component';
 import { NoteDialogService } from '../../components/note-dialog/note.dialog.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
     selector: 'app-note-left-view',
@@ -41,7 +42,7 @@ export class NoteLeftViewComponent {
     }
 
     createNewNote() {
-        this.notesApiService.createNewNote(new Note());
+        this.notesApiService.createNewNote({ ...new Note(), id: uuidv4() });
     }
 
     updatePinOrder(note: Note) {

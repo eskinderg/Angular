@@ -30,7 +30,7 @@ export class NoteApiService {
         return this.store.select(fromNotes.getOpendNote);
     }
 
-    getNoteById(id: number): Observable<Note> {
+    getNoteById(id: string): Observable<Note> {
         return this.store.select(fromNotes.getNoteById(id));
     }
 
@@ -87,15 +87,11 @@ export class NoteApiService {
     }
 
     updateNotePinOrder(note: Note): void {
-        const date = new Date();
-
-        const offset = date.getTimezoneOffset();
-
         this.run(
             AppActions.updatePinOrder({
                 payload: {
                     ...note,
-                    pinOrder: note.pinOrder ? null : new Date(date.getTime() - offset * 60 * 1000)
+                    pinned: !note.pinned
                 }
             })
         );

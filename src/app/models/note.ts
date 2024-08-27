@@ -7,13 +7,15 @@ export class Note {
     selection: string;
     width: number;
     height: number;
-    id: number;
+    id: string;
     dirty: boolean;
     dateCreated: Date;
     dateModified: Date;
     dateArchived: Date;
+    dateSync: Date;
     pinOrder: Date;
     archived: boolean;
+    pinned: boolean;
     active: boolean;
     spellCheck: boolean;
     owner: string;

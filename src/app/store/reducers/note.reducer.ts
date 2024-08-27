@@ -219,9 +219,9 @@ export function dateModifiedNotes(notes: Note[]): Note[] {
 
 export function pinnedNotes(notes: Note[]): Note[] {
     return [
-        ...notes.filter((note) => note.pinOrder !== null),
-        ...notes.filter((n) => n.pinOrder === null)
-    ].sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1));
+        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1)),
+        ...notes.filter((n) => !n.pinned)
+    ];
 }
 
 export const getNoteState = createFeatureSelector<INotesState>('notes');
@@ -249,7 +249,7 @@ export const getOpendNote = createSelector(getNoteState, (state: INotesState) =>
 
 export const getIsLoading = createSelector(getNoteState, (state: INotesState) => state.isLoading);
 
-export const getNoteById = (id: number) =>
+export const getNoteById = (id: string) =>
     createSelector(getNoteState, (allItems) => {
         if (allItems.notes) {
             return allItems.notes.find((item) => {
@@ -266,7 +266,7 @@ export const getNoteCurrentRoute = createSelector(
     (state: INotesState, routerState: IAppRouterState) => {
         if (state.notes) {
             return state.notes.find((item) => {
-                return item.id === Number(routerState.params['id']);
+                return item.id === routerState.params['id'];
             });
         } else {
             return {};
