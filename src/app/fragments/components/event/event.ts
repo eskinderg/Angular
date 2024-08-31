@@ -1,5 +1,5 @@
 export class Event {
-    id: number;
+    id: string;
     title: string = '';
     complete = false;
 

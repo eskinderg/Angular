@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 import { Event } from '../../event';
+import { v4 } from 'uuid';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,7 +19,7 @@ export class EventListHeaderComponent {
 
     addEvent() {
         if (this.newEvent.title.length > 0) {
-            this.add.emit(this.newEvent);
+            this.add.emit({ ...this.newEvent, id: v4() });
             this.newEvent = new Event(); // clear entry
         }
     }
