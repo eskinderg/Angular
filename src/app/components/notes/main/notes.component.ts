@@ -58,9 +58,9 @@ export class NotesComponent implements OnDestroy {
         this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
     }
 
-    createNewNote() {
-        this.notesApiService.createNewNote(new Note());
-    }
+    // createNewNote() {
+    //     this.notesApiService.createNewNote(new Note());
+    // }
 
     updatePinOrder(note: Note) {
         this.notesApiService.updateNotePinOrder(note);
