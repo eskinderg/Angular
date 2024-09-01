@@ -1,6 +1,6 @@
 import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent } from '@angular/core';
 import { EventDialogComponent } from './event-dialog.component';
-import { Event } from 'src/app/models/event';
+import { Event } from 'src/app/fragments/components/event/event';
 
 @Injectable({
     providedIn: 'root'

@@ -6,7 +6,7 @@ import {
     OnInit,
     Renderer2
 } from '@angular/core';
-import { Event } from 'src/app/models/event';
+import { Event } from 'src/app/fragments/components/event/event';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../store/reducers';
 import * as EventsActions from '../../../store/actions/event.action';

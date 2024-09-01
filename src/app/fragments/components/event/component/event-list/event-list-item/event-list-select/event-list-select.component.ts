@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Event } from 'src/app/models/event';
+import { Event } from 'src/app/fragments/components/event/event';
 
 @Component({
     selector: 'app-event-list-select',

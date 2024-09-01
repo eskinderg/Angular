@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Event } from '../../../../models/event';
+import { Event } from '../event';
 import * as EventsActions from '../../../../store/actions/event.action';
 import * as fromRoot from '../../../../store/reducers';
 import { ActivatedRoute, Router } from '@angular/router';

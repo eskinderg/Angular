@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as EventsActions from '../actions/event.action';
-import { Event } from '../../models/event';
+import { Event } from '../../fragments/components/event/event';
 
 export interface IEventsState {
     events: Event[];
@@ -72,7 +72,7 @@ export const getEventsLength = createSelector(getEventState, (state: IEventsStat
 
 export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading);
 
-export const getItemById = (id: number) =>
+export const getItemById = (id: string) =>
     createSelector(getEventState, (allItems) => {
         if (allItems.events) {
             return allItems.events.find((item) => {

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
 import { ApiService } from '../../../../components/shared/services/api.service';
-import { Event } from 'src/app/models/event';
+import { Event } from 'src/app/fragments/components/event/event';
 
 const EVENTS_API_URL = environment.EVENTS_API_URL;
 

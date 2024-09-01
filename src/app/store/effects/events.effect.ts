@@ -5,7 +5,7 @@ import { catchError, switchMap, map } from 'rxjs/operators';
 import * as EventsActions from '../actions/event.action';
 import { EventDataService } from '../../fragments/components/event/event.data.service/event.data.service';
 import { NotificationService } from '../../shared/notification/notification.service';
-import { Event } from '../../models/event';
+import { Event } from '../../fragments/components/event/event';
 
 @Injectable()
 export class EventsEffect {
