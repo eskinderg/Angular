@@ -2,8 +2,8 @@
 export const environment = {
     appVersion: require('../../package.json').version + '-dev',
     production: false,
-    EVENTS_API_URL: 'http://localhost:3000/api/events/',
-    NOTES_API_URL: 'http://localhost:3000/api/notes/',
+    EVENTS_API_URL: 'http://192.168.22.5:3000/api/events',
+    NOTES_API_URL: 'http://192.168.22.5:3000/api/notes',
     API_URL: 'http://localhost:3000',
 
     Auth: {
