@@ -3,7 +3,7 @@
     {{ note?.header ? note?.header : 'Untitled' }}<br />
     Last Modified &nbsp;: &nbsp; {{ note?.dateModified | date: 'medium' }}<br />
     Date Created &nbsp; : &nbsp; {{ note?.dateCreated | date: 'medium' }}<br />
-    Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinOrder ? 'Yes' : 'No' }}<br />
+    Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinned ? 'Yes' : 'No' }}<br />
     Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.colour ? note?.colour : 'none' }}<br />
     Spell Check &nbsp; &nbsp; : &nbsp; {{ note?.spellCheck ? 'on' : 'off' }}<br />
     Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.owner }}
