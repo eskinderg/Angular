@@ -101,6 +101,18 @@
   }
 }
 
+.delete-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--scrollbar-thumb-color);
+  cursor: pointer;
+
+  :hover {
+    fill: red;
+  }
+}
+
+
 *::-webkit-scrollbar-track {
    background: var(--scrollbar-track-color);
 }

@@ -83,7 +83,7 @@ export class NoteApiService {
     }
 
     deleteNote(note: Note): void {
-        this.run(AppActions.deleteNote({ payload: { ...note, archived: true } }));
+        this.run(AppActions.deleteNote({ payload: { ...note, active: false } }));
     }
 
     changeNoteText(note: Note): void {

@@ -125,7 +125,6 @@ export class NotesEffect {
                 ofType(NotesActions.deleteNoteSuccess),
                 switchMap(() => {
                     this.notificationService.showSuccess('Note Deleted', 'Info');
-                    this.router.navigate([`/notes`]);
                     return EMPTY;
                 })
             ),

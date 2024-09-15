@@ -243,16 +243,18 @@ export function pinnedNotes(notes: Note[]): Note[] {
 export const getNoteState = createFeatureSelector<INotesState>('notes');
 
 export const getNotes = createSelector(getNoteState, (state: INotesState) => {
-    return state.notes.filter((n) => !n.archived);
+    return state.notes.filter((n) => !n.archived && n.active);
 });
 
 export const getArchivedNotes = createSelector(getNoteState, (state: INotesState) => {
-    return state.notes.filter((n) => n.archived).sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
+    return state.notes
+        .filter((n) => n.archived && n.active)
+        .sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
 });
 
 export const getNotesLength = createSelector(
     getNoteState,
-    (state: INotesState) => state.notes.filter((n) => !n.archived).length
+    (state: INotesState) => state.notes.filter((n) => !n.archived && n.active).length
 );
 
 export const getNotesAnimate = createSelector(getNoteState, (state: INotesState) => state.animate);

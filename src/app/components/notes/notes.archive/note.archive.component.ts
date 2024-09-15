@@ -40,6 +40,10 @@ export class NoteArchiveComponent {
         // this.activeDialog.close('/notes');
     }
 
+    delete(note: Note) {
+        this.notesApiService.deleteNote(note);
+    }
+
     restore(note: Note) {
         this.notesApiService.restoreNote({ ...note, archived: false } as Note);
         // this.notesApiService.deleteNote(note);
