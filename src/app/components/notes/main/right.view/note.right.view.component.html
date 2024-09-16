@@ -1,19 +1,20 @@
 <ng-template #popContent>
     Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
-    {{ note?.header ? note?.header : 'Untitled' }}<br />
-    Last Modified &nbsp;: &nbsp; {{ note?.dateModified | date: 'medium' }}<br />
-    Date Created &nbsp; : &nbsp; {{ note?.dateCreated | date: 'medium' }}<br />
-    Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.pinned ? 'Yes' : 'No' }}<br />
-    Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.colour ? note?.colour : 'none' }}<br />
-    Spell Check &nbsp; &nbsp; : &nbsp; {{ note?.spellCheck ? 'on' : 'off' }}<br />
-    Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ note?.owner }}
+    {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }}<br />
+    Last Modified &nbsp;: &nbsp; {{ facadeNote?.dateModified | date: 'medium' }}<br />
+    Date Created &nbsp; : &nbsp; {{ facadeNote?.dateCreated | date: 'medium' }}<br />
+    Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
+    Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
+    {{ facadeNote?.colour ? facadeNote?.colour : 'none' }}<br />
+    Spell Check &nbsp; &nbsp; : &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
+    Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ facadeNote?.owner }}
 </ng-template>
 <div class="note-background" [ngClass]="note.colour + '-note'">
     <div class="note-menu">
         <div class="note-header">
             <app-note-header-control
                 #noteHeader
-                [note]="note"
+                [note]="facadeNote"
                 (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)">
             </app-note-header-control>
         </div>
@@ -23,8 +24,8 @@
                 class="spell-check"
                 appTooltip="Toggle Spell Check"
                 [position]="tooltipPosition"
-                [ngClass]="{ 'spell-check-active': note.spellCheck }"
-                (click)="spellCheckToggle(note)">
+                [ngClass]="{ 'spell-check-active': facadeNote.spellCheck }"
+                (click)="spellCheckToggle(facadeNote)">
                 <svg
                     width="1.75rem"
                     height="1.75rem"

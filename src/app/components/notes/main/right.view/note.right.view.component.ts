@@ -39,7 +39,7 @@ export class NoteRightViewComponent {
     }
 
     spellCheckToggle(note: Note) {
-        this.toggleSpellCheck.emit({ ...note, spellCheck: !note.spellCheck });
+        this.toggleSpellCheck.emit({ ...this.facadeNote, spellCheck: !note.spellCheck });
     }
 
     handleNoteTextUpdate(note: Note) {
@@ -50,7 +50,7 @@ export class NoteRightViewComponent {
         this.noteSelectionChange.emit(selection);
     }
     handleNoteColourUpdate(colour: Colour) {
-        this.updateNoteColour.emit({ ...this.note, colour: colour.name });
+        this.updateNoteColour.emit({ ...this.facadeNote, colour: colour.name });
     }
 
     handleNoteHeaderUpdate(note: Note) {
