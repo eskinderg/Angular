@@ -36,7 +36,7 @@ export class EventDataService extends ApiService {
     }
 
     public toggleEvent(event: Event): Observable<Event> {
-        return this.http.put<Event>(EVENTS_API_URL + 'toggle/', event).pipe(
+        return this.http.put<Event>(EVENTS_API_URL + '/toggle', event).pipe(
             map((response) => {
                 return response;
             }),
