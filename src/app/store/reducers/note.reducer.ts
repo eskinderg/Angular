@@ -7,6 +7,7 @@ export interface INotesState {
     notes: Note[];
     selectedNote: Note;
     opendNote: Note;
+    facadeNote: Note;
     isLoading: boolean;
     animate: {
         note: boolean;
@@ -18,6 +19,7 @@ export const initialState: INotesState = {
     notes: [],
     selectedNote: null,
     opendNote: null,
+    facadeNote: null,
     isLoading: false,
     animate: {
         note: false,
@@ -32,7 +34,8 @@ export const notesReducer = createReducer<INotesState>(
         (state, action): INotesState => ({
             ...state,
             selectedNote: action.payload,
-            opendNote: action.payload
+            opendNote: action.payload,
+            facadeNote: action.payload
         })
     ),
     on(NotesActions.updateOpendNote, (state, action): INotesState => {
@@ -44,6 +47,7 @@ export const notesReducer = createReducer<INotesState>(
             notes: pinnedNotes([action.payload, ...state.notes]),
             selectedNote: action.payload,
             opendNote: action.payload,
+            facadeNote: action.payload,
             animate: {
                 note: true,
                 date: true
@@ -76,6 +80,10 @@ export const notesReducer = createReducer<INotesState>(
                 pinnedNotes(action.payload)
                     .filter((n) => !n.archived)
                     .at(0) ?? null,
+            facadeNote:
+                pinnedNotes(action.payload)
+                    .filter((n) => !n.archived)
+                    .at(0) ?? null,
             animate: {
                 note: true,
                 date: true
@@ -86,6 +94,21 @@ export const notesReducer = createReducer<INotesState>(
         NotesActions.updateNoteSuccess,
         NotesActions.updateNotePositionSuccess,
         NotesActions.updateNoteSizeSuccess,
+        (state, action): INotesState => ({
+            ...state,
+            notes: state.notes.map((note) =>
+                note.id === action.payload.id || note.id === undefined ? action.payload : note
+            ),
+            opendNote: action.payload,
+            selectedNote: action.payload,
+            facadeNote: action.payload,
+            animate: {
+                note: true,
+                date: true
+            }
+        })
+    ),
+    on(
         NotesActions.updateNoteHeaderSuccess,
         (state, action): INotesState => ({
             ...state,
@@ -94,8 +117,9 @@ export const notesReducer = createReducer<INotesState>(
             ),
             opendNote: action.payload,
             selectedNote: action.payload,
+            facadeNote: action.payload,
             animate: {
-                note: true,
+                note: false,
                 date: true
             }
         })
@@ -109,6 +133,7 @@ export const notesReducer = createReducer<INotesState>(
             ),
             opendNote: action.payload,
             selectedNote: action.payload,
+            facadeNote: action.payload,
             animate: {
                 note: false,
                 date: false
@@ -146,7 +171,12 @@ export const notesReducer = createReducer<INotesState>(
             return note.id === action.payload.id ? action.payload : note; // First update the note text
         });
 
-        return { ...state, notes: notes, animate: { ...state.animate, note: false, date: false } };
+        return {
+            ...state,
+            notes: notes,
+            facadeNote: action.payload,
+            animate: { ...state.animate, note: false, date: false }
+        };
     }),
     on(NotesActions.updateNoteTextSuccess, (state, action): INotesState => {
         const notes: Note[] = state.notes.map((note) => {
@@ -162,6 +192,7 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: pinnedNotes(newState),
+            facadeNote: action.payload,
             animate: { ...state.animate, note: false, date: false }
         };
     }),
@@ -184,6 +215,7 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: pinnedNotes(dateModifiedNotes(newState)),
+            facadeNote: action.payload.id === state.facadeNote.id ? action.payload : state.facadeNote,
             animate: { note: true, date: false }
         };
     }),
@@ -198,7 +230,7 @@ export const notesReducer = createReducer<INotesState>(
             })
         })
     ),
-    on(NotesActions.archiveNoteSuccess, NotesActions.deleteNoteSuccess, (state, action): INotesState => {
+    on(NotesActions.archiveNoteSuccess, (state, action): INotesState => {
         const notes: Note[] = state.notes.map((note) => {
             return note.id === action.payload.id ? action.payload : note;
         });
@@ -206,9 +238,19 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: notes,
-            selectedNote: null,
-            opendNote: null,
+            selectedNote: action.payload.id === state.selectedNote.id ? null : state.selectedNote,
+            opendNote: action.payload.id === state.opendNote.id ? null : state.opendNote,
             animate: { note: true, date: true }
+        };
+    }),
+    on(NotesActions.deleteNoteSuccess, (state, action): INotesState => {
+        const notes: Note[] = state.notes.map((note) => {
+            return note.id === action.payload.id ? action.payload : note;
+        });
+
+        return {
+            ...state,
+            notes: notes
         };
     })
 );
@@ -248,6 +290,8 @@ export const getSelectedNote = createSelector(getNoteState, (state: INotesState)
 );
 
 export const getOpendNote = createSelector(getNoteState, (state: INotesState) => state.opendNote as Note);
+
+export const getFacadeNote = createSelector(getNoteState, (state: INotesState) => state.facadeNote as Note);
 
 export const getIsLoading = createSelector(getNoteState, (state: INotesState) => state.isLoading);
 

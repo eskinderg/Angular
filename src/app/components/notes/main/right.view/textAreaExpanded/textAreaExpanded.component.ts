@@ -8,8 +8,6 @@ import {
     ChangeDetectionStrategy,
     OnDestroy,
     Input,
-    OnChanges,
-    SimpleChanges,
     viewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -31,12 +29,12 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     styleUrls: ['textAreaExpanded.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
+export class TextareaExpandedComponent implements OnDestroy, OnInit {
     @Input() note: Note;
+    @Input() facadeNote: Note;
     subscription: Subscription | undefined;
 
     textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
-    lastModified: Date;
 
     @Output() textAreaTextChanged = new EventEmitter(false);
     @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
@@ -54,13 +52,8 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
                 debounceTime(450),
                 distinctUntilChanged(),
                 tap(() => {
-                    const date = new Date();
-                    const offset = date.getTimezoneOffset();
-                    this.lastModified = new Date(date.getTime() - offset * 60 * 1000);
-
                     this.textAreaTextChanged.emit({
-                        ...this.note,
-                        dateModified: this.lastModified ?? this.note.dateModified,
+                        ...this.facadeNote,
                         text: this.textAreaElementRef().nativeElement.innerHTML
                     } as Note);
                 })
@@ -87,15 +80,15 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     // } as Note);
     // }
 
-    ngOnChanges(changes: SimpleChanges) {
-        if (
-            (changes['note'].currentValue as Note).id === this.note.id &&
-            this.note.selection !== null &&
-            (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
-        ) {
-            setTimeout(() => {
-                this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
-            }, 100);
-        }
-    }
+    // ngOnChanges(changes: SimpleChanges) {
+    //     if (
+    //         (changes['note'].currentValue as Note).id === this.note.id &&
+    //         this.note.selection !== null &&
+    //         (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
+    //     ) {
+    //         setTimeout(() => {
+    //             this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
+    //         }, 100);
+    //     }
+    // }
 }

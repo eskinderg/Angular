@@ -1,4 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    viewChild
+} from '@angular/core';
+import { debounceTime, distinctUntilChanged, filter, fromEvent, Subscription, tap } from 'rxjs';
 import { Note } from 'src/app/models/note';
 
 @Component({
@@ -7,14 +18,33 @@ import { Note } from 'src/app/models/note';
     styleUrl: './note.header.control.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NoteHeaderControlComponent {
+export class NoteHeaderControlComponent implements OnInit, OnDestroy {
     @Input() note: Note;
     @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
+    subscription: Subscription | undefined;
+
+    inputHeaderRef = viewChild.required<ElementRef>('inputHeaderRef');
+
     constructor() {}
 
-    updateNoteHeader(event: Event) {
-        const headerText: string = (event.target as HTMLInputElement).value;
-        this.noteUpdateNoteHeader.emit({ ...this.note, header: headerText } as Note);
+    ngOnDestroy(): void {
+        this.subscription.unsubscribe();
+    }
+
+    ngOnInit(): void {
+        this.subscription = fromEvent(this.inputHeaderRef().nativeElement, 'input')
+            .pipe(
+                filter(Boolean),
+                debounceTime(450),
+                distinctUntilChanged(),
+                tap(() => {
+                    this.noteUpdateNoteHeader.emit({
+                        ...this.note,
+                        header: this.inputHeaderRef().nativeElement.value
+                    } as Note);
+                })
+            )
+            .subscribe();
     }
 }

@@ -21,6 +21,7 @@ export class NoteRightViewComponent {
     tooltipPosition: TooltipPosition = TooltipPosition.LEFT;
 
     @Input() note: Note;
+    @Input() facadeNote: Note;
 
     @Output() changeNoteText: EventEmitter<Note> = new EventEmitter();
     @Output() changeNotePosition: EventEmitter<Note> = new EventEmitter();
@@ -49,7 +50,7 @@ export class NoteRightViewComponent {
         this.noteSelectionChange.emit(selection);
     }
     handleNoteColourUpdate(colour: Colour) {
-        this.updateNoteColour.emit({ ...this.note, colour: colour.name });
+        this.updateNoteColour.emit({ ...this.facadeNote, colour: colour.name });
     }
 
     handleNoteHeaderUpdate(note: Note) {

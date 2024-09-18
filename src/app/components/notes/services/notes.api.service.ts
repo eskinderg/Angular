@@ -30,6 +30,10 @@ export class NoteApiService {
         return this.store.select(fromNotes.getOpendNote);
     }
 
+    get FacadeNote(): Observable<Note> {
+        return this.store.select(fromNotes.getFacadeNote);
+    }
+
     getNoteById(id: string): Observable<Note> {
         return this.store.select(fromNotes.getNoteById(id));
     }
