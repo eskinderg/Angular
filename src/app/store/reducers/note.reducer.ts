@@ -146,12 +146,7 @@ export const notesReducer = createReducer<INotesState>(
             return note.id === action.payload.id ? action.payload : note; // First update the note text
         });
 
-        return {
-            ...state,
-            notes: notes,
-            facadeNote: action.payload,
-            animate: { ...state.animate, note: false, date: false }
-        };
+        return { ...state, notes: notes, animate: { ...state.animate, note: false, date: false } };
     }),
     on(NotesActions.updateNoteTextSuccess, (state, action): INotesState => {
         const notes: Note[] = state.notes.map((note) => {
@@ -189,7 +184,6 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: pinnedNotes(dateModifiedNotes(newState)),
-            facadeNote: action.payload,
             animate: { note: true, date: false }
         };
     }),
