@@ -21,7 +21,6 @@ export class NoteRightViewComponent {
     tooltipPosition: TooltipPosition = TooltipPosition.LEFT;
 
     @Input() note: Note;
-    @Input() facadeNote: Note;
 
     @Output() changeNoteText: EventEmitter<Note> = new EventEmitter();
     @Output() changeNotePosition: EventEmitter<Note> = new EventEmitter();

@@ -8,6 +8,8 @@ import {
     ChangeDetectionStrategy,
     OnDestroy,
     Input,
+    OnChanges,
+    SimpleChanges,
     viewChild
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -29,9 +31,8 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     styleUrls: ['textAreaExpanded.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements OnDestroy, OnInit {
+export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     @Input() note: Note;
-    @Input() facadeNote: Note;
     subscription: Subscription | undefined;
 
     textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
@@ -58,7 +59,8 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit {
                     this.lastModified = new Date(date.getTime() - offset * 60 * 1000);
 
                     this.textAreaTextChanged.emit({
-                        ...this.facadeNote,
+                        ...this.note,
+                        dateModified: this.lastModified ?? this.note.dateModified,
                         text: this.textAreaElementRef().nativeElement.innerHTML
                     } as Note);
                 })
@@ -85,15 +87,15 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit {
     // } as Note);
     // }
 
-    // ngOnChanges(changes: SimpleChanges) {
-    // if (
-    //     (changes['note'].currentValue as Note).id === this.note.id &&
-    //     this.note.selection !== null &&
-    //     (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
-    // ) {
-    //     setTimeout(() => {
-    //         this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
-    //     }, 100);
-    // }
-    // }
+    ngOnChanges(changes: SimpleChanges) {
+        if (
+            (changes['note'].currentValue as Note).id === this.note.id &&
+            this.note.selection !== null &&
+            (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
+        ) {
+            setTimeout(() => {
+                this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
+            }, 100);
+        }
+    }
 }

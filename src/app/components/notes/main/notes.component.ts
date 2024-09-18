@@ -106,10 +106,6 @@ export class NotesComponent implements OnDestroy {
         return this.notesApiService.OpendNote;
     }
 
-    get FecadeNote() {
-        return this.notesApiService.FacadeNote;
-    }
-
     ngOnDestroy(): void {
         this.noteDialogService.destroy();
     }

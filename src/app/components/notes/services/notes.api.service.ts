@@ -26,10 +26,6 @@ export class NoteApiService {
         return this.store.select(fromNotes.getSelectedNote);
     }
 
-    get FacadeNote(): Observable<Note> {
-        return this.store.select(fromNotes.getFacadeNote);
-    }
-
     get OpendNote(): Observable<Note> {
         return this.store.select(fromNotes.getOpendNote);
     }

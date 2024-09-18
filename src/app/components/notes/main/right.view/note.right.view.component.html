@@ -93,7 +93,6 @@
     @if (note) {
         <app-textarea-expanded
             [note]="note"
-            [facadeNote]="facadeNote"
             #textAreaExpanded
             (textAreaSelectionChange)="selectionChange($event)"
             (textAreaTextChanged)="handleNoteTextUpdate($event)"
