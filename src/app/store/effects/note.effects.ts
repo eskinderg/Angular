@@ -107,6 +107,18 @@ export class NotesEffect {
         )
     );
 
+    refreshNotes = createEffect(() =>
+        this.actions$.pipe(
+            ofType(NotesActions.refreshNotes),
+            switchMap(() =>
+                this.notesDataService.getNotes().pipe(
+                    map((notes) => NotesActions.refreshNotesSuccess({ payload: notes })),
+                    catchError((err) => of(NotesActions.refreshNotesFailed({ payload: err })))
+                )
+            )
+        )
+    );
+
     delete = createEffect(() =>
         this.actions$.pipe(
             ofType(NotesActions.deleteNote),

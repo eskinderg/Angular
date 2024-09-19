@@ -8,7 +8,10 @@ import {
     ChangeDetectionStrategy,
     OnDestroy,
     Input,
-    viewChild
+    viewChild,
+    SimpleChanges,
+    OnChanges,
+    HostListener
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -29,7 +32,7 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     styleUrls: ['textAreaExpanded.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements OnDestroy, OnInit {
+export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
     @Input() note: Note;
     @Input() facadeNote: Note;
     subscription: Subscription | undefined;
@@ -65,30 +68,33 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit {
         this.subscription.unsubscribe();
     }
 
-    // @HostListener('focusout', ['$event.target'])
-    // onFocusOut(target: any) {
-    // this.textAreaSelectionChange.emit({
-    //     ...this.note,
-    //     dateModified: this.lastModified ? this.lastModified : this.note.dateModified,
-    //     text: target.innerHTML,
-    //     selection: JSON.stringify(this.txtSelection.saveSelection(target))
-    // } as Note);
-    // this.textAreaUpdatedOpendNote.emit({
-    //     ...this.note,
-    //     text: target.innerHTML,
-    //     selection: JSON.stringify(this.txtSelection.saveSelection(target))
-    // } as Note);
-    // }
+    @HostListener('focusout', ['$event.target'])
+    onFocusOut(target: any) {
+        this.textAreaSelectionChange.emit({
+            ...this.facadeNote,
+            text: target.innerHTML,
+            selection: JSON.stringify(this.txtSelection.saveSelection(target))
+        } as Note);
+        this.textAreaUpdatedOpendNote.emit({
+            ...this.facadeNote,
+            text: target.innerHTML,
+            selection: JSON.stringify(this.txtSelection.saveSelection(target))
+        } as Note);
+    }
 
-    // ngOnChanges(changes: SimpleChanges) {
-    //     if (
-    //         (changes['note'].currentValue as Note).id === this.note.id &&
-    //         this.note.selection !== null &&
-    //         (changes['note'].currentValue as Note).id !== (changes['note'].previousValue as Note)?.id
-    //     ) {
-    //         setTimeout(() => {
-    //             this.txtSelection.doRestore(this.note.selection, this.textAreaElementRef().nativeElement);
-    //         }, 100);
-    //     }
-    // }
+    ngOnChanges(changes: SimpleChanges) {
+        if (
+            (changes['facadeNote'].currentValue as Note).id === this.facadeNote.id &&
+            this.facadeNote.selection !== null &&
+            (changes['facadeNote'].currentValue as Note).id !==
+                (changes['facadeNote'].previousValue as Note)?.id
+        ) {
+            setTimeout(() => {
+                this.txtSelection.doRestore(
+                    this.facadeNote.selection,
+                    this.textAreaElementRef().nativeElement
+                );
+            }, 100);
+        }
+    }
 }

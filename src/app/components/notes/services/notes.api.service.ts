@@ -38,6 +38,10 @@ export class NoteApiService {
         return this.store.select(fromNotes.getNoteById(id));
     }
 
+    refreshNotes() {
+        this.run(AppActions.refreshNotes());
+    }
+
     selectNote(note: Note): void {
         this.run(AppActions.noteSelect({ payload: note }));
     }

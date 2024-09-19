@@ -39,7 +39,7 @@ export const notesReducer = createReducer<INotesState>(
         })
     ),
     on(NotesActions.updateOpendNote, (state, action): INotesState => {
-        return { ...state, opendNote: action.payload };
+        return { ...state, opendNote: action.payload, facadeNote: action.payload };
     }),
     on(NotesActions.createNoteSuccess, (state, action): INotesState => {
         return {
@@ -86,6 +86,34 @@ export const notesReducer = createReducer<INotesState>(
                     .at(0) ?? null,
             animate: {
                 note: true,
+                date: true
+            }
+        };
+    }),
+    on(NotesActions.refreshNotesSuccess, (state, action): INotesState => {
+        if (state.opendNote != null) {
+            const checkIfDeleted: Note = action.payload
+                .filter((n) => n.active && !n.archived)
+                .find((n) => n.id === state.opendNote.id);
+            if (checkIfDeleted === undefined) {
+                return {
+                    ...state,
+                    opendNote: null,
+                    selectedNote: null,
+                    facadeNote: null,
+                    notes: pinnedNotes(action.payload),
+                    animate: {
+                        note: false,
+                        date: true
+                    }
+                };
+            }
+        }
+        return {
+            ...state,
+            notes: pinnedNotes(action.payload),
+            animate: {
+                note: false,
                 date: true
             }
         };

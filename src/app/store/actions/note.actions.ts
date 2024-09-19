@@ -52,6 +52,15 @@ export const fetchNotesSuccess = createAction('[NOTE] FETCH_NOTES_SUCCESS', prop
 //  UPDATE
 // -----------------------------------
 
+// ===================================
+//  REFRESH
+// -----------------------------------
+export const refreshNotes = createAction('[NOTE] REFRESH_NOTES');
+
+export const refreshNotesFailed = createAction('[NOTE] REFRESH_NOTES_FAILURE', props<{ payload: string }>());
+
+export const refreshNotesSuccess = createAction('[NOTE] REFRESH_NOTES_SUCCESS', props<{ payload: Note[] }>());
+
 export const updateNoteText = createAction('[NOTE] UPDATE_NOTE_TEXT', props<{ payload: Note }>());
 
 export const updateNoteTextSuccess = createAction(

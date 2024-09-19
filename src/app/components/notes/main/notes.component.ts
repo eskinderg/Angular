@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, viewChild, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, viewChild, OnDestroy, OnInit } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -7,6 +7,7 @@ import { NoteRightViewComponent } from './right.view/note.right.view.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { NoteDialogService } from '../components/note-dialog/note.dialog.service';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-notes',
@@ -15,8 +16,10 @@ import { NoteDialogService } from '../components/note-dialog/note.dialog.service
     animations: [FadeInOutNoteListItem],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NotesComponent implements OnDestroy {
+export class NotesComponent implements OnDestroy, OnInit {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
+    subscription: Subscription;
+    refreshInterval = interval(60000);
 
     constructor(
         public notesApiService: NoteApiService,
@@ -24,6 +27,10 @@ export class NotesComponent implements OnDestroy {
         private noteDialogService: NoteDialogService,
         public route: Router
     ) {}
+
+    ngOnInit(): void {
+        this.subscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
+    }
 
     onChangeNoteText(note: Note) {
         this.notesApiService.updateNoteText(note);
@@ -112,5 +119,6 @@ export class NotesComponent implements OnDestroy {
 
     ngOnDestroy(): void {
         this.noteDialogService.destroy();
+        if (this.subscription != null) this.subscription.unsubscribe();
     }
 }
