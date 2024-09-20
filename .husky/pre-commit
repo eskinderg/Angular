@@ -1,1 +1,1 @@
-npm run lint
+ng lint --fix=true
