@@ -39,7 +39,7 @@ export class NoteRightViewComponent {
     }
 
     spellCheckToggle(note: Note) {
-        this.toggleSpellCheck.emit({ ...note, spellCheck: !note.spellCheck });
+        this.toggleSpellCheck.emit(note);
     }
 
     handleNoteTextUpdate(note: Note) {

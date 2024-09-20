@@ -50,10 +50,6 @@ export class NoteApiService {
         this.run(AppActions.createNote({ payload: newNote }));
     }
 
-    toggleSpellCheck(note: Note): void {
-        this.run(AppActions.toggleSpellCheck({ payload: note }));
-    }
-
     updateNote(note: Note): void {
         this.run(AppActions.updateNote({ payload: note }));
     }
@@ -80,6 +76,10 @@ export class NoteApiService {
 
     archiveNote(note: Note): void {
         this.run(AppActions.archiveNote({ payload: { ...note, archived: true } }));
+    }
+
+    toggleSpellCheck(note: Note): void {
+        this.run(AppActions.toggleSpellCheck({ payload: { ...note, spellCheck: !note.spellCheck } }));
     }
 
     updateNoteColour(note: Note): void {
