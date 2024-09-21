@@ -1,1 +1,1 @@
-export const APP_CONFLICT: number = 409
+export const APP_CONFLICT: number = 409;
