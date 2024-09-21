@@ -1,8 +1,15 @@
 import { inject } from '@angular/core';
-import { HttpEvent, HttpRequest, HttpInterceptorFn, HttpHandlerFn } from '@angular/common/http';
+import {
+    HttpEvent,
+    HttpRequest,
+    HttpInterceptorFn,
+    HttpHandlerFn,
+    HttpErrorResponse
+} from '@angular/common/http';
 import { Observable, throwError, catchError } from 'rxjs';
 // import { tap } from 'rxjs/operators';
 import { LoggingService } from '../error/loggingservice';
+import { APP_CONFLICT } from '../config/config';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
 // import { ConfirmService } from '../fragments/components/dialog/confirm.service';
@@ -14,8 +21,12 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
     const loggingService = inject(LoggingService);
 
     return next(request).pipe(
-        catchError((error) => {
-            loggingService.error(error);
+        catchError((error: HttpErrorResponse) => {
+            if (error.status === APP_CONFLICT) {
+                location.reload();
+            } else {
+                loggingService.error(error);
+            }
             return throwError(() => error.message);
         })
     );
