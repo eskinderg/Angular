@@ -10,6 +10,7 @@ import { Observable, throwError, catchError } from 'rxjs';
 // import { tap } from 'rxjs/operators';
 import { LoggingService } from '../error/loggingservice';
 import { APP_CONFLICT } from '../config/config';
+import { NotificationService } from '../shared/notification/notification.service';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
 // import { ConfirmService } from '../fragments/components/dialog/confirm.service';
@@ -19,11 +20,18 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
     next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
     const loggingService = inject(LoggingService);
+    const notificationService = inject(NotificationService);
 
     return next(request).pipe(
         catchError((error: HttpErrorResponse) => {
             if (error.status === APP_CONFLICT) {
-                location.reload();
+                notificationService.showSuccess(
+                    'There where changes made that is not in sync with the server. Please reload your page to fetch the latest data or your changes won\'t be saved',
+                    'Sync Operation',
+                    5,
+                    true,
+                    false
+                );
             } else {
                 loggingService.error(error);
             }
