@@ -226,7 +226,11 @@ export const notesReducer = createReducer<INotesState>(
     }),
     on(NotesActions.updatePinOrder, (state, action): INotesState => {
         return action.payload.id === state.opendNote?.id // update current opend note
-            ? { ...state, opendNote: { ...state.opendNote, pinOrder: action.payload.pinOrder } }
+            ? {
+                  ...state,
+                  opendNote: { ...state.opendNote, pinOrder: action.payload.pinOrder },
+                  facadeNote: { ...state.facadeNote, pinOrder: action.payload.pinOrder }
+              }
             : state;
     }),
     on(NotesActions.updatePinOrderSuccess, (state, action): INotesState => {
