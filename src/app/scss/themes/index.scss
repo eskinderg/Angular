@@ -44,6 +44,7 @@
     --bs-toast-color: var(--primary);
     --bs-popover-max-width: auto !important;
     --bs-list-group-active-color: var(--primary);
+    --notification-bg: var(--body-bg);
     color-scheme: light;
 }
 
@@ -135,6 +136,7 @@
     --bs-dropdown-link-color: var(--body-color);
     --bs-dropdown-link-hover-bg: var(--body-bg);
     --bs-list-group-active-color: var(--primary);
+    --notification-bg: var(--body-bg);
     color-scheme: dark;
 }
 
