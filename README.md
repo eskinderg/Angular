@@ -2,7 +2,7 @@
 
 Uses latest Angular version
 
-## NodeJS Requirment
+## NodeJS Requirement
 Make sure you have the appropriate nodejs version installed.</br>
 NodeJs compatability can be found at https://angular.dev/reference/versions </br>
 If are using linux or mac, you can use nvm for different versions of NodeJS on the same machine.
