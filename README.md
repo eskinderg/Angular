@@ -2,10 +2,10 @@
 
 Uses latest Angular version
 
-## NodeJS requirment
-Make sure you have the appropriate nodejs version to run this angular app.</br>
+## NodeJS Requirment
+Make sure you have the appropriate nodejs version installed.</br>
 NodeJs compatability can be found at https://angular.dev/reference/versions </br>
-If are using linux or mac, you can use nvm to install different versions of nodejs on the same machine.
+If are using linux or mac, you can use nvm for different versions of NodeJS on the same machine.
 
 
 ## Getting Started
