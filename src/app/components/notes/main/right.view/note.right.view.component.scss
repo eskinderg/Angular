@@ -52,8 +52,13 @@
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    // box-shadow: 0px 0px 9px 0px grey;
+    border: 2px solid var(--border);
+    padding-left: 0.5rem;
+    background: var(--body-bg);
 }
 
 .menu-icon:hover {
-    fill: var(--b-active-link-color);
+    fill: var(--b-active-link-color) ! important;
 }

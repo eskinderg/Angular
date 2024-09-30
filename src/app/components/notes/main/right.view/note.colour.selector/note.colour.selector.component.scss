@@ -6,8 +6,9 @@
 }
 
 .c {
-    border: 0.2rem solid var(--border);
+    // border: 0.2rem solid var(--border);
     width: 1.75rem;
     height: 1.75rem;
     border-radius: 50%;
+    box-shadow: 0px 0px 4px 0px var(--active-list-link-border-color);
 }
