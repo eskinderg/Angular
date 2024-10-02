@@ -1,13 +1,13 @@
 <ng-template #popContent>
-    Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
+    <strong>Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : </strong>&nbsp;
     {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }}<br />
-    Last Modified &nbsp;: &nbsp; {{ facadeNote?.dateModified | date: 'medium' }}<br />
-    Date Created &nbsp; : &nbsp; {{ facadeNote?.dateCreated | date: 'medium' }}<br />
-    Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
-    Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp;
+    <strong>Last Modified &nbsp;:</strong> &nbsp; {{ facadeNote?.dateModified | date: 'medium' }}<br />
+    <strong>Date Created &nbsp; :</strong> &nbsp; {{ facadeNote?.dateCreated | date: 'medium' }}<br />
+    <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
+    <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;
     {{ facadeNote?.colour ? facadeNote?.colour : 'none' }}<br />
-    Spell Check &nbsp; &nbsp; : &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
-    Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; {{ facadeNote?.owner }}
+    <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
+    <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.owner }}
 </ng-template>
 <div class="note-background" [ngClass]="note.colour + '-note'">
     <div class="note-menu">

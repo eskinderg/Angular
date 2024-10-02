@@ -92,7 +92,7 @@ h3 {
 
 .popover-body {
     padding: var(--bs-popover-body-padding-y) var(--bs-popover-body-padding-x);
-    color: var(--bs-body-color);
+    color: var(--body-color);
 }
 
 .fade {
@@ -103,7 +103,7 @@ h3 {
     padding: var(--bs-popover-header-padding-y) var(--bs-popover-header-padding-x);
     margin-bottom: 0;
     font-size: var(--bs-popover-header-font-size);
-    color: var(--bs-popover-header-color);
+    color: var(--body-color);
     background-color: var(--bs-popover-header-bg);
     border-bottom: var(--bs-popover-border-width) solid var(--bs-popover-border-color);
     border-top-left-radius: var(--bs-popover-inner-border-radius);
