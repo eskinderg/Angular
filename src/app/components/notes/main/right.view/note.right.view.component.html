@@ -3,7 +3,8 @@
     {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }}<br />
     <strong>Last Modified &nbsp;:</strong> &nbsp; {{ facadeNote?.dateModified | date: 'medium' }}<br />
     <strong>Date Created &nbsp; :</strong> &nbsp; {{ facadeNote?.dateCreated | date: 'medium' }}<br />
-    <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
+    <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;
+    {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
     <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;
     {{ facadeNote?.colour ? facadeNote?.colour : 'none' }}<br />
     <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
