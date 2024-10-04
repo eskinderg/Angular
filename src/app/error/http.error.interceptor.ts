@@ -33,7 +33,13 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
                     false
                 );
             } else if (error.status === NOTE_NOT_FOUND) {
-                notificationService.showError('Not Found', 'Either the note has been moved or deleted', 5, true, false);
+                notificationService.showError(
+                    'Not Found',
+                    'Either the note has been moved or deleted',
+                    5,
+                    true,
+                    false
+                );
             } else {
                 loggingService.error(error);
             }
