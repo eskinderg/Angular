@@ -34,8 +34,8 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
                 );
             } else if (error.status === NOTE_NOT_FOUND) {
                 notificationService.showError(
-                    'Not Found',
                     'Either the note has been moved or deleted',
+                    'Not Found',
                     5,
                     true,
                     false
