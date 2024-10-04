@@ -9,7 +9,7 @@ import {
 import { Observable, throwError, catchError } from 'rxjs';
 // import { tap } from 'rxjs/operators';
 import { LoggingService } from '../error/loggingservice';
-import { APP_CONFLICT } from '../config/config';
+import { NOTE_NOT_FOUND, NOTE_UPDATE_CONFLICT } from '../config/config';
 import { NotificationService } from '../shared/notification/notification.service';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
@@ -24,7 +24,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
 
     return next(request).pipe(
         catchError((error: HttpErrorResponse) => {
-            if (error.status === APP_CONFLICT) {
+            if (error.status === NOTE_UPDATE_CONFLICT) {
                 notificationService.showSuccess(
                     "There where changes made that is not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
                     'Sync Operation',
@@ -32,6 +32,8 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
                     true,
                     false
                 );
+            } else if (error.status === NOTE_NOT_FOUND) {
+                notificationService.showError('Not Found', 'Either the note has been moved or deleted', 5, true, false);
             } else {
                 loggingService.error(error);
             }
