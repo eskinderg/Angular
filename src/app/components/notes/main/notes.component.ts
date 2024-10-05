@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { NoteDialogService } from '../components/note-dialog/note.dialog.service';
 import { interval, Subscription } from 'rxjs';
+import { NOTE_REFRESH_INTERVAL } from 'src/app/config/config';
 
 @Component({
     selector: 'app-notes',
@@ -19,7 +20,7 @@ import { interval, Subscription } from 'rxjs';
 export class NotesComponent implements OnDestroy, OnInit {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
     subscription: Subscription;
-    refreshInterval = interval(60000);
+    refreshInterval = interval(NOTE_REFRESH_INTERVAL);
 
     constructor(
         public notesApiService: NoteApiService,

@@ -70,16 +70,20 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
 
     @HostListener('focusout', ['$event.target'])
     onFocusOut(target: any) {
-        this.textAreaSelectionChange.emit({
-            ...this.facadeNote,
-            text: target.innerHTML,
-            selection: JSON.stringify(this.txtSelection.saveSelection(target))
-        } as Note);
-        this.textAreaUpdatedOpendNote.emit({
-            ...this.facadeNote,
-            text: target.innerHTML,
-            selection: JSON.stringify(this.txtSelection.saveSelection(target))
-        } as Note);
+        const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
+
+        if (currentSelection != this.facadeNote.selection) {
+            this.textAreaSelectionChange.emit({
+                ...this.facadeNote,
+                text: target.innerHTML,
+                selection: currentSelection
+            } as Note);
+            this.textAreaUpdatedOpendNote.emit({
+                ...this.facadeNote,
+                text: target.innerHTML,
+                selection: currentSelection
+            } as Note);
+        }
     }
 
     ngOnChanges(changes: SimpleChanges) {
