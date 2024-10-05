@@ -270,8 +270,8 @@ export const notesReducer = createReducer<INotesState>(
         return {
             ...state,
             notes: notes,
-            selectedNote: action.payload.id === state.selectedNote.id ? null : state.selectedNote,
-            opendNote: action.payload.id === state.opendNote.id ? null : state.opendNote,
+            selectedNote: action.payload.id === state.selectedNote?.id ? null : state.selectedNote,
+            opendNote: action.payload.id === state.opendNote?.id ? null : state.opendNote,
             animate: { note: true, date: true }
         };
     }),
