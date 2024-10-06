@@ -29,15 +29,15 @@ export const initialState: INotesState = {
 
 export const notesReducer = createReducer<INotesState>(
     initialState,
-    on(
-        NotesActions.noteSelect,
-        (state, action): INotesState => ({
+    on(NotesActions.noteSelect, (state, action): INotesState => {
+        localStorage.setItem('lastSelectedNote', action.payload.id.toString());
+        return {
             ...state,
             selectedNote: action.payload,
             opendNote: action.payload,
             facadeNote: action.payload
-        })
-    ),
+        };
+    }),
     on(NotesActions.updateOpendNote, (state, action): INotesState => {
         return { ...state, opendNote: action.payload, facadeNote: action.payload };
     }),
@@ -69,21 +69,25 @@ export const notesReducer = createReducer<INotesState>(
         })
     ),
     on(NotesActions.fetchNotesSuccess, (state, action): INotesState => {
+        const lastSelectedNote: Note = action.payload
+            .filter((n) => !n.archived && n.active)
+            .find((n) => n.id === localStorage.getItem('lastSelectedNote'));
+
+        let currentSelection: Note;
+
+        if (lastSelectedNote === undefined)
+            currentSelection =
+                pinnedNotes(action.payload)
+                    .filter((n) => !n.archived && n.active)
+                    .at(0) ?? null;
+        else currentSelection = lastSelectedNote;
+
         return {
             ...state,
             notes: pinnedNotes(action.payload),
-            selectedNote:
-                pinnedNotes(action.payload)
-                    .filter((n) => !n.archived)
-                    .at(0) ?? null,
-            opendNote:
-                pinnedNotes(action.payload)
-                    .filter((n) => !n.archived)
-                    .at(0) ?? null,
-            facadeNote:
-                pinnedNotes(action.payload)
-                    .filter((n) => !n.archived)
-                    .at(0) ?? null,
+            selectedNote: currentSelection,
+            opendNote: currentSelection,
+            facadeNote: currentSelection,
             animate: {
                 note: true,
                 date: true
