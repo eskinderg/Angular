@@ -8,7 +8,7 @@ export const FadeInOutNoteListItem = trigger('fadeInOutNoteListItem', [
         // styles at start of transition
         style({ opacity: 0 }),
         // animation and styles at end of transition
-        animate('2s ease-in-out', style({ opacity: 1 }))
+        animate('0.5s ease-in-out', style({ opacity: 1 }))
     ])
 
     // transition(':leave', [

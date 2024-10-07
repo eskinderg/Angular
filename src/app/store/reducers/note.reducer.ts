@@ -69,17 +69,14 @@ export const notesReducer = createReducer<INotesState>(
         })
     ),
     on(NotesActions.fetchNotesSuccess, (state, action): INotesState => {
-        const lastSelectedNote: Note = action.payload
-            .filter((n) => !n.archived && n.active)
-            .find((n) => n.id === localStorage.getItem('lastSelectedNote'));
+        const lastSelectedNote: Note = filterActiveNotes(action.payload).find(
+            (n) => n.id === localStorage.getItem('lastSelectedNote')
+        );
 
         let currentSelection: Note;
 
         if (lastSelectedNote === undefined)
-            currentSelection =
-                pinnedNotes(action.payload)
-                    .filter((n) => !n.archived && n.active)
-                    .at(0) ?? null;
+            currentSelection = filterActiveNotes(pinnedNotes(action.payload)).at(0) ?? null;
         else currentSelection = lastSelectedNote;
 
         return {
@@ -96,9 +93,9 @@ export const notesReducer = createReducer<INotesState>(
     }),
     on(NotesActions.refreshNotesSuccess, (state, action): INotesState => {
         if (state.opendNote != null) {
-            const checkIfDeleted: Note = action.payload
-                .filter((n) => n.active && !n.archived)
-                .find((n) => n.id === state.opendNote.id);
+            const checkIfDeleted: Note = filterActiveNotes(action.payload).find(
+                (n) => n.id === state.opendNote.id
+            );
             if (checkIfDeleted === undefined) {
                 return {
                     ...state,
@@ -291,32 +288,19 @@ export const notesReducer = createReducer<INotesState>(
     })
 );
 
-export function dateModifiedNotes(notes: Note[]): Note[] {
-    return notes.sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1));
-}
-
-export function pinnedNotes(notes: Note[]): Note[] {
-    return [
-        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1)),
-        ...notes.filter((n) => !n.pinned)
-    ];
-}
-
 export const getNoteState = createFeatureSelector<INotesState>('notes');
 
 export const getNotes = createSelector(getNoteState, (state: INotesState) => {
-    return state.notes.filter((n) => !n.archived && n.active);
+    return filterActiveNotes(state.notes);
 });
 
 export const getArchivedNotes = createSelector(getNoteState, (state: INotesState) => {
-    return state.notes
-        .filter((n) => n.archived && n.active)
-        .sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
+    return filterActiveNotes(state.notes).sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
 });
 
 export const getNotesLength = createSelector(
     getNoteState,
-    (state: INotesState) => state.notes.filter((n) => !n.archived && n.active).length
+    (state: INotesState) => filterActiveNotes(state.notes).length
 );
 
 export const getNotesAnimate = createSelector(getNoteState, (state: INotesState) => state.animate);
@@ -355,3 +339,18 @@ export const getNoteCurrentRoute = createSelector(
         }
     }
 );
+
+export function dateModifiedNotes(notes: Note[]): Note[] {
+    return notes.sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1));
+}
+
+export function pinnedNotes(notes: Note[]): Note[] {
+    return [
+        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1)),
+        ...notes.filter((n) => !n.pinned)
+    ];
+}
+
+export function filterActiveNotes(notes: Note[]): Note[] {
+    return notes.filter((n) => !n.archived && n.active);
+}

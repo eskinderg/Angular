@@ -1,1 +1,1 @@
-ng lint --fix=true
+ng lint

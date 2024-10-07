@@ -8,13 +8,13 @@ export const FadeInOutEventListItem = trigger('fadeInOutEventListItem', [
         // styles at start of transition
         style({ opacity: 0 }),
         // animation and styles at end of transition
-        animate('1s ease-in-out', style({ opacity: 1 }))
+        animate('0.5s ease-in-out', style({ opacity: 1 }))
     ]),
 
     transition(':leave', [
         // styles at start of transition
         style({ opacity: 1 }),
         // animation and styles at end of transition
-        animate('1s ease-in-out', style({ opacity: 0 }))
+        animate('0.5s ease-in-out', style({ opacity: 0 }))
     ])
 ]);
