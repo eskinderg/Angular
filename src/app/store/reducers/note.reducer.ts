@@ -295,7 +295,9 @@ export const getNotes = createSelector(getNoteState, (state: INotesState) => {
 });
 
 export const getArchivedNotes = createSelector(getNoteState, (state: INotesState) => {
-    return filterActiveNotes(state.notes).sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
+    return state.notes
+        .filter((n) => n.archived && n.active)
+        .sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
 });
 
 export const getNotesLength = createSelector(
