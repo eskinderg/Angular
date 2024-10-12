@@ -10,8 +10,7 @@ describe('EventListHeaderComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule],
-            declarations: [EventListHeaderComponent]
+            imports: [FormsModule, EventListHeaderComponent]
         }).compileComponents();
     }));
 

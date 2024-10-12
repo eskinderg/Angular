@@ -1,20 +1,29 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieDialogService } from '../service/movie.dialog.service';
+import { PaginationComponent } from '../../../fragments/components/pagination/pagination';
+import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 
 @Component({
     selector: 'app-right-view',
     templateUrl: 'right-view.component.html',
     styleUrls: ['right-view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [PaginationComponent, MovieCardComponent, RouterOutlet]
 })
-export class RightViewComponent implements OnDestroy, OnInit {
-    movieResult: MovieResults;
+export class RightViewComponent implements OnDestroy {
     routeSubscription: Subscription;
     apiSubscription: Subscription;
+
+    /* withComponentInputBinding */
+    @Input() id = '';
+    @Input() name = '';
+    @Input() page = '';
+    @Input() moviesResult: MovieResults;
 
     constructor(
         public router: ActivatedRoute,
@@ -22,19 +31,14 @@ export class RightViewComponent implements OnDestroy, OnInit {
         public movieModalService: MovieDialogService
     ) {}
 
-    ngOnInit() {
-        this.routeSubscription = this.router.params.subscribe(() => {
-            this.movieResult = this.router.snapshot.data['moviesResult'];
-        });
-    }
-
     loadPage(page: number) {
-        const url = this.router.snapshot.params;
-        this.route.navigate(['/movies/genres', url['id'], url['name'], page]);
+        // const url = this.router.snapshot.params;
+        // this.route.navigate(['/movies/genres', url['id'], url['name'], page]);
+        this.route.navigate(['/movies/genres', this.id, this.name, page]);
     }
 
     get collectionSize() {
-        if (this.movieResult.total_results / 20 > 500) return 500 * 20;
+        if (this.moviesResult.total_results / 20 > 500) return 500 * 20;
         else return 375 * 20;
     }
 

@@ -13,7 +13,8 @@ import * as jQuery from 'jquery';
     selector: 'app-back-top',
     styleUrls: ['./baBackTop.scss'],
     template: ` <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i> `,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class BaBackTopComponent implements AfterViewInit {
     @Input() position = 400;

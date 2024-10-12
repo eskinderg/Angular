@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 /**
  * This class represents the HeaderComponent.
  */
@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
     selector: 'app-toolbar',
     templateUrl: 'wztoolbar.component.html',
     styleUrls: ['wztoolbar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [RouterLink, RouterLinkActive]
 })
 export class WzToolbarComponent {
     public isExpanded = false;

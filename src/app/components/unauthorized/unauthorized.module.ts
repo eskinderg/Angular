@@ -6,8 +6,7 @@ import { UnauthorizedRoutingModule } from './unauthorized-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    imports: [CommonModule, UnauthorizedRoutingModule, SharedModule],
-    declarations: [UnauthorizedComponent],
+    imports: [CommonModule, UnauthorizedRoutingModule, SharedModule, UnauthorizedComponent],
     exports: [UnauthorizedComponent]
 })
 export class UnauthorizedModule {}

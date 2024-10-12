@@ -7,8 +7,7 @@ export function main() {
     describe('Home component', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [FormsModule],
-                declarations: [HomeComponent]
+                imports: [FormsModule, HomeComponent]
             });
         });
 

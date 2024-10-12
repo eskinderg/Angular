@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-card',
     templateUrl: './card.component.html',
     styleUrls: ['card.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass]
 })
 export class CardComponent {
     @Input() cardType: string;

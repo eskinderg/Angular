@@ -8,7 +8,8 @@ import * as fromRoot from '../../store/reducers';
     selector: 'app-unauthorized',
     templateUrl: './unauthorized.component.html',
     styleUrls: ['./unauthorized.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class UnauthorizedComponent {
     constructor(

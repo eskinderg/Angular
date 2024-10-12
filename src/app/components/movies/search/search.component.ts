@@ -15,12 +15,15 @@ import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
+import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [MovieCardComponent]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {
     input = viewChild.required<ElementRef>('searchInput');

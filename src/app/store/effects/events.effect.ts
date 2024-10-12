@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of, EMPTY } from 'rxjs';
 import { catchError, switchMap, map } from 'rxjs/operators';
@@ -9,11 +9,11 @@ import { Event } from '../../fragments/components/event/event';
 
 @Injectable()
 export class EventsEffect {
-    createEvent = createEffect(() =>
-        this.actions$.pipe(
+    createEvent = createEffect((actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+        actions$.pipe(
             ofType(EventsActions.createEvent),
             switchMap((action) =>
-                this.eventsDataService.createEvent(action.payload).pipe(
+                eventsDataService.createEvent(action.payload).pipe(
                     map((event: Event) => EventsActions.createEventSuccess({ payload: event })),
                     catchError((err) => of(EventsActions.createEventFail({ payload: err })))
                 )
@@ -22,22 +22,22 @@ export class EventsEffect {
     );
 
     createEventSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(EventsActions.createEventSuccess),
                 switchMap((action) => {
-                    this.notificationService.showSuccess(action.payload.title, 'Event Added');
+                    notificationService.showSuccess(action.payload.title, 'Event Added');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    updateEvent = createEffect(() =>
-        this.actions$.pipe(
+    updateEvent = createEffect((actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+        actions$.pipe(
             ofType(EventsActions.updateEvent),
             switchMap((action) =>
-                this.eventsDataService.updateEvent(action.payload.newValue).pipe(
+                eventsDataService.updateEvent(action.payload.newValue).pipe(
                     map((event) => EventsActions.updateEventSuccess({ payload: event })),
                     catchError((err) => of(EventsActions.updateEventFail({ payload: err })))
                 )
@@ -46,22 +46,22 @@ export class EventsEffect {
     );
 
     updateEventSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(EventsActions.updateEventSuccess),
                 switchMap((action) => {
-                    this.notificationService.showSuccess(action.payload.title, 'Event Updated');
+                    notificationService.showSuccess(action.payload.title, 'Event Updated');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    toggleEvent = createEffect(() =>
-        this.actions$.pipe(
+    toggleEvent = createEffect((actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+        actions$.pipe(
             ofType(EventsActions.toggleEvent),
             switchMap((action) =>
-                this.eventsDataService.toggleEvent(action.payload).pipe(
+                eventsDataService.toggleEvent(action.payload).pipe(
                     map((event) => EventsActions.toggleEventSuccess({ payload: event })),
                     catchError((err) => of(EventsActions.toggleEventFail({ payload: err })))
                 )
@@ -70,48 +70,49 @@ export class EventsEffect {
     );
 
     toggleEventSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(EventsActions.toggleEventSuccess),
                 switchMap((action) => {
-                    this.notificationService.showSuccess(action.payload.title, 'Event Updated');
+                    notificationService.showSuccess(action.payload.title, 'Event Updated');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    fetchEvents = createEffect(() =>
-        this.actions$.pipe(
+    fetchEvents = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(EventsActions.fetchEvents),
             switchMap(() => of(EventsActions.fetchEventsStart()))
         )
     );
 
-    fetchEventsStart = createEffect(() =>
-        this.actions$.pipe(
-            ofType(EventsActions.fetchEventsStart),
-            switchMap(() =>
-                this.eventsDataService.getAllEvents().pipe(
-                    map((events) => EventsActions.fetchEventsSuccess({ payload: events })),
-                    catchError((err) => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
+    fetchEventsStart = createEffect(
+        (actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+            actions$.pipe(
+                ofType(EventsActions.fetchEventsStart),
+                switchMap(() =>
+                    eventsDataService.getAllEvents().pipe(
+                        map((events) => EventsActions.fetchEventsSuccess({ payload: events })),
+                        catchError((err) => of({ type: EventsActions.fetchEventsFailed.type, payload: err }))
+                    )
                 )
             )
-        )
     );
 
-    fetchEventsSuccess = createEffect(() =>
-        this.actions$.pipe(
+    fetchEventsSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(EventsActions.fetchEventsSuccess),
             switchMap(() => of(EventsActions.fetchEventsComplete()))
         )
     );
 
-    deleteEvent = createEffect(() =>
-        this.actions$.pipe(
+    deleteEvent = createEffect((actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+        actions$.pipe(
             ofType(EventsActions.deleteEvent),
             switchMap((action) =>
-                this.eventsDataService.deleteEventById(action.payload).pipe(
+                eventsDataService.deleteEventById(action.payload).pipe(
                     map((event) => EventsActions.deleteEventSuccess({ payload: event })),
                     catchError((err) => of(EventsActions.deleteEventFail({ payload: err })))
                 )
@@ -119,21 +120,15 @@ export class EventsEffect {
         )
     );
 
-    deleteEvents = createEffect(() =>
-        this.actions$.pipe(
+    deleteEvents = createEffect((actions$ = inject(Actions), eventsDataService = inject(EventDataService)) =>
+        actions$.pipe(
             ofType(EventsActions.deleteEvents),
             switchMap((action) =>
-                this.eventsDataService.deleteEvents(action.payload).pipe(
+                eventsDataService.deleteEvents(action.payload).pipe(
                     map((event) => EventsActions.deleteEventsSuccess({ payload: event })),
                     catchError((err) => of(EventsActions.deleteEventsFail({ payload: err })))
                 )
             )
         )
     );
-
-    constructor(
-        private actions$: Actions,
-        private eventsDataService: EventDataService,
-        private notificationService: NotificationService
-    ) {}
 }

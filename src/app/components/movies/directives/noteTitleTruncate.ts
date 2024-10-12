@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Note } from 'src/app/models/note';
 
 @Pipe({
-    name: 'noteTitleTruncate'
+    name: 'noteTitleTruncate',
+    standalone: true
 })
 export class NoteTitleTruncatePipe implements PipeTransform {
     transform(note: Note, args: string, trailadd: boolean): string {

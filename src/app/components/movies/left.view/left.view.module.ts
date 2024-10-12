@@ -4,8 +4,7 @@ import { GenreListItemComponent } from './genre-list-item/genre-list-item.compon
 import { LeftViewComponent } from './left.view.component';
 
 @NgModule({
-    imports: [SharedModule],
-    declarations: [GenreListItemComponent, LeftViewComponent],
+    imports: [SharedModule, GenreListItemComponent, LeftViewComponent],
     exports: [LeftViewComponent]
 })
 export class LeftViewModule {}

@@ -9,7 +9,8 @@ import { ConfirmState } from './confirm.state';
     selector: 'app-confirm-dialog-component',
     templateUrl: './dialog.component.html',
     styleUrls: ['dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class ConfirmDialogComponent {
     options: ConfirmOptions;

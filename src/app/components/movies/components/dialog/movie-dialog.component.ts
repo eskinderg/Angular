@@ -10,13 +10,18 @@ import {
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { FadeInOut } from './animation';
+import { RatingDecimalComponent } from '../rating/rating';
+import { UpperCasePipe } from '@angular/common';
+import { TruncatePipe } from '../../directives/truncate';
 
 @Component({
     selector: 'app-movie-modal',
     templateUrl: './movie-dialog.component.html',
     styleUrl: './movie-dialog.component.scss',
     animations: [FadeInOut(1000, 1000, true)],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     public movieDetail: Movie;

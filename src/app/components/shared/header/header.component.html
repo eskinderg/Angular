@@ -31,7 +31,7 @@
                     <a
                         [ngClass]="{ active: isNotesURLActive }"
                         aria-expanded="false"
-                        [routerLink]="['/mynotes']"
+                        [routerLink]="['/notes']"
                         [routerLinkActive]="['activeLink']"
                         [routerLinkActiveOptions]="{ exact: false }">
                         Notes
@@ -47,7 +47,7 @@
                     <ul>
                         <li>
                             <a
-                                [routerLink]="['/mynotes']"
+                                [routerLink]="['/notes/mynotes']"
                                 [routerLinkActive]="['activeLink']"
                                 [routerLinkActiveOptions]="{ exact: true }"
                                 >Notes</a
@@ -57,7 +57,7 @@
                             <a
                                 [routerLink]="['/notes/archived']"
                                 [routerLinkActive]="['activeLink']"
-                                [routerLinkActiveOptions]="{ exact: true }"
+                                [routerLinkActiveOptions]="{ exact: false }"
                                 >Archived Notes</a
                             >
                         </li>

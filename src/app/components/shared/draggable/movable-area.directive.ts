@@ -10,7 +10,8 @@ interface Boundaries {
 }
 
 @Directive({
-    selector: '[appMovableArea]'
+    selector: '[appMovableArea]',
+    standalone: true
 })
 export class MovableAreaDirective {
     @ContentChildren(MovableDirective) movables: QueryList<MovableDirective> | undefined;

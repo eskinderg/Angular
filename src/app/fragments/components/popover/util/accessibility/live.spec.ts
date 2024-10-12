@@ -18,8 +18,8 @@ describe('LiveAnnouncer', () => {
     describe('live announcer', () => {
         beforeEach(() =>
             TestBed.configureTestingModule({
-                providers: [Live, { provide: ARIA_LIVE_DELAY, useValue: null }],
-                declarations: [TestComponent]
+                imports: [TestComponent],
+                providers: [Live, { provide: ARIA_LIVE_DELAY, useValue: null }]
             })
         );
 
@@ -44,7 +44,10 @@ describe('LiveAnnouncer', () => {
     });
 });
 
-@Component({ template: `<button (click)="say()">say</button>` })
+@Component({
+    template: `<button (click)="say()">say</button>`,
+    standalone: true
+})
 class TestComponent {
     constructor(public live: Live) {}
     say() {

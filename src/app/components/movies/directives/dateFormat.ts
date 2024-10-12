@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'format'
+    name: 'format',
+    standalone: true
 })
 export class FormatDatePipe implements PipeTransform {
     transform(value: string): string {

@@ -5,7 +5,8 @@ import { Event } from '../../../../fragments/components/event/event';
     selector: 'app-table-event-list',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class TableComponent {
     @Input()

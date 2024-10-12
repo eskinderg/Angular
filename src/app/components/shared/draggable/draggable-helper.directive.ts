@@ -3,7 +3,8 @@ import { DraggableDirective } from './draggable.directive';
 
 @Directive({
     selector: '[appDraggableHelper]',
-    exportAs: 'appDraggableHelper'
+    exportAs: 'appDraggableHelper',
+    standalone: true
 })
 export class DraggableHelperDirective implements OnInit {
     private startPosition?: { x: number; y: number };

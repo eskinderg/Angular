@@ -1,6 +1,7 @@
 import { Renderer2, HostListener, Output, EventEmitter, Directive } from '@angular/core';
 @Directive({
-    selector: '[appTextAreaResize]'
+    selector: '[appTextAreaResize]',
+    standalone: true
 })
 export class ResizableTextAreaDirective {
     @Output() resize = new EventEmitter();

@@ -26,6 +26,7 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
 };
 
 @Component({
+    standalone: true,
     selector: 'app-textarea-expanded',
     providers: [EXPANDED_TEXTAREA_VALUE_ACCESSOR],
     templateUrl: 'textAreaExpanded.component.html',

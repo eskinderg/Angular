@@ -1,5 +1,4 @@
-import { Router } from '@angular/router';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
@@ -9,11 +8,11 @@ import { NotificationService } from '../../shared/notification/notification.serv
 
 @Injectable()
 export class NotesEffect {
-    save = createEffect(() =>
-        this.actions$.pipe(
+    save = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.createNote),
             switchMap((action) =>
-                this.notesDataService.addNote(action.payload).pipe(
+                notesDataService.addNote(action.payload).pipe(
                     map((note) => NotesActions.createNoteSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
                 )
@@ -21,11 +20,11 @@ export class NotesEffect {
         )
     );
 
-    updateNoteText = createEffect(() =>
-        this.actions$.pipe(
+    updateNoteText = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.updateNoteText),
             switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
+                notesDataService.updateNote(action.payload).pipe(
                     map((note) => NotesActions.updateNoteTextSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.updateNoteTextFail({ payload: err })))
                 )
@@ -33,35 +32,37 @@ export class NotesEffect {
         )
     );
 
-    updateNotePosition = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.updateNotePosition),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.updateNotePositionSuccess({ payload: note })),
-                    catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
+    updateNotePosition = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.updateNotePosition),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => NotesActions.updateNotePositionSuccess({ payload: note })),
+                        catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
 
-    updateNoteSelection = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.updateNoteSelection),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.updateNoteSelectionSuccess({ payload: note })),
-                    catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
+    updateNoteSelection = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.updateNoteSelection),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => NotesActions.updateNoteSelectionSuccess({ payload: note })),
+                        catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
 
-    update = createEffect(() =>
-        this.actions$.pipe(
+    update = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.updateNote),
             switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
+                notesDataService.updateNote(action.payload).pipe(
                     map((note) => NotesActions.updateNoteSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
                 )
@@ -69,11 +70,11 @@ export class NotesEffect {
         )
     );
 
-    updatePinOrder = createEffect(() =>
-        this.actions$.pipe(
+    updatePinOrder = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.updatePinOrder),
             switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
+                notesDataService.updateNote(action.payload).pipe(
                     map((note) => NotesActions.updatePinOrderSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.updatePinOrderFail({ payload: err })))
                 )
@@ -81,37 +82,38 @@ export class NotesEffect {
         )
     );
 
-    fetchNotes = createEffect(() =>
-        this.actions$.pipe(
+    fetchNotes = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(NotesActions.fetchNotes),
             switchMap(() => of(NotesActions.fetchNotesStart()))
         )
     );
 
-    fetchNotesStart = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.fetchNotesStart),
-            switchMap(() =>
-                this.notesDataService.getNotes().pipe(
-                    map((notes) => NotesActions.fetchNotesSuccess({ payload: notes })),
-                    catchError((err) => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
+    fetchNotesStart = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.fetchNotesStart),
+                switchMap(() =>
+                    notesDataService.getNotes().pipe(
+                        map((notes) => NotesActions.fetchNotesSuccess({ payload: notes })),
+                        catchError((err) => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
+                    )
                 )
             )
-        )
     );
 
-    fetchNotesSuccess = createEffect(() =>
-        this.actions$.pipe(
+    fetchNotesSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(NotesActions.fetchNotesSuccess),
             switchMap(() => of(NotesActions.fetchNotesComplete()))
         )
     );
 
-    refreshNotes = createEffect(() =>
-        this.actions$.pipe(
+    refreshNotes = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.refreshNotes),
             switchMap(() =>
-                this.notesDataService.getNotes().pipe(
+                notesDataService.getNotes().pipe(
                     map((notes) => NotesActions.refreshNotesSuccess({ payload: notes })),
                     catchError((err) => of(NotesActions.refreshNotesFailed({ payload: err })))
                 )
@@ -119,11 +121,11 @@ export class NotesEffect {
         )
     );
 
-    delete = createEffect(() =>
-        this.actions$.pipe(
+    delete = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.deleteNote),
             switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
+                notesDataService.updateNote(action.payload).pipe(
                     map((note) => NotesActions.deleteNoteSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.deleteNoteFail({ payload: err })))
                 )
@@ -132,22 +134,22 @@ export class NotesEffect {
     );
 
     deleteSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(NotesActions.deleteNoteSuccess),
                 switchMap(() => {
-                    this.notificationService.showSuccess('Note Deleted', 'Info');
+                    notificationService.showSuccess('Note Deleted', 'Info');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    archiveNote = createEffect(() =>
-        this.actions$.pipe(
+    archiveNote = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.archiveNote),
             switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
+                notesDataService.updateNote(action.payload).pipe(
                     map((note) => NotesActions.archiveNoteSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.archiveNoteFail({ payload: err })))
                 )
@@ -155,35 +157,36 @@ export class NotesEffect {
         )
     );
 
-    toggleSpellCheck = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.toggleSpellCheck),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.toggleSpellCheckSuccess({ payload: note })),
-                    catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
+    toggleSpellCheck = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.toggleSpellCheck),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => NotesActions.toggleSpellCheckSuccess({ payload: note })),
+                        catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
 
     archiveNoteSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(NotesActions.archiveNoteSuccess),
                 switchMap(() => {
-                    this.notificationService.showSuccess('Note successfully archived', 'Info');
+                    notificationService.showSuccess('Note successfully archived', 'Info');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    restoreNote = createEffect(() =>
-        this.actions$.pipe(
+    restoreNote = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+        actions$.pipe(
             ofType(NotesActions.restoreNote),
             switchMap((action) =>
-                this.notesDataService.updateNote({ ...action.payload, archived: false }).pipe(
+                notesDataService.updateNote({ ...action.payload, archived: false }).pipe(
                     map((note) => NotesActions.restoreNoteSuccess({ payload: note })),
                     catchError((err) => of(NotesActions.restoreNoteFail({ payload: err })))
                 )
@@ -192,63 +195,59 @@ export class NotesEffect {
     );
 
     restoreNoteSuccess = createEffect(
-        () =>
-            this.actions$.pipe(
+        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
+            actions$.pipe(
                 ofType(NotesActions.restoreNoteSuccess),
                 switchMap(() => {
-                    this.notificationService.showSuccess('Note successfully restored', 'Info');
+                    notificationService.showSuccess('Note successfully restored', 'Info');
                     return EMPTY;
                 })
             ),
         { dispatch: false }
     );
 
-    updateNoteColour = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.updateNoteColour),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => {
-                        return NotesActions.updateNoteColourSuccess({ payload: note });
-                    }),
-                    catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
+    updateNoteColour = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.updateNoteColour),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => {
+                            return NotesActions.updateNoteColourSuccess({ payload: note });
+                        }),
+                        catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
 
-    updateNoteColourSuccess = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.updateNoteColourSuccess),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => {
-                        return NotesActions.updateOpendNote({ payload: note });
-                    }),
-                    catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
+    updateNoteColourSuccess = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.updateNoteColourSuccess),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => {
+                            return NotesActions.updateOpendNote({ payload: note });
+                        }),
+                        catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
 
-    updateNoteHeader = createEffect(() =>
-        this.actions$.pipe(
-            ofType(NotesActions.updateNoteHeader),
-            switchMap((action) =>
-                this.notesDataService.updateNote(action.payload).pipe(
-                    map((note) => {
-                        return NotesActions.updateNoteHeaderSuccess({ payload: note });
-                    }),
-                    catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
+    updateNoteHeader = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.updateNoteHeader),
+                switchMap((action) =>
+                    notesDataService.updateNote(action.payload).pipe(
+                        map((note) => {
+                            return NotesActions.updateNoteHeaderSuccess({ payload: note });
+                        }),
+                        catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
+                    )
                 )
             )
-        )
     );
-
-    constructor(
-        private actions$: Actions,
-        private notesDataService: NotesDataService,
-        private router: Router,
-        private notificationService: NotificationService
-    ) {}
 }

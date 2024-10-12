@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgStyle } from '@angular/common';
+import { RatingComponent } from '../../../../fragments/components/rating/rating';
 
 @Component({
     selector: 'app-ngbd-rating-decimal',
@@ -22,7 +24,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
                 color: red;
             }
         `
-    ]
+    ],
+    standalone: true,
+    imports: [NgStyle, RatingComponent]
 })
 export class RatingDecimalComponent {
     @Input()

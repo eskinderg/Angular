@@ -3,14 +3,20 @@ import { Store } from '@ngrx/store';
 import { Event } from '../event';
 import * as EventsActions from '../../../../store/actions/event.action';
 import * as fromRoot from '../../../../store/reducers';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { EventDialogService } from 'src/app/components/events/event-dialog/event.dialog.service';
+import { EventListHeaderComponent } from './event-list-header/event-list-header.component';
+import { CardComponent } from '../../card/card.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { NgClass } from '@angular/common';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-event',
     templateUrl: 'event.component.html',
-    styleUrls: ['event.component.scss']
+    styleUrls: ['event.component.scss'],
+    standalone: true,
+    imports: [EventListHeaderComponent, CardComponent, EventListComponent, NgClass, RouterOutlet]
 })
 export class EventComponent {
     @Input() events: Event[];

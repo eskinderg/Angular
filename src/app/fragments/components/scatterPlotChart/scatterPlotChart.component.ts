@@ -13,7 +13,8 @@ import * as d3 from 'd3';
     templateUrl: './scatterPlotChart.component.html',
     styleUrls: ['./scatterPlotChart.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class ScatterPlotChartComponent implements OnInit {
     chartContainer = viewChild.required<ElementRef>('chart');

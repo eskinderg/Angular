@@ -15,7 +15,8 @@ import * as EventsActions from '../../../store/actions/event.action';
     selector: 'app-event-detail-dialog',
     templateUrl: './event-dialog.component.html',
     styleUrl: './event-dialog.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class EventDialogComponent implements OnInit, AfterViewInit {
     public event: Event;

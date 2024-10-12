@@ -1,10 +1,16 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { Validators, UntypedFormBuilder, UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import {
+    Validators,
+    UntypedFormGroup,
+    UntypedFormControl,
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 
 @Component({
@@ -12,7 +18,9 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
     animations: [fadeInAnimation],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule]
 })
 export class LoginComponent implements OnInit {
     @HostBinding('@routerFadeInAnimation')
@@ -23,8 +31,6 @@ export class LoginComponent implements OnInit {
     constructor(
         private store: Store<fromRoot.IAppState>,
         private oauthService: OAuthService,
-        private router: Router,
-        private formBuilder: UntypedFormBuilder,
         private route: ActivatedRoute
     ) {
         this.route.params.subscribe((params) => (this.message = params['endsession']));

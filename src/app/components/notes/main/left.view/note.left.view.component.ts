@@ -7,12 +7,18 @@ import { Router } from '@angular/router';
 import { NoteRightViewComponent } from '../right.view/note.right.view.component';
 import { NoteDialogService } from '../../components/note-dialog/note.dialog.service';
 import { v4 as uuidv4 } from 'uuid';
+import { NoteListItemComponent } from './note-list-item/note-list-item.component';
+import { AsyncPipe } from '@angular/common';
+import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 
 @Component({
     selector: 'app-note-left-view',
     templateUrl: './note.left.view.component.html',
     styleUrls: ['./note.left.view.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [FadeInOutNoteListItem],
+    standalone: true,
+    imports: [NoteListItemComponent, AsyncPipe]
 })
 export class NoteLeftViewComponent {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');

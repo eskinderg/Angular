@@ -10,8 +10,7 @@ export function main() {
 
         beforeEach(() => {
             TestBed.configureTestingModule({
-                declarations: [TestComponent],
-                imports: [AboutModule]
+                imports: [AboutModule, TestComponent]
             });
         });
 
@@ -28,6 +27,8 @@ export function main() {
 
 @Component({
     selector: 'app-test-cmp',
-    template: '<sd-about></sd-about>'
+    template: '<sd-about></sd-about>',
+    standalone: true,
+    imports: [AboutModule]
 })
 class TestComponent {}

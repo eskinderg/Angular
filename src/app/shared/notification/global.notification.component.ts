@@ -1,11 +1,15 @@
 import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
 import { NotificationService } from './notification.service';
+import { ToastComponent } from '../../fragments/components/toast/toast';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-global-notification',
     templateUrl: './global.notification.component.html',
     styleUrls: ['./global.notification.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ToastComponent, AsyncPipe]
 })
 export class GlobalNotificationComponent {
     constructor(public notificationService: NotificationService) {}
