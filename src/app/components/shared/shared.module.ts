@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-// import { AuthService } from './services/auth/auth.service';
 import { AuthService } from './../../shared/auth.service';
-
 import { HeaderComponent } from './header/header.component';
 import { UserInfoComponent } from './header/userinfo/userinfo.component';
 import { FooterComponent } from './footer/footer.component';
@@ -14,9 +12,6 @@ import { NoteTitleTruncatePipe } from '../movies/directives/noteTitleTruncate';
 
 import { ThemeOptionComponent } from 'src/app/fragments/components/appThemeOption/appThemeOption.component';
 
-/**
- * Do not specify providers for modules that might be imported by a lazy loaded module.
- */
 @NgModule({
     imports: [
         CommonModule,
