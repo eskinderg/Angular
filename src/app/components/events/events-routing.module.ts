@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { EventsComponent } from './events.component';
-import { authGuard } from '../shared/services/auth/auth-guard.service';
+import { authGuard } from '../../auth/auth.guard';
 
 export const eventsRoutes: Routes = [
     {

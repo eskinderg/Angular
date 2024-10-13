@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { WizardManagerComponent } from './wizardmanager.component';
-import { authGuard } from '../shared/services/auth/auth-guard.service';
+import { authGuard } from '../../auth/auth.guard';
 
 import { ProfileComponent } from './profile/profile.component';
 import { FeatureComponent } from './feature/feature.component';
