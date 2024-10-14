@@ -13,20 +13,19 @@ import { appReducer } from './store/reducers';
 import { metaReducers } from './store/reducers';
 import { appEffects } from './store/effects';
 import { appModules } from './app.modules';
-import { HttpErrorInterceptor } from './error/http.error.interceptor';
-import { AuthJWT } from './auth/auth.JWT';
+import { appInterceptors } from './interceptors';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideZoneChangeDetection({ eventCoalescing: true }),
-        provideHttpClient(withInterceptors([HttpErrorInterceptor, AuthJWT])),
-        provideRouter(appRoutes, withComponentInputBinding()),
         provideAnimations(),
         provideOAuthClient(),
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideHttpClient(withInterceptors(appInterceptors)),
+        provideRouter(appRoutes, withComponentInputBinding()),
         importProvidersFrom(appModules),
         provideStore(appReducer, { metaReducers }),
         provideEffects(appEffects),
-        provideStoreDevtools({ maxAge: 25, logOnly: false }),
+        provideStoreDevtools(),
         APP_INIT
     ]
 };
