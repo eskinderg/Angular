@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
     selector: 'app-wz-common',
     templateUrl: 'common.component.html',
     styleUrls: ['common.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class WzCommonComponent {
     public isExpanded = false;

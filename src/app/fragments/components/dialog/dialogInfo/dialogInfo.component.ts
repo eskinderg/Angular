@@ -7,7 +7,8 @@ import { ConfirmState } from '../confirm.state';
 @Component({
     selector: 'app-dialog-info-component',
     templateUrl: './dialogInfo.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class DialogInfoComponent {
     options: ConfirmOptions;

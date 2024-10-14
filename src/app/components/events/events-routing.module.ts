@@ -1,18 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { EventsComponent } from './events.component';
-import { AuthGuardService } from '../shared/services/auth/auth-guard.service';
+import { authGuard } from '../../auth/auth.guard';
 
-@NgModule({
-    imports: [
-        RouterModule.forChild([
-            {
-                path: '',
-                component: EventsComponent,
-                canActivate: [AuthGuardService]
-            }
-        ])
-    ],
-    exports: [RouterModule]
-})
-export class EventsRoutingModule {}
+export const eventsRoutes: Routes = [
+    {
+        path: '',
+        component: EventsComponent,
+        canActivate: [authGuard]
+    }
+];

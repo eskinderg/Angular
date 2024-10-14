@@ -7,12 +7,26 @@ import { Store } from '@ngrx/store';
 import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
+import { NgClass, DatePipe } from '@angular/common';
+import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
+import { PopoverDirective } from '../../../../fragments/components/popover/popover';
+import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 
 @Component({
     selector: 'app-note-right-view',
     templateUrl: 'note.right.view.component.html',
     styleUrls: ['note.right.view.component.scss', '../../scss/notes.colour.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgClass,
+        NoteHeaderControlComponent,
+        TooltipDirective,
+        NoteColourSelectorComponent,
+        PopoverDirective,
+        TextareaExpandedComponent_1,
+        DatePipe
+    ]
 })
 export class NoteRightViewComponent {
     textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');

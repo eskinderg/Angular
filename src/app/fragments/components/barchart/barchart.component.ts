@@ -15,7 +15,8 @@ import * as d3 from 'd3';
     templateUrl: './barchart.component.html',
     styleUrls: ['./barchart.component.scss'],
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class BarchartComponent implements OnInit, OnChanges {
     chartContainer = viewChild.required<ElementRef>('chart');

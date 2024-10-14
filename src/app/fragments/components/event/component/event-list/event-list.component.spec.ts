@@ -11,7 +11,7 @@ describe('EventListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EventListComponent],
+            imports: [EventListComponent],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     }));

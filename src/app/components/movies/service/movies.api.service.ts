@@ -6,7 +6,7 @@ import { MoviesDataService } from './movies.data.service';
 import { Observable, empty } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MoviesApiService {
     constructor(private api: MoviesDataService) {}
 

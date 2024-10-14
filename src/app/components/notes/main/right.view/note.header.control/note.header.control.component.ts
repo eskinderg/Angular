@@ -16,7 +16,8 @@ import { Note } from 'src/app/models/note';
     selector: 'app-note-header-control',
     templateUrl: './note.header.control.component.html',
     styleUrl: './note.header.control.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class NoteHeaderControlComponent implements OnInit, OnDestroy {
     @Input() note: Note;

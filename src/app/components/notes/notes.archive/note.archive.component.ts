@@ -4,12 +4,19 @@ import * as fromNotes from '../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from 'src/app/models/note';
+import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { TooltipDirective } from '../../../fragments/components/tooltip/tooltip.directive';
+import { AgoDatePipe } from '../../movies/directives/dateagopipe';
+import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
 
 @Component({
     selector: 'app-note.archive',
     templateUrl: './note.archive.component.html',
     styleUrl: './note.archive.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass, TooltipDirective, AsyncPipe, DatePipe, AgoDatePipe, NoteTitleTruncatePipe],
+    providers: [NoteApiService]
 })
 export class NoteArchiveComponent {
     get ArchivedNotes() {

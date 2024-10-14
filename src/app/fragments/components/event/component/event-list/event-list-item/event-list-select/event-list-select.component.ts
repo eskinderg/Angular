@@ -5,7 +5,8 @@ import { Event } from 'src/app/fragments/components/event/event';
     selector: 'app-event-list-select',
     templateUrl: './event-list-select.component.html',
     styleUrl: './event-list-select.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class EventListSelectComponent {
     @Input() event: Event;

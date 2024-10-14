@@ -10,11 +10,7 @@ export function main() {
     describe('Profile component', () => {
         beforeEach(() => {
             TestBed.configureTestingModule({
-                imports: [FormsModule],
-                declarations: [ProfileComponent]
-                // providers: [
-                //   { provide: NameListService, useValue: new MockNameListService() }
-                // ]
+                imports: [FormsModule, ProfileComponent]
             });
         });
 

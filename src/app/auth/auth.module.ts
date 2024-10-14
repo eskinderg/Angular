@@ -2,15 +2,12 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { OAuthLogger, OAuthModule, OAuthService, OAuthStorage } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import { initializeAuth } from './auth.init';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { AuthJWT } from './auth.JWT';
 import { LoggingService } from '../error/loggingservice';
 import { OAuthAppLogger } from './auth.logger';
 
 @NgModule({
     imports: [OAuthModule.forRoot()],
     providers: [
-        provideHttpClient(withInterceptors([AuthJWT])),
         {
             provide: APP_INITIALIZER,
             useFactory: initializeAuth,

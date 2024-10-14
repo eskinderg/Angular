@@ -7,12 +7,15 @@ import {
     Output,
     viewChild
 } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-theme-option',
     templateUrl: './appThemeOption.component.html',
     styleUrls: ['appThemeOption.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass]
 })
 export class ThemeOptionComponent {
     toggleOption = viewChild.required<ElementRef>('toggleOption');

@@ -10,7 +10,7 @@ describe('EventListItemComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EventListItemComponent]
+            imports: [EventListItemComponent]
         }).compileComponents();
     }));
 

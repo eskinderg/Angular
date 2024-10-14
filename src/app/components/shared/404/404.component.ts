@@ -7,7 +7,8 @@ import { AuthService } from '../services/auth/auth.service';
     selector: 'app-notfound',
     templateUrl: './404.component.html',
     styleUrls: ['./404.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class NotfoundComponent {
     // userMgr: Oidc = new Oidc.UserManager();

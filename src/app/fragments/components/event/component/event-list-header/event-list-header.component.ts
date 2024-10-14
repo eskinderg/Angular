@@ -2,12 +2,15 @@ import { Component, Output, EventEmitter, ChangeDetectionStrategy } from '@angul
 
 import { Event } from '../../event';
 import { v4 } from 'uuid';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'app-event-list-header',
     templateUrl: './event-list-header.component.html',
-    styleUrls: ['./event-list-header.component.scss']
+    styleUrls: ['./event-list-header.component.scss'],
+    standalone: true,
+    imports: [FormsModule]
 })
 export class EventListHeaderComponent {
     newEvent: Event = new Event();

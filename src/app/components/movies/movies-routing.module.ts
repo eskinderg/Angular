@@ -1,64 +1,49 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { MoviesComponent } from './movies.component';
 import { RightViewComponent } from './right.view/right-view.component';
-import { GenreResolve } from './service/genres.resolve';
+import { genreResolver } from './service/genres.resolve';
 import { SearchComponent } from './search/search.component';
-import { MoviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
-import { MoviesResultResolve } from './service/movie-results.resolve';
+import { moviesResultResolver } from './service/movie-results.resolve';
 
-@NgModule({
-    imports: [
-        RouterModule.forChild([
+export const moviesRoutes: Routes = [
+    {
+        path: '',
+        component: MoviesComponent,
+        children: [
             {
                 path: '',
-                component: MoviesComponent,
-                children: [
-                    {
-                        path: '',
-                        redirectTo: 'search',
-                        pathMatch: 'full'
-                    },
-                    {
-                        path: 'genres/:id/:name/:page',
-                        component: RightViewComponent,
-                        data: {
-                            alwaysRefresh: true
-                        },
-                        resolve: {
-                            moviesResult: MoviesResultResolve
-                        }
-                    },
-                    {
-                        path: 'genres/:id/:name',
-                        data: {
-                            alwaysRefresh: true
-                        },
-                        component: RightViewComponent,
-                        resolve: {
-                            moviesResult: MoviesResultResolve
-                        }
-                    },
-                    {
-                        path: 'search',
-                        component: SearchComponent
-                    },
-                    {
-                        path: 'search/:searchText',
-                        component: SearchComponent,
-                        data: {
-                            searchText: 'asdf'
-                        }
-                    }
-                ],
+                redirectTo: 'search',
+                pathMatch: 'full'
+            },
+            {
+                path: 'genres/:id/:name/:page',
+                component: RightViewComponent,
                 resolve: {
-                    genres: GenreResolve
+                    moviesResult: moviesResultResolver
                 }
-                // canActivate: [AuthGuardService]
+            },
+            {
+                path: 'genres/:id/:name',
+                component: RightViewComponent,
+                resolve: {
+                    moviesResult: moviesResultResolver
+                }
+            },
+            {
+                path: 'search',
+                component: SearchComponent
+            },
+            {
+                path: 'search/:searchText',
+                component: SearchComponent,
+                data: {
+                    searchText: 'asdf'
+                }
             }
-        ])
-    ],
-    providers: [GenreResolve, MoviesResultResolve, MoviesDetailsResolve],
-    exports: [RouterModule]
-})
-export class MoviesRoutingModule {}
+        ],
+        resolve: {
+            genres: genreResolver
+        }
+        // canActivate: [authGuard]
+    }
+];

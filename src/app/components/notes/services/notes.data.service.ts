@@ -7,7 +7,7 @@ import { Note } from '../../../models/note';
 
 const NOTES_API_URL = environment.NOTES_API_URL;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotesDataService {
     constructor(public http: HttpClient) {}
 

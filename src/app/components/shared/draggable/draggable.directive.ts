@@ -1,7 +1,8 @@
 import { Directive, EventEmitter, HostBinding, HostListener, Output, ElementRef } from '@angular/core';
 
 @Directive({
-    selector: '[appDraggable]'
+    selector: '[appDraggable]',
+    standalone: true
 })
 export class DraggableDirective {
     @HostBinding('class.draggable') draggable = true;

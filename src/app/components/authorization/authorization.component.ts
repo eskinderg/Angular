@@ -13,7 +13,8 @@ import * as fromRoot from '../../store/reducers';
     selector: 'app-authorization',
     templateUrl: './authorization.component.html',
     styleUrls: ['./authorization.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class AuthorizationComponent implements OnInit {
     /**

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-loading',
@@ -6,7 +7,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@a
         <div class="appLoading"></div>
     </div>`,
     styleUrls: ['appLoading.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass]
 })
 export class AppLoadingComponent {
     private _loading: boolean = true;

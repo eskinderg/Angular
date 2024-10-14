@@ -18,10 +18,6 @@ import { FormatDatePipe } from '../components/movies/directives/dateFormat';
 import { SharedModule } from '../components/shared/shared.module';
 import { NoteTextComponent } from './components/note.text/note.text.component';
 import { AgoDatePipe } from '../components/movies/directives/dateagopipe';
-import { TooltipModule } from './components/tooltip/tooltip.module';
-import { PopoverModule } from './components/popover/popover.module';
-import { RatingModule } from './components/rating/rating.module';
-import { PaginationModule } from './components/pagination/pagination.module';
 
 const NGA_COMPONENTS = [
     BaBackTopComponent,
@@ -82,29 +78,8 @@ const NGA_VALIDATORS = [
 ];
 
 @NgModule({
-    declarations: [...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS],
-    imports: [
-        CommonModule,
-        SharedModule,
-        TooltipModule,
-        PopoverModule,
-        RatingModule,
-        PaginationModule
-        // RouterModule,
-        // FormsModule,
-        // ReactiveFormsModule,
-        // AppTranslationModule,
-        // NgUploaderModule
-    ],
-    exports: [
-        ...NGA_PIPES,
-        ...NGA_DIRECTIVES,
-        ...NGA_COMPONENTS,
-        TooltipModule,
-        PopoverModule,
-        RatingModule,
-        PaginationModule
-    ]
+    imports: [CommonModule, SharedModule, ...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS],
+    exports: [...NGA_PIPES, ...NGA_DIRECTIVES, ...NGA_COMPONENTS]
 })
 
 /**

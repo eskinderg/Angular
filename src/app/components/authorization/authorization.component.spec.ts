@@ -23,7 +23,7 @@ describe('AuthorizationComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AuthorizationComponent],
+            imports: [AuthorizationComponent],
             providers: [{ provide: AuthService }, { provide: Router, useValue: mockRouter }]
         }).compileComponents();
 

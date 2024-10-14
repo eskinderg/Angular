@@ -16,7 +16,7 @@ import { MovieResults } from '../models/movie-results';
 // const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MoviesDataService {
     apikey = API_KEY;
 

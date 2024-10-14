@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 import * as fromEvents from '../../../store/reducers/events.reducer';
 import * as fromNotes from '../../../store/reducers/note.reducer';
 import * as fromProfile from '../../../store/reducers/preference.reducer';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NgClass, AsyncPipe } from '@angular/common';
+import { UserInfoComponent } from './userinfo/userinfo.component';
 
 export declare interface IsActiveMatchOptions {
     fragment: 'exact' | 'ignored';
@@ -18,7 +20,9 @@ export declare interface IsActiveMatchOptions {
     selector: 'app-header',
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [RouterLink, RouterLinkActive, NgClass, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {
     @Output() signout: EventEmitter<any> = new EventEmitter();

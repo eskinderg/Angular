@@ -9,13 +9,19 @@ import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { NoteDialogService } from '../components/note-dialog/note.dialog.service';
 import { interval, Subscription } from 'rxjs';
 import { NOTE_REFRESH_INTERVAL } from 'src/app/config/config';
+import { NoteLeftViewComponent } from './left.view/note.left.view.component';
+import { AsyncPipe } from '@angular/common';
+import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 
 @Component({
     selector: 'app-notes',
     templateUrl: 'notes.component.html',
     styleUrls: ['notes.component.scss', './../scss/notes.colour.scss'],
     animations: [FadeInOutNoteListItem],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NoteLeftViewComponent, NoteRightViewComponent, AsyncPipe],
+    providers: [TextSelection, NoteApiService]
 })
 export class NotesComponent implements OnDestroy, OnInit {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');

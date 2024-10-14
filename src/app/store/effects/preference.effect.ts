@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -9,19 +9,17 @@ import { ThemeService } from '../../theme/theme.service';
 
 @Injectable()
 export class PreferenceEffect {
-    toggleDarkMode = createEffect(() =>
-        this.actions$.pipe(
+    toggleDarkMode = createEffect((actions$ = inject(Actions), themeService = inject(ThemeService)) =>
+        actions$.pipe(
             ofType(PreferenceActions.toggleDarkMode),
             switchMap(() =>
-                of(this.themeService.toggleDarkMode()).pipe(
-                    map(() => PreferenceActions.toggleDarkModeSuccess())
-                )
+                of(themeService.toggleDarkMode()).pipe(map(() => PreferenceActions.toggleDarkModeSuccess()))
             )
         )
     );
 
-    getIsLoggedIn = createEffect(() =>
-        this.actions$.pipe(
+    getIsLoggedIn = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(PreferenceActions.getIsLoggedIn),
             switchMap(() =>
                 of(
@@ -33,8 +31,8 @@ export class PreferenceEffect {
         )
     );
 
-    setIsLoggedIn = createEffect(() =>
-        this.actions$.pipe(
+    setIsLoggedIn = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(PreferenceActions.setIsLoggedIn),
             switchMap((action) =>
                 of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
@@ -44,8 +42,8 @@ export class PreferenceEffect {
         )
     );
 
-    getIsLoggedInSuccess = createEffect(() =>
-        this.actions$.pipe(
+    getIsLoggedInSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(PreferenceActions.getIsLoggedInSuccess),
             switchMap((action) =>
                 of(PreferenceActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
@@ -53,15 +51,10 @@ export class PreferenceEffect {
         )
     );
 
-    logInSuccess = createEffect(() =>
-        this.actions$.pipe(
+    logInSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
             switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
         )
     );
-
-    constructor(
-        private actions$: Actions,
-        private themeService: ThemeService
-    ) {}
 }

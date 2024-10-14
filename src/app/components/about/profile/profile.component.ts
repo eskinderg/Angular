@@ -1,14 +1,25 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import {
+    UntypedFormGroup,
+    UntypedFormBuilder,
+    UntypedFormControl,
+    Validators,
+    FormsModule,
+    ReactiveFormsModule
+} from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 // import { User } from 'oidc-client';
 import { ConfirmService } from '../../../fragments/components/dialog/confirm.service';
+import { ConfirmTemplateDirective } from '../../../fragments/components/dialog/confirm.directive';
+import { DialogInfoComponent } from '../../../fragments/components/dialog/dialogInfo/dialogInfo.component';
 
 @Component({
     selector: 'app-profile',
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, ConfirmTemplateDirective, DialogInfoComponent]
 })
 export class ProfileComponent implements OnInit {
     profileForm: UntypedFormGroup;

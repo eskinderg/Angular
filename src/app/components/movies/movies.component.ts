@@ -1,22 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { Genre } from './models/genre';
+import { LeftViewComponent } from './left.view/left.view.component';
 
 @Component({
+    standalone: true,
     selector: 'app-movies',
     templateUrl: 'movies.component.html',
     styleUrls: ['movies.component.scss'],
-    animations: [fadeInAnimation],
-    changeDetection: ChangeDetectionStrategy.OnPush
-    // host: { '[@routerFadeInAnimation]': '' }
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [LeftViewComponent, RouterOutlet]
 })
 export class MoviesComponent {
-    public genres: Genre[];
+    /* withComponentInputBinding */
+    @Input() genres: Genre[];
 
-    constructor(private route: ActivatedRoute) {
-        this.genres = this.route.snapshot.data['genres'];
-    }
+    constructor() {}
 
     onGenreSelect() {}
 }

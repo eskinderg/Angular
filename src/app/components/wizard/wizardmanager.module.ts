@@ -15,8 +15,11 @@ import { SharedModule } from '../shared/shared.module';
 import { NgaModule } from '../../fragments/nga.module';
 
 @NgModule({
-    imports: [CommonModule, WizardManagerRoutingModule, SharedModule, NgaModule],
-    declarations: [
+    imports: [
+        CommonModule,
+        WizardManagerRoutingModule,
+        SharedModule,
+        NgaModule,
         WizardManagerComponent,
         WzToolbarComponent,
         ProfileComponent,

@@ -5,8 +5,7 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
 import { NgaModule } from 'src/app/fragments/nga.module';
 
 @NgModule({
-    imports: [SharedModule, NgaModule],
-    declarations: [RightViewComponent, MovieCardComponent],
+    imports: [SharedModule, NgaModule, RightViewComponent, MovieCardComponent],
     exports: [RightViewComponent, MovieCardComponent]
 })
 export class RightViewModule {}

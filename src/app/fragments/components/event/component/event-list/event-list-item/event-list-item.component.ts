@@ -1,11 +1,16 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Event } from '../../../event';
+import { CheckMarkComponent } from '../../../../checkMark/checkmark.component';
+import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-event-list-item',
     templateUrl: './event-list-item.component.html',
     styleUrls: ['./event-list-item.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CheckMarkComponent, FormsModule, NgClass]
 })
 export class EventListItemComponent {
     @Input() event: Event;

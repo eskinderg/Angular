@@ -1,13 +1,18 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
+import { RatingDecimalComponent } from '../rating/rating';
+import { UpperCasePipe } from '@angular/common';
+import { TruncatePipe } from '../../directives/truncate';
 // import { NgbdRatingDecimal } from '../../components/rating/rating';
 
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieCardComponent implements OnInit {
     @Input() movie: Movie;

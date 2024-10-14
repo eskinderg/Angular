@@ -1,12 +1,15 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Genre } from '../../models/genre';
 import { MoviesApiService } from '../../service/movies.api.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
     selector: 'app-genre-list-item',
     templateUrl: './genre-list-item.component.html',
     styleUrls: ['./genre-list-item.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [RouterLink, RouterLinkActive]
 })
 export class GenreListItemComponent {
     @Input() genre: Genre;

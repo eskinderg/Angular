@@ -8,12 +8,16 @@ import {
 } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
+import { NoteTitleTruncatePipe } from '../../../movies/directives/noteTitleTruncate';
 
 @Component({
     selector: 'app-note-detail-dialog',
     templateUrl: './note-dialog.component.html',
     styleUrl: './note-dialog.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NoteTitleTruncatePipe],
+    providers: [NoteApiService]
 })
 export class NoteDialogComponent implements OnInit, AfterViewInit {
     public note: Note;

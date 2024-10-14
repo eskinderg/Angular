@@ -4,12 +4,17 @@ import { Store } from '@ngrx/store';
 
 import * as fromProfile from '../../../../store/reducers/preference.reducer';
 import * as ProfileActions from '../../../../store/actions/preference.action';
+import { ThemeOptionComponent } from '../../../../fragments/components/appThemeOption/appThemeOption.component';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-userinfo',
     templateUrl: 'userinfo.component.html',
     styleUrls: ['userinfo.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ThemeOptionComponent, RouterLink, AsyncPipe]
 })
 export class UserInfoComponent {
     claims: any;

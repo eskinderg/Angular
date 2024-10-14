@@ -10,7 +10,7 @@ describe('EventListFooterComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EventListFooterComponent]
+            imports: [EventListFooterComponent]
         }).compileComponents();
     }));
 

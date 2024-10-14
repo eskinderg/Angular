@@ -13,7 +13,8 @@ import { Note } from '../../../models/note';
             multi: true
         }
     ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true
 })
 export class NoteTextComponent implements ControlValueAccessor {
     @Input() note: Note;

@@ -13,7 +13,8 @@ import { ConfirmState } from './confirm.state';
  * in order to register the confirm template to the internal confirm state
  */
 @Directive({
-    selector: '[appConfirm]'
+    selector: '[appConfirm]',
+    standalone: true
 })
 export class ConfirmTemplateDirective {
     constructor(confirmTemplate: TemplateRef<any>, state: ConfirmState) {

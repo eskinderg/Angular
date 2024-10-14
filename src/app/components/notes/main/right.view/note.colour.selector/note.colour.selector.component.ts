@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 export type Colour = { name: string };
 
@@ -15,7 +16,9 @@ export const Colours: Colour[] = [
     selector: 'app-note-colour-selector',
     templateUrl: './note.colour.selector.component.html',
     styleUrls: ['./note.colour.selector.component.scss', '../../../scss/notes.colour.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass]
 })
 export class NoteColourSelectorComponent {
     @Output() noteColourUpdate = new EventEmitter(false);

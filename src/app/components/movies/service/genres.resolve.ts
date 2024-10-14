@@ -1,17 +1,6 @@
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { MoviesApiService } from './movies.api.service';
+import { ResolveFn } from '@angular/router';
+import { Genre } from '../models/genre';
 
-@Injectable()
-export class GenreResolve {
-    constructor(private moviesApiService: MoviesApiService) {}
-
-    resolve() {
-        // this.moviesApiService.getGenres()
-        //  .subscribe((value) => {
-        //     value.forEach(function(g){
-        //      g.name = 'cahgned';
-        //     });;
-        // });
-        return this.moviesApiService.getGenres();
-    }
-}
+export const genreResolver: ResolveFn<Genre[]> = () => inject(MoviesApiService).getGenres();
