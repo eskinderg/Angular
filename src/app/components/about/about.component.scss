@@ -28,3 +28,35 @@
 // nav a.router-link-active {
 //   color: #106cc8;
 // }
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    list-style: none;
+}
+
+.nav-item {
+    border: 1px solid var(--border);
+    margin: 0 0.1rem 0 0.1rem;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 1rem;
+    color: var(--body-color);
+    display: block;
+}
+
+.active {
+    font-weight: bold;
+    color: var(--b-active-link-color);
+    background: var(--bg-hover);
+}
+
+.nav-link:hover {
+    background: var(--bg-hover);
+}
