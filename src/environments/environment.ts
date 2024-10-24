@@ -7,7 +7,7 @@ export const environment = {
     API_URL: 'http://localhost:3000',
 
     Auth: {
-        authority: 'http://esk-linux-u23:8080/realms/master',
+        authority: 'http://192.168.100.5:8080/realms/master',
         requireHttps: false,
         client_id: 'Angular6',
         response_type: 'code',
