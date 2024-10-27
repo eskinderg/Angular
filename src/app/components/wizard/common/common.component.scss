@@ -1,20 +1,39 @@
-.active{
-  // font-weight: bold;
-  color:#0275d8  ! important;
+.active {
+    // font-weight: bold;
+    color: #0275d8 !important;
 }
 
-.fa{
-  color:grey;
+.fa {
+    color: grey;
 }
 
-.liner{
-  height: 2px;
-  background: #ddd;
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  top: 50%;
-  z-index: -1;
+.liner {
+    height: 2px;
+    background: #ddd;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 50%;
+    z-index: -1;
+}
+
+:host ::ng-deep .fa {
+    font-size: 2rem;
+}
+
+:host ::ng-deep * {
+    color: var(--b-active-link-color);
+}
+
+:host ::ng-deep .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+:host ::ng-deep a {
+    font-size: 2.5rem;
+    text-decoration: none;
 }
