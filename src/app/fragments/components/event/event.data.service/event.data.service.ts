@@ -45,7 +45,7 @@ export class EventDataService extends ApiService {
     }
 
     public deleteEventById(event: Event): Observable<Event> {
-        return this.http.delete<Event>(EVENTS_API_URL + event.id).pipe(
+        return this.http.delete<Event>(EVENTS_API_URL + '/' + event.id).pipe(
             map(() => {
                 return event;
             }),
