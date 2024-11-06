@@ -46,7 +46,8 @@ describe('LiveAnnouncer', () => {
 
 @Component({
     template: `<button (click)="say()">say</button>`,
-    standalone: true
+    standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestComponent {
     constructor(public live: Live) {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TooltipPosition, TooltipTheme } from './tooltip.enums';
 import { NgClass } from '@angular/common';
 
@@ -7,7 +7,8 @@ import { NgClass } from '@angular/common';
     templateUrl: './tooltip.component.html',
     styleUrls: ['./tooltip.component.scss'],
     standalone: true,
-    imports: [NgClass]
+    imports: [NgClass],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent {
     position: TooltipPosition = TooltipPosition.LEFT;

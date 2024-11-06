@@ -29,6 +29,7 @@ export function main() {
     selector: 'app-test-cmp',
     template: '<sd-about></sd-about>',
     standalone: true,
-    imports: [AboutModule]
+    imports: [AboutModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestComponent {}

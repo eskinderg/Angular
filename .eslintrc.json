@@ -64,9 +64,10 @@
     "rules": {
         "prettier/prettier": "error"
     },
-    "plugins": ["prettier"],
+    "plugins": ["prettier", "change-detection-strategy"],
     "extends": [
         "plugin:storybook/recommended",
         "prettier"
-    ]
+    ],
+    "rules": { "change-detection-strategy/on-push": "error" }
 }

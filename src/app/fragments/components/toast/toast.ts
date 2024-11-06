@@ -2,6 +2,7 @@ import {
     AfterContentInit,
     afterNextRender,
     Attribute,
+    ChangeDetectionStrategy,
     Component,
     ContentChild,
     Directive,
@@ -72,7 +73,8 @@ export class ToastHeaderDirective {}
             <ng-content />
         </div>
     `,
-    styleUrl: './toast.scss'
+    styleUrl: './toast.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToastComponent implements AfterContentInit, OnChanges {
     private _config = inject(ToastConfig);
