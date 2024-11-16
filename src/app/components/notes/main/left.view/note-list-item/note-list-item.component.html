@@ -6,14 +6,14 @@
     <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
     <div class="left" (mouseup)="onSelectNote(note)">
         <div class="item" (mouseup)="onSelectNote(note)">
-            <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+            <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinned }">
                 {{ note | noteTitleTruncate: '20' : true }}
             </div>
         </div>
 
         <small
             (mouseup)="onSelectNote(note)"
-            [ngClass]="{ 'pinned-note-text': note.pinOrder }"
+            [ngClass]="{ 'pinned-note-text': note.pinned }"
             class="date-modified date-text"
             [@.disabled]="!animate.date"
             [@fadeInOutNoteListItem]
