@@ -61,7 +61,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-change-detection-strategy": "^0.1.5",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-storybook": "^0.9.0",
+    "eslint-plugin-storybook": "^0.11.1",
     "husky": "^9.1.4",
     "jasmine-core": "~5.4.0",
     "jquery": "^3.7.1",
