@@ -8,7 +8,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     templateUrl: './genre-list-item.component.html',
     styleUrls: ['./genre-list-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RouterLink, RouterLinkActive]
 })
 export class GenreListItemComponent {

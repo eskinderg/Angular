@@ -20,7 +20,6 @@ import { TruncatePipe } from '../../directives/truncate';
     styleUrl: './movie-dialog.component.scss',
     animations: [FadeInOut(1000, 1000, true)],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {

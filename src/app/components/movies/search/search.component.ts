@@ -22,7 +22,6 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [MovieCardComponent]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {

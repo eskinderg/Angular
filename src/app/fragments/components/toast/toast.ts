@@ -43,7 +43,6 @@ export class ToastHeaderDirective {}
 @Component({
     selector: 'app-toast',
     exportAs: 'appToast',
-    standalone: true,
     imports: [NgTemplateOutlet],
     host: {
         role: 'alert',

@@ -7,7 +7,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [WzCommonComponent, RouterLink, RouterLinkActive]
 })
 export class ProfileComponent {}

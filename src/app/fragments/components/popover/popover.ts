@@ -33,7 +33,6 @@ let nextId = 0;
 
 @Component({
     selector: 'app-popover-window',
-    standalone: true,
     styleUrls: ['popover.component.scss'],
     imports: [NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush,

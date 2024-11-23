@@ -7,7 +7,7 @@ import {
     viewChild,
     ChangeDetectionStrategy
 } from '@angular/core';
-import * as jQuery from 'jquery';
+// import * as jQuery from 'jquery';
 
 @Component({
     selector: 'app-back-top',
@@ -29,15 +29,15 @@ export class BaBackTopComponent implements AfterViewInit {
 
     @HostListener('click')
     _onClick(): boolean {
-        jQuery('html, body').animate({ scrollTop: 0 }, { duration: this.moveSpeed });
+        // jQuery('html, body').animate({ scrollTop: 0 }, { duration: this.moveSpeed });
         return false;
     }
 
     @HostListener('window:scroll')
     _onWindowScroll(): void {
-        const el = this._selector().nativeElement;
-        window.scrollY > this.position
-            ? jQuery(el).fadeIn(this.showSpeed)
-            : jQuery(el).fadeOut(this.showSpeed);
+        // const el = this._selector().nativeElement;
+        // window.scrollY > this.position
+        //     ? jQuery(el).fadeIn(this.showSpeed)
+        //     : jQuery(el).fadeOut(this.showSpeed);
     }
 }

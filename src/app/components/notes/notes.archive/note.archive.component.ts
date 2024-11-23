@@ -14,7 +14,6 @@ import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate
     templateUrl: './note.archive.component.html',
     styleUrl: './note.archive.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass, TooltipDirective, AsyncPipe, DatePipe, AgoDatePipe, NoteTitleTruncatePipe],
     providers: [NoteApiService]
 })

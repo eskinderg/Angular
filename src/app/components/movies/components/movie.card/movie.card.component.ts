@@ -11,7 +11,6 @@ import { TruncatePipe } from '../../directives/truncate';
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieCardComponent implements OnInit {

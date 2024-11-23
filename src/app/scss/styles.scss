@@ -1,4 +1,4 @@
-@import './themes/index.scss';
+@use './themes/index.scss' as *;
 
 @font-face {
     font-family: 'Raleway';

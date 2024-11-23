@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { SharedModule } from './components/shared/shared.module';
 
 @Component({
-    standalone: true,
     selector: 'app-main',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss'],

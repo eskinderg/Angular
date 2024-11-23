@@ -18,7 +18,6 @@ import { AsyncPipe } from '@angular/common';
     styleUrls: ['profile.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CardComponent, ThemeOptionComponent, FormsModule, PopoverDirective, AsyncPipe]
 })
 export class ProfileComponent {

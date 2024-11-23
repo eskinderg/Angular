@@ -14,7 +14,6 @@ import { NgClass } from '@angular/common';
     templateUrl: './appThemeOption.component.html',
     styleUrls: ['appThemeOption.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass]
 })
 export class ThemeOptionComponent {

@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
     templateUrl: 'checkmark.component.html',
     styleUrls: ['checkmark.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass]
 })
 export class CheckMarkComponent {

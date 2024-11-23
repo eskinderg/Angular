@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
@@ -12,8 +12,7 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
     templateUrl: 'right-view.component.html',
     styleUrls: ['right-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [PaginationComponent, MovieCardComponent, RouterOutlet]
+    imports: [PaginationComponent, MovieCardComponent]
 })
 export class RightViewComponent implements OnDestroy {
     routeSubscription: Subscription;

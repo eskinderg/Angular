@@ -17,7 +17,6 @@ import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fade
     styleUrls: ['./note.left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [FadeInOutNoteListItem],
-    standalone: true,
     imports: [NoteListItemComponent, AsyncPipe]
 })
 export class NoteLeftViewComponent {

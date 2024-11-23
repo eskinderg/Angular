@@ -7,7 +7,6 @@ import { RouterLink } from '@angular/router';
     templateUrl: 'payment.component.html',
     styleUrls: ['payment.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [WzCommonComponent, RouterLink]
 })
 export class PaymentComponent {}

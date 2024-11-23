@@ -13,7 +13,6 @@ import { RouterOutlet } from '@angular/router';
     styleUrls: ['wizardmanager.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [WzToolbarComponent, CardComponent, RouterOutlet]
 })
 export class WizardManagerComponent {

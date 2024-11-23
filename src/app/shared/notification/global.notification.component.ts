@@ -8,7 +8,6 @@ import { AsyncPipe } from '@angular/common';
     templateUrl: './global.notification.component.html',
     styleUrls: ['./global.notification.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [ToastComponent, AsyncPipe]
 })
 export class GlobalNotificationComponent {

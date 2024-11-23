@@ -19,7 +19,6 @@ import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
     styleUrls: ['./login.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule]
 })
 export class LoginComponent implements OnInit {

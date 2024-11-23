@@ -12,8 +12,6 @@ import { CardComponent } from '../../fragments/components/card/card.component';
     styleUrls: ['about.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [fadeInAnimation],
-    // host: { '[@routerFadeInAnimation]': '' }
-    standalone: true,
     imports: [RouterLink, RouterLinkActive, RouterOutlet, CardComponent]
 })
 export class AboutComponent {}

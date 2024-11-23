@@ -8,7 +8,6 @@ import { NgClass } from '@angular/common';
     </div>`,
     styleUrls: ['appLoading.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass]
 })
 export class AppLoadingComponent {

@@ -14,7 +14,6 @@ import { EventsResolve } from 'src/app/fragments/components/event/event.data.ser
     styleUrls: ['events.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CardComponent, EventComponent, AsyncPipe],
     providers: [EventDialogService, EventsResolve]
 })

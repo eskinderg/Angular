@@ -7,7 +7,6 @@ import { GenreListItemComponent } from './genre-list-item/genre-list-item.compon
     templateUrl: './left.view.component.html',
     styleUrls: ['./left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [GenreListItemComponent]
 })
 export class LeftViewComponent {

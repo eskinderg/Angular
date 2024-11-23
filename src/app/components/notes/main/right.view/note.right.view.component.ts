@@ -17,7 +17,6 @@ import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './text
     templateUrl: 'note.right.view.component.html',
     styleUrls: ['note.right.view.component.scss', '../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
         NgClass,
         NoteHeaderControlComponent,

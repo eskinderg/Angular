@@ -40,7 +40,6 @@ export interface StarTemplateContext {
  */
 @Component({
     selector: 'app-rating',
-    standalone: true,
     styleUrls: ['rating.component.scss'],
     imports: [NgTemplateOutlet],
     changeDetection: ChangeDetectionStrategy.OnPush,

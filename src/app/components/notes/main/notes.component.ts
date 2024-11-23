@@ -19,7 +19,6 @@ import { TextSelection } from './right.view/textAreaExpanded/text.selection';
     styleUrls: ['notes.component.scss', './../scss/notes.colour.scss'],
     animations: [FadeInOutNoteListItem],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NoteLeftViewComponent, NoteRightViewComponent, AsyncPipe],
     providers: [TextSelection, NoteApiService]
 })

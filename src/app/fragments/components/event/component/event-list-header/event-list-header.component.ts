@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-event-list-header',
     templateUrl: './event-list-header.component.html',
     styleUrls: ['./event-list-header.component.scss'],
-    standalone: true,
     imports: [FormsModule]
 })
 export class EventListHeaderComponent {

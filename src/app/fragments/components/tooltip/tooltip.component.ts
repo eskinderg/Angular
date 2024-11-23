@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
     selector: 'app-tooltip',
     templateUrl: './tooltip.component.html',
     styleUrls: ['./tooltip.component.scss'],
-    standalone: true,
     imports: [NgClass],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -16,7 +15,7 @@ export class TooltipComponent {
     tooltip = '';
     left = 0;
     top = 0;
-    visible = false;
+    visible = true;
 
     constructor() {}
 }

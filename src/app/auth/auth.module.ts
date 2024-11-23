@@ -1,19 +1,12 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { OAuthLogger, OAuthModule, OAuthService, OAuthStorage } from 'angular-oauth2-oidc';
-import { Store } from '@ngrx/store';
+import { NgModule, provideAppInitializer } from '@angular/core';
+import { OAuthLogger, OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 import { initializeAuth } from './auth.init';
-import { LoggingService } from '../error/loggingservice';
 import { OAuthAppLogger } from './auth.logger';
 
 @NgModule({
     imports: [OAuthModule.forRoot()],
     providers: [
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initializeAuth,
-            deps: [OAuthService, Store, LoggingService],
-            multi: true
-        },
+        provideAppInitializer(initializeAuth()),
         {
             provide: OAuthStorage,
             useValue: localStorage

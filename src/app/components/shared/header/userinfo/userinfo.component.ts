@@ -13,7 +13,6 @@ import { AsyncPipe } from '@angular/common';
     templateUrl: 'userinfo.component.html',
     styleUrls: ['userinfo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [ThemeOptionComponent, RouterLink, AsyncPipe]
 })
 export class UserInfoComponent {

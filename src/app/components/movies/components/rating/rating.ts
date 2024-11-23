@@ -25,7 +25,6 @@ import { RatingComponent } from '../../../../fragments/components/rating/rating'
             }
         `
     ],
-    standalone: true,
     imports: [NgStyle, RatingComponent]
 })
 export class RatingDecimalComponent {

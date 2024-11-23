@@ -28,7 +28,6 @@ export function main() {
 @Component({
     selector: 'app-test-cmp',
     template: '<sd-about></sd-about>',
-    standalone: true,
     imports: [AboutModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

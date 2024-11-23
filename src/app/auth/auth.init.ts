@@ -3,11 +3,14 @@ import { Store } from '@ngrx/store';
 import { authConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
 import { LoggingService } from '../error/loggingservice';
+import { inject } from '@angular/core';
 
-export function initializeAuth(oauthService: OAuthService, store: Store, loggingService: LoggingService) {
-    oauthService.configure(authConfig);
-
+export function initializeAuth() {
     return async () => {
+        const oauthService: OAuthService = inject(OAuthService);
+        const store: Store = inject(Store);
+        const loggingService: LoggingService = inject(LoggingService);
+        oauthService.configure(authConfig);
         await oauthService
             .loadDiscoveryDocumentAndTryLogin()
             .then(() => {

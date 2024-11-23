@@ -1,8 +1,7 @@
-import { APP_INITIALIZER, APP_BOOTSTRAP_LISTENER, ErrorHandler, ApplicationRef } from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, ErrorHandler, ApplicationRef, provideAppInitializer } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { LoggingService } from './error/loggingservice';
-import { NotificationService } from './shared/notification/notification.service';
 import { bootstrapAppRouteFactory } from './bootstrap/route';
 import { initializeErrorLogger } from './init/app.init.logger';
 import { GlobalErrorHandler } from './error/errorhandle';
@@ -24,12 +23,7 @@ export const APP_INIT = [
         provide: ErrorHandler,
         useClass: GlobalErrorHandler
     },
-    {
-        provide: APP_INITIALIZER,
-        useFactory: initializeErrorLogger,
-        deps: [LoggingService, NotificationService],
-        multi: true
-    },
+    provideAppInitializer(initializeErrorLogger()),
     {
         provide: APP_BOOTSTRAP_LISTENER,
         useFactory: bootstrapAppRouteFactory,

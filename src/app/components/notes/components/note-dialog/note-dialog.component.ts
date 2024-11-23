@@ -15,7 +15,6 @@ import { NoteTitleTruncatePipe } from '../../../movies/directives/noteTitleTrunc
     templateUrl: './note-dialog.component.html',
     styleUrl: './note-dialog.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NoteTitleTruncatePipe],
     providers: [NoteApiService]
 })

@@ -4,7 +4,6 @@ import { Genre } from './models/genre';
 import { LeftViewComponent } from './left.view/left.view.component';
 
 @Component({
-    standalone: true,
     selector: 'app-movies',
     templateUrl: 'movies.component.html',
     styleUrls: ['movies.component.scss'],

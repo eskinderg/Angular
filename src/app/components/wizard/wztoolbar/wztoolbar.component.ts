@@ -8,7 +8,6 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     templateUrl: 'wztoolbar.component.html',
     styleUrls: ['wztoolbar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RouterLink, RouterLinkActive]
 })
 export class WzToolbarComponent {

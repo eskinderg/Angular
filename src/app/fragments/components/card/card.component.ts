@@ -6,7 +6,6 @@ import { NgClass } from '@angular/common';
     templateUrl: './card.component.html',
     styleUrls: ['card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass]
 })
 export class CardComponent {

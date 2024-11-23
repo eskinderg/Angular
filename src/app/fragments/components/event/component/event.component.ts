@@ -15,7 +15,6 @@ import { NgClass } from '@angular/common';
     selector: 'app-event',
     templateUrl: 'event.component.html',
     styleUrls: ['event.component.scss'],
-    standalone: true,
     imports: [EventListHeaderComponent, CardComponent, EventListComponent, NgClass, RouterOutlet]
 })
 export class EventComponent {

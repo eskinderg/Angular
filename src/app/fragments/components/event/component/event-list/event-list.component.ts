@@ -9,7 +9,6 @@ import { EventListItemComponent } from './event-list-item/event-list-item.compon
     styleUrls: ['./event-list.component.scss'],
     animations: [FadeInOutEventListItem],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [EventListItemComponent]
 })
 export class EventListComponent {

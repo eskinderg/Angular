@@ -21,7 +21,6 @@ export declare interface IsActiveMatchOptions {
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [RouterLink, RouterLinkActive, NgClass, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {

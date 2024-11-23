@@ -17,7 +17,6 @@ export const Colours: Colour[] = [
     templateUrl: './note.colour.selector.component.html',
     styleUrls: ['./note.colour.selector.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass]
 })
 export class NoteColourSelectorComponent {

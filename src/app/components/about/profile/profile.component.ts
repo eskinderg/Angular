@@ -18,7 +18,6 @@ import { DialogInfoComponent } from '../../../fragments/components/dialog/dialog
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [FormsModule, ReactiveFormsModule, ConfirmTemplateDirective, DialogInfoComponent]
 })
 export class ProfileComponent implements OnInit {

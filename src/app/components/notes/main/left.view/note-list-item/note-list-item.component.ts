@@ -17,7 +17,6 @@ type Animate = {
     animations: [FadeInOutNoteListItem],
     styleUrls: ['./note-list-item.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [NgClass, TooltipDirective, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
 })
 export class NoteListItemComponent {

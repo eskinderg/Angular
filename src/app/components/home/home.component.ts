@@ -15,7 +15,6 @@ import { MoviesDataService } from '../movies/service/movies.data.service';
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss'],
     animations: [fadeInAnimation],
-    standalone: true,
     imports: [CardComponent, BarchartComponent, ScatterPlotChartComponent],
     providers: [MoviesApiService, MoviesDataService]
 })

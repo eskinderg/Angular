@@ -9,7 +9,6 @@ import { NgClass } from '@angular/common';
     templateUrl: './event-list-item.component.html',
     styleUrls: ['./event-list-item.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CheckMarkComponent, FormsModule, NgClass]
 })
 export class EventListItemComponent {
