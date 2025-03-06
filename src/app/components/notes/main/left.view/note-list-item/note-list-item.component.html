@@ -17,7 +17,7 @@
             class="date-modified date-text"
             [@.disabled]="!animate.date"
             [@fadeInOutNoteListItem]
-            [appTooltip]="'Last Modified On ' + (note.dateModified | date: 'medium')">
+            [appTooltip]="'Last Modified - ' + (note.dateModified | date: 'EEE, MMM d yyyy hh:mm:ss a')">
             {{ note.dateModified | dateago }}</small
         >
     </div>
