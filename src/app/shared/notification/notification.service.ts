@@ -34,6 +34,28 @@ export class NotificationService {
     }
 
     /**
+     * Displays warning notification message
+     * @param {string} message - text message for the notification to display
+     * @param {string} header - optional param for setting the notification header.
+     * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
+     * @param {boolean} animate - optional param to set animation
+     */
+    showWarning(
+        message: string,
+        header?: string,
+        delay: number = 5000,
+        animate: boolean = true,
+        autoHide: boolean = true
+    ) {
+        this.show(message, header, {
+            classname: 'bg-warning',
+            delay: delay,
+            animate: animate,
+            autoHide: autoHide
+        });
+    }
+
+    /**
      * Displays error notification message
      * @param {string} message - text message for the notification to display
      * @param {string} header - optional param for setting the notification header.
