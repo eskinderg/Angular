@@ -13,15 +13,27 @@ permissions:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Approve PR
-        if: github.actor == 'dependabot[bot]'
+      - name: Approve Dependabot PR
         run: gh pr review --approve "$GITHUB_REF"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Wait for CI to Pass
+        run: sleep 30 # Wait for checks to complete (adjust as needed)
+
+      - name: Check Build Status
+        run: |
+          STATUS=$(gh pr checks "$GITHUB_REF" --json conclusion -q '.[] | select(.name=="build") | .conclusion')
+          if [[ "$STATUS" != "SUCCESS" ]]; then
+            echo "Build failed. Not merging."
+            exit 1
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Enable Auto-Merge
-        if: github.actor == 'dependabot[bot]'
         run: gh pr merge --auto --squash "$GITHUB_REF"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
