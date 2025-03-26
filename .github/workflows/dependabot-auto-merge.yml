@@ -16,12 +16,16 @@ jobs:
     steps:
       - name: Approve PR
         if: github.actor == 'dependabot[bot]'
-        run: gh pr review --approve "$GITHUB_REF"
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          gh pr review --approve "$PR_NUMBER"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable Auto-Merge
         if: github.actor == 'dependabot[bot]'
-        run: gh pr merge --auto --squash "$GITHUB_REF"
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          gh pr merge --auto "$PR_NUMBER"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
