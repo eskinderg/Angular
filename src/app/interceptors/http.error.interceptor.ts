@@ -25,8 +25,8 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
     return next(request).pipe(
         catchError((error: HttpErrorResponse) => {
             if (error.status === NOTE_UPDATE_CONFLICT) {
-                notificationService.showSuccess(
-                    "There where changes made that is not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
+                notificationService.showWarning(
+                    "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
                     'Sync Operation',
                     5,
                     true,
