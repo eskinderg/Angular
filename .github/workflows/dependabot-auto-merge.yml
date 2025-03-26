@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Approve PR
-        if: github.actor == 'dependabot[bot]'
+        if: github.actor == 'eskinderg'
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           gh pr review --approve "$PR_NUMBER"
@@ -23,7 +23,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable Auto-Merge
-        if: github.actor == 'dependabot[bot]'
+        if: github.actor == 'eskinderg'
         run: |
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           gh pr merge --auto "$PR_NUMBER"
