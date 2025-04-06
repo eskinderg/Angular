@@ -10,7 +10,8 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { DialogButtons } from './buttons.enum';
+import { DIALOG_BUTTONS } from './buttons.enum';
+import { DIALOG_RESULT } from './result.enum';
 
 @Component({
     selector: 'app-dialog',
@@ -23,9 +24,12 @@ import { DialogButtons } from './buttons.enum';
 export class DialogComponent implements AfterViewInit, OnDestroy {
     @Input() title: string;
     @Input() message: string;
-    @Input() buttons: DialogButtons.YES_NO | DialogButtons.CANCEL_ONLY = DialogButtons.YES_NO;
+    @Input() buttons: DIALOG_BUTTONS.YES_NO | DIALOG_BUTTONS.CANCEL_ONLY = DIALOG_BUTTONS.YES_NO;
 
-    @Output() closed = new EventEmitter<boolean | null>();
+    dialogResponse = DIALOG_RESULT;
+    dialogButtons = DIALOG_BUTTONS;
+
+    @Output() closed = new EventEmitter<DIALOG_RESULT | null>();
 
     private escListener?: () => void;
 
@@ -38,7 +42,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         // Listen for ESC key
         this.escListener = this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
-                this.close(null);
+                this.close(DIALOG_RESULT.CANCEL);
             }
         });
 
@@ -52,11 +56,11 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         if (this.escListener) this.escListener();
     }
 
-    close(result: boolean | null) {
+    close(result: DIALOG_RESULT | null) {
         this.closed.emit(result);
     }
 
     onBackdropClick() {
-        this.close(null);
+        this.close(DIALOG_RESULT.CANCEL);
     }
 }

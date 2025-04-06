@@ -8,6 +8,9 @@ import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../fragments/components/tooltip/tooltip.directive';
 import { AgoDatePipe } from '../../movies/directives/dateagopipe';
 import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     selector: 'app-note.archive',
@@ -26,6 +29,7 @@ export class NoteArchiveComponent {
         private store: Store<fromNotes.INotesState>,
         // public activeDialog: NgbActiveModal,
         private notesApiService: NoteApiService,
+        private dialogService: DialogService,
         public router: Router
     ) {}
 
@@ -47,7 +51,22 @@ export class NoteArchiveComponent {
     }
 
     delete(note: Note) {
-        this.notesApiService.deleteNote(note);
+        this.dialogService
+            .openDialog(
+                'Delete Note',
+                'Are you sure you want to permanently delete this note?',
+                DIALOG_BUTTONS.YES_NO
+            )
+            .then((result: DIALOG_RESULT) => {
+                if (result === DIALOG_RESULT.YES) {
+                    // proceed with delete
+                    this.notesApiService.deleteNote(note);
+                } else if (result === DIALOG_RESULT.NO) {
+                    // user declined
+                } else {
+                    // user cancelled
+                }
+            });
     }
 
     restore(note: Note) {

@@ -8,12 +8,12 @@ export function bootstrapDialogFactory(
     dialogService: DialogService
 ): (appComponentRef: ComponentRef<AppComponent>) => void {
     return (appComponentRef: ComponentRef<AppComponent>) => {
-        const hostRef = createComponent(DialogHostComponent, {
+        const dialogHostRef = createComponent(DialogHostComponent, {
             environmentInjector: appRef.injector
         });
 
-        appRef.attachView(hostRef.hostView);
-        appComponentRef.location.nativeElement.append(hostRef.location.nativeElement);
-        dialogService.registerHost(hostRef.injector.get(ViewContainerRef));
+        appRef.attachView(dialogHostRef.hostView);
+        appComponentRef.location.nativeElement.append(dialogHostRef.location.nativeElement);
+        dialogService.registerHost(dialogHostRef.injector.get(ViewContainerRef));
     };
 }

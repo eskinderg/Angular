@@ -17,18 +17,20 @@
     padding: 0;
     border-radius: 10px;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.2s ease-in-out;
     overflow: hidden;
-    position: relative;
+    position: fixed;
     display: flex;
     flex-direction: column;
+    top: 15%;
 }
 
 .dialog-header {
     // background-color: #f5f5f5;
-    padding: 9px 13px;
+    background: var(--card-cap-bg);
+    padding: 5px 9px 5px 13px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,16 +43,21 @@
     background: red;
 }
 
-.dialog-close {
+// .btn-yes:hover {
+//     filter: brightness(80%);
+// }
+
+.close-btn {
     cursor: pointer;
     font-size: 30px;
-    color: #666;
+    // color: #666;
     // font-weight: bold;
     transition: color 0.2s;
-    padding-left: 16px;
+    padding-right: 5px;
+    color: var(--secondary);
 }
 
-.dialog-close:hover {
+.close-btn:hover {
     color: var(--body-color);
 }
 
@@ -82,7 +89,8 @@
 }
 
 .dialog-actions button:hover {
-    background-color: var(--primary);
+    // color: var(--body-color);
+    filter: brightness(80%);
 }
 
 @keyframes fadeIn {

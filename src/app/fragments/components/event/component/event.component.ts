@@ -9,7 +9,8 @@ import { CardComponent } from '../../card/card.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { NgClass } from '@angular/common';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,12 +59,12 @@ export class EventComponent {
     onRemoveEvent(event: Event) {
         // this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } });
         this.dialogService
-            .openDialog('Delete Event', 'Do you want to delete this Event?', DialogButtons.YES_NO)
+            .openDialog('Delete Event', 'Do you want to delete this Event?', DIALOG_BUTTONS.YES_NO)
             .then((result) => {
-                if (result === true) {
+                if (result === DIALOG_RESULT.YES) {
                     this.store.dispatch(EventsActions.deleteEvent({ payload: event }));
                     // proceed with delete
-                } else if (result === false) {
+                } else if (result === DIALOG_RESULT.NO) {
                     // user declined
                 } else {
                     // user cancelled

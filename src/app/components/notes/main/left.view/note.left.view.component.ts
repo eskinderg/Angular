@@ -10,7 +10,8 @@ import { NoteListItemComponent } from './note-list-item/note-list-item.component
 import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     selector: 'app-note-left-view',
@@ -61,12 +62,12 @@ export class NoteLeftViewComponent {
 
     onArchiveNote(note: Note) {
         this.dialogService
-            .openDialog('Archive Note', 'Do you want to archive this note?', DialogButtons.YES_NO)
+            .openDialog('Archive Note', 'Do you want to archive this note?', DIALOG_BUTTONS.YES_NO)
             .then((result) => {
-                if (result === true) {
+                if (result === DIALOG_RESULT.YES) {
                     this.notesApiService.archiveNote(note);
                     // proceed with delete
-                } else if (result === false) {
+                } else if (result === DIALOG_RESULT.NO) {
                     // user declined
                 } else {
                     // user cancelled

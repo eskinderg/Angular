@@ -12,7 +12,8 @@ import { NoteLeftViewComponent } from './left.view/note.left.view.component';
 import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     selector: 'app-notes',
@@ -86,12 +87,12 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     onArchiveNote(note: Note) {
         this.dialogService
-            .openDialog('Archive Note', 'Do you want to archive this note?', DialogButtons.YES_NO)
+            .openDialog('Archive Note', 'Do you want to archive this note?', DIALOG_BUTTONS.YES_NO)
             .then((result) => {
-                if (result === true) {
+                if (result === DIALOG_RESULT.YES) {
                     this.notesApiService.archiveNote(note);
                     // proceed with delete
-                } else if (result === false) {
+                } else if (result === DIALOG_RESULT.NO) {
                     // user declined
                 } else {
                     // user cancelled

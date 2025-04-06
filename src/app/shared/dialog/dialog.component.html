@@ -1,8 +1,8 @@
 <div class="backdrop" (click)="onBackdropClick()">
     <div class="dialog" (click)="$event.stopPropagation()" tabindex="0">
         <div class="dialog-header">
-            <h3>{{ title }}</h3>
-            <button class="close-btn" (click)="close(null)">✕</button>
+            <div>{{ title }}</div>
+            <div class="close-btn" (click)="close(dialogResponse.CANCEL)">✕</div>
         </div>
 
         <div class="dialog-body">
@@ -10,9 +10,16 @@
         </div>
 
         <div class="dialog-actions">
-            <button class="btn-yes" *ngIf="buttons === 0" (click)="close(true)">Yes</button>
-            <button *ngIf="buttons === 0" (click)="close(false)">No</button>
-            <button *ngIf="buttons === 1" (click)="close(null)">Cancel</button>
+            <button
+                class="btn-yes"
+                *ngIf="buttons === dialogButtons.YES_NO"
+                (click)="close(dialogResponse.YES)">
+                Yes
+            </button>
+            <button *ngIf="buttons === dialogButtons.YES_NO" (click)="close(dialogResponse.NO)">No</button>
+            <button *ngIf="buttons === dialogButtons.CANCEL_ONLY" (click)="close(dialogResponse.CANCEL)">
+                Cancel
+            </button>
         </div>
     </div>
 </div>

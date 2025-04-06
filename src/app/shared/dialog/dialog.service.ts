@@ -1,6 +1,7 @@
 import { Injectable, ViewContainerRef, EnvironmentInjector } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
-import { DialogButtons } from './buttons.enum';
+import { DIALOG_BUTTONS } from './buttons.enum';
+import { DIALOG_RESULT } from './result.enum';
 
 @Injectable({ providedIn: 'root' })
 export class DialogService {
@@ -12,7 +13,7 @@ export class DialogService {
         this.viewContainerRef = viewContainerRef;
     }
 
-    openDialog(title: string, message: string, buttons: DialogButtons): Promise<boolean | null> {
+    openDialog(title: string, message: string, buttons: DIALOG_BUTTONS): Promise<DIALOG_RESULT | null> {
         if (!this.viewContainerRef) throw new Error('Dialog host not initialized');
 
         this.viewContainerRef.clear();
@@ -26,7 +27,7 @@ export class DialogService {
         dialogRef.setInput('buttons', buttons);
 
         return new Promise((resolve) => {
-            dialogRef.instance.closed.subscribe((result) => {
+            dialogRef.instance.closed.subscribe((result: DIALOG_RESULT) => {
                 dialogRef.destroy();
                 resolve(result);
             });
