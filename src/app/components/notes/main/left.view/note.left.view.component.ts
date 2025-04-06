@@ -5,11 +5,12 @@ import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteRightViewComponent } from '../right.view/note.right.view.component';
-import { NoteDialogService } from '../../components/note-dialog/note.dialog.service';
 import { v4 as uuidv4 } from 'uuid';
 import { NoteListItemComponent } from './note-list-item/note-list-item.component';
 import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
 
 @Component({
     selector: 'app-note-left-view',
@@ -24,8 +25,8 @@ export class NoteLeftViewComponent {
 
     constructor(
         public notesApiService: NoteApiService,
+        private dialogService: DialogService,
         private noteStore: Store<fromNotes.INotesState>,
-        private noteDialogService: NoteDialogService,
         public route: Router
     ) {}
 
@@ -59,8 +60,18 @@ export class NoteLeftViewComponent {
     }
 
     onArchiveNote(note: Note) {
-        // this.notesApiService.archiveNote(note);
-        this.noteDialogService.showDialog(note);
+        this.dialogService
+            .openDialog('Archive Note', 'Do you want to archive this note?', DialogButtons.YES_NO)
+            .then((result) => {
+                if (result === true) {
+                    this.notesApiService.archiveNote(note);
+                    // proceed with delete
+                } else if (result === false) {
+                    // user declined
+                } else {
+                    // user cancelled
+                }
+            });
     }
 
     onUpdateNoteHeader(note: Note) {

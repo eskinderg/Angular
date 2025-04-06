@@ -8,6 +8,8 @@ import { GlobalErrorHandler } from './error/errorhandle';
 import { AppRouteReuseStrategy } from './init/app.init.routeStrategy';
 import { bootstrapAppNotificationFactory } from './bootstrap/notification';
 import { bootstrapBackButtonFactory } from './bootstrap/backButton';
+import { bootstrapDialogFactory } from './bootstrap/dialog';
+import { DialogService } from './shared/dialog/dialog.service';
 
 export const APP_INIT = [
     {
@@ -28,6 +30,12 @@ export const APP_INIT = [
         provide: APP_BOOTSTRAP_LISTENER,
         useFactory: bootstrapAppRouteFactory,
         deps: [Router, ApplicationRef],
+        multi: true
+    },
+    {
+        provide: APP_BOOTSTRAP_LISTENER,
+        useFactory: bootstrapDialogFactory,
+        deps: [ApplicationRef, DialogService],
         multi: true
     },
     {

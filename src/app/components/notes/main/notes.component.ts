@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
 import { NoteRightViewComponent } from './right.view/note.right.view.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
-import { NoteDialogService } from '../components/note-dialog/note.dialog.service';
 import { interval, Subscription } from 'rxjs';
 import { NOTE_REFRESH_INTERVAL } from 'src/app/config/config';
 import { NoteLeftViewComponent } from './left.view/note.left.view.component';
 import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
 
 @Component({
     selector: 'app-notes',
@@ -29,8 +30,8 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     constructor(
         public notesApiService: NoteApiService,
+        private dialogService: DialogService,
         private noteStore: Store<fromNotes.INotesState>,
-        private noteDialogService: NoteDialogService,
         public route: Router
     ) {}
 
@@ -84,7 +85,18 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     onArchiveNote(note: Note) {
-        this.noteDialogService.showDialog(note);
+        this.dialogService
+            .openDialog('Archive Note', 'Do you want to archive this note?', DialogButtons.YES_NO)
+            .then((result) => {
+                if (result === true) {
+                    this.notesApiService.archiveNote(note);
+                    // proceed with delete
+                } else if (result === false) {
+                    // user declined
+                } else {
+                    // user cancelled
+                }
+            });
     }
 
     onUpdateNoteHeader(note: Note) {
@@ -124,7 +136,6 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy(): void {
-        this.noteDialogService.destroy();
         if (this.subscription != null) this.subscription.unsubscribe();
     }
 }

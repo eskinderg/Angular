@@ -5,7 +5,6 @@ import * as fromEvents from '../../store/reducers/events.reducer';
 import { CardComponent } from '../../fragments/components/card/card.component';
 import { EventComponent } from '../../fragments/components/event/component/event.component';
 import { AsyncPipe } from '@angular/common';
-import { EventDialogService } from './event-dialog/event.dialog.service';
 import { EventsResolve } from 'src/app/fragments/components/event/event.data.service/EventsResolve';
 
 @Component({
@@ -15,7 +14,7 @@ import { EventsResolve } from 'src/app/fragments/components/event/event.data.ser
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CardComponent, EventComponent, AsyncPipe],
-    providers: [EventDialogService, EventsResolve]
+    providers: [EventsResolve]
 })
 export class EventsComponent {
     constructor(private store: Store<fromEvents.IEventsState>) {}

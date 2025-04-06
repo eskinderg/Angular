@@ -4,11 +4,12 @@ import { Event } from '../event';
 import * as EventsActions from '../../../../store/actions/event.action';
 import * as fromRoot from '../../../../store/reducers';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { EventDialogService } from 'src/app/components/events/event-dialog/event.dialog.service';
 import { EventListHeaderComponent } from './event-list-header/event-list-header.component';
 import { CardComponent } from '../../card/card.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { NgClass } from '@angular/common';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { DialogButtons } from 'src/app/shared/dialog/buttons.enum';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,7 +27,7 @@ export class EventComponent {
         private store: Store<fromRoot.IAppState>,
         public router: ActivatedRoute,
         public route: Router,
-        public eventDialogService: EventDialogService
+        public dialogService: DialogService
     ) {}
 
     onAddEvent(event: Event) {
@@ -56,7 +57,19 @@ export class EventComponent {
 
     onRemoveEvent(event: Event) {
         // this.route.navigate(['/events', 'dialog', event.id], { state: { event: event } });
-        this.eventDialogService.showDialog(event);
+        this.dialogService
+            .openDialog('Delete Event', 'Do you want to delete this Event?', DialogButtons.YES_NO)
+            .then((result) => {
+                if (result === true) {
+                    this.store.dispatch(EventsActions.deleteEvent({ payload: event }));
+                    // proceed with delete
+                } else if (result === false) {
+                    // user declined
+                } else {
+                    // user cancelled
+                }
+            });
+        // this.eventDialogService.showDialog(event);
         // alert(this.route.url)
         // this.confirmService.confirm({
         //   title: 'Confirm deletion',
