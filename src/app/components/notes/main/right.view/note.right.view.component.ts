@@ -9,8 +9,9 @@ import { NoteHeaderControlComponent } from './note.header.control/note.header.co
 import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
 import { NgClass, DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
-import { PopoverDirective } from '../../../../fragments/components/popover/popover';
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
+import { DialogService } from 'src/app/shared/dialog/dialog.service';
+import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
 
 @Component({
     selector: 'app-note-right-view',
@@ -22,7 +23,6 @@ import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './text
         NoteHeaderControlComponent,
         TooltipDirective,
         NoteColourSelectorComponent,
-        PopoverDirective,
         TextareaExpandedComponent_1,
         DatePipe
     ]
@@ -45,7 +45,10 @@ export class NoteRightViewComponent {
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
-    constructor(private store: Store<fromNotes.INotesState>) {}
+    constructor(
+        private store: Store<fromNotes.INotesState>,
+        private dialogService: DialogService
+    ) {}
 
     noteArchive_click(note: Note) {
         this.archiveNote.emit(note);
@@ -72,6 +75,33 @@ export class NoteRightViewComponent {
 
     onUpdatOpendNote(note: Note) {
         this.store.dispatch(NotesActions.updateOpendNote({ payload: note }));
+    }
+
+    noteInfoClick(note: Note) {
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        });
+        const dateModified = new Date(note.dateModified);
+        const dateCreated = new Date(note.dateCreated);
+        this.dialogService.openDialog(
+            'Info',
+            `
+                <strong>Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;  ${note?.header ? note?.header : 'Untitled'}<br />
+                <strong>Last Modified &nbsp;:</strong> &nbsp;  ${formatter.format(dateModified)}<br />
+                <strong>Date Created &nbsp; :</strong> &nbsp; ${formatter.format(dateCreated)}<br />
+                <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.pinned ? 'Yes' : 'No'}<br />
+                <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.colour ? note?.colour : 'none'}<br />
+                <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spellCheck ? 'on' : 'off'}<br />
+                <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.owner}
+            `,
+            DIALOG_BUTTONS.OK_ONLY
+        );
     }
 
     underline(e) {

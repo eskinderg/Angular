@@ -24,7 +24,11 @@ import { DIALOG_RESULT } from './result.enum';
 export class DialogComponent implements AfterViewInit, OnDestroy {
     @Input() title: string;
     @Input() message: string;
-    @Input() buttons: DIALOG_BUTTONS.YES_NO | DIALOG_BUTTONS.CANCEL_ONLY = DIALOG_BUTTONS.YES_NO;
+    @Input() buttons:
+        | DIALOG_BUTTONS.YES_NO
+        | DIALOG_BUTTONS.CANCEL_ONLY
+        | DIALOG_BUTTONS.OK_ONLY
+        | DIALOG_BUTTONS.CLOSE_ONLY = DIALOG_BUTTONS.YES_NO;
 
     dialogResponse = DIALOG_RESULT;
     dialogButtons = DIALOG_BUTTONS;

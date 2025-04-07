@@ -6,7 +6,7 @@
         </div>
 
         <div class="dialog-body">
-            <p>{{ message }}</p>
+            <p [innerHTML]="message"></p>
         </div>
 
         <div class="dialog-actions">
@@ -19,6 +19,10 @@
             <button *ngIf="buttons === dialogButtons.YES_NO" (click)="close(dialogResponse.NO)">No</button>
             <button *ngIf="buttons === dialogButtons.CANCEL_ONLY" (click)="close(dialogResponse.CANCEL)">
                 Cancel
+            </button>
+            <button *ngIf="buttons === dialogButtons.OK_ONLY" (click)="close(dialogResponse.OK)">Ok</button>
+            <button *ngIf="buttons === dialogButtons.CLOSE_ONLY" (click)="close(dialogResponse.CLOSE)">
+                Close
             </button>
         </div>
     </div>
