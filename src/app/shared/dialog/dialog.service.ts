@@ -1,6 +1,6 @@
 import { Injectable, ViewContainerRef, EnvironmentInjector } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
-import { DIALOG_BUTTONS } from './buttons.enum';
+import { DIALOG_TYPE } from './buttons.enum';
 import { DIALOG_RESPONSE } from './result.enum';
 import { DIALOG_SIGNS } from './dialog.sign.enum';
 
@@ -17,7 +17,7 @@ export class DialogService {
     openDialog(
         title: string,
         message: string,
-        buttons: DIALOG_BUTTONS,
+        dialogType: DIALOG_TYPE,
         showBackDrop: boolean = true,
         sign: DIALOG_SIGNS = null
     ): Promise<DIALOG_RESPONSE | null> {
@@ -31,7 +31,7 @@ export class DialogService {
 
         dialogRef.setInput('title', title);
         dialogRef.setInput('message', message);
-        dialogRef.setInput('buttons', buttons);
+        dialogRef.setInput('dialogType', dialogType);
         dialogRef.setInput('showBackDrop', showBackDrop);
         dialogRef.setInput('sign', sign);
 

@@ -11,7 +11,7 @@ import { NgClass, DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
 
 @Component({
     selector: 'app-note-right-view',
@@ -100,7 +100,7 @@ export class NoteRightViewComponent {
                 <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spellCheck ? 'on' : 'off'}<br />
                 <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.owner}
             `,
-            DIALOG_BUTTONS.CLOSE_ONLY,
+            DIALOG_TYPE.CLOSE_ONLY,
             false,
             null
         );

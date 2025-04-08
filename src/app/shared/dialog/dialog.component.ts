@@ -9,7 +9,7 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { DIALOG_BUTTONS } from './buttons.enum';
+import { DIALOG_TYPE } from './buttons.enum';
 import { DIALOG_RESPONSE } from './result.enum';
 import { DIALOG_SIGNS } from './dialog.sign.enum';
 
@@ -23,16 +23,16 @@ import { DIALOG_SIGNS } from './dialog.sign.enum';
 export class DialogComponent implements AfterViewInit, OnDestroy {
     @Input() title: string;
     @Input() message: string;
-    @Input() buttons:
-        | DIALOG_BUTTONS.YES_NO
-        | DIALOG_BUTTONS.CANCEL_ONLY
-        | DIALOG_BUTTONS.OK_ONLY
-        | DIALOG_BUTTONS.CLOSE_ONLY = DIALOG_BUTTONS.YES_NO;
+    @Input() dialogType:
+        | DIALOG_TYPE.YES_NO
+        | DIALOG_TYPE.CANCEL_ONLY
+        | DIALOG_TYPE.OK_ONLY
+        | DIALOG_TYPE.CLOSE_ONLY = DIALOG_TYPE.YES_NO;
     @Input() showBackDrop: boolean = true;
     @Input() sign: DIALOG_SIGNS.WARNING | DIALOG_SIGNS.INFO | null;
 
     dialogResponse = DIALOG_RESPONSE;
-    dialogButtons = DIALOG_BUTTONS;
+    dialogTypes = DIALOG_TYPE;
     dialogSigns = DIALOG_SIGNS;
 
     @Output() closed = new EventEmitter<DIALOG_RESPONSE | null>();

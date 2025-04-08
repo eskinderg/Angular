@@ -9,7 +9,7 @@ import { TooltipDirective } from '../../../fragments/components/tooltip/tooltip.
 import { AgoDatePipe } from '../../movies/directives/dateagopipe';
 import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
+import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
 import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
 import { DIALOG_SIGNS } from 'src/app/shared/dialog/dialog.sign.enum';
 
@@ -56,7 +56,7 @@ export class NoteArchiveComponent {
             .openDialog(
                 'Delete Note',
                 'Are you sure you want to permanently delete this note?',
-                DIALOG_BUTTONS.YES_NO,
+                DIALOG_TYPE.YES_NO,
                 true,
                 DIALOG_SIGNS.WARNING
             )
