@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
     Component,
     EventEmitter,
@@ -11,14 +10,14 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { DIALOG_BUTTONS } from './buttons.enum';
-import { DIALOG_RESULT } from './result.enum';
+import { DIALOG_RESPONSE } from './result.enum';
+import { DIALOG_SIGNS } from './dialog.sign.enum';
 
 @Component({
     selector: 'app-dialog',
     standalone: true,
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
-    imports: [CommonModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent implements AfterViewInit, OnDestroy {
@@ -29,11 +28,14 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         | DIALOG_BUTTONS.CANCEL_ONLY
         | DIALOG_BUTTONS.OK_ONLY
         | DIALOG_BUTTONS.CLOSE_ONLY = DIALOG_BUTTONS.YES_NO;
+    @Input() showBackDrop: boolean = true;
+    @Input() sign: DIALOG_SIGNS.WARNING | DIALOG_SIGNS.INFO | null;
 
-    dialogResponse = DIALOG_RESULT;
+    dialogResponse = DIALOG_RESPONSE;
     dialogButtons = DIALOG_BUTTONS;
+    dialogSigns = DIALOG_SIGNS;
 
-    @Output() closed = new EventEmitter<DIALOG_RESULT | null>();
+    @Output() closed = new EventEmitter<DIALOG_RESPONSE | null>();
 
     private escListener?: () => void;
 
@@ -46,7 +48,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         // Listen for ESC key
         this.escListener = this.renderer.listen('document', 'keydown', (event: KeyboardEvent) => {
             if (event.key === 'Escape') {
-                this.close(DIALOG_RESULT.CANCEL);
+                this.close(DIALOG_RESPONSE.CANCEL);
             }
         });
 
@@ -60,11 +62,11 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         if (this.escListener) this.escListener();
     }
 
-    close(result: DIALOG_RESULT | null) {
+    close(result: DIALOG_RESPONSE | null) {
         this.closed.emit(result);
     }
 
     onBackdropClick() {
-        this.close(DIALOG_RESULT.CANCEL);
+        this.close(DIALOG_RESPONSE.CANCEL);
     }
 }

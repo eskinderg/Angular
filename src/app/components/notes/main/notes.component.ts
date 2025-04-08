@@ -13,7 +13,7 @@ import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     selector: 'app-notes',
@@ -87,15 +87,16 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     onArchiveNote(note: Note) {
         this.dialogService
-            .openDialog('Archive Note', 'Do you want to archive this note?', DIALOG_BUTTONS.YES_NO)
+            .openDialog(
+                'Archive Note',
+                'Do you want to archive this note?',
+                DIALOG_BUTTONS.YES_NO,
+                true,
+                null
+            )
             .then((result) => {
-                if (result === DIALOG_RESULT.YES) {
+                if (result === DIALOG_RESPONSE.YES) {
                     this.notesApiService.archiveNote(note);
-                    // proceed with delete
-                } else if (result === DIALOG_RESULT.NO) {
-                    // user declined
-                } else {
-                    // user cancelled
                 }
             });
     }

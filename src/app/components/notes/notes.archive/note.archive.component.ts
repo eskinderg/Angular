@@ -10,7 +10,8 @@ import { AgoDatePipe } from '../../movies/directives/dateagopipe';
 import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_SIGNS } from 'src/app/shared/dialog/dialog.sign.enum';
 
 @Component({
     selector: 'app-note.archive',
@@ -55,16 +56,13 @@ export class NoteArchiveComponent {
             .openDialog(
                 'Delete Note',
                 'Are you sure you want to permanently delete this note?',
-                DIALOG_BUTTONS.YES_NO
+                DIALOG_BUTTONS.YES_NO,
+                true,
+                DIALOG_SIGNS.WARNING
             )
-            .then((result: DIALOG_RESULT) => {
-                if (result === DIALOG_RESULT.YES) {
-                    // proceed with delete
+            .then((result: DIALOG_RESPONSE) => {
+                if (result === DIALOG_RESPONSE.YES) {
                     this.notesApiService.deleteNote(note);
-                } else if (result === DIALOG_RESULT.NO) {
-                    // user declined
-                } else {
-                    // user cancelled
                 }
             });
     }

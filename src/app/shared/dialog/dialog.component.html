@@ -1,29 +1,38 @@
-<div class="backdrop" (click)="onBackdropClick()">
+<div class="backdrop" [class.backDropHide]="!showBackDrop" (click)="onBackdropClick()">
     <div class="dialog" (click)="$event.stopPropagation()" tabindex="0">
-        <div class="dialog-header">
+        <div class="dialog-header" [class.warning-header]="sign === dialogSigns.WARNING">
             <div>{{ title }}</div>
             <div class="close-btn" (click)="close(dialogResponse.CANCEL)">✕</div>
         </div>
 
         <div class="dialog-body">
             <p [innerHTML]="message"></p>
+
+            @switch (sign) {
+                @case (dialogSigns.WARNING) {
+                    <img src="assets/images/warning-icon.svg" class="warning-icon" alt="warning-icon" />
+                }
+                @default {}
+            }
         </div>
 
         <div class="dialog-actions">
-            <button
-                class="btn-yes"
-                *ngIf="buttons === dialogButtons.YES_NO"
-                (click)="close(dialogResponse.YES)">
-                Yes
-            </button>
-            <button *ngIf="buttons === dialogButtons.YES_NO" (click)="close(dialogResponse.NO)">No</button>
-            <button *ngIf="buttons === dialogButtons.CANCEL_ONLY" (click)="close(dialogResponse.CANCEL)">
-                Cancel
-            </button>
-            <button *ngIf="buttons === dialogButtons.OK_ONLY" (click)="close(dialogResponse.OK)">Ok</button>
-            <button *ngIf="buttons === dialogButtons.CLOSE_ONLY" (click)="close(dialogResponse.CLOSE)">
-                Close
-            </button>
+            @switch (buttons) {
+                @case (dialogButtons.YES_NO) {
+                    <button class="btn-yes" (click)="close(dialogResponse.YES)">Yes</button>
+                    <button (click)="close(dialogResponse.NO)">No</button>
+                }
+                @case (dialogButtons.CANCEL_ONLY) {
+                    <button (click)="close(dialogResponse.CANCEL)">Cancel</button>
+                }
+                @case (dialogButtons.OK_ONLY) {
+                    <button (click)="close(dialogResponse.OK)">Ok</button>
+                }
+                @case (dialogButtons.CLOSE_ONLY) {
+                    <button (click)="close(dialogResponse.CLOSE)">Close</button>
+                }
+                @default {}
+            }
         </div>
     </div>
 </div>

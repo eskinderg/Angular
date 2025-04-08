@@ -10,7 +10,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { NgClass } from '@angular/common';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_BUTTONS } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESULT } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -61,10 +61,10 @@ export class EventComponent {
         this.dialogService
             .openDialog('Delete Event', 'Do you want to delete this Event?', DIALOG_BUTTONS.YES_NO)
             .then((result) => {
-                if (result === DIALOG_RESULT.YES) {
+                if (result === DIALOG_RESPONSE.YES) {
                     this.store.dispatch(EventsActions.deleteEvent({ payload: event }));
                     // proceed with delete
-                } else if (result === DIALOG_RESULT.NO) {
+                } else if (result === DIALOG_RESPONSE.NO) {
                     // user declined
                 } else {
                     // user cancelled

@@ -1,4 +1,4 @@
-export enum DIALOG_RESULT {
+export enum DIALOG_RESPONSE {
     YES,
     NO,
     CANCEL,

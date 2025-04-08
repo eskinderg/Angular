@@ -11,6 +11,10 @@
     z-index: 9999;
 }
 
+.backDropHide {
+    background: rgba(0, 0, 0, 0);
+}
+
 .dialog {
     outline: none;
     background: var(--card-bg);
@@ -18,7 +22,7 @@
     border-radius: 10px;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.2s ease-in-out;
     overflow: hidden;
     position: fixed;
@@ -39,6 +43,10 @@
     // border-bottom: 1px solid var(--primary);
 }
 
+.warning-header {
+    background: #fec901;
+}
+
 .btn-yes {
     background: #c86161;
 }
@@ -49,11 +57,11 @@
 
 .close-btn {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 26px;
     // color: #666;
     // font-weight: bold;
     transition: color 0.2s;
-    padding-right: 5px;
+    padding: 5px;
     color: var(--secondary);
 }
 
@@ -63,8 +71,17 @@
 
 .dialog-body {
     padding: 20px;
-    font-size: 1.5rem;
     color: var(--body-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.warning-icon {
+    padding-right: 25px;
+    padding-left: 25px;
+    height: 40px;
 }
 
 .dialog-actions {

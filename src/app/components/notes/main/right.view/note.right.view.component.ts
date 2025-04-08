@@ -100,7 +100,9 @@ export class NoteRightViewComponent {
                 <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spellCheck ? 'on' : 'off'}<br />
                 <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.owner}
             `,
-            DIALOG_BUTTONS.OK_ONLY
+            DIALOG_BUTTONS.CLOSE_ONLY,
+            false,
+            null
         );
     }
 
