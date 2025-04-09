@@ -108,10 +108,9 @@
   cursor: pointer;
 
   :hover {
-    fill: red;
+    fill: #bd2d2d;
   }
 }
-
 
 *::-webkit-scrollbar-track {
    background: var(--scrollbar-track-color);
