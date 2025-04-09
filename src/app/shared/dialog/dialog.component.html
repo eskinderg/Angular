@@ -1,6 +1,6 @@
 <div class="backdrop" [class.backDropHide]="!showBackDrop" (click)="onBackdropClick()">
     <div class="dialog" (click)="$event.stopPropagation()" tabindex="0">
-        <div class="dialog-header" [class.warning-header]="sign === dialogSigns.WARNING">
+        <div class="dialog-header">
             <div>{{ title }}</div>
             <div class="close-btn" (click)="close(dialogResponse.CANCEL)">✕</div>
         </div>
@@ -8,11 +8,8 @@
         <div class="dialog-body">
             <p [innerHTML]="message"></p>
 
-            @switch (sign) {
-                @case (dialogSigns.WARNING) {
-                    <img src="assets/images/warning-icon.svg" class="warning-icon" alt="warning-icon" />
-                }
-                @default {}
+            @if (sign === dialogSigns.WARNING) {
+                <img src="assets/images/warning-icon.svg" class="warning-icon" alt="warning-icon" />
             }
         </div>
 
