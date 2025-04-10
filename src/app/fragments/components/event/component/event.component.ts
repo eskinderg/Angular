@@ -10,7 +10,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { NgClass } from '@angular/common';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/response.enum';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

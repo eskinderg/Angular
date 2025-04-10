@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/response.enum';
 
 @Component({
     selector: 'app-note-left-view',

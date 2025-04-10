@@ -10,7 +10,7 @@ import { AgoDatePipe } from '../../movies/directives/dateagopipe';
 import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESPONSE } from 'src/app/shared/dialog/result.enum';
+import { DIALOG_RESPONSE } from 'src/app/shared/dialog/response.enum';
 import { DIALOG_SIGNS } from 'src/app/shared/dialog/dialog.sign.enum';
 
 @Component({

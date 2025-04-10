@@ -10,7 +10,7 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { DIALOG_TYPE } from './buttons.enum';
-import { DIALOG_RESPONSE } from './result.enum';
+import { DIALOG_RESPONSE } from './response.enum';
 import { DIALOG_SIGNS } from './dialog.sign.enum';
 
 @Component({

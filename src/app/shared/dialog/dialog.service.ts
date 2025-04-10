@@ -1,7 +1,7 @@
 import { Injectable, ViewContainerRef, EnvironmentInjector } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DIALOG_TYPE } from './buttons.enum';
-import { DIALOG_RESPONSE } from './result.enum';
+import { DIALOG_RESPONSE } from './response.enum';
 import { DIALOG_SIGNS } from './dialog.sign.enum';
 
 @Injectable({ providedIn: 'root' })
