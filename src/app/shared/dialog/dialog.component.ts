@@ -57,13 +57,19 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
         dialogElement?.focus();
     }
 
+    get imgSrc(): string {
+        return DIALOG_SIGNS[this.sign]
+            ? `assets/images/${DIALOG_SIGNS[this.sign]}-icon.svg`.toLowerCase()
+            : null;
+    }
+
     ngOnDestroy() {
         // Clean up listener
         if (this.escListener) this.escListener();
     }
 
-    close(result: DIALOG_RESPONSE | null) {
-        this.closed.emit(result);
+    close(response: DIALOG_RESPONSE | null) {
+        this.closed.emit(response);
     }
 
     onBackdropClick() {

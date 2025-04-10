@@ -8,8 +8,8 @@
         <div class="dialog-body">
             <p [innerHTML]="message"></p>
 
-            @if (sign === dialogSigns.WARNING) {
-                <img src="assets/images/warning-icon.svg" class="warning-icon" alt="warning-icon" />
+            @if (imgSrc) {
+                <img src="{{ imgSrc }}" class="warning-icon" alt="warning-icon" />
             }
         </div>
 
