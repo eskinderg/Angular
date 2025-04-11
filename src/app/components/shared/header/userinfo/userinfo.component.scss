@@ -1,102 +1,62 @@
-:host {
-    margin-left: auto;
-    // float: right;
+li {
+    position: relative;
+    list-style: none;
 }
 
-:host > li > a {
-    margin: 0.25rem;
-}
-
-:host > li a {
+li > a {
     color: #fff;
-}
-
-nav {
-    background-color: var(--primary);
-}
-
-nav > ul {
-    margin: 0;
-    padding: 0.25rem;
-    background-color: transparent;
-}
-
-nav > ul ul a {
-    margin: 0;
-    background-color: var(--body-bg);
-    color: var(--body-color) !important;
-}
-
-li ul li {
-    display: block;
-    white-space: nowrap;
-}
-
-li ul li a {
-    display: block;
-    padding: 11px 20px;
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
     text-decoration: none;
-    color: #ffffff8c;
-    transition: background-color 0.3s;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
 }
 
-li ul li a:hover {
-    background: var(--bg-hover);
+li > a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-ul a {
-    margin: 0;
-    background-color: var(--body-bg);
-    color: var(--body-color) !important;
+/* Arrow for submenu */
+li > a:has(+ ul)::after {
+    content: '▼';
+    font-size: 0.6rem;
+    margin-left: 6px;
+    opacity: 0.7;
 }
 
-li ul li {
-    display: block;
-    white-space: nowrap;
-}
-
-li ul li a {
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #ffffff8c;
-    transition: background-color 0.3s;
-}
-
-li:has(> ul) > a:after {
-    /* select element that has ul in them*/
-    content: '';
-    position: absolute;
-    top: 1.5rem;
-    right: 0.5rem;
-    border-left: 3px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 3px solid var(--b-secondary);
-}
-
-li ul {
+/* Submenu dropdown */
+li > ul {
     display: none;
     position: absolute;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--border);
+    top: 100%;
     right: 0;
+    min-width: 160px;
+    padding: 0.25rem 0;
+    border-radius: 6px;
+    list-style: none;
+    z-index: 1000;
+
+    background-color: #e6efff;
 }
 
-li:hover ul {
-    padding: 0;
+.dark li > ul {
+    background-color: #2e333a;
+}
+
+li:hover > ul {
     display: block;
 }
 
-li a {
+li > ul li a {
     display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #ffffff8c;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 0.5rem 1rem;
+    color: #222;
+    white-space: nowrap;
+    background: none;
 }
 
-li {
-    display: inline-block;
-    position: relative;
+li > ul li a:hover {
+    background-color: rgba(42, 106, 218, 0.15);
 }
