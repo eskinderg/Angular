@@ -11,8 +11,7 @@ import { NgClass, DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_SIGNS } from 'src/app/shared/dialog/dialog.sign.enum';
+import { DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 
 @Component({
     selector: 'app-note-right-view',

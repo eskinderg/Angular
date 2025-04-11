@@ -10,8 +10,7 @@ import { NoteListItemComponent } from './note-list-item/note-list-item.component
 import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DIALOG_TYPE } from 'src/app/shared/dialog/buttons.enum';
-import { DIALOG_RESPONSE } from 'src/app/shared/dialog/response.enum';
+import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 
 @Component({
     selector: 'app-note-left-view',
@@ -62,7 +61,13 @@ export class NoteLeftViewComponent {
 
     onArchiveNote(note: Note) {
         this.dialogService
-            .openDialog('Archive Note', 'Do you want to archive this note?', DIALOG_TYPE.YES_NO, true, null)
+            .openDialog(
+                'Archive Note',
+                'Do you want to archive this note?',
+                DIALOG_TYPE.YES_NO,
+                true,
+                DIALOG_SIGNS.TRASH
+            )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
                     this.notesApiService.archiveNote(note);

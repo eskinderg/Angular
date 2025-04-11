@@ -9,9 +9,7 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy
 } from '@angular/core';
-import { DIALOG_TYPE } from './buttons.enum';
-import { DIALOG_RESPONSE } from './response.enum';
-import { DIALOG_SIGNS } from './dialog.sign.enum';
+import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from './dialog.enum';
 
 @Component({
     selector: 'app-dialog',
