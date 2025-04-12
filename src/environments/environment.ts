@@ -4,7 +4,7 @@ export const environment = {
     production: false,
     EVENTS_API_URL: 'http://192.168.100.5:3000/api/events',
     NOTES_API_URL: 'http://192.168.100.5:3000/api/notes',
-    API_URL: 'http://localhost:3000',
+    API_URL: 'http://192.168.100.5:3000/api',
 
     Auth: {
         authority: 'http://192.168.100.5:8080/realms/master',

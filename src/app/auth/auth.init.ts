@@ -2,24 +2,31 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import { authConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
-import { LoggingService } from '../error/loggingservice';
 import { inject } from '@angular/core';
 
-export function initializeAuth() {
+export function initializeAuth(): () => Promise<void> {
     return async () => {
         const oauthService: OAuthService = inject(OAuthService);
         const store: Store = inject(Store);
-        const loggingService: LoggingService = inject(LoggingService);
         oauthService.configure(authConfig);
-        await oauthService
-            .loadDiscoveryDocumentAndTryLogin()
+        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 3000)
             .then(() => {
                 if (oauthService.hasValidAccessToken()) {
                     store.dispatch(logInSuccess());
                 }
             })
-            .catch((e) => loggingService.error(e));
-
-        return true;
+            .catch((error) => {
+                alert(error);
+                return Promise.reject(error);
+            });
     };
+}
+
+function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
+    return Promise.race([
+        promise,
+        new Promise<T>((_, reject) =>
+            setTimeout(() => reject(new Error('Timeout while loading discovery document')), ms)
+        )
+    ]);
 }

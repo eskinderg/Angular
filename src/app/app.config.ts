@@ -9,7 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideOAuthClient } from 'angular-oauth2-oidc';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
 import { appRoutes } from './app-routing.module';
 import { APP_INIT } from './app.init';
@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
         provideAnimations(),
         provideOAuthClient(),
         provideExperimentalZonelessChangeDetection(),
-        provideHttpClient(withInterceptors(appInterceptors)),
+        provideHttpClient(withInterceptorsFromDi(), withInterceptors(appInterceptors)),
         provideRouter(appRoutes, withComponentInputBinding()),
         importProvidersFrom(appModules),
         provideStore(appReducer, { metaReducers }),
