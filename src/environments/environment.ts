@@ -2,12 +2,12 @@
 export const environment = {
     appVersion: require('../../package.json').version + '-dev',
     production: false,
-    EVENTS_API_URL: 'http://192.168.100.5:3000/api/events',
-    NOTES_API_URL: 'http://192.168.100.5:3000/api/notes',
-    API_URL: 'http://192.168.100.5:3000/api',
+    EVENTS_API_URL: require('../app/app.config.json').server + ':3000/api/events',
+    NOTES_API_URL: require('../app/app.config.json').server + ':3000/api/notes',
+    API_URL: require('../app/app.config.json').server + ':3000/api',
 
     Auth: {
-        authority: 'http://192.168.100.5:8080/realms/master',
+        authority: require('../app/app.config.json').server + ':8080/realms/master',
         requireHttps: false,
         client_id: 'Angular6',
         response_type: 'code',
