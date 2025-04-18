@@ -45,11 +45,14 @@ export class AdminDashboardComponent {
                 [...notes]
                     .filter((note) => (userId ? note.userId === userId : note))
                     // .filter((note) => Object.values(note).join(' ').toLowerCase().includes(searchText))
-                    .filter(
-                        (note) =>
-                            note?.text?.toLowerCase().includes(searchText) ||
-                            note?.header?.toLowerCase().includes(searchText)
-                    )
+                    .filter((note) => {
+                        if (searchText) {
+                            if (note.text) return note.text.toLowerCase().includes(searchText);
+                            if (note.header) return note.header.toLowerCase().includes(searchText);
+                            return false;
+                        }
+                        return true;
+                    })
                     .sort((a, b) => {
                         const getValue = (note: Note) =>
                             field === 'index' ? notes.indexOf(note) : note[field];
