@@ -9,7 +9,7 @@ export function initializeAuth(): () => Promise<void> {
         const oauthService: OAuthService = inject(OAuthService);
         const store: Store = inject(Store);
         oauthService.configure(authConfig);
-        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 3000)
+        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 5000)
             .then(() => {
                 if (oauthService.hasValidAccessToken()) {
                     store.dispatch(logInSuccess());

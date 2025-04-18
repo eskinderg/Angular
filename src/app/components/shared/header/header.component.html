@@ -95,25 +95,20 @@
                     >
                 </li>
             </div>
+            @if (permission.hasPermission('Admin')) {
+                <div class="dashboard">
+                    <li>
+                        <a
+                            [routerLinkActive]="['activeLink']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/dashboard']"
+                            >Dashboard</a
+                        >
+                    </li>
+                </div>
+            }
         }
 
         <app-userinfo class="userInfo" (signout)="onSignout()"></app-userinfo>
     </ul>
 </nav>
-
-<!-- <nav> -->
-<!--     <ul> -->
-<!--         <li><a href="#">Home</a></li> -->
-<!--         <li><a href="#">About</a></li> -->
-<!--         <li><a href="#">Profile</a></li> -->
-<!--         <li> -->
-<!--             <a href="#">Notes</a> -->
-<!--             <ul> -->
-<!--                 <li><a href="#">My Notes</a></li> -->
-<!--                 <li><a href="#">Archives</a></li> -->
-<!--             </ul> -->
-<!--         </li> -->
-<!--         <li><a href="#">Events</a></li> -->
-<!--         <li><a href="#">Movies</a></li> -->
-<!--     </ul> -->
-<!-- </nav> -->

@@ -1,132 +1,133 @@
 :host {
-  display:block;
-  flex: 1 1 auto;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
 }
 
 .card-img-top {
-  --bs-card-inner-border-radius: 0px;
+    --bs-card-inner-border-radius: 0px;
 }
 
 .btn-close-top {
-
-  position: absolute;
-  right: 10px;
+    position: absolute;
+    right: 10px;
 }
 
 .screen-height {
-  height: 80vh;
+    height: 80vh;
 }
 
 .list-group-item > a {
-  text-decoration:none;
+    text-decoration: none;
 }
 
 .date-modified {
-  font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 * {
-  color: var(--bs-secondary);
+    color: var(--bs-secondary);
 }
 
 .wrapper {
-// border: 6px solid red;
-  position: relative;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  margin: auto;
-  padding-left: 5px;
-  padding: 1rem;
+    // border: 6px solid red;
+    position: relative;
+    // overflow-y: auto;
+    // overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    padding-left: 5px;
+    padding: 1rem;
+    flex: 1 1 auto;
 }
 
 .notes {
-  position: absolute;
+    position: absolute;
 }
 
 .no-content {
-  width: fit-content;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: fit-content;
-  color: var(--bs-secondary);
+    width: fit-content;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: fit-content;
+    color: var(--bs-secondary);
 }
 
 .heading {
-  // align-self: center;
-  margin: 1rem;
-  color: var(--bs-secondary);
+    // align-self: center;
+    margin: 1rem;
+    color: var(--bs-secondary);
 }
 
 .note-border {
-  border: 1px solid var(--border);
-  margin: 0.5rem;
-  padding: 0.5rem;
-  width:30rem;
-  display:flex;
-  gap: 1rem;
-  align-items: center;
-  border-radius: 0.5rem;
-  cursor: default;
+    border: 1px solid var(--border);
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 30rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    cursor: default;
 }
 
 .numbering {
-  margin-right: auto;
-  margin-left: 0.75rem;
-  font-size: 1.5rem;
-  font-weight: bolder;
-  align-self: center;
+    margin-right: auto;
+    margin-left: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    align-self: center;
 }
 
 .left {
-  display: flex;
-  gap: 1.5rem;
-  margin-right: auto;
+    display: flex;
+    gap: 1.5rem;
+    margin-right: auto;
 }
 
 .restore-icon {
-  width: 2rem;
-  fill: var(--scrollbar-thumb-color);
-  cursor: pointer;
+    width: 2rem;
+    fill: var(--scrollbar-thumb-color);
+    cursor: pointer;
 
-  :hover {
-    fill: #5aba5a;
-  }
+    :hover {
+        fill: #5aba5a;
+    }
 }
 
 .delete-icon {
-  width: 2rem;
-  height: 2rem;
-  fill: var(--scrollbar-thumb-color);
-  cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    fill: var(--scrollbar-thumb-color);
+    cursor: pointer;
 
-  :hover {
-    fill: #bd2d2d;
-  }
+    :hover {
+        fill: #bd2d2d;
+    }
 }
 
 *::-webkit-scrollbar-track {
-   background: var(--scrollbar-track-color);
+    background: var(--scrollbar-track-color);
 }
 
 *::-webkit-scrollbar {
-  width: 0.65rem;
+    width: 0.65rem;
 }
 
 *::-webkit-scrollbar-button {
-  position: absolute;
-  display:none;
+    position: absolute;
+    display: none;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-color);
-  border-radius: 0.5rem;
+    background: var(--scrollbar-thumb-color);
+    border-radius: 0.5rem;
 }
-

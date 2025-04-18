@@ -1,5 +1,9 @@
 <div class="w">
     @for (c of Colours; track c) {
-        <div class="c" [ngClass]="c.name + '-note'" (click)="onClick(c)"></div>
+        <div
+            class="c"
+            [ngClass]="c.name + '-note'"
+            (click)="onClick($event, c)"
+            [class.active]="note?.colour === c.name"></div>
     }
 </div>

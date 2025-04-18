@@ -8,6 +8,7 @@ import * as fromProfile from '../../../store/reducers/preference.reducer';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass, AsyncPipe } from '@angular/common';
 import { UserInfoComponent } from './userinfo/userinfo.component';
+import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 export declare interface IsActiveMatchOptions {
     fragment: 'exact' | 'ignored';
@@ -43,6 +44,7 @@ export class HeaderComponent {
         private eventStore: Store<fromEvents.IEventsState>,
         private noteStore: Store<fromNotes.INotesState>,
         private preferenceState: Store<fromProfile.IPreferenceState>,
+        public permission: AuthPermission,
         private router: Router
     ) {}
 

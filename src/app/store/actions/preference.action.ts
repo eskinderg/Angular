@@ -17,6 +17,12 @@ export const getDarkModeSuccess = createAction(
 
 export const logInSuccess = createAction('[PREFERENCE] LOG_IN_SUCCESS');
 
+export const logOutSuccess = createAction('[PREFERENCE] LOG_OUT_SUCCESS');
+
+export const startLoading = createAction('[PREFERENCE] START_LOADING');
+
+export const stopLoading = createAction('[PREFERENCE] STOP_LOADING');
+
 export const logIn = createAction('[PREFERENCE] LOG_IN');
 
 export const getIsLoggedIn = createAction('[PREFERENCE] GET_IS_LOGGED_IN');

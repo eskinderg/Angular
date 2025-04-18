@@ -24,4 +24,12 @@ export class AppLoadingComponent {
     public get loading() {
         return this._loading;
     }
+
+    // public get loading(): Observable<boolean> {
+    //     return combineLatest([of(this._loading), this.store.select(fromPreference.isLoading)]).pipe(
+    //         map(([loading, preferenceLoading]) => {
+    //             return loading || preferenceLoading;
+    //         })
+    //     );
+    // }
 }

@@ -8,6 +8,7 @@ export class Note {
     width: number;
     height: number;
     id: string;
+    userId: string;
     dirty: boolean;
     dateCreated: Date;
     dateModified: Date;

@@ -36,6 +36,7 @@ export class UserInfoComponent {
     }
 
     logOut() {
+        this.store.dispatch(ProfileActions.logOutSuccess());
         this.oauthService.logOut();
         // this.store.dispatch(new AuthActions.Logout());
     }

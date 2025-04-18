@@ -11,9 +11,10 @@ import {
     viewChild,
     SimpleChanges,
     OnChanges,
-    HostListener
+    HostListener,
+    Renderer2
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
@@ -33,9 +34,11 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     styleUrls: ['textAreaExpanded.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
+export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
     @Input() note: Note;
     @Input() facadeNote: Note;
+    onChange: any = () => {};
+    onTouched: any = () => {};
     subscription: Subscription | undefined;
 
     textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
@@ -46,8 +49,29 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
 
     constructor(
         public htmlSafe: DomSanitizer,
-        private txtSelection: TextSelection
+        private txtSelection: TextSelection,
+        private renderer: Renderer2
     ) {}
+
+    writeValue(_value: string): void {
+        const div = this.textAreaElementRef().nativeElement;
+        this.renderer.setProperty(div, 'innerHTML', _value);
+    }
+
+    registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        // alert('registerOnTouched')
+        this.onTouched = fn;
+    }
+
+    setDisabledState(isDisabled: boolean): void {
+        const div = this.textAreaElementRef().nativeElement;
+        const action = isDisabled ? 'addClass' : 'removeClass';
+        this.renderer[action](div, 'disabled');
+    }
 
     ngOnInit() {
         this.subscription = fromEvent(this.textAreaElementRef().nativeElement, 'input')
@@ -60,6 +84,7 @@ export class TextareaExpandedComponent implements OnDestroy, OnInit, OnChanges {
                         ...this.facadeNote,
                         text: this.textAreaElementRef().nativeElement.innerHTML
                     } as Note);
+                    this.onChange(this.textAreaElementRef().nativeElement.innerHTML);
                 })
             )
             .subscribe();

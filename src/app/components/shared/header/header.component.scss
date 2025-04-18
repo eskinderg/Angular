@@ -22,7 +22,8 @@
     flex-wrap: wrap;
     margin: 0;
     padding: 0;
-    gap: 1rem;
+    gap: 0.5rem;
+    justify-content: space-between;
 }
 
 .menu li {
@@ -101,12 +102,18 @@
 .menuLoggedIn {
     display: flex;
     align-items: center;
+    margin-right: auto;
     gap: 1rem;
+}
+
+.dashboard {
+    margin-left: auto;
+    display: flex;
 }
 
 /* Right aligned user info */
 .userInfo {
-    margin-left: auto;
+    // margin-left: auto;
     display: flex;
     align-items: center;
 }

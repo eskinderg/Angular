@@ -34,5 +34,10 @@ export const appRoutes: Routes = [
     {
         path: 'events',
         loadChildren: () => import('./components/events/events-routing.module').then((r) => r.eventsRoutes)
+    },
+    {
+        path: 'dashboard',
+        loadChildren: () =>
+            import('./admin/components/notes/admin.notes.routing.module').then((r) => r.adminNotesRoutes)
     }
 ];

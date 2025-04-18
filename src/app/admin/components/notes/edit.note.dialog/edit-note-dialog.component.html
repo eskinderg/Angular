@@ -1,0 +1,76 @@
+<div class="dialog-backdrop">
+    <div class="dialog-box">
+        <div class="close-icon" (click)="onClose()">×</div>
+        <!-- <h2>Edit Note</h2> -->
+        <form class="editForm" [formGroup]="form" [spellcheck]="false" (ngSubmit)="onSave()">
+            <div class="layout">
+                <div class="left">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input formControlName="header" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Note</label>
+                        <app-textarea-expanded [note]="note" [facadeNote]="note" formControlName="text">
+                        </app-textarea-expanded>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="form-group">
+                        <label>Owner</label>
+                        <!-- <input formControlName="owner" type="text" /> -->
+                        <!-- {{ (Owners | async) | json}} -->
+                        <select #selectUser formControlName="owner" (change)="updateValues()">
+                            @for ((user of Owners | async); track $index) {
+                                <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
+                            }
+                        </select>
+                        <select [hidden]="true" #selectUserId formControlName="userId">
+                            @for ((user of Owners | async); track $index) {
+                                <option [value]="user[1]">{{ user[1] }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group colour">
+                        <label>Colour</label>
+                        <app-note-colour-selector
+                            [note]="note"
+                            formControlName="colour"></app-note-colour-selector>
+                    </div>
+                    <div class="form-group checkbox">
+                        <label class="check-label"
+                            ><input type="checkbox" formControlName="active" /> Active</label
+                        >
+                        <label class="check-label"
+                            ><input type="checkbox" formControlName="archived" /> Archived</label
+                        >
+                        <label class="check-label"
+                            ><input type="checkbox" formControlName="pinned" /> Pinned</label
+                        >
+                        <label class="check-label"
+                            ><input type="checkbox" formControlName="spellCheck" /> Spell Check</label
+                        >
+                    </div>
+                    <div class="form-group readonly">
+                        <label>Last Modified</label>
+                        <input [value]="formatDate(note.dateModified)" readonly />
+                    </div>
+                    <div class="form-group readonly">
+                        <label>Date Archived</label>
+                        <input [value]="formatDate(note.dateArchived)" readonly />
+                    </div>
+                    <div class="form-group readonly">
+                        <label>Created</label>
+                        <input [value]="formatDate(note.dateCreated)" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-actions">
+                <button type="submit" [disabled]="form.invalid">Save</button>
+                <button type="button" (click)="onClose()">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- <app-confirm-dialog #confirmDialot></app-confirm-dialog> -->

@@ -1,0 +1,110 @@
+<div class="header">
+    <!-- <h2>Notes: {{ TotalNotesCount | async }}</h2> -->
+
+    <div class="form-group">
+        <!-- <label>Owner</label> -->
+        <!-- <input formControlName="owner" type="text" /> -->
+        <!-- {{ (Owners | async) | json}} -->
+        <select #selectUser (change)="updateSelectOption()">
+            <option [value]="">All ({{ TotalNotesCount | async }})</option>
+            @for ((user of Owners | async); track $index) {
+                <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
+            }
+        </select>
+        <select [hidden]="true" #selectUserId>
+            <option [value]="">All</option>
+            @for ((user of Owners | async); track $index) {
+                <option [value]="user[1]">{{ user[1] }}</option>
+            }
+        </select>
+    </div>
+    <div class="search-wrapper">
+        <input type="text" placeholder="Search" [value]="searchTerm$.value" (input)="onSearchInput($event)" />
+        <button *ngIf="searchTerm$.value" class="clear-btn" (click)="clearSearch()">×</button>
+    </div>
+</div>
+<table>
+    <tr>
+        <th></th>
+        <th
+            [class.sorted-asc]="sortField === 'header' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'header' && sortDirection === 'desc'"
+            (click)="sortBy('header')">
+            Header
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'owner' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'owner' && sortDirection === 'desc'"
+            (click)="sortBy('owner')">
+            Owner
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'active' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'active' && sortDirection === 'desc'"
+            (click)="sortBy('active')">
+            Active
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'archived' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'archived' && sortDirection === 'desc'"
+            (click)="sortBy('archived')">
+            Archived
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'pinned' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'pinned' && sortDirection === 'desc'"
+            (click)="sortBy('pinned')">
+            Pinned
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'dateArchived' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'dateArchived' && sortDirection === 'desc'"
+            (click)="sortBy('dateArchived')">
+            Date Archived
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'spellCheck' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'spellCheck' && sortDirection === 'desc'"
+            (click)="sortBy('spellCheck')">
+            Spell Check
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'colour' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'colour' && sortDirection === 'desc'"
+            (click)="sortBy('colour')">
+            Colour
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'dateCreated' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'dateCreated' && sortDirection === 'desc'"
+            (click)="sortBy('dateCreated')">
+            Created
+        </th>
+        <th
+            [class.sorted-asc]="sortField === 'dateModified' && sortDirection === 'asc'"
+            [class.sorted-desc]="sortField === 'dateModified' && sortDirection === 'desc'"
+            (click)="sortBy('dateModified')">
+            Last Modified
+        </th>
+    </tr>
+    @for (note of filteredNotes$ | async; track $index) {
+        <tr (click)="onClick(note)" class="row" [class.inactive]="!note.active">
+            <td>{{ $index + 1 }}</td>
+            <td>{{ note.header }}</td>
+            <td>{{ note.owner }}</td>
+            <td>{{ note.active }}</td>
+            <td>{{ note.archived }}</td>
+            <td>{{ note.pinned }}</td>
+            <td>{{ note.dateArchived | date: 'medium' }}</td>
+            <td>{{ note.spellCheck }}</td>
+            <td>{{ note.colour }}</td>
+            <td>{{ note.dateCreated | date: 'medium' }}</td>
+            <td>{{ note.dateModified | date: 'medium' }}</td>
+        </tr>
+    }
+</table>
+
+@if (SelectedNote | async) {
+    <app-edit-note-dialog [note]="SelectedNote | async" (closed)="onClose()" (saved)="onSaved($event)">
+    </app-edit-note-dialog>
+}

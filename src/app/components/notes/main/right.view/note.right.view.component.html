@@ -44,6 +44,7 @@
             </div>
 
             <app-note-colour-selector
+                [note]="facadeNote"
                 #noteColourSelector
                 (noteColourUpdate)="handleNoteColourUpdate($event)"
                 class="menu-icon"></app-note-colour-selector>

@@ -33,7 +33,9 @@ export class NotesComponent implements OnDestroy, OnInit {
         private dialogService: DialogService,
         private noteStore: Store<fromNotes.INotesState>,
         public route: Router
-    ) {}
+    ) {
+        document.getElementsByClassName('content')[0].className += ' hide-scroll-bar';
+    }
 
     ngOnInit(): void {
         this.subscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
@@ -137,6 +139,7 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy(): void {
+        document.getElementsByClassName('content')[0].classList.remove('hide-scroll-bar');
         if (this.subscription != null) this.subscription.unsubscribe();
     }
 }
