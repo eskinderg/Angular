@@ -12,6 +12,7 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
+import { authConfig } from 'src/app/auth/auth.config';
 
 @Component({
     selector: 'app-login',
@@ -85,14 +86,16 @@ export class LoginComponent implements OnInit {
     }
 
     loginWithPassword() {
-        // this.oauthService.initLoginFlow();
         if (this.loginForm.valid) {
-            this.store.dispatch(
-                AuthActions.loginEvent({
-                    username: this.loginForm.get('username').value,
-                    password: this.loginForm.get('password').value
-                })
-            );
+            this.oauthService.configure({ ...authConfig, oidc: false, responseType: 'id_token token' });
+            this.oauthService.loadDiscoveryDocument().then(() => {
+                this.store.dispatch(
+                    AuthActions.loginEvent({
+                        username: this.loginForm.get('username').value,
+                        password: this.loginForm.get('password').value
+                    })
+                );
+            });
         }
     }
 

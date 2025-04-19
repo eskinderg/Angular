@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
-import * as NotesActions from '../actions/note.actions';
+import * as PreferenceActions from '../actions/preference.action';
 
 @Injectable()
 export class AuthEffect {
@@ -35,8 +35,7 @@ export class AuthEffect {
                         .loadUserProfile()
                         .then((profile) => {
                             store.dispatch(AuthActions.loadProfileSuccess({ profile: profile }));
-                            store.dispatch(EventActions.fetchEvents());
-                            store.dispatch(NotesActions.fetchNotes());
+                            store.dispatch(PreferenceActions.logInSuccess());
                             store.dispatch(AuthActions.routeToHome());
                         })
                         .catch((err) => store.dispatch(AuthActions.loadProfileFail({ payload: err })))

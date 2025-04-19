@@ -176,6 +176,9 @@ export const notesReducer = createReducer<INotesState>(
             notes: state.notes.map((note) =>
                 note.id === action.payload.id || note.id === undefined ? action.payload : note
             ),
+            opendNote: action.payload,
+            selectedNote: action.payload,
+            facadeNote: action.payload,
             animate: {
                 note: false,
                 date: false

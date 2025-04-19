@@ -35,10 +35,16 @@ export class UserInfoComponent {
         this.oauthService.initLoginFlow();
     }
 
-    logOut() {
-        this.store.dispatch(ProfileActions.logOutSuccess());
-        this.oauthService.logOut();
-        // this.store.dispatch(new AuthActions.Logout());
+    async logOut() {
+        await this.oauthService
+            .revokeTokenAndLogout()
+            .then(() => {
+                this.store.dispatch(ProfileActions.logOutSuccess());
+            })
+            .catch((error) => {
+                alert('Error occured in the logout process');
+                return Promise.reject(error);
+            });
     }
 
     get isLoggedIn() {
