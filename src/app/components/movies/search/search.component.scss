@@ -7,9 +7,15 @@
 //   margin:0px;
 //   padding:0px;
 // }
-.movie-cards-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-direction: row;
+.movie-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
 }

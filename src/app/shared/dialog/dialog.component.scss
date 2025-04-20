@@ -51,9 +51,9 @@
     background: #c86161;
 }
 
-// .btn-yes:hover {
-//     filter: brightness(80%);
-// }
+.btn-yes:hover {
+    background: #d07373;
+}
 
 .close-btn {
     cursor: pointer;
@@ -66,7 +66,7 @@
 }
 
 .close-btn:hover {
-    color: var(--body-color);
+    color: var(--btn-bg-hover-color);
 }
 
 .dialog-body {
@@ -107,7 +107,7 @@
 
 .dialog-actions button:hover {
     // color: var(--body-color);
-    filter: brightness(80%);
+    // filter: brightness(80%);
 }
 
 @keyframes fadeIn {

@@ -9,20 +9,52 @@
 }
 
 .dialog-box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    outline: none;
     background: var(--body-bg);
-    padding: 2rem;
+    // padding: 2rem;
     border-radius: 10px;
     width: 80%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
+    max-height: 70vh;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.2s ease-in-out;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    font-family: system-ui, sans-serif;
+    overflow-y: auto;
+    top: -50px;
+
+    // background: var(--body-bg);
+    // padding: 2rem;
+    // border-radius: 10px;
+    // width: 80%;
+    // max-height: 90vh;
+    // overflow-y: auto;
+    // position: relative;
+    // animation: fadeIn 0.2s ease-in-out;
+    // box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    // font-family: system-ui, sans-serif;
+}
+
+.dialog-header {
+    // background-color: #f5f5f5;
+    background: var(--card-cap-bg);
+    padding: 5px 9px 5px 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    // border-bottom: 1px solid var(--primary);
+}
+
+.dialog-form {
+    padding: 1rem 2rem;
 }
 
 app-textarea-expanded {
-    border: 1px solid var(--active-list-link-border-color);
+    padding-top: 1rem;
+    flex: 1;
+    border: 1px solid var(--border);
 }
 
 .layout {
@@ -51,17 +83,16 @@ h2 {
     font-size: 1.6rem;
 }
 
-.close-icon {
-    position: absolute;
-    color: var(--body-color);
-    font-size: 2.5rem;
-    top: 0rem;
-    right: 0.5rem;
-    background: none;
-    border: none;
+.close-btn {
     cursor: pointer;
+    font-size: 26px;
+    transition: color 0.2s;
     padding: 5px;
-    line-height: 1;
+    color: var(--secondary);
+}
+
+.close-btn:hover {
+    color: var(--btn-bg-hover-color);
 }
 
 form {
@@ -78,10 +109,6 @@ form {
 .form-group label {
     font-weight: bold;
     margin-bottom: 0.4rem;
-}
-
-app-textarea-expanded {
-    min-height: 500px;
 }
 
 input[type='text'],
@@ -111,15 +138,25 @@ input[type='checkbox'] {
 .check-label {
     display: flex;
     align-items: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
 }
 
 input[readonly] {
-    background-color: var(--b-secondary);
+    border: 1px solid var(--border) !important;
+    background-color: var(--bg-hover);
+}
+
+input:focus {
+    outline: none;
 }
 
 button {
-    color: var(--btn-color);
-    background: var(--primary);
+    // color: var(--primary);
+    // color: var(--btn-color);
+    // background: var(--btn-bg-color);
+    height: 4rem;
+    width: 9rem;
 }
 
 .checkbox {
@@ -129,7 +166,7 @@ button {
 }
 
 .dialog-actions {
-    margin-top: 1rem;
+    // margin-top: 1rem;
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
@@ -142,6 +179,27 @@ button {
     border-radius: 6px;
     cursor: pointer;
     transition: background 0.2s;
+}
+
+.split {
+    display: flex;
+    gap: 2rem;
+    // flex-direction: row;
+    // width: 100%;
+}
+
+.split > div {
+    width: 50%;
+}
+
+.read {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+select {
+    padding: 0.8rem;
 }
 
 // .dialog-actions button:first-child {

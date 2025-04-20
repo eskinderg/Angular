@@ -9,10 +9,6 @@
     top: 0;
 }
 
-.movie-container {
-    // margin-top: 0.5rem;
-}
-
 .mov {
     display: flex;
     column-gap: 0.5rem;
@@ -20,10 +16,11 @@
 
 .leftView {
     display: flex;
-    flex: 0 0 25%;
+    flex: 0 0 12%;
 }
 
 .rightView {
     width: 100%;
     position:relative;
+    padding: 1rem;
 }

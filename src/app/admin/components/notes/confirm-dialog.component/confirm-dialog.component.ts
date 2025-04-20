@@ -8,10 +8,17 @@ import { CommonModule } from '@angular/common';
     template: `
         <div class="dialog-backdrop" (click)="onBackdropClick()">
             <div class="dialog-box" (click)="$event.stopPropagation()">
-                <p>{{ message }}</p>
+                <div class="dialog-header">
+                    <div>Confirm</div>
+                    <div class="close-btn" (click)="respond(false)">✕</div>
+                </div>
+
+                <div class="dialog-body">
+                    <p>{{ message }}</p>
+                </div>
                 <div class="dialog-actions">
                     <button (click)="respond(false)">No</button>
-                    <button (click)="respond(true)">Yes</button>
+                    <button class="btn-yes" (click)="respond(true)">Yes</button>
                 </div>
             </div>
         </div>
