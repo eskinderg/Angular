@@ -39,7 +39,7 @@ export class AdminDashboardComponent {
     ]).pipe(
         map(([notes, term, field, direction, userId]) => {
             const searchText = term.toLowerCase();
-            console.log(userId);
+            // console.log(userId);
 
             return (
                 [...notes]

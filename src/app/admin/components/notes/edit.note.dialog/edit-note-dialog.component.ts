@@ -9,7 +9,7 @@ import {
     viewChild,
     ElementRef
 } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Note } from 'src/app/models/note';
 import { DialogService } from '../dialog.service';
@@ -58,7 +58,7 @@ export class EditNoteDialogComponent implements OnInit {
         const userId = this.selectUserIdElementRef().nativeElement;
         const selectedIndex = user.selectedIndex;
 
-        console.log(selectedIndex);
+        // console.log(selectedIndex);
 
         this.form.get('userId').setValue(userId.options[selectedIndex].value);
     }
@@ -69,7 +69,8 @@ export class EditNoteDialogComponent implements OnInit {
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            header: [this.note.header, Validators.required],
+            // header: [this.note.header, Validators.required],
+            header: [this.note.header],
             owner: [this.note.owner],
             userId: [this.note.userId],
             text: [this.note.text],
