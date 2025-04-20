@@ -5,7 +5,10 @@
         <!-- <label>Owner</label> -->
         <!-- <input formControlName="owner" type="text" /> -->
         <!-- {{ (Owners | async) | json}} -->
-        <select #selectUser (change)="updateSelectOption()">
+        <select
+            #selectUser
+            (change)="updateSelectOption()"
+            [class.active]="selectUserElementRef().nativeElement.selectedIndex">
             <option [value]="">All ({{ TotalNotesCount | async }})</option>
             @for ((user of Owners | async); track $index) {
                 <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
@@ -19,7 +22,12 @@
         </select>
     </div>
     <div class="search-wrapper">
-        <input type="text" placeholder="Search" [value]="searchTerm$.value" (input)="onSearchInput($event)" />
+        <input
+            type="text"
+            placeholder="Search"
+            [class.active]="searchTerm$.value.length"
+            [value]="searchTerm$.value"
+            (input)="onSearchInput($event)" />
         <button *ngIf="searchTerm$.value" class="clear-btn" (click)="clearSearch()">×</button>
     </div>
 </div>
