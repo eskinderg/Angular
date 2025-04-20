@@ -39,20 +39,12 @@ export class AdminDashboardComponent {
     ]).pipe(
         map(([notes, term, field, direction, userId]) => {
             const searchText = term.toLowerCase();
-            // console.log(userId);
 
             return (
                 [...notes]
                     .filter((note) => (userId ? note.userId === userId : note))
                     // .filter((note) => Object.values(note).join(' ').toLowerCase().includes(searchText))
-                    .filter((note) => {
-                        if (searchText) {
-                            if (note.text) return note.text.toLowerCase().includes(searchText);
-                            if (note.header) return note.header.toLowerCase().includes(searchText);
-                            return false;
-                        }
-                        return true;
-                    })
+                    .filter((note) => [note.header, note.text].join(' ').toLowerCase().includes(searchText))
                     .sort((a, b) => {
                         const getValue = (note: Note) =>
                             field === 'index' ? notes.indexOf(note) : note[field];
@@ -117,6 +109,12 @@ export class AdminDashboardComponent {
 
     clearSearch() {
         this.searchTerm$.next('');
+    }
+
+    clearFilter() {
+        this.clearSearch();
+        this.selectUserElementRef().nativeElement.value = '0';
+        this.selectedUserId$.next('');
     }
 
     sortBy(field: keyof Note | 'index') {

@@ -9,13 +9,13 @@
             #selectUser
             (change)="updateSelectOption()"
             [class.active]="selectUserElementRef().nativeElement.selectedIndex">
-            <option [value]="">All ({{ TotalNotesCount | async }})</option>
+            <option [value]="'0'">All ({{ TotalNotesCount | async }})</option>
             @for ((user of Owners | async); track $index) {
                 <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
             }
         </select>
         <select [hidden]="true" #selectUserId>
-            <option [value]="">All</option>
+            <option [value]="'0'">All</option>
             @for ((user of Owners | async); track $index) {
                 <option [value]="user[1]">{{ user[1] }}</option>
             }
@@ -30,6 +30,9 @@
             (input)="onSearchInput($event)" />
         <button *ngIf="searchTerm$.value" class="clear-btn" (click)="clearSearch()">×</button>
     </div>
+    @if (searchTerm$.value || selectedUserId$.value) {
+        <span class="clear-filter" (click)="clearFilter()">x</span>
+    }
 </div>
 <table>
     <tr>
