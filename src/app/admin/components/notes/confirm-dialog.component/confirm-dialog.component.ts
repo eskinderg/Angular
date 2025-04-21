@@ -5,24 +5,7 @@ import { CommonModule } from '@angular/common';
     selector: 'app-confirm-dialog',
     standalone: true,
     imports: [CommonModule],
-    template: `
-        <div class="dialog-backdrop" (click)="onBackdropClick()">
-            <div class="dialog-box" (click)="$event.stopPropagation()">
-                <div class="dialog-header">
-                    <div>Confirm</div>
-                    <div class="close-btn" (click)="respond(false)">✕</div>
-                </div>
-
-                <div class="dialog-body">
-                    <p>{{ message }}</p>
-                </div>
-                <div class="dialog-actions">
-                    <button (click)="respond(false)">No</button>
-                    <button class="btn-yes" (click)="respond(true)">Yes</button>
-                </div>
-            </div>
-        </div>
-    `,
+    templateUrl: './confirm-dialog.component.html',
     styleUrls: ['./confirm-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

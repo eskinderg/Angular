@@ -3,11 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as PreferenceActions from '../actions/preference.action';
-import * as AdminActions from '../../admin/store/actions/admin.auth.action';
 import * as NoteActions from '../actions/note.actions';
 import * as EventActions from '../actions/event.action';
 import { ThemeService } from '../../theme/theme.service';
-import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 @Injectable()
 export class PreferenceEffect {
@@ -53,21 +51,10 @@ export class PreferenceEffect {
         )
     );
 
-    logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
+    logInSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-            switchMap(() => {
-                if (permission.hasPermission('Admin')) {
-                    return of(
-                        NoteActions.fetchNotes(),
-                        EventActions.fetchEvents(),
-                        AdminActions.adminFetchUsers(),
-                        AdminActions.adminFetchNotes()
-                    );
-                } else {
-                    return of(NoteActions.fetchNotes(), EventActions.fetchEvents());
-                }
-            })
+            switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
         )
     );
 }

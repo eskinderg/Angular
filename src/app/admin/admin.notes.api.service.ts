@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
 import { Note } from '..//models/note';
 import * as AdminActions from '../admin/store/actions/admin.auth.action';
-import * as fromAdminNotes from './store/reducers/admin.notes.reducer';
+import * as fromAdminNotes from './store/reducers/admin.reducer';
 import * as fromRoot from '../store/reducers';
 
 @Injectable()

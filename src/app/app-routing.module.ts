@@ -1,7 +1,15 @@
 import { Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {
+        path: 'dashboard',
+        loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
+    },
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+    },
     { path: 'Angular', redirectTo: 'home', pathMatch: 'full' },
     {
         path: 'home',

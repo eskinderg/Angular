@@ -39,6 +39,19 @@ export class AdminEffect {
             )
     );
 
+    adminFetchUsersSuccess = createEffect(
+        (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
+            actions$.pipe(
+                ofType(AdminActions.adminFetchUsersSuccess),
+                switchMap(() =>
+                    adminNotesDataService.getNotes().pipe(
+                        map((notes) => AdminActions.adminFetchNotesSuccess({ payload: notes })),
+                        catchError((err) => of(AdminActions.adminFetchNotesFailed({ payload: err.message })))
+                    )
+                )
+            )
+    );
+
     adminUpdateNote = createEffect(
         (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
             actions$.pipe(

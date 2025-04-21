@@ -8,7 +8,6 @@ import { profileReducer, IPreferenceState } from './preference.reducer';
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { IAppRouterState } from './route.reducer';
 import { INotificationState, notificationReducer } from './notification.reducer';
-import { adminReducer, IAdminNotesState } from 'src/app/admin/store/reducers/admin.notes.reducer';
 
 export interface IAppState {
     notes: INotesState;
@@ -16,7 +15,6 @@ export interface IAppState {
     profile: IAuthState;
     preference: IPreferenceState;
     notifications: INotificationState;
-    admin: IAdminNotesState;
     router: RouterReducerState<IAppRouterState>;
 }
 
@@ -26,7 +24,6 @@ export const appReducer: ActionReducerMap<IAppState> = {
     profile: authReducer,
     preference: profileReducer,
     notifications: notificationReducer,
-    admin: adminReducer,
     router: routerReducer
 };
 

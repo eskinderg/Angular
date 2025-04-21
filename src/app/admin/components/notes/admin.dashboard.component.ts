@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, viewChild, ElementRef } from '@angular/core';
 import { Note } from '../../../models/note';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { NoteApiService } from 'src/app/components/notes/services/notes.api.service';
-import { AdminNoteApiService } from '../../admin.notes.api.service';
+import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 import { EditNoteDialogComponent } from './edit.note.dialog/edit-note-dialog.component';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,7 +13,7 @@ import { FormsModule } from '@angular/forms';
     styleUrls: ['admin.dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [AsyncPipe, CommonModule, EditNoteDialogComponent, FormsModule],
-    providers: [AdminNoteApiService, NoteApiService]
+    providers: [AdminNoteApiService]
 })
 export class AdminDashboardComponent {
     allNotes$ = this.adminNoteApiService.Notes;

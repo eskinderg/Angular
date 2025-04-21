@@ -18,7 +18,6 @@ import { metaReducers } from './store/reducers';
 import { appEffects } from './store/effects';
 import { appModules } from './app.modules';
 import { appInterceptors } from './interceptors';
-import { AdminEffect } from './admin/store/effects/admin.effect';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -29,7 +28,7 @@ export const appConfig: ApplicationConfig = {
         provideRouter(appRoutes, withComponentInputBinding()),
         importProvidersFrom(appModules),
         provideStore(appReducer, { metaReducers }),
-        provideEffects(...appEffects, AdminEffect),
+        provideEffects(...appEffects),
         provideStoreDevtools(),
         APP_INIT
     ]
