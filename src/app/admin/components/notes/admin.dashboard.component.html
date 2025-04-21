@@ -7,7 +7,7 @@
         <!-- {{ (Owners | async) | json}} -->
         <select
             #selectUser
-            (change)="updateSelectOption()"
+            (change)="updateSelectedUser()"
             [class.active]="selectUserElementRef().nativeElement.selectedIndex">
             <option [value]="'0'">All ({{ TotalNotesCount | async }})</option>
             @for ((user of Owners | async); track $index) {
@@ -38,63 +38,69 @@
     <tr>
         <th></th>
         <th
-            [class.sorted-asc]="sortField === 'header' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'header' && sortDirection === 'desc'"
-            (click)="sortBy('header')">
+            [class.sorted-asc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('header')">
             Header
         </th>
         <th
-            [class.sorted-asc]="sortField === 'owner' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'owner' && sortDirection === 'desc'"
-            (click)="sortBy('owner')">
+            [class.sorted-asc]="(sortField$ | async) === 'owner' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'owner' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('owner')">
             Owner
         </th>
         <th
-            [class.sorted-asc]="sortField === 'active' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'active' && sortDirection === 'desc'"
-            (click)="sortBy('active')">
+            [class.sorted-asc]="(sortField$ | async) === 'active' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'active' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('active')">
             Active
         </th>
         <th
-            [class.sorted-asc]="sortField === 'archived' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'archived' && sortDirection === 'desc'"
-            (click)="sortBy('archived')">
+            [class.sorted-asc]="(sortField$ | async) === 'archived' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'archived' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('archived')">
             Archived
         </th>
         <th
-            [class.sorted-asc]="sortField === 'pinned' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'pinned' && sortDirection === 'desc'"
-            (click)="sortBy('pinned')">
+            [class.sorted-asc]="(sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('pinned')">
             Pinned
         </th>
         <th
-            [class.sorted-asc]="sortField === 'dateArchived' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'dateArchived' && sortDirection === 'desc'"
-            (click)="sortBy('dateArchived')">
+            [class.sorted-asc]="(sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="
+                (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'desc'
+            "
+            (click)="updateSort('dateArchived')">
             Date Archived
         </th>
         <th
-            [class.sorted-asc]="sortField === 'spellCheck' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'spellCheck' && sortDirection === 'desc'"
-            (click)="sortBy('spellCheck')">
+            [class.sorted-asc]="(sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('spellCheck')">
             Spell Check
         </th>
         <th
-            [class.sorted-asc]="sortField === 'colour' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'colour' && sortDirection === 'desc'"
-            (click)="sortBy('colour')">
+            [class.sorted-asc]="(sortField$ | async) === 'colour' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="(sortField$ | async) === 'colour' && (sortDirection$ | async) === 'desc'"
+            (click)="updateSort('colour')">
             Colour
         </th>
         <th
-            [class.sorted-asc]="sortField === 'dateCreated' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'dateCreated' && sortDirection === 'desc'"
-            (click)="sortBy('dateCreated')">
+            [class.sorted-asc]="(sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="
+                (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'desc'
+            "
+            (click)="updateSort('dateCreated')">
             Created
         </th>
         <th
-            [class.sorted-asc]="sortField === 'dateModified' && sortDirection === 'asc'"
-            [class.sorted-desc]="sortField === 'dateModified' && sortDirection === 'desc'"
-            (click)="sortBy('dateModified')">
+            [class.sorted-asc]="(sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'asc'"
+            [class.sorted-desc]="
+                (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'desc'
+            "
+            (click)="updateSort('dateModified')">
             Last Modified
         </th>
     </tr>
