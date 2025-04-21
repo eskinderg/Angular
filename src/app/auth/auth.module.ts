@@ -3,13 +3,12 @@ import { DefaultOAuthInterceptor, OAuthLogger, OAuthModule, OAuthStorage } from 
 import { initializeAuth } from './auth.init';
 import { OAuthAppLogger } from './auth.logger';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 @NgModule({
     imports: [
         OAuthModule.forRoot({
             resourceServer: {
-                allowedUrls: [environment.API_URL],
+                allowedUrls: ['/api'],
                 sendAccessToken: true
             }
         })

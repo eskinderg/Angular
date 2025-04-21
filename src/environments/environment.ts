@@ -2,10 +2,8 @@
 export const environment = {
     appVersion: require('../../package.json').version + '-dev',
     production: false,
-    EVENTS_API_URL: require('../app/app.config.json').server + ':3000/api/events',
-    NOTES_API_URL: require('../app/app.config.json').server + ':3000/api/notes',
-    API_URL: require('../app/app.config.json').server + ':3000/api',
-
+    EVENTS_API_URL: '/api/events',
+    NOTES_API_URL: '/api/notes',
     Auth: {
         authority: require('../app/app.config.json').server + ':8080/realms/master',
         requireHttps: false,
