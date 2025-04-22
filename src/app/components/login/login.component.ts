@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -12,7 +12,7 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { authConfig } from 'src/app/auth/auth.config';
+import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
 
 @Component({
     selector: 'app-login',
@@ -31,9 +31,15 @@ export class LoginComponent implements OnInit {
     constructor(
         private store: Store<fromRoot.IAppState>,
         private oauthService: OAuthService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {
         this.route.params.subscribe((params) => (this.message = params['endsession']));
+
+        if (this.oauthService.hasValidAccessToken()) {
+            this.router.navigate(['/home']);
+            // return
+        }
     }
 
     ngOnInit() {
@@ -87,14 +93,20 @@ export class LoginComponent implements OnInit {
 
     loginWithPassword() {
         if (this.loginForm.valid) {
-            this.oauthService.configure({ ...authConfig, oidc: false, responseType: 'id_token token' });
+            this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
             this.oauthService.loadDiscoveryDocument().then(() => {
-                this.store.dispatch(
-                    AuthActions.loginEvent({
-                        username: this.loginForm.get('username').value,
-                        password: this.loginForm.get('password').value
+                this.oauthService
+                    .fetchTokenUsingPasswordFlowAndLoadUserProfile(
+                        this.loginForm.get('username').value,
+                        this.loginForm.get('password').value
+                    )
+                    .then(() => {
+                        this.store.dispatch(AuthActions.loginEventSuccess());
                     })
-                );
+                    .catch((error) => {
+                        alert('Login failed');
+                        this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
+                    });
             });
         }
     }

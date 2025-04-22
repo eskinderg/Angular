@@ -11,3 +11,12 @@ export const authConfig: AuthConfig = {
     scope: environment.Auth.scope,
     showDebugInformation: environment.Auth.showDebugInformation
 };
+
+export const passwordFlowAuthConfig: AuthConfig = {
+    issuer: environment.Auth.authority,
+    requireHttps: environment.Auth.requireHttps,
+    clientId: environment.Auth.client_id,
+    scope: 'openid email profile',
+    oidc: false,
+    showDebugInformation: true
+};

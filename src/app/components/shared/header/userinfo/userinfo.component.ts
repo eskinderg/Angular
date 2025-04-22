@@ -3,10 +3,11 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
 import * as fromProfile from '../../../../store/reducers/preference.reducer';
-import * as ProfileActions from '../../../../store/actions/preference.action';
+import * as PreferenceActions from '../../../../store/actions/preference.action';
 import { ThemeOptionComponent } from '../../../../fragments/components/appThemeOption/appThemeOption.component';
 import { RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { authConfig } from 'src/app/auth/auth.config';
 
 @Component({
     selector: 'app-userinfo',
@@ -32,19 +33,35 @@ export class UserInfoComponent {
 
     login() {
         // this.router.navigate(['login']);
-        this.oauthService.initLoginFlow();
+        this.oauthService.configure(authConfig);
+        this.oauthService
+            .loadDiscoveryDocumentAndTryLogin()
+            .then(() => {
+                if (!this.oauthService.hasValidAccessToken()) {
+                    this.oauthService.initCodeFlow();
+                }
+            })
+            .catch((err) => {
+                console.error('Error loading discovery document or logging in', err);
+            });
     }
 
     async logOut() {
-        await this.oauthService
-            .revokeTokenAndLogout()
-            .then(() => {
-                this.store.dispatch(ProfileActions.logOutSuccess());
-            })
-            .catch((error) => {
-                alert('Error occured in the logout process');
-                return Promise.reject(error);
-            });
+        const idToken = this.oauthService.getIdToken();
+
+        if (idToken) {
+            await this.oauthService
+                .revokeTokenAndLogout()
+                .then(() => this.store.dispatch(PreferenceActions.logOutSuccess()))
+                .catch((error) => {
+                    alert('Logout failed');
+                    return Promise.reject(error);
+                });
+        } else {
+            delete this.oauthService.logoutUrl;
+            this.oauthService.logOut(false);
+            this.store.dispatch(PreferenceActions.logOutSuccess());
+        }
     }
 
     get isLoggedIn() {
@@ -60,6 +77,6 @@ export class UserInfoComponent {
     }
 
     onDarkModeToggle() {
-        this.store.dispatch(ProfileActions.toggleDarkMode());
+        this.store.dispatch(PreferenceActions.toggleDarkMode());
     }
 }

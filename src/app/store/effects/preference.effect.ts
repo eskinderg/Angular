@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import * as PreferenceActions from '../actions/preference.action';
 import * as NoteActions from '../actions/note.actions';
+import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
 import { ThemeService } from '../../theme/theme.service';
 
@@ -55,6 +56,13 @@ export class PreferenceEffect {
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
             switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
+        )
+    );
+
+    logOutSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
+            ofType(PreferenceActions.logOutSuccess),
+            switchMap(() => of(AuthActions.routeToHome()))
         )
     );
 }
