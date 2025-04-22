@@ -79,9 +79,11 @@ table {
 
         &.sorted-asc {
             color: var(--b-active-link-color);
+            text-decoration: underline;
         }
         &.sorted-desc {
             color: var(--b-active-link-color);
+            text-decoration: underline;
         }
     }
 
