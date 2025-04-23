@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, viewChild, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Note } from '../../../models/note';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
@@ -7,13 +7,14 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { NoteFilterService } from '../../services/note-filter.service';
+import { BulkUpdateDialogComponent } from './bulk-update-dialog/bulk-update-dialog.component';
 
 @Component({
     selector: 'app-admin-dashboard-notes',
     templateUrl: 'admin.dashboard.component.html',
     styleUrls: ['admin.dashboard.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [AsyncPipe, CommonModule, EditNoteDialogComponent, FormsModule],
+    imports: [AsyncPipe, CommonModule, EditNoteDialogComponent, FormsModule, BulkUpdateDialogComponent],
     providers: [AdminNoteApiService]
 })
 export class AdminDashboardComponent {
@@ -22,9 +23,10 @@ export class AdminDashboardComponent {
     selectedUserId$ = new BehaviorSubject<string>('');
     sortField$ = new BehaviorSubject<keyof Note | 'index'>('index');
     sortDirection$ = new BehaviorSubject<'asc' | 'desc'>('asc');
+    selectedNotes$ = new BehaviorSubject<Note[]>([]);
 
-    selectUserElementRef = viewChild.required<ElementRef>('selectUser');
-    selectUserIdElementRef = viewChild.required<ElementRef>('selectUserId');
+    selectedNotes: Note[] = [];
+    showBulkUpdateDialog: boolean = false;
 
     constructor(
         public adminNoteApiService: AdminNoteApiService,
@@ -44,16 +46,21 @@ export class AdminDashboardComponent {
         })
     );
 
-    updateSelectedUser() {
-        const user = this.selectUserElementRef().nativeElement;
-        const userId = this.selectUserIdElementRef().nativeElement;
-        const selectedIndex = user.selectedIndex;
+    updateSelectedUser(event: Event) {
+        const selectElement = event.target as HTMLSelectElement;
+        const selectedUserId = selectElement.value;
 
-        if (selectedIndex) {
-            this.selectedUserId$.next(userId.options[selectedIndex].value);
-        } else {
-            this.selectedUserId$.next('');
-        }
+        // Update the selected user ID
+        this.selectedUserId$.next(selectedUserId);
+
+        // Synchronize selectedNotes with the filtered notes
+        this.filteredNotes$.subscribe((notes) => {
+            const visibleNoteIds = notes.map((note) => note.id);
+            const updatedSelectedNotes = this.selectedNotes$.value.filter((note) =>
+                visibleNoteIds.includes(note.id)
+            );
+            this.selectedNotes$.next(updatedSelectedNotes);
+        });
     }
 
     onSearchInput(event: any) {
@@ -101,8 +108,76 @@ export class AdminDashboardComponent {
 
     clearFilter() {
         this.clearSearch();
-        this.selectUserElementRef().nativeElement.value = '0';
         this.selectedUserId$.next('');
+    }
+
+    toggleNoteSelection(note: Note, event: Event) {
+        const checkbox = event.target as HTMLInputElement;
+        if (checkbox.checked) {
+            this.selectedNotes.push(note);
+        } else {
+            this.selectedNotes = this.selectedNotes.filter((n) => n.id !== note.id);
+        }
+    }
+
+    isNoteSelected(note: Note): boolean {
+        // if(this.selectedUserId$.value)
+        //     debugger;
+        return this.selectedNotes.some((n) => n.id === note.id);
+    }
+
+    toggleSelectAll(event: Event) {
+        const checkbox = event.target as HTMLInputElement;
+
+        // Subscribe to filteredNotes$ to get the currently visible notes
+        this.filteredNotes$.subscribe((notes) => {
+            if (checkbox.checked) {
+                // Add all visible notes to selectedNotes
+                this.selectedNotes = [...notes];
+            } else {
+                // Clear the selectedNotes array
+                this.selectedNotes = [];
+            }
+        });
+    }
+
+    areAllNotesSelected(): boolean {
+        let allSelected = false;
+
+        // Subscribe to filteredNotes$ to check if all visible notes are selected
+        this.filteredNotes$.subscribe((notes) => {
+            allSelected = notes.length > 0 && notes.every((note) => this.isNoteSelected(note));
+        });
+
+        return allSelected;
+    }
+
+    openBulkUpdateDialog() {
+        this.showBulkUpdateDialog = true;
+    }
+
+    closeBulkUpdateDialog() {
+        this.showBulkUpdateDialog = false;
+    }
+
+    applyBulkUpdate(changes: { owner: string; userId: string; active: boolean | null }) {
+        const updatedNotes = this.selectedNotes.map((note) => ({
+            ...note,
+            owner: changes.owner || note.owner,
+            userId: changes.userId || note.userId,
+            active: changes.active !== null ? changes.active : note.active
+        }));
+
+        // console.log(updatedNotes); // Log the updated notes for debugging
+        this.adminNoteApiService.bulkUpdateNotes(updatedNotes);
+        this.selectedNotes = []; // Clear the selection after update
+        this.closeBulkUpdateDialog();
+
+        // Uncomment the following lines to send the updated notes to the API
+        // this.adminNoteApiService.bulkUpdateNotes(updatedNotes).subscribe(() => {
+        //     this.selectedNotes = []; // Clear the selection after update
+        //     this.adminNoteApiService.refreshNotes(); // Refresh the notes list
+        // });
     }
 
     get TotalNotesCount() {
@@ -117,7 +192,7 @@ export class AdminDashboardComponent {
         return this.adminNoteApiService.Notes;
     }
 
-    get Owners() {
+    get Owners(): Observable<[string, string, number][]> {
         return this.adminNoteApiService.Users;
     }
 }

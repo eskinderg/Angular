@@ -5,9 +5,7 @@ import {
     Output,
     OnInit,
     ViewContainerRef,
-    ChangeDetectionStrategy,
-    viewChild,
-    ElementRef
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -41,9 +39,6 @@ export class EditNoteDialogComponent implements OnInit {
     form!: FormGroup;
     dirty = false;
 
-    selectUserElementRef = viewChild.required<ElementRef>('selectUser');
-    selectUserIdElementRef = viewChild.required<ElementRef>('selectUserId');
-
     constructor(
         private adminNoteApiService: AdminNoteApiService,
         private dialogService: DialogService,
@@ -53,23 +48,12 @@ export class EditNoteDialogComponent implements OnInit {
         this.dialogService.registerHost(this.vcRef);
     }
 
-    updateValues() {
-        const user = this.selectUserElementRef().nativeElement;
-        const userId = this.selectUserIdElementRef().nativeElement;
-        const selectedIndex = user.selectedIndex;
-
-        // console.log(selectedIndex);
-
-        this.form.get('userId').setValue(userId.options[selectedIndex].value);
-    }
-
     get Owners() {
         return this.adminNoteApiService.Users;
     }
 
     ngOnInit(): void {
         this.form = this.fb.group({
-            // header: [this.note.header, Validators.required],
             header: [this.note.header],
             owner: [this.note.owner],
             userId: [this.note.userId],
@@ -86,17 +70,27 @@ export class EditNoteDialogComponent implements OnInit {
         });
     }
 
+    onOwnerChange(event: Event) {
+        const selectElement = event.target as HTMLSelectElement;
+        const selectedUserId = selectElement.value;
+
+        // Find the corresponding owner name based on the selected userId
+        this.Owners.subscribe((users) => {
+            const selectedUser = users?.find((user) => user[1] === selectedUserId);
+            if (selectedUser) {
+                this.form.get('owner')?.setValue(selectedUser[0]); // Update the owner field
+            }
+        });
+    }
+
     onSave() {
         if (this.form.valid) {
             const updatedNote: Note = {
                 ...this.note,
                 ...this.form.value
             };
-            // console.log('Saved:', updatedNote);
             this.dirty = false;
             this.saved.emit(updatedNote);
-            // this.closed.emit();
-            // location.reload();
         }
     }
 
@@ -106,9 +100,8 @@ export class EditNoteDialogComponent implements OnInit {
                 .openConfirm('There are unsaved changes. Are you sure you want to close?')
                 .then((confirm) => {
                     if (confirm) {
-                        this.closed.emit(); // Closes Edit Dialog only if confirmed
+                        this.closed.emit();
                     }
-                    //  Do nothing if cancelled: Edit Dialog remains
                 });
         } else {
             this.closed.emit();

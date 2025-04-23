@@ -6,6 +6,7 @@ import * as AdminActions from '../admin/store/actions/admin.auth.action';
 import * as fromAdminNotes from './store/reducers/admin.reducer';
 import * as fromRoot from '../store/reducers';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 @Injectable()
 export class AdminNoteApiService {
     constructor(private store: Store<fromRoot.IAppState>) {}
@@ -34,8 +35,13 @@ export class AdminNoteApiService {
         return this.store.select(fromAdminNotes.getAdminSelectedNote);
     }
 
-    get Users(): Observable<object[]> {
+    get Users(): Observable<[string, string, number][]> {
         return this.store.select(fromAdminNotes.getAdminUsers);
+    }
+
+    bulkUpdateNotes(notes: Note[]): void {
+        // return null; //this.http.post<void>('/api/notes/bulk-update', { notes });
+        return this.run(AdminActions.adminBulkUpdateNotes({ payload: notes }));
     }
 
     private run(action: Action) {

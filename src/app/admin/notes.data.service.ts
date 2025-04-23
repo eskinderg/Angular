@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Note } from '../models/note';
 
 const NOTES_API_URL = '/api/admin/notes'; // Use the proxy path
 
 @Injectable({ providedIn: 'root' })
 export class AdminNotesDataService {
+    bulkUpdateNotes(payload: Note[]): Observable<Note[]> {
+        return of(payload);
+    }
     constructor(public http: HttpClient) {}
 
     getNotes(): Observable<Note[]> {
         return this.http.get<Note[]>(NOTES_API_URL);
     }
 
-    getUsers(): Observable<object[]> {
-        return this.http.get<object[]>(NOTES_API_URL + '/users');
+    getUsers(): Observable<[string, string, number][]> {
+        return this.http.get<[string, string, number][]>(NOTES_API_URL + '/users');
     }
 
     getNote(id: number) {

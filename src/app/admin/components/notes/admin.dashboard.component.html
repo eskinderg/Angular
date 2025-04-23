@@ -1,23 +1,12 @@
 <div class="header">
-    <!-- <h2>Notes: {{ TotalNotesCount | async }}</h2> -->
-
     <div class="form-group">
-        <!-- <label>Owner</label> -->
-        <!-- <input formControlName="owner" type="text" /> -->
-        <!-- {{ (Owners | async) | json}} -->
         <select
-            #selectUser
-            (change)="updateSelectedUser()"
-            [class.active]="selectUserElementRef().nativeElement.selectedIndex">
-            <option [value]="'0'">All ({{ TotalNotesCount | async }})</option>
-            @for ((user of Owners | async); track $index) {
-                <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
-            }
-        </select>
-        <select [hidden]="true" #selectUserId>
-            <option [value]="'0'">All</option>
-            @for ((user of Owners | async); track $index) {
-                <option [value]="user[1]">{{ user[1] }}</option>
+            [value]="selectedUserId$ | async"
+            (change)="updateSelectedUser($event)"
+            [class.active]="selectedUserId$.value">
+            <option [value]="''">All ({{ TotalNotesCount | async }})</option>
+            @for (user of Owners | async; track user) {
+                <option [value]="user[1]">{{ user[0] }} ({{ user[2] }})</option>
             }
         </select>
     </div>
@@ -28,15 +17,24 @@
             [class.active]="searchTerm$.value.length"
             [value]="searchTerm$.value"
             (input)="onSearchInput($event)" />
-        <button *ngIf="searchTerm$.value" class="clear-btn" (click)="clearSearch()">×</button>
+        @if (searchTerm$.value) {
+            <button class="clear-btn" (click)="clearSearch()">×</button>
+        }
     </div>
     @if (searchTerm$.value || selectedUserId$.value) {
         <span class="clear-filter" (click)="clearFilter()">x</span>
     }
+    @if (selectedNotes.length) {
+        <button class="delete-btn" (click)="openBulkUpdateDialog()">Bulk Update</button>
+        <div>Selected {{ selectedNotes.length }}</div>
+    }
 </div>
+
 <table>
     <tr>
-        <th></th>
+        <th>
+            <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="areAllNotesSelected()" />
+        </th>
         <th
             [class.sorted-asc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'asc'"
             [class.sorted-desc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'desc'"
@@ -106,7 +104,14 @@
     </tr>
     @for (note of filteredNotes$ | async; track $index) {
         <tr (click)="onClick(note)" class="row" [class.inactive]="!note.active">
-            <td>{{ $index + 1 }}</td>
+            <td (click)="$event.stopPropagation()">
+                <label>
+                    <input
+                        type="checkbox"
+                        [checked]="isNoteSelected(note)"
+                        (change)="toggleNoteSelection(note, $event)" />
+                </label>
+            </td>
             <td>{{ note.header }}</td>
             <td>{{ note.owner }}</td>
             <td>{{ note.active }}</td>
@@ -120,6 +125,14 @@
         </tr>
     }
 </table>
+
+@if (showBulkUpdateDialog) {
+    <app-bulk-update-dialog
+        [users]="Owners | async"
+        (closed)="closeBulkUpdateDialog()"
+        (updated)="applyBulkUpdate($event)">
+    </app-bulk-update-dialog>
+}
 
 @if (SelectedNote | async) {
     <app-edit-note-dialog [note]="SelectedNote | async" (closed)="onClose()" (saved)="onSaved($event)">

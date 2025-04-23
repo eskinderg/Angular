@@ -47,16 +47,18 @@ table {
     }
 
     th {
-        // border-top: 2px solid var(--bs-nav-tabs-link-active-color);
-        // border-bottom: 2px solid var(--bs-nav-tabs-link-active-color);
-        // border-left: 2px solid var(--bs-nav-tabs-link-active-color);
         position: sticky;
         top: 57px;
         background: var(--text-area-border);
         color: var(--body-color);
-        cursor: pointer;
+        cursor: pointer; /* Change cursor to pointer */
         user-select: none;
         z-index: 1;
+
+        &:hover {
+            background-color: var(--list-group-border-color); /* Add hover effect */
+            color: var(--b-active-link-color); /* Optional: Change text color on hover */
+        }
 
         &.sorted-asc::after,
         &.sorted-desc::after {
@@ -77,10 +79,7 @@ table {
             border-top-color: var(--b-active-link-color);
         }
 
-        &.sorted-asc {
-            color: var(--b-active-link-color);
-            text-decoration: underline;
-        }
+        &.sorted-asc,
         &.sorted-desc {
             color: var(--b-active-link-color);
             text-decoration: underline;
@@ -161,5 +160,19 @@ input[type='text'] {
         &:hover {
             color: #333;
         }
+    }
+}
+
+.delete-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:hover {
+        background-color: #c9302c;
     }
 }

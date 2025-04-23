@@ -5,8 +5,6 @@
             <div class="close-btn" (click)="onClose()">✕</div>
         </div>
 
-        <!-- <div class="close-icon" (click)="onClose()">×</div> -->
-        <!-- <h2>Edit Note</h2> -->
         <div class="dialog-form">
             <form class="editForm" [formGroup]="form" [spellcheck]="false" (ngSubmit)="onSave()">
                 <div class="layout">
@@ -25,18 +23,18 @@
                     <div class="right">
                         <div class="split">
                             <div class="form-group checkbox">
-                                <label class="check-label"
-                                    ><input type="checkbox" formControlName="active" /> Active</label
-                                >
-                                <label class="check-label"
-                                    ><input type="checkbox" formControlName="archived" /> Archived</label
-                                >
-                                <label class="check-label"
-                                    ><input type="checkbox" formControlName="pinned" /> Pinned</label
-                                >
-                                <label class="check-label"
-                                    ><input type="checkbox" formControlName="spellCheck" /> Spell Check</label
-                                >
+                                <label class="check-label">
+                                    <input type="checkbox" formControlName="active" /> Active
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" formControlName="archived" /> Archived
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" formControlName="pinned" /> Pinned
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" formControlName="spellCheck" /> Spell Check
+                                </label>
                                 <div class="form-group colour">
                                     <label>Colour</label>
                                     <app-note-colour-selector
@@ -62,16 +60,9 @@
 
                         <div class="form-group">
                             <label>Owner</label>
-                            <!-- <input formControlName="owner" type="text" /> -->
-                            <!-- {{ (Owners | async) | json}} -->
-                            <select #selectUser formControlName="owner" (change)="updateValues()">
-                                @for ((user of Owners | async); track $index) {
-                                    <option [value]="user[0]">{{ user[0] }} ({{ user[2] }})</option>
-                                }
-                            </select>
-                            <select [hidden]="true" #selectUserId formControlName="userId">
-                                @for ((user of Owners | async); track $index) {
-                                    <option [value]="user[1]">{{ user[1] }}</option>
+                            <select formControlName="userId" (change)="onOwnerChange($event)">
+                                @for (user of Owners | async; track user) {
+                                    <option [value]="user[1]">{{ user[0] }} ({{ user[2] }})</option>
                                 }
                             </select>
                         </div>
@@ -85,4 +76,3 @@
         </div>
     </div>
 </div>
-<!-- <app-confirm-dialog #confirmDialot></app-confirm-dialog> -->

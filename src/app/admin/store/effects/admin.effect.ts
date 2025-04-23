@@ -71,6 +71,21 @@ export class AdminEffect {
             )
     );
 
+    adminBulkUpdateNotes = createEffect(
+        (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
+            actions$.pipe(
+                ofType(AdminActions.adminBulkUpdateNotes),
+                switchMap((action) =>
+                    adminNotesDataService.bulkUpdateNotes(action.payload).pipe(
+                        map((updatedNotes) =>
+                            AdminActions.adminBulkUpdateNotesSuccess({ payload: updatedNotes })
+                        ),
+                        catchError((err) => of({ type: '[ADMIN] BULK_UPDATE_NOTES_FAILURE', payload: err }))
+                    )
+                )
+            )
+    );
+
     // fetchNotesSuccess = createEffect((actions$ = inject(Actions)) =>
     //     actions$.pipe(
     //         ofType(NotesActions.fetchNotesSuccess),

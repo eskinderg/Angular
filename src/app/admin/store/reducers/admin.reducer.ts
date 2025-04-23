@@ -5,7 +5,7 @@ import * as AdminNotesActions from '../actions/admin.auth.action';
 export interface IAdminNotesState {
     notes: Note[];
     selectedNote: Note;
-    users: object[];
+    users: [string, string, number][];
     isLoading: boolean; // not being used
 }
 
@@ -60,7 +60,16 @@ export const adminReducer = createReducer<IAdminNotesState>(
             ...state,
             selectedNote: null
         })
-    )
+    ),
+    on(AdminNotesActions.adminBulkUpdateNotesSuccess, (state, action): IAdminNotesState => {
+        return {
+            ...state,
+            notes: state.notes.map((note) => {
+                const updatedNote = action.payload.find((n) => n.id === note.id);
+                return updatedNote ? updatedNote : note;
+            })
+        };
+    })
 );
 
 export const getAdminNoteState = createFeatureSelector<IAdminNotesState>('admin');
