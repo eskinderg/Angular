@@ -1,28 +1,34 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-bulk-update-dialog',
     templateUrl: './bulk-update-dialog.component.html',
     styleUrls: ['./bulk-update-dialog.component.scss'],
-    imports: [FormsModule],
+    imports: [ReactiveFormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BulkUpdateDialogComponent {
+export class BulkUpdateDialogComponent implements OnInit {
     @Input() users: [string, string, number][] = []; // List of users as [owner, userId, count]
     @Output() closed = new EventEmitter<void>();
-    @Output() updated = new EventEmitter<{ owner: string; userId: string; active: boolean }>();
+    @Output() updated = new EventEmitter<{ owner: string; userId: string; active: boolean | null }>();
 
-    selectedOwner: string = '';
-    selectedUserId: string = '';
-    isActive: boolean | null = null;
+    form!: FormGroup;
 
-    // Update the selected userId when the owner changes
-    onOwnerChange(owner: string) {
-        const user = this.users.find((u) => u[0] === owner);
-        if (user) {
-            this.selectedUserId = user[1]; // Update userId based on the selected owner
-        }
+    constructor(private fb: FormBuilder) {}
+
+    ngOnInit(): void {
+        this.form = this.fb.group({
+            owner: [''],
+            userId: [''],
+            active: [null]
+        });
+
+        // Update userId when owner changes
+        this.form.get('owner')?.valueChanges.subscribe((owner) => {
+            const user = this.users.find((u) => u[0] === owner);
+            this.form.get('userId')?.setValue(user ? user[1] : '', { emitEvent: false });
+        });
     }
 
     closeDialog() {
@@ -30,10 +36,6 @@ export class BulkUpdateDialogComponent {
     }
 
     applyChanges() {
-        this.updated.emit({
-            owner: this.selectedOwner,
-            userId: this.selectedUserId,
-            active: this.isActive
-        });
+        this.updated.emit(this.form.value);
     }
 }

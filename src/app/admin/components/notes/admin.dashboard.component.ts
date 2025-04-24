@@ -23,7 +23,6 @@ export class AdminDashboardComponent {
     selectedUserId$ = new BehaviorSubject<string>('');
     sortField$ = new BehaviorSubject<keyof Note | 'index'>('index');
     sortDirection$ = new BehaviorSubject<'asc' | 'desc'>('asc');
-    selectedNotes$ = new BehaviorSubject<Note[]>([]);
 
     selectedNotes: Note[] = [];
     showBulkUpdateDialog: boolean = false;
@@ -50,17 +49,7 @@ export class AdminDashboardComponent {
         const selectElement = event.target as HTMLSelectElement;
         const selectedUserId = selectElement.value;
 
-        // Update the selected user ID
         this.selectedUserId$.next(selectedUserId);
-
-        // Synchronize selectedNotes with the filtered notes
-        this.filteredNotes$.subscribe((notes) => {
-            const visibleNoteIds = notes.map((note) => note.id);
-            const updatedSelectedNotes = this.selectedNotes$.value.filter((note) =>
-                visibleNoteIds.includes(note.id)
-            );
-            this.selectedNotes$.next(updatedSelectedNotes);
-        });
     }
 
     onSearchInput(event: any) {
@@ -88,6 +77,10 @@ export class AdminDashboardComponent {
             this.sortField$.next(field);
             this.sortDirection$.next('asc');
         }
+    }
+
+    trackByFn(index: number, item: Note): string {
+        return `${index}-${item.id}-${item.userId}`;
     }
 
     onClick(note: Note) {
@@ -118,6 +111,7 @@ export class AdminDashboardComponent {
         } else {
             this.selectedNotes = this.selectedNotes.filter((n) => n.id !== note.id);
         }
+        console.log(note);
     }
 
     isNoteSelected(note: Note): boolean {
@@ -129,25 +123,31 @@ export class AdminDashboardComponent {
     toggleSelectAll(event: Event) {
         const checkbox = event.target as HTMLInputElement;
 
-        // Subscribe to filteredNotes$ to get the currently visible notes
-        this.filteredNotes$.subscribe((notes) => {
+        const sub = this.filteredNotes$.subscribe((notes) => {
             if (checkbox.checked) {
-                // Add all visible notes to selectedNotes
-                this.selectedNotes = [...notes];
+                notes.forEach((note) => {
+                    if (!this.selectedNotes.some((n) => n.id === note.id)) {
+                        this.selectedNotes.push(note);
+                    }
+                });
             } else {
-                // Clear the selectedNotes array
-                this.selectedNotes = [];
+                // Remove all visible notes from selectedNotes
+                this.selectedNotes = this.selectedNotes.filter(
+                    (note) => !notes.some((visibleNote) => visibleNote.id === note.id)
+                );
             }
         });
+        sub.unsubscribe();
     }
 
     areAllNotesSelected(): boolean {
         let allSelected = false;
 
-        // Subscribe to filteredNotes$ to check if all visible notes are selected
-        this.filteredNotes$.subscribe((notes) => {
+        const sub = this.filteredNotes$.subscribe((notes) => {
             allSelected = notes.length > 0 && notes.every((note) => this.isNoteSelected(note));
         });
+
+        sub.unsubscribe();
 
         return allSelected;
     }
@@ -165,19 +165,12 @@ export class AdminDashboardComponent {
             ...note,
             owner: changes.owner || note.owner,
             userId: changes.userId || note.userId,
-            active: changes.active !== null ? changes.active : note.active
+            active: changes.active ?? note.active
         }));
 
-        // console.log(updatedNotes); // Log the updated notes for debugging
         this.adminNoteApiService.bulkUpdateNotes(updatedNotes);
         this.selectedNotes = []; // Clear the selection after update
         this.closeBulkUpdateDialog();
-
-        // Uncomment the following lines to send the updated notes to the API
-        // this.adminNoteApiService.bulkUpdateNotes(updatedNotes).subscribe(() => {
-        //     this.selectedNotes = []; // Clear the selection after update
-        //     this.adminNoteApiService.refreshNotes(); // Refresh the notes list
-        // });
     }
 
     get TotalNotesCount() {

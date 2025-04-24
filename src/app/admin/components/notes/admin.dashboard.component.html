@@ -102,7 +102,7 @@
             Last Modified
         </th>
     </tr>
-    @for (note of filteredNotes$ | async; track $index) {
+    @for (note of filteredNotes$ | async; track trackByFn($index, note)) {
         <tr (click)="onClick(note)" class="row" [class.inactive]="!note.active">
             <td (click)="$event.stopPropagation()">
                 <label>
