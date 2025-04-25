@@ -24,9 +24,12 @@
     @if (searchTerm$.value || selectedUserId$.value) {
         <span class="clear-filter" (click)="clearFilter()">x</span>
     }
-    @if (selectedNotes.length) {
-        <button class="delete-btn" (click)="openBulkUpdateDialog()">Bulk Update</button>
-        <div>Selected {{ selectedNotes.length }}</div>
+    @if (selectedNotes$ | async; as selectedNotes) {
+        @if (selectedNotes.length) {
+            <button class="delete-btn" (click)="openSelectedNotesDialog()">
+                Selected {{ selectedNotes.length }}
+            </button>
+        }
     }
 </div>
 
@@ -125,6 +128,14 @@
         </tr>
     }
 </table>
+
+@if (showSelectedNotesDialog) {
+    <app-selected-notes-dialog
+        [selectedNotes]="selectedNotes$ | async"
+        (closed)="closeSelectedNotesDialog()"
+        (bulkUpdate)="openBulkUpdateDialog()">
+    </app-selected-notes-dialog>
+}
 
 @if (showBulkUpdateDialog) {
     <app-bulk-update-dialog

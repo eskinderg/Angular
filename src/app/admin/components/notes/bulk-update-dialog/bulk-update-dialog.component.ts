@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -5,7 +6,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
     selector: 'app-bulk-update-dialog',
     templateUrl: './bulk-update-dialog.component.html',
     styleUrls: ['./bulk-update-dialog.component.scss'],
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, CommonModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BulkUpdateDialogComponent implements OnInit {

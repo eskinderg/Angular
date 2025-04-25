@@ -1,0 +1,39 @@
+<div class="dialog-overlay">
+    <div class="dialog">
+        <div class="dialog-header">
+            <div class="dialog-title">Selected Notes</div>
+            <button class="close-btn" (click)="closeDialog()">✕</button>
+        </div>
+
+        <div class="dialog-body">
+            <div class="dialog-content">
+                <table class="selected-notes-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Owner</th>
+                            <th>Active</th>
+                            <th>Archived</th>
+                            <th>Pinned</th>
+                            <th>Colour</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let note of selectedNotes; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ note.owner }}</td>
+                            <td>{{ note.active ? 'Yes' : 'No' }}</td>
+                            <td>{{ note.archived ? 'Yes' : 'No' }}</td>
+                            <td>{{ note.pinned ? 'Yes' : 'No' }}</td>
+                            <td>{{ note.colour }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dialog-actions">
+                <button class="cancel-btn" (click)="closeDialog()">Close</button>
+                <button class="apply-btn" (click)="openBulkUpdateDialog()">Bulk Update</button>
+            </div>
+        </div>
+    </div>
+</div>

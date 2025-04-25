@@ -1,24 +1,28 @@
 <div class="dialog-overlay">
     <div class="dialog">
-        <h2>Bulk Update Notes</h2>
-        <form [formGroup]="form" (ngSubmit)="applyChanges()">
-            <div class="form-group">
-                <label for="owner">Select Owner</label>
-                <select id="owner" formControlName="owner">
-                    <option value="">Select an owner</option>
-                    @for (user of users; track user) {
-                        <option [value]="user[0]">{{ user[0] }}</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group checkbox-group">
-                <input type="checkbox" id="active-checkbox" formControlName="active" />
-                <label for="active-checkbox">Set Notes as Active</label>
-            </div>
-            <div class="actions">
-                <button type="button" class="cancel-btn" (click)="closeDialog()">Cancel</button>
-                <button type="submit" class="apply-btn">Apply</button>
-            </div>
-        </form>
+        <div class="dialog-header">
+            <div class="dialog-title">Bulk Update Notes</div>
+            <button class="close-btn" (click)="closeDialog()">✕</button>
+        </div>
+
+        <div class="dialog-body">
+            <form [formGroup]="form" (ngSubmit)="applyChanges()">
+                <div class="form-group">
+                    <label for="owner">Select Owner</label>
+                    <select id="owner" formControlName="owner">
+                        <option value="">Select an owner</option>
+                        <option *ngFor="let user of users" [value]="user[0]">{{ user[0] }}</option>
+                    </select>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="active-checkbox" formControlName="active" />
+                    <label for="active-checkbox">Set Notes as Active</label>
+                </div>
+                <div class="actions">
+                    <button type="button" class="cancel-btn" (click)="closeDialog()">Cancel</button>
+                    <button type="submit" class="apply-btn">Apply</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

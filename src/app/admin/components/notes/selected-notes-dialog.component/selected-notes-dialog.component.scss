@@ -1,0 +1,141 @@
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+thead {
+    background: var(--text-area-border);
+    position: sticky;
+    top: 0;
+}
+
+.dialog {
+    background: var(--body-bg);
+    border-radius: 8px;
+    width: 800px; /* Increased width for a wider dialog */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 10%;
+
+    .dialog-body {
+        padding: 0 0 1rem 0;
+    }
+
+    .dialog-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--card-cap-bg);
+        border-radius: 8px 8px 0px 0px;
+        padding: 0.25rem 1rem;
+        // border-bottom: 1px solid #ddd;
+
+        .dialog-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: var(--body-color);
+
+            &:hover {
+                color: #007bff;
+            }
+        }
+    }
+
+    .dialog-content {
+        margin-bottom: 1rem;
+        max-height: 60vh;
+        overflow-y: auto;
+
+        .selected-notes-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+
+            thead {
+                // background-color: #f4f4f4;
+
+                th {
+                    padding: 0.75rem;
+                    font-weight: bold;
+                    text-align: left;
+                }
+            }
+
+            tbody {
+                tr {
+                    border: 1px solid var(--border);
+                    &:nth-child(even) {
+                        // background-color: var(--selected-note-list-item-bg-color);
+                    }
+
+                    &:hover {
+                        // background-color: var(--active-list-link);
+                    }
+                }
+
+                td {
+                    padding: 0.75rem;
+                    text-align: left; /* Center-align table data */
+                }
+            }
+        }
+    }
+
+    .dialog-actions {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem 0 1rem;
+        .cancel-btn {
+            // background: #ccc;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+
+            // &:hover {
+            //     background: #bbb;
+            // }
+        }
+
+        .apply-btn {
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0.85rem;
+}
+
+::-webkit-scrollbar-button {
+    position: absolute;
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-color);
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-color);
+}
