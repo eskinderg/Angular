@@ -32,7 +32,7 @@
 
 <table>
     <tr>
-        <th>
+        <th class="checkbox">
             <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="areAllNotesSelected()" />
         </th>
         <th
@@ -104,7 +104,7 @@
     </tr>
     @for (note of filteredNotes$ | async; track trackByFn($index, note)) {
         <tr (click)="onClick(note)" class="row" [class.inactive]="!note.active">
-            <td (click)="$event.stopPropagation()">
+            <td class="checkbox" (click)="$event.stopPropagation()">
                 <label>
                     <input
                         type="checkbox"
