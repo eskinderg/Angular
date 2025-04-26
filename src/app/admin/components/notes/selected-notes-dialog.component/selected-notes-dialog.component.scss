@@ -35,7 +35,7 @@ thead {
         align-items: center;
         background: var(--card-cap-bg);
         border-radius: 8px 8px 0px 0px;
-        padding: 0.25rem 1rem;
+        padding: 0.25rem 0 0.25rem 1rem;
         // border-bottom: 1px solid #ddd;
 
         .dialog-title {
@@ -57,13 +57,23 @@ thead {
         }
     }
 
+    .notes-count {
+        font-size: 1.25rem;
+        padding: 0.5rem 0.5rem 0.5rem 1rem;
+    }
+
     .dialog-content {
+        display:flex;
+        margin-top: 0.5rem;
+        flex-direction:column;
+        align-items: center;
         margin-bottom: 1rem;
         max-height: 60vh;
         overflow-y: auto;
 
         .selected-notes-table {
-            width: 100%;
+            width: 97%;
+            margin:auto;
             border-collapse: collapse;
             text-align: left;
 

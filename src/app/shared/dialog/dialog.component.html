@@ -16,8 +16,8 @@
         <div class="dialog-actions">
             @switch (dialogType) {
                 @case (dialogTypes.YES_NO) {
-                    <button class="btn-yes" (click)="close(dialogResponse.YES)">Yes</button>
                     <button (click)="close(dialogResponse.NO)">No</button>
+                    <button class="btn-yes" (click)="close(dialogResponse.YES)">Yes</button>
                 }
                 @case (dialogTypes.CANCEL_ONLY) {
                     <button (click)="close(dialogResponse.CANCEL)">Cancel</button>
