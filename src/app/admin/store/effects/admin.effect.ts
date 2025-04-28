@@ -62,7 +62,8 @@ export class AdminEffect {
                             of(
                                 NotesActions.fetchNotes(),
                                 AdminActions.adminFetchNotes(),
-                                AdminActions.adminUpdateNoteSuccess({ payload: note })
+                                AdminActions.adminUpdateNoteSuccess({ payload: note }),
+                                AdminActions.adminFetchUsers()
                             )
                         ),
                         catchError((err) => of(AdminActions.adminUpdateNoteFail({ payload: err })))
@@ -86,10 +87,10 @@ export class AdminEffect {
             )
     );
 
-    // fetchNotesSuccess = createEffect((actions$ = inject(Actions)) =>
-    //     actions$.pipe(
-    //         ofType(NotesActions.fetchNotesSuccess),
-    //         switchMap(() => of(NotesActions.fetchNotesComplete()))
-    //     )
-    // );
+    adminBulkUpdateNotesSuccess = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
+            ofType(AdminActions.adminBulkUpdateNotesSuccess),
+            switchMap(() => of(AdminActions.adminFetchUsers()))
+        )
+    );
 }
