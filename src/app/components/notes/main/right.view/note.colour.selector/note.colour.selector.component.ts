@@ -20,7 +20,7 @@ export const Colours: Colour[] = [
     { name: 'yellow' },
     { name: 'violet' },
     { name: 'blue' },
-    { name: 'none' }
+    { name: null }
 ];
 
 export const NOTE_COLOUR_VALUE_ACCESSOR: any = {

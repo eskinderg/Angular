@@ -180,12 +180,18 @@ export class AdminDashboardComponent {
         this.showBulkUpdateDialog = false;
     }
 
-    applyBulkUpdate(changes: { owner: string; userId: string; active: boolean | null }) {
+    applyBulkUpdate(changes: {
+        owner: string;
+        userId: string;
+        active: boolean | null;
+        colour: string | null;
+    }) {
         const updatedNotes = this.selectedNotes$.value.map((note) => ({
             ...note,
             owner: changes.owner || note.owner,
             userId: changes.userId || note.userId,
-            active: changes.active ?? note.active
+            active: changes.active ?? note.active,
+            colour: changes.colour || note.colour
         }));
 
         this.adminNoteApiService.bulkUpdateNotes(updatedNotes);

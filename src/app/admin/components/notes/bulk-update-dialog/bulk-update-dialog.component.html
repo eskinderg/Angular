@@ -20,6 +20,10 @@
                     <input type="checkbox" id="active-checkbox" formControlName="active" />
                     <label for="active-checkbox">Set Notes as Active</label>
                 </div>
+
+                <div class="form-group colour-group">
+                    <app-note-colour-selector formControlName="colour"></app-note-colour-selector>
+                </div>
                 <div class="actions">
                     <button type="button" class="cancel-btn" (click)="closeDialog()">Cancel</button>
                     <button type="submit" class="apply-btn">Apply</button>
