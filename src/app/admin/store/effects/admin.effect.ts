@@ -90,7 +90,7 @@ export class AdminEffect {
     adminBulkUpdateNotesSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(AdminActions.adminBulkUpdateNotesSuccess),
-            switchMap(() => of(AdminActions.adminFetchUsers()))
+            switchMap(() => of(AdminActions.adminFetchUsers(), NotesActions.fetchNotes()))
         )
     );
 }
