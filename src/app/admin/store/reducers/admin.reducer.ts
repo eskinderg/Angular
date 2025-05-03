@@ -67,7 +67,8 @@ export const adminReducer = createReducer<IAdminNotesState>(
             notes: state.notes.map((note) => {
                 const updatedNote = action.payload.find((n) => n.id === note.id);
                 return updatedNote ? updatedNote : note;
-            })
+            }),
+            selectedNote: null
         };
     })
 );

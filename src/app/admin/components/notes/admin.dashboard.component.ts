@@ -101,7 +101,7 @@ export class AdminDashboardComponent {
     }
 
     onSaved(note: Note) {
-        this.adminNoteApiService.updateNote(note);
+        this.adminNoteApiService.bulkUpdateNotes([note]);
     }
 
     clearSearch() {
