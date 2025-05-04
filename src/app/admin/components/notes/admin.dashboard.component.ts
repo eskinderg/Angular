@@ -164,6 +164,10 @@ export class AdminDashboardComponent {
         return allSelected;
     }
 
+    trackByUserId(index: number, user: [string, string, number]) {
+        return user[1];
+    }
+
     openSelectedNotesDialog() {
         this.showSelectedNotesDialog = true;
     }
