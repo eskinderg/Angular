@@ -8,11 +8,6 @@ const NOTES_API_URL = '/api/admin/notes'; // Use the proxy path
 
 @Injectable({ providedIn: 'root' })
 export class AdminNotesDataService {
-    bulkUpdateNotes(payload: Note[]): Observable<Note[]> {
-        return this.http
-            .put(NOTES_API_URL + '/update', payload)
-            .pipe(map((response: Note[]) => response.map((note) => new Note(note))));
-    }
     constructor(public http: HttpClient) {}
 
     getNotes(): Observable<Note[]> {
@@ -43,5 +38,11 @@ export class AdminNotesDataService {
 
     updateNote(note: Note): Observable<Note> {
         return this.http.put(NOTES_API_URL, note).pipe(map((response) => new Note(response)));
+    }
+
+    bulkUpdateNotes(payload: Note[]): Observable<Note[]> {
+        return this.http
+            .put(NOTES_API_URL + '/update', payload)
+            .pipe(map((response: Note[]) => response.map((note) => new Note(note))));
     }
 }

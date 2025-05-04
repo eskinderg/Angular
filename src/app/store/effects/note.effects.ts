@@ -24,8 +24,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updateNoteText),
             switchMap((action) =>
-                notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.updateNoteTextSuccess({ payload: note })),
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((notes) => NotesActions.updateNoteTextSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.updateNoteTextFail({ payload: err })))
                 )
             )
@@ -37,8 +37,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNotePosition),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => NotesActions.updateNotePositionSuccess({ payload: note })),
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => NotesActions.updateNotePositionSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
                     )
                 )
@@ -50,8 +50,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteSelection),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => NotesActions.updateNoteSelectionSuccess({ payload: note })),
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => NotesActions.updateNoteSelectionSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
                     )
                 )
@@ -62,9 +62,9 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updateNote),
             switchMap((action) =>
-                notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.updateNoteSuccess({ payload: note })),
-                    catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((notes) => NotesActions.updateNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
                 )
             )
         )
@@ -74,8 +74,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updatePinOrder),
             switchMap((action) =>
-                notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.updatePinOrderSuccess({ payload: note })),
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((notes) => NotesActions.updatePinOrderSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.updatePinOrderFail({ payload: err })))
                 )
             )
@@ -125,8 +125,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.deleteNote),
             switchMap((action) =>
-                notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.deleteNoteSuccess({ payload: note })),
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((notes) => NotesActions.deleteNoteSuccess({ payload: notes.shift() })),
                     catchError((err) => of(NotesActions.deleteNoteFail({ payload: err })))
                 )
             )
@@ -149,8 +149,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.archiveNote),
             switchMap((action) =>
-                notesDataService.updateNote(action.payload).pipe(
-                    map((note) => NotesActions.archiveNoteSuccess({ payload: note })),
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((notes) => NotesActions.archiveNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.archiveNoteFail({ payload: err })))
                 )
             )
@@ -162,8 +162,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.toggleSpellCheck),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => NotesActions.toggleSpellCheckSuccess({ payload: note })),
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => NotesActions.toggleSpellCheckSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
                     )
                 )
@@ -186,8 +186,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.restoreNote),
             switchMap((action) =>
-                notesDataService.updateNote({ ...action.payload, archived: false }).pipe(
-                    map((note) => NotesActions.restoreNoteSuccess({ payload: note })),
+                notesDataService.upsertNotes([{ ...action.payload, archived: false }]).pipe(
+                    map((notes) => NotesActions.restoreNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.restoreNoteFail({ payload: err })))
                 )
             )
@@ -211,10 +211,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteColour),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => {
-                            return NotesActions.updateNoteColourSuccess({ payload: note });
-                        }),
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => NotesActions.updateNoteColourSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
                     )
                 )
@@ -226,9 +224,9 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteColourSuccess),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => {
-                            return NotesActions.updateOpendNote({ payload: note });
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => {
+                            return NotesActions.updateOpendNote({ payload: notes.shift() });
                         }),
                         catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
                     )
@@ -241,10 +239,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteHeader),
                 switchMap((action) =>
-                    notesDataService.updateNote(action.payload).pipe(
-                        map((note) => {
-                            return NotesActions.updateNoteHeaderSuccess({ payload: note });
-                        }),
+                    notesDataService.upsertNotes([action.payload]).pipe(
+                        map((notes) => NotesActions.updateNoteHeaderSuccess({ payload: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
                     )
                 )
