@@ -68,12 +68,12 @@ export class UserInfoComponent {
         return this.store.select(fromProfile.isLoggedIn);
     }
 
-    get givenName() {
+    get username() {
         const claims = this.oauthService.getIdentityClaims();
         if (!claims) {
             return null;
         }
-        return claims['given_name'];
+        return claims['name'] ?? claims['preferred_username'];
     }
 
     onDarkModeToggle() {
