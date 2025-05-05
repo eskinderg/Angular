@@ -216,7 +216,9 @@ export class AdminDashboardComponent {
         return this.adminNoteApiService.Notes;
     }
 
-    get Owners(): Observable<[string, string, number][]> {
+    get Owners(): Observable<
+        { owner: string; user_id: string; total_notes: number; active_notes: number }[]
+    > {
         return this.adminNoteApiService.Users;
     }
 }

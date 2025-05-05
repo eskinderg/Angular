@@ -5,7 +5,7 @@ import * as AdminNotesActions from '../actions/admin.auth.action';
 export interface IAdminNotesState {
     notes: Note[];
     selectedNote: Note;
-    users: [string, string, number][];
+    users: { owner: string; user_id: string; total_notes: number; active_notes: number }[];
     isLoading: boolean; // not being used
 }
 

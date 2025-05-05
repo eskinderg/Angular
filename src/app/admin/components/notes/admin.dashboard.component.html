@@ -6,7 +6,7 @@
             [class.active]="selectedUserId$.value">
             <option [value]="''">All ({{ TotalNotesCount | async }})</option>
             @for (user of Owners | async; track trackByUserId) {
-                <option [value]="user[1]">{{ user[0] }} ({{ user[2] }})</option>
+                <option [value]="user.user_id">{{ user.owner }} ({{ user.total_notes }})</option>
             }
         </select>
     </div>

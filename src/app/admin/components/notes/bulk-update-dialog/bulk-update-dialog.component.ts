@@ -22,7 +22,7 @@ import { DialogService } from 'src/app/shared/dialog/dialog.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BulkUpdateDialogComponent implements OnInit, OnDestroy {
-    @Input() users: [string, string, number][] = []; // List of users as [owner, userId, count]
+    @Input() users: { owner: string; user_id: string; total_notes: number; active_notes: number }[] = []; // List of users as [owner, userId, count]
     @Output() closed = new EventEmitter<void>();
     @Output() updated = new EventEmitter<{
         owner: string;

@@ -35,7 +35,7 @@ export class AdminNoteApiService {
         return this.store.select(fromAdminNotes.getAdminSelectedNote);
     }
 
-    get Users(): Observable<[string, string, number][]> {
+    get Users(): Observable<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]> {
         return this.store.select(fromAdminNotes.getAdminUsers);
     }
 

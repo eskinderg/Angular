@@ -14,8 +14,10 @@ export class AdminNotesDataService {
         return this.http.get<Note[]>(NOTES_API_URL);
     }
 
-    getUsers(): Observable<[string, string, number][]> {
-        return this.http.get<[string, string, number][]>(NOTES_API_URL + '/users');
+    getUsers(): Observable<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]> {
+        return this.http.get<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]>(
+            NOTES_API_URL + '/users'
+        );
     }
 
     getNote(id: number) {

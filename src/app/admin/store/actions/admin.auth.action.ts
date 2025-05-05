@@ -53,7 +53,7 @@ export const adminFetchUsers = createAction('[ADMIN] FETCH_USERS');
 
 export const adminFetchUsersSuccess = createAction(
     '[ADMIN] FETCH_USERS_SUCCESS',
-    props<{ payload: [string, string, number][] }>()
+    props<{ payload: { owner: string; user_id: string; total_notes: number; active_notes: number }[] }>()
 );
 
 export const adminFetchUsersFailed = createAction(

@@ -62,7 +62,9 @@
                             <label>Owner</label>
                             <select formControlName="userId" (change)="onOwnerChange($event)">
                                 @for (user of Owners | async; track user) {
-                                    <option [value]="user[1]">{{ user[0] }} ({{ user[2] }})</option>
+                                    <option [value]="user.user_id">
+                                        {{ user.owner }} ({{ user.total_notes }})
+                                    </option>
                                 }
                             </select>
                         </div>
