@@ -12,8 +12,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.createNote),
             switchMap((action) =>
-                notesDataService.addNote(action.payload).pipe(
-                    map((note) => NotesActions.createNoteSuccess({ payload: note })),
+                notesDataService.upsertNotes([action.payload]).pipe(
+                    map((note) => NotesActions.createNoteSuccess({ payload: note.shift() })),
                     catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
                 )
             )
