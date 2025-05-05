@@ -11,7 +11,7 @@
                     <label for="owner">Select Owner</label>
                     <select id="owner" formControlName="owner">
                         <option value="">Select an owner</option>
-                        <option *ngFor="let user of users" [value]="user.user_id">
+                        <option *ngFor="let user of users" [value]="user.owner">
                             {{ user.owner }} ({{ user.total_notes }})
                         </option>
                     </select>

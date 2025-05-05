@@ -53,8 +53,8 @@ export class BulkUpdateDialogComponent implements OnInit, OnDestroy {
         });
 
         this.subscription = this.form.get('owner')?.valueChanges.subscribe((owner) => {
-            const user = this.users.find((u) => u[0] === owner);
-            this.form.get('userId')?.setValue(user ? user[1] : '', { emitEvent: false });
+            const user = this.users.find((u) => u.owner === owner);
+            this.form.get('userId')?.setValue(user ? user.user_id : '', { emitEvent: false });
         });
     }
 
