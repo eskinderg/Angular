@@ -164,8 +164,11 @@ export class AdminDashboardComponent {
         return allSelected;
     }
 
-    trackByUserId(index: number, user: [string, string, number]) {
-        return user[1];
+    trackByUserId(
+        index: number,
+        user: { owner: string; user_id: string; total_notes: number; active_notes: number }
+    ) {
+        return user.user_id;
     }
 
     openSelectedNotesDialog() {
