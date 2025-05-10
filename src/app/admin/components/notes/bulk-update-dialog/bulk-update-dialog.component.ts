@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -18,7 +17,7 @@ import { DialogService } from 'src/app/shared/dialog/dialog.service';
     selector: 'app-bulk-update-dialog',
     templateUrl: './bulk-update-dialog.component.html',
     styleUrls: ['./bulk-update-dialog.component.scss'],
-    imports: [ReactiveFormsModule, CommonModule, NoteColourSelectorComponent],
+    imports: [ReactiveFormsModule, NoteColourSelectorComponent],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BulkUpdateDialogComponent implements OnInit, OnDestroy {

@@ -49,7 +49,7 @@ export class EditNoteDialogComponent implements OnInit {
     }
 
     get Owners() {
-        return this.adminNoteApiService.Users;
+        return this.adminNoteApiService.UsersInfo;
     }
 
     ngOnInit(): void {

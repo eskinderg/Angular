@@ -1,17 +1,20 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import { Note } from 'src/app/models/note';
 import * as AdminNotesActions from '../actions/admin.auth.action';
+import { User } from '../../models/user';
 
 export interface IAdminNotesState {
     notes: Note[];
     selectedNote: Note;
-    users: { owner: string; user_id: string; total_notes: number; active_notes: number }[];
+    usersInfos: { owner: string; user_id: string; total_notes: number; active_notes: number }[];
     isLoading: boolean; // not being used
+    users: User[];
 }
 
 export const initialState: IAdminNotesState = {
     notes: [],
     selectedNote: null,
+    usersInfos: [],
     users: [],
     isLoading: false
 };
@@ -37,11 +40,11 @@ export const adminReducer = createReducer<IAdminNotesState>(
             notes: action.payload
         };
     }),
-    on(AdminNotesActions.adminFetchUsersSuccess, (state, action): IAdminNotesState => {
+    on(AdminNotesActions.adminFetchUsersInfoSuccess, (state, action): IAdminNotesState => {
         return {
             ...state,
             isLoading: false,
-            users: action.payload
+            usersInfos: action.payload
         };
     }),
     on(
@@ -70,6 +73,22 @@ export const adminReducer = createReducer<IAdminNotesState>(
             }),
             selectedNote: null
         };
+    }),
+    on(AdminNotesActions.adminFetchUsersSuccess, (state, action): IAdminNotesState => {
+        return {
+            ...state,
+            isLoading: false,
+            users: action.payload
+        };
+    }),
+    on(AdminNotesActions.adminBulkUpdateUsersSuccess, (state, action): IAdminNotesState => {
+        return {
+            ...state,
+            users: state.users.map((user) => {
+                const updatedUser = action.payload.find((u) => u.id === user.id);
+                return updatedUser ? updatedUser : user;
+            })
+        };
     })
 );
 
@@ -81,6 +100,10 @@ export const getAdminNotes = createSelector(getAdminNoteState, (state: IAdminNot
 
 export const getAdminNotesTotalCount = createSelector(getAdminNoteState, (state: IAdminNotesState) => {
     return state.notes.length;
+});
+
+export const getAdminUsersInfo = createSelector(getAdminNoteState, (state: IAdminNotesState) => {
+    return state.usersInfos;
 });
 
 export const getAdminUsers = createSelector(getAdminNoteState, (state: IAdminNotesState) => {

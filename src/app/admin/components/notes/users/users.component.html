@@ -1,0 +1,51 @@
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Owner</th>
+            <th>First Name</th>
+            <th>EMail</th>
+            <th>Created Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (user of allUsers$ | async; track user) {
+            <tr>
+                <td>{{ user.owner }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.createdAt | date: 'medium' }}</td>
+                <td>
+                    <button (click)="openEditDialog(user)" class="">Edit</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Custom Dialog -->
+@if (isDialogOpen) {
+    <div class="dialog-backdrop">
+        <div class="dialog">
+            <h2>Edit User</h2>
+            <form (ngSubmit)="saveUser()">
+                <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input id="firstname" [(ngModel)]="selectedUser.firstname" name="firstname" required />
+                </div>
+                <div class="form-group">
+                    <label for="owner">Owner:</label>
+                    <input id="owner" [(ngModel)]="selectedUser.owner" name="owner" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">EMail:</label>
+                    <input id="email" [(ngModel)]="selectedUser.email" name="email" required />
+                </div>
+                <div class="dialog-actions">
+                    <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+}

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Note } from 'src/app/models/note';
 
@@ -6,7 +5,7 @@ import { Note } from 'src/app/models/note';
     selector: 'app-selected-notes-dialog',
     templateUrl: './selected-notes-dialog.component.html',
     styleUrls: ['./selected-notes-dialog.component.scss'],
-    imports: [CommonModule],
+    imports: [],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectedNotesDialogComponent {

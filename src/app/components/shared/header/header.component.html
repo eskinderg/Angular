@@ -101,8 +101,18 @@
                         <a
                             [routerLinkActive]="['activeLink']"
                             [routerLinkActiveOptions]="{ exact: true }"
-                            [routerLink]="['/dashboard']"
+                            [routerLink]="['/admin/dashboard']"
                             >Dashboard</a
+                        >
+                    </li>
+                </div>
+                <div class="">
+                    <li>
+                        <a
+                            [routerLinkActive]="['activeLink']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/admin/users']"
+                            >Users</a
                         >
                     </li>
                 </div>

@@ -3,9 +3,8 @@ import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as NotesActions from '../../../../app/store/actions/note.actions';
-// import { NotificationService } from '../../../../app/shared/notification/notification.service';
-import { AdminNotesDataService } from 'src/app/admin/notes.data.service';
 import * as AdminActions from '../actions/admin.auth.action';
+import { AdminNotesDataService } from 'src/app/admin/notes.data.service';
 
 @Injectable()
 export class AdminEffect {
@@ -24,25 +23,25 @@ export class AdminEffect {
             )
     );
 
-    adminFetchUsers = createEffect(
+    adminFetchUsersInfo = createEffect(
         (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
             actions$.pipe(
-                ofType(AdminActions.adminFetchUsers),
+                ofType(AdminActions.adminFetchUsersInfo),
                 switchMap(() =>
-                    adminNotesDataService.getUsers().pipe(
-                        map((users) => AdminActions.adminFetchUsersSuccess({ payload: users })),
+                    adminNotesDataService.getUsersInfo().pipe(
+                        map((users) => AdminActions.adminFetchUsersInfoSuccess({ payload: users })),
                         catchError((err) =>
-                            of({ type: AdminActions.adminFetchUsersFailed.type, payload: err })
+                            of({ type: AdminActions.adminFetchUsersInfoFailed.type, payload: err })
                         )
                     )
                 )
             )
     );
 
-    adminFetchUsersSuccess = createEffect(
+    adminFetchUsersInfoSuccess = createEffect(
         (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
             actions$.pipe(
-                ofType(AdminActions.adminFetchUsersSuccess),
+                ofType(AdminActions.adminFetchUsersInfoSuccess),
                 switchMap(() =>
                     adminNotesDataService.getNotes().pipe(
                         map((notes) => AdminActions.adminFetchNotesSuccess({ payload: notes })),
@@ -63,7 +62,7 @@ export class AdminEffect {
                                 NotesActions.fetchNotes(),
                                 AdminActions.adminFetchNotes(),
                                 AdminActions.adminUpdateNoteSuccess({ payload: note }),
-                                AdminActions.adminFetchUsers()
+                                AdminActions.adminFetchUsersInfo()
                             )
                         ),
                         catchError((err) => of(AdminActions.adminUpdateNoteFail({ payload: err })))
@@ -90,7 +89,37 @@ export class AdminEffect {
     adminBulkUpdateNotesSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(AdminActions.adminBulkUpdateNotesSuccess),
-            switchMap(() => of(AdminActions.adminFetchUsers(), NotesActions.fetchNotes()))
+            switchMap(() => of(AdminActions.adminFetchUsersInfo(), NotesActions.fetchNotes()))
         )
+    );
+
+    adminFetchUsers = createEffect(
+        (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
+            actions$.pipe(
+                ofType(AdminActions.adminFetchUsers),
+                switchMap(() =>
+                    adminNotesDataService.getUsers().pipe(
+                        map((users) => AdminActions.adminFetchUsersSuccess({ payload: users })),
+                        catchError((err) =>
+                            of({ type: AdminActions.adminFetchUsersFailed.type, payload: err })
+                        )
+                    )
+                )
+            )
+    );
+
+    adminBulkUpdateUsers = createEffect(
+        (actions$ = inject(Actions), adminNotesDataService = inject(AdminNotesDataService)) =>
+            actions$.pipe(
+                ofType(AdminActions.adminBulkUpdateUsers),
+                switchMap((action) =>
+                    adminNotesDataService.bulkUpdateUsers(action.payload).pipe(
+                        map((updatedUsers) =>
+                            AdminActions.adminBulkUpdateUsersSuccess({ payload: updatedUsers })
+                        ),
+                        catchError((err) => of({ type: '[ADMIN] BULK_UPDATE_USERS_FAILURE', payload: err }))
+                    )
+                )
+            )
     );
 }

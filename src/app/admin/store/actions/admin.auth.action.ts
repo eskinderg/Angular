@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Note } from 'src/app/models/note';
+import { User } from '../../models/user';
 
 /**
  List of admin messages
@@ -49,15 +50,39 @@ export const adminFetchNotesSuccess = createAction(
     props<{ payload: Note[] }>()
 );
 
+export const adminFetchUsersInfo = createAction('[ADMIN] FETCH_USERS_INFO');
+
+export const adminFetchUsersInfoSuccess = createAction(
+    '[ADMIN] FETCH_USERS_INFO_SUCCESS',
+    props<{ payload: { owner: string; user_id: string; total_notes: number; active_notes: number }[] }>()
+);
+
+export const adminFetchUsersInfoFailed = createAction(
+    '[ADMIN] FETCH_USERS_INFO_FAILURE',
+    props<{ payload: string }>()
+);
+
 export const adminFetchUsers = createAction('[ADMIN] FETCH_USERS');
 
 export const adminFetchUsersSuccess = createAction(
     '[ADMIN] FETCH_USERS_SUCCESS',
-    props<{ payload: { owner: string; user_id: string; total_notes: number; active_notes: number }[] }>()
+    props<{ payload: User[] }>()
 );
 
 export const adminFetchUsersFailed = createAction(
     '[ADMIN] FETCH_USERS_FAILURE',
+    props<{ payload: string }>()
+);
+
+export const adminBulkUpdateUsers = createAction('[ADMIN] BULK_UPDATE_USERS', props<{ payload: User[] }>());
+
+export const adminBulkUpdateUsersSuccess = createAction(
+    '[ADMIN] BULK_UPDATE_USERS_SUCCESSS',
+    props<{ payload: User[] }>()
+);
+
+export const adminBulkUpdateUsersFail = createAction(
+    '[ADMIN] BULK_UPDATE_USERS_FAIL',
     props<{ payload: string }>()
 );
 

@@ -8,18 +8,17 @@ import { first, forkJoin, map, Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class AdminNotesResolver implements Resolve<void> {
+export class AdminUsersResolver implements Resolve<void> {
     constructor(
         private store: Store,
         private actions$: Actions
     ) {}
 
     resolve(): Observable<void> {
-        this.store.dispatch(AdminActions.adminFetchUsersInfo());
+        this.store.dispatch(AdminActions.adminFetchUsers());
 
-        return forkJoin([
-            this.actions$.pipe(ofType(AdminActions.adminFetchUsersInfoSuccess), first()),
-            this.actions$.pipe(ofType(AdminActions.adminFetchNotesSuccess), first())
-        ]).pipe(map(() => undefined));
+        return forkJoin([this.actions$.pipe(ofType(AdminActions.adminFetchUsersSuccess), first())]).pipe(
+            map(() => undefined)
+        );
     }
 }

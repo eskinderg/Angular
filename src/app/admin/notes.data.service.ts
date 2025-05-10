@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from '../models/note';
+import { User } from './models/user';
 
 const NOTES_API_URL = '/api/admin/notes'; // Use the proxy path
 
@@ -14,10 +15,22 @@ export class AdminNotesDataService {
         return this.http.get<Note[]>(NOTES_API_URL);
     }
 
-    getUsers(): Observable<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]> {
+    getUsersInfo(): Observable<
+        { owner: string; user_id: string; total_notes: number; active_notes: number }[]
+    > {
         return this.http.get<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]>(
-            NOTES_API_URL + '/users'
+            NOTES_API_URL + '/usersinfo'
         );
+    }
+
+    getUsers(): Observable<User[]> {
+        return this.http.get<User[]>(NOTES_API_URL + '/users');
+    }
+
+    bulkUpdateUsers(payload: User[]): Observable<User[]> {
+        return this.http
+            .post(NOTES_API_URL + '/users', payload)
+            .pipe(map((response: User[]) => response.map((user) => new User(user))));
     }
 
     getNote(id: number) {

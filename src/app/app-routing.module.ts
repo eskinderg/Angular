@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
     {
-        path: 'dashboard',
+        path: 'admin',
         loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule)
     },
     {

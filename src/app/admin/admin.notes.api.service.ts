@@ -5,6 +5,7 @@ import { Note } from '..//models/note';
 import * as AdminActions from '../admin/store/actions/admin.auth.action';
 import * as fromAdminNotes from './store/reducers/admin.reducer';
 import * as fromRoot from '../store/reducers';
+import { User } from './models/user';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 @Injectable()
@@ -13,6 +14,10 @@ export class AdminNoteApiService {
 
     get Notes(): Observable<Note[]> {
         return this.store.select(fromAdminNotes.getAdminNotes);
+    }
+
+    get Users(): Observable<User[]> {
+        return this.store.select(fromAdminNotes.getAdminUsers);
     }
 
     get TotalNotesCount(): Observable<number> {
@@ -35,13 +40,19 @@ export class AdminNoteApiService {
         return this.store.select(fromAdminNotes.getAdminSelectedNote);
     }
 
-    get Users(): Observable<{ owner: string; user_id: string; total_notes: number; active_notes: number }[]> {
-        return this.store.select(fromAdminNotes.getAdminUsers);
+    get UsersInfo(): Observable<
+        { owner: string; user_id: string; total_notes: number; active_notes: number }[]
+    > {
+        return this.store.select(fromAdminNotes.getAdminUsersInfo);
     }
 
     bulkUpdateNotes(notes: Note[]): void {
         // return null; //this.http.post<void>('/api/notes/bulk-update', { notes });
         return this.run(AdminActions.adminBulkUpdateNotes({ payload: notes }));
+    }
+
+    bulkUpdateUsers(users: User[]): void {
+        return this.run(AdminActions.adminBulkUpdateUsers({ payload: users }));
     }
 
     private run(action: Action) {

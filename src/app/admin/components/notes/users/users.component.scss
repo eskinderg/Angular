@@ -1,0 +1,157 @@
+:host {
+    padding: 20px;
+}
+
+.dialog-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Dialog box styling */
+.dialog {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dialog header */
+.dialog h2 {
+    margin: 0 0 20px;
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+}
+
+/* Dialog actions */
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Button styling */
+.btn {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Table styling */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table header */
+.styled-table thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+th {
+    background: var(--text-area-border);
+    color: var(--body-color);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+/* Table body */
+.styled-table tbody tr {
+    // border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    // background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    // border-bottom: 2px solid #007bff;
+}
+
+/* Hover effect */
+.styled-table tbody tr:hover {
+    // background-color: #f1f1f1;
+    // cursor: pointer;
+}
