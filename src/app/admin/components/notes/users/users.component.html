@@ -1,6 +1,7 @@
 <table class="styled-table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Owner</th>
             <th>First Name</th>
             <th>EMail</th>
@@ -11,6 +12,7 @@
     <tbody>
         @for (user of allUsers$ | async; track user) {
             <tr>
+                <td>{{ user.id }}</td>
                 <td>{{ user.owner }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.email }}</td>
@@ -27,19 +29,24 @@
 @if (isDialogOpen) {
     <div class="dialog-backdrop">
         <div class="dialog">
-            <h2>Edit User</h2>
+            <h3>Edit User</h3>
+
             <form (ngSubmit)="saveUser()">
                 <div class="form-group">
-                    <label for="firstname">First Name:</label>
-                    <input id="firstname" [(ngModel)]="selectedUser.firstname" name="firstname" required />
+                    <label for="firstname">Id</label>
+                    <input type="text" [(ngModel)]="selectedUser.id" name="id" readonly />
                 </div>
                 <div class="form-group">
                     <label for="owner">Owner:</label>
-                    <input id="owner" [(ngModel)]="selectedUser.owner" name="owner" required />
+                    <input type="text" [(ngModel)]="selectedUser.owner" name="owner" required />
+                </div>
+                <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" [(ngModel)]="selectedUser.firstname" name="firstname" required />
                 </div>
                 <div class="form-group">
                     <label for="email">EMail:</label>
-                    <input id="email" [(ngModel)]="selectedUser.email" name="email" required />
+                    <input type="text" [(ngModel)]="selectedUser.email" name="email" required />
                 </div>
                 <div class="dialog-actions">
                     <button type="button" class="btn btn-secondary" (click)="closeDialog()">Cancel</button>

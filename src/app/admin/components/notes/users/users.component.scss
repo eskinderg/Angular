@@ -17,7 +17,7 @@
 
 /* Dialog box styling */
 .dialog {
-    background: #ffffff;
+    background: var(--body-bg);
     padding: 20px;
     border-radius: 10px;
     width: 400px;
@@ -26,10 +26,10 @@
 }
 
 /* Dialog header */
-.dialog h2 {
+.dialog h3 {
     margin: 0 0 20px;
     font-size: 1.5rem;
-    color: #333;
+    // color: #333;
     text-align: center;
 }
 
@@ -41,23 +41,32 @@
 .form-group label {
     display: block;
     font-size: 0.9rem;
-    color: #555;
+    // color: #555;
     margin-bottom: 5px;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 10px;
+input[type='text'],
+input[readonly],
+input[type='checkbox'] {
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.2s;
+    padding: 0.6rem;
+    // border: 1px solid #ccc;
+    border-radius: 6px;
+    width:100%;
 }
 
-.form-group input:focus {
-    border-color: #007bff;
+.form-group input {
+
+    // font-size: 1rem;
+    // border: 1px solid #ccc;
+    // border-radius: 5px;
+    // outline: none;
+    // transition: border-color 0.2s;
 }
+
+// .form-group input:focus {
+//     border-color: #007bff;
+// }
 
 /* Dialog actions */
 .dialog-actions {
@@ -67,32 +76,32 @@
 }
 
 /* Button styling */
-.btn {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
+// .btn {
+//     padding: 8px 12px;
+//     font-size: 0.9rem;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     transition: background-color 0.2s, color 0.2s;
+// }
 
-.btn-primary {
-    background-color: #007bff;
-    color: #ffffff;
-}
+// .btn-primary {
+//     background-color: #007bff;
+//     color: #ffffff;
+// }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-}
+// .btn-primary:hover {
+//     background-color: #0056b3;
+// }
 
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
+// .btn-secondary {
+//     background-color: #6c757d;
+//     color: #fff;
+// }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
+// .btn-secondary:hover {
+//     background-color: #5a6268;
+// }
 
 /* Fade-in animation */
 @keyframes fadeIn {
