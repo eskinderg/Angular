@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, viewChild } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Store } from '@ngrx/store';
@@ -11,6 +11,7 @@ import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-note-left-view',
@@ -23,12 +24,26 @@ import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialo
 export class NoteLeftViewComponent {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
 
+    @Input() searchTerm$: BehaviorSubject<string>;
+    @Input() notes: Note[];
+
     constructor(
         public notesApiService: NoteApiService,
         private dialogService: DialogService,
         private noteStore: Store<fromNotes.INotesState>,
         public route: Router
     ) {}
+
+    onSearchInput(event: any) {
+        const element = event.currentTarget as HTMLInputElement;
+        const value = element.value;
+        if (value.length) this.notesApiService.unselectNote();
+        this.searchTerm$.next(value);
+    }
+
+    clearSearch() {
+        this.searchTerm$.next('');
+    }
 
     onChangeNoteText(note: Note) {
         this.notesApiService.updateNoteText(note);

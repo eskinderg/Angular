@@ -70,6 +70,10 @@ export class NoteApiService {
         this.run(AppActions.updateNoteSelection({ payload: note }));
     }
 
+    unselectNote(): void {
+        this.run(AppActions.unselectNote());
+    }
+
     restoreArchivedNote(note: Note): void {
         this.run(AppActions.restoreNote({ payload: note }));
     }

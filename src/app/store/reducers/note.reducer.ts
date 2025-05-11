@@ -185,6 +185,15 @@ export const notesReducer = createReducer<INotesState>(
             }
         })
     ),
+    on(
+        NotesActions.unselectNote,
+        (state): INotesState => ({
+            ...state,
+            selectedNote: null,
+            opendNote: null,
+            facadeNote: null
+        })
+    ),
     on(NotesActions.restoreNoteSuccess, (state, action): INotesState => {
         const notes: Note[] = state.notes.map((note) => {
             return note.id === action.payload.id ? action.payload : note; // First update the note text

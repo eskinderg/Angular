@@ -175,6 +175,8 @@ export const fetchNotesStart = createAction('[NOTE] FETCH_NOTES_START');
 
 export const updateNoteSelection = createAction('[NOTE] UPDATE_NOTE_SELECTION', props<{ payload: Note }>());
 
+export const unselectNote = createAction('[NOTE] UNSELECT_NOTE');
+
 export const updateNoteSelectionSuccess = createAction(
     '[NOTE] UPDATE_NOTE_SELECTION_SUCCESS',
     props<{ payload: Note }>()

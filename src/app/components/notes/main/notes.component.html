@@ -1,6 +1,6 @@
 <div class="note-div">
     <div class="notes-navigation">
-        <app-note-left-view></app-note-left-view>
+        <app-note-left-view [notes]="filteredNotes$ | async" [searchTerm$]="searchTerm$"></app-note-left-view>
     </div>
     <div class="notes-detail">
         <div class="note-outlet">
@@ -15,6 +15,15 @@
                     (noteSelectionChange)="selectionChange($event)"
                     (toggleSpellCheck)="toggleSpellCheck($event)"
                     [note]="OpendNote | async"></app-note-right-view>
+            } @else if (searchTerm$.value.length) {
+                <div class="filterWrapper">
+                    @for (note of filteredNotes$ | async; track note) {
+                        <div
+                            class="filter"
+                            (click)="selectionChange(note)"
+                            [innerHTML]="hightlightText(note)"></div>
+                    }
+                </div>
             } @else {
                 <div class="note-select-info">
                     <svg id="svg5" version="1.1" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">

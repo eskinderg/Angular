@@ -1,5 +1,14 @@
 <div class="note-left-menu">
-    Notes ({{ NotesCount | async }})
+    <div class="search">
+        <input
+            type="text"
+            placeholder="Search"
+            class="searchInput"
+            [class.active]="searchTerm$.value.length"
+            [value]="searchTerm$.value"
+            (input)="onSearchInput($event)" />
+        <div class="closex" (click)="clearSearch()" [hidden]="!searchTerm$.value.length">x</div>
+    </div>
 
     <svg
         class="archive-note-icon"
@@ -43,10 +52,10 @@
                     <!-- <span class="visually-hidden">Loading...</span> -->
                 </div>
             </div>
-        } @else if ((Notes | async).length === 0) {
+        } @else if (notes.length === 0) {
             <div class="no-content">No notes</div>
         } @else {
-            @for (note of Notes | async; track note) {
+            @for (note of notes; track note) {
                 <app-note-list-item
                     [note]="note"
                     [animate]="Animate | async"

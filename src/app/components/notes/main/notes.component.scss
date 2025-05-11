@@ -39,6 +39,21 @@
     }
 }
 
+.filterWrapper {
+    overflow-y: scroll;
+    height: 100vh;
+    padding-bottom: 6rem;
+}
+
+.filter {
+    cursor: pointer;
+    inline-size: 70rem;
+    align-items: stretch;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    // height: 100%;
+}
+
 .note-menu-fill {
     height: 3rem;
 }

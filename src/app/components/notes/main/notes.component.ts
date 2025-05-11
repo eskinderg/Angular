@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { NoteRightViewComponent } from './right.view/note.right.view.component';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
-import { interval, Subscription } from 'rxjs';
+import { BehaviorSubject, combineLatest, interval, map, Subscription } from 'rxjs';
 import { NOTE_REFRESH_INTERVAL } from 'src/app/config/config';
 import { NoteLeftViewComponent } from './left.view/note.left.view.component';
 import { AsyncPipe } from '@angular/common';
@@ -27,6 +27,19 @@ export class NotesComponent implements OnDestroy, OnInit {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
     subscription: Subscription;
     refreshInterval = interval(NOTE_REFRESH_INTERVAL);
+    searchTerm$ = new BehaviorSubject<string>('');
+
+    filteredNotes$ = combineLatest([this.Notes, this.searchTerm$]).pipe(
+        map(([notes, searchTerm]) => {
+            return notes.filter((note) => {
+                const matchesSearch = [note.header, note.text]
+                    .join(' ')
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+                return matchesSearch;
+            });
+        })
+    );
 
     constructor(
         public notesApiService: NoteApiService,
@@ -43,6 +56,17 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     onChangeNoteText(note: Note) {
         this.notesApiService.updateNoteText(note);
+    }
+
+    hightlightText(note: Note): string {
+        const div = document.createElement('div');
+        div.innerHTML = note.text;
+        const regex = new RegExp(this.searchTerm$.value, 'g');
+        div.textContent = [note.header, div.textContent]
+            .join(' ')
+            .toLowerCase()
+            .replace(regex, `<mark>${this.searchTerm$.value.toLowerCase()}</mark>`);
+        return div.textContent;
     }
 
     saveSelection() {
