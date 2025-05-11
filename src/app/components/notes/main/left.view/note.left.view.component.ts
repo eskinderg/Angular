@@ -26,6 +26,7 @@ export class NoteLeftViewComponent {
 
     @Input() searchTerm$: BehaviorSubject<string>;
     @Input() notes: Note[];
+    searchVisible: boolean = false;
 
     constructor(
         public notesApiService: NoteApiService,
@@ -34,6 +35,9 @@ export class NoteLeftViewComponent {
         public route: Router
     ) {}
 
+    showSearch() {
+        this.searchVisible = true;
+    }
     onSearchInput(event: any) {
         const element = event.currentTarget as HTMLInputElement;
         const value = element.value;
@@ -42,6 +46,7 @@ export class NoteLeftViewComponent {
     }
 
     clearSearch() {
+        this.searchVisible = false;
         this.searchTerm$.next('');
     }
 

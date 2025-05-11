@@ -1,14 +1,21 @@
 <div class="note-left-menu">
-    <div class="search">
-        <input
-            type="text"
-            placeholder="Search"
-            class="searchInput"
-            [class.active]="searchTerm$.value.length"
-            [value]="searchTerm$.value"
-            (input)="onSearchInput($event)" />
-        <div class="closex" (click)="clearSearch()" [hidden]="!searchTerm$.value.length">x</div>
-    </div>
+    @if (!searchVisible) {
+        <img (click)="showSearch()" src="assets/images/search.svg" />
+        <div>Notes ({{ NotesCount | async }})</div>
+    } @else {
+        <div class="search">
+            <input
+                type="text"
+                placeholder="Search"
+                class="searchInput"
+                [class.active]="searchTerm$.value.length"
+                [hidden]="!searchVisible"
+                [value]="searchTerm$.value"
+                (input)="onSearchInput($event)" />
+            <!-- <div class="closex" (click)="clearSearch()" [hidden]="!searchVisible">X</div> -->
+            <img class="closex" (click)="clearSearch()" src="assets/images/x.svg" />
+        </div>
+    }
 
     <svg
         class="archive-note-icon"
