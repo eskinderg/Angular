@@ -9,7 +9,6 @@ import { Store } from '@ngrx/store';
 import { CardComponent } from '../../fragments/components/card/card.component';
 import { ThemeOptionComponent } from '../../fragments/components/appThemeOption/appThemeOption.component';
 import { FormsModule } from '@angular/forms';
-import { PopoverDirective } from '../../fragments/components/popover/popover';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -18,7 +17,7 @@ import { AsyncPipe } from '@angular/common';
     styleUrls: ['profile.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CardComponent, ThemeOptionComponent, FormsModule, PopoverDirective, AsyncPipe]
+    imports: [CardComponent, ThemeOptionComponent, FormsModule, AsyncPipe]
 })
 export class ProfileComponent {
     @HostBinding('@routerFadeInAnimation')
