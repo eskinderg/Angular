@@ -1,7 +1,7 @@
 <div class="container">
     <app-card header="Profile">
-        <div class="row mb-3">
-            <label for="example-text-input" class="col-2 col-form-label">Dark Mode</label>
+        <div class="row">
+            <div class="label">Dark Mode</div>
             <div class="col-10">
                 <app-theme-option
                     [darkMode]="isDarkMode | async"
@@ -11,40 +11,31 @@
             </div>
         </div>
         <div class="row mb-3">
-            <label for="example-text-input" class="col-2 col-form-label">Name</label>
+            <div class="label">Name</div>
             <div class="col-10">
                 <input class="form-control" name="name" type="text" [ngModel]="user['given_name']" />
             </div>
         </div>
         <div class="row mb-3">
-            <label for="example-email-input" class="col-2 col-form-label">Email</label>
+            <div class="label">Email</div>
             <div class="col-10">
                 <input class="form-control" type="email" [ngModel]="user['email']" />
             </div>
         </div>
         <div class="row mb-3">
-            <label for="example-tel-input" class="col-2 col-form-label">Telephone</label>
+            <div class="label">Telephone</div>
             <div class="col-10">
                 <input class="form-control" type="tel" />
             </div>
         </div>
         <div class="row mb-3">
-            <label for="example-date-input" class="col-2 col-form-label">Date</label>
+            <div class="label">Date</div>
             <div class="col-10">
                 <input class="form-control" type="text" />
             </div>
         </div>
         <div class="control">
             <button type="submit" class="btn btn-primary">Save</button>
-
-            <button
-                class="ms-4 btn btn-outline-primary"
-                appPopover="You see, I show up on hover!"
-                triggers="mouseenter:mouseleave"
-                popoverTitle="Pop title"
-                placement="right">
-                Mouse Over
-            </button>
         </div>
     </app-card>
 </div>

@@ -30,13 +30,14 @@ export class ProfileComponent implements OnInit {
         private confirmService: ConfirmService
     ) {
         this.user = this.authService.getIdentityClaims();
+        console.log(this.authService.getIdentityClaims());
     }
 
     ngOnInit() {
         this.profileForm = new UntypedFormGroup({
-            name: new UntypedFormControl(this.user['given_name'], [Validators.required]),
+            name: new UntypedFormControl(this.user['name'], [Validators.required]),
             email: new UntypedFormControl(this.user['email'], [Validators.required]),
-            lastName: new UntypedFormControl(this.user['family_name'], [Validators.required]),
+            lastName: new UntypedFormControl(this.user['given_name'], [Validators.required]),
             website: new UntypedFormControl(this.user['website'], [Validators.required])
         });
         // this.profileForm = this.fb.group({

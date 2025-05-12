@@ -1,14 +1,10 @@
 <div class="toggle-check toggle-switch">
-    <label class="form-check-label" [ngClass]="{ 'text-muted': !darkMode }" for="flexSwitchCheckChecked">{{
-        label
-    }}</label>
-    &nbsp; &nbsp;
+    <div class="form-check-label" [ngClass]="{ 'text-muted': !darkMode }">{{ label }}</div>
     <input
         #toggleOption
         class="toggle-input"
         type="checkbox"
         role="switch"
-        id="flexSwitchCheckChecked"
         [checked]="DarkMode"
         (click)="toggle()" />
 </div>

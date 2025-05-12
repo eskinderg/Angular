@@ -26,7 +26,7 @@
 }
 
 img {
-    height: 2rem;
+    height: 1.5rem;
     left: 0;
     cursor: pointer;
     margin-right: auto;
@@ -54,7 +54,7 @@ img {
     font-size: 1.25rem;
     color: var(--secondary);
     z-index: 2;
-    background: var(--body-bg);
+    background: transparent;
     border-bottom: 1px solid var(--border);
     // margin-right: 0.65rem;
 }
@@ -84,10 +84,11 @@ img {
     outline: none !important;
     border: none !important;
     background: transparent;
+    color: var(--secondary);
 }
 
 input::placeholder {
-    color: var(--bs-border-color-translucent);
+    color: var(--b-secondary);
 }
 
 .closex {
