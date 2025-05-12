@@ -10,13 +10,22 @@ import { AgoDatePipe } from '../../movies/directives/dateagopipe';
 import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
+import { SvgIconComponent } from '../../shared/svg/svg.component';
 
 @Component({
     selector: 'app-note.archive',
     templateUrl: './note.archive.component.html',
     styleUrl: './note.archive.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass, TooltipDirective, AsyncPipe, DatePipe, AgoDatePipe, NoteTitleTruncatePipe],
+    imports: [
+        NgClass,
+        SvgIconComponent,
+        TooltipDirective,
+        AsyncPipe,
+        DatePipe,
+        AgoDatePipe,
+        NoteTitleTruncatePipe
+    ],
     providers: [NoteApiService]
 })
 export class NoteArchiveComponent {

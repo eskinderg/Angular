@@ -10,13 +10,15 @@ import {
     ChangeDetectionStrategy
 } from '@angular/core';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from './dialog.enum';
+import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 @Component({
     selector: 'app-dialog',
     standalone: true,
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [SvgIconComponent]
 })
 export class DialogComponent implements AfterViewInit, OnDestroy {
     @Input() title: string;

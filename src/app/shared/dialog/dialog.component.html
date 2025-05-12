@@ -9,7 +9,7 @@
             <p [innerHTML]="message"></p>
 
             @if (imgSrc) {
-                <img src="{{ imgSrc }}" class="sign-icon" alt="sign-icon" />
+                <app-svg-icon width="40" height="40" src="{{ imgSrc }}" class="sign-icon"></app-svg-icon>
             }
         </div>
 
