@@ -13,24 +13,17 @@
 }
 
 .note-header {
-    // margin-top: 0.5rem;
     flex-basis: 50%;
 }
 
 .spell-check {
     cursor: pointer;
-
-    path {
-        fill: var(--b-secondary);
-    }
+    fill: var(--b-secondary);
 }
 
 .spell-check-active {
     cursor: pointer;
-
-    path {
-        fill: var(--b-active-link-color);
-    }
+    fill: var(--b-active-link-color);
 }
 
 .note-menu {
@@ -60,5 +53,5 @@
 }
 
 .menu-icon:hover {
-    fill: var(--b-active-link-color) ! important;
+    fill: var(--b-active-link-color) !important;
 }

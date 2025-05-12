@@ -12,6 +12,7 @@ import { TooltipDirective } from '../../../../fragments/components/tooltip/toolt
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
+import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 @Component({
     selector: 'app-note-right-view',
@@ -19,6 +20,7 @@ import { DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
     styleUrls: ['note.right.view.component.scss', '../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
+        SvgIconComponent,
         NgClass,
         NoteHeaderControlComponent,
         TooltipDirective,

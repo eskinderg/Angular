@@ -108,37 +108,20 @@
     width: 1.75rem;
     transition: all 0.5s ease;
     cursor: pointer;
-
-    svg {
-        height: 1.75rem;
-        width: 1.75rem;
-    }
-
-    & * {
-        transition: all 0.25s ease;
-        transform-box: fill-box;
-        transform-origin: center;
-    }
-
-    & .newpin {
-        fill: #c7c7c7;
-        transform: rotate(90deg);
-    }
-
-    & .pinned {
-        fill: var(--note-pin-fill);
-    }
 }
 
-.pin-wrapper:hover {
-    & .pinned {
-        fill: var(--note-pin-fill);
-    }
+.pinned {
+    fill: var(--note-pin-fill);
+}
 
-    & .newpin {
-        transform: rotate(0deg);
-        // fill: var(--note-pin-fill);
-    }
+.newpin {
+    fill: #c7c7c7;
+    transform: rotate(90deg);
+}
+
+.newpin:hover {
+    fill: var(--note-pin-fill);
+    transform: rotate(0deg);
 }
 
 .del-button:hover {

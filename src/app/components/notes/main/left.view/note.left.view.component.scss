@@ -32,6 +32,12 @@ img {
     margin-right: auto;
 }
 
+.searchIcon {
+    stroke: var(--note-pin-nofill);
+    cursor: pointer;
+    margin-right: auto;
+}
+
 .search {
     margin-right: auto;
     flex: 1 1;
@@ -68,9 +74,13 @@ img {
     // right: 4rem;
     // bottom: 0;
 
-    :hover {
-        color: var(--list-link-hover);
-    }
+    // :hover {
+    //     color: var(--list-link-hover);
+    // }
+}
+
+.archive-note-icon:hover {
+    color: var(--list-link-hover);
 }
 
 .searchInput {
@@ -92,6 +102,7 @@ input::placeholder {
 }
 
 .closex {
+    display: block;
     width: 1.2rem;
     height: 1.2rem;
     position: absolute;
@@ -104,6 +115,7 @@ input::placeholder {
     font-size: 1.2rem;
     cursor: pointer;
     color: var(--note-pin-nofill);
+    stroke: var(--note-pin-nofill);
 }
 
 .closex-hide {
@@ -115,18 +127,13 @@ input::placeholder {
 }
 
 .add-note-icon {
-    // position: absolute;
-    // right: 1rem;
-    // top: 0.5rem;
-    // bottom: 0;
-
     fill: rgb(from var(--b-active-link-color) r g b / 65%);
     cursor: pointer;
     z-index: 100;
+}
 
-    :hover {
-        fill: #5aba5a;
-    }
+.add-note-icon:hover {
+    fill: #5aba5a;
 }
 
 .main-note-list {

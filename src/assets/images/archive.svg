@@ -1,0 +1,19 @@
+
+    <svg
+        class="archive-note-icon"
+        (click)="routeToArchivedNotes()"
+        enable-background="new 0 0 256 256"
+        version="1.1"
+        viewBox="0 0 256 256"
+        height="22"
+        width="22"
+        xml:space="preserve"
+        xmlns="http://www.w3.org/2000/svg">
+        <g id="g8">
+            <g id="g6">
+                <path
+                    id="path4"
+                    d="m172.2 54.3h-88.5v14.7h88.5v-14.7zm51.7-44.3h-191.8l-22.1 132.8v103.2h236v-103.2l-22.1-132.8zm-179.1 14.8h166.5l17.7 118h-64.1v29.4h-73.8v-29.4h-64.1l17.8-118zm186.4 206.4h-206.5v-73.2l0.1-0.6h51.5v29.6h103.2v-29.5h51.5l0.1 0.6 0.1 73.1zm-44.2-132.7h-118v14.7h118v-14.7z" />
+            </g>
+        </g>
+    </svg>

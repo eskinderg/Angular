@@ -12,6 +12,7 @@ import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fade
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 import { BehaviorSubject } from 'rxjs';
+import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 @Component({
     selector: 'app-note-left-view',
@@ -19,7 +20,7 @@ import { BehaviorSubject } from 'rxjs';
     styleUrls: ['./note.left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: [FadeInOutNoteListItem],
-    imports: [NoteListItemComponent, AsyncPipe]
+    imports: [NoteListItemComponent, AsyncPipe, SvgIconComponent]
 })
 export class NoteLeftViewComponent {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
@@ -35,6 +36,9 @@ export class NoteLeftViewComponent {
         public route: Router
     ) {}
 
+    esk() {
+        alert('asdf');
+    }
     showSearch() {
         this.searchVisible = true;
     }
