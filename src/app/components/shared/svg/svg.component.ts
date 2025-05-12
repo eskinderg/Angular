@@ -6,7 +6,8 @@ import {
     OnInit,
     ElementRef,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ChangeDetectionStrategy
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
