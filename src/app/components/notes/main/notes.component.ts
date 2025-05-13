@@ -32,7 +32,9 @@ export class NotesComponent implements OnDestroy, OnInit {
     filteredNotes$ = combineLatest([this.Notes, this.searchTerm$]).pipe(
         map(([notes, searchTerm]) => {
             return notes.filter((note) => {
-                const matchesSearch = [note.header, note.text]
+                const div = document.createElement('div');
+                div.innerHTML = note.text;
+                const matchesSearch = [note.header, div.textContent]
                     .join(' ')
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase());
@@ -58,15 +60,30 @@ export class NotesComponent implements OnDestroy, OnInit {
         this.notesApiService.updateNoteText(note);
     }
 
-    hightlightText(note: Note): string {
+    hightlightText(note: Note, field: 'header' | 'text'): string {
         const div = document.createElement('div');
         div.innerHTML = note.text;
-        const regex = new RegExp(this.searchTerm$.value, 'g');
-        div.textContent = [note.header, div.textContent]
-            .join(' ')
-            .toLowerCase()
-            .replace(regex, `<mark>${this.searchTerm$.value.toLowerCase()}</mark>`);
-        return div.textContent;
+
+        const content = field === 'header' ? note.header : div.textContent;
+        const searchTerm = this.searchTerm$.value.toLowerCase();
+        const combinedText = [content].join(' ');
+
+        const index = combinedText.toLowerCase().indexOf(searchTerm);
+
+        if (index === -1) {
+            return content; // Return if no match is found
+        }
+
+        const previewStart = Math.max(0, index - 40); // Show 20 characters before the match
+        const previewEnd = Math.min(combinedText.length, index + searchTerm.length + 100); // Show 20 characters after the match
+        const preview = combinedText.substring(previewStart, previewEnd);
+
+        const highlightedPreview = preview.replace(
+            new RegExp(searchTerm, 'gi'),
+            (match) => `<mark><strong>${match}</strong></mark>`
+        );
+
+        return highlightedPreview;
     }
 
     saveSelection() {

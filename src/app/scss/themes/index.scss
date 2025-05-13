@@ -23,6 +23,11 @@
     --list-group-color: #212529;
     --list-group-border-color: #dce5ef;
     --body-bg: #fff;
+    --search-bg: #f5f5f5;
+    --filter-bg: #FFF;
+    --filter-border: #e0e0e0;
+    --filter-hover: #f9f9f9;
+    --filter-boxshadow: rgba(0, 0, 0, 0.1);
     --bs-border-color-translucent: rgba(0, 0, 0, 0.15);
     --bs-border-color: var(--primary);
     --b-secondary: #dcdcdc;
@@ -62,6 +67,11 @@
     --bs-secondary-color: #6c757d;
     --bs-primary: var(--primary);
     --body-bg: #27273d;
+    --search-bg: #2e2e45;
+    --filter-bg: #242434de;
+    --filter-border: #161616;
+    --filter-hover: #3a3a3a;
+    --filter-boxshadow: rgba(0, 0, 0, 0.5);;
     --bg-hover: #363c43;
     --bs-secondary-bg: var(--primary);
     --navbar-active-color: #fff;

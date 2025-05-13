@@ -40,18 +40,57 @@
 }
 
 .filterWrapper {
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
     height: 100vh;
+    padding: 1rem;
     padding-bottom: 6rem;
+    background-color: var(--search-bg);
+    border-radius: 8px;
 }
 
 .filter {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid var(--filter-border);
+    border-radius: 8px;
+    background-color: var(--filter-bg);
+    box-shadow: 0 2px 4px var(--filter-boxshadow);
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     cursor: pointer;
-    inline-size: 70rem;
-    align-items: stretch;
-    padding: 1rem;
-    border: 1px solid var(--border);
-    // height: 100%;
+}
+
+.filter:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--active-list-link-hover);
+}
+
+.note-header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--body-color);
+    margin-bottom: 8px;
+}
+
+.note-preview {
+    color: var(--body-color);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+mark {
+    background-color: #ffeb3b;
+    // color: #000000;
+    // font-weight: bold;
 }
 
 .note-menu-fill {
@@ -65,10 +104,7 @@
 
 .notes-navigation {
     position: relative;
-    // display: flex;
-    // flex-direction: row;
     flex-basis: 25%;
-    // height: 100%;
     box-sizing: border-box;
 }
 
