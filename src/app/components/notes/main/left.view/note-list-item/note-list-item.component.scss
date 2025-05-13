@@ -102,6 +102,13 @@
     // font-weight: bold;
 }
 
+.pin {
+    transition: all 0.25s ease;
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: #c7c7c7;
+}
+
 .pin-wrapper {
     z-index: 1;
     border: none;
@@ -138,7 +145,7 @@
 .del-button {
     color: var(--del-button-note);
     font-size: 1.25rem;
-    padding: 0.5rem;
+    padding: 0.25rem;
     // padding-right: 2rem;
     // position: absolute;
     // right: 1rem;

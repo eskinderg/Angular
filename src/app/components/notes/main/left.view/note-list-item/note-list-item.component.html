@@ -23,16 +23,41 @@
     </div>
     <div class="right">
         <div class="menu del-button">
-            <app-svg-icon
-                height="20"
-                width="20"
-                (mouseUp)="onArchiveNote(note)"
+            <svg
                 class="archive-note-button-icon"
-                src="assets/images/archive.svg"></app-svg-icon>
+                (mouseup)="onArchiveNote(note)"
+                enable-background="new 0 0 256 256"
+                version="1.1"
+                viewBox="0 0 256 256"
+                height="22"
+                width="22"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="g8">
+                    <g id="g6">
+                        <path
+                            id="path4"
+                            d="m172.2 54.3h-88.5v14.7h88.5v-14.7zm51.7-44.3h-191.8l-22.1 132.8v103.2h236v-103.2l-22.1-132.8zm-179.1 14.8h166.5l17.7 118h-64.1v29.4h-73.8v-29.4h-64.1l17.8-118zm186.4 206.4h-206.5v-73.2l0.1-0.6h51.5v29.6h103.2v-29.5h51.5l0.1 0.6 0.1 73.1zm-44.2-132.7h-118v14.7h118v-14.7z" />
+                    </g>
+                </g>
+            </svg>
         </div>
 
-        <div class="pin-wrapper" [class]="note.pinned ? 'pinned' : 'newpin'" (mouseup)="updatePinOrder(note)">
-            <app-svg-icon height="28" width="28" [src]="'assets/images/pin.svg'"></app-svg-icon>
+        <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
+            <!-- <app-svg-icon height="28" width="28" [src]="'assets/images/pin.svg'"></app-svg-icon> -->
+
+            <svg
+                class="pin"
+                width="800px"
+                height="800px"
+                [class]="note.pinned ? 'pinned' : 'newpin'"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <polygon
+                        points="13 8 11 6 11 3 12 3 12 1 4 1 4 3 5 3 5 6 3 8 3 10 7.3 10 7.3 16 8.7 16 8.7 10 13 10 13 8" />
+                </g>
+            </svg>
         </div>
 
         <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
