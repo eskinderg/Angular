@@ -46,7 +46,7 @@
     "@angular/compiler-cli": "^19.2.5",
     "@angular/localize": "^19.2.5",
     "@angular/service-worker": "^19.2.5",
-    "@ngrx/effects": "19.1.0",
+    "@ngrx/effects": "19.2.0",
     "@ngrx/store": "19.1.0",
     "@ngrx/store-devtools": "19.1.0",
     "@types/d3": "^7.4.3",
