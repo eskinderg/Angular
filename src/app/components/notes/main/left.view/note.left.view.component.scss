@@ -32,6 +32,10 @@ img {
     margin-right: auto;
 }
 
+.note-count {
+    cursor: pointer;
+}
+
 .searchIcon {
     stroke: var(--note-pin-nofill);
     cursor: pointer;
@@ -62,6 +66,7 @@ img {
     z-index: 2;
     background: transparent;
     border-bottom: 1px solid var(--border);
+    background: var(--bg-hover);
     // margin-right: 0.65rem;
 }
 
@@ -86,6 +91,7 @@ img {
 .searchInput {
     margin: 0;
     padding-left: 0.5rem;
+    padding-right: 2rem;
     width: 100%;
     height: 100%;
     font-size: 1.2rem;
@@ -110,7 +116,7 @@ input::placeholder {
     /* font-family: system-ui; */
     top: 15px;
     /* right: -5rem; */
-    left: 22.5rem;
+    left: 27.5rem;
     /* margin-left: auto; */
     font-size: 1.2rem;
     cursor: pointer;
@@ -151,7 +157,8 @@ input::placeholder {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background: var(--body-bg);
+    // background: var(--body-bg);
+    // background: var(--active-list-link);
     direction: ltr;
 }
 

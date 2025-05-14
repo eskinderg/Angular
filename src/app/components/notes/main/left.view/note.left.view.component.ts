@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, viewChild } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Store } from '@ngrx/store';
@@ -24,6 +24,7 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 })
 export class NoteLeftViewComponent {
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
+    searchInputRef = viewChild.required<ElementRef<HTMLInputElement>>('search');
 
     @Input() searchTerm$: BehaviorSubject<string>;
     @Input() notes: Note[];
@@ -36,17 +37,20 @@ export class NoteLeftViewComponent {
         public route: Router
     ) {}
 
-    esk() {
-        alert('asdf');
-    }
     showSearch() {
         this.searchVisible = true;
+        setTimeout(() => this.searchInputRef().nativeElement.focus(), 0);
     }
+
     onSearchInput(event: any) {
         const element = event.currentTarget as HTMLInputElement;
         const value = element.value;
         if (value.length) this.notesApiService.unselectNote();
         this.searchTerm$.next(value);
+    }
+
+    onSearchInputFocus(event: any) {
+        this.onSearchInput(event);
     }
 
     clearSearch() {

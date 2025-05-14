@@ -6,10 +6,26 @@
             width="25"
             (clicked)="showSearch()"
             src="assets/images/search.svg"></app-svg-icon>
-        <div>Notes ({{ NotesCount | async }})</div>
+        <div class="note-count" (click)="showSearch()">Notes ({{ NotesCount | async }})</div>
+        <app-svg-icon
+            height="21"
+            width="21"
+            (clicked)="routeToArchivedNotes()"
+            class="archive-note-icon"
+            src="assets/images/archive.svg"></app-svg-icon>
+
+        <app-svg-icon
+            height="26"
+            width="26"
+            (clicked)="createNewNote()"
+            class="add-note-icon"
+            src="assets/images/add.svg"></app-svg-icon>
     } @else {
         <div class="search">
             <input
+                #search
+                spellcheck="false"
+                (focus)="onSearchInputFocus($event)"
                 type="text"
                 placeholder="Search"
                 class="searchInput"
@@ -20,20 +36,6 @@
             <app-svg-icon (clicked)="clearSearch()" class="closex" src="assets/images/x.svg"></app-svg-icon>
         </div>
     }
-
-    <app-svg-icon
-        height="21"
-        width="21"
-        (clicked)="routeToArchivedNotes()"
-        class="archive-note-icon"
-        src="assets/images/archive.svg"></app-svg-icon>
-
-    <app-svg-icon
-        height="26"
-        width="26"
-        (clicked)="createNewNote()"
-        class="add-note-icon"
-        src="assets/images/add.svg"></app-svg-icon>
 </div>
 <div class="main-note-list">
     <div class="list-notes">

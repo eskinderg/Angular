@@ -25,6 +25,8 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    // background: var(--active-list-link);
+    background: var(--bs-card-bg);
 }
 
 .left {
@@ -54,10 +56,10 @@
 .selected-note {
     background: var(--selected-note-list-item-bg-color) !important;
     z-index: 1;
-    color: var(--b-active-link-color) !important;
+    color: var(--active-list-color) !important;
 
     .date-text {
-        color: var(--b-active-link-color) !important;
+        color: var(--active-list-color) !important;
     }
 
     .note-wrapper {

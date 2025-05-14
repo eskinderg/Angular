@@ -5,7 +5,6 @@ import { NgClass, DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../../fragments/components/tooltip/tooltip.directive';
 import { NoteTitleTruncatePipe } from '../../../../movies/directives/noteTitleTruncate';
 import { AgoDatePipe } from '../../../../movies/directives/dateagopipe';
-import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 type Animate = {
     note: boolean;
@@ -18,7 +17,7 @@ type Animate = {
     animations: [FadeInOutNoteListItem],
     styleUrls: ['./note-list-item.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass, SvgIconComponent, TooltipDirective, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
+    imports: [NgClass, TooltipDirective, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
 })
 export class NoteListItemComponent {
     @Input() note: Note;
