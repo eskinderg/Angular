@@ -68,7 +68,7 @@ export class NotesComponent implements OnDestroy, OnInit {
         const searchTerm = this.searchTerm$.value.toLowerCase();
         const combinedText = [content].join(' ');
 
-        if (field === 'header' && content === '') return 'Untitled';
+        if (field === 'header' && (content === '' || content === null)) return 'Untitled';
 
         const index = combinedText.toLowerCase().indexOf(searchTerm);
 
