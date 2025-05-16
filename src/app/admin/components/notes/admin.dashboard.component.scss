@@ -21,9 +21,9 @@
 
 .active {
     // border: 2px solid var(--bs-popover-header-bg) ! important;
-    background: var(--active-list-link-border-color) !important;
+    // background: var(--active-list-link-border-color) !important;
     outline: 1px solid var(--b-active-link-color) !important;
-    color: var(--bs-border-color) !important;
+    // color: var(--bs-border-color) !important;
 }
 
 .clear-filter {
@@ -139,7 +139,7 @@ select:focus {
     appearance: none;
     margin: 0;
     width: 100%;
-    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    padding: 0.5rem 4rem 0.5rem 0.75rem;
     // border: 1px solid var(--border);
     box-shadow: none;
 
