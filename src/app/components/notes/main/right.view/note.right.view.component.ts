@@ -141,6 +141,30 @@ export class NoteRightViewComponent {
         e.preventDefault();
     }
 
+    htmlToString(htmlString: string): string {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlString, 'text/html');
+
+        const plainText = doc.body.textContent || '';
+        return plainText;
+    }
+
+    getCount(note: Note, type: 'word' | 'line'): number {
+        // window.setTimeout(()=>{
+        // console.log(this.textAreaExpandedComponent().textAreaElementRef().nativeElement.text);
+        // },0)
+        // console.log(this.textAreaExpandedComponent().textAreaElementRef().nativeElement.value);
+        // setTimeout(()=>console.log(this.textAreaExpandedComponent().textAreaElementRef().nativeElement.value),0)
+        switch (type) {
+            case 'word':
+                return this.htmlToString(note.text).trim().split(/\s+/).length;
+            case 'line':
+                return note.text.split(/\r\n|\r|\n|<br\s*\/?>/).length;
+            default:
+                return 0;
+        }
+    }
+
     saveSelection(): Range {
         const selection = window.getSelection();
         return selection.rangeCount === 0 ? null : selection.getRangeAt(0);

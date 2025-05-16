@@ -91,7 +91,7 @@ table {
     }
 
     tr:nth-child(even) {
-        background-color: var(--selected-note-list-item-bg-color);
+        background-color: var(--bs-card-bg);
     }
 
     tr:hover {

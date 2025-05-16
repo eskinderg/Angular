@@ -59,4 +59,11 @@
             (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)">
         </app-textarea-expanded>
     }
+
+    <div class="info" (click)="noteInfoClick(facadeNote)">
+        <div class="wc"><strong>Word Count: </strong>{{ getCount(facadeNote, 'word') }}</div>
+        |
+        <!-- <div class="wc"><strong>Line Count: </strong>{{ getCount(facadeNote, 'line') }}</div> | -->
+        <div class="wc"><strong>Spell Check: </strong>{{ facadeNote?.spellCheck ? 'on' : 'off' }}</div>
+    </div>
 </div>

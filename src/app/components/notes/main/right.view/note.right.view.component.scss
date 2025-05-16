@@ -12,6 +12,18 @@
     flex-direction: column;
 }
 
+.info {
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    // border:2px solid red;
+    // border-top: 1px solid var(--border);
+    // background: grey;
+}
+
 .note-header {
     flex-basis: 50%;
 }
