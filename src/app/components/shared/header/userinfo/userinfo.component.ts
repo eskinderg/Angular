@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromProfile from '../../../../store/reducers/preference.reducer';
 import * as PreferenceActions from '../../../../store/actions/preference.action';
 import { ThemeOptionComponent } from '../../../../fragments/components/appThemeOption/appThemeOption.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { authConfig } from 'src/app/auth/auth.config';
 
@@ -24,6 +24,7 @@ export class UserInfoComponent {
 
     constructor(
         private oauthService: OAuthService,
+        private router: Router,
         public store: Store<fromProfile.IPreferenceState>
     ) {}
 
@@ -32,7 +33,8 @@ export class UserInfoComponent {
     }
 
     login() {
-        // this.router.navigate(['login']);
+        this.router.navigate(['login']);
+        return;
         this.oauthService.configure(authConfig);
         this.oauthService
             .loadDiscoveryDocumentAndTryLogin()
