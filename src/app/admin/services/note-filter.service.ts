@@ -10,7 +10,13 @@ export class NoteFilterService {
 
         return notes.filter((note) => {
             const matchesUser = userId ? note.userId === userId : true;
-            const matchesSearch = [note.header, note.text].join(' ').toLowerCase().includes(searchText);
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(note.text, 'text/html');
+            const matchesSearch = [note.header, doc.body.textContent]
+                .join(' ')
+                .toLowerCase()
+                .includes(searchText);
             return matchesUser && matchesSearch;
         });
     }

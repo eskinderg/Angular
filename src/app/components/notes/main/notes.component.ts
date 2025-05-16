@@ -61,10 +61,13 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     hightlightText(note: Note, field: 'header' | 'text'): string {
-        const div = document.createElement('div');
-        div.innerHTML = note.text;
+        // const div = document.createElement('div');
+        // div.innerHTML = note.text;
 
-        const content = field === 'header' ? note.header : div.textContent;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(note.text, 'text/html');
+
+        const content = field === 'header' ? note.header : doc.body.textContent || '';
         const searchTerm = this.searchTerm$.value.toLowerCase();
         const combinedText = [content].join(' ');
 
@@ -81,11 +84,15 @@ export class NotesComponent implements OnDestroy, OnInit {
         const preview = combinedText.substring(previewStart, previewEnd);
 
         const highlightedPreview = preview.replace(
-            new RegExp(searchTerm, 'gi'),
+            new RegExp(this.escapeRegExp(searchTerm), 'gi'),
             (match) => `<mark><strong>${match}</strong></mark>`
         );
 
         return highlightedPreview;
+    }
+
+    private escapeRegExp(str: string): string {
+        return str.replace(/[\\^$.|?*+()[{]/g, '\\$&');
     }
 
     saveSelection() {
