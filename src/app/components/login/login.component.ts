@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
+import { CommonModule } from '@angular/common';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -20,13 +22,15 @@ import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
     styleUrls: ['./login.component.scss'],
     animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, ReactiveFormsModule]
+    imports: [FormsModule, CommonModule, ReactiveFormsModule]
 })
 export class LoginComponent implements OnInit {
     @HostBinding('@routerFadeInAnimation')
     userProfile: object;
     loginForm: UntypedFormGroup;
-    message: string;
+    message$ = new BehaviorSubject<string>('');
+
+    showPassword = false;
 
     constructor(
         private store: Store<fromRoot.IAppState>,
@@ -34,7 +38,7 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router
     ) {
-        this.route.params.subscribe((params) => (this.message = params['endsession']));
+        // this.route.params.subscribe((params) => (this.message = params['endsession']));
 
         if (this.oauthService.hasValidAccessToken()) {
             this.router.navigate(['/home']);
@@ -57,9 +61,9 @@ export class LoginComponent implements OnInit {
         this.oauthService.loadUserProfile().then((up) => (this.userProfile = up));
     }
 
-    hasMessage(): boolean {
-        return this.message !== undefined && this.message !== 'undefined';
-    }
+    // hasMessage(): boolean {
+    //     return this.message !== undefined && this.message !== 'undefined';
+    // }
 
     get access_token() {
         return this.oauthService.getAccessToken();
@@ -91,6 +95,10 @@ export class LoginComponent implements OnInit {
         // return claims['family_name'];
     }
 
+    // get Message():string {
+    //     return this.message;
+    // }
+
     loginWithPassword() {
         if (this.loginForm.valid) {
             this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
@@ -104,11 +112,16 @@ export class LoginComponent implements OnInit {
                         this.store.dispatch(AuthActions.loginEventSuccess());
                     })
                     .catch((error) => {
-                        alert('Login failed');
+                        this.message$.next('Invalid Username or passwordis!');
+                        // console.log(error);
                         this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
                     });
             });
         }
+    }
+
+    toggleShowPassword() {
+        this.showPassword = !this.showPassword;
     }
 
     logout() {

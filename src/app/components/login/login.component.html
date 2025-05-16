@@ -1,59 +1,136 @@
 <!-- <form [formGroup]="loginForm"> -->
-<form>
-    @if (hasMessage()) {
-        <div class="alert alert-warning" role="alert"><strong>Oh snap!</strong> {{ message }}</div>
-    }
-    <div [formGroup]="loginForm" class="login-form container pt-3">
-        <div class="row justify-content-sm-center">
-            <div class="col-sm-6 col-md-4">
-                <div class="card text-center">
-                    <!-- <div class="card-header">Sign in to continue</div> -->
-                    <div class="card-body">
-                        <!-- <img src="https://placeimg.com/128/128/tech/sepia"> -->
-                        <!-- <br> -->
-                        <!-- <br> -->
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Username</span>
-                            </div>
-                            <input
-                                formControlName="username"
-                                type="text"
-                                type="text"
-                                class="form-control"
-                                aria-describedby="basic-addon3" />
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon3">Password</span>
-                            </div>
-                            <input
-                                formControlName="password"
-                                type="password"
-                                class="form-control"
-                                aria-describedby="basic-addon3" />
-                        </div>
-
-                        <!-- <input  formControlName="username" type="text"[(ngModel)]="userName" class="form-control mb-2" placeholder="Username" required autofocus> -->
-                        <!-- <input formControlName="password" type="password" class="form-control mb-2" [(ngModel)]="password" placeholder="Password" required> -->
-                        <button
-                            class="btn btn-lg btn-primary btn-block mb-1"
-                            (click)="loginWithPassword()"
-                            type="submit">
-                            Sign in
-                        </button>
-
-                        <!-- <button class="btn btn-default" (click)="logout()">Logout</button> -->
-                        <!-- <label class="checkbox float-left"> -->
-                        <!--     <input type="checkbox" value="remember-me"> -->
-                        <!--     Remember me -->
-                        <!-- </label> -->
-                        <!-- <a href="#" class="float-right">Need help?</a> -->
+<form (ngSubmit)="loginWithPassword()" [formGroup]="loginForm" class="login-form container pt-3" novalidate>
+    <div class="row wrapper justify-content-sm-center">
+        <div class="col-sm-6 col-md-4">
+            <div class="card text-center shadow">
+                <div class="card-body">
+                    <!-- Error Alert -->
+                    <div
+                        *ngIf="message$ | async as message"
+                        class="alert alert-danger d-flex align-items-center gap-2 mb-3"
+                        role="alert"
+                        style="font-size: 1.05rem">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="22"
+                            height="22"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="feather feather-alert-triangle me-2"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                            <line x1="12" y1="9" x2="12" y2="13" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                        <span>{{ message }}</span>
                     </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-username">Username</span>
+                        </div>
+                        <input
+                            formControlName="username"
+                            type="text"
+                            class="form-control"
+                            [ngClass]="{
+                                'is-invalid':
+                                    loginForm.get('username').invalid &&
+                                    (loginForm.get('username').dirty || loginForm.get('username').touched)
+                            }"
+                            aria-describedby="basic-addon-username" />
+                    </div>
+
+                    <!-- Username validation message -->
+                    <div
+                        class="invalid-feedback d-block text-start mb-2"
+                        [class.visible]="
+                            loginForm.get('username').invalid &&
+                            (loginForm.get('username').dirty || loginForm.get('username').touched)
+                        ">
+                        Username is required.
+                    </div>
+
+                    <div class="input-group mb-3 position-relative">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-password">Password</span>
+                        </div>
+                        <input
+                            formControlName="password"
+                            [type]="showPassword ? 'text' : 'password'"
+                            class="form-control"
+                            [ngClass]="{
+                                'is-invalid':
+                                    loginForm.get('password').invalid &&
+                                    (loginForm.get('password').dirty || loginForm.get('password').touched)
+                            }"
+                            aria-describedby="basic-addon-password" />
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary btn-eye"
+                            (click)="toggleShowPassword()"
+                            tabindex="-1"
+                            aria-label="Show password">
+                            <ng-container *ngIf="!showPassword">
+                                <!-- Eye SVG -->
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-eye"
+                                    viewBox="0 0 24 24">
+                                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </ng-container>
+                            <ng-container *ngIf="showPassword">
+                                <!-- Eye-off SVG -->
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="feather feather-eye-off"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a21.81 21.81 0 0 1 5.06-6.06" />
+                                    <path d="M1 1l22 22" />
+                                    <path d="M9.53 9.53A3 3 0 0 0 12 15a3 3 0 0 0 2.47-5.47" />
+                                    <path d="M14.47 14.47A3 3 0 0 1 12 9a3 3 0 0 1-2.47 5.47" />
+                                </svg>
+                            </ng-container>
+                        </button>
+                    </div>
+
+                    <!-- Password validation message -->
+                    <div
+                        class="invalid-feedback d-block text-start mb-2"
+                        [class.visible]="
+                            loginForm.get('password').invalid &&
+                            (loginForm.get('password').dirty || loginForm.get('password').touched)
+                        ">
+                        Password is required.
+                    </div>
+                    <button
+                        class="btn btn-lg btn-primary btn-block mb-1 w-100"
+                        [disabled]="loginForm.invalid"
+                        type="submit">
+                        Sign in
+                    </button>
                 </div>
-                <!-- <a href="#" class="float-right">Create an account </a> -->
             </div>
         </div>
     </div>

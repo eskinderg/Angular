@@ -114,7 +114,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
 
     ngOnChanges(changes: SimpleChanges) {
         if (
-            (changes['facadeNote'].currentValue as Note).id === this.facadeNote.id &&
+            (changes['facadeNote']?.currentValue as Note).id === this.facadeNote.id &&
             this.facadeNote.selection !== null &&
             (changes['facadeNote'].currentValue as Note).id !==
                 (changes['facadeNote'].previousValue as Note)?.id
