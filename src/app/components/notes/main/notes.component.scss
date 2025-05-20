@@ -82,7 +82,7 @@
     color: var(--body-color);
     font-size: 0.95rem;
     line-height: 1.4;
-    white-space: nowrap;
+    white-space: pre-wrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
