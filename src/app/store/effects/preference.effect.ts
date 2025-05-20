@@ -62,7 +62,7 @@ export class PreferenceEffect {
     logOutSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(PreferenceActions.logOutSuccess),
-            switchMap(() => of(AuthActions.routeToHome()))
+            switchMap(() => of(AuthActions.routeToLogin({ message: '' })))
         )
     );
 }
