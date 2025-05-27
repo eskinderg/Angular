@@ -15,6 +15,8 @@ export const getDarkModeSuccess = createAction(
     props<{ isDarkMode: boolean }>()
 );
 
+export const afterLogInSuccess = createAction('[PREFERENCE] AFTER_LOG_IN_SUCCESS');
+
 export const logInSuccess = createAction('[PREFERENCE] LOG_IN_SUCCESS');
 
 export const logOutSuccess = createAction('[PREFERENCE] LOG_OUT_SUCCESS');

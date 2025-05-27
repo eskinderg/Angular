@@ -30,7 +30,7 @@ export class AuthPermission {
         return this.Token.realm_access.roles;
     }
 
-    get IsAdmin() {
+    get IsAdmin(): boolean {
         return this.hasPermission('Admin');
     }
 }
