@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { from } from 'rxjs';
+import { from, of } from 'rxjs';
 import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 
 import { OAuthService } from 'angular-oauth2-oidc';
 import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
 import * as PreferenceActions from '../actions/preference.action';
+import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 @Injectable()
 export class AuthEffect {
     constructor(
         private actions$: Actions,
         private oauthService: OAuthService,
+        private authPermission: AuthPermission,
         private router: Router
     ) {}
 
@@ -41,11 +43,21 @@ export class AuthEffect {
                 from(this.oauthService.loadUserProfile()).pipe(
                     mergeMap((profile) => [
                         AuthActions.loadProfileSuccess({ profile }),
-                        PreferenceActions.logInSuccess(),
-                        AuthActions.routeToHome()
+                        PreferenceActions.logInSuccess()
                     ]),
                     catchError((err) => [AuthActions.loadProfileFail({ payload: err })])
                 )
+            )
+        )
+    );
+
+    afterLoginEventSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActions.loadProfileSuccess, PreferenceActions.logInSuccess),
+            switchMap(() =>
+                this.authPermission.IsAdmin
+                    ? of(AuthActions.routeToDashboard())
+                    : of(AuthActions.routeToHome())
             )
         )
     );
@@ -71,7 +83,20 @@ export class AuthEffect {
         () =>
             this.actions$.pipe(
                 ofType(AuthActions.routeToHome),
-                switchMap(() => from(this.router.navigate(['/'])))
+                switchMap(() => {
+                    return from(this.router.navigate(['/']));
+                })
+            ),
+        { dispatch: false }
+    );
+
+    routeToDashboard$ = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(AuthActions.routeToDashboard),
+                switchMap(() => {
+                    return from(this.router.navigate(['/admin/dashboard']));
+                })
             ),
         { dispatch: false }
     );

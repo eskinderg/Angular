@@ -10,6 +10,8 @@ export const routeToLogin = createAction('[AUTH] ROUTE_TO_LOGIN', props<{ messag
 
 export const routeToHome = createAction('[AUTH] ROUTE_TO_HOME');
 
+export const routeToDashboard = createAction('[AUTH] ROUTE_TO_DASHBOARD');
+
 export const loginEvent = createAction('[AUTH] LOGIN_EVENT', props<{ username: string; password: string }>());
 
 export const loginEventFail = createAction('[AUTH] LOGIN_EVENT_FAIL', props<{ payload: any }>());
