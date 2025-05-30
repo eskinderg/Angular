@@ -26,7 +26,7 @@
     "@angular/forms": "^19.2.11",
     "@angular/language-service": "^19.2.11",
     "@angular/platform-browser": "^19.2.11",
-    "@angular/platform-browser-dynamic": "^19.2.11",
+    "@angular/platform-browser-dynamic": "^20.0.0",
     "@angular/router": "^19.2.11",
     "@ngrx/router-store": "^19.2.0",
     "rxjs": "~7.8.2",
