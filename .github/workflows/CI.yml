@@ -1,41 +1,46 @@
-name: CI
-
+name: Angular Build
 on:
   push:
-    branches: [ master ]
+    branches: [ main, master ] # Triggers on pushes to main or master branch
   pull_request:
-    branches: [ master ]
+    branches: [ main, master ] # Triggers on pull requests to main or master branch
 
 jobs:
-  Build-on-Ubuntu-latest:
-    name: Ubuntu Build
-    runs-on: ubuntu-latest
+  build:
+    name: Build ${{ matrix.os }} with Node ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
-        node-version: ['16.14.x','18.19.1','20.9.x']
+        os: [ubuntu-latest, windows-latest]
+        node-version: ['20.19.x','22.12.x']
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node }}
-    #- run: npm ci
-    - run: npm install
-    - run: npm run lint
-    - run: npm run build
-  Build-on-windows-latest:
-    name: Windows Build
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        node-version: ['16.14.x','18.19.1','20']
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node }}
-    #- run: npm ci
-    - run: npm install
-    - run: npm run lint
-    - run: npm run build
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm' # Enables caching for npm dependencies
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Angular Application
+        run: npm run build
+
+      - name: Lint Code
+        run: npm run lint
+
+      # - name: Run Tests
+      #   run: npm run test
+
+      #Upload build artifact
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-app-dist-${{ matrix.os }}-${{ matrix.node-version }}
+          path: docs/
+          if-no-files-found: error
