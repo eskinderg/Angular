@@ -1,0 +1,39 @@
+name: Dependabot auto-merge
+
+on:
+  pull_request_target: # Use pull_request_target for security reasons when dealing with GITHUB_TOKEN
+
+permissions:
+  pull-requests: write
+  contents: write # Often needed to merge or if your PR needs to update files during merge
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    # Check if the PR is from Dependabot
+    if: ${{ github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]' }}
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2.1.0 # Use a specific version
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      # Optional: Add more conditions here, e.g., only auto-merge patch/minor updates
+      # - name: Check update type (example: only patch or minor for non-dev dependencies)
+      #   if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+      #   run: echo "Safe to auto-merge based on SemVer."
+      # Or for dev dependencies you might be more lenient:
+      # - name: Check dev dependency update type (example: allow major for dev)
+      #   if: steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-major' || steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch')
+      #   run: echo "Dev dependency, allowing major/minor/patch auto-merge."
+
+
+      # This step enables auto-merge on the PR.
+      # GitHub will then merge it automatically if all branch protection rules (status checks) pass.
+      - name: Enable auto-merge for Dependabot PR
+        if: steps.metadata.outputs.update-type != '' # Ensure metadata was fetched
+        run: gh pr merge --auto --squash "${{ github.event.pull_request.html_url }}"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          PR_URL: ${{ github.event.pull_request.html_url }}
