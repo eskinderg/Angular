@@ -1,14 +1,14 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Note } from '../../../models/note';
+import { Note } from '../../models/note';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
-import { EditNoteDialogComponent } from './edit.note.dialog/edit-note-dialog.component';
+import { EditNoteDialogComponent } from './notes/edit.note.dialog/edit-note-dialog.component';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
-import { NoteFilterService } from '../../services/note-filter.service';
-import { BulkUpdateDialogComponent } from './bulk-update-dialog/bulk-update-dialog.component';
-import { SelectedNotesDialogComponent } from './selected-notes-dialog.component/selected-notes-dialog.component';
+import { NoteFilterService } from '../services/note-filter.service';
+import { BulkUpdateDialogComponent } from './notes/bulk-update-dialog/bulk-update-dialog.component';
+import { SelectedNotesDialogComponent } from './notes/selected-notes-dialog.component/selected-notes-dialog.component';
 
 @Component({
     selector: 'app-admin-dashboard-notes',
