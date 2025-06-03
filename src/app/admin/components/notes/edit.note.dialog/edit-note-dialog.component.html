@@ -1,5 +1,5 @@
-<div class="dialog-backdrop">
-    <div class="dialog-box">
+<div class="dialog-backdrop" (click)="onClose()">
+    <div class="dialog-box" (click)="$event.stopPropagation()">
         <div class="dialog-header">
             <div>Edit</div>
             <div class="close-btn" (click)="onClose()">✕</div>
