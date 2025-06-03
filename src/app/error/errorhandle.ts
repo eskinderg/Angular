@@ -12,7 +12,12 @@ export class GlobalErrorHandler implements ErrorHandler {
     /**
      * @param {Injector} injector - service for injecting LoggingService
      */
-    constructor(private injector: Injector) {}
+    constructor(private injector: Injector) {
+        window.addEventListener('error', (event) => {
+            this.handleError(event.error);
+            event.preventDefault();
+        });
+    }
 
     /**
      * Handles error
