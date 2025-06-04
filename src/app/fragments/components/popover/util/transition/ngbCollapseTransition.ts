@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NgbTransitionStartFn } from './ngbTransition';
 import { reflow } from '../util';
 

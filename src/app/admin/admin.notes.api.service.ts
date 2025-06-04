@@ -7,7 +7,6 @@ import * as fromAdminNotes from './store/reducers/admin.reducer';
 import * as fromRoot from '../store/reducers';
 import { User } from './models/user';
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 @Injectable()
 export class AdminNoteApiService {
     constructor(private store: Store<fromRoot.IAppState>) {}
