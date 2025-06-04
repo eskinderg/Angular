@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     message$ = new BehaviorSubject<string>('');
 
     showPassword = false;
+    isLoading: boolean = false;
 
     constructor(
         private store: Store<fromRoot.IAppState>,
@@ -101,6 +102,7 @@ export class LoginComponent implements OnInit {
 
     loginWithPassword() {
         if (this.loginForm.valid) {
+            this.isLoading = true;
             this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
             this.oauthService.loadDiscoveryDocument().then(() => {
                 this.oauthService
@@ -110,11 +112,13 @@ export class LoginComponent implements OnInit {
                     )
                     .then(() => {
                         this.store.dispatch(AuthActions.loginEventSuccess());
+                        this.isLoading = false;
                     })
                     .catch((error) => {
                         this.message$.next('Invalid Username or passwordis!');
                         // console.log(error);
                         this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
+                        this.isLoading = false;
                     });
             });
         }

@@ -1,5 +1,15 @@
-<!-- <form [formGroup]="loginForm"> -->
 <form (ngSubmit)="loginWithPassword()" [formGroup]="loginForm" class="login-form container pt-3" novalidate>
+    @if (isLoading) {
+        <div class="loggingin">
+            <div class="loader-container">
+                <div class="loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    }
     <div class="row wrapper justify-content-sm-center">
         <div class="col-sm-6 col-md-4">
             <div class="card text-center shadow">
