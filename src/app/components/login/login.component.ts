@@ -115,8 +115,7 @@ export class LoginComponent implements OnInit {
                         this.isLoading = false;
                     })
                     .catch((error) => {
-                        this.message$.next('Invalid Username or passwordis!');
-                        // console.log(error);
+                        this.message$.next(error.error.error_description);
                         this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
                         this.isLoading = false;
                     });

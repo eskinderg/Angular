@@ -43,7 +43,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
             } else {
                 loggingService.error(error);
             }
-            return throwError(() => error.message);
+            return throwError(() => error);
         })
     );
 };
