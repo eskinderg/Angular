@@ -48,7 +48,7 @@
         } @else if (notes.length === 0) {
             <div class="no-content">No notes</div>
         } @else {
-            @for (note of notes; track note) {
+            @for (note of notes; track note.id) {
                 <app-note-list-item
                     [note]="note"
                     [animate]="Animate | async"
