@@ -58,14 +58,28 @@ export class ToastHeaderDirective {}
         @if (contentHeaderTpl || header) {
             <div class="toast-header">
                 <ng-template [ngTemplateOutlet]="contentHeaderTpl || headerTpl" />
-                <button
-                    type="button"
+
+                <svg
                     class="btn-toast-close"
-                    aria-label="Close"
-                    i18n-aria-label="@@ngb.toast.close-aria"
-                    (click)="hide()">
-                    X
-                </button>
+                    width="1.5rem"
+                    height="1.5rem"
+                    (click)="hide()"
+                    viewBox="0 0 24 24"
+                    fill="none">
+                    <g clip-path="url(#clip0_429_11083)">
+                        <path
+                            d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
+                            stroke="#8f8f8f"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </g>
+                    <defs>
+                        <clipPath>
+                            <rect width="24" height="24" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
             </div>
         }
         <div class="toast-body" [class]="cls">

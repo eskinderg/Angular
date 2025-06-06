@@ -35,7 +35,7 @@
 }
 
 .toast-body {
-    padding: 0.75rem;
+    padding: 1rem;
     word-wrap: break-word;
 }
 
@@ -46,6 +46,7 @@
     outline: none;
     padding: 0;
     margin: 0;
+    cursor: pointer;
 }
 
 .bg-success {
