@@ -1,12 +1,12 @@
-import { Injectable, ViewContainerRef, EnvironmentInjector } from '@angular/core';
+import { Injectable, ViewContainerRef, EnvironmentInjector, inject } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from './dialog.enum';
 
 @Injectable({ providedIn: 'root' })
 export class DialogService {
-    private viewContainerRef: ViewContainerRef;
+    private injector = inject(EnvironmentInjector);
 
-    constructor(private injector: EnvironmentInjector) {}
+    private viewContainerRef: ViewContainerRef;
 
     registerHost(viewContainerRef: ViewContainerRef) {
         this.viewContainerRef = viewContainerRef;

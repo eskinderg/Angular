@@ -1,13 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ThemeService {
-    public static isDarkMode: boolean = false;
+    private document = inject<Document>(DOCUMENT);
 
-    constructor(@Inject(DOCUMENT) private document: Document) {}
+    public static isDarkMode: boolean = false;
 
     public get DarkMode(): boolean {
         return JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;

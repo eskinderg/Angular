@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromNotifications from 'src/app/store/reducers/notification.reducer';
 import * as NotificationActions from 'src/app/store/actions/notification.action';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-    constructor(private notificationStore: Store<fromNotifications.INotificationState>) {}
+    private notificationStore = inject<Store<fromNotifications.INotificationState>>(Store);
 
     get Notifications() {
         return this.notificationStore.select(fromNotifications.getNotifications);

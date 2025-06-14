@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { NotificationService } from './notification.service';
 import { ToastComponent } from '../../fragments/components/toast/toast';
 import { AsyncPipe } from '@angular/common';
@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
     imports: [ToastComponent, AsyncPipe]
 })
 export class GlobalNotificationComponent {
-    constructor(public notificationService: NotificationService) {}
+    notificationService = inject(NotificationService);
 
     @HostBinding('class') class: string = 'toast-container position-fixed bottom-0 end-0 p-3';
 

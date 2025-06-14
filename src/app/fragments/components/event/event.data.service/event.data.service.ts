@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment';
@@ -10,9 +10,7 @@ const EVENTS_API_URL = environment.EVENTS_API_URL;
 
 @Injectable({ providedIn: 'root' })
 export class EventDataService extends ApiService {
-    constructor(private http: HttpClient) {
-        super();
-    }
+    private http = inject(HttpClient);
 
     public getAllEvents() {
         return this.http.get<Event[]>(EVENTS_API_URL);

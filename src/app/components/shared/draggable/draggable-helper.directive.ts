@@ -1,4 +1,4 @@
-import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { DraggableDirective } from './draggable.directive';
 
 @Directive({
@@ -7,13 +7,11 @@ import { DraggableDirective } from './draggable.directive';
     standalone: true
 })
 export class DraggableHelperDirective implements OnInit {
-    private startPosition?: { x: number; y: number };
+    private draggable = inject(DraggableDirective);
+    private templateRef = inject<TemplateRef<any>>(TemplateRef);
+    private viewContainerRef = inject(ViewContainerRef);
 
-    constructor(
-        private draggable: DraggableDirective,
-        private templateRef: TemplateRef<any>,
-        private viewContainerRef: ViewContainerRef
-    ) {}
+    private startPosition?: { x: number; y: number };
 
     ngOnInit(): void {
         this.draggable.dragStart.subscribe((event) => this.onDragStart(event));

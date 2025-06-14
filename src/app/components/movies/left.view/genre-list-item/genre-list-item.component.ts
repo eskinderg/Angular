@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Genre } from '../../models/genre';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -11,12 +11,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     imports: [RouterLink, RouterLinkActive]
 })
 export class GenreListItemComponent {
+    private moviesApiService = inject(MoviesApiService);
+
     @Input() genre: Genre;
 
     @Output()
     select: EventEmitter<Genre> = new EventEmitter();
-
-    constructor(private moviesApiService: MoviesApiService) {}
 
     // ngAfterViewInit() {
     // this.moviesApiService.getMoviesCountByGenre(this.genre.id.toString())

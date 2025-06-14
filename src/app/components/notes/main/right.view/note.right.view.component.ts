@@ -1,4 +1,12 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, viewChild } from '@angular/core';
+import {
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    ChangeDetectionStrategy,
+    viewChild,
+    inject
+} from '@angular/core';
 import { Note } from '../../../../models/note';
 import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
 import * as fromNotes from '../../../../store/reducers/note.reducer';
@@ -30,6 +38,9 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     ]
 })
 export class NoteRightViewComponent {
+    private store = inject<Store<fromNotes.INotesState>>(Store);
+    private dialogService = inject(DialogService);
+
     textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
     noteHeaderControlComponent = viewChild.required<NoteHeaderControlComponent>('noteHeader');
     noteColourSelectorComponent = viewChild<NoteColourSelectorComponent>('noteColourSelector');
@@ -46,11 +57,6 @@ export class NoteRightViewComponent {
     @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
-
-    constructor(
-        private store: Store<fromNotes.INotesState>,
-        private dialogService: DialogService
-    ) {}
 
     noteArchive_click(note: Note) {
         this.archiveNote.emit(note);

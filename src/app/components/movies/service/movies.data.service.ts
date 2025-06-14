@@ -1,5 +1,5 @@
 import { throwError as observableThrowError, Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 // import { Http} from '@angular/common/http';
 // import { Response, URLSearchParams, Jsonp} from '@angular/common/http';
 import { Genre } from '../models/genre';
@@ -18,9 +18,11 @@ const API_KEY = environment.MOVIES_API_KEY;
 
 @Injectable({ providedIn: 'root' })
 export class MoviesDataService {
+    private http = inject(HttpClient);
+
     apikey = API_KEY;
 
-    constructor(private http: HttpClient) {
+    constructor() {
         this.apikey = API_KEY;
     }
 

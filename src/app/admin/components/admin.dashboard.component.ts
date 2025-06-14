@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Note } from '../../models/note';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
@@ -26,6 +26,9 @@ import { SelectedNotesDialogComponent } from './notes/selected-notes-dialog.comp
     providers: [AdminNoteApiService]
 })
 export class AdminDashboardComponent {
+    adminNoteApiService = inject(AdminNoteApiService);
+    noteFilterService = inject(NoteFilterService);
+
     allNotes$ = this.adminNoteApiService.Notes;
     searchTerm$ = new BehaviorSubject<string>('');
     selectedUserId$ = new BehaviorSubject<string>('');
@@ -35,11 +38,6 @@ export class AdminDashboardComponent {
     selectedNotes$ = new BehaviorSubject<Note[]>([]);
     showBulkUpdateDialog: boolean = false;
     showSelectedNotesDialog: boolean = false;
-
-    constructor(
-        public adminNoteApiService: AdminNoteApiService,
-        public noteFilterService: NoteFilterService
-    ) {}
 
     filteredNotes$ = combineLatest([
         this.allNotes$,

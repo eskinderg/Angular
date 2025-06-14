@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
 // import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
@@ -8,7 +8,7 @@ import { MovieResults } from '../models/movie-results';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesApiService {
-    constructor(private api: MoviesDataService) {}
+    private api = inject(MoviesDataService);
 
     serachMovies(searchStr: string) {
         if (searchStr !== undefined && searchStr !== '') {

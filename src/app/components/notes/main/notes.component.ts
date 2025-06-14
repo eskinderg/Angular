@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, viewChild, OnDestroy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, viewChild, OnDestroy, OnInit, inject } from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -24,6 +24,11 @@ import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialo
     providers: [TextSelection, NoteApiService]
 })
 export class NotesComponent implements OnDestroy, OnInit {
+    notesApiService = inject(NoteApiService);
+    private dialogService = inject(DialogService);
+    private noteStore = inject<Store<fromNotes.INotesState>>(Store);
+    route = inject(Router);
+
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
     subscription: Subscription;
     refreshInterval = interval(NOTE_REFRESH_INTERVAL);
@@ -43,12 +48,7 @@ export class NotesComponent implements OnDestroy, OnInit {
         })
     );
 
-    constructor(
-        public notesApiService: NoteApiService,
-        private dialogService: DialogService,
-        private noteStore: Store<fromNotes.INotesState>,
-        public route: Router
-    ) {
+    constructor() {
         document.getElementsByClassName('content')[0].className += ' hide-scroll-bar';
     }
 

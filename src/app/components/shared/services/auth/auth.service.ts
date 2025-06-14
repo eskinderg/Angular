@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, inject } from '@angular/core';
 import { UserManager, User } from 'oidc-client';
 // import { Headers, RequestOptions } from '@angular/http';
 
@@ -10,16 +10,16 @@ const settings: any = environment.Auth;
 
 @Injectable()
 export class AuthService {
+    private http = inject(HttpClient);
+    private route = inject(Router);
+
     mgr: UserManager = new UserManager(settings);
     userLoadededEvent: EventEmitter<User> = new EventEmitter<User>();
     currentUser: User | undefined;
     loggedIn = false;
     authHeaders: Headers | undefined;
 
-    constructor(
-        private http: HttpClient,
-        private route: Router
-    ) {
+    constructor() {
         this.mgr
             .getUser()
             .then((user) => {

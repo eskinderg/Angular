@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ConfirmOptions } from './confirm.options';
 import { ConfirmState } from './confirm.state';
 
@@ -13,9 +13,13 @@ import { ConfirmState } from './confirm.state';
     standalone: true
 })
 export class ConfirmDialogComponent {
+    private state = inject(ConfirmState);
+
     options: ConfirmOptions;
 
-    constructor(private state: ConfirmState) {
+    constructor() {
+        const state = this.state;
+
         this.options = state.options;
     }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import {
     UntypedFormGroup,
     UntypedFormBuilder,
@@ -21,14 +21,14 @@ import { DialogInfoComponent } from '../../../fragments/components/dialog/dialog
     imports: [FormsModule, ReactiveFormsModule, ConfirmTemplateDirective, DialogInfoComponent]
 })
 export class ProfileComponent implements OnInit {
+    private fb = inject(UntypedFormBuilder);
+    private authService = inject(OAuthService);
+    private confirmService = inject(ConfirmService);
+
     profileForm: UntypedFormGroup;
     public user: any;
 
-    constructor(
-        private fb: UntypedFormBuilder,
-        private authService: OAuthService,
-        private confirmService: ConfirmService
-    ) {
+    constructor() {
         this.user = this.authService.getIdentityClaims();
         console.log(this.authService.getIdentityClaims());
     }

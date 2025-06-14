@@ -1,4 +1,4 @@
-import { Directive, TemplateRef } from '@angular/core';
+import { Directive, TemplateRef, inject } from '@angular/core';
 import { ConfirmState } from './confirm.state';
 /**
  * Directive allowing to get a reference to the template containing the confirmation dialog component,
@@ -17,7 +17,10 @@ import { ConfirmState } from './confirm.state';
     standalone: true
 })
 export class ConfirmTemplateDirective {
-    constructor(confirmTemplate: TemplateRef<any>, state: ConfirmState) {
+    constructor() {
+        const confirmTemplate = inject<TemplateRef<any>>(TemplateRef);
+        const state = inject(ConfirmState);
+
         state.template = confirmTemplate;
     }
 }

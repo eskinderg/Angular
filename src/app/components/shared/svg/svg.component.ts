@@ -7,7 +7,8 @@ import {
     ElementRef,
     OnChanges,
     SimpleChanges,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    inject
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,6 +21,9 @@ import { HttpClient } from '@angular/common/http';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SvgIconComponent implements OnInit, OnChanges {
+    private http = inject(HttpClient);
+    private el = inject(ElementRef);
+
     @Input() src = '';
     @Input() width = '21';
     @Input() height = '21';
@@ -33,11 +37,6 @@ export class SvgIconComponent implements OnInit, OnChanges {
     @Output() mouseLeft = new EventEmitter<Event>();
 
     private svgElement: SVGSVGElement | null = null;
-
-    constructor(
-        private http: HttpClient,
-        private el: ElementRef
-    ) {}
 
     ngOnInit() {
         this.http.get(this.src, { responseType: 'text' }).subscribe((svg) => {

@@ -6,7 +6,8 @@ import {
     forwardRef,
     Input,
     Output,
-    Renderer2
+    Renderer2,
+    inject
 } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -38,16 +39,14 @@ export const NOTE_COLOUR_VALUE_ACCESSOR: any = {
     imports: [NgClass]
 })
 export class NoteColourSelectorComponent implements ControlValueAccessor {
+    private renderer = inject(Renderer2);
+    private el = inject(ElementRef);
+
     @Input() note: Note;
     @Output() noteColourUpdate = new EventEmitter(false);
 
     onChange: any = () => {};
     onTouched: any = () => {};
-
-    constructor(
-        private renderer: Renderer2,
-        private el: ElementRef
-    ) {}
     /* eslint-disable @typescript-eslint/no-unused-vars */
     writeValue(_value: string): void {
         // alert(_value);

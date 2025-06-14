@@ -1,4 +1,4 @@
-import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, inject } from '@angular/core';
 // import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LoggingService } from './loggingservice';
 // import { OAuthService } from 'angular-oauth2-oidc';
@@ -9,10 +9,12 @@ import { LoggingService } from './loggingservice';
  */
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
+    private injector = inject(Injector);
+
     /**
      * @param {Injector} injector - service for injecting LoggingService
      */
-    constructor(private injector: Injector) {
+    constructor() {
         window.addEventListener('error', (event) => {
             this.handleError(event.error);
             event.preventDefault();

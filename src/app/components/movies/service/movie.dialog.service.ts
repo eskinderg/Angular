@@ -1,4 +1,4 @@
-import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent } from '@angular/core';
+import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MoviesApiService } from './movies.api.service';
@@ -8,15 +8,13 @@ import { Movie } from '../models/movie';
     providedIn: 'root'
 })
 export class MovieDialogService {
+    movieApiService = inject(MoviesApiService);
+    appRef = inject(ApplicationRef);
+    injector = inject(Injector);
+
     private movieId: string;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
     private apiSubscription: Subscription;
-
-    constructor(
-        public movieApiService: MoviesApiService,
-        public appRef: ApplicationRef,
-        public injector: Injector
-    ) {}
 
     setMovieId(value: string) {
         this.movieId = value;

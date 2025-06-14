@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Tv } from '../movies/models/tv';
@@ -18,11 +18,11 @@ import { MoviesDataService } from '../movies/service/movies.data.service';
     providers: [MoviesApiService, MoviesDataService]
 })
 export class HomeComponent implements OnInit {
+    private route = inject(ActivatedRoute);
+
     public appVersion: string;
     @HostBinding('@routerFadeInAnimation')
     public tvs: Tv[];
-
-    constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.tvs = this.route.snapshot.data['tvs'];

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { RatingDecimalComponent } from '../rating/rating';
@@ -14,6 +14,8 @@ import { TruncatePipe } from '../../directives/truncate';
     imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieCardComponent implements OnInit {
+    private route = inject(ActivatedRoute);
+
     @Input() movie: Movie;
 
     imageLoading: boolean = true;
@@ -24,8 +26,6 @@ export class MovieCardComponent implements OnInit {
 
     movieRating: number;
     linkUrl: string = '';
-
-    constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.imageUrl = this.movie.get_poster_path();

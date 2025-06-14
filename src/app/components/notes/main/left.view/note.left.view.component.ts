@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, viewChild, inject } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Store } from '@ngrx/store';
@@ -23,19 +23,17 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     imports: [NoteListItemComponent, AsyncPipe, SvgIconComponent]
 })
 export class NoteLeftViewComponent {
+    notesApiService = inject(NoteApiService);
+    private dialogService = inject(DialogService);
+    private noteStore = inject<Store<fromNotes.INotesState>>(Store);
+    route = inject(Router);
+
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
     searchInputRef = viewChild.required<ElementRef<HTMLInputElement>>('search');
 
     @Input() searchTerm$: BehaviorSubject<string>;
     @Input() notes: Note[];
     searchVisible: boolean = false;
-
-    constructor(
-        public notesApiService: NoteApiService,
-        private dialogService: DialogService,
-        private noteStore: Store<fromNotes.INotesState>,
-        public route: Router
-    ) {}
 
     showSearch() {
         this.searchVisible = true;

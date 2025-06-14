@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { RatingDecimalComponent } from '../rating/rating';
@@ -13,10 +13,10 @@ import { FormatDatePipe } from '../../directives/dateFormat';
     imports: [RouterLink, RatingDecimalComponent, FormatDatePipe]
 })
 export class MovieDetailComponent implements OnInit {
+    private route = inject(ActivatedRoute);
+
     movie: Movie;
     movieRating: number;
-
-    constructor(private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.movie = this.route.snapshot.data['movie'];

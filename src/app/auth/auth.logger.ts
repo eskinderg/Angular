@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { OAuthLogger } from 'angular-oauth2-oidc';
 import { NotificationService } from '../shared/notification/notification.service';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 @Injectable()
 export class OAuthAppLogger extends OAuthLogger {
-    constructor(public notificationService: NotificationService) {
-        super();
-    }
+    notificationService = inject(NotificationService);
 
     override debug(message?: any, ...optionalParams: any[]): void {
         // console.info(optionalParams);

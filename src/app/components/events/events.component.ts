@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Store } from '@ngrx/store';
 import * as fromEvents from '../../store/reducers/events.reducer';
@@ -17,7 +17,7 @@ import { EventsResolve } from 'src/app/fragments/components/event/event.data.ser
     providers: [EventsResolve]
 })
 export class EventsComponent {
-    constructor(private store: Store<fromEvents.IEventsState>) {}
+    private store = inject<Store<fromEvents.IEventsState>>(Store);
 
     get EventItems() {
         return this.store.select(fromEvents.getEvents);

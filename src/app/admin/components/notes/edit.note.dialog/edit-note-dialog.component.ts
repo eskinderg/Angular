@@ -5,7 +5,8 @@ import {
     Output,
     OnInit,
     ViewContainerRef,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    inject
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -33,18 +34,18 @@ import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditNoteDialogComponent implements OnInit {
+    private adminNoteApiService = inject(AdminNoteApiService);
+    private dialogService = inject(DialogService);
+    private vcRef = inject(ViewContainerRef);
+    private fb = inject(FormBuilder);
+
     @Input() note!: Note;
     @Output() closed = new EventEmitter<void>();
     @Output() saved = new EventEmitter<Note>();
     form!: FormGroup;
     dirty = false;
 
-    constructor(
-        private adminNoteApiService: AdminNoteApiService,
-        private dialogService: DialogService,
-        private vcRef: ViewContainerRef,
-        private fb: FormBuilder
-    ) {
+    constructor() {
         this.dialogService.registerHost(this.vcRef);
     }
 

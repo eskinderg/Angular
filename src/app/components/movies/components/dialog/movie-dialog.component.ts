@@ -5,7 +5,8 @@ import {
     ElementRef,
     OnDestroy,
     OnInit,
-    Renderer2
+    Renderer2,
+    inject
 } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
@@ -23,6 +24,9 @@ import { TruncatePipe } from '../../directives/truncate';
     imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
+    private host = inject<ElementRef<HTMLElement>>(ElementRef);
+    private renderer = inject(Renderer2);
+
     public movieDetail: Movie;
     public movieRating: number;
 
@@ -31,11 +35,6 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     apiSubscription: Subscription;
     imageLoadingUrl: string = '/assets/images/placeholder.gif';
     noImageUrl: string = '/assets/images/placeholder.png';
-
-    constructor(
-        private host: ElementRef<HTMLElement>,
-        private renderer: Renderer2
-    ) {}
 
     ngAfterViewInit(): void {
         (this.host.nativeElement.firstElementChild as HTMLElement).focus();

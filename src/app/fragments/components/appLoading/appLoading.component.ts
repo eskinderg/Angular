@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -11,9 +11,9 @@ import { NgClass } from '@angular/common';
     imports: [NgClass]
 })
 export class AppLoadingComponent {
-    private _loading: boolean = true;
+    private cd = inject(ChangeDetectorRef);
 
-    constructor(private cd: ChangeDetectorRef) {}
+    private _loading: boolean = true;
 
     @Input()
     public set loading(val: boolean) {

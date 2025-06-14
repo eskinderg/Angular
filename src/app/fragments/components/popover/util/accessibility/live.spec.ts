@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, inject as inject_1 } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Live, ARIA_LIVE_DELAY } from './live';
 
@@ -50,7 +50,8 @@ describe('LiveAnnouncer', () => {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestComponent {
-    constructor(public live: Live) {}
+    live = inject_1(Live);
+
     say() {
         this.live.say('test');
     }

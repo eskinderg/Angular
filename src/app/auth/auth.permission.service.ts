@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthPermission {
-    constructor(public oAuthService: OAuthService) {}
+    oAuthService = inject(OAuthService);
 
     public hasPermission(permission: string): boolean {
         if (this.oAuthService.hasValidAccessToken()) {

@@ -1,4 +1,4 @@
-import { ContentChildren, Directive, ElementRef, QueryList } from '@angular/core';
+import { ContentChildren, Directive, ElementRef, QueryList, inject } from '@angular/core';
 import { MovableDirective } from './movable.directive';
 import { Subscription } from 'rxjs';
 
@@ -14,12 +14,12 @@ interface Boundaries {
     standalone: true
 })
 export class MovableAreaDirective {
+    private element = inject(ElementRef);
+
     @ContentChildren(MovableDirective) movables: QueryList<MovableDirective> | undefined;
 
     private boundaries: Boundaries | undefined;
     private subscriptions: Subscription[] = [];
-
-    constructor(private element: ElementRef) {}
 
     // ngAfterContentInit(): void {
     // this.movables.changes.subscribe(() => {
