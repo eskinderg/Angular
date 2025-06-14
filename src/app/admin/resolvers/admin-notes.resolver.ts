@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Resolve } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as AdminActions from '../store/actions/admin.auth.action';
@@ -9,10 +9,8 @@ import { first, forkJoin, map, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class AdminNotesResolver implements Resolve<void> {
-    constructor(
-        private store: Store,
-        private actions$: Actions
-    ) {}
+    private store = inject(Store);
+    private actions$ = inject(Actions);
 
     resolve(): Observable<void> {
         this.store.dispatch(AdminActions.adminFetchUsersInfo());

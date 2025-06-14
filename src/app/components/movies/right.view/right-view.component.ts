@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
@@ -15,6 +15,10 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
     imports: [PaginationComponent, MovieCardComponent]
 })
 export class RightViewComponent implements OnDestroy {
+    router = inject(ActivatedRoute);
+    route = inject(Router);
+    movieModalService = inject(MovieDialogService);
+
     routeSubscription: Subscription;
     apiSubscription: Subscription;
 
@@ -23,12 +27,6 @@ export class RightViewComponent implements OnDestroy {
     @Input() name = '';
     @Input() page = '';
     @Input() moviesResult: MovieResults;
-
-    constructor(
-        public router: ActivatedRoute,
-        public route: Router,
-        public movieModalService: MovieDialogService
-    ) {}
 
     loadPage(page: number) {
         // const url = this.router.snapshot.params;

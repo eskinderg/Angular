@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { OAuthService } from 'angular-oauth2-oidc';
 
@@ -20,16 +20,16 @@ import { AsyncPipe } from '@angular/common';
     imports: [CardComponent, ThemeOptionComponent, FormsModule, AsyncPipe]
 })
 export class ProfileComponent {
+    private authService = inject(OAuthService);
+    store = inject<Store<fromProfile.IPreferenceState>>(Store);
+
     @HostBinding('@routerFadeInAnimation')
     public x: number;
     public y: number;
     public user: any;
     isDarkMode: Observable<string>;
 
-    constructor(
-        private authService: OAuthService,
-        public store: Store<fromProfile.IPreferenceState>
-    ) {
+    constructor() {
         this.user = this.authService.getIdentityClaims();
         this.isDarkMode = this.store.select(fromProfile.isDarkMode);
     }

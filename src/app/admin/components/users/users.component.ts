@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 
@@ -10,11 +10,11 @@ import { SharedModule } from 'src/app/components/shared/shared.module';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UsersComponent {
+    private adminNoteApiService = inject(AdminNoteApiService);
+
     allUsers$ = this.adminNoteApiService.Users;
     isDialogOpen = false;
     selectedUser: any = null;
-
-    constructor(private adminNoteApiService: AdminNoteApiService) {}
 
     openEditDialog(user: any): void {
         this.selectedUser = { ...user }; // Create a copy of the user to edit

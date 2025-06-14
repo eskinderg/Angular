@@ -1,10 +1,20 @@
-import { Directive, EventEmitter, HostBinding, HostListener, Output, ElementRef } from '@angular/core';
+import {
+    Directive,
+    EventEmitter,
+    HostBinding,
+    HostListener,
+    Output,
+    ElementRef,
+    inject
+} from '@angular/core';
 
 @Directive({
     selector: '[appDraggable]',
     standalone: true
 })
 export class DraggableDirective {
+    element = inject(ElementRef);
+
     @HostBinding('class.draggable') draggable = true;
 
     // to trigger pointer-events polyfill
@@ -15,8 +25,6 @@ export class DraggableDirective {
     @Output() dragEnd = new EventEmitter<PointerEvent>();
 
     @HostBinding('class.dragging') dragging = false;
-
-    constructor(public element: ElementRef) {}
 
     @HostListener('pointerdown', ['$event'])
     onPointerDown(): void {

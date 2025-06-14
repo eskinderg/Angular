@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Action, Store } from '@ngrx/store';
 import { Note } from '../../../models/note';
@@ -8,7 +8,7 @@ import * as fromRoot from '../../../store/reducers';
 
 @Injectable()
 export class NoteApiService {
-    constructor(private store: Store<fromRoot.IAppState>) {}
+    private store = inject<Store<fromRoot.IAppState>>(Store);
 
     get Notes(): Observable<Note[]> {
         return this.store.select(fromNotes.getNotes);

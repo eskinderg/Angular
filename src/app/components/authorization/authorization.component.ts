@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { from } from 'rxjs';
 import { AuthService } from '../shared/services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -17,15 +17,10 @@ import * as fromRoot from '../../store/reducers';
     standalone: true
 })
 export class AuthorizationComponent implements OnInit {
-    /**
-     * @param {AuthService} authService - Authorization service used of authService
-     * @param {Router} router - Injected router for user redirection based on user login status
-     */
-    constructor(
-        private authService: AuthService,
-        private router: Router,
-        private store: Store<fromRoot.IAppState>
-    ) {}
+    private authService = inject(AuthService);
+    private router = inject(Router);
+    private store = inject<Store<fromRoot.IAppState>>(Store);
+
     /**
      * Invoked during class initialization and redirects the user
      */

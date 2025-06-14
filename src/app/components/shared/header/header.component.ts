@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy, inject } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 // import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
@@ -25,6 +25,12 @@ export declare interface IsActiveMatchOptions {
     imports: [RouterLink, RouterLinkActive, NgClass, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {
+    private eventStore = inject<Store<fromEvents.IEventsState>>(Store);
+    private noteStore = inject<Store<fromNotes.INotesState>>(Store);
+    private preferenceState = inject<Store<fromProfile.IPreferenceState>>(Store);
+    permission = inject(AuthPermission);
+    private router = inject(Router);
+
     @Output() signout: EventEmitter<any> = new EventEmitter();
     public isExpanded = false;
     _user: any;
@@ -35,18 +41,6 @@ export class HeaderComponent {
         fragment: 'ignored',
         paths: 'subset'
     };
-    // name: any;
-    // claims: any
-    // public ItemsCount;
-
-    constructor(
-        // private oauthService: OAuthService,
-        private eventStore: Store<fromEvents.IEventsState>,
-        private noteStore: Store<fromNotes.INotesState>,
-        private preferenceState: Store<fromProfile.IPreferenceState>,
-        public permission: AuthPermission,
-        private router: Router
-    ) {}
 
     // ngOnInit() {
     // this.claims = this.oauthService.getIdentityClaims();

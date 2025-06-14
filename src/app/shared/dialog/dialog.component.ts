@@ -7,7 +7,8 @@ import {
     Renderer2,
     OnDestroy,
     AfterViewInit,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    inject
 } from '@angular/core';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from './dialog.enum';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
@@ -21,6 +22,9 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     imports: [SvgIconComponent]
 })
 export class DialogComponent implements AfterViewInit, OnDestroy {
+    private elRef = inject(ElementRef);
+    private renderer = inject(Renderer2);
+
     @Input() title: string;
     @Input() message: string;
     @Input() dialogType:
@@ -38,11 +42,6 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     @Output() closed = new EventEmitter<DIALOG_RESPONSE | null>();
 
     private escListener?: () => void;
-
-    constructor(
-        private elRef: ElementRef,
-        private renderer: Renderer2
-    ) {}
 
     ngAfterViewInit() {
         // Listen for ESC key

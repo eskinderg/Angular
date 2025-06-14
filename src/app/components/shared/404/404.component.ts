@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 // import { UserManager} from 'oidc-client';
 // import * as Oidc from 'oidc-client/lib/oidc-client.js';
 import { AuthService } from '../services/auth/auth.service';
@@ -11,22 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
     standalone: true
 })
 export class NotfoundComponent {
-    // userMgr: Oidc = new Oidc.UserManager();
-
-    constructor(private authService: AuthService) {
-        // this.service.mgr.signoutRedirectCallback()
-        // if(this.authService.loggedIn)
-        // {
-        // this.userMgr
-        // .signinRedirectCallback()
-        // .then((user)=>{
-        //    console.log(user);
-        //    location.href ='/'
-        // }).catch(function(err){
-        //       console.log(err);
-        // });
-        // }
-    }
+    private authService = inject(AuthService);
 
     // ngOnInit() {}
 }

@@ -6,7 +6,8 @@ import {
     ComponentRef,
     ElementRef,
     OnDestroy,
-    viewChild
+    viewChild,
+    inject
 } from '@angular/core';
 import { MoviesApiService } from '../service/movies.api.service';
 import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
@@ -25,6 +26,12 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
     imports: [MovieCardComponent]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {
+    movieModalService = inject(MovieDialogService);
+    route = inject(Router);
+    router = inject(ActivatedRoute);
+    private _moviesServices = inject(MoviesApiService);
+    private cdr = inject(ChangeDetectorRef);
+
     input = viewChild.required<ElementRef>('searchInput');
 
     movies: Observable<never>;
@@ -36,14 +43,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     searchSubscription$: Subscription | undefined;
     apiSubscription: Subscription;
     movieModalComponent: ComponentRef<MovieDialogComponent>;
-
-    constructor(
-        public movieModalService: MovieDialogService,
-        public route: Router,
-        public router: ActivatedRoute,
-        private _moviesServices: MoviesApiService,
-        private cdr: ChangeDetectorRef
-    ) {}
 
     ngAfterViewInit() {
         this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')

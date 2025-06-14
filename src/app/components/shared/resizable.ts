@@ -1,9 +1,11 @@
-import { Renderer2, HostListener, Output, EventEmitter, Directive } from '@angular/core';
+import { Renderer2, HostListener, Output, EventEmitter, Directive, inject } from '@angular/core';
 @Directive({
     selector: '[appTextAreaResize]',
     standalone: true
 })
 export class ResizableTextAreaDirective {
+    private renderer = inject(Renderer2);
+
     @Output() resize = new EventEmitter();
 
     _isDragging = false;
@@ -45,8 +47,6 @@ export class ResizableTextAreaDirective {
             }
         }
     }
-
-    constructor(private renderer: Renderer2) {}
 
     //   if (this.mouseMoveListener) {
     //     this.mouseMoveListener();

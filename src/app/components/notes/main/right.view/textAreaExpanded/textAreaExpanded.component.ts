@@ -12,7 +12,8 @@ import {
     SimpleChanges,
     OnChanges,
     HostListener,
-    Renderer2
+    Renderer2,
+    inject
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -35,6 +36,10 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
+    htmlSafe = inject(DomSanitizer);
+    private txtSelection = inject(TextSelection);
+    private renderer = inject(Renderer2);
+
     @Input() note: Note;
     @Input() facadeNote: Note;
     onChange: any = () => {};
@@ -46,12 +51,6 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     @Output() textAreaTextChanged = new EventEmitter(false);
     @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
     @Output() textAreaSelectionChange = new EventEmitter<Note>(false);
-
-    constructor(
-        public htmlSafe: DomSanitizer,
-        private txtSelection: TextSelection,
-        private renderer: Renderer2
-    ) {}
 
     writeValue(_value: string): void {
         const div = this.textAreaElementRef().nativeElement;

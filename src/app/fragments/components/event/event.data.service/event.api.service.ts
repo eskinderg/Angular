@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,9 @@ import * as fromEvents from '../../../../store/reducers/events.reducer';
 
 @Injectable()
 export class EventApiService {
-    constructor(private store: Store<fromEvents.IEventsState>) {
+    private store = inject<Store<fromEvents.IEventsState>>(Store);
+
+    constructor() {
         this.store.dispatch({ type: 'FETCH_EVENTS' });
     }
 

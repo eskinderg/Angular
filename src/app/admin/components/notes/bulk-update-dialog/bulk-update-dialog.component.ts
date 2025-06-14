@@ -5,7 +5,8 @@ import {
     Input,
     Output,
     OnInit,
-    OnDestroy
+    OnDestroy,
+    inject
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -21,6 +22,9 @@ import { DialogService } from 'src/app/shared/dialog/dialog.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BulkUpdateDialogComponent implements OnInit, OnDestroy {
+    private fb = inject(FormBuilder);
+    private dialogService = inject(DialogService);
+
     @Input() users: { owner: string; user_id: string; total_notes: number; active_notes: number }[] = []; // List of users as [owner, userId, count]
     @Output() closed = new EventEmitter<void>();
     @Output() updated = new EventEmitter<{
@@ -33,11 +37,6 @@ export class BulkUpdateDialogComponent implements OnInit, OnDestroy {
     subscription: Subscription;
 
     form!: FormGroup;
-
-    constructor(
-        private fb: FormBuilder,
-        private dialogService: DialogService
-    ) {}
 
     ngOnDestroy(): void {
         if (this.subscription) this.subscription.unsubscribe();

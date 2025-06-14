@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 /**
  * This class represents the HeaderComponent.
@@ -11,11 +11,13 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
     imports: [RouterLink, RouterLinkActive]
 })
 export class WzToolbarComponent {
+    private router = inject(Router);
+
     public isExpanded = false;
     _user: any;
     activeRoute: string;
 
-    constructor(private router: Router) {
+    constructor() {
         this.activeRoute = this.router.url;
         // console.log(this.router.routerState);
     }

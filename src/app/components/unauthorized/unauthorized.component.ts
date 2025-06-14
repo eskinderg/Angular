@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Location } from '@angular/common';
 import { AuthService } from '../shared/services/auth/auth.service';
 import * as fromRoot from '../../store/reducers';
@@ -12,11 +12,9 @@ import * as fromRoot from '../../store/reducers';
     standalone: true
 })
 export class UnauthorizedComponent {
-    constructor(
-        private location: Location,
-        private service: AuthService,
-        private store: Store<fromRoot.IAppState>
-    ) {}
+    private location = inject(Location);
+    private service = inject(AuthService);
+    private store = inject<Store<fromRoot.IAppState>>(Store);
 
     login() {
         // this.store.dispatch(new AuthActions.loginEvent());

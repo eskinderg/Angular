@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
@@ -12,12 +12,10 @@ import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 @Injectable()
 export class AuthEffect {
-    constructor(
-        private actions$: Actions,
-        private oauthService: OAuthService,
-        private authPermission: AuthPermission,
-        private router: Router
-    ) {}
+    private actions$ = inject(Actions);
+    private oauthService = inject(OAuthService);
+    private authPermission = inject(AuthPermission);
+    private router = inject(Router);
 
     login$ = createEffect(() =>
         this.actions$.pipe(

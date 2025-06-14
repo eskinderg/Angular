@@ -1,10 +1,12 @@
-import { Directive, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
+import { Directive, Output, EventEmitter, ElementRef, HostListener, inject } from '@angular/core';
 
 @Directive({
     selector: '[appDraggable]',
     standalone: true
 })
 export class DraggableDirective {
+    element = inject(ElementRef);
+
     _isDragging = false;
     _hasDragged = false;
     _originalClientX: number | undefined;
@@ -14,7 +16,7 @@ export class DraggableDirective {
 
     @Output() endDragEvent = new EventEmitter(false);
 
-    constructor(public element: ElementRef) {
+    constructor() {
         this.element.nativeElement.style.position = 'absolute';
     }
 

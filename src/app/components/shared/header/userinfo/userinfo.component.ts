@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
@@ -17,16 +17,14 @@ import { authConfig } from 'src/app/auth/auth.config';
     imports: [ThemeOptionComponent, RouterLink, AsyncPipe]
 })
 export class UserInfoComponent {
+    private oauthService = inject(OAuthService);
+    private router = inject(Router);
+    store = inject<Store<fromProfile.IPreferenceState>>(Store);
+
     claims: any;
     name: any;
 
     @Output() signout: EventEmitter<any> = new EventEmitter();
-
-    constructor(
-        private oauthService: OAuthService,
-        private router: Router,
-        public store: Store<fromProfile.IPreferenceState>
-    ) {}
 
     get DarkMode() {
         return this.store.select(fromProfile.isDarkMode);

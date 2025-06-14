@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, inject } from '@angular/core';
 // import { UserManager, User} from 'oidc-client';
 // import { Headers, RequestOptions, Response } from '@angular/http';
 import { of, Observable } from 'rxjs';
@@ -12,18 +12,14 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable()
 export class AuthService {
+    private oauthService = inject(OAuthService);
+    private http = inject(HttpClient);
+    private route = inject(Router);
+
     // mgr: UserManager = new UserManager(settings);
     userLoadededEvent: EventEmitter<any> = new EventEmitter<any>();
     currentUser: any;
     loggedIn = false;
-
-    // authHeaders: Headers;
-
-    constructor(
-        private oauthService: OAuthService,
-        private http: HttpClient,
-        private route: Router
-    ) {}
 
     isLoggedInObs(): Observable<boolean> {
         return of(this.oauthService.hasValidAccessToken());

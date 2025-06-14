@@ -8,7 +8,8 @@ import {
     Injector,
     Input,
     OnDestroy,
-    ViewContainerRef
+    ViewContainerRef,
+    inject
 } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 import { TooltipPosition, TooltipTheme } from './tooltip.enums';
@@ -18,6 +19,11 @@ import { TooltipPosition, TooltipTheme } from './tooltip.enums';
     standalone: true
 })
 export class TooltipDirective implements OnDestroy {
+    private elementRef = inject(ElementRef);
+    private viewContainerRef = inject(ViewContainerRef);
+    private appRef = inject(ApplicationRef);
+    private injector = inject(Injector);
+
     @Input() appTooltip = '';
     @Input() position: TooltipPosition = TooltipPosition.DYNAMIC;
     @Input() theme: TooltipTheme = TooltipTheme.DEFAULT;
@@ -28,13 +34,6 @@ export class TooltipDirective implements OnDestroy {
     private showTimeout?: number;
     hideTimeout: number;
     private touchTimeout?: number;
-
-    constructor(
-        private elementRef: ElementRef,
-        private viewContainerRef: ViewContainerRef,
-        private appRef: ApplicationRef,
-        private injector: Injector
-    ) {}
 
     @HostListener('mouseenter')
     onMouseEnter(): void {

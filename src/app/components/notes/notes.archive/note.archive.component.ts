@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromNotes from '../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
@@ -29,17 +29,14 @@ import { SvgIconComponent } from '../../shared/svg/svg.component';
     providers: [NoteApiService]
 })
 export class NoteArchiveComponent {
+    private store = inject<Store<fromNotes.INotesState>>(Store);
+    private notesApiService = inject(NoteApiService);
+    private dialogService = inject(DialogService);
+    router = inject(Router);
+
     get ArchivedNotes() {
         return this.store.select(fromNotes.getArchivedNotes);
     }
-
-    constructor(
-        private store: Store<fromNotes.INotesState>,
-        // public activeDialog: NgbActiveModal,
-        private notesApiService: NoteApiService,
-        private dialogService: DialogService,
-        public router: Router
-    ) {}
 
     // ngOnInit() {
     // this.note = history.state['note']

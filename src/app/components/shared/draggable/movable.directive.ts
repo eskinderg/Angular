@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, inject } from '@angular/core';
 import { DraggableDirective } from './draggable.directive';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
@@ -12,6 +12,9 @@ interface Position {
     standalone: true
 })
 export class MovableDirective extends DraggableDirective {
+    private sanitizer = inject(DomSanitizer);
+    override element: ElementRef;
+
     @HostBinding('style.transform') get transform(): SafeStyle {
         return this.sanitizer.bypassSecurityTrustStyle(
             `translateX(${this.position.x}px) translateY(${this.position.y}px)`
@@ -26,11 +29,12 @@ export class MovableDirective extends DraggableDirective {
 
     @Input('appMovableReset') reset = false;
 
-    constructor(
-        private sanitizer: DomSanitizer,
-        public override element: ElementRef
-    ) {
+    constructor() {
+        const element = inject(ElementRef);
+
         super(element);
+
+        this.element = element;
     }
 
     // @HostListener('dragStart', ['$event'])

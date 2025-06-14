@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, HostBinding, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
@@ -25,6 +25,11 @@ import { BehaviorSubject } from 'rxjs';
     imports: [FormsModule, CommonModule, ReactiveFormsModule]
 })
 export class LoginComponent implements OnInit {
+    private store = inject<Store<fromRoot.IAppState>>(Store);
+    private oauthService = inject(OAuthService);
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
+
     @HostBinding('@routerFadeInAnimation')
     userProfile: object;
     loginForm: UntypedFormGroup;
@@ -33,12 +38,7 @@ export class LoginComponent implements OnInit {
     showPassword = false;
     isLoading: boolean = false;
 
-    constructor(
-        private store: Store<fromRoot.IAppState>,
-        private oauthService: OAuthService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) {
+    constructor() {
         // this.route.params.subscribe((params) => (this.message = params['endsession']));
 
         if (this.oauthService.hasValidAccessToken()) {

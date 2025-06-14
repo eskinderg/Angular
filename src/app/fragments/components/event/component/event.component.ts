@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Event } from '../event';
 import * as EventsActions from '../../../../store/actions/event.action';
@@ -19,16 +19,14 @@ import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialo
     imports: [EventListHeaderComponent, CardComponent, EventListComponent, NgClass, RouterOutlet]
 })
 export class EventComponent {
+    private store = inject<Store<fromRoot.IAppState>>(Store);
+    router = inject(ActivatedRoute);
+    route = inject(Router);
+    dialogService = inject(DialogService);
+
     @Input() events: Event[];
 
     public selectedEvents: Event[] = [];
-
-    constructor(
-        private store: Store<fromRoot.IAppState>,
-        public router: ActivatedRoute,
-        public route: Router,
-        public dialogService: DialogService
-    ) {}
 
     onAddEvent(event: Event) {
         this.store.dispatch(EventsActions.createEvent({ payload: event }));

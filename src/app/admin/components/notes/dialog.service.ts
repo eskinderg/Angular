@@ -1,11 +1,11 @@
-import { Injectable, EnvironmentInjector, ViewContainerRef } from '@angular/core';
+import { Injectable, EnvironmentInjector, ViewContainerRef, inject } from '@angular/core';
 import { ConfirmDialogComponent } from './confirm-dialog.component/confirm-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class DialogService {
-    private viewContainerRef: ViewContainerRef;
+    private injector = inject(EnvironmentInjector);
 
-    constructor(private injector: EnvironmentInjector) {}
+    private viewContainerRef: ViewContainerRef;
 
     registerHost(viewContainerRef: ViewContainerRef) {
         this.viewContainerRef = viewContainerRef;

@@ -76,7 +76,7 @@ export const notesReducer = createReducer<INotesState>(
         let currentSelection: Note;
 
         if (lastSelectedNote === undefined)
-            currentSelection = filterActiveNotes(pinnedNotes(action.payload)).at(0) ?? null;
+            currentSelection = filterActiveNotes(pinnedNotes(action.payload))[0] ?? null;
         else currentSelection = lastSelectedNote;
 
         return {

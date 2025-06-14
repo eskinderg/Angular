@@ -11,7 +11,7 @@
     top: 0;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 0.5rem 0 0.5rem 0;
 }
 
@@ -27,12 +27,18 @@
 }
 
 .clear-filter {
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
-    font-size: 1.75rem;
-    font-weight: 400;
+    // font-size: 1.75rem;
+    // font-weight: 400;
     color: #888;
-    padding-bottom: 0.5rem;
-    line-height: 1;
+    // padding-bottom: 0.5rem;
+
+    path {
+        stroke: red;
+        stroke-width: 1px;
+    }
 }
 
 table {
