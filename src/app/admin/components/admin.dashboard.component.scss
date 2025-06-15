@@ -42,7 +42,7 @@
 }
 
 table {
-    table-layout: auto;
+    table-layout: fixed; // <-- Change from 'auto' to 'fixed'
     width: 100%;
     border-collapse: collapse;
     font-family: 'Segoe UI', sans-serif;
@@ -54,7 +54,26 @@ table {
         border: 1px solid var(--border);
         text-align: left;
         text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
+
+    th.checkbox,
+    td.checkbox {
+        width: 4%; // Checkbox column
+        min-width: 30px;
+        max-width: 40px;
+    }
+    th:nth-child(2), td:nth-child(2) { width: 15%; } // Header
+    th:nth-child(3), td:nth-child(3) { width: 10%; } // Owner
+    th:nth-child(4), td:nth-child(4) { width: 7%; }  // Active
+    th:nth-child(5), td:nth-child(5) { width: 7%; }  // Archived
+    th:nth-child(6), td:nth-child(6) { width: 7%; }  // Pinned
+    th:nth-child(7), td:nth-child(7) { width: 12%; } // Date Archived
+    th:nth-child(8), td:nth-child(8) { width: 8%; }  // Spell Check
+    th:nth-child(9), td:nth-child(9) { width: 7%; }  // Colour
+    th:nth-child(10), td:nth-child(10) { width: 12%; } // Created
+    th:nth-child(11), td:nth-child(11) { width: 12%; } // Last Modified
 
     th {
         position: sticky;
