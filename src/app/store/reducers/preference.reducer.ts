@@ -1,6 +1,5 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as PreferenceActions from '../actions/preference.action';
-import { ThemeService } from '../../theme/theme.service';
 
 export interface IPreferenceState {
     isDarkMode: string;
@@ -9,7 +8,7 @@ export interface IPreferenceState {
 }
 
 export const initialState: IPreferenceState = {
-    isDarkMode: localStorage.getItem('darkmode') ?? String(ThemeService.isDarkMode),
+    isDarkMode: localStorage.getItem('darkmode') ?? String(false),
     isLoggedIn: false,
     isLoading: false
 };

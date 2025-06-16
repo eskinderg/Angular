@@ -7,10 +7,8 @@ import { Injectable, inject } from '@angular/core';
 export class ThemeService {
     private document = inject<Document>(DOCUMENT);
 
-    public static isDarkMode: boolean = false;
-
     public get DarkMode(): boolean {
-        return JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;
+        return JSON.parse(localStorage.getItem('darkmode')) ?? false;
     }
 
     public set DarkMode(isDarkMode: boolean) {
@@ -28,9 +26,5 @@ export class ThemeService {
     public toggleDarkMode(): boolean {
         this.DarkMode = !this.DarkMode;
         return this.DarkMode;
-    }
-
-    public initUserPreference() {
-        this.DarkMode = JSON.parse(localStorage.getItem('darkmode')) ?? ThemeService.isDarkMode;
     }
 }
