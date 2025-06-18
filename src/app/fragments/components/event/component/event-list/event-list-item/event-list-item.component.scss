@@ -10,11 +10,12 @@ a:focus {
 
 .editbox {
     border: 0px;
-    padding: 0px;
+    // padding: 0px;
     line-height: 0px;
     background: rgb(from var(--body-color) r g b / 10%);
     margin: 0;
-    padding: 0.3rem;
+    padding-left: 0.3rem;
+    font-size: 1rem;
 }
 
 .custom-control {
@@ -22,6 +23,29 @@ a:focus {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+}
+
+.fa {
+    transition: color 1s ease;
+}
+
+.fa-bin2 {
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.fa-pencil {
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.fa-checkmark {
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.fa-bin2:hover {
+    color: red;
 }
 
 .flex {

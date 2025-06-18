@@ -47,10 +47,13 @@ export class EventListItemComponent {
 
     onDoubleClick(event: Event) {
         this.IsInEditMode = !this.IsInEditMode;
-        this.editEvent = new Event(event);
+        if (this.IsInEditMode) {
+            this.editEvent = new Event(event);
+        }
     }
 
     onCancelEdit() {
+        alert('esc');
         this.IsInEditMode = false;
     }
 }
