@@ -21,7 +21,16 @@
             <button class="clear-btn" (click)="clearSearch()">×</button>
         }
     </div>
-    @if (searchTerm$.value || selectedUserId$.value) {
+
+    @if (selectedNotes$ | async; as selectedNotes) {
+        @if (selectedNotes.length) {
+            <button class="selection-btn" (click)="openSelectedNotesDialog()">
+                Selected {{ selectedNotes.length }}
+            </button>
+        }
+    }
+
+    @if (searchTerm$.value || selectedUserId$.value || selectedNotes$.value.length) {
         <svg class="clear-filter" (click)="clearFilter()" viewBox="0 0 24 24" fill="none">
             <g clip-path="url(#clip0_429_11083)">
                 <path
@@ -37,13 +46,6 @@
                 </clipPath>
             </defs>
         </svg>
-    }
-    @if (selectedNotes$ | async; as selectedNotes) {
-        @if (selectedNotes.length) {
-            <button class="delete-btn" (click)="openSelectedNotesDialog()">
-                Selected {{ selectedNotes.length }}
-            </button>
-        }
     }
 </div>
 

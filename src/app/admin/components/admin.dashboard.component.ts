@@ -109,6 +109,7 @@ export class AdminDashboardComponent {
     clearFilter() {
         this.clearSearch();
         this.selectedUserId$.next('');
+        this.clearSelection();
     }
 
     toggleNoteSelection(note: Note, event: Event) {
@@ -168,6 +169,10 @@ export class AdminDashboardComponent {
 
     openSelectedNotesDialog() {
         this.showSelectedNotesDialog = true;
+    }
+
+    clearSelection() {
+        this.selectedNotes$.next([]);
     }
 
     closeSelectedNotesDialog() {
