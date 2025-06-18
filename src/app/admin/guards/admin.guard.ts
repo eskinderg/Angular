@@ -6,7 +6,7 @@ export const adminGuard = () => {
     const authPermission = inject(AuthPermission);
     const router = inject(Router);
 
-    if (authPermission.hasPermission('Admin')) {
+    if (authPermission.IsAdmin) {
         return true;
     }
 

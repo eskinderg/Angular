@@ -21,7 +21,7 @@ export const adminGuard: CanActivateFn = () => {
     const permission: AuthPermission = inject(AuthPermission);
     // const router: Router = inject(Router);
 
-    if (oauthService.hasValidAccessToken() && permission.hasPermission('Admin')) {
+    if (oauthService.hasValidAccessToken() && permission.IsAdmin) {
         return true;
     } else {
         // router.navigate(['/']);
