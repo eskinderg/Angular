@@ -122,7 +122,11 @@
         </th>
     </tr>
     @for (note of filteredNotes$ | async; track trackByFn($index, note)) {
-        <tr (click)="onClick(note)" class="row" [class.inactive]="!note.active">
+        <tr
+            (click)="onClick(note)"
+            class="row"
+            [class.inactive]="!note.active"
+            [class.selected]="isNoteSelected(note)">
             <td class="checkbox" (click)="$event.stopPropagation()">
                 <label>
                     <input

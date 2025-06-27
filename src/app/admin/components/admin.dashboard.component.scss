@@ -127,6 +127,12 @@ table {
     .inactive {
         opacity: 0.4;
     }
+
+    .selected {
+        opacity: 1;
+        color: white;
+        background: var(--btn-bg-hover-color) ! important;
+    }
 }
 
 select {
