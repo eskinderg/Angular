@@ -56,7 +56,7 @@
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "8.33.0",
     "@typescript-eslint/parser": "8.33.0",
-    "angular-oauth2-oidc": "^19.0.0",
+    "angular-oauth2-oidc": "^20.0.1",
     "d3": "^7.9.0",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
