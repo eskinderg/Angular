@@ -1,8 +1,4 @@
-import {
-    ApplicationConfig,
-    importProvidersFrom,
-    provideExperimentalZonelessChangeDetection
-} from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -23,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideAnimations(),
         provideOAuthClient(),
-        provideExperimentalZonelessChangeDetection(),
+        provideZonelessChangeDetection(),
         provideHttpClient(withInterceptorsFromDi(), withInterceptors(appInterceptors)),
         provideRouter(appRoutes, withComponentInputBinding()),
         importProvidersFrom(appModules),
