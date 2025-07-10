@@ -14,8 +14,7 @@ import {
     OnChanges,
     Output,
     SimpleChanges,
-    TemplateRef,
-    HostAttributeToken
+    TemplateRef
 } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -90,7 +89,7 @@ export class ToastHeaderDirective {}
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToastComponent implements AfterContentInit, OnChanges {
-    ariaLive = inject(new HostAttributeToken('aria-live'));
+    // ariaLive = inject(new HostAttributeToken('aria-live'));
 
     private _config = inject(ToastConfig);
     private _zone = inject(NgZone);
@@ -157,7 +156,7 @@ export class ToastComponent implements AfterContentInit, OnChanges {
     @Output() hidden = new EventEmitter<void>();
 
     constructor() {
-        this.ariaLive ??= this._config.ariaLive;
+        // this.ariaLive ??= this._config.ariaLive;
     }
 
     ngAfterContentInit() {
