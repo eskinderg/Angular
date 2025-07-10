@@ -43,7 +43,7 @@
     "@angular-eslint/template-parser": "20.1.1",
     "@angular/cli": "^20.1.0",
     "@angular/compiler-cli": "^20.0.6",
-    "@angular/localize": "^20.0.6",
+    "@angular/localize": "^20.1.0",
     "@angular/service-worker": "^20.0.6",
     "@ngrx/router-store": "20.0.0-beta.0",
     "@ngrx/effects": "20.0.0-beta.0",
