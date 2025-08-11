@@ -96,35 +96,88 @@ export class BarchartComponent implements OnInit {
             .domain([0, data.length])
             .range(<any[]>['#2a6ada', 'white']);
 
+        // const x = d3
+        //     .scaleBand()
+        //     .domain(d3.sort(data, (d) => -d.frequency).map((d) => d.field))
+        //     .range([this.margin.left, this.width - this.margin.right])
+        //     .padding(0.1);
+
+        // this.xAxis = d3.axisBottom(x).tickSizeOuter(0);
+
+        // // Create the vertical scale.
+        // const y = d3
+        //     .scaleLinear()
+        //     .domain([0, d3.max(data, (d) => d.frequency)])
+        //     .nice()
+        //     .range([this.height - this.margin.bottom, this.margin.top]);
+
+        // // Create the SVG container and call the zoom behavior.
+        // const svg = d3
+        //     .select(element)
+        //     .append('svg')
+        //     .attr('viewBox', [0, 0, this.width, this.height])
+        //     .attr('width', this.width)
+        //     .attr('height', this.height)
+        //     .attr('style', 'max-width: 100%; height: 100%;');
+        // // .call(zoom);
+
+        // // Appending the bars.
+        // svg.append('g')
+        //     .attr('class', 'bars')
+        //     .selectAll('rect')
+        //     .data(data)
+        //     .join('rect')
+        //     .attr('x', (d) => x(d.field))
+        //     .attr('y', (d) => y(d.frequency))
+        //     .attr('height', (d) => y(0) - y(d.frequency))
+        //     .attr('width', x.bandwidth())
+        //     .style('fill', (_d: any, i: any) => this.colors(i));
+
+        // // Append the axes.
+        // svg.append('g')
+        //     .attr('class', 'x-axis')
+        //     .attr('transform', `translate(0,${this.height - this.margin.bottom})`)
+        //     .call(this.xAxis);
+
+        // svg.append('g')
+        //     .attr('class', 'y-axis')
+        //     .attr('transform', `translate(${this.margin.left},0)`)
+        //     .call(d3.axisLeft(y))
+        //     .call((g) => g.select('.domain').remove());
+
         const x = d3
             .scaleBand()
-            .domain(d3.sort(data, (d) => -d.frequency).map((d) => d.field))
+            .domain(
+                d3.groupSort(
+                    data,
+                    ([d]) => -d.frequency,
+                    (d) => d.field
+                )
+            ) // descending frequency
             .range([this.margin.left, this.width - this.margin.right])
             .padding(0.1);
 
-        this.xAxis = d3.axisBottom(x).tickSizeOuter(0);
-
-        // Create the vertical scale.
+        // Declare the y (vertical position) scale.
         const y = d3
             .scaleLinear()
             .domain([0, d3.max(data, (d) => d.frequency)])
-            .nice()
             .range([this.height - this.margin.bottom, this.margin.top]);
 
-        // Create the SVG container and call the zoom behavior.
+        this.xScale = x;
+        this.yScale = y;
+
+        // Create the SVG container.
         const svg = d3
             .select(element)
             .append('svg')
-            .attr('viewBox', [0, 0, this.width, this.height])
             .attr('width', this.width)
             .attr('height', this.height)
+            .attr('viewBox', [0, 0, this.width, this.height])
             .attr('style', 'max-width: 100%; height: 100%;');
-        // .call(zoom);
 
-        // Appending the bars.
+        // Add a rect for each bar.
         svg.append('g')
-            .attr('class', 'bars')
-            .selectAll('rect')
+            .selectAll()
             .data(data)
             .join('rect')
             .attr('x', (d) => x(d.field))
@@ -133,64 +186,39 @@ export class BarchartComponent implements OnInit {
             .attr('width', x.bandwidth())
             .style('fill', (_d: any, i: any) => this.colors(i));
 
-        // Append the axes.
+        // Add the x-axis and label.
         svg.append('g')
-            .attr('class', 'x-axis')
             .attr('transform', `translate(0,${this.height - this.margin.bottom})`)
-            .call(this.xAxis);
+            .call(d3.axisBottom(x).tickSizeOuter(0))
+            .call((g) =>
+                g
+                    .append('text')
+                    .attr('x', this.width / 2)
+                    .attr('y', this.margin.bottom + 20)
+                    .attr('fill', '#2a6ada')
+                    .attr('font-weight', 'bold')
+                    .attr('font-size', '1.25rem')
+                    .text('← Index →')
+            );
 
+        // Add the y-axis and label, and remove the domain line.
         svg.append('g')
-            .attr('class', 'y-axis')
             .attr('transform', `translate(${this.margin.left},0)`)
-            .call(d3.axisLeft(y))
-            .call((g) => g.select('.domain').remove());
+            .call(d3.axisLeft(y).tickFormat((y: any) => y))
+            .call((g) => g.select('.domain').remove())
+            .call((g) =>
+                g
+                    .append('text')
+                    .attr('x', -this.margin.left)
+                    .attr('y', 0)
+                    .attr('fill', '#2a6ada')
+                    .attr('font-size', '1.25rem')
+                    .attr('font-weight', 'bold')
+                    .attr('text-anchor', 'start')
+                    .text('↑ Frequency (%)')
+            );
 
         this.chart = svg;
-
-        // console.log(this.chart)
-        // const svg = d3
-        //     .select(element)
-        //     .append('svg')
-        //     .attr('width', element.offsetWidth)
-        //     .attr('height', element.offsetHeight);
-        // // chart plot area
-        // this.chart = svg
-        //     .append('g')
-        //     .attr('class', 'bars')
-        //     .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
-        // // define X & Y domains
-        const xDomain = data.map((d) => d.field);
-        const yDomain = [0, d3.max(data, (d) => d.frequency)];
-        // // // create scales
-        this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
-        this.yScale = d3.scaleLinear().domain(yDomain).range([this.height, 0]);
-
-        // this.xAxis = svg
-        //     .append('g')
-        //     .attr('class', 'axis axis-x')
-        //     .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
-        //     .call(d3.axisBottom(this.xScale));
-        // this.yAxis = svg
-        //     .append('g')
-        //     .attr('class', 'axis axis-y')
-        //     .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
-        //     .call(d3.axisLeft(this.yScale));
-        // // bar colors
-        // this.colors = d3
-        //     .scaleLinear()
-        //     .domain([0, this.data.length])
-        //     .range(<any[]>['green', 'yellow']);
-        // // x & y axis
-        // this.xAxis = svg
-        //     .append('g')
-        //     .attr('class', 'axis axis-x')
-        //     .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
-        //     .call(d3.axisBottom(this.xScale));
-        // this.yAxis = svg
-        //     .append('g')
-        //     .attr('class', 'axis axis-y')
-        //     .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
-        //     .call(d3.axisLeft(this.yScale));
     }
 
     updateChart() {
