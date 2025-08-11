@@ -7,6 +7,7 @@ import { CardComponent } from '../../fragments/components/card/card.component';
 import { ScatterPlotChartComponent } from '../../fragments/components/scatterPlotChart/scatterPlotChart.component';
 import { MoviesApiService } from '../movies/service/movies.api.service';
 import { MoviesDataService } from '../movies/service/movies.data.service';
+import { BarchartComponent } from 'src/app/fragments/components/barchart/barchart.component';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,7 +15,7 @@ import { MoviesDataService } from '../movies/service/movies.data.service';
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss'],
     animations: [fadeInAnimation],
-    imports: [CardComponent, ScatterPlotChartComponent],
+    imports: [CardComponent, BarchartComponent, ScatterPlotChartComponent],
     providers: [MoviesApiService, MoviesDataService]
 })
 export class HomeComponent implements OnInit {
