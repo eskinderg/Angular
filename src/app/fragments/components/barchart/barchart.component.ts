@@ -217,8 +217,6 @@ export class BarchartComponent implements OnInit {
                     .attr('text-anchor', 'start')
                     .text('↑ Frequency (%)')
             );
-
-        this.chart = svg;
     }
 
     updateChart() {
