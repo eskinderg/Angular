@@ -17,7 +17,7 @@
     </div>
 
     <div class="barChart">
-        <app-card header="Bar Chart">
+        <app-card [header]="permission.IsAdmin ? 'Statistics' : 'Bar Chart'">
             <app-barchart
                 [xHeader]="permission.IsAdmin ? 'Users' : null"
                 [yHeader]="permission.IsAdmin ? 'Total Notes' : null"
