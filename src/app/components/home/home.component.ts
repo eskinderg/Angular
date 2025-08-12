@@ -31,10 +31,9 @@ export class HomeComponent implements OnInit {
     @HostBinding('@routerFadeInAnimation')
     public tvs: Tv[];
 
-    public data;
+    public data = this.Owners.pipe(map((o) => o.map((v) => ({ column: v.owner, value: v.total_notes }))));
 
     ngOnInit() {
-        this.data = this.Owners.pipe(map((o) => o.map((v) => ({ column: v.owner, value: v.total_notes }))));
         this.tvs = this.route.snapshot.data['tvs'];
         this.appVersion = environment.appVersion;
     }
