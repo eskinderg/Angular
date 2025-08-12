@@ -18,7 +18,10 @@
 
     <div class="barChart">
         <app-card header="Bar Chart">
-            <app-barchart></app-barchart>
+            <app-barchart
+                [xHeader]="permission.IsAdmin ? 'Users' : null"
+                [yHeader]="permission.IsAdmin ? 'Total Notes' : null"
+                [data]="permission.IsAdmin ? (data | async) : null"></app-barchart>
         </app-card>
     </div>
     <div class="scatterChart">
