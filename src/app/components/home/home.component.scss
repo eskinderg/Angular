@@ -1,19 +1,25 @@
 .home-wrapper {
     display: flex;
+    // flex-wrap: wrap;
     flex-wrap: nowrap;
     padding: 1rem;
     column-gap: 1rem;
-}
-
-.barChart {
-    flex: 1 0 25%;
-}
-
-.scatterChart {
-    flex: 0 0 25%;
+    row-gap: 1rem;
 }
 
 .tvSeries {
+    flex: 0 0 25%;
+}
+
+.barChart {
+    flex: 0 0 25%;
+}
+
+.scatterconnectedChart {
+    flex: 0 0 25%;
+}
+
+.scatterChart {
     flex: 1 0 20%;
 }
 
@@ -39,5 +45,5 @@ h5 {
     font-weight: 500;
     line-height: 1.2;
     font-size: 1.25rem;
-    margin:0;
+    margin: 0;
 }

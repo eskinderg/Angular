@@ -12,6 +12,7 @@ import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
+import { ScatterPlotConnectedChartComponent } from 'src/app/fragments/components/scatterPlotConnectedChart/scatterplotconnected.component';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +20,13 @@ import { AuthPermission } from 'src/app/auth/auth.permission.service';
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss'],
     animations: [fadeInAnimation],
-    imports: [CardComponent, BarchartComponent, ScatterPlotChartComponent, AsyncPipe],
+    imports: [
+        CardComponent,
+        BarchartComponent,
+        ScatterPlotChartComponent,
+        ScatterPlotConnectedChartComponent,
+        AsyncPipe
+    ],
     providers: [MoviesApiService, MoviesDataService, AdminNoteApiService]
 })
 export class HomeComponent implements OnInit {

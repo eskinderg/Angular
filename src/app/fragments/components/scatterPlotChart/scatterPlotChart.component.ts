@@ -69,6 +69,7 @@ export class ScatterPlotChartComponent implements OnInit {
         const svg = d3
             .select(element)
             .append('svg')
+            .attr('width', this.width)
             .attr('viewBox', [0, 0, this.width, this.height])
             .property('value', []);
 
