@@ -14,9 +14,9 @@ export class PieChartComponent implements OnInit {
     private margin: any = { top: 10, bottom: 10, left: 0, right: 0 };
     private width: number;
     private height: number;
-    private data;
-    private path;
-    private arc;
+    private data: any;
+    private path: any;
+    private arc: any;
     private _currentData: any[] = [];
 
     constructor() {}
@@ -80,13 +80,13 @@ export class PieChartComponent implements OnInit {
     }
 
     arcTween() {
-        return (d, i) => {
+        return (d: any, i: number) => {
             // Interpolate from the stored data to the new data `d`
             const interpolate = d3.interpolate(this._currentData[i], d);
             // Update the stored data with the new data
             this._currentData[i] = d;
             // Return the function that will be called by D3 to generate the path
-            return (t) => {
+            return (t: any) => {
                 return d3
                     .arc()
                     .innerRadius(this.height / 2 - 10)
