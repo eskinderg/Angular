@@ -1,7 +1,7 @@
 .home-wrapper {
     display: flex;
-    // flex-wrap: wrap;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    // flex-wrap: nowrap;
     padding: 1rem;
     column-gap: 1rem;
     row-gap: 1rem;
@@ -20,7 +20,11 @@
 }
 
 .scatterChart {
-    flex: 1 0 20%;
+    flex: 0 0 20%;
+}
+
+.pieChart {
+    flex: 0 0 20%;
 }
 
 .list-group {

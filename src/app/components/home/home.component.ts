@@ -13,6 +13,7 @@ import { map, Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { ScatterPlotConnectedChartComponent } from 'src/app/fragments/components/scatterPlotConnectedChart/scatterplotconnected.component';
+import { PieChartComponent } from 'src/app/fragments/components/piechart/piechart.component';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,6 +25,7 @@ import { ScatterPlotConnectedChartComponent } from 'src/app/fragments/components
         CardComponent,
         BarchartComponent,
         ScatterPlotChartComponent,
+        PieChartComponent,
         ScatterPlotConnectedChartComponent,
         AsyncPipe
     ],

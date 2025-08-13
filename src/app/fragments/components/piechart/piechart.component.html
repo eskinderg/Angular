@@ -1,0 +1,13 @@
+<div class="options">
+    <div>
+        <input (click)="change('apples')" type="radio" name="productName" [checked]="true" [value]="1" />
+        <label for="apple">Apples</label>
+    </div>
+
+    <div>
+        <input (click)="change('oranges')" type="radio" name="productName" [value]="0" />
+        <label for="orange">Oranges</label>
+    </div>
+</div>
+
+<div id="my_dataviz" #chart></div>
