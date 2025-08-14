@@ -1,18 +1,10 @@
-import {
-    Component,
-    OnInit,
-    ElementRef,
-    ViewEncapsulation,
-    viewChild,
-    ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, OnInit, ElementRef, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-scatterconnectedchart',
     templateUrl: './scatterplotconnected.component.html',
     styleUrls: ['./scatterplotconnected.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true
 })

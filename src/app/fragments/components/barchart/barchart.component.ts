@@ -3,9 +3,9 @@ import {
     OnInit,
     ElementRef,
     Input,
-    ViewEncapsulation,
     viewChild,
-    ChangeDetectionStrategy
+    ChangeDetectionStrategy,
+    OnChanges
 } from '@angular/core';
 import * as d3 from 'd3';
 
@@ -13,11 +13,10 @@ import * as d3 from 'd3';
     selector: 'app-barchart',
     templateUrl: './barchart.component.html',
     styleUrls: ['./barchart.component.scss'],
-    encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true
 })
-export class BarchartComponent implements OnInit {
+export class BarchartComponent implements OnInit, OnChanges {
     chartContainer = viewChild.required<ElementRef>('chart');
 
     @Input() public data: Array<any> = this.generateSampleData();
@@ -34,54 +33,25 @@ export class BarchartComponent implements OnInit {
     private xAxis: any;
     private yAxis: any;
 
-    // height = Math.min(500, this.width / 2);
-    // outerRadius = this.height / 2 - 10;
-    // innerRadius = this.outerRadius * 0.75;
-    // tau = 2 * Math.PI;
-    // color = d3.scaleOrdinal(d3.schemeObservable10);
-
-    // svg = d3.create('svg').attr('viewBox', [-this.width / 2, -this.height / 2, this.width, this.height]);
-
-    // arc: any = d3.arc().innerRadius(this.innerRadius).outerRadius(this.outerRadius);
-
-    // _current: any;
-
-    // pie: any = d3
-    //     .pie()
-    //     .sort(null)
-    //     .value((d) => d['apples']);
-
-    // path = this.svg
-    //     .datum(this.data)
-    //     .selectAll('path')
-    //     .data(this.pie)
-    //     .join('path')
-    //     .attr('fill', (d, i) => this.color(i.toString()))
-    //     .attr('d', this.arc)
-    //     .each(function (d) {
-    //         // this._current = d;
-    //         // console.log(this);
-    //     }); // store the initial angles
-
     ngOnInit() {
         if (!this.data) {
-            this.createChart(this.generateSampleData());
-        } else {
-            this.createChart(this.data);
+            this.data = this.generateSampleData();
         }
+        this.createChart(this.data);
+        this.updateChart();
     }
 
-    // ngOnChanges() {
-    // if (this.chart) {
-    //     this.updateChart();
-    // }
-    // }
+    ngOnChanges() {
+        if (this.chart) {
+            this.updateChart();
+        }
+    }
 
     generateSampleData() {
         const values: Array<any> = [];
 
         for (let i = 0; i < 8 + Math.floor(Math.random() * 10); i++) {
-            values.push({ column: `Column ${i}`, value: Math.round(Math.random() * 100) });
+            values.push({ column: `Column ${i + 1}`, value: Math.round(Math.random() * 100) });
         }
 
         return values;
@@ -93,73 +63,21 @@ export class BarchartComponent implements OnInit {
         this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
 
         this.colors = d3
-            .scaleLinear()
-            .domain([0, data.length])
-            .range(<any[]>['#2a6ada', 'white']);
+            .scaleOrdinal()
+            .domain(data.map((d) => d.column))
+            .range(d3.schemeCategory10); // Use a D3 color
 
-        // const x = d3
-        //     .scaleBand()
-        //     .domain(d3.sort(data, (d) => -d.value).map((d) => d.column))
-        //     .range([this.margin.left, this.width - this.margin.right])
-        //     .padding(0.1);
-
-        // this.xAxis = d3.axisBottom(x).tickSizeOuter(0);
-
-        // // Create the vertical scale.
-        // const y = d3
-        //     .scaleLinear()
-        //     .domain([0, d3.max(data, (d) => d.value)])
-        //     .nice()
-        //     .range([this.height - this.margin.bottom, this.margin.top]);
-
-        // // Create the SVG container and call the zoom behavior.
-        // const svg = d3
-        //     .select(element)
-        //     .append('svg')
-        //     .attr('viewBox', [0, 0, this.width, this.height])
-        //     .attr('width', this.width)
-        //     .attr('height', this.height)
-        //     .attr('style', 'max-width: 100%; height: 100%;');
-        // // .call(zoom);
-
-        // // Appending the bars.
-        // svg.append('g')
-        //     .attr('class', 'bars')
-        //     .selectAll('rect')
-        //     .data(data)
-        //     .join('rect')
-        //     .attr('x', (d) => x(d.column))
-        //     .attr('y', (d) => y(d.value))
-        //     .attr('height', (d) => y(0) - y(d.value))
-        //     .attr('width', x.bandwidth())
-        //     .style('fill', (_d: any, i: any) => this.colors(i));
-
-        // // Append the axes.
-        // svg.append('g')
-        //     .attr('class', 'x-axis')
-        //     .attr('transform', `translate(0,${this.height - this.margin.bottom})`)
-        //     .call(this.xAxis);
-
-        // svg.append('g')
-        //     .attr('class', 'y-axis')
-        //     .attr('transform', `translate(${this.margin.left},0)`)
-        //     .call(d3.axisLeft(y))
-        //     .call((g) => g.select('.domain').remove());
-
-        const x = d3
+        this.xScale = d3
             .scaleBand()
             .domain(data.map((d) => d.column))
             .range([this.margin.left, this.width - this.margin.right])
             .padding(0.1);
 
         // Declare the y (vertical position) scale.
-        const y = d3
+        this.yScale = d3
             .scaleLinear()
             .domain([0, d3.max(data, (d) => d.value)])
             .range([this.height - this.margin.bottom, this.margin.top]);
-
-        this.xScale = x;
-        this.yScale = y;
 
         // Create the SVG container.
         const svg = d3
@@ -171,20 +89,14 @@ export class BarchartComponent implements OnInit {
             .attr('style', 'max-width: 100%; height: 100%;');
 
         // Add a rect for each bar.
-        svg.append('g')
-            .selectAll()
-            .data(data)
-            .join('rect')
-            .attr('x', (d) => x(d.column))
-            .attr('y', (d) => y(d.value))
-            .attr('height', (d) => y(0) - y(d.value))
-            .attr('width', x.bandwidth())
-            .style('fill', (_d: any, i: any) => this.colors(i));
+        this.chart = svg.append('g').attr('class', 'bars');
 
         // Add the x-axis and label.
-        svg.append('g')
+        this.xAxis = svg
+            .append('g')
+            .attr('class', 'axis axis-x')
             .attr('transform', `translate(0,${this.height - this.margin.bottom})`)
-            .call(d3.axisBottom(x).tickSizeOuter(0))
+            .call(d3.axisBottom(this.xScale))
             .call((g) =>
                 g
                     .append('text')
@@ -196,9 +108,11 @@ export class BarchartComponent implements OnInit {
             );
 
         // Add the y-axis and label, and remove the domain line.
-        svg.append('g')
+        this.yAxis = svg
+            .append('g')
+            .attr('class', 'axis axis-y')
             .attr('transform', `translate(${this.margin.left},0)`)
-            .call(d3.axisLeft(y).tickFormat((y: any) => y))
+            .call(d3.axisLeft(this.yScale).tickFormat((y: any) => y))
             .call((g) => g.select('.domain').remove())
             .call((g) =>
                 g
@@ -219,14 +133,13 @@ export class BarchartComponent implements OnInit {
             .attr('class', 'bar-label')
             .attr('font-size', '0.75rem')
             .attr('fill', 'var(--body-color)')
-            .attr('x', (d) => x(d.column) + x.bandwidth() / 2)
-            .attr('y', (d) => y(d.value) - 5) // Adjust offset as needed
+            .attr('x', (d) => this.xScale(d.column) + this.xScale.bandwidth() / 2)
+            .attr('y', (d) => this.yScale(d.value) - 5) // Adjust offset as needed
             .attr('text-anchor', 'middle')
             .text((d) => d.value);
     }
 
     updateChart() {
-        // console.log(this.xAxis);
         // update scales & axis
         this.xScale.domain(this.data.map((d) => d.column));
         this.yScale.domain([0, d3.max(this.data, (d) => d.value)]);
@@ -236,22 +149,18 @@ export class BarchartComponent implements OnInit {
 
         const update = this.chart.selectAll('.bar').data(this.data);
 
-        // console.log(this.xScale(123));
         // remove exiting bars
         update.exit().remove();
 
         // update existing bars
-        this.chart
-            .selectAll('.bar')
+        update
             .transition()
+            .duration(500) // Add a duration to the transition for smoother updates
             .attr('x', (d: any) => this.xScale(d.column))
             .attr('y', (d: any) => this.yScale(d.value))
-            .attr('width', () => this.xScale.bandwidth())
-            .attr('height', (d: any) => {
-                console.log(this.yScale(d[1]));
-                return this.height - this.yScale(d.value);
-            })
-            .style('fill', (_d: any, i: any) => this.colors(i));
+            .attr('width', this.xScale.bandwidth())
+            .attr('height', (d) => this.yScale(0) - this.yScale(d.value))
+            .style('fill', (d: any) => this.colors(d.column));
 
         // add new bars
         update
@@ -259,16 +168,14 @@ export class BarchartComponent implements OnInit {
             .append('rect')
             .attr('class', 'bar')
             .attr('x', (d: any) => this.xScale(d.column))
-            .attr('y', (d: any) => this.yScale(d.column))
+            .attr('y', this.yScale(0))
             .attr('width', this.xScale.bandwidth())
             .attr('height', 0)
-            .style('fill', (_d: any, i: any) => this.colors(i))
-            .attr('y', (d: any) => {
-                return this.yScale(d.value);
-            })
-            .attr('height', (d: any) => {
-                // console.log(this.height - this.yScale(d.value));
-                return this.height - this.yScale(d.value);
-            });
+            .style('fill', (d: any) => this.colors(d.column))
+            .transition() // Animate from the initial state to the final state
+            .duration(500) // Add a duration for the grow effect
+            .delay((_d: any, i: number) => i * 50)
+            .attr('y', (d) => this.yScale(d.value))
+            .attr('height', (d) => this.yScale(0) - this.yScale(d.value));
     }
 }
