@@ -170,7 +170,7 @@ export class ScatterPlotConnectedChartComponent implements OnInit {
 
         label
             .transition()
-            .delay((d, i) => (this.length(line(data.slice(0, i + 1))) / l) * (5000 - 125))
+            .delay((_d, i) => (this.length(line(data.slice(0, i + 1))) / l) * (5000 - 125))
             .attr('fill-opacity', 1);
     }
 
