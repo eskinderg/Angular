@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { NoteFilterService } from '../services/note-filter.service';
 import { BulkUpdateDialogComponent } from './notes/bulk-update-dialog/bulk-update-dialog.component';
 import { SelectedNotesDialogComponent } from './notes/selected-notes-dialog.component/selected-notes-dialog.component';
+import { PieChartRadialComponent } from 'src/app/fragments/components/piechartradial/piechartradial.component';
 
 @Component({
     selector: 'app-admin-dashboard-notes',
@@ -21,13 +22,18 @@ import { SelectedNotesDialogComponent } from './notes/selected-notes-dialog.comp
         SelectedNotesDialogComponent,
         EditNoteDialogComponent,
         FormsModule,
-        BulkUpdateDialogComponent
+        BulkUpdateDialogComponent,
+        PieChartRadialComponent
     ],
     providers: [AdminNoteApiService]
 })
 export class AdminDashboardComponent {
     adminNoteApiService = inject(AdminNoteApiService);
     noteFilterService = inject(NoteFilterService);
+
+    public data = this.Owners.pipe(
+        map((o) => o.map((v) => ({ column: v.owner, value: v.total_notes, userid: v.user_id })))
+    );
 
     allNotes$ = this.adminNoteApiService.Notes;
     searchTerm$ = new BehaviorSubject<string>('');
@@ -92,6 +98,14 @@ export class AdminDashboardComponent {
 
     onClick(note: Note) {
         this.adminNoteApiService.selectNote(note);
+    }
+
+    onPieChartClick(userId: string) {
+        this.selectedUserId$.next(userId);
+    }
+
+    onPieChartClear() {
+        this.selectedUserId$.next('');
     }
 
     onClose() {

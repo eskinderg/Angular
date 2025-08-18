@@ -17,6 +17,7 @@
 
 .checkbox {
     text-align: center !important;
+    width: 4rem;
 }
 
 .active {
@@ -41,6 +42,15 @@
     }
 }
 
+.outer {
+    display: flex;
+}
+
+.left {
+    // width: 50%;
+    // border: 2px solid red;
+}
+
 table {
     table-layout: fixed; // <-- Change from 'auto' to 'fixed'
     width: 100%;
@@ -60,20 +70,49 @@ table {
 
     th.checkbox,
     td.checkbox {
-        width: 4%; // Checkbox column
-        min-width: 30px;
+        min-width: 5rem;
         max-width: 40px;
     }
-    th:nth-child(2), td:nth-child(2) { width: 15%; } // Header
-    th:nth-child(3), td:nth-child(3) { width: 10%; } // Owner
-    th:nth-child(4), td:nth-child(4) { width: 7%; }  // Active
-    th:nth-child(5), td:nth-child(5) { width: 7%; }  // Archived
-    th:nth-child(6), td:nth-child(6) { width: 7%; }  // Pinned
-    th:nth-child(7), td:nth-child(7) { width: 12%; } // Date Archived
-    th:nth-child(8), td:nth-child(8) { width: 8%; }  // Spell Check
-    th:nth-child(9), td:nth-child(9) { width: 7%; }  // Colour
-    th:nth-child(10), td:nth-child(10) { width: 12%; } // Created
-    th:nth-child(11), td:nth-child(11) { width: 12%; } // Last Modified
+    th:nth-child(2),
+    td:nth-child(2) {
+        width: 15%;
+    } // Header
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 10%;
+    } // Owner
+    th:nth-child(4),
+    td:nth-child(4) {
+        width: 7%;
+    } // Active
+    th:nth-child(5),
+    td:nth-child(5) {
+        width: 7%;
+    } // Archived
+    th:nth-child(6),
+    td:nth-child(6) {
+        width: 7%;
+    } // Pinned
+    th:nth-child(7),
+    td:nth-child(7) {
+        width: 12%;
+    } // Date Archived
+    th:nth-child(8),
+    td:nth-child(8) {
+        width: 8%;
+    } // Spell Check
+    th:nth-child(9),
+    td:nth-child(9) {
+        width: 7%;
+    } // Colour
+    th:nth-child(10),
+    td:nth-child(10) {
+        width: 12%;
+    } // Created
+    th:nth-child(11),
+    td:nth-child(11) {
+        width: 12%;
+    } // Last Modified
 
     th {
         position: sticky;
@@ -131,7 +170,7 @@ table {
     .selected {
         opacity: 1;
         color: white;
-        background: var(--btn-bg-hover-color) ! important;
+        background: var(--btn-bg-hover-color) !important;
     }
 }
 

@@ -49,105 +49,153 @@
     }
 </div>
 
-<table>
-    <tr>
-        <th class="checkbox">
-            <input type="checkbox" (change)="toggleSelectAll($event)" [checked]="areAllNotesSelected()" />
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'header' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('header')">
-            Header
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'owner' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'owner' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('owner')">
-            Owner
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'active' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'active' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('active')">
-            Active
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'archived' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'archived' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('archived')">
-            Archived
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('pinned')">
-            Pinned
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="
-                (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'desc'
-            "
-            (click)="updateSort('dateArchived')">
-            Date Archived
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('spellCheck')">
-            Spell Check
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'colour' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="(sortField$ | async) === 'colour' && (sortDirection$ | async) === 'desc'"
-            (click)="updateSort('colour')">
-            Colour
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="
-                (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'desc'
-            "
-            (click)="updateSort('dateCreated')">
-            Created
-        </th>
-        <th
-            [class.sorted-asc]="(sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'asc'"
-            [class.sorted-desc]="
-                (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'desc'
-            "
-            (click)="updateSort('dateModified')">
-            Last Modified
-        </th>
-    </tr>
-    @for (note of filteredNotes$ | async; track trackByFn($index, note)) {
-        <tr
-            (click)="onClick(note)"
-            class="row"
-            [class.inactive]="!note.active"
-            [class.selected]="isNoteSelected(note)">
-            <td class="checkbox" (click)="$event.stopPropagation()">
-                <label>
+<div class="outer">
+    <div class="left">
+        <!-- <app-barchart [xHeader]="'Users'" [yHeader]="'Total Notes'" [data]="data | async"></app-barchart> -->
+        <app-piechartradial
+            [data]="data | async"
+            (pieClickOutside)="onPieChartClear()"
+            (pieClick)="onPieChartClick($event)"></app-piechartradial>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th class="checkbox">
                     <input
                         type="checkbox"
-                        [checked]="isNoteSelected(note)"
-                        (change)="toggleNoteSelection(note, $event)" />
-                </label>
-            </td>
-            <td>{{ note.header }}</td>
-            <td>{{ note.owner }}</td>
-            <td>{{ note.active }}</td>
-            <td>{{ note.archived }}</td>
-            <td>{{ note.pinned }}</td>
-            <td>{{ note.dateArchived | date: 'medium' }}</td>
-            <td>{{ note.spellCheck }}</td>
-            <td>{{ note.colour }}</td>
-            <td>{{ note.dateCreated | date: 'medium' }}</td>
-            <td>{{ note.dateModified | date: 'medium' }}</td>
-        </tr>
-    }
-</table>
+                        (change)="toggleSelectAll($event)"
+                        [checked]="areAllNotesSelected()" />
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'header' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'header' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('header')">
+                    Header
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'owner' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'owner' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('owner')">
+                    Owner
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'active' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'active' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('active')">
+                    Active
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'archived' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'archived' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('archived')">
+                    Archived
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('pinned')">
+                    Pinned
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('dateArchived')">
+                    Date Archived
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('spellCheck')">
+                    Spell Check
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('colour')">
+                    Colour
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('dateCreated')">
+                    Created
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('dateModified')">
+                    Last Modified
+                </th>
+            </tr>
+            @for (note of filteredNotes$ | async; track trackByFn($index, note)) {
+                <tr
+                    (click)="onClick(note)"
+                    class="row"
+                    [class.inactive]="!note.active"
+                    [class.selected]="isNoteSelected(note)">
+                    <td class="checkbox" (click)="$event.stopPropagation()">
+                        <label>
+                            <input
+                                type="checkbox"
+                                [checked]="isNoteSelected(note)"
+                                (change)="toggleNoteSelection(note, $event)" />
+                        </label>
+                    </td>
+                    <td>{{ note.header }}</td>
+                    <td>{{ note.owner }}</td>
+                    <td>{{ note.active }}</td>
+                    <td>{{ note.archived }}</td>
+                    <td>{{ note.pinned }}</td>
+                    <td>{{ note.dateArchived | date: 'medium' }}</td>
+                    <td>{{ note.spellCheck }}</td>
+                    <td>{{ note.colour }}</td>
+                    <td>{{ note.dateCreated | date: 'medium' }}</td>
+                    <td>{{ note.dateModified | date: 'medium' }}</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
 
 @if (showSelectedNotesDialog) {
     <app-selected-notes-dialog
