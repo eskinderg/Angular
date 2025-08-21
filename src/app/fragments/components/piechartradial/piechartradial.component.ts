@@ -1,12 +1,13 @@
 import {
     Component,
-    OnInit,
     ElementRef,
     viewChild,
     ChangeDetectionStrategy,
     Input,
     Output,
-    EventEmitter
+    EventEmitter,
+    OnChanges,
+    SimpleChanges
 } from '@angular/core';
 import * as d3 from 'd3';
 
@@ -17,23 +18,34 @@ import * as d3 from 'd3';
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true
 })
-export class PieChartRadialComponent implements OnInit {
+export class PieChartRadialComponent implements OnChanges {
     chartContainer = viewChild.required<ElementRef>('chart');
 
+    @Input() selectedUserId: string;
     @Input() public data: IData[] = [];
     @Output() pieClick: EventEmitter<string> = new EventEmitter();
     @Output() pieClickOutside: EventEmitter<Event> = new EventEmitter();
-
+    private selectedPie: d3.Selection<SVGPathElement, d3.PieArcDatum<IData>, d3.BaseType, unknown> | null =
+        null;
+    private selectedStroke: d3.Selection<SVGPathElement, d3.PieArcDatum<IData>, d3.BaseType, unknown> | null =
+        null;
     private margin: any = { top: 10, bottom: 10, left: 10, right: 10 };
     private width: number;
     private height: number;
 
-    constructor() {}
+    ngOnChanges(changes: SimpleChanges): void {
+        // Re-create the chart if the data changes
+        if (changes['data'] && this.data && this.data.length > 0) {
+            this.createChart();
+            // After creating the chart, apply the initial selection if a user ID is set
+            // this.applyInitialSelection();
+        }
 
-    ngOnInit() {
-        this.createChart();
+        // Apply selection if only the selectedUserId changes
+        if (changes['selectedUserId'] && !changes['data']) {
+            this.applySelection(changes['selectedUserId'].currentValue);
+        }
     }
-
     createChart() {
         // Clear any existing chart content to prevent duplicates
         const element = this.chartContainer().nativeElement;
@@ -69,8 +81,7 @@ export class PieChartRadialComponent implements OnInit {
         const viewBoxSize = radius * 2.75; // Increased the viewBox size to provide more padding for labels
         const viewBoxX = -viewBoxSize / 2;
         const viewBoxY = -viewBoxSize / 2;
-        let selectedPie: any;
-        let selectedStroke: any;
+        // let selectedPie: any;
 
         // Append the SVG to the container and set up the main group
         const svg = d3
@@ -107,34 +118,15 @@ export class PieChartRadialComponent implements OnInit {
                 // The 'this' in an arrow function refers to the component instance
                 const currentTarget = d3.select(event.currentTarget as any);
 
-                if (selectedPie && selectedPie.node() === currentTarget.node()) {
+                if (this.selectedPie && this.selectedPie.node() === currentTarget.node()) {
                     // If the same pie is clicked again, deselect it
-                    selectedPie = null;
-                    if (selectedStroke) {
-                        selectedStroke.remove();
-                        selectedStroke = null;
-                    }
+                    this.deselectAll();
                     this.pieClick.emit(''); // Emit empty string on deselect
                     return;
                 }
 
-                // Remove the previously selected stroke, if one exists
-                if (selectedStroke) {
-                    selectedStroke.remove();
-                    selectedStroke = null;
-                }
-
-                // Select the new pie
-                selectedPie = currentTarget;
-
-                // Create a new path for the stroke
-                selectedStroke = svg
-                    .append('path')
-                    .attr('d', arc(d) as string)
-                    .attr('fill', 'none')
-                    .attr('stroke', '#2a6ada')
-                    .attr('stroke-width', 4)
-                    .attr('pointer-events', 'none'); // Prevents this stroke from interfering with clicks
+                // Apply selection logic
+                this.selectSlice(event.currentTarget, d);
 
                 event.stopPropagation();
                 this.pieClick.emit(d.data.userid);
@@ -193,8 +185,62 @@ export class PieChartRadialComponent implements OnInit {
                     .style('font-size', '1rem') // <-- Adjust font size here
                     .text((d) => d.data.value.toLocaleString('en-US'))
             );
+    }
 
-        // d3.select(element).on('click', () => {});
+    private applySelection(userId: string | null): void {
+        if (userId) {
+            const element = this.chartContainer().nativeElement;
+            const targetSelection = d3
+                .select(element)
+                .selectAll<SVGPathElement, d3.PieArcDatum<IData>>('path')
+                .filter((d) => d.data.userid === userId);
+            const targetElement = targetSelection.node();
+            if (targetElement) {
+                const selectedDatum = targetSelection.datum();
+                this.selectSlice(targetElement, selectedDatum);
+            } else {
+                this.deselectAll();
+            }
+        } else {
+            this.deselectAll();
+        }
+    }
+
+    private deselectAll(): void {
+        if (this.selectedStroke) {
+            this.selectedStroke.remove();
+            this.selectedStroke = null;
+        }
+        this.selectedPie = null;
+    }
+
+    private selectSlice(targetElement: SVGPathElement, d: d3.PieArcDatum<IData>): void {
+        // Deselect the previously selected pie, if one exists
+        if (this.selectedStroke) {
+            this.selectedStroke.remove();
+            this.selectedStroke = null;
+        }
+
+        // Select the new pie
+        this.selectedPie = d3.select(targetElement as any);
+
+        // Create a new path for the stroke
+        const arc = d3
+            .arc<d3.PieArcDatum<IData>>()
+            .innerRadius(0)
+            .outerRadius(d3.min([this.width, this.height])! / 2);
+
+        this.selectedStroke = d3
+            .select(this.chartContainer().nativeElement)
+            .select('svg')
+            .select('g')
+            .append('path')
+            .datum(d)
+            .attr('d', arc(d) as string)
+            .attr('fill', 'none')
+            .attr('stroke', '#2a6ada')
+            .attr('stroke-width', 4)
+            .attr('pointer-events', 'none'); // Prevents this stroke from interfering with clicks
     }
 }
 

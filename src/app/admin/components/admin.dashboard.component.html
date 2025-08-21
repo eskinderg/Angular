@@ -51,9 +51,9 @@
 
 <div class="outer">
     <div class="left">
-        <!-- <app-barchart [xHeader]="'Users'" [yHeader]="'Total Notes'" [data]="data | async"></app-barchart> -->
         <app-piechartradial
             [data]="data | async"
+            [selectedUserId]="selectedUserId$.value"
             (pieClickOutside)="onPieChartClear()"
             (pieClick)="onPieChartClick($event)"></app-piechartradial>
     </div>
