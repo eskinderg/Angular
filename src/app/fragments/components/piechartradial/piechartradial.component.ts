@@ -137,9 +137,10 @@ export class PieChartRadialComponent implements OnChanges {
         // Add the polyline for the labels
         svg.append('g')
             .attr('fill', 'none')
-            .attr('stroke', '#000')
-            .attr('stroke-width', 1)
+            .attr('stroke', 'var(--body-color)')
+            .attr('stroke-width', 2)
             .style('opacity', 0.6)
+            .attr('pointer-events', 'none') // Prevents this stroke from interfering with clicks
             .selectAll('polyline')
             .data(arcs)
             .join('polyline')
@@ -173,6 +174,7 @@ export class PieChartRadialComponent implements OnChanges {
                     .attr('y', '-0.4em')
                     .attr('font-weight', 'bold')
                     .style('font-size', '1rem') // <-- Adjust font size here
+                    .style('fill', 'var(--body-color)')
                     .text((d) => d.data.column)
             )
             .call((text) =>
@@ -183,6 +185,7 @@ export class PieChartRadialComponent implements OnChanges {
                     .attr('y', '0.7em')
                     .attr('fill-opacity', 0.7)
                     .style('font-size', '1rem') // <-- Adjust font size here
+                    .style('fill', 'var(--body-color)')
                     .text((d) => d.data.value.toLocaleString('en-US'))
             );
     }
@@ -239,7 +242,7 @@ export class PieChartRadialComponent implements OnChanges {
             .attr('d', arc(d) as string)
             .attr('fill', 'none')
             .attr('stroke', '#2a6ada')
-            .attr('stroke-width', 4)
+            .attr('stroke-width', 3)
             .attr('pointer-events', 'none'); // Prevents this stroke from interfering with clicks
     }
 }
