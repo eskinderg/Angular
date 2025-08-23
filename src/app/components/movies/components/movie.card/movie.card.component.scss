@@ -22,13 +22,12 @@
 
 .year-rating {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
 }
 
 .hover-shadow:hover {
     box-shadow: 0px 0px 5px var(--bs-secondary);
-    cursor: pointer;
 }
 
 .lang {
@@ -64,6 +63,10 @@ small {
     -moz-animation: fadeIn ease 1s;
     -o-animation: fadeIn ease 1s;
     -ms-animation: fadeIn ease 1s;
+}
+
+.fade-in:hover {
+    cursor: pointer;
 }
 
 @keyframes fadeIn {

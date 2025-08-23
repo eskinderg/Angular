@@ -3,6 +3,7 @@
         class="fade-in"
         [src]="imageLoading ? imageLoadingUrl : imageUrl"
         (load)="onImageLoaded()"
+        (click)="onMovieImageClick()"
         (error)="handleEmptyImage()" />
     <div class="content">
         <div class="title">
@@ -20,6 +21,7 @@
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
             <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal>
+            <button (click)="btnWatchListClick()">w</button>
         </div>
     </div>
 </div>

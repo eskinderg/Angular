@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    inject
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { RatingDecimalComponent } from '../rating/rating';
@@ -17,6 +25,7 @@ export class MovieCardComponent implements OnInit {
     private route = inject(ActivatedRoute);
 
     @Input() movie: Movie;
+    @Output() clickMovieImage: EventEmitter<Movie> = new EventEmitter();
 
     imageLoading: boolean = true;
     imageUrl: string = '';
@@ -46,6 +55,14 @@ export class MovieCardComponent implements OnInit {
 
     onImageLoaded() {
         this.imageLoading = false;
+    }
+
+    onMovieImageClick() {
+        this.clickMovieImage.emit(this.movie);
+    }
+
+    btnWatchListClick() {
+        alert(this.movie.id);
     }
 
     handleEmptyImage() {
