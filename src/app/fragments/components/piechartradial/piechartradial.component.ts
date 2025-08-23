@@ -81,7 +81,6 @@ export class PieChartRadialComponent implements OnChanges {
         const viewBoxSize = radius * 2.75; // Increased the viewBox size to provide more padding for labels
         const viewBoxX = -viewBoxSize / 2;
         const viewBoxY = -viewBoxSize / 2;
-        // let selectedPie: any;
 
         // Append the SVG to the container and set up the main group
         const svg = d3

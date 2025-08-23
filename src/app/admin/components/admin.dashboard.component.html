@@ -3,7 +3,8 @@
         <select
             [value]="selectedUserId$ | async"
             (change)="updateSelectedUser($event)"
-            [class.active]="selectedUserId$.value">
+            [class.active]="selectedUserId$.value"
+            class="userid-select">
             <option [value]="''">All ({{ TotalNotesCount | async }})</option>
             @for (user of Owners | async; track trackByUserId(user)) {
                 <option [value]="user.user_id">{{ user.owner }} ({{ user.total_notes }})</option>

@@ -20,6 +20,10 @@
     width: 4rem;
 }
 
+.userid-select {
+    width: 15rem;
+}
+
 .active {
     // border: 2px solid var(--bs-popover-header-bg) ! important;
     // background: var(--active-list-link-border-color) !important;
@@ -44,6 +48,7 @@
 
 .outer {
     display: flex;
+    padding: 0.5rem;
 }
 
 .left {
@@ -208,7 +213,6 @@ select,
 select:focus {
     appearance: none;
     margin: 0;
-    width: 100%;
     padding: 0.5rem 4rem 0.5rem 0.75rem;
     // border: 1px solid var(--border);
     box-shadow: none;
