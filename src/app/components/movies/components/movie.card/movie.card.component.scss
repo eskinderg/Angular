@@ -20,6 +20,20 @@
     justify-content: space-between;
 }
 
+.favorite {
+    // background-color: red;
+    color: red !important;
+}
+
+.fave {
+    // outline: 5px solid red;
+}
+
+.btn-fav {
+    color: white;
+    font-size: 1.5rem;
+}
+
 .year-rating {
     display: flex;
     justify-content: space-between;

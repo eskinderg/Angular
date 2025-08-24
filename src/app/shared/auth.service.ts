@@ -10,7 +10,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 
 // const settings: any = environment.Auth;
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
     private oauthService = inject(OAuthService);
     private http = inject(HttpClient);
@@ -52,6 +52,14 @@ export class AuthService {
 
     getProfile() {
         return this.oauthService.getIdentityClaims();
+    }
+
+    userId() {
+        const claims = this.oauthService.getIdentityClaims();
+        if (!claims) {
+            return null;
+        }
+        return claims['sub'];
     }
 
     removeUser() {

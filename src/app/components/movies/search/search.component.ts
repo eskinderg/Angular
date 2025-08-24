@@ -10,32 +10,35 @@ import {
     inject
 } from '@angular/core';
 import { MoviesApiService } from '../service/movies.api.service';
-import { Observable, tap, fromEvent, filter, debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
+import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MovieCardComponent]
+    imports: [MovieCardComponent, AsyncPipe]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalService = inject(MovieDialogService);
     route = inject(Router);
     router = inject(ActivatedRoute);
-    private _moviesServices = inject(MoviesApiService);
+    public _moviesServices = inject(MoviesApiService);
     private cdr = inject(ChangeDetectorRef);
 
     input = viewChild.required<ElementRef>('searchInput');
 
+    searchTerm$ = new BehaviorSubject<string>('');
     movies: Observable<never>;
     model: Movie[];
+    userMovies$: Observable<Movie[]> = this._moviesServices.getUserMovies();
     searching = false;
     searchFailed = false;
     searchTerm: string = '';
@@ -45,16 +48,25 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     ngAfterViewInit() {
-        this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')
-            .pipe(
-                filter(Boolean),
-                debounceTime(450),
-                distinctUntilChanged(),
-                tap(() => {
-                    this.onSearch(this.input().nativeElement.value);
-                })
-            )
-            .subscribe();
+        this.searchTerm$.subscribe((term) => {
+            this.onSearch(term);
+        });
+        // this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')
+        //     .pipe(
+        //         filter(Boolean),
+        //         debounceTime(450),
+        //         distinctUntilChanged(),
+        //         tap(() => {
+        //             this.onSearch(this.input().nativeElement.value);
+        //         })
+        //     )
+        //     .subscribe();
+    }
+
+    onSearchInput(event: any) {
+        const element = event.currentTarget as HTMLInputElement;
+        const value = element.value;
+        this.searchTerm$.next(value);
     }
 
     onClick(movie: Movie) {

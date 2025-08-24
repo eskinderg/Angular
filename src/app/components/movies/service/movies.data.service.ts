@@ -1,12 +1,10 @@
-import { throwError as observableThrowError, Observable } from 'rxjs';
+import { throwError as observableThrowError, Observable, forkJoin } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
-// import { Http} from '@angular/common/http';
-// import { Response, URLSearchParams, Jsonp} from '@angular/common/http';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
 
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { environment } from '../../../../environments/environment';
 
@@ -15,6 +13,7 @@ import { MovieResults } from '../models/movie-results';
 
 // const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
+const MOVIES_API_URL = '/api/movies'; // Use the proxy path
 
 @Injectable({ providedIn: 'root' })
 export class MoviesDataService {
@@ -24,6 +23,22 @@ export class MoviesDataService {
 
     constructor() {
         this.apikey = API_KEY;
+    }
+
+    favoriteMovie(movies: any[]) {
+        return this.http.put(MOVIES_API_URL, movies);
+    }
+
+    getUserMovies(): Observable<Movie[]> {
+        return this.http.get<Movie[]>(MOVIES_API_URL).pipe(
+            switchMap((movieIds: any[]) => {
+                const movieObservables = movieIds.map((movieId) => {
+                    return this.getMovie(movieId[1]);
+                });
+                // Use forkJoin to wait for all inner requests to complete
+                return forkJoin(movieObservables);
+            })
+        );
     }
 
     getPopular() {

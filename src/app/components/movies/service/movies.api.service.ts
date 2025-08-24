@@ -41,4 +41,12 @@ export class MoviesApiService {
     getMovie(id: string) {
         return this.api.getMovie(id);
     }
+
+    favoriteMovie(movies: any[]) {
+        return this.api.favoriteMovie(movies);
+    }
+
+    getUserMovies() {
+        return this.api.getUserMovies();
+    }
 }
