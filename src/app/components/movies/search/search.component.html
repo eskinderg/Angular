@@ -37,6 +37,7 @@
 <!--     [collectionSize]="movieResult.total_pages"></ngb-pagination> -->
 <!-- {{input().nativeElement.value.length}} -->
 @if (!searchTerm$.value.length) {
+    <h1 style="text-align: center">Watch List</h1>
     <div class="movie-cards-container">
         @for (movie of userMovies$ | async; track movie) {
             <div>
@@ -44,12 +45,12 @@
             </div>
         }
     </div>
+} @else {
+    <div class="movie-cards-container">
+        @for (movie of movieResult?.movies; track movie) {
+            <div>
+                <app-movie-card [movie]="movie" (click)="onClick(movie)"></app-movie-card>
+            </div>
+        }
+    </div>
 }
-
-<div class="movie-cards-container">
-    @for (movie of movieResult?.movies; track movie) {
-        <div>
-            <app-movie-card [movie]="movie" (click)="onClick(movie)"></app-movie-card>
-        </div>
-    }
-</div>

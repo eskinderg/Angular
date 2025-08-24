@@ -48,7 +48,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     ngAfterViewInit() {
-        this.searchTerm$.subscribe((term) => {
+        this.searchSubscription$ = this.searchTerm$.subscribe((term) => {
             this.onSearch(term);
         });
         // this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')
