@@ -22,14 +22,14 @@ export const eventsReducer = createReducer<IEventsState>(
         EventsActions.createEventSuccess,
         (state, action): IEventsState => ({
             ...state,
-            events: [action.payload, ...state.events]
+            events: [action.event, ...state.events]
         })
     ),
     on(
         EventsActions.fetchEventsSuccess,
         (state, action): IEventsState => ({
             ...state,
-            events: action.payload.slice().reverse() || [] // reverse array to show the most recent
+            events: action.events.slice().reverse() || [] // reverse array to show the most recent
         })
     ),
     on(
@@ -38,7 +38,7 @@ export const eventsReducer = createReducer<IEventsState>(
         (state, action): IEventsState => ({
             ...state,
             events: state.events.map((event) => {
-                return event.id === action.payload.id ? action.payload : event;
+                return event.id === action.event.id ? action.event : event;
             })
         })
     ),
@@ -47,7 +47,7 @@ export const eventsReducer = createReducer<IEventsState>(
         (state, action): IEventsState => ({
             ...state,
             events: state.events.filter((event: Event) => {
-                return event.id !== action.payload.id;
+                return event.id !== action.event.id;
             })
         })
     ),
@@ -58,7 +58,7 @@ export const eventsReducer = createReducer<IEventsState>(
         (state, action): IEventsState => ({
             ...state,
             events: state.events.filter((event: Event) => {
-                return action.payload.every((e) => e.id !== event.id);
+                return action.events.every((e) => e.id !== event.id);
             })
         })
     )

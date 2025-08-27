@@ -5,19 +5,17 @@
     (pageChange)="loadPage($event)"
     [collectionSize]="collectionSize"></app-pagination>
 
-<div class="movie-cards-container">
+<div [@movieCardList]="id + '-' + name + '-' + page" class="movie-cards-container">
     @for (movie of moviesResult.movies; track movie) {
-        <div>
-            <!-- <app-movie-card [movie]="movie" [routerLink]="[route.url, 'dialog', movie.id]"></app-movie-card> -->
-            <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"></app-movie-card>
-        </div>
+        <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"> </app-movie-card>
     }
 </div>
-<app-pagination
-    [(page)]="moviesResult.page"
-    [pageSize]="20"
-    [maxSize]="15"
-    (pageChange)="loadPage($event)"
-    [collectionSize]="collectionSize"></app-pagination>
+
+<!-- <app-pagination -->
+<!--     [(page)]="moviesResult.page" -->
+<!--     [pageSize]="20" -->
+<!--     [maxSize]="15" -->
+<!--     (pageChange)="loadPage($event)" -->
+<!--     [collectionSize]="collectionSize"></app-pagination> -->
 
 <!-- <router-outlet></router-outlet> -->

@@ -25,8 +25,8 @@ export class GenreListItemComponent {
     //   });
     // }
 
-    selectGenre(genre: Genre, $event: any) {
-        $event.preventDefault();
-        this.select.emit(genre);
-    }
+    // selectGenre(genre: Genre, $event: any) {
+    //     $event.preventDefault();
+    //     this.select.emit(genre);
+    // }
 }

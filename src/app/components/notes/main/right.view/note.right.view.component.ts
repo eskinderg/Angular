@@ -82,7 +82,7 @@ export class NoteRightViewComponent {
     }
 
     onUpdatOpendNote(note: Note) {
-        this.store.dispatch(NotesActions.updateOpendNote({ payload: note }));
+        this.store.dispatch(NotesActions.updateOpendNote({ note: note }));
     }
 
     noteInfoClick(note: Note) {

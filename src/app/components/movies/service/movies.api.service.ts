@@ -48,7 +48,7 @@ export class MoviesApiService {
     }
 
     favoriteMovie(movie: Movie) {
-        return this.store.dispatch(AppActions.removeWatchList({ payload: movie }));
+        return this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
     }
 
     getUserMovies() {
@@ -60,10 +60,10 @@ export class MoviesApiService {
     }
 
     addWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.addWatchList({ payload: movie }));
+        this.store.dispatch(AppActions.addWatchList({ movies: movie }));
     }
 
     removeWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.removeWatchList({ payload: movie }));
+        this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
     }
 }

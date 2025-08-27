@@ -12,8 +12,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.createNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((note) => NotesActions.createNoteSuccess({ payload: note.shift() })),
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((note) => NotesActions.createNoteSuccess({ note: note.shift() })),
                     catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
                 )
             )
@@ -24,8 +24,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updateNoteText),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((notes) => NotesActions.updateNoteTextSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((notes) => NotesActions.updateNoteTextSuccess({ note: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.updateNoteTextFail({ payload: err })))
                 )
             )
@@ -37,8 +37,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNotePosition),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
-                        map((notes) => NotesActions.updateNotePositionSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    notesDataService.upsertNotes([action.note]).pipe(
+                        map((notes) => NotesActions.updateNotePositionSuccess({ note: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
                     )
                 )
@@ -50,8 +50,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteSelection),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
-                        map((notes) => NotesActions.updateNoteSelectionSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    notesDataService.upsertNotes([action.note]).pipe(
+                        map((notes) => NotesActions.updateNoteSelectionSuccess({ note: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
                     )
                 )
@@ -62,8 +62,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updateNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((notes) => NotesActions.updateNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((notes) => NotesActions.updateNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
                 )
             )
@@ -74,8 +74,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.updatePinOrder),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((notes) => NotesActions.updatePinOrderSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((notes) => NotesActions.updatePinOrderSuccess({ note: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.updatePinOrderFail({ payload: err })))
                 )
             )
@@ -95,7 +95,7 @@ export class NotesEffect {
                 ofType(NotesActions.fetchNotesStart),
                 switchMap(() =>
                     notesDataService.getNotes().pipe(
-                        map((notes) => NotesActions.fetchNotesSuccess({ payload: notes })),
+                        map((notes) => NotesActions.fetchNotesSuccess({ notes: notes })),
                         catchError((err) => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
                     )
                 )
@@ -114,7 +114,7 @@ export class NotesEffect {
             ofType(NotesActions.refreshNotes),
             switchMap(() =>
                 notesDataService.getNotes().pipe(
-                    map((notes) => NotesActions.refreshNotesSuccess({ payload: notes })),
+                    map((notes) => NotesActions.refreshNotesSuccess({ notes: notes })),
                     catchError((err) => of(NotesActions.refreshNotesFailed({ payload: err })))
                 )
             )
@@ -125,8 +125,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.deleteNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((notes) => NotesActions.deleteNoteSuccess({ payload: notes.shift() })),
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((notes) => NotesActions.deleteNoteSuccess({ note: notes.shift() })),
                     catchError((err) => of(NotesActions.deleteNoteFail({ payload: err })))
                 )
             )
@@ -149,8 +149,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.archiveNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.payload]).pipe(
-                    map((notes) => NotesActions.archiveNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                notesDataService.upsertNotes([action.note]).pipe(
+                    map((notes) => NotesActions.archiveNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.archiveNoteFail({ payload: err })))
                 )
             )
@@ -162,8 +162,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.toggleSpellCheck),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
-                        map((notes) => NotesActions.toggleSpellCheckSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    notesDataService.upsertNotes([action.note]).pipe(
+                        map((notes) => NotesActions.toggleSpellCheckSuccess({ note: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
                     )
                 )
@@ -186,8 +186,8 @@ export class NotesEffect {
         actions$.pipe(
             ofType(NotesActions.restoreNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([{ ...action.payload, archived: false }]).pipe(
-                    map((notes) => NotesActions.restoreNoteSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                notesDataService.upsertNotes([{ ...action.note, archived: false }]).pipe(
+                    map((notes) => NotesActions.restoreNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
                     catchError((err) => of(NotesActions.restoreNoteFail({ payload: err })))
                 )
             )
@@ -211,8 +211,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteColour),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
-                        map((notes) => NotesActions.updateNoteColourSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    notesDataService.upsertNotes([action.note]).pipe(
+                        map((notes) => NotesActions.updateNoteColourSuccess({ note: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
                     )
                 )
@@ -224,9 +224,9 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteColourSuccess),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
+                    notesDataService.upsertNotes([action.note]).pipe(
                         map((notes) => {
-                            return NotesActions.updateOpendNote({ payload: notes.shift() });
+                            return NotesActions.updateOpendNote({ note: notes.shift() });
                         }),
                         catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
                     )
@@ -239,8 +239,8 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.updateNoteHeader),
                 switchMap((action) =>
-                    notesDataService.upsertNotes([action.payload]).pipe(
-                        map((notes) => NotesActions.updateNoteHeaderSuccess({ payload: notes.shift() })), // Use the first note from the returned list
+                    notesDataService.upsertNotes([action.note]).pipe(
+                        map((notes) => NotesActions.updateNoteHeaderSuccess({ note: notes.shift() })), // Use the first note from the returned list
                         catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
                     )
                 )

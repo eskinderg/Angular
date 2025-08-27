@@ -14,7 +14,7 @@ export class MoviesEffect {
                 ofType(MoviesActions.fetchWatchList),
                 switchMap(() =>
                     moviesDataService.getUserMovies().pipe(
-                        map((movies) => MoviesActions.fetchWatchListSuccess({ payload: movies })),
+                        map((movies) => MoviesActions.fetchWatchListSuccess({ movies: movies })),
                         catchError((err) =>
                             of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
                         )
@@ -34,37 +34,18 @@ export class MoviesEffect {
                 switchMap((action) =>
                     moviesDataService
                         .favoriteMovie([
-                            { movieId: action.payload.id, favorite: false, userId: authService.userId() }
+                            { movieId: action.movie.id, favorite: false, userId: authService.userId() }
                         ])
                         .pipe(
                             map((movies) =>
-                                MoviesActions.fetchRemovedWatchList({
-                                    payload: movies
+                                MoviesActions.removeWatchListSuccess({
+                                    moviesRemoved: movies
                                 })
                             ),
                             catchError((err) =>
                                 of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
                             )
                         )
-                )
-            )
-    );
-
-    fetchRemovedWatchList = createEffect(
-        (actions$ = inject(Actions), moviesDataService = inject(MoviesDataService)) =>
-            actions$.pipe(
-                ofType(MoviesActions.fetchRemovedWatchList),
-                switchMap((action) =>
-                    moviesDataService.getMovies(action.payload).pipe(
-                        map((movies) =>
-                            MoviesActions.removeWatchListSuccess({
-                                payload: movies
-                            })
-                        ),
-                        catchError((err) =>
-                            of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
-                        )
-                    )
                 )
             )
     );
@@ -80,7 +61,7 @@ export class MoviesEffect {
                 switchMap((action) =>
                     moviesDataService
                         .favoriteMovie([
-                            { movieId: action.payload.id, favorite: true, userId: authService.userId() }
+                            { movieId: action.movies.id, favorite: true, userId: authService.userId() }
                         ])
                         .pipe(
                             map((movies) =>
@@ -104,7 +85,7 @@ export class MoviesEffect {
                     moviesDataService.getMovies(action.payload).pipe(
                         map((movies) =>
                             MoviesActions.addWatchListSuccess({
-                                payload: movies
+                                movies: movies
                             })
                         ),
                         catchError((err) =>

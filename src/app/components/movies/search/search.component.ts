@@ -10,18 +10,20 @@ import {
     inject
 } from '@angular/core';
 import { MoviesApiService } from '../service/movies.api.service';
-import { Observable, Subscription, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription, BehaviorSubject, filter, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
+import { MovieCardAnimations } from '../../shared/animations/fadeInAndOutMovieCard';
 
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
+    animations: [MovieCardAnimations],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MovieCardComponent]
 })
@@ -45,9 +47,11 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalComponent: ComponentRef<MovieDialogComponent>;
 
     ngAfterViewInit() {
-        this.searchSubscription$ = this.searchTerm$.subscribe((term) => {
-            this.onSearch(term);
-        });
+        this.searchSubscription$ = this.searchTerm$
+            .pipe(filter(Boolean), debounceTime(450), distinctUntilChanged())
+            .subscribe((term) => {
+                this.onSearch(term);
+            });
         // this.searchSubscription$ = fromEvent(this.input().nativeElement, 'keyup')
         //     .pipe(
         //         filter(Boolean),
@@ -61,6 +65,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     }
 
     onSearch(searchText: string) {
+        this.movieResult = null;
         this._moviesServices.serachMovies(searchText).subscribe((m: MovieResults) => {
             this.movieResult = m;
             this.cdr.markForCheck();

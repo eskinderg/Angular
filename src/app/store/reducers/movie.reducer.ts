@@ -15,19 +15,21 @@ export const movieReducer = createReducer<IMovieState>(
     on(MoviesActions.fetchWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: action.payload
+            watchList: action.movies
         };
     }),
     on(MoviesActions.removeWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: state.watchList.filter((m) => !action.payload.find(({ id }) => m.id === id))
+            watchList: state.watchList.filter(
+                (m) => !action.moviesRemoved.find((movie) => m.id === Number(movie[1]))
+            )
         };
     }),
     on(MoviesActions.addWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: [...state.watchList, ...action.payload]
+            watchList: [...state.watchList, ...action.movies]
         };
     })
 );

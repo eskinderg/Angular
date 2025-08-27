@@ -5,3 +5,13 @@
     flex-direction: row;
     background-color: var(--body-bg);
 }
+
+app-pagination {
+    z-index: 1;
+    padding: 0.5rem;
+    background: var(--body-bg);
+    // background: red;
+    display: block;
+    position: sticky;
+    top: 0px;
+}

@@ -43,31 +43,31 @@ export class NoteApiService {
     }
 
     selectNote(note: Note): void {
-        this.run(AppActions.noteSelect({ payload: note }));
+        this.run(AppActions.noteSelect({ note: note }));
     }
 
     createNewNote(newNote: Note): void {
-        this.run(AppActions.createNote({ payload: newNote }));
+        this.run(AppActions.createNote({ note: newNote }));
     }
 
     updateNote(note: Note): void {
-        this.run(AppActions.updateNote({ payload: note }));
+        this.run(AppActions.updateNote({ note: note }));
     }
 
     restoreNote(note: Note): void {
-        this.run(AppActions.restoreNote({ payload: note }));
+        this.run(AppActions.restoreNote({ note: note }));
     }
 
     updateNoteText(note: Note): void {
-        this.run(AppActions.updateNoteText({ payload: note }));
+        this.run(AppActions.updateNoteText({ note: note }));
     }
 
     updateNoteHeader(note: Note): void {
-        this.run(AppActions.updateNoteHeader({ payload: note }));
+        this.run(AppActions.updateNoteHeader({ note: note }));
     }
 
     updateNoteSelection(note: Note): void {
-        this.run(AppActions.updateNoteSelection({ payload: note }));
+        this.run(AppActions.updateNoteSelection({ note: note }));
     }
 
     unselectNote(): void {
@@ -75,33 +75,33 @@ export class NoteApiService {
     }
 
     restoreArchivedNote(note: Note): void {
-        this.run(AppActions.restoreNote({ payload: note }));
+        this.run(AppActions.restoreNote({ note: note }));
     }
 
     archiveNote(note: Note): void {
-        this.run(AppActions.archiveNote({ payload: { ...note, archived: true } }));
+        this.run(AppActions.archiveNote({ note: { ...note, archived: true } }));
     }
 
     toggleSpellCheck(note: Note): void {
-        this.run(AppActions.toggleSpellCheck({ payload: { ...note, spellCheck: !note.spellCheck } }));
+        this.run(AppActions.toggleSpellCheck({ note: { ...note, spellCheck: !note.spellCheck } }));
     }
 
     updateNoteColour(note: Note): void {
-        this.run(AppActions.updateNoteColour({ payload: note }));
+        this.run(AppActions.updateNoteColour({ note: note }));
     }
 
     deleteNote(note: Note): void {
-        this.run(AppActions.deleteNote({ payload: { ...note, active: false } }));
+        this.run(AppActions.deleteNote({ note: { ...note, active: false } }));
     }
 
     changeNoteText(note: Note): void {
-        this.run(AppActions.updateNoteText({ payload: note }));
+        this.run(AppActions.updateNoteText({ note: note }));
     }
 
     updateNotePinOrder(note: Note): void {
         this.run(
             AppActions.updatePinOrder({
-                payload: {
+                note: {
                     ...note,
                     pinned: !note.pinned
                 }
@@ -110,11 +110,11 @@ export class NoteApiService {
     }
 
     changeNotePosition(note: Note): void {
-        this.run(AppActions.updateNotePosition({ payload: note }));
+        this.run(AppActions.updateNotePosition({ note: note }));
     }
 
     changeNoteSize(note: Note): void {
-        this.run(AppActions.updateNoteSize({ payload: note }));
+        this.run(AppActions.updateNoteSize({ note: note }));
     }
 
     private run(action: Action) {

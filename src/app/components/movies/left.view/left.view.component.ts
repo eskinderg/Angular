@@ -18,7 +18,7 @@ export class LeftViewComponent {
 
     constructor() {}
 
-    onSelectGenre(genre: Genre) {
-        this.select.emit(genre);
-    }
+    // onSelectGenre(genre: Genre) {
+    //     // this.select.emit(genre);
+    // }
 }

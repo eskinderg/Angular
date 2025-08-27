@@ -29,7 +29,7 @@ export class EventComponent {
     public selectedEvents: Event[] = [];
 
     onAddEvent(event: Event) {
-        this.store.dispatch(EventsActions.createEvent({ payload: event }));
+        this.store.dispatch(EventsActions.createEvent({ event: event }));
     }
 
     onToggleEvent(event: Event) {
@@ -41,7 +41,7 @@ export class EventComponent {
     }
 
     onDeleteEvents() {
-        this.store.dispatch(EventsActions.deleteEvents({ payload: this.selectedEvents }));
+        this.store.dispatch(EventsActions.deleteEvents({ events: this.selectedEvents }));
         this.selectedEvents = [];
     }
 
@@ -65,7 +65,7 @@ export class EventComponent {
             )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    this.store.dispatch(EventsActions.deleteEvent({ payload: event }));
+                    this.store.dispatch(EventsActions.deleteEvent({ event: event }));
                 }
             });
         // this.eventDialogService.showDialog(event);
