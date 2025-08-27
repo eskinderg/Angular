@@ -6,6 +6,7 @@ import * as PreferenceActions from '../actions/preference.action';
 import * as NoteActions from '../actions/note.actions';
 import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
+import * as MovieActions from '../actions/movie.actions';
 import { ThemeService } from '../../theme/theme.service';
 
 @Injectable()
@@ -55,7 +56,9 @@ export class PreferenceEffect {
     logInSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-            switchMap(() => of(NoteActions.fetchNotes(), EventActions.fetchEvents()))
+            switchMap(() =>
+                of(NoteActions.fetchNotes(), EventActions.fetchEvents(), MovieActions.fetchWatchList())
+            )
         )
     );
 

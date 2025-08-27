@@ -4,6 +4,8 @@ import { RightViewComponent } from './right.view/right-view.component';
 import { genreResolver } from './service/genres.resolve';
 import { SearchComponent } from './search/search.component';
 import { moviesResultResolver } from './service/movie-results.resolve';
+import { WatchListComponent } from './watchlist/watchlist.component';
+import { watchListResolver } from './service/watchlist.resolve';
 
 export const moviesRoutes: Routes = [
     {
@@ -45,5 +47,12 @@ export const moviesRoutes: Routes = [
             genres: genreResolver
         }
         // canActivate: [authGuard]
+    },
+    {
+        path: 'watchlist',
+        component: WatchListComponent,
+        resolve: {
+            movies: watchListResolver
+        }
     }
 ];

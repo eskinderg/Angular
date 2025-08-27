@@ -93,6 +93,18 @@
                         [routerLink]="['/movies']"
                         >Movies</a
                     >
+                    @if (IsLoggedIn | async) {
+                        <ul>
+                            <li>
+                                <a
+                                    [routerLink]="['/movies/watchlist']"
+                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    >Watch List</a
+                                >
+                            </li>
+                        </ul>
+                    }
                 </li>
             </div>
             @if (permission.IsAdmin) {

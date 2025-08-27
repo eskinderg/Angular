@@ -17,14 +17,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MovieCardComponent, AsyncPipe]
+    imports: [MovieCardComponent]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {
     movieModalService = inject(MovieDialogService);
@@ -38,10 +37,8 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     searchTerm$ = new BehaviorSubject<string>('');
     movies: Observable<never>;
     model: Movie[];
-    userMovies$: Observable<Movie[]> = this._moviesServices.getUserMovies();
     searching = false;
     searchFailed = false;
-    searchTerm: string = '';
     movieResult: MovieResults;
     searchSubscription$: Subscription | undefined;
     apiSubscription: Subscription;
@@ -61,6 +58,18 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
         //         })
         //     )
         //     .subscribe();
+    }
+
+    onSearch(searchText: string) {
+        this._moviesServices.serachMovies(searchText).subscribe((m: MovieResults) => {
+            this.movieResult = m;
+            this.cdr.markForCheck();
+        });
+    }
+
+    ngOnDestroy() {
+        this.searchSubscription$?.unsubscribe();
+        this.movieModalService.destroy();
     }
 
     onSearchInput(event: any) {
@@ -115,13 +124,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     //     () => this.searching = false)
     //   );
 
-    onSearch(searchText: string) {
-        this._moviesServices.serachMovies(searchText).subscribe((m: MovieResults) => {
-            this.movieResult = m;
-            this.cdr.markForCheck();
-        });
-    }
-
     // ngOnInit() {
     //     console.log(this.router.snapshot);
     //     this.movies = this.term.valueChanges
@@ -133,11 +135,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     //         return movies.map((movie: Movie) => new Movie(movie));
     //       });
     // }
-
-    ngOnDestroy() {
-        this.searchSubscription$?.unsubscribe();
-        this.movieModalService.destroy();
-    }
 
     // btnSearch(value: string) {
     //   if (value) {

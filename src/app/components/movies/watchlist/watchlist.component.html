@@ -1,0 +1,8 @@
+<h2 style="text-align: center">Watch List</h2>
+<div class="movie-cards-container">
+    @for (movie of movieApiService.getUserMovies() | async; track movie) {
+        <div>
+            <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"></app-movie-card>
+        </div>
+    }
+</div>

@@ -1,5 +1,6 @@
 import { AuthEffect } from './auth.effect';
 import { EventsEffect } from './events.effect';
+import { MoviesEffect } from './movie.effect';
 import { NotesEffect } from './note.effects';
 import { PreferenceEffect } from './preference.effect';
 import { RouterEffect } from './router.effect';
@@ -10,4 +11,11 @@ export * from './events.effect';
 export * from './preference.effect';
 export * from './router.effect';
 
-export const appEffects = [NotesEffect, EventsEffect, AuthEffect, PreferenceEffect, RouterEffect];
+export const appEffects = [
+    NotesEffect,
+    EventsEffect,
+    AuthEffect,
+    PreferenceEffect,
+    MoviesEffect,
+    RouterEffect
+];

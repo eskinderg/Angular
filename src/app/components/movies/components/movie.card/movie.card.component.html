@@ -1,4 +1,4 @@
-<div [class.fave]="favorite$.value" class="card-view hover-shadow">
+<div class="card-view hover-shadow">
     <img
         class="fade-in"
         [src]="imageLoading ? imageLoadingUrl : imageUrl"
@@ -21,9 +21,11 @@
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
             <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal>
-            <button class="btn-fav" [class.favorite]="favorite$.value" (click)="btnWatchListClick()">
-                ♥
-            </button>
+            @if (isInWatchList | async) {
+                <button class="btn-fav favorite" (click)="btnRemoveWatchListClick()">♥</button>
+            } @else {
+                <button class="btn-fav" (click)="btnAddWatchListClick()">♥</button>
+            }
         </div>
     </div>
 </div>

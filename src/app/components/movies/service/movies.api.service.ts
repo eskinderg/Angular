@@ -1,14 +1,19 @@
 import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
-// import { Movie } from '../models/movie';
+import * as fromMovies from '../../../store/reducers/movie.reducer';
+import * as fromRoot from '../../../store/reducers';
+import * as AppActions from '../../../store/actions';
 import { Tv } from '../models/tv';
 import { MoviesDataService } from './movies.data.service';
 import { Observable, empty } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
+import { Store } from '@ngrx/store';
+import { Movie } from '../models/movie';
 
 @Injectable({ providedIn: 'root' })
 export class MoviesApiService {
     private api = inject(MoviesDataService);
+    private store = inject<Store<fromRoot.IAppState>>(Store);
 
     serachMovies(searchStr: string) {
         if (searchStr !== undefined && searchStr !== '') {
@@ -42,11 +47,23 @@ export class MoviesApiService {
         return this.api.getMovie(id);
     }
 
-    favoriteMovie(movies: any[]) {
-        return this.api.favoriteMovie(movies);
+    favoriteMovie(movie: Movie) {
+        return this.store.dispatch(AppActions.removeWatchList({ payload: movie }));
     }
 
     getUserMovies() {
-        return this.api.getUserMovies();
+        return this.store.select(fromMovies.getWatchListMovies);
+    }
+
+    isInWatchList(movie: Movie) {
+        return this.store.select(fromMovies.isInWatchList(movie));
+    }
+
+    addWatchList(movie: Movie) {
+        this.store.dispatch(AppActions.addWatchList({ payload: movie }));
+    }
+
+    removeWatchList(movie: Movie) {
+        this.store.dispatch(AppActions.removeWatchList({ payload: movie }));
     }
 }

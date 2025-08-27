@@ -25,8 +25,8 @@ export class MoviesDataService {
         this.apikey = API_KEY;
     }
 
-    favoriteMovie(movies: any[]) {
-        return this.http.put(MOVIES_API_URL, movies);
+    favoriteMovie(movies: any[]): Observable<Movie[]> {
+        return this.http.put<Movie[]>(MOVIES_API_URL, movies);
     }
 
     getUserMovies(): Observable<Movie[]> {
@@ -39,6 +39,11 @@ export class MoviesDataService {
                 return forkJoin(movieObservables);
             })
         );
+    }
+
+    getMovies(movies: any[]): Observable<Movie[]> {
+        const movieRequests = movies.map((m) => this.getMovie(m[1]));
+        return forkJoin(movieRequests);
     }
 
     getPopular() {
@@ -124,9 +129,9 @@ export class MoviesDataService {
             .pipe(
                 map((res) => {
                     const movie = new Movie(res);
-                    this.getCasts(id).subscribe((res) => {
-                        movie.casts = res;
-                    });
+                    // this.getCasts(id).subscribe((res) => {
+                    //     movie.casts = res;
+                    // });
                     return movie;
                 })
             );
