@@ -24,10 +24,37 @@ export class RightViewComponent implements OnDestroy {
     routeSubscription: Subscription;
     apiSubscription: Subscription;
 
+    private _id: string;
+    private _name: string;
+    private _page: string;
+
     /* withComponentInputBinding */
-    @Input() id = '';
-    @Input() name = '';
-    @Input() page = '';
+    @Input() set id(value: string) {
+        this._id = value;
+        document.getElementsByClassName('content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
+    }
+
+    get id(): string {
+        return this._id;
+    }
+
+    @Input() set name(value: string) {
+        this._name = value;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    @Input() set page(value: string) {
+        this._page = value;
+        document.getElementsByClassName('content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
+    }
+
+    get page(): string {
+        return this._page;
+    }
+
     @Input() moviesResult: MovieResults;
 
     loadPage(page: number) {
