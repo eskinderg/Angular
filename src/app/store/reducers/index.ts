@@ -37,3 +37,11 @@ export function logger(reducer: ActionReducer<IAppState>): ActionReducer<IAppSta
 }
 
 export const metaReducers: MetaReducer<IAppState>[] = !environment.production ? [logger] : [];
+
+export * from './note.reducer';
+export * from './events.reducer';
+export * from './auth.reducer';
+export * from './preference.reducer';
+export * from './movie.reducer';
+export * from './notification.reducer';
+export * from './route.reducer';

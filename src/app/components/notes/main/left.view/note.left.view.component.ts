@@ -118,7 +118,7 @@ export class NoteLeftViewComponent {
     }
 
     get NoteLoading() {
-        return this.noteStore.select(fromNotes.getIsLoading);
+        return this.noteStore.select(fromNotes.getIsNoteLoading);
     }
 
     get NotesCount() {

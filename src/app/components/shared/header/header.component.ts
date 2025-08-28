@@ -1,14 +1,11 @@
 import { Component, EventEmitter, Output, ChangeDetectionStrategy, inject } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 // import { OAuthService } from 'angular-oauth2-oidc';
-import { Store } from '@ngrx/store';
-import * as fromEvents from '../../../store/reducers/events.reducer';
-import * as fromNotes from '../../../store/reducers/note.reducer';
-import * as fromProfile from '../../../store/reducers/preference.reducer';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass, AsyncPipe } from '@angular/common';
 import { UserInfoComponent } from './userinfo/userinfo.component';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
+import { StoreService } from 'src/app/store/store.service';
 
 export declare interface IsActiveMatchOptions {
     fragment: 'exact' | 'ignored';
@@ -25,11 +22,9 @@ export declare interface IsActiveMatchOptions {
     imports: [RouterLink, RouterLinkActive, NgClass, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {
-    private eventStore = inject<Store<fromEvents.IEventsState>>(Store);
-    private noteStore = inject<Store<fromNotes.INotesState>>(Store);
-    private preferenceState = inject<Store<fromProfile.IPreferenceState>>(Store);
     permission = inject(AuthPermission);
     private router = inject(Router);
+    private storeService = inject(StoreService);
 
     @Output() signout: EventEmitter<any> = new EventEmitter();
     public isExpanded = false;
@@ -61,31 +56,30 @@ export class HeaderComponent {
     }
 
     get EventsCount() {
-        return this.eventStore.select(fromEvents.getEventsLength);
+        return this.storeService.select(this.storeService.selectors.getEventsLength);
     }
 
     get EventLoading() {
-        return this.eventStore.select(fromEvents.getIsLoading);
+        return this.storeService.select(this.storeService.selectors.getIsLoading);
     }
 
     get NotesCount() {
-        return this.noteStore.select(fromNotes.getNotesLength);
+        return this.storeService.select(this.storeService.selectors.getNotesLength);
     }
 
     get NoteLoading() {
-        return this.noteStore.select(fromNotes.getIsLoading);
+        return this.storeService.select(this.storeService.selectors.getIsLoading);
     }
+
+    get WatchListCount() {
+        return this.storeService.select(this.storeService.selectors.getWatchListCount);
+    }
+
     onSignout() {
         // this.service.logout();
     }
 
     get IsLoggedIn() {
-        return this.preferenceState.select(fromProfile.isLoggedIn);
-        // return this.oauthService.hasValidAccessToken();
+        return this.storeService.select(this.storeService.selectors.isLoggedIn);
     }
-
-    // get EventItemCount() {
-    //   // return this.store.select(fromEvents.initialState.events.length)
-    //   return 1;
-    // }
 }

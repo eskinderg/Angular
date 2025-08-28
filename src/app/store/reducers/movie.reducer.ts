@@ -6,7 +6,7 @@ export interface IMovieState {
     watchList: Movie[];
 }
 
-export const initialState: IMovieState = {
+const initialState: IMovieState = {
     watchList: []
 };
 
@@ -44,3 +44,7 @@ export const isInWatchList = (movie: Movie) =>
     createSelector(getMovieState, (state: IMovieState) => {
         return state.watchList.some((m) => m.id === movie.id);
     });
+
+export const getWatchListCount = createSelector(getMovieState, (state: IMovieState) => {
+    return state.watchList.length;
+});

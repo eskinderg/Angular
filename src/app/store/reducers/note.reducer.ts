@@ -15,7 +15,7 @@ export interface INotesState {
     };
 }
 
-export const initialState: INotesState = {
+const initialState: INotesState = {
     notes: [],
     selectedNote: null,
     opendNote: null,
@@ -327,7 +327,7 @@ export const getOpendNote = createSelector(getNoteState, (state: INotesState) =>
 
 export const getFacadeNote = createSelector(getNoteState, (state: INotesState) => state.facadeNote as Note);
 
-export const getIsLoading = createSelector(getNoteState, (state: INotesState) => state.isLoading);
+export const getIsNoteLoading = createSelector(getNoteState, (state: INotesState) => state.isLoading);
 
 export const getNoteById = (id: string) =>
     createSelector(getNoteState, (allItems) => {

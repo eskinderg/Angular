@@ -100,8 +100,11 @@
                                     [routerLink]="['/movies/watchlist']"
                                     [routerLinkActive]="['activeLink']"
                                     [routerLinkActiveOptions]="{ exact: true }"
-                                    >Watch List</a
-                                >
+                                    >Watch List &nbsp;
+                                    @if (WatchListCount | async; as count) {
+                                        <span class="badge bg-secondary">{{ count }}</span>
+                                    }
+                                </a>
                             </li>
                         </ul>
                     }

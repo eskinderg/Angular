@@ -7,7 +7,7 @@ export interface IEventsState {
     isLoading: boolean;
 }
 
-export const initialState: IEventsState = {
+const initialState: IEventsState = {
     events: [],
     isLoading: false
 };

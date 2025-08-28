@@ -7,7 +7,7 @@ export interface IPreferenceState {
     isLoading: boolean;
 }
 
-export const initialState: IPreferenceState = {
+const initialState: IPreferenceState = {
     isDarkMode: localStorage.getItem('darkmode') ?? String(false),
     isLoggedIn: false,
     isLoading: false

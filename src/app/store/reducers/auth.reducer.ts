@@ -5,7 +5,7 @@ export interface IAuthState {
     profile: any;
 }
 
-export const initialState: IAuthState = {
+const initialState: IAuthState = {
     profile: {}
 };
 
