@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
-import { FadeInOut } from './animation';
+import { DialogAnimations } from './animation';
 import { RatingDecimalComponent } from '../rating/rating';
 import { UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
@@ -19,7 +19,7 @@ import { TruncatePipe } from '../../directives/truncate';
     selector: 'app-movie-modal',
     templateUrl: './movie-dialog.component.html',
     styleUrl: './movie-dialog.component.scss',
-    animations: [FadeInOut(1000, 1000, true)],
+    animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
 })

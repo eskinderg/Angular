@@ -1,24 +1,22 @@
-import { AnimationTriggerMetadata, animate, style, transition, trigger } from '@angular/animations';
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 
-export function FadeInOut(
-    timingIn: number,
-    timingOut: number,
-    height: boolean = false
-): AnimationTriggerMetadata {
-    return trigger('fadeInOut', [
+export const DialogAnimations = {
+    modal: trigger('modal', [
         transition(':enter', [
-            style(height ? { opacity: 0, height: 0 } : { opacity: 0 }),
-            animate(timingIn, style(height ? { opacity: 1, height: 'fit-content' } : { opacity: 1 }))
+            animate(
+                '750ms cubic-bezier(0, 0, 0, 1)',
+                keyframes([
+                    style({ opacity: 1, transform: 'scale(0.7) translateY(-20px)', offset: 0 }),
+                    style({ opacity: 1, transform: 'scale(1.1) translateY(0)', offset: 0.6 }),
+                    style({ opacity: 1, transform: 'scale(1) translateY(0)', offset: 1 })
+                ])
+            )
         ]),
-        transition(':leave', [animate(timingOut, style(height ? { opacity: 0, height: 0 } : { opacity: 0 }))])
-    ]);
-}
-
-export function FadeIn(timingIn: number, height: boolean = false): AnimationTriggerMetadata {
-    return trigger('fadeIn', [
-        transition(':enter', [
-            style(height ? { opacity: 0, height: 0 } : { opacity: 0 }),
-            animate(timingIn, style(height ? { opacity: 1, height: 'fit-content' } : { opacity: 1 }))
+        transition(':leave', [
+            animate(
+                '250ms cubic-bezier(0.4, 0.0, 1, 1)',
+                style({ opacity: 0, transform: 'scale(0.95) translateY(-20px)' })
+            )
         ])
-    ]);
-}
+    ])
+};

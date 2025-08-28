@@ -1,9 +1,9 @@
 <div [tabIndex]="0" (click)="close($event)" id="backDrop">
-    <div id="scrollWrapper">
+    <div [@modal] id="scrollWrapper">
         <button type="button" id="modalClose" class="btn-close" aria-label="Close" (click)="close($event)">
             X
         </button>
-        <div [@fadeInOut] class="card" style="">
+        <div class="card" style="">
             <div class="container p-0 pe-5">
                 <div class="row">
                     <div class="col-sm-8">
