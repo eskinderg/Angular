@@ -44,7 +44,7 @@
     "@angular/cli": "^20.2.0",
     "@angular/compiler-cli": "^20.1.4",
     "@angular/language-server": "^20.2.0",
-    "@angular/localize": "^20.1.4",
+    "@angular/localize": "^20.2.2",
     "@angular/service-worker": "^20.1.4",
     "@ngrx/effects": "20.0.0",
     "@ngrx/router-store": "20.0.0",
