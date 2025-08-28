@@ -64,8 +64,9 @@ export class RightViewComponent implements OnDestroy {
     }
 
     get collectionSize() {
-        if (this.moviesResult.total_results / 20 > 500) return 500 * 20;
-        else return 375 * 20;
+        // if (this.moviesResult.total_results / 20 > 500) return 500 * 20;
+        // else return 375 * 20;
+        return this.moviesResult.total_pages >= 500 ? 500 * 20 : this.moviesResult.total_pages * 20;
     }
 
     onClick(movie: Movie) {
