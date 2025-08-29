@@ -10,7 +10,7 @@ import {
     inject
 } from '@angular/core';
 import { MoviesApiService } from '../service/movies.api.service';
-import { Observable, Subscription, BehaviorSubject, filter, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Observable, Subscription, BehaviorSubject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Movie } from '../models/movie';
 import { MovieResults } from '../models/movie-results';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,7 +48,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
 
     ngAfterViewInit() {
         this.searchSubscription$ = this.searchTerm$
-            .pipe(filter(Boolean), debounceTime(450), distinctUntilChanged())
+            .pipe(debounceTime(450), distinctUntilChanged())
             .subscribe((term) => {
                 this.onSearch(term);
             });
@@ -80,7 +80,15 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     onSearchInput(event: any) {
         const element = event.currentTarget as HTMLInputElement;
         const value = element.value;
-        this.searchTerm$.next(value);
+        if (!value.length) {
+            this.clearSearch();
+        } else {
+            this.searchTerm$.next(value);
+        }
+    }
+
+    clearSearch() {
+        this.searchTerm$.next('');
     }
 
     onClick(movie: Movie) {

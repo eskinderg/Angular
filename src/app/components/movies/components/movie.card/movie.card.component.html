@@ -1,22 +1,26 @@
 <div class="card-view hover-shadow">
-    <img
-        class="fade-in"
-        [src]="imageLoading ? imageLoadingUrl : imageUrl"
-        (load)="onImageLoaded()"
-        (click)="onMovieImageClick()"
-        (error)="handleEmptyImage()" />
+    <div class="poster">
+        <img
+            class="fade-in"
+            [src]="imageLoading ? imageLoadingUrl : imageUrl"
+            (load)="onImageLoaded()"
+            (click)="onMovieImageClick()"
+            (error)="handleEmptyImage()" />
+    </div>
     <div class="content">
         <div class="title">
-            <strong>
+            <strong class="title-text">
                 <div class="card-title">{{ movie.title }}</div>
             </strong>
-            <div class="col-auto">
-                <span class="badge bg-secondary"> {{ movie.original_language | uppercase }}</span>
-            </div>
         </div>
         <hr style="margin: 5px 0px" />
 
-        <small class="card-text">{{ movie.overview | truncate: '100' : true }}</small>
+        <div class="text-row">
+            <div class="col-auto">
+                <span class="badge bg-secondary"> {{ movie.original_language | uppercase }}</span>
+            </div>
+            <small class="card-text">{{ movie.overview | truncate: '100' : true }}</small>
+        </div>
 
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>

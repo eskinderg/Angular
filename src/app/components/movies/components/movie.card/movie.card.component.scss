@@ -1,5 +1,8 @@
+:host {
+  --card-width: 250px; /* Define the desired card width */
+}
+
 .card-view {
-    width: 250px;
     margin: 10px;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border-color);
@@ -13,11 +16,31 @@
     flex-wrap: nowrap;
     flex-direction: column;
     padding: 0.5rem;
+    max-width: var(--card-width);
+}
+
+.col-auto {
+    font-size: 1.25rem;
+    float: right;
+    margin: 0 0 0 0.3rem;
 }
 
 .title {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.poster {
+    max-width: var(--card-width);
+    overflow: hidden;
+}
+
+.poster img {
+    /* The image will be the primary width-setter */
+    width: 100%;
+    height: auto; /* Preserve aspect ratio */
+    object-fit: cover;
 }
 
 .favorite {
@@ -49,20 +72,21 @@
     opacity: 0.75;
 }
 
-:host {
-    margin: 20px !important;
-}
-
 img {
     width: auto;
     object-fit: cover;
     // object-position: 0% 0%;
 }
 
-small {
+.card-text {
     font-size: 13px;
     display: block;
     line-height: 20px;
+}
+
+.title-text {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .d-flex {
@@ -75,10 +99,12 @@ small {
     -moz-animation: fadeIn ease 1s;
     -o-animation: fadeIn ease 1s;
     -ms-animation: fadeIn ease 1s;
+    transition: transform 1s ease;
 }
 
 .fade-in:hover {
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 @keyframes fadeIn {

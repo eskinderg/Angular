@@ -20,13 +20,20 @@
 <!-- </div> -->
 <!-- {{ model | json }} -->
 
-<input
-    #searchInput
-    type="text"
-    class="form-control form-control-lg"
-    placeholder="Search"
-    [value]="searchTerm$.value"
-    (input)="onSearchInput($event)" />
+<div class="search-wrapper">
+    <input
+        #searchInput
+        type="text"
+        [spellcheck]="false"
+        class="form-control search-input form-control-lg"
+        placeholder="Search"
+        [value]="searchTerm$.value"
+        (input)="onSearchInput($event)" />
+
+    @if (searchTerm$.value) {
+        <button class="clear-btn" (click)="clearSearch()">×</button>
+    }
+</div>
 
 <!-- {{ movieSearch | json }} -->
 
@@ -37,13 +44,19 @@
 <!--     [collectionSize]="movieResult.total_pages"></ngb-pagination> -->
 <!-- {{input().nativeElement.value.length}} -->
 @if (movieResult) {
-    @if (searchTerm$.value.length) {
-        <div [@movieCardList] class="movie-cards-container">
-            @for (movie of movieResult?.movies; track movie) {
-                <div>
-                    <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"></app-movie-card>
-                </div>
-            }
-        </div>
+    @if (movieResult.total_results) {
+        @if (searchTerm$.value.length) {
+            <div [@movieCardList] class="movie-cards-container">
+                @for (movie of movieResult?.movies; track movie) {
+                    <div>
+                        <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"></app-movie-card>
+                    </div>
+                }
+            </div>
+        }
+    } @else {
+        @if (searchTerm$.value.length) {
+            <h1 style="text-align: center; color: var(--b-secondary)">no search results</h1>
+        }
     }
 }
