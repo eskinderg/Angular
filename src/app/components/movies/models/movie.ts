@@ -36,4 +36,14 @@ export class Movie {
         if (this.poster_path !== null) return 'https://image.tmdb.org/t/p/w780/' + this.poster_path;
         else return null;
     }
+
+    get_back_drop_image_url() {
+        if (this.backdrop_path !== null) {
+            const imageUrl =
+                'https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/' + this.backdrop_path;
+            return `url('${imageUrl}')`;
+        } else {
+            return null;
+        }
+    }
 }

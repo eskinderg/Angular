@@ -4,7 +4,7 @@
     --bs-secondary-color: #6c757d;
     --warning: #ffc107;
     --bs-card-cap-bg: #21252908;
-    --bs-body-bg: #FFF;
+    --bs-body-bg: #fff;
     --body-color: #111827;
     --bg-hover: #f8f9fa;
     --menu-color: #fff;
@@ -24,8 +24,9 @@
     --list-group-color: #212529;
     --list-group-border-color: #dce5ef;
     --body-bg: #fff;
+    --body-bg-rgb: 255, 255, 255;
     --search-bg: #f5f5f5;
-    --filter-bg: #FFF;
+    --filter-bg: #fff;
     --filter-border: #e0e0e0;
     --filter-hover: #f9f9f9;
     --filter-boxshadow: rgba(0, 0, 0, 0.1);
@@ -62,6 +63,7 @@
 .dark {
     --primary: #262a33;
     --body-bg: #292c33;
+    --body-bg-rgb: 0,0,0;
     --secondary: #6c757d;
     --body-color: #adbac7;
     --bs-body-bg: #1c1c1d;
@@ -75,7 +77,7 @@
     --filter-bg: var(--active-list-link-hover);
     --filter-border: #161616;
     --filter-hover: var(--bg-hover);
-    --filter-boxshadow: rgba(0, 0, 0, 0.5);;
+    --filter-boxshadow: rgba(0, 0, 0, 0.5);
     --bg-hover: #363c43;
     --bs-secondary-bg: var(--primary);
     --navbar-active-color: #fff;
@@ -295,7 +297,6 @@ input[type='text'],
     margin-bottom: 1rem;
 }
 
-
 input[type='text']:focus,
 [type='email']:focus,
 [type='tel']:focus,
@@ -309,7 +310,7 @@ select:focus {
 
 .hide-scroll-bar {
     overflow-y: hidden !important;
-    margin-top:0 ! important;
+    margin-top: 0 !important;
 }
 
 select {

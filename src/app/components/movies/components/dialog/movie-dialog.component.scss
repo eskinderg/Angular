@@ -1,6 +1,6 @@
 .card {
     position: relative; // allows transform animation
-    background-color: var(--card-bg);
+    // background-color: var(--card-bg);
 }
 
 .card-img-top {
@@ -13,14 +13,14 @@
 
 .col-sm-4 {
     box-sizing: border-box;
-    flex: 0 0 auto;
-    width: 30%;
+    // flex: 0 0 auto;
+    width: 50%;
     padding: 1rem;
 }
 
 .col-sm-8 {
-    flex: 0 0 auto;
-    width: 70%;
+    // flex: 0 0 auto;
+    // width: 50%;
 }
 
 .card-img-top {
@@ -67,15 +67,22 @@ li {
 }
 
 #scrollWrapper {
-    width: 60%;
+    width: 75%;
     outline: 10px solid var(--border);
     border-radius: 0.25rem;
     max-height: 80%;
-    background: var(--body-bg);
+    // background: var(--body-bg);
+
+    // background: linear-gradient(to bottom right, rgba(94.5, 94.5, 73.5, 1), rgba(94.5, 94.5, 73.5, 0.84));
+    /* Optional overlay to make text more readable */
+    // background-color: rgba(0, 0, 0, 0.4); /* Darkens the image */
+    background-color: rgba(var(--body-bg-rgb), 0.7);
+    background-blend-mode: overlay;
+
     border-radius: 16px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 1rem;
+    // padding: 1rem;
     transform-origin: center center; // needed for scale/translate
     position: relative; // allows animation transforms
 }
@@ -94,7 +101,11 @@ li {
 
 .btn-close {
     margin: 1rem;
-    position: absolute;
+    position: sticky;
+    top: 1rem;
+    float: right;
+    // margin-right: 0;
+    // margin-top: 0;
     right: 0;
     z-index: 10;
 }

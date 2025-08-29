@@ -1,18 +1,20 @@
 <div [tabIndex]="0" (click)="close($event)" id="backDrop">
-    <div [@modal] id="scrollWrapper">
+    <div
+        [@modal]
+        id="scrollWrapper"
+        [style.backgroundImage]="movieDetail.get_back_drop_image_url()"
+        [style.backgroundColor]="movieDetail.get_back_drop_image_url() ?? 'var(--body-bg)'">
         <button type="button" id="modalClose" class="btn-close" aria-label="Close" (click)="close($event)">
             X
         </button>
         <div class="card" style="">
             <div class="container p-0 pe-5">
                 <div class="row">
-                    <div class="col-sm-8">
-                        <img
-                            class="card-img-top fade-in"
-                            [src]="imageLoading ? imageLoadingUrl : imageUrl"
-                            (load)="onImageLoaded()"
-                            (error)="handleEmptyImage()" />
-                    </div>
+                    <img
+                        class="card-img-top fade-in"
+                        [src]="imageLoading ? imageLoadingUrl : imageUrl"
+                        (load)="onImageLoaded()"
+                        (error)="handleEmptyImage()" />
                     <div class="col-sm-4">
                         <div class="card-body">
                             <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
