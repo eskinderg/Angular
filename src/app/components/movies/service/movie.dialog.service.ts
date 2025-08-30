@@ -1,5 +1,5 @@
 import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription, take } from 'rxjs';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MoviesApiService } from './movies.api.service';
 import { Movie } from '../models/movie';
@@ -22,8 +22,6 @@ export class MovieDialogService {
 
     showDialog() {
         this.apiSubscription = this.movieApiService.getMovie(this.movieId).subscribe((movieDetail: Movie) => {
-            const rootElement = this.appRef.components[0].location.nativeElement;
-
             this.movieModalComponentRef = createComponent(MovieDialogComponent, {
                 environmentInjector: this.appRef.injector
             });
@@ -32,7 +30,20 @@ export class MovieDialogService {
 
             this.appRef.attachView(this.movieModalComponentRef.hostView);
 
-            rootElement.append(this.movieModalComponentRef.location.nativeElement);
+            forkJoin([
+                this.movieModalComponentRef.instance.backdropImageLoaded.pipe(take(1)),
+                this.movieModalComponentRef.instance.posterImageLoaded.pipe(take(1))
+            ]).subscribe(() => {
+                requestAnimationFrame(() => {
+                    this.movieModalComponentRef.instance.isPosterImageLoaded = true;
+                    this.movieModalComponentRef.instance.isBackDropImageLoaded = true;
+
+                    this.movieModalComponentRef.instance.renderChanges();
+
+                    const rootElement = this.appRef.components[0].location.nativeElement;
+                    rootElement.append(this.movieModalComponentRef.location.nativeElement);
+                });
+            });
         });
     }
 

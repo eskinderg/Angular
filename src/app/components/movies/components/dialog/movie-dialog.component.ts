@@ -1,10 +1,13 @@
 import {
     AfterViewInit,
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
+    EventEmitter,
     OnDestroy,
     OnInit,
+    Output,
     Renderer2,
     inject
 } from '@angular/core';
@@ -14,7 +17,11 @@ import { DialogAnimations } from './animation';
 import { RatingDecimalComponent } from '../rating/rating';
 import { UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
-
+//
+// [style.backgroundImage]="isLoaded ? movieDetail.get_back_drop_image_url() : null"
+// [style.backgroundColor]="movieDetail.get_back_drop_image_url() ?? 'var(--body-bg)'"
+//         [src]="movieDetail.get_back_drop_image()"
+//
 @Component({
     selector: 'app-movie-modal',
     templateUrl: './movie-dialog.component.html',
@@ -26,11 +33,17 @@ import { TruncatePipe } from '../../directives/truncate';
 export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private renderer = inject(Renderer2);
+    private cdr = inject(ChangeDetectorRef);
 
     public movieDetail: Movie;
     public movieRating: number;
 
-    imageLoading: boolean = true;
+    @Output() backdropImageLoaded = new EventEmitter<void>();
+    @Output() posterImageLoaded = new EventEmitter<void>();
+
+    isBackDropImageLoaded: boolean = false;
+    isPosterImageLoaded: boolean = false;
+
     imageUrl: string = '';
     apiSubscription: Subscription;
     imageLoadingUrl: string = '/assets/images/placeholder.gif';
@@ -60,13 +73,25 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    onImageLoaded() {
-        this.imageLoading = false;
+    onPosterImageLoaded() {
+        this.posterImageLoaded.emit();
+    }
+
+    handleBackdropEmptyImage() {
+        this.backdropImageLoaded.emit();
+    }
+
+    onBackDropImageLoaded() {
+        this.backdropImageLoaded.emit();
     }
 
     handleEmptyImage() {
-        this.imageLoading = false;
         this.imageUrl = this.noImageUrl;
+        this.posterImageLoaded.emit();
+    }
+
+    renderChanges() {
+        this.cdr.markForCheck();
     }
 
     ngOnDestroy(): void {

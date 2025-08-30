@@ -1,5 +1,6 @@
 .card {
     position: relative; // allows transform animation
+    height: 100%;
     // background-color: var(--card-bg);
 }
 
@@ -9,22 +10,75 @@
 
 .row {
     display: flex;
-}
-
-.col-sm-4 {
-    box-sizing: border-box;
-    // flex: 0 0 auto;
-    width: 50%;
-    padding: 1rem;
-}
-
-.col-sm-8 {
-    // flex: 0 0 auto;
-    // width: 50%;
-}
-
-.card-img-top {
+    height: 100%;
     width: 100%;
+}
+
+.backdrop-img.image-loaded {
+    opacity: 0.15;
+    transform: scale(1);
+}
+
+.card-body {
+    position: relative;
+}
+
+.backdrop-img {
+    width: auto;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.25);
+    left: -25%;
+    position: absolute;
+    transition:
+        opacity 0.5s ease-in-out,
+        transform 2s ease-out;
+}
+
+.right-col {
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.right-col-wrapper {
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    padding-right: 0rem;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+}
+
+.poster-img-loaded {
+    max-width: 100% !important;
+    opacity: 1 !important;
+}
+
+.poster-card-img {
+    // width: auto;
+    height: 100%;
+    // width: 800px;
+    // width: 0;
+    // height: auto;
+    // max-width: 0;
+    // overflow: hidden;
+    // transition: width 0.5s;
+    // transition:
+    //     width 0.5s ease-in-out,
+    //     height 0.5s linear;
+    max-width: 0; /* Initially collapsed */
+    opacity: 0;
+    transition:
+        max-width 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
 }
 
 li {
@@ -61,33 +115,33 @@ li {
     right: 0;
     bottom: 0;
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
     z-index: 1000;
 }
 
 #scrollWrapper {
+    position: relative; // allows animation transforms
     width: 75%;
+    height: 600px;
+    top: 5%;
     outline: 10px solid var(--border);
     border-radius: 0.25rem;
-    max-height: 80%;
-    // background: var(--body-bg);
+    // max-height: 80%;
+    background: var(--body-bg);
 
     // background: linear-gradient(to bottom right, rgba(94.5, 94.5, 73.5, 1), rgba(94.5, 94.5, 73.5, 0.84));
     /* Optional overlay to make text more readable */
     // background-color: rgba(0, 0, 0, 0.4); /* Darkens the image */
-    background-color: rgba(var(--body-bg-rgb), 0.7);
-    background-blend-mode: overlay;
 
-    border-radius: 16px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    // overflow-y: auto;
+    // overflow-x: hidden;
     // padding: 1rem;
     transform-origin: center center; // needed for scale/translate
-    position: relative; // allows animation transforms
 }
 
-#modalClose {
+.card-text {
+    font-weight: bold;
 }
 
 .btn-close-top {
@@ -101,8 +155,8 @@ li {
 
 .btn-close {
     margin: 1rem;
-    position: sticky;
-    top: 1rem;
+    position: absolute;
+    // top: 1rem;
     float: right;
     // margin-right: 0;
     // margin-top: 0;

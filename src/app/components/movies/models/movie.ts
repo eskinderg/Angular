@@ -46,4 +46,14 @@ export class Movie {
             return null;
         }
     }
+
+    get_back_drop_image() {
+        if (this.backdrop_path !== null) {
+            const imageUrl =
+                'https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/' + this.backdrop_path;
+            return `${imageUrl}`;
+        } else {
+            return null;
+        }
+    }
 }

@@ -1,9 +1,5 @@
 <div [tabIndex]="0" (click)="close($event)" id="backDrop">
-    <div
-        [@modal]
-        id="scrollWrapper"
-        [style.backgroundImage]="movieDetail.get_back_drop_image_url()"
-        [style.backgroundColor]="movieDetail.get_back_drop_image_url() ?? 'var(--body-bg)'">
+    <div [@modal] id="scrollWrapper">
         <button type="button" id="modalClose" class="btn-close" aria-label="Close" (click)="close($event)">
             X
         </button>
@@ -11,84 +7,93 @@
             <div class="container p-0 pe-5">
                 <div class="row">
                     <img
-                        class="card-img-top fade-in"
-                        [src]="imageLoading ? imageLoadingUrl : imageUrl"
-                        (load)="onImageLoaded()"
+                        class="poster-card-img fade-in"
+                        [src]="isPosterImageLoaded ? imageUrl : imageLoadingUrl"
+                        [class.poster-img-loaded]="isPosterImageLoaded"
+                        (load)="onPosterImageLoaded()"
                         (error)="handleEmptyImage()" />
-                    <div class="col-sm-4">
-                        <div class="card-body">
-                            <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
-                            <h2 class="card-title">
-                                {{ movieDetail.title }} ({{
-                                    movieDetail.release_date | truncate: '4' : false
-                                }})
-                            </h2>
-                            <hr />
-                            <h4>
-                                <span class="badge bg-secondary">
-                                    {{ movieDetail.original_language | uppercase }}</span
-                                >
-                            </h4>
-
-                            <p class="card-text">{{ movieDetail.overview }}</p>
-
-                            <div class="mt-auto align-self-start"></div>
-
-                            <!-- <div class="d-flex justify-content-between"> -->
-                            <!--   <h4 class="card-title">{{ movieDetail.release_date }}</h4> -->
-                            <!-- </div> -->
-
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <b>Date Released:</b>
-                                    <a class="badge bg-secondary nodecoration ms-2">
-                                        {{ movieDetail.release_date }}</a
+                    <div class="right-col">
+                        <img
+                            class="backdrop-img"
+                            [src]="movieDetail.get_back_drop_image()"
+                            [class.image-loaded]="isBackDropImageLoaded"
+                            (load)="onBackDropImageLoaded()"
+                            (error)="handleBackdropEmptyImage()" />
+                        <div class="right-col-wrapper">
+                            <div class="card-body">
+                                <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
+                                <h2 class="card-title">
+                                    {{ movieDetail.title }} ({{
+                                        movieDetail.release_date | truncate: '4' : false
+                                    }})
+                                </h2>
+                                <hr />
+                                <h4>
+                                    <span class="badge bg-secondary">
+                                        {{ movieDetail.original_language | uppercase }}</span
                                     >
-                                </li>
-                                <!-- <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ -->
-                                <!--     movieDetail.original_language }}</a></li> -->
-                                <li class="list-group-item">
-                                    <b>Languages Spoken:</b>
-                                    @for (language of movieDetail.spoken_languages; track language) {
+                                </h4>
+
+                                <p class="card-text">{{ movieDetail.overview }}</p>
+
+                                <div class="mt-auto align-self-start"></div>
+
+                                <!-- <div class="d-flex justify-content-between"> -->
+                                <!--   <h4 class="card-title">{{ movieDetail.release_date }}</h4> -->
+                                <!-- </div> -->
+
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <b>Date Released:</b>
                                         <a class="badge bg-secondary nodecoration ms-2">
-                                            {{ language['name'] }}</a
+                                            {{ movieDetail.release_date }}</a
                                         >
-                                    }
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Status:</b>
-                                    <a class="badge bg-secondary nodecoration ms-2">
-                                        {{ movieDetail.status }}</a
-                                    >
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Genres:</b>
-                                    <div class="gen">
-                                        @for (genere of movieDetail.genres; track genere) {
+                                    </li>
+                                    <!-- <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ -->
+                                    <!--     movieDetail.original_language }}</a></li> -->
+                                    <li class="list-group-item">
+                                        <b>Languages Spoken:</b>
+                                        @for (language of movieDetail.spoken_languages; track language) {
                                             <a class="badge bg-secondary nodecoration ms-2">
-                                                {{ genere['name'] }}
-                                            </a>
+                                                {{ language['name'] }}</a
+                                            >
                                         }
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <app-ngbd-rating-decimal
-                                        [size]="2"
-                                        [currentRate]="movieRating"></app-ngbd-rating-decimal>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="modal-footer" style="border-top: none">
-                                        <button
-                                            id="footerClose"
-                                            (click)="close($event)"
-                                            type="button"
-                                            class="btn btn-primary"
-                                            (click)="close($event)">
-                                            Close
-                                        </button>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Status:</b>
+                                        <a class="badge bg-secondary nodecoration ms-2">
+                                            {{ movieDetail.status }}</a
+                                        >
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Genres:</b>
+                                        <div class="gen">
+                                            @for (genere of movieDetail.genres; track genere) {
+                                                <a class="badge bg-secondary nodecoration ms-2">
+                                                    {{ genere['name'] }}
+                                                </a>
+                                            }
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <app-ngbd-rating-decimal
+                                            [size]="2"
+                                            [currentRate]="movieRating"></app-ngbd-rating-decimal>
+                                    </li>
+                                    <!-- <li class="list-group-item"> -->
+                                    <!--     <div class="modal-footer" style="border-top: none"> -->
+                                    <!--         <button -->
+                                    <!--             id="footerClose" -->
+                                    <!--             (click)="close($event)" -->
+                                    <!--             type="button" -->
+                                    <!--             class="btn btn-primary" -->
+                                    <!--             (click)="close($event)"> -->
+                                    <!--             Close -->
+                                    <!--         </button> -->
+                                    <!--     </div> -->
+                                    <!-- </li> -->
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
