@@ -1,7 +1,24 @@
+.movie-dialog {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+// .movie-dialog.fade-out {
+//   opacity: 0;
+// }
+
 .card {
     position: relative; // allows transform animation
     height: 100%;
     // background-color: var(--card-bg);
+}
+
+.btn-fav {
+    font-size: 1rem;
+}
+
+.favorite {
+    background-color: red;
 }
 
 .card-img-top {
@@ -15,6 +32,7 @@
 }
 
 .backdrop-img.image-loaded {
+    left: -25%;
     opacity: 0.15;
     transform: scale(1);
 }
@@ -27,12 +45,13 @@
     width: auto;
     height: 100%;
     opacity: 0;
+    left: 0%;
     transform: scale(1.25);
-    left: -25%;
     position: absolute;
     transition:
-        opacity 0.5s ease-in-out,
-        transform 2s ease-out;
+        left 1.5s ease-out,
+        opacity 0.5s ease-out,
+        transform 1s ease-out;
 }
 
 .right-col {
@@ -65,15 +84,6 @@
 .poster-card-img {
     // width: auto;
     height: 100%;
-    // width: 800px;
-    // width: 0;
-    // height: auto;
-    // max-width: 0;
-    // overflow: hidden;
-    // transition: width 0.5s;
-    // transition:
-    //     width 0.5s ease-in-out,
-    //     height 0.5s linear;
     max-width: 0; /* Initially collapsed */
     opacity: 0;
     transition:
@@ -110,22 +120,33 @@ li {
 
 #backDrop {
     position: fixed;
+    display: flex;
+    align-items: center;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    display: flex;
+    backdrop-filter: blur(10px);
     // align-items: center;
     justify-content: center;
     z-index: 1000;
+    opacity: 1;
+    filter: blur(0px);
+    transition:
+        opacity 0.3s ease,
+        filter 0.1s ease;
+
+    &.closing {
+        opacity: 0;
+    }
 }
 
 #scrollWrapper {
     position: relative; // allows animation transforms
     width: 75%;
     height: 600px;
-    top: 5%;
-    outline: 10px solid var(--border);
+    // top: 5%;
+    outline: 15px solid var(--card-border-color);
     border-radius: 0.25rem;
     // max-height: 80%;
     background: var(--body-bg);
@@ -138,6 +159,9 @@ li {
     // overflow-x: hidden;
     // padding: 1rem;
     transform-origin: center center; // needed for scale/translate
+    transition:
+        opacity 0.3s ease,
+        filter 0.25s ease;
 }
 
 .card-text {
@@ -165,8 +189,7 @@ li {
 }
 
 :host {
-    border: 1px solid var(--border);
-    backdrop-filter: blur(2px);
+    // border: 1px solid var(--border);
     position: fixed;
     top: 0;
     left: 0;

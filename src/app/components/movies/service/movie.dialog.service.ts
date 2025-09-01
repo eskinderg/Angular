@@ -1,8 +1,18 @@
-import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent, inject } from '@angular/core';
+import {
+    ApplicationRef,
+    ComponentRef,
+    EventEmitter,
+    Injectable,
+    Injector,
+    Output,
+    createComponent,
+    inject
+} from '@angular/core';
 import { forkJoin, Subscription, take } from 'rxjs';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MoviesApiService } from './movies.api.service';
 import { Movie } from '../models/movie';
+import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 
 @Injectable({
     providedIn: 'root'
@@ -12,9 +22,28 @@ export class MovieDialogService {
     appRef = inject(ApplicationRef);
     injector = inject(Injector);
 
+    // @Output() dialogLoadingStart = new EventEmitter<void>();
+    @Output() dialogLoadingFinish = new EventEmitter<void>();
+
     private movieId: string;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
     private apiSubscription: Subscription;
+    private _movieCardComponent: MovieCardComponent;
+    private _dialogSubscription: Subscription;
+
+    load(movieCardComponent: MovieCardComponent) {
+        if (this._movieCardComponent) {
+            this._movieCardComponent.movieDialogLoadedFinish();
+            this.destroy();
+        }
+        this._movieCardComponent = movieCardComponent;
+        this._movieCardComponent.movieDialogLoadStart();
+        this.setMovieId(this._movieCardComponent.movie.id.toString());
+
+        this._dialogSubscription = this.dialogLoadingFinish.subscribe(() => {
+            this._movieCardComponent.movieDialogLoadedFinish();
+        });
+    }
 
     setMovieId(value: string) {
         this.movieId = value;
@@ -50,8 +79,13 @@ export class MovieDialogService {
     destroy() {
         this.apiSubscription?.unsubscribe();
 
+        if (this._dialogSubscription) {
+            this._dialogSubscription.unsubscribe();
+        }
+
         if (this.movieModalComponentRef) {
             this.movieModalComponentRef.destroy();
+            this.movieModalComponentRef = null;
         }
     }
 }

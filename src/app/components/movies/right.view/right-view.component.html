@@ -7,7 +7,7 @@
 
 <div [@movieCardList]="id + '-' + name + '-' + page" class="movie-cards-container">
     @for (movie of moviesResult.movies; track movie) {
-        <app-movie-card [movie]="movie" (clickMovieImage)="onClick($event)"> </app-movie-card>
+        <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
     }
 </div>
 

@@ -58,19 +58,15 @@ export class RightViewComponent implements OnDestroy {
     @Input() moviesResult: MovieResults;
 
     loadPage(page: number) {
-        // const url = this.router.snapshot.params;
-        // this.route.navigate(['/movies/genres', url['id'], url['name'], page]);
         this.route.navigate(['/movies/genres', this.id, this.name, page]);
     }
 
     get collectionSize() {
-        // if (this.moviesResult.total_results / 20 > 500) return 500 * 20;
-        // else return 375 * 20;
         return this.moviesResult.total_pages >= 500 ? 500 * 20 : this.moviesResult.total_pages * 20;
     }
 
-    onClick(movie: Movie) {
-        this.movieModalService.setMovieId(movie.id.toString());
+    onClick(event: { movie: Movie; movieCardComponent: MovieCardComponent }) {
+        this.movieModalService.load(event.movieCardComponent);
         this.movieModalService.showDialog();
     }
 

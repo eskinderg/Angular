@@ -13,6 +13,7 @@ import { RatingDecimalComponent } from '../rating/rating';
 import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-movie-card',
@@ -26,7 +27,9 @@ export class MovieCardComponent implements OnInit {
     private movieApiService = inject(MoviesApiService);
 
     @Input() movie: Movie;
-    @Output() clickMovieImage: EventEmitter<Movie> = new EventEmitter();
+    @Output() clickImage: EventEmitter<any> = new EventEmitter();
+
+    dialogLoading$ = new BehaviorSubject<boolean>(false);
 
     imageLoading: boolean = true;
     imageUrl: string = '';
@@ -58,13 +61,21 @@ export class MovieCardComponent implements OnInit {
         this.imageLoading = false;
     }
 
-    onMovieImageClick() {
-        this.clickMovieImage.emit(this.movie);
+    onImageClick() {
+        this.clickImage.emit({ movie: this.movie, movieCardComponent: this });
     }
 
     handleEmptyImage() {
         this.imageLoading = false;
         this.imageUrl = this.noImageUrl;
+    }
+
+    movieDialogLoadStart() {
+        this.dialogLoading$.next(true);
+    }
+
+    movieDialogLoadedFinish() {
+        this.dialogLoading$.next(false);
     }
 
     get isInWatchList() {

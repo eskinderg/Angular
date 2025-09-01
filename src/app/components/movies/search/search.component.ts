@@ -34,6 +34,7 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
     public _moviesServices = inject(MoviesApiService);
     private cdr = inject(ChangeDetectorRef);
 
+    dialogSubscription: Subscription;
     input = viewChild.required<ElementRef>('searchInput');
 
     searchTerm$ = new BehaviorSubject<string>('');
@@ -72,11 +73,6 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
         });
     }
 
-    ngOnDestroy() {
-        this.searchSubscription$?.unsubscribe();
-        this.movieModalService.destroy();
-    }
-
     onSearchInput(event: any) {
         const element = event.currentTarget as HTMLInputElement;
         const value = element.value;
@@ -91,9 +87,28 @@ export class SearchComponent implements OnDestroy, AfterViewInit {
         this.searchTerm$.next('');
     }
 
-    onClick(movie: Movie) {
-        this.movieModalService.setMovieId(movie.id.toString());
+    onClick(event: { movie: Movie; movieCardComponent: MovieCardComponent }) {
+        if (this.dialogSubscription) {
+            this.dialogSubscription.unsubscribe();
+        }
+
+        event.movieCardComponent.movieDialogLoadStart();
+
+        this.movieModalService.setMovieId(event.movie.id.toString());
         this.movieModalService.showDialog();
+
+        this.dialogSubscription = this.movieModalService.dialogLoadingFinish.subscribe(() => {
+            event.movieCardComponent.movieDialogLoadedFinish();
+        });
+    }
+
+    ngOnDestroy() {
+        if (this.dialogSubscription) {
+            this.dialogSubscription.unsubscribe();
+        }
+
+        this.searchSubscription$?.unsubscribe();
+        this.movieModalService.destroy();
     }
 
     // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>

@@ -1,6 +1,11 @@
-<div [tabIndex]="0" (click)="close($event)" id="backDrop">
-    <div [@modal] id="scrollWrapper">
-        <button type="button" id="modalClose" class="btn-close" aria-label="Close" (click)="close($event)">
+<div [tabIndex]="0" (click)="onBackdropOrButtonClick($event)" id="backDrop">
+    <div [@modal] class="movie-dialog" id="scrollWrapper">
+        <button
+            type="button"
+            id="modalClose"
+            class="btn-close"
+            aria-label="Close"
+            (click)="onBackdropOrButtonClick($event)">
             X
         </button>
         <div class="card" style="">
@@ -8,7 +13,7 @@
                 <div class="row">
                     <img
                         class="poster-card-img fade-in"
-                        [src]="isPosterImageLoaded ? imageUrl : imageLoadingUrl"
+                        [src]="movieDetail.get_poster_path_w780() ?? imageUrl"
                         [class.poster-img-loaded]="isPosterImageLoaded"
                         (load)="onPosterImageLoaded()"
                         (error)="handleEmptyImage()" />
@@ -26,6 +31,14 @@
                                     {{ movieDetail.title }} ({{
                                         movieDetail.release_date | truncate: '4' : false
                                     }})
+
+                                    @if (isInWatchList | async) {
+                                        <button class="btn-fav favorite" (click)="btnRemoveWatchListClick()">
+                                            ♥
+                                        </button>
+                                    } @else {
+                                        <button class="btn-fav" (click)="btnAddWatchListClick()">♥</button>
+                                    }
                                 </h2>
                                 <hr />
                                 <h4>
@@ -58,6 +71,12 @@
                                                 {{ language['name'] }}</a
                                             >
                                         }
+                                    </li>
+                                    <li class="list-group-item">
+                                        <b>Runtime</b>
+                                        <a class="badge bg-secondary nodecoration ms-2">
+                                            {{ movieDetail.runtime }} Minutes</a
+                                        >
                                     </li>
                                     <li class="list-group-item">
                                         <b>Status:</b>

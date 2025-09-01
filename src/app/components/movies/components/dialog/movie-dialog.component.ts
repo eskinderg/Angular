@@ -5,6 +5,7 @@ import {
     Component,
     ElementRef,
     EventEmitter,
+    HostListener,
     OnDestroy,
     OnInit,
     Output,
@@ -15,25 +16,25 @@ import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { DialogAnimations } from './animation';
 import { RatingDecimalComponent } from '../rating/rating';
-import { UpperCasePipe } from '@angular/common';
+import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
-//
-// [style.backgroundImage]="isLoaded ? movieDetail.get_back_drop_image_url() : null"
-// [style.backgroundColor]="movieDetail.get_back_drop_image_url() ?? 'var(--body-bg)'"
-//         [src]="movieDetail.get_back_drop_image()"
-//
+import { MovieDialogService } from '../../service/movie.dialog.service';
+import { MoviesApiService } from '../../service/movies.api.service';
+
 @Component({
     selector: 'app-movie-modal',
     templateUrl: './movie-dialog.component.html',
     styleUrl: './movie-dialog.component.scss',
     animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe]
+    imports: [RatingDecimalComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private renderer = inject(Renderer2);
     private cdr = inject(ChangeDetectorRef);
+    private modalDialogService = inject(MovieDialogService);
+    private movieApiService = inject(MoviesApiService);
 
     public movieDetail: Movie;
     public movieRating: number;
@@ -49,13 +50,18 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     imageLoadingUrl: string = '/assets/images/placeholder.gif';
     noImageUrl: string = '/assets/images/placeholder.png';
 
+    private unlistenEsc?: () => void;
+
     ngAfterViewInit(): void {
         (this.host.nativeElement.firstElementChild as HTMLElement).focus();
     }
 
     ngOnInit(): void {
-        this.renderer.listen(this.host.nativeElement, 'keydown.esc', (event) => {
-            this.close(event);
+        this.unlistenEsc = this.renderer.listen('document', 'keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Escape' || e.code === 'Escape') {
+                e.preventDefault();
+                this.requestClose('esc');
+            }
         });
 
         this.imageUrl = this.movieDetail.get_poster_path_w780();
@@ -63,14 +69,45 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         this.movieRating = (5 * this.movieRating) / 10;
     }
 
-    close(event: any) {
-        if (
-            (event.srcElement as HTMLElement).id === 'backDrop' ||
-            (event.srcElement as HTMLElement).id === 'footerClose' ||
-            (event.srcElement as HTMLElement).id === 'modalClose'
-        ) {
-            this.host.nativeElement.remove();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    private requestClose(_reason: 'click' | 'esc') {
+        const backDropEl = this.host.nativeElement.querySelector('#backDrop') as HTMLElement;
+
+        // Trigger fade-out (your SCSS already has the transition)
+        backDropEl.classList.add('closing');
+        backDropEl.querySelector('#scrollWrapper').classList.add('closing');
+
+        let done = false;
+        const cleanup = () => {
+            if (done) return;
+            done = true;
+            this.modalDialogService.destroy();
+        };
+
+        const onEnd = (e: TransitionEvent) => {
+            // Only when the backdrop’s own opacity finishes
+            if (e.currentTarget === backDropEl && e.propertyName === 'opacity') {
+                backDropEl.removeEventListener('transitionend', onEnd);
+                cleanup();
+            }
+        };
+
+        backDropEl.addEventListener('transitionend', onEnd);
+        // Fallback in case the browser skips transitionend
+        setTimeout(cleanup, 400); // slightly > 0.3s in your CSS
+    }
+
+    onBackdropOrButtonClick(event: MouseEvent) {
+        const id = (event.target as HTMLElement).id;
+        if (id === 'backDrop' || id === 'footerClose' || id === 'modalClose') {
+            this.requestClose('click');
         }
+    }
+
+    @HostListener('document:keydown.escape', ['$event'])
+    onEsc(e: KeyboardEvent) {
+        e.preventDefault();
+        this.requestClose('esc');
     }
 
     onPosterImageLoaded() {
@@ -92,9 +129,24 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     renderChanges() {
         this.cdr.markForCheck();
+        this.modalDialogService.dialogLoadingFinish.emit();
+        // this.modalDialogService.dialogLoading$.next(false);
+    }
+
+    get isInWatchList() {
+        return this.movieApiService.isInWatchList(this.movieDetail);
+    }
+
+    btnAddWatchListClick() {
+        this.movieApiService.addWatchList(this.movieDetail);
+    }
+
+    btnRemoveWatchListClick() {
+        this.movieApiService.removeWatchList(this.movieDetail);
     }
 
     ngOnDestroy(): void {
+        this.unlistenEsc?.();
         this.host.nativeElement.remove();
     }
 }

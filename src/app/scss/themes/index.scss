@@ -63,7 +63,7 @@
 .dark {
     --primary: #262a33;
     --body-bg: #292c33;
-    --body-bg-rgb: 0,0,0;
+    --body-bg-rgb: 0, 0, 0;
     --secondary: #6c757d;
     --body-color: #adbac7;
     --bs-body-bg: #1c1c1d;
@@ -209,7 +209,7 @@
 
 .badge {
     display: inline-block;
-    padding: 0.35em 0.65em;
+    padding: 0.5em 0.65em;
     font-size: 0.75em;
     font-weight: 700;
     line-height: 1;
@@ -334,4 +334,8 @@ select {
         box-shadow 0.15s ease-in-out;
     // margin: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.dialog-fade-out {
+    opacity: 0 !important;
 }

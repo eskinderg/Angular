@@ -4,8 +4,14 @@
             class="fade-in"
             [src]="imageLoading ? imageLoadingUrl : imageUrl"
             (load)="onImageLoaded()"
-            (click)="onMovieImageClick()"
+            (click)="onImageClick()"
             (error)="handleEmptyImage()" />
+
+        @if (dialogLoading$ | async) {
+            <div class="poster-overlay">
+                <div class="spinner"></div>
+            </div>
+        }
     </div>
     <div class="content">
         <div class="title">
