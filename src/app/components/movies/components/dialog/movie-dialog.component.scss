@@ -49,9 +49,9 @@
     transform: scale(1.25);
     position: absolute;
     transition:
-        left 1.5s ease-out,
+        left 0.8s ease-in-out,
         opacity 0.5s ease-out,
-        transform 1s ease-out;
+        transform 0.8s ease-in-out;
 }
 
 .right-col {

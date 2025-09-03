@@ -1,3 +1,8 @@
+:host {
+    // padding: 0.5rem;
+    display:block;
+}
+
 .movie-cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -7,10 +12,11 @@
 
 .search-wrapper {
     position: sticky;
-    top: 0;
+    top: 0rem;
     z-index: 1;
     background: var(--body-bg);
-    padding-top: 1rem;
+    padding: 0.5rem;
+    // padding-top: 1rem;
 }
 
 input {
@@ -18,6 +24,7 @@ input {
     font-size: 1rem;
     font-size: 2.5rem;
     color: var(--b-secondary) !important;
+    margin: 0;
 }
 
 input::placeholder {
