@@ -28,6 +28,7 @@ export class MovieDialogService {
     private movieId: string;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
     private apiSubscription: Subscription;
+    private forkSubscription: Subscription;
     private _movieCardComponent: MovieCardComponent;
     private _dialogSubscription: Subscription;
 
@@ -59,7 +60,7 @@ export class MovieDialogService {
 
             this.appRef.attachView(this.movieModalComponentRef.hostView);
 
-            forkJoin([
+            this.forkSubscription = forkJoin([
                 this.movieModalComponentRef.instance.backdropImageLoaded.pipe(take(1)),
                 this.movieModalComponentRef.instance.posterImageLoaded.pipe(take(1))
             ]).subscribe(() => {
@@ -78,6 +79,10 @@ export class MovieDialogService {
 
     destroy() {
         this.apiSubscription?.unsubscribe();
+
+        if (this.forkSubscription) {
+            this.forkSubscription.unsubscribe();
+        }
 
         if (this._dialogSubscription) {
             this._dialogSubscription.unsubscribe();
