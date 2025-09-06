@@ -17,6 +17,7 @@ export class Movie {
     original_language: string;
     spoken_languages: string[];
     casts: string[];
+    reviews: any;
 
     constructor(values: object = {}) {
         Object.assign(this, values);

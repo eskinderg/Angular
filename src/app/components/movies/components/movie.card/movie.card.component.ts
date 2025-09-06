@@ -10,17 +10,19 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { RatingDecimalComponent } from '../rating/rating';
-import { AsyncPipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
+import { MovieCardComponentAnimations } from './movie.card.component.animation';
 
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RatingDecimalComponent, UpperCasePipe, TruncatePipe, AsyncPipe]
+    animations: MovieCardComponentAnimations,
+    imports: [RatingDecimalComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
 })
 export class MovieCardComponent implements OnInit {
     private route = inject(ActivatedRoute);
@@ -30,20 +32,19 @@ export class MovieCardComponent implements OnInit {
     @Output() clickImage: EventEmitter<any> = new EventEmitter();
 
     dialogLoading$ = new BehaviorSubject<boolean>(false);
+    imageLoaded$ = new BehaviorSubject<boolean>(false);
 
-    imageLoading: boolean = true;
+    imageLoaded: boolean = false;
     imageUrl: string = '';
-    imageLoadingUrl: string = '';
-    noImageUrl: string = '';
+    imageLoadingUrl: string = '/assets/images/placeholder.gif';
+    noImageUrl: string = '/assets/images/placeholder.png';
     alt: string = '';
 
     movieRating: number;
     linkUrl: string = '';
 
     ngOnInit() {
-        this.imageUrl = this.movie.get_poster_path();
-        this.imageLoadingUrl = '/assets/images/placeholder.gif';
-        this.noImageUrl = '/assets/images/placeholder.png';
+        this.imageUrl = this.movie.get_poster_path() ?? this.noImageUrl;
 
         this.linkUrl =
             '/movies/genres' +
@@ -58,7 +59,8 @@ export class MovieCardComponent implements OnInit {
     }
 
     onImageLoaded() {
-        this.imageLoading = false;
+        this.imageLoaded$.next(true);
+        this.imageLoaded = true;
     }
 
     onImageClick() {
@@ -66,8 +68,8 @@ export class MovieCardComponent implements OnInit {
     }
 
     handleEmptyImage() {
-        this.imageLoading = false;
         this.imageUrl = this.noImageUrl;
+        this.imageLoaded = true;
     }
 
     movieDialogLoadStart() {

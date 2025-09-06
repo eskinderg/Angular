@@ -106,6 +106,20 @@
                                     }
                                 </a>
                             </li>
+                            <li>
+                                <a
+                                    [routerLink]="['/movies/search']"
+                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    style="display: flex; gap: 8px"
+                                    >Search
+                                    <app-svg-icon
+                                        class="searchIcon"
+                                        height="25"
+                                        width="25"
+                                        src="assets/images/search.svg"></app-svg-icon>
+                                </a>
+                            </li>
                         </ul>
                     }
                 </li>

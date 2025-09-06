@@ -1,12 +1,57 @@
-<div class="card-view hover-shadow">
+<!-- <h1>{{ imageLoading }}</h1> -->
+<!-- <h1>{{ imageLoading$ | async }}</h1> -->
+<div @movieCardItem class="card-view hover-shadow" [class.poster-loaded]="imageLoaded">
     <div class="poster">
+        @if (!imageLoaded) {
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+                <circle class="bouncing-circle" r="10" cx="40" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="-.4"></animate>
+                </circle>
+                <circle class="bouncing-circle" r="10" cx="100" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="-.2"></animate>
+                </circle>
+                <circle class="bouncing-circle" r="10" cx="160" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="0"></animate>
+                </circle>
+            </svg>
+        }
+
         <img
-            class="fade-in"
-            [src]="imageLoading ? imageLoadingUrl : imageUrl"
+            class="poster-image"
+            [src]="imageUrl"
+            [class.image-fade-in]="imageLoaded"
+            loading="lazy"
             (load)="onImageLoaded()"
             (click)="onImageClick()"
             (error)="handleEmptyImage()" />
 
+        <!-- <img -->
+        <!--     class="fade-in" -->
+        <!--     [src]="movie.get_poster_path()" -->
+        <!--     (load)="onImageLoaded()" -->
+        <!--     (click)="onImageClick()" -->
+        <!--     (error)="handleEmptyImage()" /> -->
         @if (dialogLoading$ | async) {
             <div class="poster-overlay">
                 <div class="spinner"></div>
@@ -19,7 +64,6 @@
                 <div class="card-title">{{ movie.title }}</div>
             </strong>
         </div>
-        <hr style="margin: 5px 0px" />
 
         <div class="text-row">
             <div class="col-auto">

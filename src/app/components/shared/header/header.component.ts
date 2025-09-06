@@ -6,6 +6,7 @@ import { NgClass, AsyncPipe } from '@angular/common';
 import { UserInfoComponent } from './userinfo/userinfo.component';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { StoreService } from 'src/app/store/store.service';
+import { SvgIconComponent } from '../svg/svg.component';
 
 export declare interface IsActiveMatchOptions {
     fragment: 'exact' | 'ignored';
@@ -19,7 +20,7 @@ export declare interface IsActiveMatchOptions {
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterLinkActive, NgClass, UserInfoComponent, AsyncPipe]
+    imports: [RouterLink, RouterLinkActive, SvgIconComponent, NgClass, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {
     permission = inject(AuthPermission);

@@ -1,0 +1,16 @@
+.movie-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-color: var(--body-bg);
+    gap: 10px;
+    padding: 25px;
+    margin: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-page-loading {
+    text-align: center;
+    color: var(--b-secondary);
+}

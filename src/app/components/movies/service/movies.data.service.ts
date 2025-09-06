@@ -77,6 +77,23 @@ export class MoviesDataService {
         //   )
     }
 
+    getDiscoverMovies(page: string = '1'): Observable<MovieResults> {
+        return this.http
+            .get<MovieResults>(
+                `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}&page=${page}&sort_by=popularity.desc`
+            )
+            .pipe(
+                map((res) => {
+                    const result: MovieResults = new MovieResults();
+                    result.total_pages = res['total_pages'];
+                    result.total_results = res['total_results'];
+                    result.page = res['page'];
+                    result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+                    return result;
+                })
+            );
+    }
+
     // getInTheaters() {
     //   const search = new URLSearchParams();
     //   search.set('primary_release_date.gt', '2015-10-20');
@@ -121,18 +138,19 @@ export class MoviesDataService {
             );
     }
 
-    getMovie(id: string) {
-        const search = new URLSearchParams();
-        search.set('api_key', this.apikey);
+    getMovie(id: string): Observable<Movie> {
         return this.http
-            .get<Movie>('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + this.apikey)
+            .get<any>('https://api.themoviedb.org/3/movie/' + id + '?api_key=' + this.apikey)
             .pipe(
-                map((res) => {
+                switchMap((res) => {
                     const movie = new Movie(res);
-                    // this.getCasts(id).subscribe((res) => {
-                    //     movie.casts = res;
-                    // });
-                    return movie;
+                    return this.getMovieReviews(id).pipe(
+                        map((reviews) => {
+                            movie.reviews = reviews;
+                            // console.log(movie);
+                            return movie;
+                        })
+                    );
                 })
             );
     }
@@ -229,17 +247,15 @@ export class MoviesDataService {
             );
     }
 
-    // getMovieReviews(id: string) {
-    //   const search = new URLSearchParams();
-    //   search.set('api_key', this.apikey);
-    //   return this._jsonp.get('https://api.themoviedb.org/3/movie/' + id + '/reviews?callback=JSONP_CALLBACK', {search})
-    //   .pipe
-    //   (
-    //     map(res => {
-    //       return res.json();
-    //     })
-    //   )
-    // }
+    getMovieReviews(id: string) {
+        return this.http
+            .get<any>(`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${this.apikey}`)
+            .pipe(
+                map((res) => {
+                    return res;
+                })
+            );
+    }
     // getMovieVideos(id: string) {
     //   const search = new URLSearchParams();
     //   search.set('api_key', this.apikey);

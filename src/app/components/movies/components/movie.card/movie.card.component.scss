@@ -1,14 +1,33 @@
 :host {
-    --card-width: 250px; /* Define the desired card width */
+    --card-width: 250px;
+    --card-height: 550px;
+    --image-height: 379px;
+    --circle-color: var(--del-button-note);
+    --card-border-radius: 10px;
+    margin: 0.5rem;
+    display: inline-block;
 }
 
 .card-view {
-    margin: 10px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border-color);
+    // margin: 10px;
+    // background-color: var(--border);
+    background-color: var(--bg-hover);
+    // border: 1px solid var(--card-border-color);
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    border-radius: var(--card-border-radius);
+}
+
+.poster-loaded {
+    background-color: var(--card-bg);
+    outline: 1px solid var(--card-border-color);
+}
+
+.bouncing-circle {
+    fill: var(--circle-color);
+    stroke: var(--circle-color);
+    stroke-width: 10;
 }
 
 .content {
@@ -16,6 +35,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     padding: 0.5rem;
+    padding-top: 0;
     // padding-top: 0rem;
     max-width: var(--card-width);
 }
@@ -27,22 +47,22 @@
 }
 
 .title {
+    padding: 10px;
+    padding-top: 5px;
+    font-size: 1.2rem;
+    // border-bottom: 3px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .poster {
+    border-top-right-radius: var(--card-border-radius);
+    border-top-left-radius: var(--card-border-radius);
     position: relative;
-    max-width: var(--card-width);
+    width: var(--card-width);
+    height: var(--image-height);
     overflow: hidden;
-}
-
-.poster img {
-    /* The image will be the primary width-setter */
-    width: 100%;
-    height: auto; /* Preserve aspect ratio */
-    object-fit: cover;
 }
 
 .poster-overlay {
@@ -80,10 +100,6 @@
     background-color: red;
 }
 
-.fave {
-    // outline: 5px solid red;
-}
-
 .btn-fav {
     color: white;
 }
@@ -105,12 +121,6 @@
     opacity: 0.75;
 }
 
-img {
-    width: auto;
-    object-fit: cover;
-    // object-position: 0% 0%;
-}
-
 .card-text {
     font-size: 13px;
     display: block;
@@ -122,20 +132,26 @@ img {
     text-align: center;
 }
 
-.d-flex {
-    align-items: center;
+.image-fade-in {
+    opacity: 1 !important;
 }
 
-.fade-in {
+.poster-image {
+    opacity: 0;
+    width: 100%;
+    height: auto; /* Preserve aspect ratio */
+    object-fit: cover;
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
     -moz-animation: fadeIn ease 1s;
     -o-animation: fadeIn ease 1s;
     -ms-animation: fadeIn ease 1s;
-    transition: transform 1s ease;
+    transition:
+        transform 1s ease,
+        opacity 1.5s ease;
 }
 
-.fade-in:hover {
+.poster-image:hover {
     cursor: pointer;
     transform: scale(1.1);
 }

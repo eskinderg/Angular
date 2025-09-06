@@ -15,6 +15,22 @@
             </div>
         </app-card>
     </div>
+    <div class="movies">
+        <app-card header="Discover Movies" [height]="27">
+            <div class="list-group">
+                @for (movie of moviesResult?.movies; track movie) {
+                    <a class="list-group-item">
+                        <div class="list">
+                            <h5>{{ movie.title }}</h5>
+                            <small class="text-muted">Date Released {{ movie.release_date }}</small>
+                        </div>
+                        <p class="mb-1">{{ movie.overview | truncate: '100' : true }}</p>
+                        <small class="text-muted">Language {{ movie.spoken_languages | json }}</small>
+                    </a>
+                }
+            </div>
+        </app-card>
+    </div>
 
     <div class="barChart">
         <app-card [header]="permission.IsAdmin ? 'Statistics' : 'Bar Chart'">

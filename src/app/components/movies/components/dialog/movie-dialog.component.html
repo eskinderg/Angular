@@ -27,7 +27,7 @@
                         <div class="right-col-wrapper">
                             <div class="card-body">
                                 <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
-                                <h2 class="card-title">
+                                <div class="card-title">
                                     {{ movieDetail.title }} ({{
                                         movieDetail.release_date | truncate: '4' : false
                                     }})
@@ -39,13 +39,13 @@
                                     } @else {
                                         <button class="btn-fav" (click)="btnAddWatchListClick()">♥</button>
                                     }
-                                </h2>
+                                </div>
                                 <hr />
-                                <h4>
+                                <div>
                                     <span class="badge bg-secondary">
                                         {{ movieDetail.original_language | uppercase }}</span
                                     >
-                                </h4>
+                                </div>
 
                                 <p class="card-text">{{ movieDetail.overview }}</p>
 
@@ -94,24 +94,26 @@
                                             }
                                         </div>
                                     </li>
-                                    <li class="list-group-item">
-                                        <app-ngbd-rating-decimal
-                                            [size]="2"
-                                            [currentRate]="movieRating"></app-ngbd-rating-decimal>
-                                    </li>
-                                    <!-- <li class="list-group-item"> -->
-                                    <!--     <div class="modal-footer" style="border-top: none"> -->
-                                    <!--         <button -->
-                                    <!--             id="footerClose" -->
-                                    <!--             (click)="close($event)" -->
-                                    <!--             type="button" -->
-                                    <!--             class="btn btn-primary" -->
-                                    <!--             (click)="close($event)"> -->
-                                    <!--             Close -->
-                                    <!--         </button> -->
-                                    <!--     </div> -->
-                                    <!-- </li> -->
+                                    <li class="list-group-item"></li>
                                 </ul>
+                            </div>
+                            <div class="reviews">
+                                <div class="review-header">
+                                    <div>
+                                        <strong>Reviews ({{ movieDetail.reviews.results.length }})</strong>
+                                    </div>
+                                    <app-ngbd-rating-decimal
+                                        [size]="2"
+                                        [currentRate]="movieRating"></app-ngbd-rating-decimal>
+                                </div>
+                                @if (movieDetail.reviews.results.length) {
+                                    <div class="content">
+                                        @for (review of movieDetail.reviews.results; track review) {
+                                            <li>{{ review.content }}</li>
+                                            <hr />
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

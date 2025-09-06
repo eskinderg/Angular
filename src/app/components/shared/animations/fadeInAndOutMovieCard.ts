@@ -1,6 +1,6 @@
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
-export const MovieCardAnimations = [
+export const MovieCardListAnimation = [
     trigger('movieCardList', [
         transition('* => *', [
             // initial state

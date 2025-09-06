@@ -1,0 +1,9 @@
+<div [@movieCardList] class="movie-cards-container">
+    @for (movie of movies; track movie.id) {
+        <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
+    }
+</div>
+
+@if (loading$ | async) {
+    <h1 class="movie-page-loading">Loading more movies...</h1>
+}

@@ -37,6 +37,13 @@
     padding: 0;
 }
 
+.searchIcon {
+    stroke: var(--note-pin-nofill);
+    cursor: pointer;
+    margin-right: auto;
+    // display: inline-flex;
+}
+
 /* Menu links */
 .menu a {
     color: var(--menu-color);
@@ -44,7 +51,9 @@
     padding: 0.5rem 0.75rem;
     border-radius: 6px;
     display: inline-block;
-    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.2s ease;
 }
 
 /* Smooth highlight without shifting content */

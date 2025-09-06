@@ -64,11 +64,41 @@
 
 .right-col-wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     height: 100%;
     width: 100%;
     padding: 1rem;
     padding-right: 0rem;
+    padding-bottom: 0rem;
+}
+
+.reviews {
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.content {
+    // border: 4px solid red;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reviews li {
+    // border:2px solid black;
+    // background: white;
+    padding: 0.5rem;
+    // opacity: 0.5;
 }
 
 .container {
@@ -188,6 +218,11 @@ li {
     z-index: 10;
 }
 
+.card-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
 :host {
     // border: 1px solid var(--border);
     position: fixed;
@@ -201,20 +236,21 @@ li {
     z-index: 2;
 }
 
-#scrollWrapper::-webkit-scrollbar {
-    width: 1rem;
+*::-webkit-scrollbar {
+    width: 0.5rem;
+    background: white;
 }
 
-#scrollWrapper::-webkit-scrollbar-button {
+*::-webkit-scrollbar-button {
     position: absolute;
     display: none;
 }
 
-#scrollWrapper::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     background: var(--scrollbar-thumb-color);
     border-radius: 1rem;
 }
 
-#scrollWrapper::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
     background: var(--scrollbar-thumb-hover-color);
 }

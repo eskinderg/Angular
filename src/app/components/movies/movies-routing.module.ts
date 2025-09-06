@@ -6,12 +6,22 @@ import { SearchComponent } from './search/search.component';
 import { moviesResultResolver } from './service/movie-results.resolve';
 import { WatchListComponent } from './watchlist/watchlist.component';
 import { watchListResolver } from './service/watchlist.resolve';
+import { DiscoverComponent } from './discover/discover.component';
+import { discoverResolver } from './service/discover.resolve';
 
 export const moviesRoutes: Routes = [
     {
         path: '',
         component: MoviesComponent,
         children: [
+            {
+                path: '',
+                component: DiscoverComponent,
+                resolve: {
+                    movieResult: discoverResolver
+                },
+                pathMatch: 'full'
+            },
             {
                 path: '',
                 redirectTo: 'search',

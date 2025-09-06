@@ -47,6 +47,10 @@ export class MoviesApiService {
         return this.api.getMovie(id);
     }
 
+    discoverMovies(page: string = '1'): Observable<MovieResults> {
+        return this.api.getDiscoverMovies(page);
+    }
+
     favoriteMovie(movie: Movie) {
         return this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
     }
