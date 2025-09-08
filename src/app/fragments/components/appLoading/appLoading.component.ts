@@ -1,14 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } from '@angular/core';
-import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-loading',
-    template: `<div [ngClass]="{ hide: !loading }" class="appProgress">
+    template: `<div [class.hide]="!loading" class="appProgress">
         <div class="appLoading"></div>
     </div>`,
     styleUrls: ['appLoading.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppLoadingComponent {
     private cd = inject(ChangeDetectorRef);
