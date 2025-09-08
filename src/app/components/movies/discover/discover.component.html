@@ -1,9 +1,50 @@
-<div [@movieCardList] class="movie-cards-container">
-    @for (movie of movies; track movie.id) {
-        <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
+<div class="wrapper">
+    <div [@movieCardList] class="movie-cards-container">
+        @for (movie of movies; track movie.id) {
+            <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
+        }
+    </div>
+
+    @if (loading$ | async) {
+        <svg class="loading-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
+                <stop offset="0" stop-color="#2a6ada"></stop>
+                <stop offset=".3" stop-color="#2a6ada" stop-opacity=".9"></stop>
+                <stop offset=".6" stop-color="#2a6ada" stop-opacity=".6"></stop>
+                <stop offset=".8" stop-color="#2a6ada" stop-opacity=".3"></stop>
+                <stop offset="1" stop-color="#2a6ada" stop-opacity="0"></stop>
+            </radialGradient>
+            <circle
+                transform-origin="center"
+                fill="none"
+                stroke="url(#a12)"
+                stroke-width="7"
+                stroke-linecap="round"
+                stroke-dasharray="200 1000"
+                stroke-dashoffset="0"
+                cx="100"
+                cy="100"
+                r="30">
+                <animateTransform
+                    type="rotate"
+                    attributeName="transform"
+                    calcMode="spline"
+                    dur="2"
+                    values="360;0"
+                    keyTimes="0;1"
+                    keySplines="0 0 1 1"
+                    repeatCount="indefinite"></animateTransform>
+            </circle>
+            <circle
+                transform-origin="center"
+                fill="none"
+                opacity=".2"
+                stroke="#2a6ada"
+                stroke-width="7"
+                stroke-linecap="round"
+                cx="100"
+                cy="100"
+                r="30"></circle>
+        </svg>
     }
 </div>
-
-@if (loading$ | async) {
-    <h1 class="movie-page-loading">Loading more movies...</h1>
-}
