@@ -18,6 +18,7 @@ import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MovieDialogService } from '../../service/movie.dialog.service';
 import { MoviesApiService } from '../../service/movies.api.service';
+import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 
 @Component({
     selector: 'app-movie-modal',
@@ -25,7 +26,7 @@ import { MoviesApiService } from '../../service/movies.api.service';
     styleUrl: './movie-dialog.component.scss',
     animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RatingDecimalComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
+    imports: [CircularRatingComponent, RatingDecimalComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);

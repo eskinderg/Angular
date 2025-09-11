@@ -37,8 +37,16 @@
     transform: scale(1);
 }
 
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
 .card-body {
     position: relative;
+    padding-right: 0.5rem;
 }
 
 .backdrop-img {

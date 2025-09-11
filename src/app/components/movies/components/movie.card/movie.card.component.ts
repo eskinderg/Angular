@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../../models/movie';
-import { RatingDecimalComponent } from '../rating/rating';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
 import { MovieCardComponentAnimations } from './movie.card.component.animation';
+import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 
 @Component({
     selector: 'app-movie-card',
@@ -22,7 +22,7 @@ import { MovieCardComponentAnimations } from './movie.card.component.animation';
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: MovieCardComponentAnimations,
-    imports: [RatingDecimalComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
+    imports: [CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
 })
 export class MovieCardComponent implements OnInit {
     private route = inject(ActivatedRoute);
@@ -42,9 +42,11 @@ export class MovieCardComponent implements OnInit {
 
     movieRating: number;
     linkUrl: string = '';
+    voteAverage: number;
 
     ngOnInit() {
         this.imageUrl = this.movie.get_poster_path() ?? this.noImageUrl;
+        this.voteAverage = Number(this.movie.vote_average);
 
         this.linkUrl =
             '/movies/genres' +

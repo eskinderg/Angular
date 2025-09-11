@@ -111,6 +111,7 @@ export class MoviesDataService {
         if (lang) urlString += `&with_original_language=${lang}`;
         if (startDate) urlString += `&release_date.lte=${startDate}`;
         if (endDate) urlString += `&release_date.gte=${endDate}`;
+        urlString += `&show_me=everything`;
         // if (startDate) urlString += `&primary_release_date.lte=${startDate}`;
         // if (endDate) urlString += `&primary_release_date.gte=${endDate}`;
         if (sortBy) urlString += `&sort_by=primary_release_date.${sortBy}`;

@@ -1,0 +1,14 @@
+<div
+    class="rating-circle"
+    [style.--percent]="voteAverage * 10"
+    [style.--size]="size"
+    [ngClass]="{
+        green: voteAverage >= 7,
+        yellow: voteAverage >= 5 && voteAverage < 7,
+        red: voteAverage < 5
+    }">
+    <div class="circle">
+        <div class="inner">{{ voteAverage * 10 | number: '1.0-0' }}%</div>
+    </div>
+    <!-- <div class="label">User Score</div> -->
+</div>

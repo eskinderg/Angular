@@ -41,10 +41,11 @@
                                     }
                                 </div>
                                 <hr />
-                                <div>
+                                <div class="header-row">
                                     <span class="badge bg-secondary">
                                         {{ movieDetail.original_language | uppercase }}</span
                                     >
+                                    <app-circular-rating [movie]="movieDetail" [size]="100" />
                                 </div>
 
                                 <p class="card-text">{{ movieDetail.overview }}</p>

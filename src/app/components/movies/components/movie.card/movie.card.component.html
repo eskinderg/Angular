@@ -76,7 +76,11 @@
 
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
-            <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal>
+
+            <app-circular-rating [movie]="movie" [size]="65" />
+
+            <!-- <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal> -->
+
             @if (isInWatchList | async) {
                 <button class="btn-fav favorite" (click)="btnRemoveWatchListClick()">♥</button>
             } @else {
