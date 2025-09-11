@@ -1,43 +1,43 @@
-<!-- <h1>{{ imageLoading }}</h1> -->
-<!-- <h1>{{ imageLoading$ | async }}</h1> -->
-<div @movieCardItem class="card-view hover-shadow" [class.poster-loaded]="imageLoaded">
+<div class="card-view hover-shadow" [class.poster-loaded]="imageLoaded">
     <div class="poster">
-        <svg
-            class="loading-svg"
-            [class.loading-svg]="!imageLoaded"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 200 200">
-            <circle class="bouncing-circle" r="10" cx="40" cy="65">
-                <animate
-                    attributeName="cy"
-                    calcMode="spline"
-                    dur="2"
-                    values="160;110;160;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1"
-                    repeatCount="indefinite"
-                    begin="-.4"></animate>
-            </circle>
-            <circle class="bouncing-circle" r="10" cx="100" cy="65">
-                <animate
-                    attributeName="cy"
-                    calcMode="spline"
-                    dur="2"
-                    values="160;110;160;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1"
-                    repeatCount="indefinite"
-                    begin="-.2"></animate>
-            </circle>
-            <circle class="bouncing-circle" r="10" cx="160" cy="65">
-                <animate
-                    attributeName="cy"
-                    calcMode="spline"
-                    dur="2"
-                    values="160;110;160;"
-                    keySplines=".5 0 .5 1;.5 0 .5 1"
-                    repeatCount="indefinite"
-                    begin="0"></animate>
-            </circle>
-        </svg>
+        @if (!imageLoaded) {
+            <svg
+                class="loading-svg"
+                [class.loading-svg]="!imageLoaded"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 200 200">
+                <circle class="bouncing-circle" r="10" cx="40" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="-.4"></animate>
+                </circle>
+                <circle class="bouncing-circle" r="10" cx="100" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="-.2"></animate>
+                </circle>
+                <circle class="bouncing-circle" r="10" cx="160" cy="65">
+                    <animate
+                        attributeName="cy"
+                        calcMode="spline"
+                        dur="2"
+                        values="160;110;160;"
+                        keySplines=".5 0 .5 1;.5 0 .5 1"
+                        repeatCount="indefinite"
+                        begin="0"></animate>
+                </circle>
+            </svg>
+        }
 
         <img
             class="poster-image"

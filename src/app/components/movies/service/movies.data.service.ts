@@ -1,4 +1,4 @@
-import { throwError as observableThrowError, Observable, forkJoin } from 'rxjs';
+import { throwError as observableThrowError, Observable, forkJoin, of } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
@@ -14,6 +14,12 @@ import { MovieResults } from '../models/movie-results';
 // const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
 const MOVIES_API_URL = '/api/movies'; // Use the proxy path
+
+export interface Language {
+    iso_639_1: string;
+    english_name: string;
+    name: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class MoviesDataService {
@@ -77,20 +83,59 @@ export class MoviesDataService {
         //   )
     }
 
-    getDiscoverMovies(page: string = '1'): Observable<MovieResults> {
+    // getDiscoverMovies(page: string = '1', lang: string = null): Observable<MovieResults> {
+    //     return this.http
+    //         .get<MovieResults>(
+    //             `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}&page=${page} ${lang ? `&with_original_language=${lang}` : ''} `
+    //         )
+    //         .pipe(
+    //             map((res) => {
+    //                 const result: MovieResults = new MovieResults();
+    //                 result.total_pages = res['total_pages'];
+    //                 result.total_results = res['total_results'];
+    //                 result.page = res['page'];
+    //                 result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+    //                 return result;
+    //             })
+    //         );
+    // }
+
+    getDiscoverMovies(
+        page: string = '1',
+        lang: string = null,
+        startDate: string = null,
+        endDate: string = null,
+        sortBy: string = null
+    ): Observable<MovieResults> {
+        let urlString = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}&page=${page}`;
+        if (lang) urlString += `&with_original_language=${lang}`;
+        if (startDate) urlString += `&release_date.lte=${startDate}`;
+        if (endDate) urlString += `&release_date.gte=${endDate}`;
+        // if (startDate) urlString += `&primary_release_date.lte=${startDate}`;
+        // if (endDate) urlString += `&primary_release_date.gte=${endDate}`;
+        if (sortBy) urlString += `&sort_by=primary_release_date.${sortBy}`;
+
+        return this.http.get<MovieResults>(urlString).pipe(
+            map((res) => {
+                const result: MovieResults = new MovieResults();
+                result.total_pages = res['total_pages'];
+                result.total_results = res['total_results'];
+                result.page = res['page'];
+                result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+                return result;
+            })
+        );
+    }
+
+    getLanguages(filterLangs: string[] = []): Observable<Language[]> {
         return this.http
-            .get<MovieResults>(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}&page=${page}&sort_by=popularity.desc`
-            )
+            .get<Language[]>(` https://api.themoviedb.org/3/configuration/languages?api_key=${this.apikey}`)
             .pipe(
-                map((res) => {
-                    const result: MovieResults = new MovieResults();
-                    result.total_pages = res['total_pages'];
-                    result.total_results = res['total_results'];
-                    result.page = res['page'];
-                    result.movies = res['results'].map((movie: Movie) => new Movie(movie));
-                    return result;
-                })
+                map((res) =>
+                    res
+                        .filter((l) => (filterLangs.length ? filterLangs.includes(l.iso_639_1) : l))
+                        .sort((a, b) => a.english_name.localeCompare(b.english_name))
+                )
             );
     }
 
@@ -127,13 +172,13 @@ export class MoviesDataService {
                 Movie[]
             >('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr)
             .pipe(
-                map((res) => {
+                switchMap((res) => {
                     const result: MovieResults = new MovieResults();
                     result.total_pages = res['total_pages'];
                     result.total_results = res['total_results'];
                     result.page = res['page'];
                     result.movies = res['results'].map((movie: Movie) => new Movie(movie));
-                    return result;
+                    return of(result);
                 })
             );
     }

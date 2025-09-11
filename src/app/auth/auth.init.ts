@@ -16,7 +16,7 @@ export function initializeAuth(): () => Promise<void> {
                 }
             })
             .catch((error) => {
-                alert(error);
+                alert(error?.message);
                 return Promise.reject(error);
             });
     };

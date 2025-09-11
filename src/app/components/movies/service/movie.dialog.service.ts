@@ -1,13 +1,4 @@
-import {
-    ApplicationRef,
-    ComponentRef,
-    EventEmitter,
-    Injectable,
-    Injector,
-    Output,
-    createComponent,
-    inject
-} from '@angular/core';
+import { ApplicationRef, ComponentRef, Injectable, Injector, createComponent, inject } from '@angular/core';
 import { forkJoin, Subscription, take } from 'rxjs';
 import { MovieDialogComponent } from '../components/dialog/movie-dialog.component';
 import { MoviesApiService } from './movies.api.service';
@@ -21,9 +12,6 @@ export class MovieDialogService {
     movieApiService = inject(MoviesApiService);
     appRef = inject(ApplicationRef);
     injector = inject(Injector);
-
-    // @Output() dialogLoadingStart = new EventEmitter<void>();
-    @Output() dialogLoadingFinish = new EventEmitter<void>();
 
     private movieId: string;
     private movieModalComponentRef: ComponentRef<MovieDialogComponent>;
@@ -40,10 +28,6 @@ export class MovieDialogService {
         this._movieCardComponent = movieCardComponent;
         this._movieCardComponent.movieDialogLoadStart();
         this.setMovieId(this._movieCardComponent.movie.id.toString());
-
-        this._dialogSubscription = this.dialogLoadingFinish.subscribe(() => {
-            this._movieCardComponent.movieDialogLoadedFinish();
-        });
     }
 
     setMovieId(value: string) {
@@ -69,6 +53,7 @@ export class MovieDialogService {
                     this.movieModalComponentRef.instance.isBackDropImageLoaded = true;
 
                     this.movieModalComponentRef.instance.renderChanges();
+                    this.onDialogReady();
 
                     const rootElement = this.appRef.components[0].location.nativeElement;
                     rootElement.append(this.movieModalComponentRef.location.nativeElement);
@@ -89,8 +74,17 @@ export class MovieDialogService {
         }
 
         if (this.movieModalComponentRef) {
+            const nativeEl = this.movieModalComponentRef.location.nativeElement;
+            nativeEl.remove();
+            this.appRef.detachView(this.movieModalComponentRef.hostView);
             this.movieModalComponentRef.destroy();
             this.movieModalComponentRef = null;
+        }
+    }
+
+    onDialogReady() {
+        if (this._movieCardComponent) {
+            this._movieCardComponent.movieDialogLoadedFinish();
         }
     }
 }

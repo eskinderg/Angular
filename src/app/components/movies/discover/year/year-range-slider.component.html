@@ -1,0 +1,35 @@
+<div class="year-slider-container">
+    <div class="start-year">
+        <span>{{ startYear }}</span>
+    </div>
+
+    <div class="slider">
+        <div class="lable">Year</div>
+        <div class="track"></div>
+        <div
+            class="range"
+            [ngStyle]="{
+                left: 100 - ((startYear - minYear) / (maxYear - minYear)) * 100 + '%',
+                right: ((endYear - minYear) / (maxYear - minYear)) * 100 + '%'
+            }"></div>
+
+        <input
+            type="range"
+            [min]="minYear"
+            [max]="maxYear"
+            [(ngModel)]="startYear"
+            (change)="onRangeChange()"
+            (input)="onRangeInput()" />
+        <input
+            type="range"
+            [min]="minYear"
+            [max]="maxYear"
+            [(ngModel)]="endYear"
+            (change)="onRangeChange()"
+            (input)="onRangeInput()" />
+    </div>
+
+    <div class="end-year">
+        <span>{{ endYear }}</span>
+    </div>
+</div>

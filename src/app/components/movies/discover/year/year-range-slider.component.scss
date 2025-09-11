@@ -1,0 +1,119 @@
+:host {
+    position: relative;
+    height: 100%;
+}
+.year-slider-container {
+    background: var(--body-bg, #fff);
+    margin: auto;
+    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    align-items: center;
+    gap: 0.5rem;
+    // border: 1px solid;
+    padding: 0 10px 0 10px;
+    height: 100%;
+}
+
+.lable {
+    position: absolute;
+    font-size: 0.75rem;
+    top: -0.75rem;
+    margin: auto;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    background: transparent;
+}
+
+.slider .track {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    border-radius: 5px;
+    background: #ddd;
+}
+
+.slider .range {
+    position: absolute;
+    height: 6px;
+    top: -1px;
+    border-radius: 8px;
+    background: var(--scrollbar-thumb-color);
+}
+
+.slider input[type='range'] {
+    position: absolute;
+    top: -8px;
+    left: -2px;
+    width: 100%;
+    pointer-events: none;
+    -webkit-appearance: none;
+    background: none;
+
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.slider input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--scrollbar-thumb-color);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.slider input[type='range']::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: var(--btn-bg-hover-color);
+    outline: 2px solid lightgrey;
+}
+
+.year {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+// .year-values {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     gap: 1rem;
+// }
+
+// .year-lable {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     gap: 1rem;
+// }
+
+.year-values {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.year label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}

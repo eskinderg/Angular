@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, Input, OnDestroy } from '@a
 import { Movie } from '../models/movie';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MoviesApiService } from '../service/movies.api.service';
 import { AsyncPipe } from '@angular/common';
 import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
@@ -18,30 +18,15 @@ import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovi
 export class WatchListComponent implements OnDestroy {
     @Input() movies: Observable<Movie[]>;
 
-    dialogSubscription: Subscription;
-
     movieModalService = inject(MovieDialogService);
     movieApiService = inject(MoviesApiService);
 
     onClick(event: { movie: Movie; movieCardComponent: MovieCardComponent }) {
-        if (this.dialogSubscription) {
-            this.dialogSubscription.unsubscribe();
-        }
-
-        event.movieCardComponent.movieDialogLoadStart();
-
-        this.movieModalService.setMovieId(event.movie.id.toString());
+        this.movieModalService.load(event.movieCardComponent);
         this.movieModalService.showDialog();
-
-        this.dialogSubscription = this.movieModalService.dialogLoadingFinish.subscribe(() => {
-            event.movieCardComponent.movieDialogLoadedFinish();
-        });
     }
 
     ngOnDestroy() {
-        if (this.dialogSubscription) {
-            this.dialogSubscription.unsubscribe();
-        }
         this.movieModalService.destroy();
     }
 }

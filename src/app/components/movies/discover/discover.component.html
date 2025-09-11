@@ -1,6 +1,21 @@
+<div class="header">
+    <select
+        [value]="selectedLanguage$ | async"
+        (change)="languageSelected($event)"
+        [class.active]="selectedLanguage$.value">
+        <option [value]="''">Language</option>
+        @for (language of languages$ | async; track language) {
+            <option [value]="language.iso_639_1">
+                {{ language.english_name }}&nbsp;({{ language.iso_639_1 }})
+            </option>
+        }
+    </select>
+    <app-year-range-slider (rangeSelected)="onYearRangeSelected($event)"> </app-year-range-slider>
+</div>
+
 <div class="wrapper">
     <div [@movieCardList] class="movie-cards-container">
-        @for (movie of movies; track movie.id) {
+        @for (movie of movies$ | async; track trackByMovie($index, movie)) {
             <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
         }
     </div>

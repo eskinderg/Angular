@@ -47,8 +47,14 @@ export class MoviesApiService {
         return this.api.getMovie(id);
     }
 
-    discoverMovies(page: string = '1'): Observable<MovieResults> {
-        return this.api.getDiscoverMovies(page);
+    discoverMovies(
+        page: string = '1',
+        lang: string = null,
+        startDate: string = null,
+        endDate: string = null,
+        sortBy: string = null
+    ): Observable<MovieResults> {
+        return this.api.getDiscoverMovies(page, lang, startDate, endDate, sortBy);
     }
 
     favoriteMovie(movie: Movie) {
@@ -69,5 +75,18 @@ export class MoviesApiService {
 
     removeWatchList(movie: Movie) {
         this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
+    }
+
+    getLanguages(filterLangs: string[] = []) {
+        return this.api.getLanguages(filterLangs);
+    }
+
+    getYears() {
+        const years: number[] = [];
+        for (let y = 2026; y >= 1950; y--) {
+            years.push(y);
+        }
+
+        return years;
     }
 }

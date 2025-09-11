@@ -68,8 +68,12 @@
                                         <b>Languages Spoken:</b>
                                         @for (language of movieDetail.spoken_languages; track language) {
                                             <a class="badge bg-secondary nodecoration ms-2">
-                                                {{ language['name'] }}</a
-                                            >
+                                                {{
+                                                    language['name']
+                                                        ? language['name']
+                                                        : language['english_name']
+                                                }}
+                                            </a>
                                         }
                                     </li>
                                     <li class="list-group-item">

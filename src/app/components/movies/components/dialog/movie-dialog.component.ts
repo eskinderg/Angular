@@ -1,11 +1,9 @@
 import {
-    AfterViewInit,
     ChangeDetectionStrategy,
     ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
-    HostListener,
     OnDestroy,
     OnInit,
     Output,
@@ -29,7 +27,7 @@ import { MoviesApiService } from '../../service/movies.api.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RatingDecimalComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
-export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MovieDialogComponent implements OnInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
     private renderer = inject(Renderer2);
     private cdr = inject(ChangeDetectorRef);
@@ -51,10 +49,6 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     noImageUrl: string = '/assets/images/placeholder.png';
 
     private unlistenEsc?: () => void;
-
-    ngAfterViewInit(): void {
-        (this.host.nativeElement.firstElementChild as HTMLElement).focus();
-    }
 
     ngOnInit(): void {
         this.unlistenEsc = this.renderer.listen('document', 'keydown', (e: KeyboardEvent) => {
@@ -104,12 +98,6 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
-    @HostListener('document:keydown.escape', ['$event'])
-    onEsc(e: KeyboardEvent) {
-        e.preventDefault();
-        this.requestClose('esc');
-    }
-
     onPosterImageLoaded() {
         this.posterImageLoaded.emit();
     }
@@ -129,8 +117,6 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     renderChanges() {
         this.cdr.markForCheck();
-        this.modalDialogService.dialogLoadingFinish.emit();
-        // this.modalDialogService.dialogLoading$.next(false);
     }
 
     get isInWatchList() {
@@ -147,6 +133,5 @@ export class MovieDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.unlistenEsc?.();
-        this.host.nativeElement.remove();
     }
 }
