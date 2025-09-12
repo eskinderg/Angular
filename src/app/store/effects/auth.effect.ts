@@ -8,13 +8,13 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
 import * as PreferenceActions from '../actions/preference.action';
-// import { AuthPermission } from 'src/app/auth/auth.permission.service';
+import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 @Injectable()
 export class AuthEffect {
     private actions$ = inject(Actions);
     private oauthService = inject(OAuthService);
-    // private authPermission = inject(AuthPermission);
+    private authPermission = inject(AuthPermission);
     private router = inject(Router);
 
     login$ = createEffect(() =>
@@ -49,16 +49,16 @@ export class AuthEffect {
         )
     );
 
-    // afterLoginEventSuccess$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(AuthActions.loadProfileSuccess, PreferenceActions.logInSuccess),
-    //         switchMap(() =>
-    //             this.authPermission.IsAdmin
-    //                 ? of(AuthActions.routeToDashboard())
-    //                 : of(AuthActions.routeToHome())
-    //         )
-    //     )
-    // );
+    loginEventWithPasswordSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActions.loginWithPasswordSuccess),
+            switchMap(() => {
+                if (this.authPermission.IsAdmin)
+                    return [AuthActions.loginEventSuccess(), AuthActions.routeToDashboard()];
+                return [AuthActions.loginEventSuccess(), AuthActions.routeToHome()];
+            })
+        )
+    );
 
     tokenExpire$ = createEffect(() =>
         this.actions$.pipe(

@@ -18,6 +18,8 @@ export const loginEventFail = createAction('[AUTH] LOGIN_EVENT_FAIL', props<{ pa
 
 export const loginEventSuccess = createAction('[AUTH] LOGIN_EVENT_SUCCESS');
 
+export const loginWithPasswordSuccess = createAction('[AUTH] LOGIN_EVENT_WITH_PASSWORD_SUCCESS');
+
 export const authInit = createAction('[AUTH] AUTH_INIT');
 
 export const authInitSuccess = createAction('[AUTH] AUTH_INIT_SUCCESS', props<{ payload: any }>());

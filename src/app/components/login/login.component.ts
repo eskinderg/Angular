@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
                         this.loginForm.get('password').value
                     )
                     .then(() => {
-                        this.store.dispatch(AuthActions.loginEventSuccess());
+                        this.store.dispatch(AuthActions.loginWithPasswordSuccess());
                         this.isLoading = false;
                     })
                     .catch((error) => {
