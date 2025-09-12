@@ -48,12 +48,6 @@
             (click)="onImageClick()"
             (error)="handleEmptyImage()" />
 
-        <!-- <img -->
-        <!--     class="fade-in" -->
-        <!--     [src]="movie.get_poster_path()" -->
-        <!--     (load)="onImageLoaded()" -->
-        <!--     (click)="onImageClick()" -->
-        <!--     (error)="handleEmptyImage()" /> -->
         @if (dialogLoading$ | async) {
             <div class="poster-overlay">
                 <div class="spinner"></div>

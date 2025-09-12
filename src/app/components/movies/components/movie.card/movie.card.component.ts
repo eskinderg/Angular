@@ -40,13 +40,10 @@ export class MovieCardComponent implements OnInit {
     noImageUrl: string = '/assets/images/placeholder.png';
     alt: string = '';
 
-    movieRating: number;
     linkUrl: string = '';
-    voteAverage: number;
 
     ngOnInit() {
         this.imageUrl = this.movie.get_poster_path() ?? this.noImageUrl;
-        this.voteAverage = Number(this.movie.vote_average);
 
         this.linkUrl =
             '/movies/genres' +
@@ -55,9 +52,6 @@ export class MovieCardComponent implements OnInit {
             '/' +
             this.route.snapshot.paramMap.get('name') +
             '/';
-
-        this.movieRating = this.movie.vote_average;
-        this.movieRating = (5 * this.movieRating) / 10;
     }
 
     onImageLoaded() {

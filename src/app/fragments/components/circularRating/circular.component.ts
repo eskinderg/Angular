@@ -7,6 +7,7 @@ import {
     ElementRef,
     inject,
     Input,
+    OnInit,
     viewChild
 } from '@angular/core';
 
@@ -17,7 +18,7 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CommonModule]
 })
-export class CircularRatingComponent implements AfterViewInit {
+export class CircularRatingComponent implements AfterViewInit, OnInit {
     @Input() voteAverage = 0;
     @Input() size: number = 50;
     @Input() animate = false;
@@ -27,16 +28,22 @@ export class CircularRatingComponent implements AfterViewInit {
     private cdr = inject(ChangeDetectorRef);
     circleEl = viewChild.required<ElementRef<HTMLDivElement>>('circle');
 
-    ngAfterViewInit(): void {
-        const circle = this.circleEl().nativeElement;
-        const target = Math.round(this.voteAverage * 10); // percentage (0–100)
+    ngOnInit(): void {
+        const circleHTMLElement = this.circleEl().nativeElement;
+        const percentage = Math.round(this.voteAverage * 10); // percentage (0–100)
 
         if (!this.animate) {
-            this.displayedValue = target;
-            circle.style.setProperty('--progress', target.toString());
-            this.cdr.markForCheck();
-            return;
+            // if no animation set then set initial value to display
+            this.displayedValue = percentage;
+            circleHTMLElement.style.setProperty('--progress', percentage.toString());
         }
+    }
+
+    ngAfterViewInit(): void {
+        const circleHTMLElement = this.circleEl().nativeElement;
+        const target = Math.round(this.voteAverage * 10); // percentage (0–100)
+
+        if (!this.animate) return; // if no animation set then skip
 
         const start = performance.now();
         const step = (now: number) => {
@@ -45,7 +52,7 @@ export class CircularRatingComponent implements AfterViewInit {
             const current = Math.round(progress * target);
 
             this.displayedValue = current;
-            circle.style.setProperty('--progress', current.toString());
+            circleHTMLElement.style.setProperty('--progress', current.toString());
             this.cdr.markForCheck();
 
             if (progress < 1) requestAnimationFrame(step);

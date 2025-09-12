@@ -7,7 +7,7 @@
 .rating-circle {
     --size: 50;
     --progress: 0;
-    --track-color: #222;
+    --track-color: var(--active-list-link-border-color);
     --fill-color: #21d07a;
     --text-color: #fff;
 
@@ -29,15 +29,15 @@
         .inner {
             width: 80%;
             height: 80%;
-            background: #000;
+            background: var(--bs-body-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: calc((var(--size) * 1px) / 3.5);
             font-weight: bold;
-            color: var(--text-color);
-            border: 1px solid #5a5a5a;
+            color: var(--body-color);
+            // border: 1px solid #5a5a5a;
         }
     }
 
