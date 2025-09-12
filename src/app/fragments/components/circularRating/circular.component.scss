@@ -1,6 +1,12 @@
+@property --progress {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
 .rating-circle {
     --size: 50;
-    --percent: 0;
+    --progress: 0;
     --track-color: #222;
     --fill-color: #21d07a;
     --text-color: #fff;
@@ -15,41 +21,32 @@
         width: calc(var(--size) * 1px);
         height: calc(var(--size) * 1px);
         border-radius: 50%;
-        background: conic-gradient(var(--fill-color) calc(var(--percent) * 1%), var(--track-color) 0);
+        background: conic-gradient(var(--fill-color) calc(var(--progress) * 1%), var(--track-color) 0);
         display: flex;
         align-items: center;
         justify-content: center;
-        position: relative;
 
         .inner {
-            width: calc(var(--size) * 1px - (var(--size) * 1px / 5));
-            height: calc(var(--size) * 1px - (var(--size) * 1px / 5));
+            width: 80%;
+            height: 80%;
             background: #000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            // font-size: 0.8rem;
+            font-size: calc((var(--size) * 1px) / 3.5);
             font-weight: bold;
             color: var(--text-color);
+            border: 1px solid #5a5a5a;
         }
     }
 
-    .label {
-        margin-top: 4px;
-        // font-size: 0.7rem;
-        color: var(--text-color);
-    }
-
-    /* Fill color based on vote_average */
     &.green {
         --fill-color: #21d07a;
     }
-
     &.yellow {
         --fill-color: #d2d531;
     }
-
     &.red {
         --fill-color: #db2360;
     }

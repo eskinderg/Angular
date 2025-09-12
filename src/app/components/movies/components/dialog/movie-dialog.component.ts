@@ -13,7 +13,6 @@ import {
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
 import { DialogAnimations } from './animation';
-import { RatingDecimalComponent } from '../rating/rating';
 import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MovieDialogService } from '../../service/movie.dialog.service';
@@ -26,7 +25,7 @@ import { CircularRatingComponent } from 'src/app/fragments/components/circularRa
     styleUrl: './movie-dialog.component.scss',
     animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CircularRatingComponent, RatingDecimalComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
+    imports: [CircularRatingComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -60,7 +59,7 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
         });
 
         this.imageUrl = this.movieDetail.get_poster_path_w780();
-        this.movieRating = parseFloat(this.movieDetail.vote_average);
+        this.movieRating = this.movieDetail.vote_average;
         this.movieRating = (5 * this.movieRating) / 10;
     }
 

@@ -45,7 +45,11 @@
                                     <span class="badge bg-secondary">
                                         {{ movieDetail.original_language | uppercase }}</span
                                     >
-                                    <app-circular-rating [movie]="movieDetail" [size]="100" />
+                                    <app-circular-rating
+                                        [voteAverage]="movieDetail.vote_average"
+                                        [size]="90"
+                                        [duration]="2000"
+                                        [animate]="true" />
                                 </div>
 
                                 <p class="card-text">{{ movieDetail.overview }}</p>
@@ -107,9 +111,9 @@
                                     <div>
                                         <strong>Reviews ({{ movieDetail.reviews.results.length }})</strong>
                                     </div>
-                                    <app-ngbd-rating-decimal
-                                        [size]="2"
-                                        [currentRate]="movieRating"></app-ngbd-rating-decimal>
+                                    <!-- <app-ngbd-rating-decimal -->
+                                    <!--     [size]="2" -->
+                                    <!--     [currentRate]="movieRating"></app-ngbd-rating-decimal> -->
                                 </div>
                                 @if (movieDetail.reviews.results.length) {
                                     <div class="content">

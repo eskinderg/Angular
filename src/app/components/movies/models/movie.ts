@@ -4,7 +4,7 @@ export class Movie {
     original_title: string;
     title: string;
     vote_count: string;
-    vote_average: string;
+    vote_average: number;
     overview: string;
     popularity: string;
     backdrop_path: string;

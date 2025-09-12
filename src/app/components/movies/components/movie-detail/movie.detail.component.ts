@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { RatingDecimalComponent } from '../rating/rating';
 import { FormatDatePipe } from '../../directives/dateFormat';
 
 @Component({
@@ -10,7 +9,7 @@ import { FormatDatePipe } from '../../directives/dateFormat';
     styleUrls: ['./movie.detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [RouterLink, RatingDecimalComponent, FormatDatePipe]
+    imports: [RouterLink, FormatDatePipe]
 })
 export class MovieDetailComponent implements OnInit {
     private route = inject(ActivatedRoute);
@@ -20,7 +19,7 @@ export class MovieDetailComponent implements OnInit {
 
     ngOnInit() {
         this.movie = this.route.snapshot.data['movie'];
-        this.movieRating = parseFloat(this.movie.vote_average);
+        this.movieRating = this.movie.vote_average;
         this.movieRating = (5 * this.movieRating) / 10;
     }
 }

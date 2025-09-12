@@ -56,7 +56,7 @@ export class MovieCardComponent implements OnInit {
             this.route.snapshot.paramMap.get('name') +
             '/';
 
-        this.movieRating = parseFloat(this.movie.vote_average);
+        this.movieRating = this.movie.vote_average;
         this.movieRating = (5 * this.movieRating) / 10;
     }
 

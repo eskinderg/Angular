@@ -13,7 +13,7 @@ import {
     DialogInfoComponent,
     ConfirmTemplateDirective
 } from './components/dialog';
-import { RatingDecimalComponent } from '../components/movies/components/rating/rating';
+// import { RatingDecimalComponent } from '../components/movies/components/rating/rating';
 import { FormatDatePipe } from '../components/movies/directives/dateFormat';
 import { SharedModule } from '../components/shared/shared.module';
 import { NoteTextComponent } from './components/note.text/note.text.component';
@@ -28,8 +28,8 @@ const NGA_COMPONENTS = [
     ConfirmDialogComponent,
     NoteTextComponent,
     DialogInfoComponent,
-    CheckMarkComponent,
-    RatingDecimalComponent
+    CheckMarkComponent
+    // RatingDecimalComponent
     // BaAmChart,
     // BaBackTop,
     // BaCard,

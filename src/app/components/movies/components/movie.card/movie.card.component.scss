@@ -15,6 +15,7 @@
     flex-wrap: nowrap;
     flex-direction: column;
     border-radius: var(--card-border-radius);
+    margin-bottom: 1.5rem;
 }
 
 .card-view:hover {
@@ -124,7 +125,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0.5rem;
+    position: relative;
+    //margin: 0.5rem;
+
+    app-circular-rating {
+        position: absolute;
+        left: 50%;
+        bottom: -150%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .hover-shadow:hover {

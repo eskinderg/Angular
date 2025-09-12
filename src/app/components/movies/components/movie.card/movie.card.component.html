@@ -77,7 +77,7 @@
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
 
-            <app-circular-rating [movie]="movie" [size]="65" />
+            <app-circular-rating [voteAverage]="movie.vote_average" [size]="65" />
 
             <!-- <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal> -->
 
