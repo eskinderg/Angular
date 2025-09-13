@@ -20,6 +20,7 @@ import {
 })
 export class CircularRatingComponent implements AfterViewInit, OnInit {
     @Input() voteAverage = 0;
+    @Input() voteCount = 0;
     @Input() size: number = 50;
     @Input() animate = false;
     @Input() duration = 1000; // ms

@@ -45,8 +45,14 @@
                                     <span class="badge bg-secondary">
                                         {{ movieDetail.original_language | uppercase }}</span
                                     >
+
+                                    <h3 style="margin-left: auto">
+                                        {{ movieDetail.vote_count }} Votes &nbsp;
+                                    </h3>
+
                                     <app-circular-rating
                                         [voteAverage]="movieDetail.vote_average"
+                                        [voteCount]="movieDetail.vote_count"
                                         [size]="90"
                                         [duration]="750"
                                         [animate]="true" />

@@ -18,6 +18,7 @@
     width: max-content;
 
     .circle {
+        position: relative;
         width: calc(var(--size) * 1px);
         height: calc(var(--size) * 1px);
         border-radius: 50%;
@@ -38,6 +39,12 @@
             font-weight: bold;
             color: var(--body-color);
             // border: 1px solid #5a5a5a;
+        }
+
+        .vote-count {
+            position: absolute;
+            bottom: 20%;
+            font-size: 85%;
         }
     }
 

@@ -7,7 +7,7 @@ import {
     Output,
     inject
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { Movie } from '../../models/movie';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
@@ -22,10 +22,9 @@ import { CircularRatingComponent } from 'src/app/fragments/components/circularRa
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: MovieCardComponentAnimations,
-    imports: [CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
+    imports: [RouterLink, CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
 })
 export class MovieCardComponent implements OnInit {
-    private route = inject(ActivatedRoute);
     private movieApiService = inject(MoviesApiService);
 
     @Input() movie: Movie;
@@ -44,14 +43,6 @@ export class MovieCardComponent implements OnInit {
 
     ngOnInit() {
         this.imageUrl = this.movie.get_poster_path() ?? this.noImageUrl;
-
-        this.linkUrl =
-            '/movies/genres' +
-            '/' +
-            this.route.snapshot.paramMap.get('id') +
-            '/' +
-            this.route.snapshot.paramMap.get('name') +
-            '/';
     }
 
     onImageLoaded() {

@@ -8,6 +8,8 @@ import { WatchListComponent } from './watchlist/watchlist.component';
 import { watchListResolver } from './service/watchlist.resolve';
 import { DiscoverComponent } from './discover/discover.component';
 import { discoverResolver } from './service/discover.resolve';
+import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
+import { moviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
 
 export const moviesRoutes: Routes = [
     {
@@ -57,6 +59,13 @@ export const moviesRoutes: Routes = [
             genres: genreResolver
         }
         // canActivate: [authGuard]
+    },
+    {
+        path: 'd/:movieId',
+        component: MovieDetailComponent,
+        resolve: {
+            movie: moviesDetailsResolve
+        }
     },
     {
         path: 'watchlist',

@@ -57,7 +57,8 @@
     <div class="content">
         <div class="title">
             <strong class="title-text">
-                <div class="card-title">{{ movie.title }}</div>
+                <!-- <div class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</div> -->
+                <a class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</a>
             </strong>
         </div>
 
@@ -71,7 +72,10 @@
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
 
-            <app-circular-rating [voteAverage]="movie.vote_average" [size]="65" />
+            <app-circular-rating
+                [voteCount]="movie.vote_count"
+                [voteAverage]="movie.vote_average"
+                [size]="65" />
 
             <!-- <app-ngbd-rating-decimal [size]="2" [currentRate]="movieRating"></app-ngbd-rating-decimal> -->
 

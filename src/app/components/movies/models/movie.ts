@@ -3,7 +3,7 @@ export class Movie {
     name: string;
     original_title: string;
     title: string;
-    vote_count: string;
+    vote_count: number;
     vote_average: number;
     overview: string;
     popularity: string;

@@ -1,64 +1,184 @@
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card" style="">
-            <img
-                class="card-img-top"
-                src="https://image.tmdb.org/t/p/w300/{{ movie.poster_path }}"
-                alt="Card image cap" />
+@if (movie) {
+    <div class="movie-detail">
+        <div
+            class="backdrop-banner"
+            [ngStyle]="{ 'background-image': movie.get_back_drop_image_url() || 'none' }">
+            <div class="banner-overlay"></div>
+
+            <div class="banner-top">
+                <button class="back-btn" (click)="goBack()">← Back</button>
+            </div>
+
+            <div class="banner-content">
+                <h1 class="banner-title">{{ movie.title || movie.name || movie.original_title }}</h1>
+                <div class="banner-sub">
+                    @if (movie.release_date) {
+                        <span>{{ movie.release_date | date: 'yyyy' }}</span>
+                    }
+                    @if (movie.runtime) {
+                        <span>• {{ movie.runtime }} min</span>
+                    }
+                    @if (movie.status) {
+                        <span>• {{ movie.status }}</span>
+                    }
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="col-lg-6">
-        <h4 class="card-title" [routerLink]="['/movies/movie', movie.id]">{{ movie.title }}</h4>
-
-        <div class="card-text muted mb-3">
-            <small> {{ movie.overview }}</small>
-        </div>
-
-        <ul class="list-group">
-            <li class="list-group-item">
-                <b>Date Released:</b>
-                <a class="badge bg-secondary nodecoration ms-2"> {{ movie.release_date | format }}</a>
-            </li>
-            <li class="list-group-item">
-                <b>Status:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ movie.status }}</a>
-            </li>
-            <li class="list-group-item">
-                <b>Language:</b>
-                <a class="badge bg-secondary nodecoration ms-2"> {{ movie.original_language }}</a>
-            </li>
-            <li class="list-group-item">
-                <b>Languages Spoken </b>
-                @for (language of movie.spoken_languages; track language) {
-                    <a class="badge bg-secondary nodecoration ms-2"> {{ language['name'] }}</a>
-                }
-            </li>
-        </ul>
-
-        <!-- <p><app-ngbd-rating-decimal [currentRate]="movieRating"></app-ngbd-rating-decimal></p> -->
-
-        @for (genere of movie.genres; track genere) {
-            <a
-                [routerLink]="['/movies/genres/', genere['id'], genere['name']]"
-                class="badge bg-secondary nodecoration ms-2">
-                {{ genere['name'] }}
-            </a>
-        }
-
-        <p class="mt-3">
-            @if (movie.homepage) {
-                <a rel="noopener" target="_blank" href="{{ movie.homepage }}" class="link-primary clearfix">
-                    Home Page
-                </a>
+        <div class="container">
+            @if (movie.get_poster_path_w500()) {
+                <aside class="poster-card">
+                    <img
+                        [src]="movie.get_poster_path_w500()"
+                        [alt]="movie.title || movie.name"
+                        class="poster"
+                        loading="lazy" />
+                    @if (movie.homepage) {
+                        <a
+                            [href]="movie.homepage"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="visit-btn">
+                            Visit official site
+                        </a>
+                    }
+                </aside>
+            } @else {
+                <aside class="poster-card poster-placeholder">
+                    <div class="poster-fallback">No poster</div>
+                </aside>
             }
-        </p>
 
-        <!-- <div class="row"> -->
-        <!--   <div  *ngFor="let cast of movie.casts" class="col-lg-4"> -->
-        <!--     <app-ba-card header="{{cast['name']}}"> -->
-        <!--       <img [src]="'https://www.themoviedb.org/t/p/w138_and_h175_face' + cast['profile_path']"/> -->
-        <!--     </app-ba-card> -->
-        <!--   </div> -->
-        <!-- </div> -->
+            <section class="info">
+                <header class="info-header">
+                    <h2 class="title">Details</h2>
+                </header>
+
+                <div class="rating-row">
+                    <div class="rating">
+                        <div class="score">{{ movie.vote_average?.toFixed(1) || '—' }}</div>
+                        <div class="votes">{{ movie.vote_count || 0 }} votes</div>
+                    </div>
+
+                    @if (movie.popularity) {
+                        <div class="popularity">
+                            Popularity: <strong>{{ movie.popularity }}</strong>
+                        </div>
+                    }
+
+                    @if (movie.original_language) {
+                        <div class="language">
+                            Lang: <strong>{{ movie.original_language | uppercase }}</strong>
+                        </div>
+                    }
+                </div>
+
+                @if (movie.genres?.length) {
+                    <div class="genres">
+                        @for (g of movie.genres; track g) {
+                            <span class="genre">{{ g['name'] }}</span>
+                        }
+                    </div>
+                }
+
+                @if (movie.overview) {
+                    <article class="overview">
+                        <h3>Overview</h3>
+                        <p>{{ movie.overview }}</p>
+                    </article>
+                }
+
+                <div class="extra-grid">
+                    <div class="left">
+                        <dl class="meta-list">
+                            @if (movie.original_title) {
+                                <div class="meta-item">
+                                    <dt>Original title</dt>
+                                    <dd>{{ movie.original_title }}</dd>
+                                </div>
+                            }
+
+                            @if (movie.release_date) {
+                                <div class="meta-item">
+                                    <dt>Release date</dt>
+                                    <dd>{{ movie.release_date | date: 'longDate' }}</dd>
+                                </div>
+                            }
+
+                            @if (movie.runtime) {
+                                <div class="meta-item">
+                                    <dt>Runtime</dt>
+                                    <dd>{{ movie.runtime }} minutes</dd>
+                                </div>
+                            }
+
+                            @if (movie.homepage) {
+                                <div class="meta-item">
+                                    <dt>Homepage</dt>
+                                    <dd>
+                                        <a
+                                            [href]="movie.homepage"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            >{{ movie.homepage }}</a
+                                        >
+                                    </dd>
+                                </div>
+                            }
+                        </dl>
+                    </div>
+
+                    <div class="right">
+                        @if (movie.casts?.length) {
+                            <div class="casts">
+                                <h4>Top cast</h4>
+                                <ul class="cast-list">
+                                    @for (c of movie.casts | slice: 0 : 8; track c) {
+                                        <li>{{ c }}</li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @if (movie.reviews) {
+                    <section class="reviews">
+                        <h4>Reviews</h4>
+                        @if (movie.reviews.results?.length) {
+                            <div class="reviews-list">
+                                @for (r of movie.reviews.results | slice: 0 : 5; track r) {
+                                    <article class="review">
+                                        <div class="review-head">
+                                            <strong class="author">{{ r['author'] }}</strong>
+                                            <span class="created">{{
+                                                r['created_at'] | date: 'mediumDate'
+                                            }}</span>
+                                        </div>
+                                        <p class="review-body">
+                                            {{ r['content'] | slice: 0 : 400 }}
+                                            @if (r['content'].length > 400) {
+                                                <span>…</span>
+                                            }
+                                        </p>
+                                        @if (r['url']) {
+                                            <a
+                                                class="read-more"
+                                                [href]="r['url']"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                >Read full</a
+                                            >
+                                        }
+                                    </article>
+                                }
+                            </div>
+                        } @else {
+                            <p class="muted">No reviews available.</p>
+                        }
+                    </section>
+                }
+            </section>
+        </div>
     </div>
-</div>
+}

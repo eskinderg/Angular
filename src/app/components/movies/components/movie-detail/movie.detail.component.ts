@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, inject } from '@angular/core';
 import { Movie } from '../../models/movie';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { FormatDatePipe } from '../../directives/dateFormat';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
     selector: 'app-movie-detail',
@@ -9,17 +8,18 @@ import { FormatDatePipe } from '../../directives/dateFormat';
     styleUrls: ['./movie.detail.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [RouterLink, FormatDatePipe]
+    imports: [CommonModule]
 })
-export class MovieDetailComponent implements OnInit {
-    private route = inject(ActivatedRoute);
+export class MovieDetailComponent {
+    @Input() movie: Movie;
 
-    movie: Movie;
-    movieRating: number;
+    private location = inject(Location);
 
-    ngOnInit() {
-        this.movie = this.route.snapshot.data['movie'];
-        this.movieRating = this.movie.vote_average;
-        this.movieRating = (5 * this.movieRating) / 10;
+    constructor() {
+        (document.getElementsByClassName('content')[0] as HTMLElement).style.margin = '0';
+    }
+
+    goBack() {
+        this.location.back();
     }
 }

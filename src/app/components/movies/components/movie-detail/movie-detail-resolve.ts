@@ -1,12 +1,7 @@
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { inject } from '@angular/core';
+import { ResolveFn } from '@angular/router';
+import { Movie } from '../../models/movie';
 import { MoviesApiService } from '../../service/movies.api.service';
 
-@Injectable()
-export class MoviesDetailsResolve {
-    private moviesApiService = inject(MoviesApiService);
-
-    resolve(route: ActivatedRouteSnapshot) {
-        return this.moviesApiService.getMovie(route.params['movieid']);
-    }
-}
+export const moviesDetailsResolve: ResolveFn<Movie> = (route) =>
+    inject(MoviesApiService).getMovie(route.params['movieId']);
