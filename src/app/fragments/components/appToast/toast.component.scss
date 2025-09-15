@@ -29,7 +29,7 @@
 .toast {
     background-color: var(--body-bg, #fff);
     color: #333;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     border: 1px solid var(--border);
     overflow: hidden;
@@ -41,14 +41,13 @@
 .toast-header {
     display: flex;
     align-items: center;
+    cursor: pointer;
     justify-content: space-between;
-    padding: 0.35rem 0.75rem;
+    padding: 0.25rem 0.75rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     font-weight: 600;
-    font-size: 0.95rem;
-    // background: var(--primary, #4a90e2);
+    font-size: 0.85rem;
     background: var(--bs-card-cap-bg);
-    color: #fff;
     color: var(--body-color);
 }
 
@@ -56,6 +55,7 @@
 .toast-close {
     background: transparent;
     border: none;
+    padding: 0.25rem;
     color: inherit;
     font-size: 2rem;
     line-height: 1;
@@ -69,8 +69,8 @@
 
 /* Body */
 .toast-body {
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 0.75rem;
+    font-size: 0.85rem;
     line-height: 1.4;
     color: var(--body-color);
 }
