@@ -23,7 +23,7 @@ export class NotificationService {
         header?: string,
         delay: number = 5000,
         animate: boolean = true,
-        autoHide: boolean = false
+        autoHide: boolean = true
     ) {
         this.show(message, header, {
             classname: 'bg-success',
