@@ -29,15 +29,12 @@ export class ToastComponent implements OnInit, OnDestroy {
     private timeoutId: any;
     private removalTimer: any;
 
-    @HostBinding('class.show') isVisible = false;
+    @HostBinding('class.show') isVisible = true;
     @HostBinding('class.animate') get animateClass() {
         return this.animate;
     }
 
     ngOnInit(): void {
-        // Show immediately when created
-        this.isVisible = true;
-
         if (this.autohide) {
             this.timeoutId = setTimeout(() => this.hide(), this.delay);
         }
@@ -46,7 +43,7 @@ export class ToastComponent implements OnInit, OnDestroy {
     hide(): void {
         this.isVisible = false;
         this.cdr.markForCheck();
-        this.removalTimer = setTimeout(() => this.hidden.emit(), this.delay);
+        this.removalTimer = setTimeout(() => this.hidden.emit(), 300);
     }
 
     ngOnDestroy(): void {
