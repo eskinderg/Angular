@@ -1,10 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, switchMap, map } from 'rxjs/operators';
+import { catchError, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
 import * as MoviesActions from '../actions/movie.actions';
 import { MoviesDataService } from 'src/app/components/movies/service/movies.data.service';
 import { AuthService } from 'src/app/shared/auth.service';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../store/reducers';
+import * as fromMovies from '../../store/reducers/movie.reducer';
 
 @Injectable()
 export class MoviesEffect {
@@ -93,6 +96,70 @@ export class MoviesEffect {
                         )
                     )
                 )
+            )
+    );
+
+    getDiscoverMovies$ = createEffect(
+        (
+            actions$ = inject(Actions),
+            moviesDataService = inject(MoviesDataService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
+        ) =>
+            actions$.pipe(
+                ofType(MoviesActions.getDiscoverMovies),
+                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
+                withLatestFrom(store.select(fromMovies.getDiscoverdMoviesResults)),
+                exhaustMap(([[action, lang], loading]) => {
+                    if (loading) {
+                        if (loading.page >= loading.total_pages) {
+                            return of(MoviesActions.getDiscoverMoviesNoResult());
+                        }
+                    }
+                    return moviesDataService
+                        .getDiscoverMovies(action.queryParams, lang, loading ? loading.page + 1 : 1)
+                        .pipe(
+                            map((movies) =>
+                                MoviesActions.getDiscoverMoviesSuccess({
+                                    movieResults: movies
+                                })
+                            ),
+                            catchError((err) =>
+                                of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
+                            )
+                        );
+                })
+            )
+    );
+
+    fetchMoviesByGenre$ = createEffect(
+        (
+            actions$ = inject(Actions),
+            moviesDataService = inject(MoviesDataService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
+        ) =>
+            actions$.pipe(
+                ofType(MoviesActions.fetchMoviesByGenre),
+                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
+                withLatestFrom(store.select(fromMovies.getDiscoverdMoviesResults)),
+                exhaustMap(([[action, lang], loading]) => {
+                    if (loading) {
+                        if (loading.page >= loading.total_pages) {
+                            return of(MoviesActions.getDiscoverMoviesNoResult());
+                        }
+                    }
+                    return moviesDataService.getMoviesByGenre(null, action.genreId, lang, action.page).pipe(
+                        map((movies) =>
+                            MoviesActions.fetchMoviesByGenreSuccess({
+                                movieResult: movies,
+                                genreId: action.genreId,
+                                page: action.page
+                            })
+                        ),
+                        catchError((err) =>
+                            of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
+                        )
+                    );
+                })
             )
     );
 }

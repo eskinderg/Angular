@@ -18,7 +18,7 @@
     <div class="movies">
         <app-card header="Discover Movies" [height]="27">
             <div class="list-group">
-                @for (movie of moviesResult?.movies; track movie) {
+                @for (movie of discoveredMovies$ | async; track movie) {
                     <a class="list-group-item">
                         <div class="list">
                             <h5>{{ movie.title }}</h5>

@@ -12,13 +12,15 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { ConfirmService } from '../../../fragments/components/dialog/confirm.service';
 import { ConfirmTemplateDirective } from '../../../fragments/components/dialog/confirm.directive';
 import { DialogInfoComponent } from '../../../fragments/components/dialog/dialogInfo/dialogInfo.component';
+import { ConfirmState } from 'src/app/fragments/components/dialog';
 
 @Component({
     selector: 'app-profile',
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, ReactiveFormsModule, ConfirmTemplateDirective, DialogInfoComponent]
+    imports: [FormsModule, ReactiveFormsModule, ConfirmTemplateDirective, DialogInfoComponent],
+    providers: [ConfirmService, ConfirmState]
 })
 export class ProfileComponent implements OnInit {
     private fb = inject(UntypedFormBuilder);

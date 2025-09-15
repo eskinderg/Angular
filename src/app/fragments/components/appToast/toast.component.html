@@ -1,0 +1,9 @@
+<div class="toast">
+    <div class="toast-header {{ cls }}">
+        <span class="toast-title">{{ header }}</span>
+        <button class="toast-close" (click)="hide()">×</button>
+    </div>
+    <div class="toast-body">
+        <ng-content></ng-content>
+    </div>
+</div>

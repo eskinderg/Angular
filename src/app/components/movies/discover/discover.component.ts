@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, Input, OnInit, inject } from '@angular/core';
-import { MovieResults } from '../models/movie-results';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { Movie } from '../models/movie';
 import { MoviesApiService } from '../service/movies.api.service';
 import { AsyncPipe } from '@angular/common';
-import { BehaviorSubject, take, distinctUntilChanged, debounceTime, fromEvent } from 'rxjs';
+import { BehaviorSubject, distinctUntilChanged, debounceTime, fromEvent, combineLatest, map } from 'rxjs';
 import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { YearRangeSliderComponent } from './year/year-range-slider.component';
@@ -18,17 +17,10 @@ import { YearRangeSliderComponent } from './year/year-range-slider.component';
     animations: MovieCardListAnimation,
     imports: [MovieCardComponent, AsyncPipe, YearRangeSliderComponent]
 })
-export class DiscoverComponent implements OnInit {
-    @Input() movieResult!: MovieResults;
-
+export class DiscoverComponent implements OnInit, OnDestroy {
     private readonly movieModalService = inject(MovieDialogService);
     public readonly movieApiService = inject(MoviesApiService);
 
-    private page = 1;
-
-    languages$ = this.movieApiService.getLanguages(['am', 'en', 'fr', 'it']);
-    movies$ = new BehaviorSubject<Movie[]>([]);
-    loading$ = new BehaviorSubject<boolean>(false);
     selectedLanguage$ = new BehaviorSubject<string>(null);
     startYear$ = new BehaviorSubject<string>(null);
     endYear$ = new BehaviorSubject<string>(null);
@@ -36,9 +28,19 @@ export class DiscoverComponent implements OnInit {
 
     private readonly destroyRef = inject(DestroyRef);
 
+    languages$ = combineLatest([
+        this.movieApiService.getLanguages(['am', 'en', 'fr', 'it']),
+        this.selectedLanguage$
+    ]).pipe(
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        map(([langs, selectedLang]) => {
+            return langs;
+        })
+    );
+
     ngOnInit() {
-        this.movies$.next([...this.movieResult.movies]);
         this.setupInfiniteScroll();
+        this.loadNextPage();
     }
 
     private setupInfiniteScroll(): void {
@@ -55,7 +57,7 @@ export class DiscoverComponent implements OnInit {
                 const position = contentEl.scrollTop + contentEl.clientHeight;
                 const height = contentEl.scrollHeight;
 
-                if (position >= height - threshold && !this.loading$.value) {
+                if (position >= height - threshold) {
                     this.loadNextPage();
                 }
             });
@@ -67,37 +69,21 @@ export class DiscoverComponent implements OnInit {
     }
 
     private loadNextPage(): void {
-        if (this.page >= this.movieResult.total_pages) return;
+        const queryParams = {
+            lang: this.selectedLanguage$.value,
+            startDate: this.startYear$.value,
+            endDate: this.endYear$.value,
+            sortBy: this.sortDirection$.value
+        };
 
-        this.loading$.next(true);
-        this.page++;
-
-        this.movieApiService
-            .discoverMovies(
-                this.page.toString(),
-                this.selectedLanguage$.value,
-                this.startYear$.value,
-                this.endYear$.value,
-                this.sortDirection$.value
-            )
-            .pipe(take(1), takeUntilDestroyed(this.destroyRef))
-            .subscribe({
-                next: (res: MovieResults) => {
-                    // Get the current array, create a new one, and emit it
-                    this.movieResult = res;
-                    this.movies$.next([...this.movies$.value, ...res.movies]);
-                    this.loading$.next(false);
-                },
-                error: () => this.loading$.next(false)
-            });
+        this.movieApiService.discoverMovies(queryParams);
     }
 
     languageSelected(event: Event) {
         const selectElement = event.target as HTMLSelectElement;
         const selectedLanguage = selectElement.value;
-        this.selectedLanguage$.next(selectedLanguage);
-        this.page = 0;
-        this.movies$.next([]);
+        this.movieApiService.setPreferedMovieLang(selectedLanguage);
+        this.movieApiService.discoverReset();
         this.loadNextPage();
     }
 
@@ -105,12 +91,27 @@ export class DiscoverComponent implements OnInit {
         this.startYear$.next(event.startDate);
         this.endYear$.next(event.endDate);
         this.sortDirection$.next('desc');
-        this.page = 0;
-        this.movies$.next([]);
+        this.movieApiService.discoverReset();
         this.loadNextPage();
+    }
+
+    get Movies() {
+        return this.movieApiService.discoverdMovies();
+    }
+
+    get isDiscoverMoviesLoading() {
+        return this.movieApiService.isDiscoverLoading();
+    }
+
+    get UserPreferedLanaguage() {
+        return this.movieApiService.getPreferedMovieLang();
     }
 
     trackByMovie(index: number, movie: Movie) {
         return index + movie.id;
+    }
+
+    ngOnDestroy(): void {
+        this.movieApiService.discoverReset();
     }
 }

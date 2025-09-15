@@ -4,7 +4,7 @@
         [autohide]="notification.autoHide"
         [delay]="notification.delay"
         [header]="notification.header"
-        [animation]="notification.animate"
+        [animate]="notification.animate"
         (hidden)="notificationService.remove(notification)">
         {{ notification.text }}
     </app-toast>

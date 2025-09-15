@@ -7,7 +7,7 @@ import { moviesResultResolver } from './service/movie-results.resolve';
 import { WatchListComponent } from './watchlist/watchlist.component';
 import { watchListResolver } from './service/watchlist.resolve';
 import { DiscoverComponent } from './discover/discover.component';
-import { discoverResolver } from './service/discover.resolve';
+// import { discoverResolver } from './service/discover.resolve';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 import { moviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
 
@@ -19,9 +19,6 @@ export const moviesRoutes: Routes = [
             {
                 path: '',
                 component: DiscoverComponent,
-                resolve: {
-                    movieResult: discoverResolver
-                },
                 pathMatch: 'full'
             },
             {

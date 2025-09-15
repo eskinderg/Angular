@@ -21,6 +21,12 @@ export interface Language {
     name: string;
 }
 
+export interface MovieQueryParams {
+    startDate: string;
+    endDate: string;
+    sortBy: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class MoviesDataService {
     private http = inject(HttpClient);
@@ -101,20 +107,21 @@ export class MoviesDataService {
     // }
 
     getDiscoverMovies(
-        page: string = '1',
+        queryParams: MovieQueryParams,
         lang: string = null,
-        startDate: string = null,
-        endDate: string = null,
-        sortBy: string = null
+        page: number = 1
     ): Observable<MovieResults> {
-        let urlString = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}&page=${page}`;
+        let urlString = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}`;
         if (lang) urlString += `&with_original_language=${lang}`;
-        if (startDate) urlString += `&release_date.lte=${startDate}`;
-        if (endDate) urlString += `&release_date.gte=${endDate}`;
+        if (page) urlString += `&page=${page}`;
+        if (queryParams) {
+            if (queryParams.startDate) urlString += `&release_date.lte=${queryParams.startDate}`;
+            if (queryParams.endDate) urlString += `&release_date.gte=${queryParams.endDate}`;
+            if (queryParams.sortBy) urlString += `&sort_by=primary_release_date.${queryParams.sortBy}`;
+        }
         urlString += `&show_me=everything`;
         // if (startDate) urlString += `&primary_release_date.lte=${startDate}`;
         // if (endDate) urlString += `&primary_release_date.gte=${endDate}`;
-        if (sortBy) urlString += `&sort_by=primary_release_date.${sortBy}`;
 
         return this.http.get<MovieResults>(urlString).pipe(
             map((res) => {
@@ -275,22 +282,33 @@ export class MoviesDataService {
     //   )
     // }
 
-    getMoviesByGenre(id: string, page: number = 1): Observable<MovieResults> {
-        return this.http
-            .get<MovieResults>(
-                `https://api.themoviedb.org/3/genre/${id}/movies?api_key=${this.apikey}&page=${page.toString()}`
-            )
-            .pipe(
-                map((res) => {
-                    const result: MovieResults = {
-                        total_pages: res['total_pages'],
-                        total_results: res['total_results'],
-                        page: res['page'],
-                        movies: res['results'].map((movie: Movie) => new Movie(movie))
-                    };
-                    return result;
-                })
-            );
+    getMoviesByGenre(
+        queryParams: MovieQueryParams,
+        genreId: number,
+        lang: string = null,
+        page: number = 1
+    ): Observable<MovieResults> {
+        let urlString = `https://api.themoviedb.org/3/discover/movie?api_key=${this.apikey}`;
+        urlString += `&with_genres=${genreId}`;
+        if (lang) urlString += `&with_original_language=${lang}`;
+        if (page) urlString += `&page=${page}`;
+        // if (queryParams) {
+        //     if (queryParams.startDate) urlString += `&release_date.lte=${queryParams.startDate}`;
+        //     if (queryParams.endDate) urlString += `&release_date.gte=${queryParams.endDate}`;
+        //     if (queryParams.sortBy) urlString += `&sort_by=primary_release_date.${queryParams.sortBy}`;
+        // }
+        urlString += `&show_me=everything`;
+        return this.http.get<MovieResults>(urlString).pipe(
+            map((res) => {
+                const result: MovieResults = {
+                    total_pages: res['total_pages'],
+                    total_results: res['total_results'],
+                    page: res['page'],
+                    movies: res['results'].map((movie: Movie) => new Movie(movie))
+                };
+                return result;
+            })
+        );
     }
 
     getMovieReviews(id: string) {

@@ -4,9 +4,8 @@ import * as fromMovies from '../../../store/reducers/movie.reducer';
 import * as fromRoot from '../../../store/reducers';
 import * as AppActions from '../../../store/actions';
 import { Tv } from '../models/tv';
-import { MoviesDataService } from './movies.data.service';
+import { MovieQueryParams, MoviesDataService } from './movies.data.service';
 import { Observable, empty } from 'rxjs';
-import { MovieResults } from '../models/movie-results';
 import { Store } from '@ngrx/store';
 import { Movie } from '../models/movie';
 
@@ -33,28 +32,25 @@ export class MoviesApiService {
         return this.api.getGenreMovieCount(id);
     }
 
-    getMoviesByGenre(id: string, page?: number): Observable<MovieResults> {
-        return this.api.getMoviesByGenre(id, page);
-        // .pipe(
-        //     map((mr:MovieResults) => {
-        //       mr.movies = mr.movies.filter((m:Movie) => m.original_language=="en" || m.original_language=="uk" )
-        //       return mr;
-        //     })
-        //   )
+    getMoviesByGenre(id: string, page?: number) {
+        // return this.api.getMoviesByGenre(null, Number(id), 'fr', page);
+        this.store.dispatch(AppActions.fetchMoviesByGenre({ genreId: Number(id), page: page }));
     }
+
+    // getMoviesByGenre_(): Observable<MovieResults> {
+    //     return this.store.select(fromMovies.getMoviesByGenre);
+    // }
 
     getMovie(id: string) {
         return this.api.getMovie(id);
     }
 
-    discoverMovies(
-        page: string = '1',
-        lang: string = null,
-        startDate: string = null,
-        endDate: string = null,
-        sortBy: string = null
-    ): Observable<MovieResults> {
-        return this.api.getDiscoverMovies(page, lang, startDate, endDate, sortBy);
+    discoverdMovies(): Observable<Movie[]> {
+        return this.store.select(fromMovies.getDiscoverdMovies);
+    }
+
+    discoverMovies(queryParams: MovieQueryParams = null) {
+        this.store.dispatch(AppActions.getDiscoverMovies({ queryParams: queryParams }));
     }
 
     favoriteMovie(movie: Movie) {
@@ -65,8 +61,24 @@ export class MoviesApiService {
         return this.store.select(fromMovies.getWatchListMovies);
     }
 
+    discoverReset() {
+        this.store.dispatch(AppActions.discoverMoviesReset());
+    }
+
     isInWatchList(movie: Movie) {
         return this.store.select(fromMovies.isInWatchList(movie));
+    }
+
+    isDiscoverLoading() {
+        return this.store.select(fromMovies.getDiscoverdMoviesLoading);
+    }
+
+    setPreferedMovieLang(lang: string) {
+        return this.store.dispatch(AppActions.setPreferedMovieLanguage({ lang: lang }));
+    }
+
+    getPreferedMovieLang() {
+        return this.store.select(fromMovies.getPreferedMovieLanguage);
     }
 
     addWatchList(movie: Movie) {

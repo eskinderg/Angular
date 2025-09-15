@@ -4,9 +4,9 @@ import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieDialogService } from '../service/movie.dialog.service';
-import { PaginationComponent } from '../../../fragments/components/pagination/pagination';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
+import { PaginationComponent } from 'src/app/fragments/components/appPagination/pagination.component';
 
 @Component({
     selector: 'app-right-view',
@@ -27,6 +27,8 @@ export class RightViewComponent implements OnDestroy {
     private _id: string;
     private _name: string;
     private _page: string;
+
+    @Input() moviesResult: MovieResults;
 
     /* withComponentInputBinding */
     @Input() set id(value: string) {
@@ -54,8 +56,6 @@ export class RightViewComponent implements OnDestroy {
     get page(): string {
         return this._page;
     }
-
-    @Input() moviesResult: MovieResults;
 
     loadPage(page: number) {
         this.route.navigate(['/movies/genres', this.id, this.name, page]);
