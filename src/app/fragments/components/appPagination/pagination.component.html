@@ -1,16 +1,15 @@
 <nav class="pagination-container">
     <button class="page-btn" [disabled]="page === 1" (click)="prev()">‹</button>
 
-    <ng-container *ngFor="let p of pages">
-        <ng-container *ngIf="p === '…'; else pageButton">
+    @for (p of pages; track p) {
+        @if (p === '…') {
             <span class="ellipsis">…</span>
-        </ng-container>
-        <ng-template #pageButton>
+        } @else {
             <button class="page-btn" [class.active]="p === page" (click)="selectPage(p)">
                 {{ p }}
             </button>
-        </ng-template>
-    </ng-container>
+        }
+    }
 
     <button class="page-btn" [disabled]="page >= totalPages" (click)="next()">›</button>
 </nav>
