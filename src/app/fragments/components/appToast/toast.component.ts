@@ -20,7 +20,7 @@ import {
 export class ToastComponent implements OnInit, OnDestroy {
     @Input() cls: string = ''; // custom class
     @Input() autohide: boolean = true;
-    @Input() delay: number = 500;
+    @Input() delay: number = 5000;
     @Input() header: string = '';
     @Input() animate: boolean = false;
     @Output() hidden = new EventEmitter<void>();
