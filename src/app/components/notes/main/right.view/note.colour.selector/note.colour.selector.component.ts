@@ -47,7 +47,6 @@ export class NoteColourSelectorComponent implements ControlValueAccessor {
 
     onChange: any = () => {};
     onTouched: any = () => {};
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     writeValue(_value: string): void {
         // alert(_value);
         // const btnColourElement = (<HTMLElement>this.el.nativeElement).querySelector('.c');
@@ -66,8 +65,7 @@ export class NoteColourSelectorComponent implements ControlValueAccessor {
         this.onTouched = fn;
     }
 
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    setDisabledState?(isDisabled: boolean): void {}
+    setDisabledState?(_isDisabled: boolean): void {}
 
     onClick(event: any, colour: Colour) {
         this.noteColourUpdate.emit(colour);

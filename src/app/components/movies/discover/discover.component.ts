@@ -32,8 +32,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
         this.movieApiService.getLanguages(['am', 'en', 'fr', 'it']),
         this.selectedLanguage$
     ]).pipe(
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        map(([langs, selectedLang]) => {
+        map(([langs, _selectedLang]) => {
             return langs;
         })
     );

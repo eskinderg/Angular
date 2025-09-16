@@ -63,7 +63,6 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
         this.movieRating = (5 * this.movieRating) / 10;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private requestClose(_reason: 'click' | 'esc') {
         const backDropEl = this.host.nativeElement.querySelector('#backDrop') as HTMLElement;
 

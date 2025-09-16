@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import { Injectable } from '@angular/core';
 
 @Injectable()
