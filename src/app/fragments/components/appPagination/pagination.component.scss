@@ -18,7 +18,7 @@
     transition: all 0.2s ease-in-out;
     min-width: 38px;
 
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled):not(.active) {
         background: var(--list-link-hover);
         color: var(--body-color);
         border-color: var(--border);
