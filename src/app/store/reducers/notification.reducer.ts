@@ -15,14 +15,14 @@ export const notificationReducer = createReducer<INotificationState>(
         NotificationActions.newNotification,
         (state, action): INotificationState => ({
             ...state,
-            notifications: [...state.notifications, action.payload]
+            notifications: [...state.notifications, action.notification]
         })
     ),
     on(
         NotificationActions.removeNotification,
         (state, action): INotificationState => ({
             ...state,
-            notifications: state.notifications.filter((n) => n !== action.payload)
+            notifications: state.notifications.filter((n) => n !== action.notification)
         })
     ),
     on(

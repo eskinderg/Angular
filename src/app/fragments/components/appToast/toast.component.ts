@@ -18,32 +18,39 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToastComponent implements OnInit, OnDestroy {
-    @Input() cls: string = ''; // custom class
     @Input() autohide: boolean = true;
-    @Input() delay: number = 5000;
+    @Input() duration: number = 5000;
+    @Input() type: 'success' | 'error' | 'warning' | 'standard' = 'success';
     @Input() header: string = '';
-    @Input() animate: boolean = false;
     @Output() hidden = new EventEmitter<void>();
 
     private cdr = inject(ChangeDetectorRef);
+    private _animate = false;
     private timeoutId: any;
     private removalTimer: any;
 
     @HostBinding('class.show') isVisible = true;
-    @HostBinding('class.animate') get animateClass() {
-        return this.animate;
+
+    @Input()
+    @HostBinding('class.animate')
+    get animate() {
+        return this._animate;
+    }
+
+    set animate(value: boolean) {
+        this._animate = value;
     }
 
     ngOnInit(): void {
         if (this.autohide) {
-            this.timeoutId = setTimeout(() => this.hide(), this.delay);
+            this.timeoutId = setTimeout(() => this.hide(), this.duration);
         }
     }
 
     hide(): void {
         this.isVisible = false;
         this.cdr.markForCheck();
-        this.removalTimer = setTimeout(() => this.hidden.emit(), 500);
+        this.removalTimer = setTimeout(() => this.hidden.emit(), 300);
     }
 
     ngOnDestroy(): void {

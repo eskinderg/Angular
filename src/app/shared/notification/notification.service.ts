@@ -15,19 +15,19 @@ export class NotificationService {
      * Displays success notification message
      * @param {string} message - text message for the notification to display
      * @param {string} header - optional param for setting the notification header.
-     * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
+     * @param {number} duration - optional param for duration setting in milliseconds. Default value is (5000)
      * @param {boolean} animate - optional param to set animation
      */
     showSuccess(
         message: string,
         header?: string,
-        delay: number = 5000,
+        duration: number = 5000,
         animate: boolean = true,
         autoHide: boolean = true
     ) {
         this.show(message, header, {
-            classname: 'bg-success',
-            delay: delay,
+            type: 'success',
+            duration: duration,
             animate: animate,
             autoHide: autoHide
         });
@@ -37,19 +37,19 @@ export class NotificationService {
      * Displays warning notification message
      * @param {string} message - text message for the notification to display
      * @param {string} header - optional param for setting the notification header.
-     * @param {number} delay - optional param for delay setting in milliseconds. Default value is (5000)
+     * @param {number} duration - optional param for duration setting in milliseconds. Default value is (5000)
      * @param {boolean} animate - optional param to set animation
      */
     showWarning(
         message: string,
         header?: string,
-        delay: number = 5000,
+        duration: number = 5000,
         animate: boolean = true,
         autoHide: boolean = true
     ) {
         this.show(message, header, {
-            classname: 'bg-warning',
-            delay: delay,
+            type: 'warning',
+            duration: duration,
             animate: animate,
             autoHide: autoHide
         });
@@ -59,38 +59,40 @@ export class NotificationService {
      * Displays error notification message
      * @param {string} message - text message for the notification to display
      * @param {string} header - optional param for setting the notification header.
-     * @param {number} delay - optional param for delay setting in milliseconds. Default value is five minutes
+     * @param {number} duration - optional param for duration setting in milliseconds. Default value is five minutes
      * @param {boolean} animate - optional param to set animation
      */
     showError(
         message: string,
         header?: string,
-        delay: number = 1000,
+        duration: number = 5000,
         animate: boolean = true,
         autoHide: boolean = false
     ) {
         this.show(message, header, {
-            classname: 'bg-danger',
-            delay: delay,
+            type: 'error',
+            duration: duration,
             autoHide: autoHide,
             animate: animate
         });
     }
 
-    showStandard(message: string, header?: string, delay: number = 5000, autoHide: boolean = true) {
-        this.show(message, header, { delay: delay, autoHide: autoHide });
+    showStandard(message: string, header?: string, duration: number = 5000, autoHide: boolean = true) {
+        this.show(message, header, { duration: duration, autoHide: autoHide });
     }
 
     private show(text: string, header?: string, options: any = {}) {
         this.notificationStore.dispatch(
             NotificationActions.newNotification({
-                payload: { text, header: header, ...options }
+                notification: { text, header: header, ...options }
             })
         );
     }
 
     remove(notification: any) {
-        this.notificationStore.dispatch(NotificationActions.removeNotification({ payload: notification }));
+        this.notificationStore.dispatch(
+            NotificationActions.removeNotification({ notification: notification })
+        );
     }
 
     clear() {

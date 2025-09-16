@@ -1,14 +1,10 @@
-const {
-    defineConfig,
-} = require("eslint/config");
+const { defineConfig } = require('eslint/config');
 
-const prettier = require("eslint-plugin-prettier");
-const changeDetectionStrategy = require("eslint-plugin-change-detection-strategy");
-const js = require("@eslint/js");
+const prettier = require('eslint-plugin-prettier');
+const changeDetectionStrategy = require('eslint-plugin-change-detection-strategy');
+const js = require('@eslint/js');
 
-const {
-    FlatCompat,
-} = require("@eslint/eslintrc");
+const { FlatCompat } = require('@eslint/eslintrc');
 
 const compat = new FlatCompat({
     baseDirectory: __dirname,
@@ -16,73 +12,85 @@ const compat = new FlatCompat({
     allConfig: js.configs.all
 });
 
-module.exports = defineConfig([{
-    extends: compat.extends("plugin:storybook/recommended", "prettier"),
+module.exports = defineConfig([
+    {
+        extends: compat.extends('plugin:storybook/recommended', 'prettier'),
 
-    plugins: {
-        prettier,
-        "change-detection-strategy": changeDetectionStrategy,
-    },
-
-    rules: {
-        "change-detection-strategy/on-push": "error",
-    },
-}, {
-    files: ["**/*.ts"],
-
-    extends: compat.extends(
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:prettier/recommended",
-        "prettier",
-    ),
-
-    languageOptions: {
-        ecmaVersion: 5,
-        sourceType: "script",
-
-        parserOptions: {
-            project: ["tsconfig.json"],
-            createDefaultProgram: true,
+        plugins: {
+            prettier,
+            'change-detection-strategy': changeDetectionStrategy
         },
+
+        rules: {
+            'change-detection-strategy/on-push': 'error'
+        }
     },
+    {
+        files: ['**/*.ts'],
 
-    rules: {
-        "@typescript-eslint/no-explicit-any": "off",
+        extends: compat.extends(
+            'eslint:recommended',
+            'plugin:@typescript-eslint/recommended',
+            'plugin:@angular-eslint/recommended',
+            'plugin:@angular-eslint/template/process-inline-templates',
+            'plugin:prettier/recommended',
+            'prettier'
+        ),
 
-        "@angular-eslint/component-selector": ["error", {
-            prefix: "app",
-            style: "kebab-case",
-            type: "element",
-        }],
+        languageOptions: {
+            ecmaVersion: 5,
+            sourceType: 'script',
 
-        "@angular-eslint/directive-selector": ["error", {
-            prefix: "app",
-            style: "camelCase",
-            type: "attribute",
-        }],
+            parserOptions: {
+                project: ['tsconfig.json'],
+                createDefaultProgram: true
+            }
+        },
 
-        "@angular-eslint/no-output-native": "off",
+        rules: {
+            '@typescript-eslint/no-explicit-any': 'off',
+
+            '@angular-eslint/component-selector': [
+                'error',
+                {
+                    prefix: 'app',
+                    style: 'kebab-case',
+                    type: 'element'
+                }
+            ],
+
+            '@angular-eslint/directive-selector': [
+                'error',
+                {
+                    prefix: 'app',
+                    style: 'camelCase',
+                    type: 'attribute'
+                }
+            ],
+
+            '@angular-eslint/no-output-native': 'off'
+        }
     },
-}, {
-    files: ["**/*.html"],
+    {
+        files: ['**/*.html'],
 
-    extends: compat.extends(
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:prettier/recommended",
-    ),
+        extends: compat.extends('plugin:@angular-eslint/template/recommended', 'plugin:prettier/recommended'),
 
-    rules: {
-        "prettier/prettier": ["error", {
-            parser: "angular",
-        }],
+        rules: {
+            'prettier/prettier': [
+                'error',
+                {
+                    parser: 'angular'
+                }
+            ]
+        }
     },
-}, {
-    files: ["**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+    {
+        files: ['**/*.stories.@(ts|tsx|js|jsx|mjs|cjs)'],
 
-    rules: {
-        "storybook/story-exports": "off",
-    },
-}]);
+        rules: {
+            'storybook/story-exports': 'off',
+            'prettier/prettier': ['error', { endOfLine: 'off' }]
+        }
+    }
+]);

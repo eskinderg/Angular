@@ -1,8 +1,8 @@
 @for (notification of notificationService.Notifications | async; track notification) {
     <app-toast
-        [cls]="notification.classname"
+        [type]="notification.type"
         [autohide]="notification.autoHide"
-        [delay]="notification.delay"
+        [duration]="notification.duration"
         [header]="notification.header"
         [animate]="notification.animate"
         (hidden)="notificationService.remove(notification)">
