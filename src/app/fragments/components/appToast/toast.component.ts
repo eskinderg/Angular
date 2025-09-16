@@ -43,7 +43,7 @@ export class ToastComponent implements OnInit, OnDestroy {
     hide(): void {
         this.isVisible = false;
         this.cdr.markForCheck();
-        this.removalTimer = setTimeout(() => this.hidden.emit(), 300);
+        this.removalTimer = setTimeout(() => this.hidden.emit(), 500);
     }
 
     ngOnDestroy(): void {
