@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-check-mark',
     templateUrl: 'checkmark.component.html',
     styleUrls: ['checkmark.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckMarkComponent {
     @Input() checked: boolean = false;
