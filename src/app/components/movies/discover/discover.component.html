@@ -16,9 +16,9 @@
 </div>
 
 <div class="wrapper">
-    <div [@movieCardList] class="movie-cards-container">
+    <div class="movie-cards-container">
         @for (movie of Movies | async; track trackByMovie($index, movie)) {
-            <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
+            <app-movie-card [index]="$index" [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
         }
     </div>
 

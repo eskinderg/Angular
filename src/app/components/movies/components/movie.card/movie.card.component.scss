@@ -4,9 +4,25 @@
     --image-height: 379px;
     --circle-color: var(--del-button-note);
     --card-border-radius: 10px;
+    --transform-size: 1rem;
+}
+
+@keyframes cardEnterAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(var(--transform-size)); /* optional small slide */
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        transform: scale(1);
+    }
 }
 
 .card-view {
+    opacity: 0;
+    transform: translateY(var(--transform-size)); /* optional small slide */
     // margin: 10px;
     // background-color: var(--border);
     background-color: var(--bg-hover);
@@ -16,6 +32,8 @@
     flex-direction: column;
     border-radius: var(--card-border-radius);
     margin-bottom: 1.5rem;
+    animation: cardEnterAnimation 0.25s ease forwards;
+    animation-delay: calc(50ms * var(--index));
 }
 
 .card-view:hover {
@@ -148,10 +166,6 @@ a:hover {
     }
 }
 
-.hover-shadow:hover {
-    // box-shadow: 0px 0px 5px var(--bs-secondary);
-}
-
 .lang {
     position: absolute;
     right: 5px;
@@ -183,62 +197,15 @@ a:hover {
     width: auto;
     height: 100%; /* Preserve aspect ratio */
     object-fit: cover;
-    animation: fadeIn ease 1s;
-    -webkit-animation: fadeIn ease 1s;
-    -moz-animation: fadeIn ease 1s;
-    -o-animation: fadeIn ease 1s;
-    -ms-animation: fadeIn ease 1s;
-    transition:
-        transform 1s ease,
-        opacity 1.5s ease;
+    // animation: fadeIn ease 1s;
+    // -webkit-animation: fadeIn ease 1s;
+    // -moz-animation: fadeIn ease 1s;
+    // -o-animation: fadeIn ease 1s;
+    // -ms-animation: fadeIn ease 1s;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .poster-image:hover {
     cursor: pointer;
     transform: scale(1.05);
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-o-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-ms-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
 }

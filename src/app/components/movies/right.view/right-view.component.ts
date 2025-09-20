@@ -5,7 +5,6 @@ import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
-import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
 import { PaginationComponent } from 'src/app/fragments/components/appPagination/pagination.component';
 
 @Component({
@@ -13,7 +12,6 @@ import { PaginationComponent } from 'src/app/fragments/components/appPagination/
     templateUrl: 'right-view.component.html',
     styleUrls: ['right-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: MovieCardListAnimation,
     imports: [PaginationComponent, MovieCardComponent]
 })
 export class RightViewComponent implements OnDestroy {

@@ -13,7 +13,6 @@ import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
-import { MovieCardComponentAnimations } from './movie.card.component.animation';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 
 @Component({
@@ -21,7 +20,6 @@ import { CircularRatingComponent } from 'src/app/fragments/components/circularRa
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: MovieCardComponentAnimations,
     imports: [RouterLink, CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
 })
 export class MovieCardComponent implements OnInit {
@@ -29,6 +27,7 @@ export class MovieCardComponent implements OnInit {
 
     @Input() movie: Movie;
     @Output() clickImage: EventEmitter<any> = new EventEmitter();
+    @Input() index: number;
 
     dialogLoading$ = new BehaviorSubject<boolean>(false);
     imageLoaded$ = new BehaviorSubject<boolean>(false);

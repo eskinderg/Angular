@@ -5,7 +5,7 @@
     (pageChange)="loadPage($event)"
     [collectionSize]="collectionSize"></app-pagination>
 
-<div [@movieCardList] class="movie-cards-container">
+<div class="movie-cards-container">
     @for (movie of moviesResult.movies; track movie) {
         <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
     }
