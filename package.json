@@ -44,7 +44,7 @@
     "@angular/language-server": "^20.2.0",
     "@angular/localize": "^20.3.0",
     "@angular/service-worker": "^20.3.0",
-    "@eslint/js": "^9.35.0",
+    "@eslint/js": "^9.36.0",
     "@ngrx/effects": "20.0.1",
     "@ngrx/router-store": "20.0.1",
     "@ngrx/store": "20.0.1",
