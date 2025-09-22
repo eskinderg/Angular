@@ -1,4 +1,10 @@
-<div class="card-view hover-shadow" [class.poster-loaded]="imageLoaded">
+<!-- <h1>{{index}}</h1> -->
+<div
+    class="card-view hover-shadow"
+    [style.--index]="index % 20"
+    [class.poster-loaded]="imageLoaded"
+    (animationend)="onAnimationEnd($event)">
+    <!-- <div class="card-view hover-shadow" [class.poster-loaded]="imageLoaded"> -->
     <div class="poster">
         @if (!imageLoaded) {
             <svg

@@ -8,23 +8,33 @@
 }
 
 @keyframes cardEnterAnimation {
-    from {
+    0% {
         opacity: 0;
-        transform: translateY(var(--transform-size)); /* optional small slide */
+        // transform: translateY(var(--transform-size)); /* optional small slide */
         transform: scale(0);
     }
-    to {
+    50% {
         opacity: 1;
-        transform: translateY(0);
+        // transform: translateY(0);
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        // transform: translateY(0);
         transform: scale(1);
     }
 }
 
 .card-view {
     opacity: 0;
-    transform: translateY(var(--transform-size)); /* optional small slide */
+    transform: scale(0); /* initial state */
+    pointer-events: none; /* ignore hover */
+    // transform: translateY(var(--transform-size)); /* optional small slide */
     // margin: 10px;
     // background-color: var(--border);
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
     background-color: var(--bg-hover);
     // border: 1px solid var(--card-border-color);
     display: flex;
@@ -32,15 +42,23 @@
     flex-direction: column;
     border-radius: var(--card-border-radius);
     margin-bottom: 1.5rem;
-    animation: cardEnterAnimation 0.25s ease forwards;
-    // animation-delay: calc(50ms * var(--index));
+    animation: cardEnterAnimation 1s ease-in-out forwards;
+    animation-delay: calc(50ms * var(--index));
+    animation-iteration-count: 1;
 }
 
-.card-view:hover {
+.card-view.animated {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* re-enable hover */
+}
+
+.card-view.animated:hover {
+    pointer-events: auto; /* re-enable hover */
     box-shadow: 0px 4px 15px 4px rgb(119 119 119 / 20%);
-    /* transition: transform 0.5s ease-out; */
-    /* transform: translateY(-5px); */
     border: none;
+    transform: scale(1.1);
 }
 
 .loading-svg {
@@ -202,10 +220,12 @@ a:hover {
     // -moz-animation: fadeIn ease 1s;
     // -o-animation: fadeIn ease 1s;
     // -ms-animation: fadeIn ease 1s;
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
 }
 
 .poster-image:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    // transform: scale(1.05);
 }

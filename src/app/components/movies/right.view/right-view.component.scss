@@ -1,11 +1,10 @@
 .movie-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    gap: 30px;
+    justify-content: space-around; /* prevent stretching of last row */
     background-color: var(--body-bg);
-    gap: 10px;
-    padding: 10px;
+    padding: 2rem;
 }
 
 app-pagination {

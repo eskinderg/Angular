@@ -66,6 +66,10 @@ export class MovieCardComponent implements OnInit {
         this.dialogLoading$.next(false);
     }
 
+    onAnimationEnd($event: any) {
+        ($event.target as HTMLElement).classList.add('animated');
+    }
+
     get isInWatchList() {
         return this.movieApiService.isInWatchList(this.movie);
     }

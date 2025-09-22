@@ -1,14 +1,14 @@
 :host {
     // padding: 0.5rem;
-    display:block;
+    display: block;
 }
 
 .movie-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    // justify-content: space-evenly;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    gap: 30px;
+    justify-content: space-around; /* prevent stretching of last row */
+    padding: 2rem;
 }
 
 .search-wrapper {
