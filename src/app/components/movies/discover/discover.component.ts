@@ -26,10 +26,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
 
     private readonly destroyRef = inject(DestroyRef);
 
-    languages$ = combineLatest([
-        this.movieApiService.getLanguages(['am', 'en', 'fr', 'it']),
-        this.selectedLanguage$
-    ]).pipe(
+    languages$ = combineLatest([this.movieApiService.getLanguages(), this.selectedLanguage$]).pipe(
         map(([langs, _selectedLang]) => {
             return langs;
         })

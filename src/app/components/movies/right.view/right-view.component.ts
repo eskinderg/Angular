@@ -1,26 +1,32 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 import { PaginationComponent } from 'src/app/fragments/components/appPagination/pagination.component';
+import { AsyncPipe } from '@angular/common';
+import { MoviesApiService } from '../service/movies.api.service';
 
 @Component({
     selector: 'app-right-view',
     templateUrl: 'right-view.component.html',
     styleUrls: ['right-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [PaginationComponent, MovieCardComponent]
+    imports: [PaginationComponent, AsyncPipe, MovieCardComponent]
 })
 export class RightViewComponent implements OnDestroy {
     router = inject(ActivatedRoute);
     route = inject(Router);
     movieModalService = inject(MovieDialogService);
+    movieApiService = inject(MoviesApiService);
+
+    languages$ = this.movieApiService.getLanguages();
 
     routeSubscription: Subscription;
     apiSubscription: Subscription;
+    selectedLanguage$ = new BehaviorSubject<string>(null);
 
     private _id: string;
     private _name: string;
@@ -61,6 +67,17 @@ export class RightViewComponent implements OnDestroy {
 
     get collectionSize() {
         return this.moviesResult.total_pages >= 500 ? 500 * 20 : this.moviesResult.total_pages * 20;
+    }
+
+    get UserPreferedLanaguage() {
+        return this.movieApiService.getPreferedMovieLang();
+    }
+
+    languageSelected(event: Event) {
+        const selectElement = event.target as HTMLSelectElement;
+        const selectedLanguage = selectElement.value;
+        this.movieApiService.setPreferedMovieLang(selectedLanguage);
+        // this.route.navigate(['/movies/genres', this.id, this.name, this.page ? '' : 1]);
     }
 
     onClick(event: { movie: Movie; movieCardComponent: MovieCardComponent }) {

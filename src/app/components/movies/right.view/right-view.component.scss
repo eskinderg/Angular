@@ -2,17 +2,30 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
     gap: 30px;
-    justify-content: space-around; /* prevent stretching of last row */
+    justify-content: space-around;
     background-color: var(--body-bg);
     padding: 2rem;
 }
 
-app-pagination {
-    z-index: 1;
-    padding: 0.1rem;
-    background: var(--body-bg);
-    // background: red;
-    display: block;
+.header {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--body-bg);
     position: sticky;
     top: 0px;
+    z-index: 1;
+}
+
+.active {
+    outline: 1px solid var(--b-active-link-color) !important;
+}
+
+select {
+    margin: 1rem;
+}
+
+app-pagination {
+    padding: 0.1rem;
+    background: var(--body-bg);
 }
