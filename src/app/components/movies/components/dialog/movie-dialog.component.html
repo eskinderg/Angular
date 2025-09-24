@@ -37,19 +37,17 @@
                                 <hr />
                                 <div class="top">
                                     <div class="actions">
-                                        <div class="fav-btn">
-                                            @if (isInWatchList | async) {
-                                                <button
-                                                    class="btn-fav favorite"
-                                                    (click)="btnRemoveWatchListClick()">
-                                                    ♥
-                                                </button>
-                                            } @else {
-                                                <button class="btn-fav" (click)="btnAddWatchListClick()">
-                                                    ♥
-                                                </button>
-                                            }
-                                        </div>
+                                        @if (isInWatchList | async) {
+                                            <button
+                                                class="btn-fav favorite"
+                                                (click)="btnRemoveWatchListClick()">
+                                                ♥
+                                            </button>
+                                        } @else {
+                                            <button class="btn-fav" (click)="btnAddWatchListClick()">
+                                                ♥
+                                            </button>
+                                        }
 
                                         <span class="badge bg-secondary">
                                             {{ movieDetail.original_language | uppercase }}</span
