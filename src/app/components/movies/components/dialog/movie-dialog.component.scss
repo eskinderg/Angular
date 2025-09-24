@@ -19,14 +19,25 @@
 }
 .actions {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     gap: 0.5rem;
     align-items: center;
 }
 
 .btn-fav {
-    font-size: 1rem;
-    width: 100%;
+    font-size: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.circle-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.primary-lang {
+    font-size: 2rem !important;
 }
 
 .favorite {
@@ -52,9 +63,9 @@
 .right-split {
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
     align-items: center;
     padding: 1rem;
+    gap: 2rem;
 }
 
 .title {
@@ -270,11 +281,11 @@ li {
     align-items: flex-start;
     // padding: 1rem 0rem 1rem 0rem;
     gap: 5rem;
-    justify-content: space-between;
+    align-items: center;
 }
 
 td {
-    padding: 0.25rem;
+    padding: 0.15rem;
     padding-left: 0rem;
 }
 

@@ -36,24 +36,6 @@
                                 </div>
                                 <hr />
                                 <div class="top">
-                                    <div class="actions">
-                                        @if (isInWatchList | async) {
-                                            <button
-                                                class="btn-fav favorite"
-                                                (click)="btnRemoveWatchListClick()">
-                                                ♥
-                                            </button>
-                                        } @else {
-                                            <button class="btn-fav" (click)="btnAddWatchListClick()">
-                                                ♥
-                                            </button>
-                                        }
-
-                                        <span class="badge bg-secondary">
-                                            {{ movieDetail.original_language | uppercase }}</span
-                                        >
-                                    </div>
-
                                     <div class="overview">{{ movieDetail.overview }}</div>
                                 </div>
                                 <hr />
@@ -129,13 +111,31 @@
                                         </table>
                                     </div>
                                     <div class="right-split">
-                                        <app-circular-rating
-                                            [voteAverage]="movieDetail.vote_average"
-                                            [voteCount]="movieDetail.vote_count"
-                                            [size]="90"
-                                            [duration]="750"
-                                            [animate]="true" />
-                                        <div class="votes">{{ movieDetail.vote_count }} Votes &nbsp;</div>
+                                        <div class="fav-button">
+                                            @if (isInWatchList | async) {
+                                                <button
+                                                    class="btn-fav favorite"
+                                                    (click)="btnRemoveWatchListClick()">
+                                                    ♥
+                                                </button>
+                                            } @else {
+                                                <button class="btn-fav" (click)="btnAddWatchListClick()">
+                                                    ♥
+                                                </button>
+                                            }
+                                        </div>
+                                        <div class="circle-rating">
+                                            <app-circular-rating
+                                                [voteAverage]="movieDetail.vote_average"
+                                                [voteCount]="movieDetail.vote_count"
+                                                [size]="90"
+                                                [duration]="750"
+                                                [animate]="true" />
+                                            <div class="votes">{{ movieDetail.vote_count }} Votes &nbsp;</div>
+                                        </div>
+                                        <span class="primary-lang badge bg-secondary">
+                                            {{ movieDetail.original_language | uppercase }}</span
+                                        >
                                     </div>
                                 </div>
                             </div>
