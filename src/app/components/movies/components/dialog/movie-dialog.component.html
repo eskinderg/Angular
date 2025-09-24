@@ -25,24 +25,6 @@
                                         }})
                                     </div>
 
-                                    <div class="fav-btn">
-                                        @if (isInWatchList | async) {
-                                            <button
-                                                class="btn-fav favorite"
-                                                (click)="btnRemoveWatchListClick()">
-                                                ♥
-                                            </button>
-                                        } @else {
-                                            <button class="btn-fav" (click)="btnAddWatchListClick()">
-                                                ♥
-                                            </button>
-                                        }
-                                    </div>
-
-                                    <span class="badge bg-secondary">
-                                        {{ movieDetail.original_language | uppercase }}</span
-                                    >
-
                                     <button
                                         type="button"
                                         id="modalClose"
@@ -53,8 +35,30 @@
                                     </button>
                                 </div>
                                 <hr />
+                                <div class="top">
+                                    <div class="actions">
+                                        <div class="fav-btn">
+                                            @if (isInWatchList | async) {
+                                                <button
+                                                    class="btn-fav favorite"
+                                                    (click)="btnRemoveWatchListClick()">
+                                                    ♥
+                                                </button>
+                                            } @else {
+                                                <button class="btn-fav" (click)="btnAddWatchListClick()">
+                                                    ♥
+                                                </button>
+                                            }
+                                        </div>
 
-                                <div class="overview">{{ movieDetail.overview }}</div>
+                                        <span class="badge bg-secondary">
+                                            {{ movieDetail.original_language | uppercase }}</span
+                                        >
+                                    </div>
+
+                                    <div class="overview">{{ movieDetail.overview }}</div>
+                                </div>
+                                <hr />
                                 <div class="split">
                                     <div class="left-split">
                                         <table class="detail table table-borderless table-sm">
