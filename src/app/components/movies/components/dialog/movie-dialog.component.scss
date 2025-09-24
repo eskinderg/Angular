@@ -37,10 +37,10 @@
     transform: scale(1);
 }
 
-.header-row {
+.right-split {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -82,12 +82,17 @@
     padding-bottom: 0rem;
 }
 
+.votes {
+    font-size: 1.25rem;
+    font-weight: bolder;
+}
+
 .reviews {
-    border-top: 1px solid black;
     display: flex;
     flex-direction: column;
     height: 100%;
     overflow-y: hidden;
+    padding-bottom: 0.25rem;
 }
 
 .content {
@@ -106,6 +111,8 @@
     // border:2px solid black;
     // background: white;
     padding: 0.5rem;
+    padding-left: 0rem;
+    font-size: 0.8rem;
     // opacity: 0.5;
 }
 
@@ -144,11 +151,19 @@ li {
     column-gap: 0.5rem;
 }
 
-.list-group {
+.detail-lable {
+    font-weight: bolder;
+}
+
+.detail {
     padding: 0;
     display: flex;
     row-gap: 0.5rem;
     flex-direction: column;
+}
+
+.item {
+    flex: 1;
 }
 
 .list-group-item {
@@ -202,8 +217,9 @@ li {
         filter 0.25s ease;
 }
 
-.card-text {
+.overview {
     font-weight: bold;
+    // font-size: 1.25rem;
 }
 
 .btn-close-top {
@@ -216,19 +232,42 @@ li {
 }
 
 .btn-close {
-    margin: 1rem;
-    position: absolute;
-    // top: 1rem;
-    float: right;
-    // margin-right: 0;
-    // margin-top: 0;
-    right: 0;
+    margin-left: auto;
     z-index: 10;
 }
 
 .card-title {
     font-size: 2rem;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-content: center;
+    align-items: center;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1rem 0rem 1rem 0rem;
+    gap: 5rem;
+    justify-content: space-between;
+}
+
+td {
+    padding: 0.25rem;
+    padding-left: 0rem;
+}
+
+td.value {
+    padding-left: 1rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.fav-btn {
+    display: flex;
 }
 
 :host {
@@ -245,7 +284,7 @@ li {
 }
 
 *::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.65rem;
     background: white;
 }
 
