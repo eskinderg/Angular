@@ -1,0 +1,8 @@
+<button
+    [style.--size]="`${size.toString()}px`"
+    class="bookmark-btn"
+    [class.saved]="saved"
+    aria-label="Toggle bookmark"
+    (click)="toggle()">
+    <span class="bookmark"></span>
+</button>

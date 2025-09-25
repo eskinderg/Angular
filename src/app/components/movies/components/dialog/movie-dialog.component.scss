@@ -24,12 +24,6 @@
     align-items: center;
 }
 
-.btn-fav {
-    font-size: 1.5rem;
-    width: 3.5rem;
-    height: 3.5rem;
-}
-
 .circle-rating {
     display: flex;
     flex-direction: column;
@@ -38,10 +32,6 @@
 
 .primary-lang {
     font-size: 2rem !important;
-}
-
-.favorite {
-    background-color: red;
 }
 
 .card-img-top {
@@ -293,10 +283,6 @@ td.value {
     padding-left: 1rem;
     display: flex;
     gap: 0.25rem;
-}
-
-.fav-btn {
-    width: 100%;
 }
 
 :host {

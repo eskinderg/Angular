@@ -20,6 +20,9 @@
                             <div class="card-body">
                                 <div class="card-title">
                                     <div class="title">
+                                        <app-bookmark
+                                            [saved]="isInWatchList | async"
+                                            (savedChange)="onBookmarkToggled($event)" />
                                         {{ movieDetail.title }} ({{
                                             movieDetail.release_date | truncate: '4' : false
                                         }})
@@ -111,19 +114,6 @@
                                         </table>
                                     </div>
                                     <div class="right-split">
-                                        <div class="fav-button">
-                                            @if (isInWatchList | async) {
-                                                <button
-                                                    class="btn-fav favorite"
-                                                    (click)="btnRemoveWatchListClick()">
-                                                    ♥
-                                                </button>
-                                            } @else {
-                                                <button class="btn-fav" (click)="btnAddWatchListClick()">
-                                                    ♥
-                                                </button>
-                                            }
-                                        </div>
                                         <div class="circle-rating">
                                             <app-circular-rating
                                                 [voteAverage]="movieDetail.vote_average"

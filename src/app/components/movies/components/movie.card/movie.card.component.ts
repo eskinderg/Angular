@@ -14,13 +14,22 @@ import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
+import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
+    imports: [
+        RouterLink,
+        BookmarkComponent,
+        CircularRatingComponent,
+        CommonModule,
+        UpperCasePipe,
+        TruncatePipe,
+        AsyncPipe
+    ]
 })
 export class MovieCardComponent implements OnInit {
     private movieApiService = inject(MoviesApiService);
@@ -74,11 +83,8 @@ export class MovieCardComponent implements OnInit {
         return this.movieApiService.isInWatchList(this.movie);
     }
 
-    btnAddWatchListClick() {
-        this.movieApiService.addWatchList(this.movie);
-    }
-
-    btnRemoveWatchListClick() {
-        this.movieApiService.removeWatchList(this.movie);
+    onBookmarkToggled(event: any) {
+        if (event) this.movieApiService.addWatchList(this.movie);
+        else this.movieApiService.removeWatchList(this.movie);
     }
 }
