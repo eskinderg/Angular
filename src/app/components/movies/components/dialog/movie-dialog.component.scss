@@ -58,10 +58,6 @@
     gap: 2rem;
 }
 
-.title {
-    text-align: center;
-}
-
 .card-body {
     position: relative;
     padding-right: 0.5rem;
@@ -296,6 +292,10 @@ td.value {
     width: 100%;
     display: block;
     z-index: 2;
+}
+
+app-bookmark {
+    align-self: self-start;
 }
 
 *::-webkit-scrollbar {

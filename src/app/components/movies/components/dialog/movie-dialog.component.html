@@ -19,10 +19,10 @@
                         <div class="right-col-wrapper">
                             <div class="card-body">
                                 <div class="card-title">
+                                    <app-bookmark
+                                        [saved]="isInWatchList | async"
+                                        (savedChange)="onBookmarkToggled($event)" />
                                     <div class="title">
-                                        <app-bookmark
-                                            [saved]="isInWatchList | async"
-                                            (savedChange)="onBookmarkToggled($event)" />
                                         {{ movieDetail.title }} ({{
                                             movieDetail.release_date | truncate: '4' : false
                                         }})
