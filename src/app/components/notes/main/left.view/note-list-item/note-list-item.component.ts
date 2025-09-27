@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { Note } from 'src/app/models/note';
-import { NgClass, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../../fragments/components/tooltip/tooltip.directive';
 import { NoteTitleTruncatePipe } from '../../../../movies/directives/noteTitleTruncate';
 import { AgoDatePipe } from '../../../../movies/directives/dateagopipe';
@@ -17,7 +17,7 @@ type Animate = {
     animations: [FadeInOutNoteListItem],
     styleUrls: ['./note-list-item.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgClass, TooltipDirective, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
+    imports: [TooltipDirective, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
 })
 export class NoteListItemComponent {
     @Input() note: Note;

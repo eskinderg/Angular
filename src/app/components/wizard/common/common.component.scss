@@ -18,22 +18,3 @@
     top: 50%;
     z-index: -1;
 }
-
-:host ::ng-deep .fa {
-    font-size: 2rem;
-}
-
-:host ::ng-deep * {
-    color: var(--b-active-link-color);
-}
-
-:host ::ng-deep .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-:host ::ng-deep a {
-    font-size: 2.5rem;
-    text-decoration: none;
-}

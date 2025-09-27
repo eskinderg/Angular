@@ -2,7 +2,7 @@
 <div [@movieCardList] class="movie-cards-container">
     @for (movie of movieApiService.getUserMovies() | async; track movie) {
         <div>
-            <app-movie-card [movie]="movie" (clickImage)="onClick($event)"></app-movie-card>
+            <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />
         </div>
     }
 </div>

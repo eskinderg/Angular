@@ -1,8 +1,7 @@
-$gap : 4vh;
-$padding : 4vh;
-$color : #48CAE4;
-
-$bp : (
+$gap: 4vh;
+$padding: 4vh;
+$color: #48CAE4;
+$bp: (
   mobile : 480px,
   tablet : 768px,
   desktop : 1440px,
@@ -10,7 +9,7 @@ $bp : (
 
 @mixin query($display){
   @each $key, $value in $bp{
-    @if ($display == $key){
+    @if $display == $key{
       @media (max-width: $value){@content;}
     }
   }

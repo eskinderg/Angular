@@ -58,6 +58,11 @@ export const setPreferedMovieLanguage = createAction(
     props<{ lang: string }>()
 );
 
+export const setPreferedMovieLanguageSuccess = createAction(
+    '[MOVIE] SET_PREFERED_LANGUAGE_SUCCESS',
+    props<{ lang: string }>()
+);
+
 export const getDiscoverMovies = createAction(
     '[MOVIE] GET_DISCOVER_MOVIES',
     props<{ queryParams: MovieQueryParams }>()

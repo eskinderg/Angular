@@ -2,9 +2,11 @@
     position: relative;
     height: 100%;
 }
+
 .year-slider-container {
     background: var(--body-bg, #fff);
     margin: auto;
+
     // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: system-ui, sans-serif;
     display: flex;
@@ -12,8 +14,9 @@
     width: 350px;
     align-items: center;
     gap: 0.5rem;
+
     // border: 1px solid;
-    padding: 0 10px 0 10px;
+    padding: 0 10px;
     height: 100%;
 }
 
@@ -54,18 +57,13 @@
     left: -2px;
     width: 100%;
     pointer-events: none;
-    -webkit-appearance: none;
+    appearance: none;
     background: none;
-
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
     transform: rotateY(180deg);
 }
 
 .slider input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
+    appearance: none;
     pointer-events: all;
     height: 16px;
     width: 16px;

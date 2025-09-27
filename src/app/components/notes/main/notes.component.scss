@@ -10,21 +10,15 @@
     height: 100%;
     flex: 1 1 auto;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
 }
 
 .note-select-info {
     display: flex;
-    height: 100%;
-    width: -moz-fit-content;
-    height: -moz-fit-content;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    width: fit-content;
+    height: fit-content;
+    inset: 0;
+    flex-flow: column nowrap;
     justify-content: space-around;
     align-items: center;
     color: var(--secondary);
@@ -67,7 +61,7 @@
 
 .filter:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
     background-color: var(--filter-hover);
 }
 
@@ -89,6 +83,7 @@
 
 mark {
     background-color: #ffeb3b;
+
     // color: #000000;
     // font-weight: bold;
 }
@@ -110,8 +105,7 @@ mark {
 
 .notes-detail {
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-flow: column nowrap;
     flex: 1 1 auto;
     box-sizing: border-box;
     outline: 1px solid var(--border);
@@ -138,16 +132,16 @@ mark {
 .menu-wrapper {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     border-bottom: 2px solid var(--border);
     padding: 1rem;
 }
 
 textarea:hover {
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 8px rgb(0 0 0 / 15%);
 }
+
 textarea:focus {
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 12px rgb(0 0 0 / 20%);
     outline: none;
 }

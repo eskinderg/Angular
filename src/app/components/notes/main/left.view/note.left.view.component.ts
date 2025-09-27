@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, viewChild, inject } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    Input,
+    viewChild,
+    inject,
+    EventEmitter,
+    Output,
+    OnDestroy
+} from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Store } from '@ngrx/store';
@@ -9,9 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { NoteListItemComponent } from './note-list-item/note-list-item.component';
 import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
-import { DialogService } from 'src/app/shared/dialog/dialog.service';
-import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 @Component({
@@ -22,9 +30,8 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     animations: [FadeInOutNoteListItem],
     imports: [NoteListItemComponent, AsyncPipe, SvgIconComponent]
 })
-export class NoteLeftViewComponent {
+export class NoteLeftViewComponent implements OnDestroy {
     notesApiService = inject(NoteApiService);
-    private dialogService = inject(DialogService);
     private noteStore = inject<Store<fromNotes.INotesState>>(Store);
     route = inject(Router);
 
@@ -32,17 +39,24 @@ export class NoteLeftViewComponent {
     searchInputRef = viewChild.required<ElementRef<HTMLInputElement>>('search');
 
     @Input() searchTerm$: BehaviorSubject<string>;
-    @Input() notes: Note[];
+    @Input() notes$: Observable<Note[]>;
+    @Input() selectedNote$: Observable<Note>;
+
+    @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
+    @Output() updatePin: EventEmitter<Note> = new EventEmitter();
+    @Output() selectNote: EventEmitter<Note> = new EventEmitter();
+    @Output() createNewNote: EventEmitter<Note> = new EventEmitter();
+
     searchVisible: boolean = false;
+    private timeoutId: any;
 
     showSearch() {
         this.searchVisible = true;
-        setTimeout(() => this.searchInputRef().nativeElement.focus(), 0);
+        this.timeoutId = setTimeout(() => this.searchInputRef().nativeElement.focus(), 0);
     }
 
     onSearchInput(event: any) {
-        const element = event.currentTarget as HTMLInputElement;
-        const value = element.value;
+        const value = (event.currentTarget as HTMLInputElement).value;
         if (value.length) this.notesApiService.unselectNote();
         this.searchTerm$.next(value);
     }
@@ -56,61 +70,24 @@ export class NoteLeftViewComponent {
         this.searchTerm$.next('');
     }
 
-    onChangeNoteText(note: Note) {
-        this.notesApiService.updateNoteText(note);
+    onSelectNote(note: Note) {
+        this.selectNote.emit(note);
     }
 
-    selectionChange(note: Note) {
-        this.notesApiService.updateNoteSelection(note);
+    onCreateNewNote() {
+        this.createNewNote.emit({ ...new Note(), id: uuidv4() });
     }
 
-    selectNote(note: Note) {
-        this.notesApiService.selectNote(note);
-    }
-
-    toggleSpellCheck(note: Note) {
-        this.notesApiService.toggleSpellCheck(note);
-        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
-    }
-
-    createNewNote() {
-        this.notesApiService.createNewNote({ ...new Note(), id: uuidv4() });
-    }
-
-    updatePinOrder(note: Note) {
-        this.notesApiService.updateNotePinOrder(note);
-    }
-
-    updateNoteColour(note: Note) {
-        this.notesApiService.updateNoteColour(note);
+    onUpdatePinOrder(note: Note) {
+        this.updatePin.emit(note);
     }
 
     onArchiveNote(note: Note) {
-        this.dialogService
-            .openDialog(
-                'Archive Note',
-                'Do you want to archive this note?',
-                DIALOG_TYPE.YES_NO,
-                true,
-                DIALOG_SIGNS.TRASH
-            )
-            .then((result) => {
-                if (result === DIALOG_RESPONSE.YES) {
-                    this.notesApiService.archiveNote(note);
-                }
-            });
-    }
-
-    onUpdateNoteHeader(note: Note) {
-        this.notesApiService.updateNoteHeader(note);
+        this.archiveNote.emit(note);
     }
 
     routeToArchivedNotes() {
         this.route.navigateByUrl('notes/archived');
-    }
-
-    get Notes() {
-        return this.notesApiService.Notes;
     }
 
     get Animate() {
@@ -125,11 +102,7 @@ export class NoteLeftViewComponent {
         return this.notesApiService.NotesLength;
     }
 
-    get SelectedNote() {
-        return this.notesApiService.SelectedNote;
-    }
-
-    get OpendNote() {
-        return this.notesApiService.OpendNote;
+    ngOnDestroy(): void {
+        if (this.timeoutId) clearTimeout(this.timeoutId);
     }
 }

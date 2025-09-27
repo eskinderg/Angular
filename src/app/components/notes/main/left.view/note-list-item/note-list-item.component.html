@@ -2,18 +2,18 @@
     [@.disabled]="!animate.note"
     [@fadeInOutNoteListItem]
     class="note-border"
-    [ngClass]="{ 'selected-note': selectedNote === note }">
+    [class.selected-note]="selectedNote === note">
     <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
     <div class="left" (mouseup)="onSelectNote(note)">
         <div class="item" (mouseup)="onSelectNote(note)">
-            <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinned }">
+            <div class="note-text" [class.pinned-note-text]="note.pinned">
                 {{ note | noteTitleTruncate: '20' : true }}
             </div>
         </div>
 
         <small
             (mouseup)="onSelectNote(note)"
-            [ngClass]="{ 'pinned-note-text': note.pinned }"
+            [class.pinned-note-text]="note.pinned"
             class="date-modified date-text"
             [@.disabled]="!animate.date"
             [@fadeInOutNoteListItem]
@@ -44,8 +44,6 @@
         </div>
 
         <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
-            <!-- <app-svg-icon height="28" width="28" [src]="'assets/images/pin.svg'"></app-svg-icon> -->
-
             <svg
                 class="pin"
                 width="800px"
@@ -60,6 +58,6 @@
             </svg>
         </div>
 
-        <div class="note-colour" [ngClass]="note.colour + '-note'"></div>
+        <div class="note-colour {{ note.colour + '-note' }}"></div>
     </div>
 </div>

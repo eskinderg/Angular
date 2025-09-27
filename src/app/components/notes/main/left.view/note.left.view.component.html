@@ -5,21 +5,21 @@
             height="25"
             width="25"
             (clicked)="showSearch()"
-            src="assets/images/search.svg"></app-svg-icon>
+            src="assets/images/search.svg" />
         <div class="note-count" (click)="showSearch()">Notes ({{ NotesCount | async }})</div>
         <app-svg-icon
             height="21"
             width="21"
             (clicked)="routeToArchivedNotes()"
             class="archive-note-icon"
-            src="assets/images/archive.svg"></app-svg-icon>
+            src="assets/images/archive.svg" />
 
         <app-svg-icon
             height="26"
             width="26"
-            (clicked)="createNewNote()"
+            (clicked)="onCreateNewNote()"
             class="add-note-icon"
-            src="assets/images/add.svg"></app-svg-icon>
+            src="assets/images/add.svg" />
     } @else {
         <div class="search">
             <input
@@ -41,22 +41,19 @@
     <div class="list-notes">
         @if (NoteLoading | async) {
             <div class="no-content">
-                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
-                    <!-- <span class="visually-hidden">Loading...</span> -->
-                </div>
+                <div class="spinner-border" style="width: 3rem; height: 3rem" role="status"></div>
             </div>
-        } @else if (notes.length === 0) {
+        } @else if ((notes$ | async).length === 0) {
             <div class="no-content">No notes</div>
         } @else {
-            @for (note of notes; track note.id) {
+            @for (note of notes$ | async; track note.id) {
                 <app-note-list-item
                     [note]="note"
                     [animate]="Animate | async"
-                    [selectedNote]="SelectedNote | async"
-                    (selectNote)="selectNote($event)"
+                    [selectedNote]="selectedNote$ | async"
+                    (selectNote)="onSelectNote($event)"
                     (archiveNote)="onArchiveNote($event)"
-                    (changePineOrder)="updatePinOrder($event)">
-                </app-note-list-item>
+                    (changePineOrder)="onUpdatePinOrder($event)" />
             }
         }
     </div>

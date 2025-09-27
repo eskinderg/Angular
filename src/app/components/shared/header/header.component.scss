@@ -6,7 +6,7 @@
 .menu {
     background-color: var(--primary);
     padding: 0.5rem 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
 }
 
 .menu li > a:has(+ ul)::after {
@@ -41,6 +41,7 @@
     stroke: var(--note-pin-nofill);
     cursor: pointer;
     margin-right: auto;
+
     // display: inline-flex;
 }
 
@@ -59,8 +60,8 @@
 /* Smooth highlight without shifting content */
 .menu > a:hover,
 .menu .activeLink {
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+    background-color: rgb(255 255 255 / 10%);
+    box-shadow: 0 0 0 2px rgb(255 255 255 / 25%);
 }
 
 /* Brand styling */
@@ -68,6 +69,7 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #61dafb;
+
     // margin-right: auto;
     transition: color 0.3s ease;
 }
@@ -86,7 +88,7 @@
     border-radius: 6px;
     padding: 0.5rem 0;
     min-width: 180px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
     animation: scaleIn 0.3s ease-in-out;
     z-index: 1000;
     flex-direction: column;
@@ -133,6 +135,7 @@
         transform: scale(0.95);
         opacity: 0;
     }
+
     100% {
         transform: scale(1);
         opacity: 1;

@@ -5,7 +5,7 @@ import * as fromRoot from '../../../store/reducers';
 import * as AppActions from '../../../store/actions';
 import { Tv } from '../models/tv';
 import { MovieQueryParams, MoviesDataService } from './movies.data.service';
-import { Observable, empty } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Movie } from '../models/movie';
 
@@ -18,7 +18,7 @@ export class MoviesApiService {
         if (searchStr !== undefined && searchStr !== '') {
             return this.api.searchMovies(searchStr);
         }
-        return empty();
+        return EMPTY;
     }
     getPopularSeries(): Observable<Tv[]> {
         return this.api.getPopularSeries();
@@ -90,7 +90,17 @@ export class MoviesApiService {
     }
 
     getLanguages(filterLangs: string[] = []) {
-        return this.api.getLanguages(filterLangs);
+        return this.api
+            .getLanguages(filterLangs)
+            .pipe(
+                map((l) =>
+                    l.filter((lang) =>
+                        filterLangs.length
+                            ? filterLangs.includes(lang.iso_639_1)
+                            : ['am', 'en'].includes(lang.iso_639_1)
+                    )
+                )
+            );
     }
 
     getYears() {

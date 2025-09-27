@@ -1,28 +1,28 @@
 :host {
     // padding: 0.5rem;
-    display:block;
+    display: block;
 }
 
 .movie-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    // justify-content: space-evenly;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    gap: 30px;
+    justify-content: space-around; /* prevent stretching of last row */
+    padding: 2rem;
 }
 
 .search-wrapper {
     position: sticky;
-    top: 0rem;
+    top: 0;
     z-index: 1;
     background: var(--body-bg);
     padding: 0.5rem;
+
     // padding-top: 1rem;
 }
 
 input {
     width: 100%;
-    font-size: 1rem;
     font-size: 2.5rem;
     color: var(--b-secondary) !important;
     margin: 0;

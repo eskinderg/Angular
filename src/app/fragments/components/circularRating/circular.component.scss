@@ -38,6 +38,7 @@
             font-size: calc((var(--size) * 1px) / 3.5);
             font-weight: bold;
             color: var(--body-color);
+
             // border: 1px solid #5a5a5a;
         }
 
@@ -51,9 +52,11 @@
     &.green {
         --fill-color: #21d07a;
     }
+
     &.yellow {
         --fill-color: #d2d531;
     }
+
     &.red {
         --fill-color: #db2360;
     }
