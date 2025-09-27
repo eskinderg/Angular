@@ -43,7 +43,6 @@ export class NoteLeftViewComponent implements OnDestroy {
     @Input() selectedNote$: Observable<Note>;
 
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
-    @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
     @Output() updatePin: EventEmitter<Note> = new EventEmitter();
     @Output() selectNote: EventEmitter<Note> = new EventEmitter();
     @Output() createNewNote: EventEmitter<Note> = new EventEmitter();
@@ -85,10 +84,6 @@ export class NoteLeftViewComponent implements OnDestroy {
 
     onArchiveNote(note: Note) {
         this.archiveNote.emit(note);
-    }
-
-    onUpdateNoteHeader(note: Note) {
-        this.updateNoteHeader.emit(note);
     }
 
     routeToArchivedNotes() {
