@@ -1,7 +1,6 @@
 .w {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     gap: 0.25rem;
 }
 
@@ -11,7 +10,7 @@
     width: 1.75rem;
     height: 1.75rem;
     border-radius: 50%;
-    box-shadow: 0px 0px 4px 0px var(--active-list-link-border-color);
+    box-shadow: 0 0 4px 0 var(--active-list-link-border-color);
 }
 
 .active {
@@ -19,5 +18,5 @@
     // border: 6px solid var(--active-list-link-border-color);
     // box-shadow: 1px 1px 4px 1px;
     // outline: 4px solid var(--body-color);
-    box-shadow: inset 0px 0px 5px 1px var(--body-color);
+    box-shadow: inset 0 0 5px 1px var(--body-color);
 }

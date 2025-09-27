@@ -1,17 +1,17 @@
 .dialog-box {
     display: flex;
     flex-direction: column;
-    position: relative;
     outline: none;
     width: 400px;
     background: var(--body-bg);
+
     // padding: 1rem;
     border-radius: 8px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
     animation: fadeIn 0.2s ease-in-out;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
     font-family: system-ui, sans-serif;
     border: 2px solid var(--card-border-color);
     top: -15%;
@@ -20,7 +20,7 @@
 .dialog-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgb(0 0 0 / 40%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@
 }
 
 .dialog-body {
-    padding: 0 1rem 0 1rem;
+    padding: 0 1rem;
     color: var(--body-color);
     display: flex;
     justify-content: space-between;
@@ -76,6 +76,7 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+
     // background-color: var(--primary);
     color: white;
     transition: background-color 0.2s ease;
@@ -86,6 +87,7 @@
         transform: scale(0.9);
         opacity: 0;
     }
+
     to {
         transform: scale(1);
         opacity: 1;

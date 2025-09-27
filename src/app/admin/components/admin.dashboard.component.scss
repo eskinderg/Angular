@@ -1,5 +1,5 @@
 :host {
-    padding: 0rem 0rem 1rem 1rem;
+    padding: 0 0 1rem 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem 0;
 }
 
 .checkbox {
@@ -28,6 +28,7 @@
     // border: 2px solid var(--bs-popover-header-bg) ! important;
     // background: var(--active-list-link-border-color) !important;
     outline: 1px solid var(--b-active-link-color) !important;
+
     // color: var(--bs-border-color) !important;
 }
 
@@ -35,9 +36,11 @@
     width: 2rem;
     height: 2rem;
     cursor: pointer;
+
     // font-size: 1.75rem;
     // font-weight: 400;
     color: #888;
+
     // padding-bottom: 0.5rem;
 
     path {
@@ -61,7 +64,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-family: 'Segoe UI', sans-serif;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 6px rgb(0 0 0 / 5%);
 
     th,
     td {
@@ -72,52 +75,6 @@ table {
         overflow: hidden;
         white-space: nowrap;
     }
-
-    th.checkbox,
-    td.checkbox {
-        min-width: 5rem;
-        max-width: 40px;
-    }
-    th:nth-child(2),
-    td:nth-child(2) {
-        width: 15%;
-    } // Header
-    th:nth-child(3),
-    td:nth-child(3) {
-        width: 10%;
-    } // Owner
-    th:nth-child(4),
-    td:nth-child(4) {
-        width: 7%;
-    } // Active
-    th:nth-child(5),
-    td:nth-child(5) {
-        width: 7%;
-    } // Archived
-    th:nth-child(6),
-    td:nth-child(6) {
-        width: 7%;
-    } // Pinned
-    th:nth-child(7),
-    td:nth-child(7) {
-        width: 12%;
-    } // Date Archived
-    th:nth-child(8),
-    td:nth-child(8) {
-        width: 8%;
-    } // Spell Check
-    th:nth-child(9),
-    td:nth-child(9) {
-        width: 7%;
-    } // Colour
-    th:nth-child(10),
-    td:nth-child(10) {
-        width: 12%;
-    } // Created
-    th:nth-child(11),
-    td:nth-child(11) {
-        width: 12%;
-    } // Last Modified
 
     th {
         position: sticky;
@@ -158,6 +115,53 @@ table {
             text-decoration: underline;
         }
     }
+
+    th.checkbox,
+    td.checkbox {
+        min-width: 5rem;
+        max-width: 40px;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+        width: 15%;
+    } // Header
+    th:nth-child(3),
+    td:nth-child(3) {
+        width: 10%;
+    } // Owner
+    th:nth-child(4),
+    td:nth-child(4) {
+        width: 7%;
+    } // Active
+    th:nth-child(5),
+    td:nth-child(5) {
+        width: 7%;
+    } // Archived
+    th:nth-child(6),
+    td:nth-child(6) {
+        width: 7%;
+    } // Pinned
+    th:nth-child(7),
+    td:nth-child(7) {
+        width: 12%;
+    } // Date Archived
+    th:nth-child(8),
+    td:nth-child(8) {
+        width: 8%;
+    } // Spell Check
+    th:nth-child(9),
+    td:nth-child(9) {
+        width: 7%;
+    } // Colour
+    th:nth-child(10),
+    td:nth-child(10) {
+        width: 12%;
+    } // Created
+    th:nth-child(11),
+    td:nth-child(11) {
+        width: 12%;
+    } // Last Modified
 
     tr:nth-child(even) {
         background-color: var(--bs-card-bg);
@@ -214,6 +218,7 @@ select:focus {
     appearance: none;
     margin: 0;
     padding: 0.5rem 4rem 0.5rem 0.75rem;
+
     // border: 1px solid var(--border);
     box-shadow: none;
 
@@ -225,6 +230,7 @@ select:focus {
 select:focus > option:checked {
     /* selected option */
     background: var(--bs-border-color) !important;
+
     // color: var(--b-active-link-color);
     color: #fff;
 }
@@ -239,8 +245,10 @@ input[type='text'] {
     // margin-bottom: 1rem;
     font-size: 1rem;
     width: 250px;
+
     // border: 1px solid #ccc;
     border-radius: 6px;
+
     // box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -252,6 +260,7 @@ input[type='checkbox'] {
 .search-wrapper {
     position: relative;
     display: inline-block;
+
     // margin-left: 1rem;
 
     input[type='text'] {
@@ -259,8 +268,10 @@ input[type='checkbox'] {
         margin: 0;
         font-size: 1rem;
         width: 250px;
+
         // border: 1px solid #ccc;
         border-radius: 6px;
+
         // box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 

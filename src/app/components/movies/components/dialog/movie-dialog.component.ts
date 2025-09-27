@@ -18,6 +18,7 @@ import { TruncatePipe } from '../../directives/truncate';
 import { MovieDialogService } from '../../service/movie.dialog.service';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
+import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 
 @Component({
     selector: 'app-movie-modal',
@@ -25,7 +26,7 @@ import { CircularRatingComponent } from 'src/app/fragments/components/circularRa
     styleUrl: './movie-dialog.component.scss',
     animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CircularRatingComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
+    imports: [CircularRatingComponent, BookmarkComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
 export class MovieDialogComponent implements OnInit, OnDestroy {
     private host = inject<ElementRef<HTMLElement>>(ElementRef);
@@ -97,6 +98,11 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
         }
     }
 
+    onBookmarkToggled(event: any) {
+        if (event) this.movieApiService.addWatchList(this.movieDetail);
+        else this.movieApiService.removeWatchList(this.movieDetail);
+    }
+
     onPosterImageLoaded() {
         this.posterImageLoaded.emit();
     }
@@ -120,14 +126,6 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
 
     get isInWatchList() {
         return this.movieApiService.isInWatchList(this.movieDetail);
-    }
-
-    btnAddWatchListClick() {
-        this.movieApiService.addWatchList(this.movieDetail);
-    }
-
-    btnRemoveWatchListClick() {
-        this.movieApiService.removeWatchList(this.movieDetail);
     }
 
     ngOnDestroy(): void {

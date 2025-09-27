@@ -5,7 +5,7 @@ import * as fromRoot from '../../../store/reducers';
 import * as AppActions from '../../../store/actions';
 import { Tv } from '../models/tv';
 import { MovieQueryParams, MoviesDataService } from './movies.data.service';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Movie } from '../models/movie';
 
@@ -90,7 +90,17 @@ export class MoviesApiService {
     }
 
     getLanguages(filterLangs: string[] = []) {
-        return this.api.getLanguages(filterLangs);
+        return this.api
+            .getLanguages(filterLangs)
+            .pipe(
+                map((l) =>
+                    l.filter((lang) =>
+                        filterLangs.length
+                            ? filterLangs.includes(lang.iso_639_1)
+                            : ['am', 'en'].includes(lang.iso_639_1)
+                    )
+                )
+            );
     }
 
     getYears() {

@@ -1,7 +1,6 @@
 :host {
     // display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
+    flex-flow: column nowrap;
     justify-content: center;
     border-top: 1px solid var(--border);
     border-right: 1px solid var(--border);

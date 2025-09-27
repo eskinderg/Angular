@@ -1,24 +1,31 @@
 <div class="note-div">
     <div class="notes-navigation">
-        <app-note-left-view [notes]="filteredNotes$ | async" [searchTerm$]="searchTerm$"></app-note-left-view>
+        <app-note-left-view
+            [notes$]="filteredNotes$"
+            [selectedNote$]="notesApiService.SelectedNote"
+            (archiveNote)="onArchiveNote($event)"
+            (updatePin)="onUpdatePinOrder($event)"
+            (selectNote)="onSelectNote($event)"
+            (createNewNote)="onCreateNewNote($event)"
+            [searchTerm$]="searchTerm$" />
     </div>
     <div class="notes-detail">
         <div class="note-outlet">
-            @if (OpendNote | async) {
+            @if (notesApiService.OpendNote | async) {
                 <app-note-right-view
                     #appNote
-                    [facadeNote]="FacadeNote | async"
+                    [facadeNote]="notesApiService.FacadeNote | async"
+                    [opendNote]="notesApiService.OpendNote | async"
                     (archiveNote)="onArchiveNote($event)"
                     (changeNoteText)="onChangeNoteText($event)"
-                    (updateNoteColour)="updateNoteColour($event)"
+                    (updateNoteColour)="onUpdateNoteColour($event)"
                     (updateNoteHeader)="onUpdateNoteHeader($event)"
-                    (noteSelectionChange)="selectionChange($event)"
-                    (toggleSpellCheck)="toggleSpellCheck($event)"
-                    [note]="OpendNote | async"></app-note-right-view>
+                    (noteSelectionChange)="onSelectionChange($event)"
+                    (toggleSpellCheck)="onToggleSpellCheck($event)" />
             } @else if (searchTerm$.value.length) {
                 <div class="filterWrapper">
                     @for (note of filteredNotes$ | async; track note) {
-                        <div class="filter" (click)="selectionChange(note)">
+                        <div class="filter" (click)="onSelectionChange(note)">
                             <div class="note-header" [innerHTML]="hightlightText(note, 'header')"></div>
                             <div class="note-preview" [innerHTML]="hightlightText(note, 'text')"></div>
                         </div>

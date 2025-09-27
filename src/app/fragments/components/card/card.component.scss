@@ -4,6 +4,7 @@
 
 .card {
     border: 1px solid var(--card-border-color);
+
     // background-color: var(--card-bg);
     border-radius: 0.375rem;
 }
@@ -16,8 +17,7 @@
 }
 
 .scroll-content {
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden scroll;
 }
 
 *::-webkit-scrollbar {

@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'icomoon';
+  font-family: icomoon;
   src:  url('fonts/icomoon.eot?vyhrcu');
   src:  url('fonts/icomoon.eot?vyhrcu#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?vyhrcu') format('truetype'),
@@ -11,7 +11,7 @@
 
 [class^="fa-"], [class*=" fa-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
+  font-family: icomoon !important;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -23,42 +23,54 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.fa-library:before {
+.fa-library::before {
   content: "\e921";
 }
-.fa-credit-card:before {
+
+.fa-credit-card::before {
   content: "\e93f";
 }
-.fa-user:before {
+
+.fa-user::before {
   content: "\e971";
 }
-.fa-bin2:before {
+
+.fa-bin2::before {
   content: "\e9ad";
 }
-.fa-checkmarkcomplete:before {
+
+.fa-checkmarkcomplete::before {
   content: "\ea10";
 }
-.fa-circle-up:before {
+
+.fa-circle-up::before {
   content: "\ea41";
 }
-.fa-circle-right:before {
+
+.fa-circle-right::before {
   content: "\ea42";
 }
-.fa-circle-left:before {
+
+.fa-circle-left::before {
   content: "\ea44";
 }
-.fa-pencil:before {
+
+.fa-pencil::before {
   content: "\e905";
 }
-.fa-pencil2:before {
+
+.fa-pencil2::before {
   content: "\e906";
 }
-.fa-plus:before {
+
+.fa-plus::before {
   content: "\ea0a";
 }
-.fa-checkmark:before {
+
+.fa-checkmark::before {
   content: "\ea11";
 }
-.fa-flicker:before {
+
+.fa-flicker::before {
   content: "\eaa3";
 }

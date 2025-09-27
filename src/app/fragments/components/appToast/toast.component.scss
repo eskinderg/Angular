@@ -30,10 +30,11 @@
     background-color: var(--body-bg, #fff);
     color: #333;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
     border: 1px solid var(--border);
     overflow: hidden;
     font-family: system-ui, sans-serif;
+
     // animation: fadeIn 0.3s ease;
 }
 
@@ -44,7 +45,7 @@
     cursor: pointer;
     justify-content: space-between;
     padding: 0.25rem 0.75rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgb(0 0 0 / 8%);
     font-weight: 600;
     font-size: 0.85rem;
     background: var(--bs-card-cap-bg);
@@ -63,6 +64,7 @@
     opacity: 0.8;
     transition: opacity 0.2s ease;
 }
+
 .toast-close:hover {
     opacity: 1;
 }
@@ -96,6 +98,7 @@
         opacity: 0;
         transform: translateY(15px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

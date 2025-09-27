@@ -1,4 +1,5 @@
 <div class="header">
+    <app-year-range-slider (rangeSelected)="onYearRangeSelected($event)"> </app-year-range-slider>
     <select
         [value]="selectedLanguage$ | async"
         (change)="languageSelected($event)"
@@ -12,13 +13,12 @@
             </option>
         }
     </select>
-    <app-year-range-slider (rangeSelected)="onYearRangeSelected($event)"> </app-year-range-slider>
 </div>
 
 <div class="wrapper">
     <div class="movie-cards-container">
         @for (movie of Movies | async; track trackByMovie($index, movie)) {
-            <app-movie-card [index]="$index" [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
+            <app-movie-card [index]="$index" [movie]="movie" (clickImage)="onClick($event)" />
         }
     </div>
 

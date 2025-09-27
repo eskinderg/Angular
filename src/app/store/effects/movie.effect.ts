@@ -99,6 +99,17 @@ export class MoviesEffect {
             )
     );
 
+    setPreferedLanguage$ = createEffect((actions$ = inject(Actions)) =>
+        actions$.pipe(
+            ofType(MoviesActions.setPreferedMovieLanguage),
+            switchMap((action) =>
+                of(localStorage.setItem('lang', action.lang)).pipe(
+                    map(() => MoviesActions.setPreferedMovieLanguageSuccess({ lang: action.lang }))
+                )
+            )
+        )
+    );
+
     getDiscoverMovies$ = createEffect(
         (
             actions$ = inject(Actions),

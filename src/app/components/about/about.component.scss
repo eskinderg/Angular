@@ -35,15 +35,14 @@
 
 .nav {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-flow: row nowrap;
     list-style: none;
     margin: 0;
 }
 
 .nav-item {
     border: 1px solid var(--border);
-    margin: 0 0.1rem 0 0.1rem;
+    margin: 0 0.1rem;
     border-top-right-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
     border-bottom: none;

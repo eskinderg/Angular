@@ -1,13 +1,5 @@
 <div [tabIndex]="0" (click)="onBackdropOrButtonClick($event)" id="backDrop">
     <div [@modal] class="movie-dialog" id="scrollWrapper">
-        <button
-            type="button"
-            id="modalClose"
-            class="btn-close"
-            aria-label="Close"
-            (click)="onBackdropOrButtonClick($event)">
-            X
-        </button>
         <div class="card" style="">
             <div class="container p-0 pe-5">
                 <div class="row">
@@ -26,100 +18,122 @@
                             (error)="handleBackdropEmptyImage()" />
                         <div class="right-col-wrapper">
                             <div class="card-body">
-                                <!-- <p class="card-title"> <a [routerLink]="[linkUrl,'movie',movie.id]" class="text-decoration-none" >{{ movie.title  }}</a></p> -->
                                 <div class="card-title">
-                                    {{ movieDetail.title }} ({{
-                                        movieDetail.release_date | truncate: '4' : false
-                                    }})
+                                    <app-bookmark
+                                        [saved]="isInWatchList | async"
+                                        (savedChange)="onBookmarkToggled($event)" />
+                                    <div class="title">
+                                        {{ movieDetail.title }} ({{
+                                            movieDetail.release_date | truncate: '4' : false
+                                        }})
+                                    </div>
 
-                                    @if (isInWatchList | async) {
-                                        <button class="btn-fav favorite" (click)="btnRemoveWatchListClick()">
-                                            ♥
-                                        </button>
-                                    } @else {
-                                        <button class="btn-fav" (click)="btnAddWatchListClick()">♥</button>
-                                    }
+                                    <button
+                                        type="button"
+                                        id="modalClose"
+                                        class="btn-close"
+                                        aria-label="Close"
+                                        (click)="onBackdropOrButtonClick($event)">
+                                        X
+                                    </button>
                                 </div>
                                 <hr />
-                                <div class="header-row">
-                                    <span class="badge bg-secondary">
-                                        {{ movieDetail.original_language | uppercase }}</span
-                                    >
-
-                                    <h3 style="margin-left: auto">
-                                        {{ movieDetail.vote_count }} Votes &nbsp;
-                                    </h3>
-
-                                    <app-circular-rating
-                                        [voteAverage]="movieDetail.vote_average"
-                                        [voteCount]="movieDetail.vote_count"
-                                        [size]="90"
-                                        [duration]="750"
-                                        [animate]="true" />
+                                <div class="top">
+                                    <div class="overview">{{ movieDetail.overview }}</div>
                                 </div>
-
-                                <p class="card-text">{{ movieDetail.overview }}</p>
-
-                                <div class="mt-auto align-self-start"></div>
-
-                                <!-- <div class="d-flex justify-content-between"> -->
-                                <!--   <h4 class="card-title">{{ movieDetail.release_date }}</h4> -->
-                                <!-- </div> -->
-
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <b>Date Released:</b>
-                                        <a class="badge bg-secondary nodecoration ms-2">
-                                            {{ movieDetail.release_date }}</a
-                                        >
-                                    </li>
-                                    <!-- <li class="list-group-item"><b>Language:</b> <a class="badge bg-secondary nodecoration ms-2"> {{ -->
-                                    <!--     movieDetail.original_language }}</a></li> -->
-                                    <li class="list-group-item">
-                                        <b>Languages Spoken:</b>
-                                        @for (language of movieDetail.spoken_languages; track language) {
-                                            <a class="badge bg-secondary nodecoration ms-2">
-                                                {{
-                                                    language['name']
-                                                        ? language['name']
-                                                        : language['english_name']
-                                                }}
-                                            </a>
-                                        }
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Runtime</b>
-                                        <a class="badge bg-secondary nodecoration ms-2">
-                                            {{ movieDetail.runtime }} Minutes</a
-                                        >
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Status:</b>
-                                        <a class="badge bg-secondary nodecoration ms-2">
-                                            {{ movieDetail.status }}</a
-                                        >
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Genres:</b>
-                                        <div class="gen">
-                                            @for (genere of movieDetail.genres; track genere) {
-                                                <a class="badge bg-secondary nodecoration ms-2">
-                                                    {{ genere['name'] }}
-                                                </a>
-                                            }
+                                <hr />
+                                <div class="split">
+                                    <div class="left-split">
+                                        <table class="detail table table-borderless table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="detail-lable">Date Released:</td>
+                                                    <td class="value">
+                                                        <a class="badge bg-secondary nodecoration ms-2">
+                                                            {{ movieDetail.release_date }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="detail-lable">Languages Spoken:</td>
+                                                    <td class="value">
+                                                        @for (
+                                                            language of movieDetail.spoken_languages;
+                                                            track language
+                                                        ) {
+                                                            <a class="badge bg-secondary nodecoration ms-2">
+                                                                {{
+                                                                    language['name']
+                                                                        ? language['name']
+                                                                        : language['english_name']
+                                                                }}
+                                                            </a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="detail-lable">Runtime:</td>
+                                                    <td class="value">
+                                                        <a class="badge bg-secondary nodecoration ms-2">
+                                                            {{ movieDetail.runtime }} Minutes
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="detail-lable">Status:</td>
+                                                    <td class="value">
+                                                        <a class="badge bg-secondary nodecoration ms-2">
+                                                            {{ movieDetail.status }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="detail-lable">Genres:</td>
+                                                    <td class="value">
+                                                        @for (genere of movieDetail.genres; track genere) {
+                                                            <a class="badge bg-secondary nodecoration ms-2">
+                                                                {{ genere['name'] }}
+                                                            </a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="detail-lable">Country:</td>
+                                                    <td class="value">
+                                                        @for (
+                                                            country of movieDetail.origin_country;
+                                                            track country
+                                                        ) {
+                                                            <a class="badge bg-secondary nodecoration ms-2">
+                                                                {{ country }}
+                                                            </a>
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="right-split">
+                                        <div class="circle-rating">
+                                            <app-circular-rating
+                                                [voteAverage]="movieDetail.vote_average"
+                                                [voteCount]="movieDetail.vote_count"
+                                                [size]="90"
+                                                [duration]="750"
+                                                [animate]="true" />
+                                            <div class="votes">{{ movieDetail.vote_count }} Votes &nbsp;</div>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item"></li>
-                                </ul>
+                                        <span class="primary-lang badge bg-secondary">
+                                            {{ movieDetail.original_language | uppercase }}</span
+                                        >
+                                    </div>
+                                </div>
                             </div>
                             <div class="reviews">
                                 <div class="review-header">
                                     <div>
                                         <strong>Reviews ({{ movieDetail.reviews.results.length }})</strong>
                                     </div>
-                                    <!-- <app-ngbd-rating-decimal -->
-                                    <!--     [size]="2" -->
-                                    <!--     [currentRate]="movieRating"></app-ngbd-rating-decimal> -->
                                 </div>
                                 @if (movieDetail.reviews.results.length) {
                                     <div class="content">
