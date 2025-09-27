@@ -1,9 +1,10 @@
 .pagination-container {
     display: flex;
+
     // justify-content: center;
     align-items: center;
     gap: 6px;
-    padding: 1rem 0rem;
+    padding: 1rem 0;
     flex-wrap: wrap;
 }
 
@@ -18,12 +19,11 @@
     transition: all 0.2s ease-in-out;
     min-width: 38px;
 
-    &:hover:not(:disabled):not(.active) {
+    &:hover:not(:disabled, .active) {
         background: var(--list-link-hover);
         color: var(--body-color);
         border-color: var(--border);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 6px rgb(0 0 0 / 10%);
     }
 
     &:disabled {

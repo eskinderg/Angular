@@ -15,6 +15,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
+    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
+    "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "prepare": "husky"
   },
   "private": true,
@@ -74,6 +76,9 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "oidc-client": "^1.11.5",
     "prettier": "~3.6.2",
+    "stylelint": "^16.24.0",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-scss": "^6.12.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0"
   },

@@ -1,5 +1,4 @@
 :host {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     display: flex;
@@ -52,21 +51,22 @@ img {
 .note-left-menu {
     display: flex;
     flex-direction: row;
-    padding: 0 0.75rem 0 0.75rem;
+    padding: 0 0.75rem;
     gap: 1rem;
     align-items: center;
     position: relative;
     flex: 0 0 auto;
     border-right: 1px solid var(--border);
+
     // text-align: center;
     height: 3rem;
     line-height: 3rem;
     font-size: 1.25rem;
     color: var(--secondary);
     z-index: 2;
-    background: transparent;
     border-bottom: 1px solid var(--border);
     background: var(--bg-hover);
+
     // margin-right: 0.65rem;
 }
 
@@ -74,6 +74,7 @@ img {
     fill: var(--b-active-link-color);
     cursor: pointer;
     margin-left: auto;
+
     // position: absolute;
     // top: 0.85rem;
     // right: 4rem;
@@ -133,8 +134,7 @@ input::placeholder {
     flex: 1 1 3.5rem;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: hidden scroll;
     width: 100%;
     direction: rtl;
 }
@@ -143,6 +143,7 @@ input::placeholder {
     height: 100%;
     display: flex;
     flex-direction: column;
+
     // background: var(--body-bg);
     // background: var(--active-list-link);
     direction: ltr;
@@ -152,10 +153,7 @@ input::placeholder {
     position: absolute;
     width: fit-content;
     height: fit-content;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     margin: auto;
     color: var(--bs-secondary);
 }

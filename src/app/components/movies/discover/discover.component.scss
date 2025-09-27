@@ -6,6 +6,7 @@
     background: var(--body-bg);
     padding: 1rem;
     gap: 1rem;
+
     // justify-content: space-between;
     align-items: center;
     justify-content: space-between;
@@ -18,11 +19,11 @@
     justify-content: space-around; /* prevent stretching of last row */
     background-color: var(--body-bg);
     width: 100%;
-    padding: 0 3rem 0 3rem;
+    padding: 0 3rem;
 }
 
 .movie-page-loading {
-    margin: 5rem 0 10rem 0;
+    margin: 5rem 0 10rem;
     text-align: center;
     color: var(--b-secondary);
 }
@@ -57,6 +58,20 @@ select {
     background-repeat: no-repeat;
 }
 
+select,
+select:focus {
+    appearance: none;
+    margin: 0;
+    padding: 0.5rem 4rem 0.5rem 0.75rem;
+
+    // border: 1px solid var(--border);
+    box-shadow: none;
+
+    option {
+        border: none !important;
+    }
+}
+
 select:focus {
     background-image:
         linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%),
@@ -72,22 +87,10 @@ select:focus {
     background-repeat: no-repeat;
 }
 
-select,
-select:focus {
-    appearance: none;
-    margin: 0;
-    padding: 0.5rem 4rem 0.5rem 0.75rem;
-    // border: 1px solid var(--border);
-    box-shadow: none;
-
-    option {
-        border: none !important;
-    }
-}
-
 select:focus > option:checked {
     /* selected option */
     background: var(--bs-border-color) !important;
+
     // color: var(--b-active-link-color);
     color: #fff;
 }

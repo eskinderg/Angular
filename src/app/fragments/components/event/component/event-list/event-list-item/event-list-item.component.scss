@@ -9,7 +9,8 @@ a:focus {
 }
 
 .editbox {
-    border: 0px;
+    border: 0;
+
     // padding: 0px;
     line-height: 0px;
     background: rgb(from var(--body-color) r g b / 10%);
@@ -19,9 +20,7 @@ a:focus {
 }
 
 .custom-control {
-    padding: 0.3rem;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
+    padding: 0.3rem; /* Safari */ /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
 }
 

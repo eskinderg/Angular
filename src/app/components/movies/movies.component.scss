@@ -4,7 +4,6 @@
 
 .make-me-sticky {
     /* parent element should also be sticky */
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
 }
@@ -22,5 +21,6 @@
 .rightView {
     width: 100%;
     position:relative;
+
     // padding: 1rem;
 }

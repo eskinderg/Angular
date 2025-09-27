@@ -1,9 +1,10 @@
 .visually-hidden:not(caption),
-.visually-hidden-focusable:not(:focus):not(:focus-within):not(caption) {
+.visually-hidden-focusable:not(:focus, :focus-within, caption) {
     position: absolute !important;
 }
+
 .visually-hidden,
-.visually-hidden-focusable:not(:focus):not(:focus-within) {
+.visually-hidden-focusable:not(:focus, :focus-within) {
     width: 1px !important;
     height: 1px !important;
     padding: 0 !important;

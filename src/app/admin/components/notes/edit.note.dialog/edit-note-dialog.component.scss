@@ -1,7 +1,7 @@
 .dialog-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgb(0 0 0 / 40%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,11 +14,12 @@
     position: relative;
     outline: none;
     background: var(--body-bg);
+
     // padding: 2rem;
     border-radius: 10px;
     width: 80%;
     max-height: 70vh;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 24px rgb(0 0 0 / 20%);
     animation: fadeIn 0.2s ease-in-out;
     overflow-y: auto;
     top: -50px;
@@ -44,6 +45,7 @@
     align-items: center;
     font-weight: 600;
     font-size: 1.1rem;
+
     // border-bottom: 1px solid var(--primary);
 }
 
@@ -74,7 +76,7 @@ app-textarea-expanded {
 }
 
 .colour {
-    margin: 0 0 1rem 0;
+    margin: 0 0 1rem;
 }
 
 h2 {
@@ -116,6 +118,7 @@ input[readonly],
 input[type='checkbox'] {
     font-size: 1rem;
     padding: 0.6rem;
+
     // border: 1px solid #ccc;
     border-radius: 6px;
 }
@@ -126,7 +129,7 @@ input[type='text']::spelling-error {
 
 .textInput {
     border: 1px solid var(--b-secondary);
-    padding: 0.25rem 1rem 0.25rem 1rem;
+    padding: 0.25rem 1rem;
 }
 
 input[type='checkbox'] {
@@ -184,6 +187,7 @@ button {
 .split {
     display: flex;
     gap: 2rem;
+
     // flex-direction: row;
     // width: 100%;
 }
@@ -223,6 +227,7 @@ select {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -233,6 +238,7 @@ select {
         transform: translateY(-10px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;

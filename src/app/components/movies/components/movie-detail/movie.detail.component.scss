@@ -10,10 +10,12 @@
         'Helvetica Neue',
         Arial;
     color: var(--text-color, #e9eef3);
-    --card-bg: rgba(8, 12, 20, 0.72);
-    --muted: rgba(255, 255, 255, 0.72);
+
+    --card-bg: rgb(8 12 20 / 72%);
+    --muted: rgb(255 255 255 / 72%);
     --accent: #ffb86b;
-    --chip-bg: rgba(255, 255, 255, 0.06);
+    --chip-bg: rgb(255 255 255 / 6%);
+
     // padding: 1.5rem;
     box-sizing: border-box;
 }
@@ -39,10 +41,11 @@ a {
     filter: saturate(0.95) brightness(0.45);
     transform: translateZ(0);
 }
+
 .movie-detail .backdrop-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7, 10, 14, 0.55) 10%, rgba(7, 10, 14, 0.95) 80%);
+    background: linear-gradient(180deg, rgb(7 10 14 / 55%) 10%, rgb(7 10 14 / 95%) 80%);
 }
 
 /* Container holds poster + info */
@@ -59,23 +62,24 @@ a {
 
 /* Poster card */
 .poster-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    background: linear-gradient(180deg, rgb(255 255 255 / 2%), rgb(255 255 255 / 1%));
     border-radius: 12px;
     padding: 0.6rem;
-    box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+    box-shadow: 0 8px 30px rgb(2 6 23 / 60%);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 380px;
     justify-content: space-between;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid rgb(255 255 255 / 4%);
 }
+
 .poster-card .poster {
     width: 100%;
     border-radius: 8px;
     display: block;
-    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    box-shadow: 0 6px 18px rgb(2 6 23 / 60%);
     object-fit: cover;
     max-height: 520px;
 }
@@ -85,6 +89,7 @@ a {
     justify-content: center;
     color: var(--muted);
 }
+
 .poster-fallback {
     font-weight: 600;
     opacity: 0.7;
@@ -98,16 +103,17 @@ a {
     border-radius: 10px;
     font-size: 0.86rem;
     text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgb(255 255 255 / 6%);
+    background: linear-gradient(180deg, rgb(255 255 255 / 2%), rgb(255 255 255 / 1%));
     color: var(--b-active-link-color);
     transition:
         transform 0.16s ease,
         box-shadow 0.16s ease;
 }
+
 .visit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 8px 18px rgb(0 0 0 / 45%);
 }
 
 /* Info section */
@@ -115,8 +121,8 @@ a {
     background: var(--bs-secondary-color);
     border-radius: 12px;
     padding: 1.1rem 1.3rem;
-    box-shadow: 0 6px 24px rgba(2, 6, 23, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 6px 24px rgb(2 6 23 / 60%);
+    border: 1px solid rgb(255 255 255 / 3%);
 }
 
 /* Header */
@@ -127,6 +133,7 @@ a {
     letter-spacing: -0.02em;
     color: #fff;
 }
+
 .info-header .sub {
     margin-top: 0.45rem;
     color: var(--muted);
@@ -141,24 +148,28 @@ a {
     margin-top: 0.9rem;
     flex-wrap: wrap;
 }
+
 .rating {
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: rgb(255 255 255 / 2%);
     padding: 0.4rem 0.6rem;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(255 255 255 / 3%);
 }
+
 .rating .score {
     font-weight: 800;
     font-size: 1.18rem;
     color: var(--accent);
 }
+
 .rating .votes {
     font-size: 0.86rem;
     color: var(--muted);
 }
+
 .popularity,
 .language {
     color: var(--muted);
@@ -172,14 +183,15 @@ a {
     gap: 0.45rem;
     flex-wrap: wrap;
 }
+
 .genre {
     background: var(--chip-bg);
     border-radius: 999px;
     padding: 0.35rem 0.7rem;
     font-size: 0.82rem;
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) inset;
+    border: 1px solid rgb(255 255 255 / 3%);
+    box-shadow: 0 2px 8px rgb(0 0 0 / 35%) inset;
 }
 
 /* Overview */
@@ -187,15 +199,17 @@ a {
     margin-top: 1rem;
     color: #e7eef6;
 }
+
 .overview h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.5rem;
     font-size: 1.05rem;
     color: var(--muted);
 }
+
 .overview p {
     margin: 0;
     line-height: 1.55;
-    color: rgba(235, 241, 248, 0.95);
+    color: rgb(235 241 248 / 95%);
 }
 
 /* Extra meta and cast */
@@ -205,41 +219,46 @@ a {
     grid-template-columns: 1fr 300px;
     gap: 1rem;
 }
+
 .meta-list {
     margin: 0;
     padding: 0;
 }
+
 .meta-item {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 0.6rem;
 }
+
 .meta-item dt {
     min-width: 110px;
     color: var(--muted);
     font-size: 0.88rem;
 }
+
 .meta-item dd {
     margin: 0;
     font-size: 0.94rem;
-    color: rgba(240, 245, 250, 0.95);
+    color: rgb(240 245 250 / 95%);
 }
 
 /* Cast list */
 .cast-list {
     list-style: none;
     padding: 0;
-    margin: 0.45rem 0 0 0;
+    margin: 0.45rem 0 0;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.35rem;
 }
+
 .cast-list li {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgb(255 255 255 / 3%);
     border-radius: 8px;
     padding: 0.45rem;
     font-size: 0.88rem;
-    color: rgba(245, 245, 245, 0.9);
+    color: rgb(245 245 245 / 90%);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -249,17 +268,20 @@ a {
 .reviews {
     margin-top: 1.2rem;
 }
+
 .reviews-list {
     display: grid;
     gap: 0.9rem;
     margin-top: 0.6rem;
 }
+
 .review {
-    background: rgba(255, 255, 255, 0.02);
+    background: rgb(255 255 255 / 2%);
     padding: 0.85rem;
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(255 255 255 / 3%);
 }
+
 .review-head {
     display: flex;
     justify-content: space-between;
@@ -267,19 +289,23 @@ a {
     align-items: baseline;
     margin-bottom: 0.5rem;
 }
+
 .review .author {
     font-weight: 700;
     color: #fff;
 }
+
 .review .created {
     color: var(--muted);
     font-size: 0.85rem;
 }
+
 .review-body {
     margin: 0.25rem 0 0;
-    color: rgba(235, 241, 248, 0.95);
+    color: rgb(235 241 248 / 95%);
     line-height: 1.5;
 }
+
 .read-more {
     display: inline-block;
     margin-top: 0.5rem;
@@ -294,31 +320,36 @@ a {
 }
 
 /* Responsive */
-@media (max-width: 980px) {
+@media (width <= 980px) {
     .movie-detail .container {
         grid-template-columns: 1fr;
         gap: 1rem;
         padding-bottom: 1.5rem;
     }
+
     .extra-grid {
         grid-template-columns: 1fr;
     }
+
     .cast-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+
     .poster-card {
         max-width: 320px;
         margin: 0 auto;
     }
 }
 
-@media (max-width: 520px) {
+@media (width <= 520px) {
     .overview p {
         font-size: 0.95rem;
     }
+
     .cast-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
     .poster-card {
         min-height: 300px;
     }
@@ -336,18 +367,21 @@ a {
     justify-content: flex-end;
     color: #fff;
 }
+
 .banner-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7, 10, 14, 0.2) 0%, rgba(7, 10, 14, 0.9) 90%);
+    background: linear-gradient(180deg, rgb(7 10 14 / 20%) 0%, rgb(7 10 14 / 90%) 90%);
 }
+
 .banner-top {
     position: absolute;
     top: 1rem;
     left: 1rem;
 }
+
 .back-btn {
-    background: rgba(0, 0, 0, 0.55);
+    background: rgb(0 0 0 / 55%);
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -356,24 +390,28 @@ a {
     cursor: pointer;
     transition: background 0.2s;
 }
+
 .back-btn:hover {
-    background: rgba(0, 0, 0, 0.75);
+    background: rgb(0 0 0 / 75%);
 }
+
 .banner-content {
     position: relative;
     padding: 1.2rem;
     z-index: 1;
 }
+
 .banner-title {
     margin: 0;
     font-size: 2rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgb(255 255 255 / 85%);
 }
+
 .banner-sub {
     margin-top: 0.3rem;
     font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgb(255 255 255 / 85%);
 }
 
 /* Rest of your CSS (poster, info, reviews, etc.) */
