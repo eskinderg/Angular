@@ -1,0 +1,46 @@
+:host {
+    // --size: 40px;
+    display: inline-flex;
+    --fill: var(--bs-secondary-color); /* unsaved color */
+    // --fill-hover: red; /* hover color */
+    --fill-saved: #2a6ada; /* saved state color */
+    --fill-hover: var(--fill-saved);
+
+    // --fill-saved: red; /* saved state color */
+}
+
+.bookmark-btn {
+    background: transparent;
+    cursor: pointer;
+    width: calc(var(--size) / 1.5);
+    height: var(--size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.bookmark {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    stroke: grey;
+    stroke-width: 20px;
+    fill: var(--fill);
+    transition: fill 0.2s ease;
+}
+
+.bookmark-btn:hover .bookmark {
+    fill: var(--fill-hover);
+    stroke: none;
+}
+
+.bookmark-btn:hover {
+    transform: scale(1.1);
+}
+
+/* saved state */
+.bookmark-btn.saved .bookmark {
+    fill: var(--fill-saved);
+    stroke: none;
+}

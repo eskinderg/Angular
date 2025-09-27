@@ -15,6 +15,7 @@ export class Movie {
     runtime: number;
     status: string;
     original_language: string;
+    origin_country: string[];
     spoken_languages: string[];
     casts: string[];
     reviews: any;

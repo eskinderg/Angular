@@ -1,4 +1,4 @@
-<div class="backdrop" [class.backDropHide]="!showBackDrop" (click)="onBackdropClick()">
+<div [tabIndex]="0" class="backdrop" [class.backDropHide]="!showBackDrop" (click)="onBackdropClick()">
     <div class="dialog" (click)="$event.stopPropagation()" tabindex="0">
         <div class="dialog-header">
             <div>{{ title }}</div>

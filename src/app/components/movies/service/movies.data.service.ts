@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
+import * as fromMovies from '../../../store/reducers/movie.reducer';
 
 import { map, switchMap } from 'rxjs/operators';
 
@@ -10,6 +11,8 @@ import { environment } from '../../../../environments/environment';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MovieResults } from '../models/movie-results';
+import { Store } from '@ngrx/store';
+import * as fromRoot from '../../../store/reducers';
 
 // const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
@@ -30,7 +33,7 @@ export interface MovieQueryParams {
 @Injectable({ providedIn: 'root' })
 export class MoviesDataService {
     private http = inject(HttpClient);
-
+    store = inject<Store<fromRoot.IAppState>>(Store);
     apikey = API_KEY;
 
     constructor() {
@@ -174,21 +177,31 @@ export class MoviesDataService {
     //   )
     // }
 
-    searchMovies(searchStr: string) {
-        return this.http
-            .get<
-                Movie[]
-            >('https://api.themoviedb.org/3/search/movie' + '?api_key=' + this.apikey + '&query=' + searchStr)
-            .pipe(
-                switchMap((res) => {
-                    const result: MovieResults = new MovieResults();
-                    result.total_pages = res['total_pages'];
-                    result.total_results = res['total_results'];
-                    result.page = res['page'];
-                    result.movies = res['results'].map((movie: Movie) => new Movie(movie));
-                    return of(result);
-                })
-            );
+    searchMovies(searchStr: string): Observable<MovieResults> {
+        return this.store.select(fromMovies.getPreferedMovieLanguage).pipe(
+            switchMap((lang) =>
+                this.http
+                    .get('https://api.themoviedb.org/3/search/movie', {
+                        params: {
+                            api_key: this.apikey,
+                            query: searchStr,
+                            language: lang
+                        }
+                    })
+                    .pipe(
+                        map((res: any) => {
+                            const result: MovieResults = new MovieResults();
+                            result.total_pages = res.total_pages;
+                            result.total_results = res.total_results;
+                            result.page = res.page;
+                            result.movies = res.results
+                                .filter((movie: any) => (lang ? movie.original_language === lang : movie))
+                                .map((movie: Movie) => new Movie(movie));
+                            return result;
+                        })
+                    )
+            )
+        );
     }
 
     getMovie(id: string): Observable<Movie> {
@@ -200,7 +213,6 @@ export class MoviesDataService {
                     return this.getMovieReviews(id).pipe(
                         map((reviews) => {
                             movie.reviews = reviews;
-                            // console.log(movie);
                             return movie;
                         })
                     );

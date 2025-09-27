@@ -30,7 +30,7 @@ const initialState: IMovieState = {
         genreId: null,
         page: null
     },
-    preferedLanguage: null
+    preferedLanguage: localStorage.getItem('lang') ?? null
 };
 
 export const movieReducer = createReducer<IMovieState>(
@@ -55,7 +55,7 @@ export const movieReducer = createReducer<IMovieState>(
             watchList: [...state.watchList, ...action.movies]
         };
     }),
-    on(MoviesActions.setPreferedMovieLanguage, (state, action): IMovieState => {
+    on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {
         return {
             ...state,
             preferedLanguage: action.lang

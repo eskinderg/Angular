@@ -13,22 +13,30 @@ import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
-import { MovieCardComponentAnimations } from './movie.card.component.animation';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
+import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 
 @Component({
     selector: 'app-movie-card',
     templateUrl: './movie.card.component.html',
     styleUrls: ['./movie.card.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: MovieCardComponentAnimations,
-    imports: [RouterLink, CircularRatingComponent, CommonModule, UpperCasePipe, TruncatePipe, AsyncPipe]
+    imports: [
+        RouterLink,
+        BookmarkComponent,
+        CircularRatingComponent,
+        CommonModule,
+        UpperCasePipe,
+        TruncatePipe,
+        AsyncPipe
+    ]
 })
 export class MovieCardComponent implements OnInit {
     private movieApiService = inject(MoviesApiService);
 
     @Input() movie: Movie;
     @Output() clickImage: EventEmitter<any> = new EventEmitter();
+    @Input() index: number;
 
     dialogLoading$ = new BehaviorSubject<boolean>(false);
     imageLoaded$ = new BehaviorSubject<boolean>(false);
@@ -67,15 +75,16 @@ export class MovieCardComponent implements OnInit {
         this.dialogLoading$.next(false);
     }
 
+    onAnimationEnd($event: any) {
+        ($event.target as HTMLElement).classList.add('animated');
+    }
+
     get isInWatchList() {
         return this.movieApiService.isInWatchList(this.movie);
     }
 
-    btnAddWatchListClick() {
-        this.movieApiService.addWatchList(this.movie);
-    }
-
-    btnRemoveWatchListClick() {
-        this.movieApiService.removeWatchList(this.movie);
+    onBookmarkToggled(event: any) {
+        if (event) this.movieApiService.addWatchList(this.movie);
+        else this.movieApiService.removeWatchList(this.movie);
     }
 }

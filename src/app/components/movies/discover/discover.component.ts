@@ -5,7 +5,6 @@ import { Movie } from '../models/movie';
 import { MoviesApiService } from '../service/movies.api.service';
 import { AsyncPipe } from '@angular/common';
 import { BehaviorSubject, distinctUntilChanged, debounceTime, fromEvent, combineLatest, map } from 'rxjs';
-import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { YearRangeSliderComponent } from './year/year-range-slider.component';
 
@@ -14,7 +13,6 @@ import { YearRangeSliderComponent } from './year/year-range-slider.component';
     templateUrl: 'discover.component.html',
     styleUrls: ['discover.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: MovieCardListAnimation,
     imports: [MovieCardComponent, AsyncPipe, YearRangeSliderComponent]
 })
 export class DiscoverComponent implements OnInit, OnDestroy {
@@ -28,10 +26,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
 
     private readonly destroyRef = inject(DestroyRef);
 
-    languages$ = combineLatest([
-        this.movieApiService.getLanguages(['am', 'en', 'fr', 'it']),
-        this.selectedLanguage$
-    ]).pipe(
+    languages$ = combineLatest([this.movieApiService.getLanguages(), this.selectedLanguage$]).pipe(
         map(([langs, _selectedLang]) => {
             return langs;
         })

@@ -4,25 +4,72 @@
     --image-height: 379px;
     --circle-color: var(--del-button-note);
     --card-border-radius: 10px;
+    --transform-size: 1rem;
+}
+
+@keyframes cardEnterAnimation {
+    0% {
+        opacity: 0;
+
+        // transform: translateY(var(--transform-size)); /* optional small slide */
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+
+        // transform: translateY(0);
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+
+        // transform: translateY(0);
+        transform: scale(1);
+    }
+}
+
+app-bookmark {
+    position: absolute;
+    left: 15px;
+    top: -3px;
 }
 
 .card-view {
+    opacity: 0;
+    transform: scale(0); /* initial state */
+    pointer-events: none; /* ignore hover */
+    // transform: translateY(var(--transform-size)); /* optional small slide */
     // margin: 10px;
     // background-color: var(--border);
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
     background-color: var(--bg-hover);
+
     // border: 1px solid var(--card-border-color);
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
+    flex-flow: column nowrap;
     border-radius: var(--card-border-radius);
     margin-bottom: 1.5rem;
+    animation: cardEnterAnimation 1s ease-in-out forwards;
+    animation-delay: calc(50ms * var(--index));
+    animation-iteration-count: 1;
 }
 
-.card-view:hover {
-    box-shadow: 0px 4px 15px 4px rgb(119 119 119 / 20%);
-    /* transition: transform 0.5s ease-out; */
-    /* transform: translateY(-5px); */
+.card-view.animated {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto; /* re-enable hover */
+}
+
+.card-view.animated:hover {
+    pointer-events: auto; /* re-enable hover */
+    box-shadow: 0 4px 15px 4px rgb(119 119 119 / 20%);
     border: none;
+    transform: scale(1.07);
 }
 
 .loading-svg {
@@ -49,10 +96,10 @@
 
 .content {
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: column;
+    flex-flow: column nowrap;
     padding: 0.5rem;
     padding-top: 0;
+
     // padding-top: 0rem;
     max-width: var(--card-width);
 }
@@ -68,6 +115,7 @@
     padding-top: 5px;
     font-size: 1.2rem;
     cursor: pointer;
+
     // color: #2a6ada;
     // text-decoration: none;
     // border-bottom: 3px solid var(--border);
@@ -96,16 +144,14 @@ a:hover {
 
 .poster-overlay {
     position: absolute;
-    backdrop-filter: blur(10px);
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgb(0 0 0 / 40%);
     display: flex;
     align-items: center;
     justify-content: center;
-
     backdrop-filter: blur(2px);
 }
 
@@ -125,31 +171,19 @@ a:hover {
     }
 }
 
-.favorite {
-    background-color: red;
-}
-
-.btn-fav {
-    color: white;
-}
-
 .year-rating {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
     position: relative;
-    //margin: 0.5rem;
+    margin: 0.5rem 0;
+    font-weight: bold;
 
     app-circular-rating {
         position: absolute;
         left: 50%;
-        bottom: -175%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -25%);
     }
-}
-
-.hover-shadow:hover {
-    // box-shadow: 0px 0px 5px var(--bs-secondary);
 }
 
 .lang {
@@ -160,7 +194,7 @@ a:hover {
 }
 
 .card-text {
-    font-size: 13px;
+    font-size: 0.8rem;
     display: block;
     line-height: 20px;
 }
@@ -179,66 +213,24 @@ a:hover {
     top: 0;
     left: 0;
     opacity: 0;
+
     // z-index: 1;
     width: auto;
     height: 100%; /* Preserve aspect ratio */
     object-fit: cover;
-    animation: fadeIn ease 1s;
-    -webkit-animation: fadeIn ease 1s;
-    -moz-animation: fadeIn ease 1s;
-    -o-animation: fadeIn ease 1s;
-    -ms-animation: fadeIn ease 1s;
+
+    // animation: fadeIn ease 1s;
+    // -webkit-animation: fadeIn ease 1s;
+    // -moz-animation: fadeIn ease 1s;
+    // -o-animation: fadeIn ease 1s;
+    // -ms-animation: fadeIn ease 1s;
     transition:
-        transform 1s ease,
-        opacity 1.5s ease;
+        transform 0.5s ease,
+        opacity 0.5s ease;
 }
 
 .poster-image:hover {
     cursor: pointer;
-    transform: scale(1.05);
-}
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-o-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@-ms-keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+    // transform: scale(1.05);
 }

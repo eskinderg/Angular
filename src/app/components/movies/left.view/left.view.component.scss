@@ -1,16 +1,14 @@
 :host {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
+
     // height: 100%;
     height: calc(100vh - 5rem);
     width: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden auto;
     direction: rtl;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    flex-flow: column nowrap;
     align-items: flex-end;
     text-align: left;
 }

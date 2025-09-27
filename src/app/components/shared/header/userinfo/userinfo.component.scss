@@ -15,7 +15,7 @@ li > a {
 }
 
 li > a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgb(255 255 255 / 10%);
 }
 
 /* Arrow for submenu */
@@ -37,7 +37,6 @@ li > ul {
     border-radius: 6px;
     list-style: none;
     z-index: 1000;
-
     background-color: var(--bs-body-bg);
 }
 
@@ -58,5 +57,5 @@ li > ul li a {
 }
 
 li > ul li a:hover {
-    background-color: rgba(42, 106, 218, 0.15);
+    background-color: rgb(42 106 218 / 15%);
 }

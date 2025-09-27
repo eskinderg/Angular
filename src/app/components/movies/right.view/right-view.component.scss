@@ -1,19 +1,31 @@
 .movie-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
+    gap: 30px;
+    justify-content: space-around;
     background-color: var(--body-bg);
-    gap: 10px;
-    padding: 10px;
+    padding: 2rem;
+}
+
+.header {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--body-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.active {
+    outline: 1px solid var(--b-active-link-color) !important;
+}
+
+select {
+    margin: 1rem;
 }
 
 app-pagination {
-    z-index: 1;
     padding: 0.1rem;
     background: var(--body-bg);
-    // background: red;
-    display: block;
-    position: sticky;
-    top: 0px;
 }

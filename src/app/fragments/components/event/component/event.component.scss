@@ -1,15 +1,5 @@
-::ng-deep {
-  .custom-scrollbars {
-    // background-color: rgb(94, 175, 255) !important;
-
-    &:hover, &:active {
-      // background-color: dodgerblue !important;
-    }
-  }
-}
-
 .list-group {
-  padding:0px;
+  padding:0;
 }
 
 .list-group-item {

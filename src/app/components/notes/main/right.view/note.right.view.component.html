@@ -10,14 +10,13 @@
     <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
     <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.owner }}
 </ng-template>
-<div class="note-background" [ngClass]="note.colour + '-note'">
+<div class="note-background" [ngClass]="opendNote.colour + '-note'">
     <div class="note-menu">
         <div class="note-header">
             <app-note-header-control
                 #noteHeader
                 [note]="facadeNote"
-                (noteUpdateNoteHeader)="handleNoteHeaderUpdate($event)">
-            </app-note-header-control>
+                (noteUpdateNoteHeader)="onNoteHeaderUpdate($event)" />
         </div>
 
         <div class="menu-icons">
@@ -25,39 +24,38 @@
                 appTooltip="Toggle Spell Check"
                 [position]="tooltipPosition"
                 [ngClass]="{ 'spell-check-active': facadeNote.spellCheck }"
-                (click)="spellCheckToggle(facadeNote)">
+                (click)="onSpellCheckToggle(facadeNote)">
                 <app-svg-icon
                     height="25"
                     width="25"
                     [class]="facadeNote.spellCheck ? 'spell-check-active' : 'spell-check'"
-                    src="assets/images/spell.svg"></app-svg-icon>
+                    src="assets/images/spell.svg" />
             </div>
 
             <app-note-colour-selector
                 [note]="facadeNote"
                 #noteColourSelector
-                (noteColourUpdate)="handleNoteColourUpdate($event)"
-                class="menu-icon"></app-note-colour-selector>
+                (noteColourUpdate)="onNoteColourUpdate($event)"
+                class="menu-icon" />
 
-            <div class="trash-icon menu-icon" (click)="noteArchive_click(note)">
-                <app-svg-icon height="25" width="25" src="assets/images/trash.svg"></app-svg-icon>
+            <div class="trash-icon menu-icon" (click)="onNoteArchive(opendNote)">
+                <app-svg-icon height="25" width="25" src="assets/images/trash.svg" />
             </div>
 
             <div class="info-icon menu-icon popover-content" (click)="noteInfoClick(facadeNote)">
-                <app-svg-icon height="25" width="25" src="assets/images/info.svg"></app-svg-icon>
+                <app-svg-icon height="25" width="25" src="assets/images/info.svg" />
             </div>
         </div>
     </div>
 
-    @if (note) {
+    @if (opendNote) {
         <app-textarea-expanded
-            [note]="note"
+            [note]="opendNote"
             [facadeNote]="facadeNote"
             #textAreaExpanded
-            (textAreaSelectionChange)="selectionChange($event)"
-            (textAreaTextChanged)="handleNoteTextUpdate($event)"
-            (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)">
-        </app-textarea-expanded>
+            (textAreaSelectionChange)="onSelectionChange($event)"
+            (textAreaTextChanged)="onNoteTextUpdate($event)"
+            (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)" />
     }
 
     <div class="info" (click)="noteInfoClick(facadeNote)">

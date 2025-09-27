@@ -46,7 +46,7 @@ export class NoteRightViewComponent {
     noteColourSelectorComponent = viewChild<NoteColourSelectorComponent>('noteColourSelector');
     tooltipPosition: TooltipPosition = TooltipPosition.LEFT;
 
-    @Input() note: Note;
+    @Input() opendNote: Note;
     @Input() facadeNote: Note;
 
     @Output() changeNoteText: EventEmitter<Note> = new EventEmitter();
@@ -58,26 +58,27 @@ export class NoteRightViewComponent {
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
-    noteArchive_click(note: Note) {
+    onNoteArchive(note: Note) {
         this.archiveNote.emit(note);
     }
 
-    spellCheckToggle(note: Note) {
+    onSpellCheckToggle(note: Note) {
         this.toggleSpellCheck.emit(note);
     }
 
-    handleNoteTextUpdate(note: Note) {
+    onNoteTextUpdate(note: Note) {
         this.changeNoteText.emit(note);
     }
 
-    selectionChange(selection: Note) {
+    onSelectionChange(selection: Note) {
         this.noteSelectionChange.emit(selection);
     }
-    handleNoteColourUpdate(colour: Colour) {
+
+    onNoteColourUpdate(colour: Colour) {
         this.updateNoteColour.emit({ ...this.facadeNote, colour: colour.name });
     }
 
-    handleNoteHeaderUpdate(note: Note) {
+    onNoteHeaderUpdate(note: Note) {
         this.updateNoteHeader.emit(note);
     }
 

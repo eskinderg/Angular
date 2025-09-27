@@ -1,21 +1,28 @@
-<app-pagination
-    [page]="moviesResult.page"
-    [pageSize]="20"
-    [maxSize]="15"
-    (pageChange)="loadPage($event)"
-    [collectionSize]="collectionSize"></app-pagination>
+<div class="header">
+    <app-pagination
+        [page]="moviesResult.page"
+        [pageSize]="20"
+        [maxSize]="15"
+        (pageChange)="loadPage($event)"
+        [collectionSize]="collectionSize" />
 
-<div [@movieCardList] class="movie-cards-container">
-    @for (movie of moviesResult.movies; track movie) {
-        <app-movie-card [movie]="movie" (clickImage)="onClick($event)"> </app-movie-card>
-    }
+    <select
+        [value]="selectedLanguage$ | async"
+        (change)="languageSelected($event)"
+        [class.active]="selectedLanguage$.value">
+        <option [value]="''">Language</option>
+        @for (language of languages$ | async; track language) {
+            <option
+                [value]="language.iso_639_1"
+                [selected]="language.iso_639_1 === (UserPreferedLanaguage | async)">
+                {{ language.english_name }}&nbsp;({{ language.iso_639_1 }})
+            </option>
+        }
+    </select>
 </div>
 
-<!-- <app-pagination -->
-<!--     [(page)]="moviesResult.page" -->
-<!--     [pageSize]="20" -->
-<!--     [maxSize]="15" -->
-<!--     (pageChange)="loadPage($event)" -->
-<!--     [collectionSize]="collectionSize"></app-pagination> -->
-
-<!-- <router-outlet></router-outlet> -->
+<div class="movie-cards-container">
+    @for (movie of moviesResult.movies; track movie) {
+        <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />
+    }
+</div>
