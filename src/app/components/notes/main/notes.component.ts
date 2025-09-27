@@ -46,7 +46,7 @@ export class NotesComponent implements OnDestroy, OnInit {
     );
 
     constructor() {
-        document.getElementsByClassName('content')[0].className += ' hide-scroll-bar';
+        document.querySelector('.content').className += ' hide-scroll-bar';
     }
 
     ngOnInit(): void {
