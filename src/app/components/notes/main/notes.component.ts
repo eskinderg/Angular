@@ -142,7 +142,7 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy(): void {
-        document.getElementsByClassName('content')[0].classList.remove('hide-scroll-bar');
+        document.querySelector('.content').classList.remove('hide-scroll-bar');
         if (this.refreshSubscription != null) this.refreshSubscription.unsubscribe();
     }
 }
