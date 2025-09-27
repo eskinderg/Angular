@@ -58,7 +58,7 @@ export class NoteRightViewComponent {
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
 
-    noteArchive_click(note: Note) {
+    onNoteArchive(note: Note) {
         this.archiveNote.emit(note);
     }
 
