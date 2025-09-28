@@ -30,7 +30,7 @@
     background-color: var(--body-bg, #fff);
     color: #333;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 16px rgb(0 0 0 / 15%);
+    box-shadow: 0 0px 15px rgb(0 0 0 / 15%);
     border: 1px solid var(--border);
     overflow: hidden;
     font-family: system-ui, sans-serif;
@@ -44,7 +44,7 @@
     align-items: center;
     cursor: pointer;
     justify-content: space-between;
-    padding: 0.25rem 0.75rem;
+    padding: 0rem 0.25rem 0rem 0.75rem;
     border-bottom: 1px solid rgb(0 0 0 / 8%);
     font-weight: 600;
     font-size: 0.85rem;
@@ -71,7 +71,7 @@
 
 /* Body */
 .toast-body {
-    padding: 0.75rem;
+    padding: 0.5rem;
     font-size: 0.85rem;
     line-height: 1.4;
     color: var(--body-color);
