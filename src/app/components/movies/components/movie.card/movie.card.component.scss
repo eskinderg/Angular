@@ -37,6 +37,7 @@ app-bookmark {
 }
 
 .card-view {
+    position: relative;
     opacity: 0;
     transform: scale(0); /* initial state */
     pointer-events: none; /* ignore hover */
@@ -52,7 +53,7 @@ app-bookmark {
     display: flex;
     flex-flow: column nowrap;
     border-radius: var(--card-border-radius);
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     animation: cardEnterAnimation 1s ease-in-out forwards;
     animation-delay: calc(50ms * var(--index));
     animation-iteration-count: 1;
@@ -69,6 +70,7 @@ app-bookmark {
     pointer-events: auto; /* re-enable hover */
     box-shadow: 0 4px 15px 4px rgb(119 119 119 / 20%);
     border: none;
+    // z-index: 2;
     transform: scale(1.07);
 }
 
