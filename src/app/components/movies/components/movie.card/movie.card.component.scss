@@ -106,15 +106,8 @@ app-bookmark {
     max-width: var(--card-width);
 }
 
-.col-auto {
-    font-size: 1.25rem;
-    float: right;
-    margin: 0 0 0 0.3rem;
-}
-
 .title {
-    padding: 10px;
-    padding-top: 5px;
+    padding: 0.25rem;
     font-size: 1.2rem;
     cursor: pointer;
 
@@ -190,15 +183,23 @@ a:hover {
 
 .lang {
     position: absolute;
-    right: 5px;
-    top: 5px;
-    opacity: 0.75;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    right: -0.15rem;
+    top: -0.25rem;
+    border-radius: 0.25rem;
+    cursor: default;
+    background: var(--card-border-color);
+    color: #FFF;
 }
 
-.card-text {
-    font-size: 0.8rem;
-    display: block;
-    line-height: 20px;
+.link-avail {
+    cursor: pointer;
+}
+
+.overview-text {
+    font-size: 0.85rem;
 }
 
 .title-text {
