@@ -41,19 +41,32 @@ export class MoviesDataService {
     }
 
     favoriteMovie(movies: any[]): Observable<Movie[]> {
-        return this.http.put<Movie[]>(MOVIES_API_URL, movies);
+        return this.http
+            .put<Movie[]>(MOVIES_API_URL + '/upsert', movies)
+            .pipe(map((movies: Movie[]) => movies.map((m) => new Movie(m))));
+        // return this.http.put<Movie[]>(MOVIES_API_URL, movies);
     }
 
+    upserMovie(movies: Movie[]): Observable<Movie[]> {
+        return this.http.put<Movie[]>(MOVIES_API_URL + '/upsert', movies);
+    }
+
+    // getUserMovies(): Observable<Movie[]> {
+    //     return this.http.get<Movie[]>(MOVIES_API_URL).pipe(
+    //         switchMap((movieIds: any[]) => {
+    //             const movieObservables = movieIds.map((movieId) => {
+    //                 return this.getMovie(movieId[1]);
+    //             });
+    //             // Use forkJoin to wait for all inner requests to complete
+    //             return forkJoin(movieObservables);
+    //         })
+    //     );
+    // }
+
     getUserMovies(): Observable<Movie[]> {
-        return this.http.get<Movie[]>(MOVIES_API_URL).pipe(
-            switchMap((movieIds: any[]) => {
-                const movieObservables = movieIds.map((movieId) => {
-                    return this.getMovie(movieId[1]);
-                });
-                // Use forkJoin to wait for all inner requests to complete
-                return forkJoin(movieObservables);
-            })
-        );
+        return this.http
+            .get<Movie[]>(MOVIES_API_URL)
+            .pipe(map((movies: Movie[]) => movies.map((m) => new Movie(m))));
     }
 
     getMovies(movies: any[]): Observable<Movie[]> {

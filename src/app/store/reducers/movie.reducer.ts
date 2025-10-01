@@ -44,9 +44,7 @@ export const movieReducer = createReducer<IMovieState>(
     on(MoviesActions.removeWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: state.watchList.filter(
-                (m) => !action.moviesRemoved.find((movie) => m.id === Number(movie[1]))
-            )
+            watchList: state.watchList.filter((m) => !action.moviesRemoved.find((movie) => m.id === movie.id))
         };
     }),
     on(MoviesActions.addWatchListSuccess, (state, action): IMovieState => {

@@ -53,8 +53,8 @@ export class MoviesApiService {
         this.store.dispatch(AppActions.getDiscoverMovies({ queryParams: queryParams }));
     }
 
-    favoriteMovie(movie: Movie) {
-        return this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
+    favoriteMovie(movies: Movie) {
+        return this.store.dispatch(AppActions.removeWatchList({ movie: movies }));
     }
 
     getUserMovies() {

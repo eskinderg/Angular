@@ -20,7 +20,7 @@ export const removeWatchListFailed = createAction(
 );
 export const removeWatchListSuccess = createAction(
     '[MOVIE] REMOVE_WATCH_LIST_SUCCESS',
-    props<{ moviesRemoved: any[] }>()
+    props<{ moviesRemoved: Movie[] }>()
 );
 
 export const fetchRemovedWatchList = createAction(
