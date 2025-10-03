@@ -82,6 +82,7 @@ export class MoviesDataService {
             .get('https://api.themoviedb.org/3/discover/movie?callback=JSONP_CALLBACK', { params: search })
             .pipe(
                 map((res) => {
+                    debugger;
                     return res;
                 })
             );
@@ -140,14 +141,26 @@ export class MoviesDataService {
         // if (endDate) urlString += `&primary_release_date.gte=${endDate}`;
 
         return this.http.get<MovieResults>(urlString).pipe(
-            map((res) => {
+            switchMap((res) => {
                 const result: MovieResults = new MovieResults();
                 result.total_pages = res['total_pages'];
                 result.total_results = res['total_results'];
                 result.page = res['page'];
                 result.movies = res['results'].map((movie: Movie) => new Movie(movie));
-                return result;
+
+                // chain populate and then return MovieResults
+                return this.populateMovies(result.movies).pipe(map(() => result));
             })
+        );
+    }
+
+    private populateMovies(movies: Movie[]): Observable<Movie[]> {
+        return this.http.post<Movie[]>(MOVIES_API_URL + '/populate', movies).pipe(
+            map((movies: Movie[]) =>
+                movies.map((m) => {
+                    return new Movie(m);
+                })
+            )
         );
     }
 
@@ -324,14 +337,14 @@ export class MoviesDataService {
         // }
         urlString += `&show_me=everything`;
         return this.http.get<MovieResults>(urlString).pipe(
-            map((res) => {
+            switchMap((res) => {
                 const result: MovieResults = {
                     total_pages: res['total_pages'],
                     total_results: res['total_results'],
                     page: res['page'],
                     movies: res['results'].map((movie: Movie) => new Movie(movie))
                 };
-                return result;
+                return this.populateMovies(result.movies).pipe(map(() => result));
             })
         );
     }
