@@ -137,7 +137,7 @@ export class NotesEffect {
                 withLatestFrom(store.select(fromRoot.getOpendNote)),
                 exhaustMap(([action, opendNote]) => {
                     const note = action.notes.find((n) => n.id === opendNote.id);
-                    if (opendNote !== undefined) {
+                    if (note !== undefined) {
                         if (opendNote.dateModified < note.dateModified) {
                             notificationService.showWarning(
                                 "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
