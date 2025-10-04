@@ -30,7 +30,7 @@ const initialState: INotesState = {
 
 export const notesReducer = createReducer<INotesState>(
     initialState,
-    on(PreferenceActions.logOutSuccess, (state, action): INotesState => initialState),
+    on(PreferenceActions.logOutSuccess, (): INotesState => initialState),
     on(NotesActions.noteSelect, (state, action): INotesState => {
         localStorage.setItem('lastSelectedNote', action.note.id.toString());
         return {
