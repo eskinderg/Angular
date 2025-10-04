@@ -13,7 +13,7 @@ import { IMovieState, movieReducer } from './movie.reducer';
 export interface IAppState {
     notes: INotesState;
     events: IEventsState; // append any more states here
-    profile: IAuthState;
+    auth: IAuthState;
     preference: IPreferenceState;
     movies: IMovieState;
     notifications: INotificationState;
@@ -23,7 +23,7 @@ export interface IAppState {
 export const appReducer: ActionReducerMap<IAppState> = {
     notes: notesReducer, // append any additional reducers here
     events: eventsReducer,
-    profile: authReducer,
+    auth: authReducer,
     preference: profileReducer,
     movies: movieReducer,
     notifications: notificationReducer,
