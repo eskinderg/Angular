@@ -52,7 +52,7 @@ export const movieReducer = createReducer<IMovieState>(
     on(MoviesActions.addWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: [...state.watchList, ...action.movies]
+            watchList: [...action.movies, ...state.watchList]
         };
     }),
     on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {

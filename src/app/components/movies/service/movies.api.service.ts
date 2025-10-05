@@ -54,7 +54,7 @@ export class MoviesApiService {
     }
 
     favoriteMovie(movies: Movie) {
-        return this.store.dispatch(AppActions.removeWatchList({ movie: movies }));
+        return this.store.dispatch(AppActions.removeWatchList({ movies: [movies] }));
     }
 
     getUserMovies() {
@@ -82,11 +82,11 @@ export class MoviesApiService {
     }
 
     addWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.addWatchList({ movies: movie }));
+        this.store.dispatch(AppActions.addWatchList({ movies: [movie] }));
     }
 
     removeWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
+        this.store.dispatch(AppActions.removeWatchList({ movies: [movie] }));
     }
 
     getLanguages(filterLangs: string[] = []) {

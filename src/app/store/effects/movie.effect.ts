@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
 import * as MoviesActions from '../actions/movie.actions';
 import { MoviesDataService } from 'src/app/components/movies/service/movies.data.service';
@@ -36,7 +36,13 @@ export class MoviesEffect {
                 ofType(MoviesActions.removeWatchList),
                 switchMap((action) =>
                     moviesDataService
-                        .favoriteMovie([{ ...action.movie, favorite: false, userId: authService.userId() }])
+                        .favoriteMovie(
+                            action.movies.map((movie) => ({
+                                ...movie,
+                                favorite: false,
+                                userId: authService.userId()
+                            }))
+                        )
                         .pipe(
                             map((movies) =>
                                 MoviesActions.removeWatchListSuccess({
@@ -61,7 +67,13 @@ export class MoviesEffect {
                 ofType(MoviesActions.addWatchList),
                 switchMap((action) =>
                     moviesDataService
-                        .favoriteMovie([{ ...action.movies, favorite: true, userId: authService.userId() }])
+                        .favoriteMovie(
+                            action.movies.map((movie) => ({
+                                ...movie,
+                                favorite: true,
+                                userId: authService.userId()
+                            }))
+                        )
                         .pipe(
                             map((movies) =>
                                 MoviesActions.addWatchListSuccess({
