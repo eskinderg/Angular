@@ -81,9 +81,7 @@
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
 
             <div class="watch">
-                <a target="_blank" class="watch" [href]="`https://theflixertv.to/search/${WatchLink}`">
-                    Watch
-                </a>
+                <a target="_blank" class="watch" [href]="WatchLink"> Watch </a>
             </div>
 
             <app-circular-rating

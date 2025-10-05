@@ -19,6 +19,7 @@ import { MovieDialogService } from '../../service/movie.dialog.service';
 import { MoviesApiService } from '../../service/movies.api.service';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
+import { hrefLink } from '../../functions/link';
 
 @Component({
     selector: 'app-movie-modal',
@@ -125,7 +126,7 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
     }
 
     get WatchLink(): string {
-        return this.movieDetail.title.replace(/ /g, '-');
+        return hrefLink(this.movieDetail);
     }
 
     get isInWatchList() {
