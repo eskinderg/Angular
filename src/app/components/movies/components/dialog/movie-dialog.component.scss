@@ -299,6 +299,15 @@ td.value {
     z-index: 5;
 }
 
+.watch {
+    text-decoration: none;
+    color: var(--body-color);
+}
+
+.watch:hover {
+    color: #2a6ada;
+}
+
 app-bookmark {
     align-self: self-start;
 }

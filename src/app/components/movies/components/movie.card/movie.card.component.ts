@@ -64,6 +64,10 @@ export class MovieCardComponent implements OnInit {
         this.clickImage.emit({ movie: this.movie, movieCardComponent: this });
     }
 
+    get WatchLink(): string {
+        return this.movie.title.replace(/ /g, '-');
+    }
+
     handleEmptyImage() {
         this.imageUrl = this.noImageUrl;
         this.imageLoaded = true;

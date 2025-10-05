@@ -124,6 +124,10 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
         this.cdr.markForCheck();
     }
 
+    get WatchLink(): string {
+        return this.movieDetail.title.replace(/ /g, '-');
+    }
+
     get isInWatchList() {
         return this.movieApiService.isInWatchList(this.movieDetail);
     }
