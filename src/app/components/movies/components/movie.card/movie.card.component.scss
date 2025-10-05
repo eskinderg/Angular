@@ -173,6 +173,10 @@ a:hover {
     position: relative;
     margin: 0.5rem 0.25rem;
     font-weight: bold;
+
+    .watch {
+        margin-left: auto;
+    }
 }
 
 app-circular-rating {

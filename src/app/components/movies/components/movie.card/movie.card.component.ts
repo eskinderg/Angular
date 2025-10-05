@@ -16,7 +16,7 @@ import { BehaviorSubject } from 'rxjs';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 import { MoviesDataService } from '../../service/movies.data.service';
-import { hrefLink } from '../../functions/link';
+import { hrefLink, torLink } from '../../functions/link';
 
 @Component({
     selector: 'app-movie-card',
@@ -67,6 +67,10 @@ export class MovieCardComponent implements OnInit {
 
     get WatchLink(): string {
         return hrefLink(this.movie);
+    }
+
+    get TorLink(): string {
+        return torLink(this.movie);
     }
 
     handleEmptyImage() {
