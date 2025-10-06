@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { catchError, mergeMap, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
+import { catchError, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { EMPTY, of } from 'rxjs';
 import * as NotesActions from '../actions/note.actions';
@@ -116,10 +116,7 @@ export class NotesEffect {
             ofType(NotesActions.refreshNotes),
             switchMap(() =>
                 notesDataService.getNotes().pipe(
-                    mergeMap((notes) => [
-                        NotesActions.refreshNotesSuccess({ notes }),
-                        NotesActions.checkNoteConflict({ notes })
-                    ]),
+                    map((notes) => NotesActions.checkNoteConflict({ notes: notes })),
                     catchError((err) => of(NotesActions.refreshNotesFailed({ payload: err })))
                 )
             )
@@ -134,11 +131,11 @@ export class NotesEffect {
         ) =>
             actions$.pipe(
                 ofType(NotesActions.checkNoteConflict),
-                withLatestFrom(store.select(fromRoot.getOpendNote)),
-                exhaustMap(([action, opendNote]) => {
-                    const note = action.notes.find((n) => n.id === opendNote.id);
+                withLatestFrom(store.select(fromRoot.getFacadeNote)),
+                exhaustMap(([action, facadeNote]) => {
+                    const note = action.notes.find((n) => n.id === facadeNote.id);
                     if (note !== undefined) {
-                        if (opendNote.dateModified < note.dateModified) {
+                        if (facadeNote.dateModified < note.dateModified) {
                             notificationService.showWarning(
                                 "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
                                 'Sync Operation',
@@ -146,13 +143,12 @@ export class NotesEffect {
                                 true,
                                 false
                             );
+                            return EMPTY;
                         }
                     }
-
-                    return EMPTY;
+                    return of(NotesActions.refreshNotesSuccess({ notes: action.notes }));
                 })
-            ),
-        { dispatch: false }
+            )
     );
 
     delete = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
