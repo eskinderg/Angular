@@ -13,14 +13,14 @@ export const fetchWatchListSuccess = createAction(
     props<{ movies: Movie[] }>()
 );
 
-export const removeWatchList = createAction('[MOVIE] REMOVE_WATCH_LIST', props<{ movie: Movie }>());
+export const removeWatchList = createAction('[MOVIE] REMOVE_WATCH_LIST', props<{ movies: Movie[] }>());
 export const removeWatchListFailed = createAction(
     '[MOVIE] REMOVE_WATCH_LIST_FAILURE',
     props<{ payload: string }>()
 );
 export const removeWatchListSuccess = createAction(
     '[MOVIE] REMOVE_WATCH_LIST_SUCCESS',
-    props<{ moviesRemoved: any[] }>()
+    props<{ moviesRemoved: Movie[] }>()
 );
 
 export const fetchRemovedWatchList = createAction(
@@ -33,7 +33,7 @@ export const fetchRemovedWatchListSuccess = createAction(
     props<{ movies: Movie[] }>()
 );
 
-export const addWatchList = createAction('[MOVIE] ADD_WATCH_LIST', props<{ movies: Movie }>());
+export const addWatchList = createAction('[MOVIE] ADD_WATCH_LIST', props<{ movies: Movie[] }>());
 export const addWatchListFailed = createAction(
     '[MOVIE] ADD_WATCH_LIST_FAILURE',
     props<{ payload: string }>()

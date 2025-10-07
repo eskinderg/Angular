@@ -186,3 +186,5 @@ export const toggleSpellCheckFail = createAction(
     '[NOTE] TOGGLE_SPELL_CHECK_FAIL',
     props<{ payload: string }>()
 );
+
+export const checkNoteConflict = createAction('[NOTE] CHECK_NOTE_CONFLICT', props<{ notes: Note[] }>());

@@ -60,6 +60,12 @@
         }
 
         <app-bookmark [size]="35" [saved]="isInWatchList | async" (savedChange)="onBookmarkToggled($event)" />
+        <span
+            [class.link-avail]="imageLoaded$.value"
+            (click)="imageLoaded$.value ? onImageClick() : null"
+            class="badge bg-secondary lang">
+            {{ movie.original_language | uppercase }}</span
+        >
     </div>
     <div class="content">
         <div class="title">
@@ -69,16 +75,18 @@
             </strong>
         </div>
 
-        <div class="text-row">
-            <div class="col-auto">
-                <span class="badge bg-secondary"> {{ movie.original_language | uppercase }}</span>
-            </div>
-            <small class="card-text">{{ movie.overview | truncate: '100' : true }}</small>
-        </div>
+        <div class="overview-text">{{ movie.overview | truncate: '100' : true }}</div>
 
         <div class="year-rating">
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
 
+            <div class="watch">
+                <a target="_blank" class="watch" [href]="WatchLink"> Watch </a>
+            </div>
+
+            <div>
+                <a target="_blank" class="ext" [href]="TorLink">&nbsp; T</a>
+            </div>
             <app-circular-rating
                 [voteCount]="movie.vote_count"
                 [voteAverage]="movie.vote_average"

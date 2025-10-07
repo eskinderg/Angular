@@ -46,13 +46,17 @@
 @if (movieResults$ | async) {
     @if ((movieResults$ | async).total_results) {
         @if (searchTerm$.value.length) {
-            <div [@movieCardList] class="movie-cards-container">
-                @for (movie of (movieResults$ | async)?.movies; track movie) {
-                    <div>
-                        <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />
-                    </div>
-                }
-            </div>
+            @if ((movieResults$ | async).movies.length) {
+                <div [@movieCardList] class="movie-cards-container">
+                    @for (movie of (movieResults$ | async)?.movies; track movie) {
+                        <div>
+                            <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />
+                        </div>
+                    }
+                </div>
+            } @else {
+                <h1 style="text-align: center; color: var(--b-secondary)">no search results</h1>
+            }
         }
     } @else {
         @if (searchTerm$.value.length) {

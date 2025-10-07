@@ -36,9 +36,13 @@ export class MoviesEffect {
                 ofType(MoviesActions.removeWatchList),
                 switchMap((action) =>
                     moviesDataService
-                        .favoriteMovie([
-                            { movieId: action.movie.id, favorite: false, userId: authService.userId() }
-                        ])
+                        .favoriteMovie(
+                            action.movies.map((movie) => ({
+                                ...movie,
+                                favorite: false,
+                                userId: authService.userId()
+                            }))
+                        )
                         .pipe(
                             map((movies) =>
                                 MoviesActions.removeWatchListSuccess({
@@ -63,13 +67,17 @@ export class MoviesEffect {
                 ofType(MoviesActions.addWatchList),
                 switchMap((action) =>
                     moviesDataService
-                        .favoriteMovie([
-                            { movieId: action.movies.id, favorite: true, userId: authService.userId() }
-                        ])
+                        .favoriteMovie(
+                            action.movies.map((movie) => ({
+                                ...movie,
+                                favorite: true,
+                                userId: authService.userId()
+                            }))
+                        )
                         .pipe(
                             map((movies) =>
-                                MoviesActions.fetchAddedWatchList({
-                                    payload: movies
+                                MoviesActions.addWatchListSuccess({
+                                    movies: movies
                                 })
                             ),
                             catchError((err) =>

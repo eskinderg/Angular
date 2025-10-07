@@ -37,6 +37,13 @@
     padding: 0;
 }
 
+.badge {
+    font-weight: bold;
+    border-radius: 50%;
+    width: 2rem;
+    padding: 0.5rem;
+}
+
 .searchIcon {
     stroke: var(--note-pin-nofill);
     cursor: pointer;

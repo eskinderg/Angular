@@ -15,6 +15,8 @@ import { MoviesApiService } from '../../service/movies.api.service';
 import { BehaviorSubject } from 'rxjs';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
+import { MoviesDataService } from '../../service/movies.data.service';
+import { hrefLink, torLink } from '../../functions/link';
 
 @Component({
     selector: 'app-movie-card',
@@ -37,6 +39,7 @@ export class MovieCardComponent implements OnInit {
     @Input() movie: Movie;
     @Output() clickImage: EventEmitter<any> = new EventEmitter();
     @Input() index: number;
+    movieDataService = inject(MoviesDataService);
 
     dialogLoading$ = new BehaviorSubject<boolean>(false);
     imageLoaded$ = new BehaviorSubject<boolean>(false);
@@ -60,6 +63,14 @@ export class MovieCardComponent implements OnInit {
 
     onImageClick() {
         this.clickImage.emit({ movie: this.movie, movieCardComponent: this });
+    }
+
+    get WatchLink(): string {
+        return hrefLink(this.movie);
+    }
+
+    get TorLink(): string {
+        return torLink(this.movie);
     }
 
     handleEmptyImage() {

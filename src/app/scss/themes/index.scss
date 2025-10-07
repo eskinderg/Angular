@@ -212,16 +212,16 @@
 
 .badge {
     display: inline-block;
-    padding: 0.5rem 0.65rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.75em;
 
     // font-weight: 700;
-    line-height: 1;
+    // line-height: 1;
     color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    border-radius: 0.95rem;
+    border-radius: 1rem;
 }
 
 .bg-secondary {

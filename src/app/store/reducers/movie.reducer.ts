@@ -1,5 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as MoviesActions from '../actions/movie.actions';
+import * as PreferenceActions from '../actions/preference.action';
 import { Movie } from 'src/app/components/movies/models/movie';
 import { MovieResults } from 'src/app/components/movies/models/movie-results';
 
@@ -35,6 +36,7 @@ const initialState: IMovieState = {
 
 export const movieReducer = createReducer<IMovieState>(
     initialState,
+    on(PreferenceActions.logOutSuccess, (): IMovieState => initialState),
     on(MoviesActions.fetchWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
@@ -44,15 +46,13 @@ export const movieReducer = createReducer<IMovieState>(
     on(MoviesActions.removeWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: state.watchList.filter(
-                (m) => !action.moviesRemoved.find((movie) => m.id === Number(movie[1]))
-            )
+            watchList: state.watchList.filter((m) => !action.moviesRemoved.find((movie) => m.id === movie.id))
         };
     }),
     on(MoviesActions.addWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
-            watchList: [...state.watchList, ...action.movies]
+            watchList: [...action.movies, ...state.watchList]
         };
     }),
     on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {

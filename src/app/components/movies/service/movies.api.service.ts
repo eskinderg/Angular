@@ -53,8 +53,8 @@ export class MoviesApiService {
         this.store.dispatch(AppActions.getDiscoverMovies({ queryParams: queryParams }));
     }
 
-    favoriteMovie(movie: Movie) {
-        return this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
+    favoriteMovie(movies: Movie) {
+        return this.store.dispatch(AppActions.removeWatchList({ movies: [movies] }));
     }
 
     getUserMovies() {
@@ -82,11 +82,11 @@ export class MoviesApiService {
     }
 
     addWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.addWatchList({ movies: movie }));
+        this.store.dispatch(AppActions.addWatchList({ movies: [movie] }));
     }
 
     removeWatchList(movie: Movie) {
-        this.store.dispatch(AppActions.removeWatchList({ movie: movie }));
+        this.store.dispatch(AppActions.removeWatchList({ movies: [movie] }));
     }
 
     getLanguages(filterLangs: string[] = []) {
