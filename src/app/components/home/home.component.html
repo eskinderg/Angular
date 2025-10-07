@@ -25,7 +25,7 @@
                             <small class="text-muted">Date Released {{ movie.release_date }}</small>
                         </div>
                         <p class="mb-1">{{ movie.overview | truncate: '100' : true }}</p>
-                        <small class="text-muted">Language {{ movie.spoken_languages | json }}</small>
+                        <small class="text-muted">Language {{ movie.original_language | uppercase }}</small>
                     </a>
                 }
             </div>

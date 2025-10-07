@@ -56,8 +56,9 @@ export class PreferenceEffect {
     logInSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-            switchMap(() =>
-                of(NoteActions.fetchNotes(), EventActions.fetchEvents(), MovieActions.fetchWatchList())
+            switchMap(
+                () => of(NoteActions.fetchNotes(), EventActions.fetchEvents(), MovieActions.fetchWatchList())
+                // of(NoteActions.fetchNotes(), EventActions.fetchEvents())
             )
         )
     );

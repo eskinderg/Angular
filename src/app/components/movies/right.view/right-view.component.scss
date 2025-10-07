@@ -1,7 +1,7 @@
 .movie-cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, max-content));
-    gap: 30px;
+    gap: 1.5rem;
     justify-content: space-around;
     background-color: var(--body-bg);
     padding: 2rem;
