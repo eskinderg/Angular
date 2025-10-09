@@ -10,7 +10,8 @@ import * as MovieActions from '../actions/movie.actions';
 import * as AdminAction from '../../admin/store/actions/admin.auth.action';
 import { ThemeService } from '../../theme/theme.service';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
+import { adminReducer } from 'src/app/admin/store/reducers/admin.reducer';
 
 @Injectable()
 export class PreferenceEffect {
@@ -59,15 +60,27 @@ export class PreferenceEffect {
     logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-            switchMap(() => {
-                let actions: Action[] = [
+            switchMap(() =>
+                of(
                     NoteActions.fetchNotes(),
                     EventActions.fetchEvents(),
-                    MovieActions.fetchWatchList()
-                ];
-                if (permission.IsAdmin)
-                    actions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers(), ...actions];
-                return of(...actions);
+                    MovieActions.fetchWatchList(),
+                    PreferenceActions.adminActions({ isAdmin: permission.IsAdmin })
+                )
+            )
+        )
+    );
+
+    adminActions$ = createEffect((actions$ = inject(Actions), store = inject(Store)) =>
+        actions$.pipe(
+            ofType(PreferenceActions.adminActions),
+            switchMap((action) => {
+                let adminActions: Action[] = [];
+                if (action.isAdmin) {
+                    store.addReducer('admin', adminReducer); // add admin state on demand
+                    adminActions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
+                }
+                return of(...adminActions);
             })
         )
     );

@@ -13,6 +13,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { MovieResults } from '../models/movie-results';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../store/reducers';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 // const API_URL = environment.MOVIES_API;
 const API_KEY = environment.MOVIES_API_KEY;
@@ -34,6 +35,7 @@ export interface MovieQueryParams {
 export class MoviesDataService {
     private http = inject(HttpClient);
     store = inject<Store<fromRoot.IAppState>>(Store);
+    auth = inject(OAuthService);
     apikey = API_KEY;
 
     constructor() {
@@ -149,12 +151,15 @@ export class MoviesDataService {
                 result.movies = res['results'].map((movie: Movie) => new Movie(movie));
 
                 // chain populate and then return MovieResults
-                return this.populateMovies(result.movies).pipe(map(() => result));
+                if (this.auth.hasValidAccessToken())
+                    return this.populateMovies(result.movies).pipe(map(() => result));
+                return of(result);
             })
         );
     }
 
     private populateMovies(movies: Movie[]): Observable<Movie[]> {
+        debugger;
         return this.http.post<Movie[]>(MOVIES_API_URL + '/populate', movies).pipe(
             map((movies: Movie[]) =>
                 movies.map((m) => {

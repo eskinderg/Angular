@@ -19,6 +19,8 @@ export const afterLogInSuccess = createAction('[PREFERENCE] AFTER_LOG_IN_SUCCESS
 
 export const logInSuccess = createAction('[PREFERENCE] LOG_IN_SUCCESS');
 
+export const adminActions = createAction('[PREFERENCE] ADMIN_USER_ACTIONS', props<{ isAdmin: boolean }>());
+
 export const logOutSuccess = createAction('[PREFERENCE] LOG_OUT_SUCCESS');
 
 export const startLoading = createAction('[PREFERENCE] START_LOADING');
