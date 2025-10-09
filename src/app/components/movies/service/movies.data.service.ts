@@ -159,7 +159,6 @@ export class MoviesDataService {
     }
 
     private populateMovies(movies: Movie[]): Observable<Movie[]> {
-        debugger;
         return this.http.post<Movie[]>(MOVIES_API_URL + '/populate', movies).pipe(
             map((movies: Movie[]) =>
                 movies.map((m) => {
