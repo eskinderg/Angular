@@ -1,3 +1,4 @@
+import { AdminEffect } from 'src/app/admin/store/effects/admin.effect';
 import { AuthEffect } from './auth.effect';
 import { EventsEffect } from './events.effect';
 import { MoviesEffect } from './movie.effect';
@@ -17,5 +18,6 @@ export const appEffects = [
     AuthEffect,
     PreferenceEffect,
     MoviesEffect,
+    AdminEffect,
     RouterEffect
 ];

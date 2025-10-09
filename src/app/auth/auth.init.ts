@@ -3,15 +3,21 @@ import { Store } from '@ngrx/store';
 import { authConfig } from './auth.config';
 import { logInSuccess } from '../store/actions';
 import { inject } from '@angular/core';
+import { adminReducer } from '../admin/store/reducers/admin.reducer';
+import { AuthPermission } from './auth.permission.service';
 
 export function initializeAuth(): () => Promise<void> {
     return async () => {
         const oauthService: OAuthService = inject(OAuthService);
+        const permission: AuthPermission = inject(AuthPermission);
         const store: Store = inject(Store);
         oauthService.configure(authConfig);
-        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 5000)
+        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 10000)
             .then(() => {
                 if (oauthService.hasValidAccessToken()) {
+                    if (permission.IsAdmin) {
+                        store.addReducer('admin', adminReducer); // add admin state on demand
+                    }
                     store.dispatch(logInSuccess());
                 }
             })

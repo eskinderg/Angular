@@ -141,41 +141,43 @@ export class BarchartComponent implements OnInit, OnChanges {
 
     updateChart() {
         // update scales & axis
-        this.xScale.domain(this.data.map((d) => d.column));
-        this.yScale.domain([0, d3.max(this.data, (d) => d.value)]);
-        this.colors.domain([0, this.data.length]);
-        this.xAxis.transition().call(d3.axisBottom(this.xScale));
-        this.yAxis.transition().call(d3.axisLeft(this.yScale));
+        if (this.data) {
+            this.xScale.domain(this.data.map((d) => d.column));
+            this.yScale.domain([0, d3.max(this.data, (d) => d.value)]);
+            this.colors.domain([0, this.data.length]);
+            this.xAxis.transition().call(d3.axisBottom(this.xScale));
+            this.yAxis.transition().call(d3.axisLeft(this.yScale));
 
-        const update = this.chart.selectAll('.bar').data(this.data);
+            const update = this.chart.selectAll('.bar').data(this.data);
 
-        // remove exiting bars
-        update.exit().remove();
+            // remove exiting bars
+            update.exit().remove();
 
-        // update existing bars
-        update
-            .transition()
-            .duration(500) // Add a duration to the transition for smoother updates
-            .attr('x', (d: any) => this.xScale(d.column))
-            .attr('y', (d: any) => this.yScale(d.value))
-            .attr('width', this.xScale.bandwidth())
-            .attr('height', (d) => this.yScale(0) - this.yScale(d.value))
-            .style('fill', (d: any) => this.colors(d.column));
+            // update existing bars
+            update
+                .transition()
+                .duration(500) // Add a duration to the transition for smoother updates
+                .attr('x', (d: any) => this.xScale(d.column))
+                .attr('y', (d: any) => this.yScale(d.value))
+                .attr('width', this.xScale.bandwidth())
+                .attr('height', (d) => this.yScale(0) - this.yScale(d.value))
+                .style('fill', (d: any) => this.colors(d.column));
 
-        // add new bars
-        update
-            .enter()
-            .append('rect')
-            .attr('class', 'bar')
-            .attr('x', (d: any) => this.xScale(d.column))
-            .attr('y', this.yScale(0))
-            .attr('width', this.xScale.bandwidth())
-            .attr('height', 0)
-            .style('fill', (d: any) => this.colors(d.column))
-            .transition() // Animate from the initial state to the final state
-            .duration(500) // Add a duration for the grow effect
-            .delay((_d: any, i: number) => i * 50)
-            .attr('y', (d) => this.yScale(d.value))
-            .attr('height', (d) => this.yScale(0) - this.yScale(d.value));
+            // add new bars
+            update
+                .enter()
+                .append('rect')
+                .attr('class', 'bar')
+                .attr('x', (d: any) => this.xScale(d.column))
+                .attr('y', this.yScale(0))
+                .attr('width', this.xScale.bandwidth())
+                .attr('height', 0)
+                .style('fill', (d: any) => this.colors(d.column))
+                .transition() // Animate from the initial state to the final state
+                .duration(500) // Add a duration for the grow effect
+                .delay((_d: any, i: number) => i * 50)
+                .attr('y', (d) => this.yScale(d.value))
+                .attr('height', (d) => this.yScale(0) - this.yScale(d.value));
+        }
     }
 }

@@ -7,7 +7,10 @@ import * as NoteActions from '../actions/note.actions';
 import * as AuthActions from '../actions/auth.action';
 import * as EventActions from '../actions/event.action';
 import * as MovieActions from '../actions/movie.actions';
+import * as AdminAction from '../../admin/store/actions/admin.auth.action';
 import { ThemeService } from '../../theme/theme.service';
+import { AuthPermission } from 'src/app/auth/auth.permission.service';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class PreferenceEffect {
@@ -53,13 +56,19 @@ export class PreferenceEffect {
         )
     );
 
-    logInSuccess = createEffect((actions$ = inject(Actions)) =>
+    logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
         actions$.pipe(
             ofType(PreferenceActions.logIn, PreferenceActions.logInSuccess),
-            switchMap(
-                () => of(NoteActions.fetchNotes(), EventActions.fetchEvents(), MovieActions.fetchWatchList())
-                // of(NoteActions.fetchNotes(), EventActions.fetchEvents())
-            )
+            switchMap(() => {
+                let actions: Action[] = [
+                    NoteActions.fetchNotes(),
+                    EventActions.fetchEvents(),
+                    MovieActions.fetchWatchList()
+                ];
+                if (permission.IsAdmin)
+                    actions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers(), ...actions];
+                return of(...actions);
+            })
         )
     );
 
