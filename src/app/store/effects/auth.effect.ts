@@ -18,7 +18,6 @@ import { adminReducer } from 'src/app/admin/store/reducers/admin.reducer';
 export class AuthEffect {
     private actions$ = inject(Actions);
     private oauthService = inject(OAuthService);
-    private authPermission = inject(AuthPermission);
     private router = inject(Router);
 
     logIn = createEffect((actions$ = inject(Actions), authService = inject(OAuthService)) =>
@@ -58,11 +57,7 @@ export class AuthEffect {
     loginWithUsernamePasswordSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loginWithUsernamePasswordSuccess),
-            switchMap(() => {
-                if (this.authPermission.IsAdmin)
-                    return [AuthActions.loadProfile(), AuthActions.routeToDashboard()];
-                return [AuthActions.loadProfile(), AuthActions.routeToHome()];
-            })
+            switchMap(() => [AuthActions.loadProfile()])
         )
     );
 
@@ -135,12 +130,15 @@ export class AuthEffect {
             actions$.pipe(
                 ofType(AuthActions.routeActions),
                 switchMap(() => {
-                    let adminActions: Action[] = [];
                     if (permission.IsAdmin) {
                         store.addReducer('admin', adminReducer); // add admin state on demand
-                        adminActions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
+                        return of(
+                            AuthActions.routeToDashboard(),
+                            AdminAction.adminFetchUsersInfo(),
+                            AdminAction.adminFetchUsers()
+                        );
                     }
-                    return of(...adminActions);
+                    return of(AuthActions.routeToHome());
                 })
             )
     );
