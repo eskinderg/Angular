@@ -1,7 +1,7 @@
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 import { authConfig } from './auth.config';
-import { logInSuccess } from '../store/actions';
+import * as AuthActions from '../store/actions/auth.action';
 import { inject } from '@angular/core';
 
 export function initializeAuth(): () => Promise<void> {
@@ -9,12 +9,8 @@ export function initializeAuth(): () => Promise<void> {
         const oauthService: OAuthService = inject(OAuthService);
         const store: Store = inject(Store);
         oauthService.configure(authConfig);
-        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 5000)
-            .then(() => {
-                if (oauthService.hasValidAccessToken()) {
-                    store.dispatch(logInSuccess());
-                }
-            })
+        await withTimeout(oauthService.loadDiscoveryDocumentAndTryLogin(), 10000)
+            .then(() => store.dispatch(AuthActions.logIn()))
             .catch((error) => {
                 alert(error?.message);
                 return Promise.reject(error);

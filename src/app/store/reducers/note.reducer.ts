@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as NotesActions from '../actions/note.actions';
-import * as PreferenceActions from '../actions/preference.action';
+import * as AuthActions from '../actions/auth.action';
 import { Note } from '../../models/note';
 import { IAppRouterState, getAppRouterState } from './route.reducer';
 
@@ -30,7 +30,7 @@ const initialState: INotesState = {
 
 export const notesReducer = createReducer<INotesState>(
     initialState,
-    on(PreferenceActions.logOutSuccess, (): INotesState => initialState),
+    on(AuthActions.logOutSuccess, (): INotesState => initialState),
     on(NotesActions.noteSelect, (state, action): INotesState => {
         localStorage.setItem('lastSelectedNote', action.note.id.toString());
         return {

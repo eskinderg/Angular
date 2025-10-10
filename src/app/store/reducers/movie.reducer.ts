@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as MoviesActions from '../actions/movie.actions';
-import * as PreferenceActions from '../actions/preference.action';
+import * as AuthActions from '../actions/auth.action';
 import { Movie } from 'src/app/components/movies/models/movie';
 import { MovieResults } from 'src/app/components/movies/models/movie-results';
 
@@ -36,7 +36,7 @@ const initialState: IMovieState = {
 
 export const movieReducer = createReducer<IMovieState>(
     initialState,
-    on(PreferenceActions.logOutSuccess, (): IMovieState => initialState),
+    on(AuthActions.logOutSuccess, (): IMovieState => initialState),
     on(MoviesActions.fetchWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,

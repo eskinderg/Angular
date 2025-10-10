@@ -4,3 +4,4 @@ export * from './event.action';
 export * from './movie.actions';
 export * from './preference.action';
 export * from './notification.action';
+export * from '../../admin/store/actions';

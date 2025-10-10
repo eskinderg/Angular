@@ -32,7 +32,6 @@ export class ProfileComponent implements OnInit {
 
     constructor() {
         this.user = this.authService.getIdentityClaims();
-        console.log(this.authService.getIdentityClaims());
     }
 
     ngOnInit() {

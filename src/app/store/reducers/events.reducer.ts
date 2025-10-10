@@ -1,6 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as EventsActions from '../actions/event.action';
-import * as PreferenceActions from '../actions/preference.action';
+import * as AuthActions from '../actions/auth.action';
 import { Event } from '../../fragments/components/event/event';
 
 export interface IEventsState {
@@ -15,7 +15,7 @@ const initialState: IEventsState = {
 
 export const eventsReducer = createReducer<IEventsState>(
     initialState,
-    on(PreferenceActions.logOutSuccess, (): IEventsState => initialState),
+    on(AuthActions.logOutSuccess, (): IEventsState => initialState),
     on(EventsActions.eventsClear, (state) => ({
         ...state,
         events: []

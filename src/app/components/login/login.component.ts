@@ -103,23 +103,31 @@ export class LoginComponent implements OnInit {
     loginWithPassword() {
         if (this.loginForm.valid) {
             this.isLoading = true;
-            this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
-            this.oauthService.loadDiscoveryDocument().then(() => {
-                this.oauthService
-                    .fetchTokenUsingPasswordFlowAndLoadUserProfile(
-                        this.loginForm.get('username').value,
-                        this.loginForm.get('password').value
-                    )
-                    .then(() => {
-                        this.store.dispatch(AuthActions.loginWithPasswordSuccess());
-                        this.isLoading = false;
-                    })
-                    .catch((error) => {
-                        this.message$.next(error.error.error_description);
-                        this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
-                        this.isLoading = false;
-                    });
-            });
+            this.store.dispatch(
+                AuthActions.loginWithUserNamePassword({
+                    username: this.loginForm.get('username').value,
+                    password: this.loginForm.get('password').value
+                })
+            );
+
+            this.isLoading = false;
+            // this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
+            // this.oauthService.loadDiscoveryDocument().then(() => {
+            //     this.oauthService
+            //         .fetchTokenUsingPasswordFlowAndLoadUserProfile(
+            //             this.loginForm.get('username').value,
+            //             this.loginForm.get('password').value
+            //         )
+            //         .then(() => {
+            //             this.store.dispatch(AuthActions.loginWithPasswordSuccess());
+            //             this.isLoading = false;
+            //         })
+            //         .catch((error) => {
+            //             this.message$.next(error.error.error_description);
+            //             this.store.dispatch(AuthActions.loginEventFail({ payload: error }));
+            //             this.isLoading = false;
+            //         });
+            // });
         }
     }
 

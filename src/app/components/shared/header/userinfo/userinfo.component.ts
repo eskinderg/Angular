@@ -3,6 +3,8 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { Store } from '@ngrx/store';
 
 import * as fromProfile from '../../../../store/reducers/preference.reducer';
+import * as fromAuth from '../../../../store/reducers/auth.reducer';
+import * as AuthActions from '../../../../store/actions/auth.action';
 import * as PreferenceActions from '../../../../store/actions/preference.action';
 import { ThemeOptionComponent } from '../../../../fragments/components/appThemeOption/appThemeOption.component';
 import { Router, RouterLink } from '@angular/router';
@@ -47,25 +49,11 @@ export class UserInfoComponent {
     }
 
     async logOut() {
-        const idToken = this.oauthService.getIdToken();
-
-        if (idToken) {
-            await this.oauthService
-                .revokeTokenAndLogout()
-                .then(() => this.store.dispatch(PreferenceActions.logOutSuccess()))
-                .catch((error) => {
-                    alert('Logout failed');
-                    return Promise.reject(error);
-                });
-        } else {
-            delete this.oauthService.logoutUrl;
-            this.oauthService.logOut(false);
-            this.store.dispatch(PreferenceActions.logOutSuccess());
-        }
+        this.store.dispatch(AuthActions.logout({ message: 'user initiated' }));
     }
 
     get isLoggedIn() {
-        return this.store.select(fromProfile.isLoggedIn);
+        return this.store.select(fromAuth.isLoggedIn);
     }
 
     get username() {
