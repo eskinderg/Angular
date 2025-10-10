@@ -27,7 +27,7 @@ export class AuthEffect {
             switchMap(() => {
                 let actions: Action[] = [];
                 if (authService.hasValidAccessToken()) {
-                    actions = [...actions, AuthActions.logInSuccess()];
+                    actions = [...actions, AuthActions.loadProfile()];
                 }
                 return of(...actions);
             })
@@ -40,13 +40,10 @@ export class AuthEffect {
             concatMap((action) => {
                 oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
 
-                return from(oauthService.loadDiscoveryDocument()).pipe(
+                return from(oauthService.loadDiscoveryDocumentAndTryLogin()).pipe(
                     switchMap(() => {
                         return from(
-                            oauthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(
-                                action.username,
-                                action.password
-                            )
+                            oauthService.fetchTokenUsingPasswordFlow(action.username, action.password)
                         ).pipe(
                             mergeMap(() => of(AuthActions.loginWithUsernamePasswordSuccess())),
                             catchError((err) => of(AuthActions.loginEventFail({ payload: err })))
@@ -63,8 +60,8 @@ export class AuthEffect {
             ofType(AuthActions.loginWithUsernamePasswordSuccess),
             switchMap(() => {
                 if (this.authPermission.IsAdmin)
-                    return [AuthActions.logInSuccess(), AuthActions.routeToDashboard()];
-                return [AuthActions.logInSuccess(), AuthActions.routeToHome()];
+                    return [AuthActions.loadProfile(), AuthActions.routeToDashboard()];
+                return [AuthActions.loadProfile(), AuthActions.routeToHome()];
             })
         )
     );
@@ -81,13 +78,19 @@ export class AuthEffect {
         )
     );
 
-    logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
+    loadProfileSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(AuthActions.loadProfileSuccess),
+            switchMap(() => of(AuthActions.logInSuccess()))
+        )
+    );
+
+    logInSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(AuthActions.logInSuccess),
             switchMap(() =>
                 of(
-                    AuthActions.loadProfile(),
-                    AuthActions.adminActions({ isAdmin: permission.IsAdmin }),
+                    AuthActions.routeActions(),
                     NoteActions.fetchNotes(),
                     EventActions.fetchEvents(),
                     MovieActions.fetchWatchList()
@@ -127,49 +130,19 @@ export class AuthEffect {
         )
     );
 
-    adminActions$ = createEffect((actions$ = inject(Actions), store = inject(Store)) =>
-        actions$.pipe(
-            ofType(AuthActions.adminActions),
-            switchMap((action) => {
-                let adminActions: Action[] = [];
-                if (action.isAdmin) {
-                    store.addReducer('admin', adminReducer); // add admin state on demand
-                    adminActions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
-                }
-                return of(...adminActions);
-            })
-        )
-    );
-
-    getIsLoggedInSuccess = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(AuthActions.getIsLoggedInSuccess),
-            switchMap((action) => of(AuthActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn })))
-        )
-    );
-
-    getIsLoggedIn = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(AuthActions.getIsLoggedIn),
-            switchMap(() =>
-                of(
-                    AuthActions.getIsLoggedInSuccess({
-                        isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false
-                    })
-                )
+    routeActions$ = createEffect(
+        (actions$ = inject(Actions), store = inject(Store), permission = inject(AuthPermission)) =>
+            actions$.pipe(
+                ofType(AuthActions.routeActions),
+                switchMap(() => {
+                    let adminActions: Action[] = [];
+                    if (permission.IsAdmin) {
+                        store.addReducer('admin', adminReducer); // add admin state on demand
+                        adminActions = [AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
+                    }
+                    return of(...adminActions);
+                })
             )
-        )
-    );
-
-    setIsLoggedIn = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(AuthActions.setIsLoggedIn),
-            switchMap((action) =>
-                of(localStorage.setItem('isLoggedIn', action.isLoggedIn.toString())).pipe(
-                    map(() => AuthActions.getIsLoggedInSuccess({ isLoggedIn: action.isLoggedIn }))
-                )
-            )
-        )
     );
 
     tokenExpire$ = createEffect(() =>

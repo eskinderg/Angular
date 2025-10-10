@@ -23,13 +23,11 @@ export const loginWithUserNamePassword = createAction(
 
 export const loginEventFail = createAction('[AUTH] LOGIN_EVENT_FAIL', props<{ payload: any }>());
 
-// export const loginEventSuccess = createAction('[AUTH] LOGIN_EVENT_SUCCESS');
-
 export const logInSuccess = createAction('[AUTH] LOG_IN_SUCCESS');
 
 export const logOutSuccess = createAction('[AUTH] LOG_OUT_SUCCESS');
 
-export const adminActions = createAction('[AUTH] ADMIN_USER_ACTIONS', props<{ isAdmin: boolean }>());
+export const routeActions = createAction('[AUTH] ADMIN_USER_ACTIONS');
 
 export const loginWithUsernamePasswordSuccess = createAction('[AUTH] LOGIN_WITH_PASSWORD_SUCCESS');
 
@@ -38,13 +36,6 @@ export const startLoading = createAction('[AUTH] START_LOADING');
 export const stopLoading = createAction('[AUTH] STOP_LOADING');
 
 export const setIsLoggedIn = createAction('[AUTH] SET_IS_LOGGED_IN', props<{ isLoggedIn: boolean }>());
-
-export const getIsLoggedInSuccess = createAction(
-    '[AUTH] GET_IS_LOGGED_IN_SUCCESS',
-    props<{ isLoggedIn: boolean }>()
-);
-
-export const getIsLoggedIn = createAction('[AUTH] GET_IS_LOGGED_IN');
 
 export const authInit = createAction('[AUTH] AUTH_INIT');
 

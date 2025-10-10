@@ -17,23 +17,10 @@ export const authReducer = createReducer<IAuthState>(
     initialState,
     on(AuthActions.logOutSuccess, (): IAuthState => initialState),
     on(
-        AuthActions.logInSuccess,
-        (state): IAuthState => ({
-            ...state,
-            isLoggedIn: true
-        })
-    ),
-    on(
-        AuthActions.getIsLoggedInSuccess,
-        (state, action): IAuthState => ({
-            ...state,
-            isLoggedIn: action.isLoggedIn
-        })
-    ),
-    on(
         AuthActions.loadProfileSuccess,
         (state, action): IAuthState => ({
             ...state,
+            isLoggedIn: true,
             profile: action.profile.info
         })
     ),

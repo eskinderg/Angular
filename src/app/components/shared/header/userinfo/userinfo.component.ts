@@ -4,12 +4,14 @@ import { Store } from '@ngrx/store';
 
 import * as fromProfile from '../../../../store/reducers/preference.reducer';
 import * as fromAuth from '../../../../store/reducers/auth.reducer';
+import * as fromRoot from '../../../../store/reducers';
 import * as AuthActions from '../../../../store/actions/auth.action';
 import * as PreferenceActions from '../../../../store/actions/preference.action';
 import { ThemeOptionComponent } from '../../../../fragments/components/appThemeOption/appThemeOption.component';
 import { Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { authConfig } from 'src/app/auth/auth.config';
+import { map } from 'rxjs';
 
 @Component({
     selector: 'app-userinfo',
@@ -21,7 +23,7 @@ import { authConfig } from 'src/app/auth/auth.config';
 export class UserInfoComponent {
     private oauthService = inject(OAuthService);
     private router = inject(Router);
-    store = inject<Store<fromProfile.IPreferenceState>>(Store);
+    private store = inject<Store<fromRoot.IAppState>>(Store);
 
     claims: any;
     name: any;
@@ -57,11 +59,14 @@ export class UserInfoComponent {
     }
 
     get username() {
-        const claims = this.oauthService.getIdentityClaims();
-        if (!claims) {
-            return null;
-        }
-        return claims['name'] ?? claims['preferred_username'];
+        return this.store
+            .select(fromRoot.getProfile)
+            .pipe(map((profile) => profile.name ?? profile.preferred_username));
+        // const claims = this.oauthService.getIdentityClaims();
+        // if (!claims) {
+        //     return null;
+        // }
+        // return claims['name'] ?? claims['preferred_username'];
     }
 
     onDarkModeToggle() {

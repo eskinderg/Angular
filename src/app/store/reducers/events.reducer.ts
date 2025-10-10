@@ -72,7 +72,7 @@ export const getEvents = createSelector(getEventState, (state: IEventsState) => 
 
 export const getEventsLength = createSelector(getEventState, (state: IEventsState) => state.events.length);
 
-export const getIsLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading);
+export const getIsEventLoading = createSelector(getEventState, (state: IEventsState) => state.isLoading);
 
 export const getItemById = (id: string) =>
     createSelector(getEventState, (allItems) => {

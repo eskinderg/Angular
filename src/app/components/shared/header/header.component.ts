@@ -61,7 +61,7 @@ export class HeaderComponent {
     }
 
     get EventLoading() {
-        return this.storeService.select(this.storeService.selectors.getIsLoading);
+        return this.storeService.select(this.storeService.selectors.getIsEventLoading);
     }
 
     get NotesCount() {
@@ -69,7 +69,7 @@ export class HeaderComponent {
     }
 
     get NoteLoading() {
-        return this.storeService.select(this.storeService.selectors.getIsLoading);
+        return this.storeService.select(this.storeService.selectors.getIsNoteLoading);
     }
 
     get WatchListCount() {
