@@ -57,7 +57,7 @@ export class AuthEffect {
     loginWithUsernamePasswordSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loginWithUsernamePasswordSuccess),
-            switchMap(() => [AuthActions.loadProfile()])
+            switchMap(() => [AuthActions.loadProfile(), AuthActions.routeActions()])
         )
     );
 
@@ -80,18 +80,28 @@ export class AuthEffect {
         )
     );
 
-    logInSuccess = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(AuthActions.logInSuccess),
-            switchMap(() =>
-                of(
-                    AuthActions.routeActions(),
-                    NoteActions.fetchNotes(),
-                    EventActions.fetchEvents(),
-                    MovieActions.fetchWatchList()
-                )
+    logInSuccess = createEffect(
+        (actions$ = inject(Actions), store = inject(Store), permission = inject(AuthPermission)) =>
+            actions$.pipe(
+                ofType(AuthActions.logInSuccess),
+                switchMap(() => {
+                    let actions: Action[] = [
+                        NoteActions.fetchNotes(),
+                        EventActions.fetchEvents(),
+                        MovieActions.fetchWatchList()
+                    ];
+
+                    if (permission.IsAdmin) {
+                        store.addReducer('admin', adminReducer); // add admin state on demand
+                        actions = [
+                            ...actions,
+                            AdminAction.adminFetchUsersInfo(),
+                            AdminAction.adminFetchUsers()
+                        ];
+                    }
+                    return of(...actions);
+                })
             )
-        )
     );
 
     logout$ = createEffect(() =>
@@ -125,22 +135,16 @@ export class AuthEffect {
         )
     );
 
-    routeActions$ = createEffect(
-        (actions$ = inject(Actions), store = inject(Store), permission = inject(AuthPermission)) =>
-            actions$.pipe(
-                ofType(AuthActions.routeActions),
-                switchMap(() => {
-                    if (permission.IsAdmin) {
-                        store.addReducer('admin', adminReducer); // add admin state on demand
-                        return of(
-                            AuthActions.routeToDashboard(),
-                            AdminAction.adminFetchUsersInfo(),
-                            AdminAction.adminFetchUsers()
-                        );
-                    }
-                    return of(AuthActions.routeToHome());
-                })
-            )
+    routeActions$ = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
+        actions$.pipe(
+            ofType(AuthActions.routeActions),
+            switchMap(() => {
+                if (permission.IsAdmin) {
+                    return of(AuthActions.routeToDashboard());
+                }
+                return of(AuthActions.routeToHome());
+            })
+        )
     );
 
     tokenExpire$ = createEffect(() =>
