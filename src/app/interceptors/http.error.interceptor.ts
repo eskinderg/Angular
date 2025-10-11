@@ -11,6 +11,7 @@ import { Observable, throwError, catchError } from 'rxjs';
 import { LoggingService } from '../error/loggingservice';
 import { NOTE_NOT_FOUND, NOTE_UPDATE_CONFLICT } from '../config/config';
 import { NotificationService } from '../shared/notification/notification.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 // import { AuthService } from './components/shared/services/auth/auth.service';
 
 // import { ConfirmService } from '../fragments/components/dialog/confirm.service';
@@ -21,9 +22,11 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<any>> => {
     const loggingService = inject(LoggingService);
     const notificationService = inject(NotificationService);
+    const tokenEndpoint = inject(OAuthService).tokenEndpoint;
 
     return next(request).pipe(
         catchError((error: HttpErrorResponse) => {
+            const isAuthRequest = tokenEndpoint && request.url.includes(tokenEndpoint);
             if (error.status === NOTE_UPDATE_CONFLICT) {
                 notificationService.showWarning(
                     "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
@@ -40,7 +43,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
                     true,
                     false
                 );
-            } else {
+            } else if (!isAuthRequest) {
                 loggingService.error(error);
             }
             return throwError(() => error);

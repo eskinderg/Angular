@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Component, OnInit, HostBinding, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -12,7 +12,7 @@ import {
     ReactiveFormsModule
 } from '@angular/forms';
 import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
-import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
+// import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 
@@ -27,7 +27,7 @@ import { BehaviorSubject } from 'rxjs';
 export class LoginComponent implements OnInit {
     private store = inject<Store<fromRoot.IAppState>>(Store);
     private oauthService = inject(OAuthService);
-    private route = inject(ActivatedRoute);
+    // private route = inject(ActivatedRoute);
     private router = inject(Router);
 
     @HostBinding('@routerFadeInAnimation')
@@ -39,6 +39,9 @@ export class LoginComponent implements OnInit {
     isLoading: boolean = false;
 
     constructor() {
+        // this.subscription = this.store
+        //     .select(fromRoot.getError)
+        //     .subscribe((err) => this.message$.next(err?.error?.error_description));
         // this.route.params.subscribe((params) => (this.message = params['endsession']));
 
         if (this.oauthService.hasValidAccessToken()) {
@@ -46,6 +49,9 @@ export class LoginComponent implements OnInit {
             // return
         }
     }
+    // ngOnDestroy(): void {
+    //     if (this.subscription) this.subscription.unsubscribe();
+    // }
 
     ngOnInit() {
         this.loginForm = new UntypedFormGroup({
@@ -129,6 +135,14 @@ export class LoginComponent implements OnInit {
             //         });
             // });
         }
+    }
+
+    showLogging() {
+        return this.store.select(fromRoot.showLogging);
+    }
+
+    get error$() {
+        return this.store.select(fromRoot.getError);
     }
 
     toggleShowPassword() {

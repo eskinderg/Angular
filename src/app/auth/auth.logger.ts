@@ -8,7 +8,7 @@ export class OAuthAppLogger extends OAuthLogger {
 
     override debug(message?: any, ...optionalParams: any[]): void {
         // console.info(optionalParams);
-        this.notificationService.showStandard(message, 'OAuth Debug');
+        // this.notificationService.showStandard(message, 'OAuth Debug');
     }
 
     override info(message?: any, ...optionalParams: any[]): void {
@@ -28,6 +28,6 @@ export class OAuthAppLogger extends OAuthLogger {
 
     override error(message?: any, ...optionalParams: any[]): void {
         // console.log(optionalParams);
-        this.notificationService.showError(message, 'OAuth Error');
+        // this.notificationService.showError(message, 'OAuth Error');
     }
 }

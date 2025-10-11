@@ -1,21 +1,10 @@
 <form (ngSubmit)="loginWithPassword()" [formGroup]="loginForm" class="login-form container pt-3" novalidate>
-    @if (isLoading) {
-        <div class="loggingin">
-            <div class="loader-container">
-                <div class="loader">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-    }
     <div class="row wrapper justify-content-sm-center">
         <div class="col-sm-6 col-md-4">
             <div class="card text-center shadow">
                 <div class="card-body">
                     <!-- Error Alert -->
-                    @if (message$ | async; as message) {
+                    @if (error$ | async; as message) {
                         <div
                             class="alert alert-danger d-flex align-items-center gap-2 mb-3"
                             role="alert"
@@ -135,12 +124,23 @@
                         ">
                         Password is required.
                     </div>
-                    <button
-                        class="btn btn-lg btn-primary btn-block mb-1 w-100"
-                        [disabled]="loginForm.invalid"
-                        type="submit">
-                        Sign in
-                    </button>
+                    <div class="bottom">
+                        <div [class.show]="showLogging() | async" class="loggingin">
+                            <div class="loader-container">
+                                <div class="loader">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="btn btn-lg btn-primary btn-block mb-1 w-100"
+                            [disabled]="loginForm.invalid"
+                            type="submit">
+                            Sign in
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
