@@ -11,8 +11,7 @@ import * as MovieActions from '../actions/movie.actions';
 import * as AdminAction from '../../admin/store/actions/admin.auth.action';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
-import { Action, Store } from '@ngrx/store';
-import { adminReducer } from 'src/app/admin/store/reducers/admin.reducer';
+import { Action } from '@ngrx/store';
 
 @Injectable()
 export class AuthEffect {
@@ -80,28 +79,22 @@ export class AuthEffect {
         )
     );
 
-    logInSuccess = createEffect(
-        (actions$ = inject(Actions), store = inject(Store), permission = inject(AuthPermission)) =>
-            actions$.pipe(
-                ofType(AuthActions.logInSuccess),
-                switchMap(() => {
-                    let actions: Action[] = [
-                        NoteActions.fetchNotes(),
-                        EventActions.fetchEvents(),
-                        MovieActions.fetchWatchList()
-                    ];
+    logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
+        actions$.pipe(
+            ofType(AuthActions.logInSuccess),
+            switchMap(() => {
+                let actions: Action[] = [
+                    NoteActions.fetchNotes(),
+                    EventActions.fetchEvents(),
+                    MovieActions.fetchWatchList()
+                ];
 
-                    if (permission.IsAdmin) {
-                        store.addReducer('admin', adminReducer); // add admin state on demand
-                        actions = [
-                            ...actions,
-                            AdminAction.adminFetchUsersInfo(),
-                            AdminAction.adminFetchUsers()
-                        ];
-                    }
-                    return of(...actions);
-                })
-            )
+                if (permission.IsAdmin) {
+                    actions = [...actions, AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
+                }
+                return of(...actions);
+            })
+        )
     );
 
     logout$ = createEffect(() =>

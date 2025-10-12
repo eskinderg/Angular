@@ -9,6 +9,7 @@ import { routerReducer, RouterReducerState } from '@ngrx/router-store';
 import { IAppRouterState } from './route.reducer';
 import { INotificationState, notificationReducer } from './notification.reducer';
 import { IMovieState, movieReducer } from './movie.reducer';
+import { adminReducer, IAdminNotesState } from 'src/app/admin/store/reducers/admin.reducer';
 
 export interface IAppState {
     notes: INotesState;
@@ -17,6 +18,7 @@ export interface IAppState {
     preference: IPreferenceState;
     movies: IMovieState;
     notifications: INotificationState;
+    admin: IAdminNotesState;
     router: RouterReducerState<IAppRouterState>;
 }
 
@@ -27,6 +29,7 @@ export const appReducer: ActionReducerMap<IAppState> = {
     preference: profileReducer,
     movies: movieReducer,
     notifications: notificationReducer,
+    admin: adminReducer,
     router: routerReducer
 };
 
