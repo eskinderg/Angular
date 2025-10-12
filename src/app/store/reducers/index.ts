@@ -47,4 +47,5 @@ export * from './auth.reducer';
 export * from './preference.reducer';
 export * from './movie.reducer';
 export * from './notification.reducer';
+export * from '../../admin/store/reducers/admin.reducer';
 export * from './route.reducer';
