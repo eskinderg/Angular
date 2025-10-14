@@ -68,6 +68,16 @@ export const getDiscoverMovies = createAction(
     props<{ queryParams: MovieQueryParams }>()
 );
 
+export const getDiscoverMoviesForHome = createAction(
+    '[MOVIE] GET_DISCOVER_FOR_HOME_MOVIES',
+    props<{ queryParams: MovieQueryParams }>()
+);
+
+export const getDiscoverMoviesForHomeSuccess = createAction(
+    '[MOVIE] GET_DISCOVER_MOVIES_FOR_HOME_SUCCESS',
+    props<{ movieResults: MovieResults }>()
+);
+
 export const discoverMoviesReset = createAction('[MOVIE] DISCOVER_MOVIES_RESET');
 
 export const getDiscoverMoviesStart = createAction('[MOVIE] GET_DISCOVER_MOVIES_START');

@@ -29,6 +29,7 @@ export interface MovieQueryParams {
     startDate: string;
     endDate: string;
     sortBy: string;
+    page: number;
 }
 
 @Injectable({ providedIn: 'root' })

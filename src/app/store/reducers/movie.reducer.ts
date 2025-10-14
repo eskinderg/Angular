@@ -70,6 +70,17 @@ export const movieReducer = createReducer<IMovieState>(
             }
         };
     }),
+    on(MoviesActions.getDiscoverMoviesForHomeSuccess, (state, action): IMovieState => {
+        return {
+            ...state,
+            discover: {
+                ...state.discover,
+                movies: [...action.movieResults.movies],
+                moviesResult: action.movieResults,
+                loading: false
+            }
+        };
+    }),
     on(MoviesActions.getDiscoverMoviesSuccess, (state, action): IMovieState => {
         return {
             ...state,

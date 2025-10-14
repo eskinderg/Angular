@@ -67,7 +67,8 @@ export class DiscoverComponent implements OnInit, OnDestroy {
             lang: this.selectedLanguage$.value,
             startDate: this.startYear$.value,
             endDate: this.endYear$.value,
-            sortBy: this.sortDirection$.value
+            sortBy: this.sortDirection$.value,
+            page: null
         };
 
         this.movieApiService.discoverMovies(queryParams);

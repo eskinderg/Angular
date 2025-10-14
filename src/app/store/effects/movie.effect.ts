@@ -150,6 +150,32 @@ export class MoviesEffect {
             )
     );
 
+    getDiscoverMoviesForHome$ = createEffect(
+        (
+            actions$ = inject(Actions),
+            moviesDataService = inject(MoviesDataService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
+        ) =>
+            actions$.pipe(
+                ofType(MoviesActions.getDiscoverMoviesForHome),
+                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
+                exhaustMap(([action, lang]) => {
+                    return moviesDataService
+                        .getDiscoverMovies(action.queryParams, lang, action.queryParams.page)
+                        .pipe(
+                            map((movies) =>
+                                MoviesActions.getDiscoverMoviesForHomeSuccess({
+                                    movieResults: movies
+                                })
+                            ),
+                            catchError((err) =>
+                                of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
+                            )
+                        );
+                })
+            )
+    );
+
     fetchMoviesByGenre$ = createEffect(
         (
             actions$ = inject(Actions),
