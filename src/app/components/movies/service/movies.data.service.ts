@@ -1,4 +1,4 @@
-import { throwError as observableThrowError, Observable, forkJoin, of } from 'rxjs';
+import { throwError as observableThrowError, Observable, forkJoin } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
@@ -152,9 +152,7 @@ export class MoviesDataService {
                 result.movies = res['results'].map((movie: Movie) => new Movie(movie));
 
                 // chain populate and then return MovieResults
-                if (this.auth.hasValidAccessToken())
-                    return this.populateMovies(result.movies).pipe(map(() => result));
-                return of(result);
+                return this.populateMovies(result.movies).pipe(map(() => result));
             })
         );
     }
