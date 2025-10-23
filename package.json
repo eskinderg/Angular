@@ -49,7 +49,7 @@
     "@eslint/js": "^9.38.0",
     "@ngrx/effects": "20.0.1",
     "@ngrx/router-store": "20.0.1",
-    "@ngrx/store": "20.0.1",
+    "@ngrx/store": "20.1.0",
     "@ngrx/store-devtools": "20.0.1",
     "@types/d3": "^7.4.3",
     "@types/jasmine": "~5.1.8",
