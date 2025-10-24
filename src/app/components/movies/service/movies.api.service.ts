@@ -73,6 +73,10 @@ export class MoviesApiService {
         return this.store.select(fromMovies.isInWatchList(movie));
     }
 
+    isInWatchedList(movie: Movie) {
+        return this.store.select(fromMovies.isInWatchedList(movie));
+    }
+
     isDiscoverLoading() {
         return this.store.select(fromMovies.getDiscoverdMoviesLoading);
     }
@@ -91,6 +95,20 @@ export class MoviesApiService {
 
     removeWatchList(movie: Movie) {
         this.store.dispatch(AppActions.removeWatchList({ movies: [movie] }));
+    }
+
+    addWatchedList(movie: Movie) {
+        this.store.dispatch(AppActions.addWatchedList({ movies: [movie] }));
+    }
+
+    updateUserMovieList(movie: Movie, favorite: boolean, watched: boolean) {
+        this.store.dispatch(
+            AppActions.updateUserMovieList({ movies: [movie], watched: watched, favorite: favorite })
+        );
+    }
+
+    removeWatchedList(movie: Movie) {
+        this.store.dispatch(AppActions.removeWatchedList({ movies: [movie] }));
     }
 
     getLanguages(filterLangs: string[] = []) {

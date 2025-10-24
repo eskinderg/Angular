@@ -1,0 +1,10 @@
+.feather-eye {
+    width: calc(var(--size) / 1.5);
+    height: var(--size);
+}
+
+.feather-eye.watched {
+    // fill: var(--body-bg);
+    fill: red;
+    stroke: var(--primary);
+}

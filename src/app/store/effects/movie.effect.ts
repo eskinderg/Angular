@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
+import { catchError, switchMap, map, withLatestFrom, exhaustMap, take } from 'rxjs/operators';
 import * as MoviesActions from '../actions/movie.actions';
 import { MoviesDataService } from 'src/app/components/movies/service/movies.data.service';
 import { AuthService } from 'src/app/shared/auth.service';
@@ -26,33 +26,125 @@ export class MoviesEffect {
             )
     );
 
+    fetchWatchedList = createEffect(
+        (actions$ = inject(Actions), moviesDataService = inject(MoviesDataService)) =>
+            actions$.pipe(
+                ofType(MoviesActions.fetchWatchedList),
+                switchMap(() =>
+                    moviesDataService.getUserWatchedMovies().pipe(
+                        map((movies) => MoviesActions.fetchWatchedListSuccess({ movies: movies })),
+                        catchError((err) =>
+                            of({ type: MoviesActions.fetchWatchedListFailed.type, payload: err })
+                        )
+                    )
+                )
+            )
+    );
+
     removeWatchList = createEffect(
         (
             actions$ = inject(Actions),
             moviesDataService = inject(MoviesDataService),
-            authService = inject(AuthService)
+            authService = inject(AuthService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.removeWatchList),
                 switchMap((action) =>
-                    moviesDataService
-                        .favoriteMovie(
-                            action.movies.map((movie) => ({
-                                ...movie,
-                                favorite: false,
-                                userId: authService.userId()
-                            }))
+                    store.select(fromMovies.isInWatchedList(action.movies[0])).pipe(
+                        take(1),
+                        switchMap((isWatched) =>
+                            moviesDataService
+                                .favoriteMovie(
+                                    action.movies.map((movie) => ({
+                                        ...movie,
+                                        watched: isWatched,
+                                        favorite: false,
+                                        userId: authService.userId()
+                                    }))
+                                )
+                                .pipe(
+                                    map((movies) =>
+                                        MoviesActions.removeWatchListSuccess({
+                                            moviesRemoved: movies
+                                        })
+                                    ),
+                                    catchError((err) =>
+                                        of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
+                                    )
+                                )
                         )
-                        .pipe(
-                            map((movies) =>
-                                MoviesActions.removeWatchListSuccess({
-                                    moviesRemoved: movies
-                                })
-                            ),
-                            catchError((err) =>
-                                of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
-                            )
+                    )
+                )
+            )
+    );
+
+    removeWatchedList = createEffect(
+        (
+            actions$ = inject(Actions),
+            moviesDataService = inject(MoviesDataService),
+            authService = inject(AuthService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
+        ) =>
+            actions$.pipe(
+                ofType(MoviesActions.removeWatchedList),
+                switchMap((action) =>
+                    store.select(fromMovies.isInWatchList(action.movies[0])).pipe(
+                        take(1),
+                        switchMap((isFavorite) =>
+                            moviesDataService
+                                .watchedMovie(
+                                    action.movies.map((movie) => ({
+                                        ...movie,
+                                        favorite: isFavorite,
+                                        watched: false,
+                                        userId: authService.userId()
+                                    }))
+                                )
+                                .pipe(
+                                    map((movies) =>
+                                        MoviesActions.removeWatchedListSuccess({ moviesRemoved: movies })
+                                    ),
+                                    catchError((err) =>
+                                        of(MoviesActions.removeWatchedListFailed({ payload: err }))
+                                    )
+                                )
                         )
+                    )
+                )
+            )
+    );
+
+    addWatchedList = createEffect(
+        (
+            actions$ = inject(Actions),
+            moviesDataService = inject(MoviesDataService),
+            authService = inject(AuthService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
+        ) =>
+            actions$.pipe(
+                ofType(MoviesActions.addWatchedList),
+                switchMap((action) =>
+                    store.select(fromMovies.isInWatchList(action.movies[0])).pipe(
+                        take(1),
+                        switchMap((isFavorite) =>
+                            moviesDataService
+                                .watchedMovie(
+                                    action.movies.map((movie) => ({
+                                        ...movie,
+                                        favorite: isFavorite,
+                                        watched: true,
+                                        userId: authService.userId()
+                                    }))
+                                )
+                                .pipe(
+                                    map((movies) => MoviesActions.addWatchedListSuccess({ movies })),
+                                    catchError((err) =>
+                                        of(MoviesActions.fetchWatchedListFailed({ payload: err }))
+                                    )
+                                )
+                        )
+                    )
                 )
             )
     );
@@ -61,29 +153,36 @@ export class MoviesEffect {
         (
             actions$ = inject(Actions),
             moviesDataService = inject(MoviesDataService),
-            authService = inject(AuthService)
+            authService = inject(AuthService),
+            store = inject<Store<fromRoot.IAppState>>(Store)
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.addWatchList),
                 switchMap((action) =>
-                    moviesDataService
-                        .favoriteMovie(
-                            action.movies.map((movie) => ({
-                                ...movie,
-                                favorite: true,
-                                userId: authService.userId()
-                            }))
+                    store.select(fromMovies.isInWatchedList(action.movies[0])).pipe(
+                        take(1),
+                        switchMap((isWatched) =>
+                            moviesDataService
+                                .favoriteMovie(
+                                    action.movies.map((movie) => ({
+                                        ...movie,
+                                        watched: isWatched,
+                                        favorite: true,
+                                        userId: authService.userId()
+                                    }))
+                                )
+                                .pipe(
+                                    map((movies) =>
+                                        MoviesActions.addWatchListSuccess({
+                                            movies: movies
+                                        })
+                                    ),
+                                    catchError((err) =>
+                                        of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
+                                    )
+                                )
                         )
-                        .pipe(
-                            map((movies) =>
-                                MoviesActions.addWatchListSuccess({
-                                    movies: movies
-                                })
-                            ),
-                            catchError((err) =>
-                                of({ type: MoviesActions.fetchWatchListFailed.type, payload: err })
-                            )
-                        )
+                    )
                 )
             )
     );

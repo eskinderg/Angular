@@ -6,6 +6,7 @@ import { MovieResults } from 'src/app/components/movies/models/movie-results';
 
 export interface IMovieState {
     watchList: Movie[];
+    watchedList: Movie[];
     discover: {
         movies: Movie[];
         moviesResult: MovieResults;
@@ -21,6 +22,7 @@ export interface IMovieState {
 
 const initialState: IMovieState = {
     watchList: [],
+    watchedList: [],
     discover: {
         movies: [],
         moviesResult: null,
@@ -43,6 +45,12 @@ export const movieReducer = createReducer<IMovieState>(
             watchList: action.movies
         };
     }),
+    on(MoviesActions.fetchWatchedListSuccess, (state, action): IMovieState => {
+        return {
+            ...state,
+            watchedList: action.movies
+        };
+    }),
     on(MoviesActions.removeWatchListSuccess, (state, action): IMovieState => {
         return {
             ...state,
@@ -53,6 +61,20 @@ export const movieReducer = createReducer<IMovieState>(
         return {
             ...state,
             watchList: [...action.movies, ...state.watchList]
+        };
+    }),
+    on(MoviesActions.removeWatchedListSuccess, (state, action): IMovieState => {
+        return {
+            ...state,
+            watchedList: state.watchedList.filter(
+                (m) => !action.moviesRemoved.find((movie) => m.id === movie.id)
+            )
+        };
+    }),
+    on(MoviesActions.addWatchedListSuccess, (state, action): IMovieState => {
+        return {
+            ...state,
+            watchedList: [...action.movies, ...state.watchedList]
         };
     }),
     on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {
@@ -151,6 +173,11 @@ export const getDiscoverdMoviesResults = createSelector(
 export const isInWatchList = (movie: Movie) =>
     createSelector(getMovieState, (state: IMovieState) => {
         return state.watchList.some((m) => m.id === movie.id);
+    });
+
+export const isInWatchedList = (movie: Movie) =>
+    createSelector(getMovieState, (state: IMovieState) => {
+        return state.watchedList.some((m) => m.id === movie.id);
     });
 
 export const getWatchListCount = createSelector(getMovieState, (state: IMovieState) => {

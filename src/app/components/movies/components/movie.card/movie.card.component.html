@@ -3,6 +3,7 @@
     class="card-view hover-shadow"
     [style.--index]="index % 20"
     [class.poster-loaded]="imageLoaded"
+    [class.watched]="isInWatchedList | async"
     (animationend)="onAnimationEnd($event)">
     <div class="poster">
         @if (!imageLoaded) {
@@ -69,6 +70,7 @@
     </div>
     <div class="content">
         <div class="title">
+            <app-watched [watched]="isInWatchedList | async" (watchedChange)="onWatchedToggled($event)" />
             <strong class="title-text">
                 <!-- <div class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</div> -->
                 <a class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</a>

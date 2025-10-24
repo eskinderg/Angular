@@ -54,6 +54,17 @@ export class MoviesDataService {
         return this.http.put<Movie[]>(MOVIES_API_URL + '/upsert', movies);
     }
 
+    getUserWatchedMovies(): Observable<Movie[]> {
+        return this.http
+            .get<Movie[]>(MOVIES_API_URL + '/watched')
+            .pipe(map((movies: Movie[]) => movies.map((m) => new Movie(m))));
+    }
+
+    watchedMovie(movies: any[]): Observable<Movie[]> {
+        return this.http
+            .put<Movie[]>(MOVIES_API_URL + '/upsertWatched', movies)
+            .pipe(map((movies: Movie[]) => movies.map((m) => new Movie(m))));
+    }
     // getUserMovies(): Observable<Movie[]> {
     //     return this.http.get<Movie[]>(MOVIES_API_URL).pipe(
     //         switchMap((movieIds: any[]) => {
@@ -65,6 +76,7 @@ export class MoviesDataService {
     //         })
     //     );
     // }
+    //
 
     getUserMovies(): Observable<Movie[]> {
         return this.http

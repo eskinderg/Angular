@@ -12,11 +12,13 @@ import { Movie } from '../../models/movie';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 import { MoviesDataService } from '../../service/movies.data.service';
 import { hrefLink, torLink } from '../../functions/link';
+import { WatchedComponent } from 'src/app/fragments/components/appWatched/watched.components';
+import { isInWatchList } from 'src/app/store/reducers';
 
 @Component({
     selector: 'app-movie-card',
@@ -26,6 +28,7 @@ import { hrefLink, torLink } from '../../functions/link';
     imports: [
         RouterLink,
         BookmarkComponent,
+        WatchedComponent,
         CircularRatingComponent,
         CommonModule,
         UpperCasePipe,
@@ -94,8 +97,17 @@ export class MovieCardComponent implements OnInit {
         return this.movieApiService.isInWatchList(this.movie);
     }
 
+    get isInWatchedList() {
+        return this.movieApiService.isInWatchedList(this.movie);
+    }
+
     onBookmarkToggled(event: any) {
         if (event) this.movieApiService.addWatchList(this.movie);
         else this.movieApiService.removeWatchList(this.movie);
+    }
+
+    onWatchedToggled(event: any) {
+        if (event) this.movieApiService.addWatchedList(this.movie);
+        else this.movieApiService.removeWatchedList(this.movie);
     }
 }

@@ -86,7 +86,8 @@ export class AuthEffect {
                 let actions: Action[] = [
                     NoteActions.fetchNotes(),
                     EventActions.fetchEvents(),
-                    MovieActions.fetchWatchList()
+                    MovieActions.fetchWatchList(),
+                    MovieActions.fetchWatchedList()
                 ];
 
                 if (permission.IsAdmin) {
