@@ -67,10 +67,10 @@
             class="badge bg-secondary lang">
             {{ movie.original_language | uppercase }}</span
         >
+        <app-watched [watched]="isInWatchedList | async" (watchedChange)="onWatchedToggled($event)" />
     </div>
     <div class="content">
         <div class="title">
-            <app-watched [watched]="isInWatchedList | async" (watchedChange)="onWatchedToggled($event)" />
             <strong class="title-text">
                 <!-- <div class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</div> -->
                 <a class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</a>

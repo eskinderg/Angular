@@ -36,6 +36,13 @@ app-bookmark {
     top: -3px;
 }
 
+app-watched {
+    position: absolute;
+    cursor: pointer;
+    left: 6px;
+    bottom: -10px;
+}
+
 .card-view.watched {
     opacity: 0.25 ! important;
 }

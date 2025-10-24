@@ -31,7 +31,8 @@
     color: #333;
     border-radius: 0.5rem;
     box-shadow: 0 0px 15px rgb(0 0 0 / 15%);
-    border: 1px solid var(--border);
+    // border: 1px solid var(--border);
+    outline: 0.35rem solid var(--card-border-color);
     overflow: hidden;
     font-family: system-ui, sans-serif;
 
@@ -46,7 +47,7 @@
     justify-content: space-between;
     padding: 0rem 0.25rem 0rem 0.75rem;
     border-bottom: 1px solid rgb(0 0 0 / 8%);
-    font-weight: 600;
+    font-weight: bold;
     font-size: 0.85rem;
     background: var(--bs-card-cap-bg);
     color: var(--body-color);
@@ -75,6 +76,7 @@
     font-size: 0.85rem;
     line-height: 1.4;
     color: var(--body-color);
+    overflow-wrap: anywhere;
 }
 
 .success {
