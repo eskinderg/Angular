@@ -1,0 +1,8 @@
+<h2>History</h2>
+<div class="wrapper">
+    <div class="movie-cards-container">
+        @for (movie of watchedMoviesHistory | async; track trackByMovie($index, movie)) {
+            <app-movie-card [index]="$index" [movie]="movie" (clickImage)="onClick($event)" />
+        }
+    </div>
+</div>

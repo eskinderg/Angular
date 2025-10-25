@@ -1,0 +1,40 @@
+import { ChangeDetectionStrategy, Component, inject, Input, OnDestroy } from '@angular/core';
+import { Movie } from '../models/movie';
+import { MovieCardComponent } from '../components/movie.card/movie.card.component';
+import { MovieDialogService } from '../service/movie.dialog.service';
+import { Observable } from 'rxjs';
+import { MoviesApiService } from '../service/movies.api.service';
+import { AsyncPipe } from '@angular/common';
+import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
+
+@Component({
+    selector: 'app-movies-watched-history',
+    templateUrl: 'watchedHistory.component.html',
+    styleUrls: ['watchedHistory.component.scss'],
+    animations: [MovieCardListAnimation],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [MovieCardComponent, AsyncPipe]
+})
+export class WatchedListComponent implements OnDestroy {
+    @Input() movies: Observable<Movie[]>;
+
+    movieModalService = inject(MovieDialogService);
+    movieApiService = inject(MoviesApiService);
+
+    onClick(event: { movie: Movie; movieCardComponent: MovieCardComponent }) {
+        this.movieModalService.load(event.movieCardComponent);
+        this.movieModalService.showDialog();
+    }
+
+    ngOnDestroy() {
+        this.movieModalService.destroy();
+    }
+
+    trackByMovie(index: number, movie: Movie) {
+        return index + movie.id;
+    }
+
+    get watchedMoviesHistory() {
+        return this.movieApiService.getUserWatchedHistory();
+    }
+}

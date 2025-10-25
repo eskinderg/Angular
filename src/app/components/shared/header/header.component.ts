@@ -76,6 +76,10 @@ export class HeaderComponent {
         return this.storeService.select(this.storeService.selectors.getWatchListCount);
     }
 
+    get WatchedListCount() {
+        return this.storeService.select(this.storeService.selectors.getWatchedListCount);
+    }
+
     onSignout() {
         // this.service.logout();
     }

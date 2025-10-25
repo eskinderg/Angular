@@ -170,6 +170,8 @@ export const getDiscoverdMoviesResults = createSelector(
     (state: IMovieState) => state.discover.moviesResult
 );
 
+export const getWatchedMovieList = createSelector(getMovieState, (state: IMovieState) => state.watchedList);
+
 export const isInWatchList = (movie: Movie) =>
     createSelector(getMovieState, (state: IMovieState) => {
         return state.watchList.some((m) => m.id === movie.id);
@@ -182,6 +184,10 @@ export const isInWatchedList = (movie: Movie) =>
 
 export const getWatchListCount = createSelector(getMovieState, (state: IMovieState) => {
     return state.watchList.length;
+});
+
+export const getWatchedListCount = createSelector(getMovieState, (state: IMovieState) => {
+    return state.watchedList.length;
 });
 
 export const getMoviesByGenre = (genreId: number, page: number) =>

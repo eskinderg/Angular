@@ -10,6 +10,8 @@ import { DiscoverComponent } from './discover/discover.component';
 // import { discoverResolver } from './service/discover.resolve';
 import { MovieDetailComponent } from './components/movie-detail/movie.detail.component';
 import { moviesDetailsResolve } from './components/movie-detail/movie-detail-resolve';
+import { WatchedListComponent } from './watchedHistory/watchedHistory.component';
+import { watchedListResolver } from './service/watchedHistory.resolve';
 
 export const moviesRoutes: Routes = [
     {
@@ -69,6 +71,13 @@ export const moviesRoutes: Routes = [
         component: WatchListComponent,
         resolve: {
             movies: watchListResolver
+        }
+    },
+    {
+        path: 'history',
+        component: WatchedListComponent,
+        resolve: {
+            movies: watchedListResolver
         }
     }
 ];

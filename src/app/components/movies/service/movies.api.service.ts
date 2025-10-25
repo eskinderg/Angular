@@ -65,6 +65,10 @@ export class MoviesApiService {
         return this.store.select(fromMovies.getWatchListMovies);
     }
 
+    getUserWatchedHistory() {
+        return this.store.select(fromMovies.getWatchedMovieList);
+    }
+
     discoverReset() {
         this.store.dispatch(AppActions.discoverMoviesReset());
     }

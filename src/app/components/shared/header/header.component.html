@@ -120,6 +120,18 @@
                                         src="assets/images/search.svg"></app-svg-icon>
                                 </a>
                             </li>
+                            <li>
+                                <a
+                                    [routerLink]="['/movies/history']"
+                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActiveOptions]="{ exact: true }"
+                                    style="display: flex; gap: 8px"
+                                    >History
+                                    @if (WatchedListCount | async; as count) {
+                                        <span class="badge bg-secondary">{{ count }}</span>
+                                    }
+                                </a>
+                            </li>
                         </ul>
                     }
                 </li>
