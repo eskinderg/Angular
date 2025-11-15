@@ -23,14 +23,14 @@ export class NoteHeaderControlComponent implements OnInit, OnDestroy {
     @Input() note: Note;
     @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
-    subscription: Subscription | undefined;
+    subscription: Subscription;
 
     inputHeaderRef = viewChild.required<ElementRef>('inputHeaderRef');
 
     constructor() {}
 
     ngOnDestroy(): void {
-        this.subscription.unsubscribe();
+        if (this.subscription) this.subscription.unsubscribe();
     }
 
     ngOnInit(): void {

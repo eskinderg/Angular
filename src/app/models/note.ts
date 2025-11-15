@@ -7,18 +7,22 @@ export class Note {
     selection: string;
     width: number;
     height: number;
-    id: string;
-    userId: string;
+    note_id: string;
+    user_id: string;
     dirty: boolean;
-    dateCreated: Date;
-    dateModified: Date;
-    dateArchived: Date;
-    dateSync: Date;
-    pinOrder: Date;
+    date_created: Date;
+    date_modified: Date;
+    local_date_modified: Date;
+    date_archived: Date;
+    date_deleted: Date;
+    last_modified_date: Date;
+    date_sync: Date;
+    sync: boolean;
+    pin_order: Date;
     archived: boolean;
     pinned: boolean;
     active: boolean;
-    spellCheck: boolean;
+    spell_check: boolean;
     owner: string;
 
     constructor(values: object = {}) {

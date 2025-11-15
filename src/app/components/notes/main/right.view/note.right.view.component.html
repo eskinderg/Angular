@@ -1,13 +1,13 @@
 <ng-template #popContent>
     <strong>Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : </strong>&nbsp;
     {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }}<br />
-    <strong>Last Modified &nbsp;:</strong> &nbsp; {{ facadeNote?.dateModified | date: 'medium' }}<br />
-    <strong>Date Created &nbsp; :</strong> &nbsp; {{ facadeNote?.dateCreated | date: 'medium' }}<br />
+    <strong>Last Modified &nbsp;:</strong> &nbsp; {{ facadeNote?.date_modified | date: 'medium' }}<br />
+    <strong>Date Created &nbsp; :</strong> &nbsp; {{ facadeNote?.date_created | date: 'medium' }}<br />
     <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;
     {{ facadeNote?.pinned ? 'Yes' : 'No' }}<br />
     <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp;
     {{ facadeNote?.colour ? facadeNote?.colour : 'none' }}<br />
-    <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.spellCheck ? 'on' : 'off' }}<br />
+    <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.spell_check ? 'on' : 'off' }}<br />
     <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; {{ facadeNote?.owner }}
 </ng-template>
 <div class="note-background" [ngClass]="opendNote.colour + '-note'">
@@ -15,7 +15,7 @@
         <div class="note-header">
             <app-note-header-control
                 #noteHeader
-                [note]="facadeNote"
+                [note]="opendNote"
                 (noteUpdateNoteHeader)="onNoteHeaderUpdate($event)" />
         </div>
 
@@ -23,12 +23,12 @@
             <div
                 appTooltip="Toggle Spell Check"
                 [position]="tooltipPosition"
-                [ngClass]="{ 'spell-check-active': facadeNote.spellCheck }"
+                [ngClass]="{ 'spell-check-active': facadeNote.spell_check }"
                 (click)="onSpellCheckToggle(facadeNote)">
                 <app-svg-icon
                     height="25"
                     width="25"
-                    [class]="facadeNote.spellCheck ? 'spell-check-active' : 'spell-check'"
+                    [class]="facadeNote.spell_check ? 'spell-check-active' : 'spell-check'"
                     src="assets/images/spell.svg" />
             </div>
 
@@ -62,6 +62,6 @@
         <div class="wc"><strong>Word Count: </strong>{{ getCount(facadeNote, 'word') }}</div>
         |
         <!-- <div class="wc"><strong>Line Count: </strong>{{ getCount(facadeNote, 'line') }}</div> | -->
-        <div class="wc"><strong>Spell Check: </strong>{{ facadeNote?.spellCheck ? 'on' : 'off' }}</div>
+        <div class="wc"><strong>Spell Check: </strong>{{ facadeNote?.spell_check ? 'on' : 'off' }}</div>
     </div>
 </div>

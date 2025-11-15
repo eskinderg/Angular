@@ -5,7 +5,8 @@ import {
     EventEmitter,
     ChangeDetectionStrategy,
     viewChild,
-    inject
+    inject,
+    effect
 } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
@@ -21,6 +22,7 @@ import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './text
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
+import { debounceTime, filter, merge } from 'rxjs';
 
 @Component({
     selector: 'app-note-right-view',
@@ -57,6 +59,22 @@ export class NoteRightViewComponent {
     @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
+    @Output() notesUpdate: EventEmitter<void> = new EventEmitter();
+
+    noteChanges$ = merge(this.changeNoteText, this.updateNoteHeader).pipe(
+        filter(Boolean),
+        debounceTime(5000)
+    );
+
+    constructor() {
+        effect((onCleanup) => {
+            const sub = this.noteChanges$.subscribe(() => {
+                this.notesUpdate.emit();
+            });
+
+            onCleanup(() => sub.unsubscribe());
+        });
+    }
 
     onNoteArchive(note: Note) {
         this.archiveNote.emit(note);
@@ -83,7 +101,7 @@ export class NoteRightViewComponent {
     }
 
     onUpdatOpendNote(note: Note) {
-        this.store.dispatch(NotesActions.updateOpendNote({ note: note }));
+        this.store.dispatch(NotesActions.updateNote({ note: note }));
     }
 
     noteInfoClick(note: Note) {
@@ -96,8 +114,8 @@ export class NoteRightViewComponent {
             second: 'numeric',
             hour12: true
         });
-        const dateModified = new Date(note.dateModified);
-        const dateCreated = new Date(note.dateCreated);
+        const dateModified = new Date(note.date_modified);
+        const dateCreated = new Date(note.date_created);
         this.dialogService.openDialog(
             'Info',
             `
@@ -106,7 +124,7 @@ export class NoteRightViewComponent {
                 <strong>Date Created &nbsp; :</strong> &nbsp; ${formatter.format(dateCreated)}<br />
                 <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.pinned ? 'Yes' : 'No'}<br />
                 <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.colour ? note?.colour : 'none'}<br />
-                <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spellCheck ? 'on' : 'off'}<br />
+                <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spell_check ? 'on' : 'off'}<br />
                 <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.owner}
             `,
             DIALOG_TYPE.CLOSE_ONLY,

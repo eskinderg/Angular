@@ -84,7 +84,7 @@ export class AuthEffect {
             ofType(AuthActions.logInSuccess),
             switchMap(() => {
                 let actions: Action[] = [
-                    NoteActions.fetchNotes(),
+                    NoteActions.syncServer(),
                     EventActions.fetchEvents(),
                     MovieActions.fetchWatchList(),
                     MovieActions.fetchWatchedList()

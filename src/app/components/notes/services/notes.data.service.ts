@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Note } from '../../../models/note';
 
@@ -11,7 +11,9 @@ export class NotesDataService {
     http = inject(HttpClient);
 
     getNotes(): Observable<Note[]> {
-        return this.http.get<Note[]>(NOTES_API_URL);
+        return this.http
+            .get<Note[]>(NOTES_API_URL)
+            .pipe(map((r) => r.map((n) => new Note({ ...n, sync: true }))));
     }
 
     getNote(id: number): Observable<Note> {
@@ -23,7 +25,7 @@ export class NotesDataService {
     }
 
     deleteNote(note: Note): Observable<Note> {
-        return this.http.delete<Note>(`${NOTES_API_URL}/${note.id}`);
+        return this.http.delete<Note>(`${NOTES_API_URL}/${note.note_id}`);
     }
 
     upsertNotes(notes: Note[]): Observable<Note[]> {

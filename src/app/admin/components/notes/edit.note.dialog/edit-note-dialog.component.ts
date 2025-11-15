@@ -57,13 +57,13 @@ export class EditNoteDialogComponent implements OnInit {
         this.form = this.fb.group({
             header: [this.note.header],
             owner: [this.note.owner],
-            userId: [this.note.userId],
+            user_id: [this.note.user_id],
             text: [this.note.text],
             colour: [this.note.colour],
             pinned: [this.note.pinned],
             active: [this.note.active],
             archived: [this.note.archived],
-            spellCheck: [this.note.spellCheck]
+            spell_check: [this.note.spell_check]
         });
 
         this.form.valueChanges.subscribe(() => {

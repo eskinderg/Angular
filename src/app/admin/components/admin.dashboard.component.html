@@ -119,22 +119,22 @@
                 </th>
                 <th
                     [class.sorted-asc]="
-                        (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'asc'
+                        (sortField$ | async) === 'date_archived' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
-                        (sortField$ | async) === 'dateArchived' && (sortDirection$ | async) === 'desc'
+                        (sortField$ | async) === 'date_archived' && (sortDirection$ | async) === 'desc'
                     "
-                    (click)="updateSort('dateArchived')">
+                    (click)="updateSort('date_archived')">
                     Date Archived
                 </th>
                 <th
                     [class.sorted-asc]="
-                        (sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'asc'
+                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
-                        (sortField$ | async) === 'spellCheck' && (sortDirection$ | async) === 'desc'
+                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'desc'
                     "
-                    (click)="updateSort('spellCheck')">
+                    (click)="updateSort('spell_check')">
                     Spell Check
                 </th>
                 <th
@@ -149,22 +149,22 @@
                 </th>
                 <th
                     [class.sorted-asc]="
-                        (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'asc'
+                        (sortField$ | async) === 'date_created' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
-                        (sortField$ | async) === 'dateCreated' && (sortDirection$ | async) === 'desc'
+                        (sortField$ | async) === 'date_created' && (sortDirection$ | async) === 'desc'
                     "
-                    (click)="updateSort('dateCreated')">
+                    (click)="updateSort('date_created')">
                     Created
                 </th>
                 <th
                     [class.sorted-asc]="
-                        (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'asc'
+                        (sortField$ | async) === 'date_modified' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
-                        (sortField$ | async) === 'dateModified' && (sortDirection$ | async) === 'desc'
+                        (sortField$ | async) === 'date_modified' && (sortDirection$ | async) === 'desc'
                     "
-                    (click)="updateSort('dateModified')">
+                    (click)="updateSort('date_modified')">
                     Last Modified
                 </th>
             </tr>
@@ -187,11 +187,11 @@
                     <td>{{ note.active }}</td>
                     <td>{{ note.archived }}</td>
                     <td>{{ note.pinned }}</td>
-                    <td>{{ note.dateArchived | date: 'medium' }}</td>
-                    <td>{{ note.spellCheck }}</td>
+                    <td>{{ note.date_archived | date: 'medium' }}</td>
+                    <td>{{ note.spell_check }}</td>
                     <td>{{ note.colour }}</td>
-                    <td>{{ note.dateCreated | date: 'medium' }}</td>
-                    <td>{{ note.dateModified | date: 'medium' }}</td>
+                    <td>{{ note.date_created | date: 'medium' }}</td>
+                    <td>{{ note.date_modified | date: 'medium' }}</td>
                 </tr>
             }
         </table>

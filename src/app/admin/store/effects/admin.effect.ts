@@ -59,7 +59,8 @@ export class AdminEffect {
                     adminNotesDataService.updateNote(action.payload).pipe(
                         switchMap((note) =>
                             of(
-                                NotesActions.fetchNotes(),
+                                // NotesActions.fetchNotes(),
+                                NotesActions.syncServer(),
                                 AdminActions.adminFetchNotes(),
                                 AdminActions.adminUpdateNoteSuccess({ payload: note }),
                                 AdminActions.adminFetchUsersInfo()
@@ -89,7 +90,8 @@ export class AdminEffect {
     adminBulkUpdateNotesSuccess = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
             ofType(AdminActions.adminBulkUpdateNotesSuccess),
-            switchMap(() => of(AdminActions.adminFetchUsersInfo(), NotesActions.fetchNotes()))
+            // switchMap(() => of(AdminActions.adminFetchUsersInfo(), NotesActions.fetchNotes()))
+            switchMap(() => of(AdminActions.adminFetchUsersInfo(), NotesActions.syncNotes()))
         )
     );
 

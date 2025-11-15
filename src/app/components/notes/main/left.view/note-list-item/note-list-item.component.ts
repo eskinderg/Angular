@@ -23,13 +23,13 @@ export class NoteListItemComponent {
     @Input() note: Note;
     @Input() animate: Animate;
     @Input() selectedNote: Note;
+    @Input() isSyncing: boolean;
 
     @Output() archiveNote = new EventEmitter(false);
     @Output() selectNote = new EventEmitter(false);
     @Output() changeNoteText = new EventEmitter(false);
     @Output() changePineOrder = new EventEmitter(false);
-
-    constructor() {}
+    @Output() syncNote = new EventEmitter(false);
 
     onSelectNote(note: Note) {
         this.selectNote.emit(note);
@@ -41,5 +41,9 @@ export class NoteListItemComponent {
 
     updatePinOrder(note: Note) {
         this.changePineOrder.emit(note);
+    }
+
+    onSyncNote() {
+        this.syncNote.emit();
     }
 }

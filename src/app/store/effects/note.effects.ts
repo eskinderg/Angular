@@ -1,279 +1,158 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
-import { catchError, switchMap, map, withLatestFrom, exhaustMap } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
-import { EMPTY, of } from 'rxjs';
+import { catchError, switchMap, map, exhaustMap, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import * as fromRoot from '../reducers';
 import * as NotesActions from '../actions/note.actions';
-import * as fromRoot from '../../store/reducers';
 import { NotesDataService } from '../../components/notes/services/notes.data.service';
-import { NotificationService } from '../../shared/notification/notification.service';
+import { NoteLocalDbService } from 'src/app/components/notes/services/notes.db.service';
+import { Note } from 'src/app/models/note';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class NotesEffect {
-    save = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+    createNote$ = createEffect((actions$ = inject(Actions), noteDbService = inject(NoteLocalDbService)) =>
         actions$.pipe(
             ofType(NotesActions.createNote),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((note) => NotesActions.createNoteSuccess({ note: note.shift() })),
+                from(noteDbService.upsertNote(action.note)).pipe(
+                    map((note) => NotesActions.createNoteSuccess({ note: note })),
                     catchError((err) => of(NotesActions.createNoteFail({ payload: err })))
                 )
             )
         )
     );
 
-    updateNoteText = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+    createNoteSuccess$ = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
-            ofType(NotesActions.updateNoteText),
+            ofType(NotesActions.createNoteSuccess),
+            switchMap(() => of(NotesActions.syncNotes())),
+            catchError((err) => of(NotesActions.syncNotesFail({ err: err })))
+        )
+    );
+
+    noteSelect$ = createEffect((actions$ = inject(Actions), noteDbService = inject(NoteLocalDbService)) =>
+        actions$.pipe(
+            ofType(NotesActions.noteSelect),
             switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((notes) => NotesActions.updateNoteTextSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                    catchError((err) => of(NotesActions.updateNoteTextFail({ payload: err })))
+                from(noteDbService.getNoteById(action.note.note_id)).pipe(
+                    map((note) => NotesActions.noteSelectSuccess({ note: note })),
+                    catchError((error) => of(NotesActions.noteSelectFail({ err: error })))
                 )
             )
         )
     );
 
-    updateNotePosition = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.updateNotePosition),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => NotesActions.updateNotePositionSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                        catchError((err) => of(NotesActions.updateNotePositionFail({ payload: err })))
-                    )
-                )
-            )
-    );
-
-    updateNoteSelection = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.updateNoteSelection),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => NotesActions.updateNoteSelectionSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                        catchError((err) => of(NotesActions.updateNoteSelectionFail({ payload: err })))
-                    )
-                )
-            )
-    );
-
-    update = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+    updateNote$ = createEffect((actions$ = inject(Actions), noteDbService = inject(NoteLocalDbService)) =>
         actions$.pipe(
             ofType(NotesActions.updateNote),
-            switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((notes) => NotesActions.updateNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                    catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
+            mergeMap((action) =>
+                from(noteDbService.upsertNote(action.note)).pipe(
+                    map((note: Note) => NotesActions.updateLocalNoteSuccess({ localNote: note })),
+                    catchError((error) => of(NotesActions.updateLocalNoteFail({ payload: error })))
                 )
             )
         )
     );
 
-    updatePinOrder = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+    syncServer$ = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
-            ofType(NotesActions.updatePinOrder),
-            switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((notes) => NotesActions.updatePinOrderSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                    catchError((err) => of(NotesActions.updatePinOrderFail({ payload: err })))
+            ofType(NotesActions.syncServer),
+            switchMap(() => of(NotesActions.syncNotes()))
+        )
+    );
+
+    syncNotes$ = createEffect(
+        (actions$ = inject(Actions), store = inject<Store<fromRoot.IAppState>>(Store)) =>
+            actions$.pipe(
+                ofType(NotesActions.syncNotes),
+                withLatestFrom(store.select(fromRoot.getIsSyncing)),
+                withLatestFrom(store.select(fromRoot.getSyncConflict)),
+                exhaustMap(([[_action, isSyncing], isSyncConflict]) =>
+                    isSyncing || isSyncConflict
+                        ? of(NotesActions.syncNotesFail({ err: 'Sync currently is in progress' }))
+                        : of(NotesActions.syncNotesStart())
                 )
             )
-        )
     );
 
-    fetchNotes = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(NotesActions.fetchNotes),
-            switchMap(() => of(NotesActions.fetchNotesStart()))
-        )
-    );
-
-    fetchNotesStart = createEffect(
+    syncNotesStart$ = createEffect(
         (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
             actions$.pipe(
-                ofType(NotesActions.fetchNotesStart),
+                ofType(NotesActions.syncNotesStart),
                 switchMap(() =>
-                    notesDataService.getNotes().pipe(
-                        map((notes) => NotesActions.fetchNotesSuccess({ notes: notes })),
-                        catchError((err) => of({ type: NotesActions.fetchNotesFailed.type, payload: err }))
-                    )
+                    notesDataService
+                        .getNotes()
+                        .pipe(
+                            switchMap((response: Note[]) =>
+                                of(NotesActions.syncRemoteNotesResponse({ remoteNotes: response }))
+                            )
+                        )
                 )
             )
     );
 
-    fetchNotesSuccess = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
-            ofType(NotesActions.fetchNotesSuccess),
-            switchMap(() => of(NotesActions.fetchNotesComplete()))
-        )
-    );
-
-    refreshNotes = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-        actions$.pipe(
-            ofType(NotesActions.refreshNotes),
-            switchMap(() =>
-                notesDataService.getNotes().pipe(
-                    map((notes) => NotesActions.checkNoteConflict({ notes: notes })),
-                    catchError((err) => of(NotesActions.refreshNotesFailed({ payload: err })))
-                )
-            )
-        )
-    );
-
-    checkNoteConflict = createEffect(
+    syncNotesReponse$ = createEffect(
         (
             actions$ = inject(Actions),
-            notificationService = inject(NotificationService),
+            noteDbService = inject(NoteLocalDbService),
             store = inject<Store<fromRoot.IAppState>>(Store)
         ) =>
             actions$.pipe(
-                ofType(NotesActions.checkNoteConflict),
-                withLatestFrom(store.select(fromRoot.getFacadeNote)),
-                exhaustMap(([action, facadeNote]) => {
-                    const note = action.notes.find((n) => n.id === facadeNote.id);
-                    if (note !== undefined) {
-                        if (facadeNote.dateModified < note.dateModified) {
-                            notificationService.showWarning(
-                                "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
-                                'Sync Operation',
-                                5000,
-                                true,
-                                false
-                            );
-                            return EMPTY;
-                        }
-                    }
-                    return of(NotesActions.refreshNotesSuccess({ notes: action.notes }));
-                })
+                ofType(NotesActions.syncRemoteNotesResponse),
+                withLatestFrom(store.select(fromRoot.getSyncConflict)),
+                exhaustMap(([action, isConflict]) =>
+                    isConflict
+                        ? of(NotesActions.syncNotesFail({ err: 'Sync conflict occured' }))
+                        : from(noteDbService.syncNotes(action.remoteNotes)).pipe(
+                              switchMap(() =>
+                                  from(noteDbService.getAllNotes()).pipe(
+                                      map((localNotes: Note[]) =>
+                                          NotesActions.getLocalNotesSuccess({ localNotes: localNotes })
+                                      )
+                                  )
+                              ),
+                              catchError((err) => of(NotesActions.syncNotesFail({ err: err })))
+                          )
+                )
             )
     );
 
-    delete = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+    getLocalNotesSuccess$ = createEffect(
+        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
+            actions$.pipe(
+                ofType(NotesActions.getLocalNotesSuccess),
+                switchMap((action) =>
+                    notesDataService
+                        .upsertNotes(action.localNotes)
+                        .pipe(
+                            switchMap((response: Note[]) =>
+                                of(NotesActions.syncRemoteWithLocal({ remoteNotes: response }))
+                            )
+                        )
+                )
+            )
+    );
+
+    syncRemoteWithLocal$ = createEffect(
+        (actions$ = inject(Actions), notesDbService = inject(NoteLocalDbService)) =>
+            actions$.pipe(
+                ofType(NotesActions.syncRemoteWithLocal),
+                mergeMap((action) =>
+                    from(notesDbService.syncRemoteWithLocal(action.remoteNotes)).pipe(
+                        map((localNotes: Note[]) =>
+                            NotesActions.syncRemoteWithLocalSuccess({ notes: localNotes })
+                        )
+                    )
+                )
+            )
+    );
+
+    refreshNotes$ = createEffect((actions$ = inject(Actions)) =>
         actions$.pipe(
-            ofType(NotesActions.deleteNote),
-            switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((notes) => NotesActions.deleteNoteSuccess({ note: notes.shift() })),
-                    catchError((err) => of(NotesActions.deleteNoteFail({ payload: err })))
-                )
-            )
+            ofType(NotesActions.refreshNotes),
+            switchMap(() => of(NotesActions.syncNotes())),
+            catchError((err) => of(NotesActions.refreshNotesFailed({ error: err })))
         )
-    );
-
-    deleteSuccess = createEffect(
-        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
-            actions$.pipe(
-                ofType(NotesActions.deleteNoteSuccess),
-                switchMap(() => {
-                    notificationService.showSuccess('Note Deleted', 'Info');
-                    return EMPTY;
-                })
-            ),
-        { dispatch: false }
-    );
-
-    archiveNote = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-        actions$.pipe(
-            ofType(NotesActions.archiveNote),
-            switchMap((action) =>
-                notesDataService.upsertNotes([action.note]).pipe(
-                    map((notes) => NotesActions.archiveNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                    catchError((err) => of(NotesActions.archiveNoteFail({ payload: err })))
-                )
-            )
-        )
-    );
-
-    toggleSpellCheck = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.toggleSpellCheck),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => NotesActions.toggleSpellCheckSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                        catchError((err) => of(NotesActions.toggleSpellCheckFail({ payload: err })))
-                    )
-                )
-            )
-    );
-
-    archiveNoteSuccess = createEffect(
-        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
-            actions$.pipe(
-                ofType(NotesActions.archiveNoteSuccess),
-                switchMap(() => {
-                    notificationService.showSuccess('Note successfully archived', 'Info');
-                    return EMPTY;
-                })
-            ),
-        { dispatch: false }
-    );
-
-    restoreNote = createEffect((actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-        actions$.pipe(
-            ofType(NotesActions.restoreNote),
-            switchMap((action) =>
-                notesDataService.upsertNotes([{ ...action.note, archived: false }]).pipe(
-                    map((notes) => NotesActions.restoreNoteSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                    catchError((err) => of(NotesActions.restoreNoteFail({ payload: err })))
-                )
-            )
-        )
-    );
-
-    restoreNoteSuccess = createEffect(
-        (actions$ = inject(Actions), notificationService = inject(NotificationService)) =>
-            actions$.pipe(
-                ofType(NotesActions.restoreNoteSuccess),
-                switchMap(() => {
-                    notificationService.showSuccess('Note successfully restored', 'Info');
-                    return EMPTY;
-                })
-            ),
-        { dispatch: false }
-    );
-
-    updateNoteColour = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.updateNoteColour),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => NotesActions.updateNoteColourSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                        catchError((err) => of(NotesActions.updateNoteColourFail({ payload: err })))
-                    )
-                )
-            )
-    );
-
-    updateNoteColourSuccess = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.updateNoteColourSuccess),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => {
-                            return NotesActions.updateOpendNote({ note: notes.shift() });
-                        }),
-                        catchError((err) => of(NotesActions.updateNoteFail({ payload: err })))
-                    )
-                )
-            )
-    );
-
-    updateNoteHeader = createEffect(
-        (actions$ = inject(Actions), notesDataService = inject(NotesDataService)) =>
-            actions$.pipe(
-                ofType(NotesActions.updateNoteHeader),
-                switchMap((action) =>
-                    notesDataService.upsertNotes([action.note]).pipe(
-                        map((notes) => NotesActions.updateNoteHeaderSuccess({ note: notes.shift() })), // Use the first note from the returned list
-                        catchError((err) => of(NotesActions.updateNoteHeaderFail({ payload: err })))
-                    )
-                )
-            )
     );
 }

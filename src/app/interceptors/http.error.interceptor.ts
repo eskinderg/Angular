@@ -29,7 +29,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
             const isAuthRequest = tokenEndpoint && request.url.includes(tokenEndpoint);
             if (error.status === NOTE_UPDATE_CONFLICT) {
                 notificationService.showWarning(
-                    "There where changes made that are not in sync with the server. Please reload your page to fetch the latest data or your changes won't be saved",
+                    "There are changes made that are not in sync with the server. Please reload your page to fetch the latest changes otherwise your changes won't be saved",
                     'Sync Operation',
                     5,
                     true,

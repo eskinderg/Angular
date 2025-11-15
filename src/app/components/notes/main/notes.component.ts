@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, viewChild, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+    Component,
+    ChangeDetectionStrategy,
+    viewChild,
+    OnDestroy,
+    OnInit,
+    inject,
+    effect
+} from '@angular/core';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from '../../../models/note';
 import { FadeInOutNoteListItem } from '../../shared/animations/fadeInAndOutNoteListItem';
@@ -11,6 +19,8 @@ import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
 
 @Component({
     selector: 'app-notes',
@@ -23,11 +33,14 @@ import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialo
 })
 export class NotesComponent implements OnDestroy, OnInit {
     public notesApiService = inject(NoteApiService);
+    private notificationService = inject(NotificationService);
+    private authService = inject(OAuthService);
     private dialogService = inject(DialogService);
     private router = inject(Router);
 
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
     refreshSubscription: Subscription;
+    syncConflictSubscription: Subscription;
     refreshInterval = interval(NOTE_REFRESH_INTERVAL);
     searchTerm$ = new BehaviorSubject<string>('');
 
@@ -47,22 +60,67 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     constructor() {
         document.querySelector('.content').className += ' hide-scroll-bar';
+
+        window.addEventListener('offline', () => {
+            this.notificationService.showError(
+                'Unable to connect to the internet. Please connect to the internet',
+                'No internet connection available'
+            );
+        });
+
+        // this.syncConflictSubscription = this.notesApiService.IsSyncConflict.subscribe((c) => {
+        //     if (c) {
+        //         this.notificationService.showWarning(
+        //             "There are changes made that are not in sync with the server. Please reload your page to fetch the latest changes otherwise your changes won't be saved",
+        //             'Sync Operation',
+        //             5,
+        //             true,
+        //             false
+        //         );
+        //     }
+        // });
+
+        effect((onCleanup) => {
+            const sub = this.notesApiService.IsSyncConflict.subscribe((c) => {
+                if (c) {
+                    this.notificationService.showWarning(
+                        "There are changes made that are not in sync with the server. Please reload your page to fetch the latest changes otherwise your changes won't be saved",
+                        'Sync Operation',
+                        5,
+                        true,
+                        false
+                    );
+                }
+            });
+
+            onCleanup(() => sub.unsubscribe());
+        });
+
+        this.notesApiService.syncNotes();
     }
 
     ngOnInit(): void {
         this.refreshSubscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
     }
 
+    onUpdateNoteHeader(note: Note) {
+        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
+    }
+
     onChangeNoteText(note: Note) {
-        this.notesApiService.updateNoteText(note);
+        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
+    }
+
+    onNotesUpdate() {
+        this.notesApiService.syncNotes();
     }
 
     onSelectionChange(note: Note) {
-        this.notesApiService.updateNoteSelection(note);
+        this.notesApiService.updateNote(note);
     }
 
     onToggleSpellCheck(note: Note) {
-        this.notesApiService.toggleSpellCheck(note);
+        this.notesApiService.updateNote({ ...note, spell_check: !note.spell_check });
         this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
     }
 
@@ -71,15 +129,27 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     onCreateNewNote(note: Note) {
-        this.notesApiService.createNewNote(note);
+        this.notesApiService.createNewNote({
+            ...note,
+            text: '',
+            header: '',
+            pinned: false,
+            active: true,
+            archived: false,
+            sync: false,
+            date_modified: new Date(),
+            local_date_modified: new Date(),
+            pin_order: new Date(),
+            user_id: this.authService.getIdentityClaims()['sub']
+        });
     }
 
     onUpdatePinOrder(note: Note) {
-        this.notesApiService.updateNotePinOrder(note);
+        this.notesApiService.updateNote({ ...note, pinned: !note.pinned, pin_order: new Date() });
     }
 
     onUpdateNoteColour(note: Note) {
-        this.notesApiService.updateNoteColour(note);
+        this.notesApiService.updateNote(note);
     }
 
     onArchiveNote(note: Note) {
@@ -93,13 +163,14 @@ export class NotesComponent implements OnDestroy, OnInit {
             )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    this.notesApiService.archiveNote(note);
+                    // this.notesApiService.archiveNote(note);
+                    this.notesApiService.updateNote({ ...note, archived: true, date_archived: new Date() });
                 }
             });
     }
 
-    onUpdateNoteHeader(note: Note) {
-        this.notesApiService.updateNoteHeader(note);
+    onSyncNote() {
+        this.notesApiService.syncNotes();
     }
 
     routeToArchivedNotes() {
@@ -143,6 +214,7 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     ngOnDestroy(): void {
         document.querySelector('.content').classList.remove('hide-scroll-bar');
-        if (this.refreshSubscription != null) this.refreshSubscription.unsubscribe();
+        if (this.refreshSubscription) this.refreshSubscription.unsubscribe();
+        if (this.syncConflictSubscription) this.syncConflictSubscription.unsubscribe();
     }
 }

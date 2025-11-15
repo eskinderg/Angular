@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Store } from '@ngrx/store';
-import * as fromNotes from '../../../store/reducers/note.reducer';
 import { Router } from '@angular/router';
 import { NoteApiService } from '../services/notes.api.service';
 import { Note } from 'src/app/models/note';
@@ -29,30 +27,16 @@ import { SvgIconComponent } from '../../shared/svg/svg.component';
     providers: [NoteApiService]
 })
 export class NoteArchiveComponent {
-    private store = inject<Store<fromNotes.INotesState>>(Store);
     private notesApiService = inject(NoteApiService);
     private dialogService = inject(DialogService);
     router = inject(Router);
 
+    constructor() {
+        this.notesApiService.syncNotes();
+    }
+
     get ArchivedNotes() {
-        return this.store.select(fromNotes.getArchivedNotes);
-    }
-
-    // ngOnInit() {
-    // this.note = history.state['note']
-    // }
-
-    close() {
-        // this.activeDialog.close();
-    }
-
-    no() {
-        // this.activeDialog.close();
-    }
-
-    yes() {
-        // this.notesApiService.deleteNote(this.note);
-        // this.activeDialog.close('/notes');
+        return this.notesApiService.ArchivedNotes;
     }
 
     delete(note: Note) {
@@ -66,13 +50,12 @@ export class NoteArchiveComponent {
             )
             .then((result: DIALOG_RESPONSE) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    this.notesApiService.deleteNote(note);
+                    this.notesApiService.updateNote({ ...note, active: false, date_deleted: new Date() });
                 }
             });
     }
 
     restore(note: Note) {
-        this.notesApiService.restoreNote({ ...note, archived: false } as Note);
-        // this.notesApiService.deleteNote(note);
+        this.notesApiService.updateNote({ ...note, archived: false, date_archived: new Date() } as Note);
     }
 }

@@ -41,11 +41,13 @@ export class NoteLeftViewComponent implements OnDestroy {
     @Input() searchTerm$: BehaviorSubject<string>;
     @Input() notes$: Observable<Note[]>;
     @Input() selectedNote$: Observable<Note>;
+    @Input() isSyncing: boolean;
 
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
     @Output() updatePin: EventEmitter<Note> = new EventEmitter();
     @Output() selectNote: EventEmitter<Note> = new EventEmitter();
     @Output() createNewNote: EventEmitter<Note> = new EventEmitter();
+    @Output() syncNote: EventEmitter<Note> = new EventEmitter();
 
     searchVisible: boolean = false;
     private timeoutId: any;
@@ -75,7 +77,7 @@ export class NoteLeftViewComponent implements OnDestroy {
     }
 
     onCreateNewNote() {
-        this.createNewNote.emit({ ...new Note(), id: uuidv4() });
+        this.createNewNote.emit({ ...new Note(), note_id: uuidv4() });
     }
 
     onUpdatePinOrder(note: Note) {
@@ -84,6 +86,10 @@ export class NoteLeftViewComponent implements OnDestroy {
 
     onArchiveNote(note: Note) {
         this.archiveNote.emit(note);
+    }
+
+    onSyncNote() {
+        this.syncNote.emit();
     }
 
     routeToArchivedNotes() {

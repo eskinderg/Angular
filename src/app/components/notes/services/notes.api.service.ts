@@ -34,6 +34,18 @@ export class NoteApiService {
         return this.store.select(fromNotes.getFacadeNote);
     }
 
+    get IsSyncConflict(): Observable<boolean> {
+        return this.store.select(fromNotes.getSyncConflict);
+    }
+
+    get IsSyncing(): Observable<boolean> {
+        return this.store.select(fromNotes.getIsSyncing);
+    }
+
+    get ArchivedNotes(): Observable<Note[]> {
+        return this.store.select(fromNotes.getArchivedNotes);
+    }
+
     getNoteById(id: string): Observable<Note> {
         return this.store.select(fromNotes.getNoteById(id));
     }
@@ -51,70 +63,15 @@ export class NoteApiService {
     }
 
     updateNote(note: Note): void {
-        this.run(AppActions.updateNote({ note: note }));
+        this.run(AppActions.updateNote({ note: { ...note, sync: false } }));
     }
 
-    restoreNote(note: Note): void {
-        this.run(AppActions.restoreNote({ note: note }));
-    }
-
-    updateNoteText(note: Note): void {
-        this.run(AppActions.updateNoteText({ note: note }));
-    }
-
-    updateNoteHeader(note: Note): void {
-        this.run(AppActions.updateNoteHeader({ note: note }));
-    }
-
-    updateNoteSelection(note: Note): void {
-        this.run(AppActions.updateNoteSelection({ note: note }));
+    syncNotes(): void {
+        this.run(AppActions.syncNotes());
     }
 
     unselectNote(): void {
         this.run(AppActions.unselectNote());
-    }
-
-    restoreArchivedNote(note: Note): void {
-        this.run(AppActions.restoreNote({ note: note }));
-    }
-
-    archiveNote(note: Note): void {
-        this.run(AppActions.archiveNote({ note: { ...note, archived: true } }));
-    }
-
-    toggleSpellCheck(note: Note): void {
-        this.run(AppActions.toggleSpellCheck({ note: { ...note, spellCheck: !note.spellCheck } }));
-    }
-
-    updateNoteColour(note: Note): void {
-        this.run(AppActions.updateNoteColour({ note: note }));
-    }
-
-    deleteNote(note: Note): void {
-        this.run(AppActions.deleteNote({ note: { ...note, active: false } }));
-    }
-
-    changeNoteText(note: Note): void {
-        this.run(AppActions.updateNoteText({ note: note }));
-    }
-
-    updateNotePinOrder(note: Note): void {
-        this.run(
-            AppActions.updatePinOrder({
-                note: {
-                    ...note,
-                    pinned: !note.pinned
-                }
-            })
-        );
-    }
-
-    changeNotePosition(note: Note): void {
-        this.run(AppActions.updateNotePosition({ note: note }));
-    }
-
-    changeNoteSize(note: Note): void {
-        this.run(AppActions.updateNoteSize({ note: note }));
     }
 
     private run(action: Action) {

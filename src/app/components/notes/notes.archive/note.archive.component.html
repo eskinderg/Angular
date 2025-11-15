@@ -8,16 +8,16 @@
 
                         <div class="note-detail">
                             <div class="item">
-                                <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pinOrder }">
+                                <div class="note-text" [ngClass]="{ 'pinned-note-text': note.pin_order }">
                                     {{ note | noteTitleTruncate: '20' : true }}
                                 </div>
                             </div>
                             <small>Author: {{ note.owner }}</small>
                             <br />
                             <small
-                                [appTooltip]="'Last Modified ' + (note.dateModified | dateago)"
+                                [appTooltip]="'Last Modified ' + (note.date_modified | dateago)"
                                 class="date-modified text-muted">
-                                <strong>Archived On </strong>{{ note.dateArchived | date: 'medium' }}</small
+                                <strong>Archived On </strong>{{ note.date_archived | date: 'medium' }}</small
                             >
                         </div>
                     </div>

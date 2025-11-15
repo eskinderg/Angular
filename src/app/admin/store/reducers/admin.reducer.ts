@@ -52,7 +52,7 @@ export const adminReducer = createReducer<IAdminNotesState>(
         (state, action): IAdminNotesState => ({
             ...state,
             notes: state.notes.map((note) =>
-                note.id === action.payload.id || note.id === undefined ? action.payload : note
+                note.note_id === action.payload.note_id || note.note_id === undefined ? action.payload : note
             ),
             selectedNote: null
         })
@@ -68,7 +68,7 @@ export const adminReducer = createReducer<IAdminNotesState>(
         return {
             ...state,
             notes: state.notes.map((note) => {
-                const updatedNote = action.payload.find((n) => n.id === note.id);
+                const updatedNote = action.payload.find((n) => n.note_id === note.note_id);
                 return updatedNote ? updatedNote : note;
             }),
             selectedNote: null
@@ -111,5 +111,5 @@ export const getAdminUsers = createSelector(getAdminNoteState, (state: IAdminNot
 });
 
 export const getAdminSelectedNote = createSelector(getAdminNoteState, (state: IAdminNotesState) =>
-    state.selectedNote ? state.notes.find((n) => n.id === state.selectedNote.id) : null
+    state.selectedNote ? state.notes.find((n) => n.note_id === state.selectedNote.note_id) : null
 );

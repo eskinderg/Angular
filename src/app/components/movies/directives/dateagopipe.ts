@@ -3,23 +3,19 @@ import { Pipe, PipeTransform, signal, effect } from '@angular/core';
 @Pipe({
     name: 'dateago',
     standalone: true,
-    pure: false // let the signal drive updates
+    pure: false
 })
 export class AgoDatePipe implements PipeTransform {
     private now = signal(new Date());
     private timer: any;
 
     constructor() {
-        // set up a reactive effect to auto-update periodically
         effect(() => {
-            // clear any old timer when interval changes
             if (this.timer) clearInterval(this.timer);
 
-            // default to 30s updates
             let intervalTime = 30_000;
-            const ageInSeconds = Math.floor((+new Date() - +this.now()) / 1000);
+            const ageInSeconds = Math.floor((Date.now() - this.now().getTime()) / 1000);
 
-            // dynamically adjust interval
             if (ageInSeconds < 60) intervalTime = 5_000;
             else if (ageInSeconds > 3600) intervalTime = 300_000;
 
@@ -31,9 +27,10 @@ export class AgoDatePipe implements PipeTransform {
     transform(value: any): any {
         if (!value) return value;
 
-        // read the signal to make it reactive
         const current = this.now();
-        const seconds = Math.floor((+current - +new Date(value)) / 1000);
+        const inputDate = new Date(value);
+
+        const seconds = Math.floor((current.getTime() - inputDate.getTime()) / 1000);
 
         if (seconds < 29) return 'just now';
 

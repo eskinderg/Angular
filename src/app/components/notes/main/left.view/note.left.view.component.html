@@ -46,13 +46,15 @@
         } @else if ((notes$ | async).length === 0) {
             <div class="no-content">No notes</div>
         } @else {
-            @for (note of notes$ | async; track note.id) {
+            @for (note of notes$ | async; track note.note_id) {
                 <app-note-list-item
                     [note]="note"
                     [animate]="Animate | async"
+                    [isSyncing]="isSyncing"
                     [selectedNote]="selectedNote$ | async"
                     (selectNote)="onSelectNote($event)"
                     (archiveNote)="onArchiveNote($event)"
+                    (syncNote)="onSyncNote()"
                     (changePineOrder)="onUpdatePinOrder($event)" />
             }
         }

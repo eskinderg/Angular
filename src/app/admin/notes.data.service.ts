@@ -42,7 +42,7 @@ export class AdminNotesDataService {
     }
 
     deleteNote(note: Note): Observable<Note> {
-        return this.http.delete(NOTES_API_URL + note.id).pipe(map((_response) => new Note(_response)));
+        return this.http.delete(NOTES_API_URL + note.note_id).pipe(map((_response) => new Note(_response)));
     }
 
     addOrUpdateNote(note: Note): Observable<Note> {

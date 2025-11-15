@@ -3,7 +3,9 @@
         <app-note-left-view
             [notes$]="filteredNotes$"
             [selectedNote$]="notesApiService.SelectedNote"
+            [isSyncing]="notesApiService.IsSyncing | async"
             (archiveNote)="onArchiveNote($event)"
+            (syncNote)="onSyncNote()"
             (updatePin)="onUpdatePinOrder($event)"
             (selectNote)="onSelectNote($event)"
             (createNewNote)="onCreateNewNote($event)"
@@ -18,6 +20,7 @@
                     [opendNote]="notesApiService.OpendNote | async"
                     (archiveNote)="onArchiveNote($event)"
                     (changeNoteText)="onChangeNoteText($event)"
+                    (notesUpdate)="onNotesUpdate()"
                     (updateNoteColour)="onUpdateNoteColour($event)"
                     (updateNoteHeader)="onUpdateNoteHeader($event)"
                     (noteSelectionChange)="onSelectionChange($event)"

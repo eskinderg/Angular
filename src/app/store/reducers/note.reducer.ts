@@ -9,7 +9,9 @@ export interface INotesState {
     selectedNote: Note;
     opendNote: Note;
     facadeNote: Note;
+    syncConflict: boolean;
     isLoading: boolean;
+    isSyncing: boolean;
     animate: {
         note: boolean;
         date: boolean;
@@ -22,6 +24,8 @@ const initialState: INotesState = {
     opendNote: null,
     facadeNote: null,
     isLoading: false,
+    isSyncing: false,
+    syncConflict: false,
     animate: {
         note: false,
         date: false
@@ -31,17 +35,14 @@ const initialState: INotesState = {
 export const notesReducer = createReducer<INotesState>(
     initialState,
     on(AuthActions.logOutSuccess, (): INotesState => initialState),
-    on(NotesActions.noteSelect, (state, action): INotesState => {
-        localStorage.setItem('lastSelectedNote', action.note.id.toString());
+    on(NotesActions.noteSelectSuccess, (state, action): INotesState => {
+        localStorage.setItem('lastSelectedNote', action.note.note_id.toString());
         return {
             ...state,
             selectedNote: action.note,
             opendNote: action.note,
             facadeNote: action.note
         };
-    }),
-    on(NotesActions.updateOpendNote, (state, action): INotesState => {
-        return { ...state, opendNote: action.note, facadeNote: action.note };
     }),
     on(NotesActions.createNoteSuccess, (state, action): INotesState => {
         return {
@@ -57,136 +58,74 @@ export const notesReducer = createReducer<INotesState>(
         };
     }),
     on(
-        NotesActions.fetchNotesStart,
+        NotesActions.syncNotesStart,
+        (state): INotesState => ({
+            ...state,
+            isSyncing: true
+        })
+    ),
+    on(
+        NotesActions.syncServer,
         (state): INotesState => ({
             ...state,
             isLoading: true
         })
     ),
     on(
-        NotesActions.fetchNotesComplete,
+        NotesActions.syncNotesFail,
+        NotesActions.syncServerFail,
         (state): INotesState => ({
             ...state,
-            isLoading: false
+            isSyncing: false
         })
     ),
-    on(NotesActions.fetchNotesSuccess, (state, action): INotesState => {
-        const lastSelectedNote: Note = filterActiveNotes(action.notes).find(
-            (n) => n.id === localStorage.getItem('lastSelectedNote')
-        );
-
-        let currentSelection: Note;
-
-        if (lastSelectedNote === undefined)
-            currentSelection = filterActiveNotes(pinnedNotes(action.notes))[0] ?? null;
-        else currentSelection = lastSelectedNote;
-
+    on(NotesActions.syncRemoteWithLocalSuccess, (state, action): INotesState => {
         return {
             ...state,
-            notes: pinnedNotes(action.notes),
-            selectedNote: currentSelection,
-            opendNote: currentSelection,
-            facadeNote: currentSelection,
+            notes: pinnedNotes(dateModifiedNotes([...action.notes])),
+            opendNote: opendNote(state, action.notes),
+            selectedNote: opendNote(state, action.notes),
+            facadeNote: opendNote(state, action.notes),
+            isSyncing: false,
+            isLoading: false,
             animate: {
-                note: true,
+                note: false,
                 date: true
             }
         };
     }),
-    on(NotesActions.refreshNotesSuccess, (state, action): INotesState => {
-        if (state.opendNote != null) {
-            const checkIfDeleted: Note = filterActiveNotes(action.notes).find(
-                (n) => n.id === state.opendNote.id
+    on(NotesActions.syncRemoteNotesResponse, (state, action): INotesState => {
+        if (state.opendNote) {
+            const checkIfDeleted: Note = filterActiveNotes(action.remoteNotes).find(
+                (n) => n.note_id === state.opendNote.note_id
             );
-            if (checkIfDeleted === undefined) {
+
+            if (checkIfDeleted === undefined && state.opendNote.sync) {
                 return {
                     ...state,
                     opendNote: null,
                     selectedNote: null,
-                    facadeNote: null,
-                    notes: pinnedNotes(action.notes),
-                    animate: {
-                        note: false,
-                        date: true
-                    }
+                    facadeNote: null
+                };
+            }
+
+            const findOpendNote = action.remoteNotes.find((n) => n.note_id === state.opendNote.note_id);
+            if (findOpendNote) {
+                if (new Date(findOpendNote.date_modified) > new Date(state.opendNote.date_modified)) {
+                    console.log(state.opendNote);
+                    console.log(findOpendNote);
+                }
+                return {
+                    ...state,
+                    syncConflict:
+                        new Date(findOpendNote.date_modified) > new Date(state.opendNote.date_modified)
                 };
             }
         }
         return {
-            ...state,
-            notes: pinnedNotes(action.notes),
-            animate: {
-                note: false,
-                date: true
-            }
+            ...state
         };
     }),
-    on(
-        NotesActions.updateNoteSuccess,
-        NotesActions.updateNotePositionSuccess,
-        NotesActions.updateNoteSizeSuccess,
-        (state, action): INotesState => ({
-            ...state,
-            notes: state.notes.map((note) =>
-                note.id === action.note.id || note.id === undefined ? action.note : note
-            ),
-            opendNote: action.note,
-            selectedNote: action.note,
-            facadeNote: action.note,
-            animate: {
-                note: true,
-                date: true
-            }
-        })
-    ),
-    on(
-        NotesActions.updateNoteHeaderSuccess,
-        (state, action): INotesState => ({
-            ...state,
-            notes: state.notes.map((note) =>
-                note.id === action.note.id || note.id === undefined ? action.note : note
-            ),
-            opendNote: action.note,
-            selectedNote: action.note,
-            facadeNote: action.note,
-            animate: {
-                note: false,
-                date: true
-            }
-        })
-    ),
-    on(
-        NotesActions.toggleSpellCheckSuccess,
-        (state, action): INotesState => ({
-            ...state,
-            notes: state.notes.map((note) =>
-                note.id === action.note.id || note.id === undefined ? action.note : note
-            ),
-            opendNote: action.note,
-            selectedNote: action.note,
-            facadeNote: action.note,
-            animate: {
-                note: false,
-                date: false
-            }
-        })
-    ),
-    on(
-        NotesActions.updateNoteSelectionSuccess,
-        (state, action): INotesState => ({
-            ...state,
-            notes: state.notes.map((note) =>
-                note.id === action.note.id || note.id === undefined ? action.note : note
-            ),
-            opendNote: action.note,
-            selectedNote: action.note,
-            facadeNote: action.note,
-            animate: {
-                note: false,
-                date: false
-            }
-        })
-    ),
     on(
         NotesActions.unselectNote,
         (state): INotesState => ({
@@ -196,108 +135,61 @@ export const notesReducer = createReducer<INotesState>(
             facadeNote: null
         })
     ),
-    on(NotesActions.restoreNoteSuccess, (state, action): INotesState => {
+    on(NotesActions.updateLocalNoteSuccess, (state, action): INotesState => {
+        // const localNote = state.notes.find((n) => n.note_id === action.note.note_id);
         const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note; // First update the note text
-        });
-
-        const newState: Note[] = dateModifiedNotes(notes);
-
-        return {
-            ...state,
-            notes: pinnedNotes(newState),
-            animate: { ...state.animate, note: false, date: false }
-        };
-    }),
-    on(NotesActions.updateNoteColourSuccess, (state, action): INotesState => {
-        const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note; // First update the note text
-        });
-
-        return {
-            ...state,
-            notes: notes,
-            facadeNote: action.note,
-            animate: { ...state.animate, note: false, date: false }
-        };
-    }),
-    on(NotesActions.updateNoteTextSuccess, (state, action): INotesState => {
-        const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note; // First update the note text
+            return note.note_id === action.localNote.note_id ? action.localNote : note; // First update the note
         });
 
         const newState: Note[] = [
-            // move the newly updated note to the top of the list
-            notes.find((note) => note.id === action.note.id),
-            ...notes.filter((n) => n.id !== action.note.id)
+            { ...notes.find((note) => note.note_id === action.localNote.note_id) }, // move the newly updated note to the top of the list
+            ...notes.filter((n) => n.note_id !== action.localNote.note_id)
         ];
-
-        return {
+        let returnState = {
             ...state,
-            notes: pinnedNotes(newState),
-            facadeNote: action.note,
+            notes: pinnedNotes(dateModifiedNotes(newState)),
             animate: { ...state.animate, note: false, date: false }
         };
-    }),
-    on(NotesActions.updatePinOrder, (state, action): INotesState => {
-        return action.note.id === state.opendNote?.id // update current opend note
-            ? {
-                  ...state,
-                  opendNote: { ...state.opendNote, pinOrder: action.note.pinOrder },
-                  facadeNote: { ...state.facadeNote, pinOrder: action.note.pinOrder }
-              }
-            : state;
-    }),
-    on(NotesActions.updatePinOrderSuccess, (state, action): INotesState => {
-        const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note; // First update the note text
-        });
+        if (state.opendNote) {
+            returnState = {
+                ...returnState,
+                opendNote: {
+                    ...state.opendNote,
+                    colour: action.localNote.colour,
+                    selection: action.localNote.selection,
+                    user_id: action.localNote.user_id,
+                    date_created: action.localNote.date_created,
+                    date_modified: action.localNote.date_modified,
+                    date_archived: action.localNote.date_archived,
+                    pin_order: action.localNote.pin_order,
+                    archived: action.localNote.archived,
+                    pinned: action.localNote.pinned,
+                    active: action.localNote.active,
+                    spell_check: action.localNote.spell_check,
+                    owner: action.localNote.owner
+                },
+                facadeNote: action.localNote
+            };
+            //check if archived
+            if (action.localNote.archived) {
+                if (state.opendNote.note_id === action.localNote.note_id) {
+                    return {
+                        ...returnState,
+                        opendNote: opendNote({ ...state, opendNote: null }, undefined),
+                        selectedNote: opendNote({ ...state, opendNote: null }, undefined),
+                        facadeNote: opendNote({ ...state, opendNote: null }, undefined)
+                    };
+                }
+            }
 
-        const newState: Note[] = [
-            // move the newly updated note to the top of the list
-            notes.find((note) => note.id === action.note.id),
-            ...notes.filter((n) => n.id !== action.note.id)
-        ];
-
+            if (state.opendNote.note_id === action.localNote.note_id) {
+                return returnState;
+            }
+        }
         return {
             ...state,
             notes: pinnedNotes(dateModifiedNotes(newState)),
-            facadeNote: action.note.id === state.facadeNote.id ? action.note : state.facadeNote,
-            animate: { note: true, date: false }
-        };
-    }),
-    on(
-        NotesActions.getNoteUpdatedTimestampSuccess,
-        (state, action): INotesState => ({
-            ...state,
-            notes: state.notes.map((note) => {
-                return note.id === action.note.id
-                    ? { ...note, dateModified: action.note.dateModified }
-                    : note;
-            })
-        })
-    ),
-    on(NotesActions.archiveNoteSuccess, (state, action): INotesState => {
-        const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note;
-        });
-
-        return {
-            ...state,
-            notes: notes,
-            selectedNote: action.note.id === state.selectedNote?.id ? null : state.selectedNote,
-            opendNote: action.note.id === state.opendNote?.id ? null : state.opendNote,
-            animate: { note: true, date: true }
-        };
-    }),
-    on(NotesActions.deleteNoteSuccess, (state, action): INotesState => {
-        const notes: Note[] = state.notes.map((note) => {
-            return note.id === action.note.id ? action.note : note;
-        });
-
-        return {
-            ...state,
-            notes: notes
+            animate: { ...state.animate, note: false, date: false }
         };
     })
 );
@@ -311,7 +203,7 @@ export const getNotes = createSelector(getNoteState, (state: INotesState) => {
 export const getArchivedNotes = createSelector(getNoteState, (state: INotesState) => {
     return state.notes
         .filter((n) => n.archived && n.active)
-        .sort((a, b) => (a.dateArchived > b.dateArchived ? -1 : 1));
+        .sort((a, b) => (a.date_archived > b.date_archived ? -1 : 1));
 });
 
 export const getNotesLength = createSelector(
@@ -321,8 +213,10 @@ export const getNotesLength = createSelector(
 
 export const getNotesAnimate = createSelector(getNoteState, (state: INotesState) => state.animate);
 
+export const getSyncConflict = createSelector(getNoteState, (state: INotesState) => state.syncConflict);
+
 export const getSelectedNote = createSelector(getNoteState, (state: INotesState) =>
-    state.selectedNote ? state.notes.find((n) => n.id === state.selectedNote.id) : new Note()
+    state.selectedNote ? state.notes.find((n) => n.note_id === state.selectedNote.note_id) : new Note()
 );
 
 export const getOpendNote = createSelector(getNoteState, (state: INotesState) => state.opendNote as Note);
@@ -331,11 +225,13 @@ export const getFacadeNote = createSelector(getNoteState, (state: INotesState) =
 
 export const getIsNoteLoading = createSelector(getNoteState, (state: INotesState) => state.isLoading);
 
+export const getIsSyncing = createSelector(getNoteState, (state: INotesState) => state.isSyncing);
+
 export const getNoteById = (id: string) =>
     createSelector(getNoteState, (allItems) => {
         if (allItems.notes) {
             return allItems.notes.find((item) => {
-                return item.id === id;
+                return item.note_id === id;
             });
         } else {
             return {} as Note;
@@ -348,7 +244,7 @@ export const getNoteCurrentRoute = createSelector(
     (state: INotesState, routerState: IAppRouterState) => {
         if (state.notes) {
             return state.notes.find((item) => {
-                return item.id === routerState.params['id'];
+                return item.note_id === routerState.params['id'];
             });
         } else {
             return {};
@@ -356,17 +252,60 @@ export const getNoteCurrentRoute = createSelector(
     }
 );
 
+export function opendNote(state: INotesState, remoteNotes?: Note[]): Note {
+    if (state.opendNote !== null && remoteNotes !== undefined) {
+        const findOpendNote = remoteNotes.find((n) => n.note_id === state.opendNote.note_id);
+        if (findOpendNote === undefined && state.opendNote.sync) return null;
+        return {
+            ...state.opendNote,
+            colour: findOpendNote.colour,
+            selection: findOpendNote.selection,
+            user_id: findOpendNote.user_id,
+            date_created: findOpendNote.date_created,
+            date_modified: findOpendNote.date_modified,
+            date_archived: findOpendNote.date_archived,
+            pin_order: findOpendNote.pin_order,
+            archived: findOpendNote.archived,
+            pinned: findOpendNote.pinned,
+            active: findOpendNote.active,
+            spell_check: findOpendNote.spell_check,
+            owner: findOpendNote.owner
+        };
+    }
+
+    if (state.opendNote === null && remoteNotes !== undefined) {
+        const lastSelectedNote: Note = filterActiveNotes(remoteNotes).find(
+            (n) => n.note_id === localStorage.getItem('lastSelectedNote')
+        );
+
+        let currentSelection: Note;
+
+        if (lastSelectedNote === undefined)
+            currentSelection = filterActiveNotes(pinnedNotes(remoteNotes))[0] ?? null;
+        else currentSelection = lastSelectedNote;
+        return currentSelection;
+    }
+
+    return null;
+}
+
 export function dateModifiedNotes(notes: Note[]): Note[] {
-    return notes.sort((a, b) => (a.dateModified > b.dateModified ? -1 : 1));
+    return notes.sort((a, b) => (new Date(a.date_modified) > new Date(b.date_modified) ? -1 : 1));
 }
 
 export function pinnedNotes(notes: Note[]): Note[] {
     return [
-        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pinOrder < b.pinOrder ? -1 : 1)),
+        ...notes
+            .filter((note) => note.pinned)
+            .sort((a, b) => (new Date(a.pin_order) < new Date(b.pin_order) ? -1 : 1)),
         ...notes.filter((n) => !n.pinned)
     ];
 }
 
 export function filterActiveNotes(notes: Note[]): Note[] {
     return notes.filter((n) => !n.archived && n.active);
+}
+
+export function filterArchivedNotes(notes: Note[]): Note[] {
+    return notes.filter((n) => n.archived && n.active);
 }

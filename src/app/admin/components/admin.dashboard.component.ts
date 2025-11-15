@@ -93,7 +93,7 @@ export class AdminDashboardComponent {
     }
 
     trackByFn(index: number, item: Note): string {
-        return `${index}-${item.id}-${item.userId}`;
+        return `${index}-${item.note_id}-${item.user_id}`;
     }
 
     onClick(note: Note) {
@@ -133,14 +133,14 @@ export class AdminDashboardComponent {
         if (checkbox.checked) {
             this.selectedNotes$.next([...currentSelectedNotes, note]);
         } else {
-            this.selectedNotes$.next(currentSelectedNotes.filter((n) => n.id !== note.id));
+            this.selectedNotes$.next(currentSelectedNotes.filter((n) => n.note_id !== note.note_id));
         }
     }
 
     isNoteSelected(note: Note): boolean {
         // if(this.selectedUserId$.value)
         //     debugger;
-        return this.selectedNotes$.value.some((n) => n.id === note.id);
+        return this.selectedNotes$.value.some((n) => n.note_id === note.note_id);
     }
 
     toggleSelectAll(event: Event) {
@@ -149,7 +149,7 @@ export class AdminDashboardComponent {
         const sub = this.filteredNotes$.subscribe((notes) => {
             if (checkbox.checked) {
                 notes.forEach((note) => {
-                    if (!this.selectedNotes$.value.some((n) => n.id === note.id)) {
+                    if (!this.selectedNotes$.value.some((n) => n.note_id === note.note_id)) {
                         this.selectedNotes$.next([...this.selectedNotes$.value, note]);
                     }
                 });
@@ -157,7 +157,7 @@ export class AdminDashboardComponent {
                 // Remove all visible notes from selectedNotes
                 this.selectedNotes$.next(
                     this.selectedNotes$.value.filter(
-                        (note) => !notes.some((visibleNote) => visibleNote.id === note.id)
+                        (note) => !notes.some((visibleNote) => visibleNote.note_id === note.note_id)
                     )
                 );
             }
@@ -210,7 +210,7 @@ export class AdminDashboardComponent {
         const updatedNotes = this.selectedNotes$.value.map((note) => ({
             ...note,
             owner: changes.owner || note.owner,
-            userId: changes.userId || note.userId,
+            userId: changes.userId || note.user_id,
             active: changes.active ?? note.active,
             colour: changes.colour || note.colour
         }));

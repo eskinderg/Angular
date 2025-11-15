@@ -9,7 +9,7 @@ export class NoteFilterService {
         const searchText = searchTerm.toLowerCase();
 
         return notes.filter((note) => {
-            const matchesUser = userId ? note.userId === userId : true;
+            const matchesUser = userId ? note.user_id === userId : true;
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(note.text, 'text/html');

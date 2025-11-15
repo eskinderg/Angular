@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { fromEvent, filter, debounceTime, distinctUntilChanged, tap, Subscription } from 'rxjs';
+import { fromEvent, filter, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
 import { TextSelection } from './text.selection';
 
@@ -76,7 +76,6 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
         this.subscription = fromEvent(this.textAreaElementRef().nativeElement, 'input')
             .pipe(
                 filter(Boolean),
-                debounceTime(450),
                 distinctUntilChanged(),
                 tap(() => {
                     this.textAreaTextChanged.emit({
@@ -95,35 +94,37 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
 
     @HostListener('focusout', ['$event.target'])
     onFocusOut(target: any) {
-        const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
+        console.log('focus out');
+        // const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
 
-        if (currentSelection != this.facadeNote.selection) {
-            this.textAreaSelectionChange.emit({
-                ...this.facadeNote,
-                text: target.innerHTML,
-                selection: currentSelection
-            } as Note);
-            this.textAreaUpdatedOpendNote.emit({
-                ...this.facadeNote,
-                text: target.innerHTML,
-                selection: currentSelection
-            } as Note);
-        }
+        // if (currentSelection != this.facadeNote.selection) {
+        //     this.textAreaSelectionChange.emit({
+        //         ...this.facadeNote,
+        //         text: target.innerHTML,
+        //         selection: currentSelection
+        //     } as Note);
+        //     this.textAreaUpdatedOpendNote.emit({
+        //         ...this.facadeNote,
+        //         text: target.innerHTML,
+        //         selection: currentSelection
+        //     } as Note);
+        // }
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (
-            (changes['facadeNote']?.currentValue as Note).id === this.facadeNote.id &&
-            this.facadeNote.selection !== null &&
-            (changes['facadeNote'].currentValue as Note).id !==
-                (changes['facadeNote'].previousValue as Note)?.id
-        ) {
-            setTimeout(() => {
-                this.txtSelection.doRestore(
-                    this.facadeNote.selection,
-                    this.textAreaElementRef().nativeElement
-                );
-            }, 100);
-        }
+        console.log('ngOnChanges');
+        // if (
+        //     (changes['facadeNote']?.currentValue as Note).id === this.facadeNote.id &&
+        //     this.facadeNote.selection !== null &&
+        //     (changes['facadeNote'].currentValue as Note).id !==
+        //         (changes['facadeNote'].previousValue as Note)?.id
+        // ) {
+        //     setTimeout(() => {
+        //         this.txtSelection.doRestore(
+        //             this.facadeNote.selection,
+        //             this.textAreaElementRef().nativeElement
+        //         );
+        //     }, 100);
+        // }
     }
 }

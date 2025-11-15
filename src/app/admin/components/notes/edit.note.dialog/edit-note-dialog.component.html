@@ -33,7 +33,7 @@
                                     <input type="checkbox" formControlName="pinned" /> Pinned
                                 </label>
                                 <label class="check-label">
-                                    <input type="checkbox" formControlName="spellCheck" /> Spell Check
+                                    <input type="checkbox" formControlName="spell_check" /> Spell Check
                                 </label>
                                 <div class="form-group colour">
                                     <label>Colour</label>
@@ -45,22 +45,22 @@
                             <div class="read">
                                 <div class="form-group readonly">
                                     <label>Last Modified</label>
-                                    <input [value]="formatDate(note.dateModified)" readonly />
+                                    <input [value]="formatDate(note.date_modified)" readonly />
                                 </div>
                                 <div class="form-group readonly">
                                     <label>Date Archived</label>
-                                    <input [value]="formatDate(note.dateArchived)" readonly />
+                                    <input [value]="formatDate(note.date_archived)" readonly />
                                 </div>
                                 <div class="form-group readonly">
                                     <label>Created</label>
-                                    <input [value]="formatDate(note.dateCreated)" readonly />
+                                    <input [value]="formatDate(note.date_created)" readonly />
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Owner</label>
-                            <select formControlName="userId" (change)="onOwnerChange($event)">
+                            <select formControlName="user_id" (change)="onOwnerChange($event)">
                                 @for (user of Owners | async; track user) {
                                     <option [value]="user.user_id">
                                         {{ user.owner }} ({{ user.total_notes }})
