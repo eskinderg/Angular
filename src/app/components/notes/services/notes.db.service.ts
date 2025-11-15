@@ -63,7 +63,7 @@ export class NoteLocalDbService {
         const store = tx.objectStore('notes');
 
         const allLocal = await store.getAll();
-        const userId = this.authService.getIdentityClaims()['sub'];
+        const userId = this.authService.getUserId();
 
         // DELETE PHASE
         const forDelete = allLocal.filter(
@@ -123,10 +123,7 @@ export class NoteLocalDbService {
 
     public async getNoteById(id: string): Promise<Note> {
         const db = await this.dbPromise;
-        const note = await db.getFromIndex('notes', 'compositeIndex', [
-            id,
-            this.authService.getIdentityClaims()['sub']
-        ]);
+        const note = await db.getFromIndex('notes', 'compositeIndex', [id, this.authService.getUserId()]);
 
         return note;
     }
@@ -134,9 +131,7 @@ export class NoteLocalDbService {
     public async getAllNotes(): Promise<Note[]> {
         const db = await this.dbPromise;
         const notes = await db.getAll('notes');
-        const filteredUserNotes = notes.filter(
-            (n) => n.user_id === this.authService.getIdentityClaims()['sub']
-        );
+        const filteredUserNotes = notes.filter((n) => n.user_id === this.authService.getUserId());
         return filteredUserNotes;
     }
 }
