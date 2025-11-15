@@ -1,7 +1,7 @@
 import { openDB, DBSchema, IDBPDatabase } from 'idb';
 import { inject, Injectable } from '@angular/core';
 import { Note } from 'src/app/models/note';
-import { OAuthService } from 'angular-oauth2-oidc';
+import { AuthService } from 'src/app/auth/auth.service';
 
 interface NoteDB extends DBSchema {
     notes: {
@@ -16,7 +16,7 @@ interface NoteDB extends DBSchema {
 })
 export class NoteLocalDbService {
     private dbPromise: Promise<IDBPDatabase<NoteDB>>;
-    private oAuthService = inject(OAuthService);
+    private authService = inject(AuthService);
 
     constructor() {
         this.dbPromise = this.initDb();
@@ -38,7 +38,7 @@ export class NoteLocalDbService {
         const tx = db.transaction(['notes'], 'readwrite');
         const store = tx.objectStore('notes');
 
-        const userId = this.oAuthService.getIdentityClaims()['sub'];
+        const userId = this.authService.getUserId();
 
         await Promise.all(
             remoteNotes.map(async (note) => {
@@ -63,7 +63,7 @@ export class NoteLocalDbService {
         const store = tx.objectStore('notes');
 
         const allLocal = await store.getAll();
-        const userId = this.oAuthService.getIdentityClaims()['sub'];
+        const userId = this.authService.getIdentityClaims()['sub'];
 
         // DELETE PHASE
         const forDelete = allLocal.filter(
@@ -125,7 +125,7 @@ export class NoteLocalDbService {
         const db = await this.dbPromise;
         const note = await db.getFromIndex('notes', 'compositeIndex', [
             id,
-            this.oAuthService.getIdentityClaims()['sub']
+            this.authService.getIdentityClaims()['sub']
         ]);
 
         return note;
@@ -135,7 +135,7 @@ export class NoteLocalDbService {
         const db = await this.dbPromise;
         const notes = await db.getAll('notes');
         const filteredUserNotes = notes.filter(
-            (n) => n.user_id === this.oAuthService.getIdentityClaims()['sub']
+            (n) => n.user_id === this.authService.getIdentityClaims()['sub']
         );
         return filteredUserNotes;
     }
