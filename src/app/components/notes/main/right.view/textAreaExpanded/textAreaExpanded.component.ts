@@ -94,37 +94,37 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
 
     @HostListener('focusout', ['$event.target'])
     onFocusOut(target: any) {
-        console.log('focus out');
-        // const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
+        // console.log('focus out');
+        const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
 
-        // if (currentSelection != this.facadeNote.selection) {
-        //     this.textAreaSelectionChange.emit({
-        //         ...this.facadeNote,
-        //         text: target.innerHTML,
-        //         selection: currentSelection
-        //     } as Note);
-        //     this.textAreaUpdatedOpendNote.emit({
-        //         ...this.facadeNote,
-        //         text: target.innerHTML,
-        //         selection: currentSelection
-        //     } as Note);
-        // }
+        if (currentSelection != this.facadeNote.selection) {
+            this.textAreaSelectionChange.emit({
+                ...this.facadeNote,
+                text: target.innerHTML,
+                selection: currentSelection
+            } as Note);
+            this.textAreaUpdatedOpendNote.emit({
+                ...this.facadeNote,
+                text: target.innerHTML,
+                selection: currentSelection
+            } as Note);
+        }
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log('ngOnChanges');
-        // if (
-        //     (changes['facadeNote']?.currentValue as Note).id === this.facadeNote.id &&
-        //     this.facadeNote.selection !== null &&
-        //     (changes['facadeNote'].currentValue as Note).id !==
-        //         (changes['facadeNote'].previousValue as Note)?.id
-        // ) {
-        //     setTimeout(() => {
-        //         this.txtSelection.doRestore(
-        //             this.facadeNote.selection,
-        //             this.textAreaElementRef().nativeElement
-        //         );
-        //     }, 100);
-        // }
+        // console.log('ngOnChanges');
+        if (
+            (changes['facadeNote']?.currentValue as Note).note_id === this.facadeNote.note_id &&
+            this.facadeNote.selection !== null &&
+            (changes['facadeNote'].currentValue as Note).note_id !==
+                (changes['facadeNote'].previousValue as Note)?.note_id
+        ) {
+            setTimeout(() => {
+                this.txtSelection.doRestore(
+                    this.facadeNote.selection,
+                    this.textAreaElementRef().nativeElement
+                );
+            }, 100);
+        }
     }
 }
