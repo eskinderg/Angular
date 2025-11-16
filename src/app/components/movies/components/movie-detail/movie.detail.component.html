@@ -62,13 +62,15 @@
 
                     @if (movie.popularity) {
                         <div class="popularity">
-                            Popularity: <strong>{{ movie.popularity }}</strong>
+                            Popularity:
+                            <strong>{{ movie.popularity }}</strong>
                         </div>
                     }
 
                     @if (movie.original_language) {
                         <div class="language">
-                            Lang: <strong>{{ movie.original_language | uppercase }}</strong>
+                            Lang:
+                            <strong>{{ movie.original_language | uppercase }}</strong>
                         </div>
                     }
                 </div>
@@ -116,12 +118,9 @@
                                 <div class="meta-item">
                                     <dt>Homepage</dt>
                                     <dd>
-                                        <a
-                                            [href]="movie.homepage"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            >{{ movie.homepage }}</a
-                                        >
+                                        <a [href]="movie.homepage" target="_blank" rel="noopener noreferrer">
+                                            {{ movie.homepage }}
+                                        </a>
                                     </dd>
                                 </div>
                             }
@@ -151,9 +150,9 @@
                                     <article class="review">
                                         <div class="review-head">
                                             <strong class="author">{{ r['author'] }}</strong>
-                                            <span class="created">{{
-                                                r['created_at'] | date: 'mediumDate'
-                                            }}</span>
+                                            <span class="created">
+                                                {{ r['created_at'] | date: 'mediumDate' }}
+                                            </span>
                                         </div>
                                         <p class="review-body">
                                             {{ r['content'] | slice: 0 : 400 }}
@@ -166,9 +165,9 @@
                                                 class="read-more"
                                                 [href]="r['url']"
                                                 target="_blank"
-                                                rel="noopener noreferrer"
-                                                >Read full</a
-                                            >
+                                                rel="noopener noreferrer">
+                                                Read full
+                                            </a>
                                         }
                                     </article>
                                 }

@@ -15,8 +15,10 @@
                         </div>
                         <div class="form-group" style="flex: 1">
                             <label>Note</label>
-                            <app-textarea-expanded [note]="note" [facadeNote]="note" formControlName="text">
-                            </app-textarea-expanded>
+                            <app-textarea-expanded
+                                [note]="note"
+                                [facadeNote]="note"
+                                formControlName="text"></app-textarea-expanded>
                         </div>
                     </div>
 
@@ -24,16 +26,20 @@
                         <div class="split">
                             <div class="form-group checkbox">
                                 <label class="check-label">
-                                    <input type="checkbox" formControlName="active" /> Active
+                                    <input type="checkbox" formControlName="active" />
+                                    Active
                                 </label>
                                 <label class="check-label">
-                                    <input type="checkbox" formControlName="archived" /> Archived
+                                    <input type="checkbox" formControlName="archived" />
+                                    Archived
                                 </label>
                                 <label class="check-label">
-                                    <input type="checkbox" formControlName="pinned" /> Pinned
+                                    <input type="checkbox" formControlName="pinned" />
+                                    Pinned
                                 </label>
                                 <label class="check-label">
-                                    <input type="checkbox" formControlName="spell_check" /> Spell Check
+                                    <input type="checkbox" formControlName="spell_check" />
+                                    Spell Check
                                 </label>
                                 <div class="form-group colour">
                                     <label>Colour</label>
@@ -54,6 +60,14 @@
                                 <div class="form-group readonly">
                                     <label>Created</label>
                                     <input [value]="formatDate(note.date_created)" readonly />
+                                </div>
+                                <div class="form-group readonly">
+                                    <label>Date Deleted</label>
+                                    <input [value]="formatDate(note.date_deleted)" readonly />
+                                </div>
+                                <div class="form-group readonly">
+                                    <label>Last Modified Date</label>
+                                    <input [value]="formatDate(note.last_modified_date)" readonly />
                                 </div>
                             </div>
                         </div>
