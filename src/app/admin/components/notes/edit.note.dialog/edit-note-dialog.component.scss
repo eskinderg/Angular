@@ -18,7 +18,7 @@
     // padding: 2rem;
     border-radius: 10px;
     width: 80%;
-    max-height: 70vh;
+    max-height: 75vh;
     box-shadow: 0 0 24px rgb(0 0 0 / 20%);
     animation: fadeIn 0.2s ease-in-out;
     overflow-y: auto;
@@ -199,7 +199,7 @@ button {
 .read {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 select {

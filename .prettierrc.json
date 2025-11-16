@@ -1,7 +1,6 @@
 {
     "trailingComma": "none",
     "bracketSpacing": true,
-    "spaceBeforeFunctionParen": false,
     "arrowParens": "always",
     "endOfLine": "auto",
     "bracketSameLine": true,
@@ -13,7 +12,7 @@
     "singleQuote": true,
     "tabWidth": 4,
     "useTabs": false,
-    "htmlWhiteSpaceSensitivity": "ignore",
+    "htmlWhitespaceSensitivity": "ignore",
     "overrides": [
         {
             "files": "*.html",

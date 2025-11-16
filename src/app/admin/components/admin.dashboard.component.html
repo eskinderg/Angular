@@ -129,6 +129,16 @@
                 </th>
                 <th
                     [class.sorted-asc]="
+                        (sortField$ | async) === 'date_deleted' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'date_deleted' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('date_deleted')">
+                    Date Deleted
+                </th>
+                <th
+                    [class.sorted-asc]="
                         (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
@@ -188,6 +198,7 @@
                     <td>{{ note.archived }}</td>
                     <td>{{ note.pinned }}</td>
                     <td>{{ note.date_archived | date: 'medium' }}</td>
+                    <td>{{ note.date_deleted | date: 'medium' }}</td>
                     <td>{{ note.spell_check }}</td>
                     <td>{{ note.colour }}</td>
                     <td>{{ note.date_created | date: 'medium' }}</td>
@@ -202,19 +213,19 @@
     <app-selected-notes-dialog
         [selectedNotes]="selectedNotes$ | async"
         (closed)="closeSelectedNotesDialog()"
-        (bulkUpdate)="openBulkUpdateDialog()">
-    </app-selected-notes-dialog>
+        (bulkUpdate)="openBulkUpdateDialog()"></app-selected-notes-dialog>
 }
 
 @if (showBulkUpdateDialog) {
     <app-bulk-update-dialog
         [users]="Owners | async"
         (closed)="closeBulkUpdateDialog()"
-        (updated)="applyBulkUpdate($event)">
-    </app-bulk-update-dialog>
+        (updated)="applyBulkUpdate($event)"></app-bulk-update-dialog>
 }
 
 @if (SelectedNote | async) {
-    <app-edit-note-dialog [note]="SelectedNote | async" (closed)="onClose()" (saved)="onSaved($event)">
-    </app-edit-note-dialog>
+    <app-edit-note-dialog
+        [note]="SelectedNote | async"
+        (closed)="onClose()"
+        (saved)="onSaved($event)"></app-edit-note-dialog>
 }
