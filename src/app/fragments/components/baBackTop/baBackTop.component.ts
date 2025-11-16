@@ -12,7 +12,9 @@ import {
 @Component({
     selector: 'app-back-top',
     styleUrls: ['./baBackTop.scss'],
-    template: ` <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i> `,
+    template: `
+        <i #baBackTop class="fa fa-circle-up back-top ba-back-top" title="Back to Top"></i>
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true
 })

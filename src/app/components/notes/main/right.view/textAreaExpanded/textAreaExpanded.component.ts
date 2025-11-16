@@ -35,7 +35,8 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     styleUrls: ['textAreaExpanded.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
+// export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
+export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit {
     htmlSafe = inject(DomSanitizer);
     private txtSelection = inject(TextSelection);
     private renderer = inject(Renderer2);
@@ -92,39 +93,37 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
         this.subscription.unsubscribe();
     }
 
-    @HostListener('focusout', ['$event.target'])
-    onFocusOut(target: any) {
-        console.log('focus out');
-        // const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
+    // @HostListener('focusout', ['$event.target'])
+    // onFocusOut(target: any) {
+    //     const currentSelection: string = JSON.stringify(this.txtSelection.saveSelection(target));
 
-        // if (currentSelection != this.facadeNote.selection) {
-        //     this.textAreaSelectionChange.emit({
-        //         ...this.facadeNote,
-        //         text: target.innerHTML,
-        //         selection: currentSelection
-        //     } as Note);
-        //     this.textAreaUpdatedOpendNote.emit({
-        //         ...this.facadeNote,
-        //         text: target.innerHTML,
-        //         selection: currentSelection
-        //     } as Note);
-        // }
-    }
+    //     if (currentSelection != this.facadeNote.selection) {
+    //         this.textAreaSelectionChange.emit({
+    //             ...this.facadeNote,
+    //             text: target.innerHTML,
+    //             selection: currentSelection
+    //         } as Note);
+    //         this.textAreaUpdatedOpendNote.emit({
+    //             ...this.facadeNote,
+    //             text: target.innerHTML,
+    //             selection: currentSelection
+    //         } as Note);
+    //     }
+    // }
 
-    ngOnChanges(changes: SimpleChanges) {
-        console.log('ngOnChanges');
-        // if (
-        //     (changes['facadeNote']?.currentValue as Note).id === this.facadeNote.id &&
-        //     this.facadeNote.selection !== null &&
-        //     (changes['facadeNote'].currentValue as Note).id !==
-        //         (changes['facadeNote'].previousValue as Note)?.id
-        // ) {
-        //     setTimeout(() => {
-        //         this.txtSelection.doRestore(
-        //             this.facadeNote.selection,
-        //             this.textAreaElementRef().nativeElement
-        //         );
-        //     }, 100);
-        // }
-    }
+    // ngOnChanges(changes: SimpleChanges) {
+    //     if (
+    //         (changes['facadeNote']?.currentValue as Note).user_id === this.facadeNote.user_id &&
+    //         this.facadeNote.selection !== null &&
+    //         (changes['facadeNote'].currentValue as Note).user_id !==
+    //             (changes['facadeNote'].previousValue as Note)?.user_id
+    //     ) {
+    //         setTimeout(() => {
+    //             this.txtSelection.doRestore(
+    //                 this.facadeNote.selection,
+    //                 this.textAreaElementRef().nativeElement
+    //             );
+    //         }, 100);
+    //     }
+    // }
 }

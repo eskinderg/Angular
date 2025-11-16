@@ -17,8 +17,9 @@
                             <small
                                 [appTooltip]="'Last Modified ' + (note.date_modified | dateago)"
                                 class="date-modified text-muted">
-                                <strong>Archived On </strong>{{ note.date_archived | date: 'medium' }}</small
-                            >
+                                <strong>Archived On</strong>
+                                {{ note.date_archived | date: 'medium' }}
+                            </small>
                         </div>
                     </div>
 

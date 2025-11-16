@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, viewChild, ViewContainerRef } from 
 
 @Component({
     selector: 'app-dialog-host',
-    template: `<ng-template #container></ng-template>`,
+    template: `
+        <ng-template #container></ng-template>
+    `,
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
