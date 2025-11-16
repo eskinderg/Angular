@@ -65,8 +65,8 @@
             [class.link-avail]="imageLoaded$.value"
             (click)="imageLoaded$.value ? onImageClick() : null"
             class="badge bg-secondary lang">
-            {{ movie.original_language | uppercase }}</span
-        >
+            {{ movie.original_language | uppercase }}
+        </span>
         <app-watched [watched]="isInWatchedList | async" (watchedChange)="onWatchedToggled($event)" />
     </div>
     <div class="content">
@@ -83,7 +83,7 @@
             <div>{{ movie.release_date | truncate: '4' : false }}</div>
 
             <div class="watch">
-                <a target="_blank" class="watch" [href]="WatchLink"> Watch </a>
+                <a target="_blank" class="watch" [href]="WatchLink">Watch</a>
             </div>
 
             <div>

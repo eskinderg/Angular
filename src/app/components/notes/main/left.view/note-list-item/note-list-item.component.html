@@ -18,8 +18,8 @@
             [@.disabled]="!animate.date"
             [@fadeInOutNoteListItem]
             [appTooltip]="'Last Modified - ' + (note.date_modified | date: 'EEE, MMM d yyyy hh:mm:ss a')">
-            {{ note.local_date_modified ?? note.date_modified | dateago }}</small
-        >
+            {{ note.local_date_modified ?? note.date_modified | dateago }}
+        </small>
     </div>
     <div class="right">
         <!-- <svg -->
