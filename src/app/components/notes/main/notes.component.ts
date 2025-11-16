@@ -139,13 +139,13 @@ export class NotesComponent implements OnDestroy, OnInit {
             sync: false,
             date_modified: new Date(),
             local_date_modified: new Date(),
-            pin_order: new Date(),
+            pin_order: new Date().getTime(),
             user_id: this.authService.getIdentityClaims()['sub']
         });
     }
 
     onUpdatePinOrder(note: Note) {
-        this.notesApiService.updateNote({ ...note, pinned: !note.pinned, pin_order: new Date() });
+        this.notesApiService.updateNote({ ...note, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
     onUpdateNoteColour(note: Note) {

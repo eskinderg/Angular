@@ -295,9 +295,7 @@ export function dateModifiedNotes(notes: Note[]): Note[] {
 
 export function pinnedNotes(notes: Note[]): Note[] {
     return [
-        ...notes
-            .filter((note) => note.pinned)
-            .sort((a, b) => (new Date(a.pin_order) < new Date(b.pin_order) ? -1 : 1)),
+        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pin_order < b.pin_order ? -1 : 1)),
         ...notes.filter((n) => !n.pinned)
     ];
 }

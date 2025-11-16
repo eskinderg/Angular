@@ -88,7 +88,8 @@ export class NoteLocalDbService {
 
                 const remoteNewer =
                     new Date(note.date_modified) > new Date(localNote.date_modified) ||
-                    new Date(note.pin_order) > new Date(localNote.pin_order) ||
+                    // new Date(note.pin_order) > new Date(localNote.pin_order) ||
+                    note.pin_order > localNote.pin_order ||
                     new Date(note.date_deleted) > new Date(localNote.date_deleted) ||
                     new Date(note.date_archived) > new Date(localNote.date_archived);
 
