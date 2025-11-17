@@ -41,7 +41,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     private txtSelection = inject(TextSelection);
     private renderer = inject(Renderer2);
 
-    @Input() note: Note;
+    @Input() opendNote: Note;
     @Input() facadeNote: Note;
     onChange: any = () => {};
     onTouched: any = () => {};
@@ -50,7 +50,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     textAreaElementRef = viewChild.required<ElementRef>('textAreaElementRef');
 
     @Output() textAreaTextChanged = new EventEmitter(false);
-    @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
+    // @Output() textAreaUpdatedOpendNote = new EventEmitter(false);
     @Output() textAreaSelectionChange = new EventEmitter<Note>(false);
 
     writeValue(_value: string): void {

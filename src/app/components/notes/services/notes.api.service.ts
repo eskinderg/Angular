@@ -66,6 +66,10 @@ export class NoteApiService {
         this.run(AppActions.updateNote({ note: { ...note, sync: false } }));
     }
 
+    searchSelect(note: Note): void {
+        this.run(AppActions.searchSelect({ selectedNote: note }));
+    }
+
     syncNotes(): void {
         this.run(AppActions.syncNotes());
     }

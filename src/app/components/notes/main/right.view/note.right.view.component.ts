@@ -10,9 +10,6 @@ import {
 } from '@angular/core';
 import { Note } from '../../../../models/note';
 import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
-import * as fromNotes from '../../../../store/reducers/note.reducer';
-import * as NotesActions from '../../../../store/actions/note.actions';
-import { Store } from '@ngrx/store';
 import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
@@ -40,7 +37,6 @@ import { debounceTime, filter, merge } from 'rxjs';
     ]
 })
 export class NoteRightViewComponent {
-    private store = inject<Store<fromNotes.INotesState>>(Store);
     private dialogService = inject(DialogService);
 
     textAreaExpandedComponent = viewChild.required<TextareaExpandedComponent>('textAreaExpanded');
@@ -51,15 +47,15 @@ export class NoteRightViewComponent {
     @Input() opendNote: Note;
     @Input() facadeNote: Note;
 
-    @Output() changeNoteText: EventEmitter<Note> = new EventEmitter();
+    @Output() changeNoteText: EventEmitter<Note> = new EventEmitter<Note>();
     @Output() changeNotePosition: EventEmitter<Note> = new EventEmitter();
     @Output() changeNoteSize: EventEmitter<Note> = new EventEmitter();
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
     @Output() updateNoteColour: EventEmitter<Note> = new EventEmitter();
-    @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter();
+    @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
-    @Output() notesUpdate: EventEmitter<void> = new EventEmitter();
+    @Output() notesUpdate: EventEmitter<Note> = new EventEmitter<Note>();
 
     noteChanges$ = merge(this.changeNoteText, this.updateNoteHeader).pipe(
         filter(Boolean),
@@ -81,27 +77,27 @@ export class NoteRightViewComponent {
     }
 
     onSpellCheckToggle(note: Note) {
-        this.toggleSpellCheck.emit(note);
+        this.toggleSpellCheck.emit({ ...this.facadeNote, spell_check: !note.spell_check });
+    }
+
+    onNoteHeaderUpdate(note: Note) {
+        this.updateNoteHeader.emit({
+            ...this.facadeNote,
+            header: note.header,
+            local_date_modified: new Date()
+        });
     }
 
     onNoteTextUpdate(note: Note) {
-        this.changeNoteText.emit(note);
+        this.changeNoteText.emit({ ...this.facadeNote, text: note.text, local_date_modified: new Date() });
     }
 
-    onSelectionChange(selection: Note) {
-        this.noteSelectionChange.emit(selection);
+    onSelectionChange(note: Note) {
+        this.noteSelectionChange.emit({ ...this.facadeNote, selection: note.selection });
     }
 
     onNoteColourUpdate(colour: Colour) {
         this.updateNoteColour.emit({ ...this.facadeNote, colour: colour.name });
-    }
-
-    onNoteHeaderUpdate(note: Note) {
-        this.updateNoteHeader.emit(note);
-    }
-
-    onUpdatOpendNote(note: Note) {
-        this.store.dispatch(NotesActions.updateNote({ note: note }));
     }
 
     noteInfoClick(note: Note) {

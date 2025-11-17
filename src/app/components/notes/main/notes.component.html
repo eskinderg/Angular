@@ -28,7 +28,7 @@
             } @else if (searchTerm$.value.length) {
                 <div class="filterWrapper">
                     @for (note of filteredNotes$ | async; track note) {
-                        <div class="filter" (click)="onSelectionChange(note)">
+                        <div class="filter" (click)="onSearchSelection(note)">
                             <div class="note-header" [innerHTML]="hightlightText(note, 'header')"></div>
                             <div class="note-preview" [innerHTML]="hightlightText(note, 'text')"></div>
                         </div>

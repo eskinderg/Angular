@@ -25,7 +25,7 @@ export class Note {
     spell_check: boolean;
     owner: string;
 
-    constructor(values: object = {}) {
+    constructor(values: object = { sync: true }) {
         Object.assign(this, values);
     }
 }

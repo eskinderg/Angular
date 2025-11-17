@@ -66,3 +66,5 @@ export const noteSelectSuccess = createAction('[NOTE] SELECT_SUCCESS', props<{ n
 export const noteSelectFail = createAction('[NOTE] SELECT_SUCCESS_FAIL', props<{ err: string }>());
 
 export const unselectNote = createAction('[NOTE] UNSELECT_NOTE');
+
+export const searchSelect = createAction('[NOTE] SEARCH_SELECT', props<{ selectedNote: Note }>());

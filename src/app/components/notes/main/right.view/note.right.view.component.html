@@ -25,7 +25,7 @@
         <div class="note-header">
             <app-note-header-control
                 #noteHeader
-                [note]="opendNote"
+                [opendNote]="opendNote"
                 (noteUpdateNoteHeader)="onNoteHeaderUpdate($event)" />
         </div>
 
@@ -60,12 +60,11 @@
 
     @if (opendNote) {
         <app-textarea-expanded
-            [note]="opendNote"
+            [opendNote]="opendNote"
             [facadeNote]="facadeNote"
             #textAreaExpanded
             (textAreaSelectionChange)="onSelectionChange($event)"
-            (textAreaTextChanged)="onNoteTextUpdate($event)"
-            (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)" />
+            (textAreaTextChanged)="onNoteTextUpdate($event)" />
     }
 
     <div class="info" (click)="noteInfoClick(facadeNote)">

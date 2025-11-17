@@ -19,7 +19,6 @@ import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
 @Component({
@@ -34,7 +33,6 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 export class NotesComponent implements OnDestroy, OnInit {
     public notesApiService = inject(NoteApiService);
     private notificationService = inject(NotificationService);
-    private authService = inject(OAuthService);
     private dialogService = inject(DialogService);
     private router = inject(Router);
 
@@ -104,48 +102,40 @@ export class NotesComponent implements OnDestroy, OnInit {
     }
 
     onUpdateNoteHeader(note: Note) {
-        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
+        this.notesApiService.updateNote(note);
     }
 
     onChangeNoteText(note: Note) {
-        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
+        this.notesApiService.updateNote(note);
     }
 
     onNotesUpdate() {
         this.notesApiService.syncNotes();
     }
 
-    onSelectionChange(note: Note) {
+    onToggleSpellCheck(note: Note) {
         this.notesApiService.updateNote(note);
+        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
     }
 
-    onToggleSpellCheck(note: Note) {
-        this.notesApiService.updateNote({ ...note, spell_check: !note.spell_check });
-        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
+    onSelectionChange(note: Note) {
+        this.notesApiService.updateNote(note);
     }
 
     onSelectNote(note: Note) {
         this.notesApiService.selectNote(note);
     }
 
+    onSearchSelection(note: Note) {
+        this.notesApiService.searchSelect(note);
+    }
+
     onCreateNewNote(note: Note) {
-        this.notesApiService.createNewNote({
-            ...note,
-            text: '',
-            header: '',
-            pinned: false,
-            active: true,
-            archived: false,
-            sync: false,
-            date_modified: new Date(),
-            local_date_modified: new Date(),
-            pin_order: new Date().getTime(),
-            user_id: this.authService.getIdentityClaims()['sub']
-        });
+        this.notesApiService.createNewNote(note);
     }
 
     onUpdatePinOrder(note: Note) {
-        this.notesApiService.updateNote({ ...note, pinned: !note.pinned, pin_order: new Date().getTime() });
+        this.notesApiService.updateNote(note);
     }
 
     onUpdateNoteColour(note: Note) {

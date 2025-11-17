@@ -20,7 +20,7 @@ import { Note } from 'src/app/models/note';
     standalone: true
 })
 export class NoteHeaderControlComponent implements OnInit, OnDestroy {
-    @Input() note: Note;
+    @Input() opendNote: Note;
     @Output() noteUpdateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
 
     subscription: Subscription;
@@ -41,7 +41,7 @@ export class NoteHeaderControlComponent implements OnInit, OnDestroy {
                 distinctUntilChanged(),
                 tap(() => {
                     this.noteUpdateNoteHeader.emit({
-                        ...this.note,
+                        ...this.opendNote,
                         header: this.inputHeaderRef().nativeElement.value
                     } as Note);
                 })

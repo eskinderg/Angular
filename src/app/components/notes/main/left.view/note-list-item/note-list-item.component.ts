@@ -40,7 +40,7 @@ export class NoteListItemComponent {
     }
 
     updatePinOrder(note: Note) {
-        this.changePineOrder.emit(note);
+        this.changePineOrder.emit({ ...note, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
     onSyncNote() {

@@ -85,7 +85,7 @@ export const notesReducer = createReducer<INotesState>(
             notes: pinnedNotes(dateModifiedNotes([...action.notes])),
             opendNote: opendNote(state, action.notes),
             selectedNote: opendNote(state, action.notes),
-            facadeNote: opendNote(state, action.notes),
+            facadeNote: facadeNote(state, action.notes),
             isSyncing: false,
             isLoading: false,
             animate: {
@@ -112,8 +112,9 @@ export const notesReducer = createReducer<INotesState>(
             const findOpendNote = action.remoteNotes.find((n) => n.note_id === state.opendNote.note_id);
             if (findOpendNote) {
                 if (new Date(findOpendNote.date_modified) > new Date(state.opendNote.date_modified)) {
-                    console.log(state.opendNote);
-                    console.log(findOpendNote);
+                    console.log('facade: ', state.facadeNote);
+                    console.log('opendNote: ', state.opendNote);
+                    console.log('findNote', findOpendNote);
                 }
                 return {
                     ...state,
@@ -133,6 +134,15 @@ export const notesReducer = createReducer<INotesState>(
             selectedNote: null,
             opendNote: null,
             facadeNote: null
+        })
+    ),
+    on(
+        NotesActions.searchSelect,
+        (state, action): INotesState => ({
+            ...state,
+            selectedNote: action.selectedNote,
+            opendNote: action.selectedNote,
+            facadeNote: action.selectedNote
         })
     ),
     on(NotesActions.updateLocalNoteSuccess, (state, action): INotesState => {
@@ -271,6 +281,29 @@ export function opendNote(state: INotesState, remoteNotes?: Note[]): Note {
             spell_check: findOpendNote.spell_check,
             owner: findOpendNote.owner
         };
+    }
+
+    if (state.opendNote === null && remoteNotes !== undefined) {
+        const lastSelectedNote: Note = filterActiveNotes(remoteNotes).find(
+            (n) => n.note_id === localStorage.getItem('lastSelectedNote')
+        );
+
+        let currentSelection: Note;
+
+        if (lastSelectedNote === undefined)
+            currentSelection = filterActiveNotes(pinnedNotes(remoteNotes))[0] ?? null;
+        else currentSelection = lastSelectedNote;
+        return currentSelection;
+    }
+
+    return null;
+}
+
+export function facadeNote(state: INotesState, remoteNotes?: Note[]): Note {
+    if (state.opendNote !== null && remoteNotes !== undefined) {
+        const findOpendNote = remoteNotes.find((n) => n.note_id === state.facadeNote.note_id);
+        if (findOpendNote === undefined && state.facadeNote.sync) return null;
+        return findOpendNote;
     }
 
     if (state.opendNote === null && remoteNotes !== undefined) {
