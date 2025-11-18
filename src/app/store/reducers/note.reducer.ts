@@ -45,6 +45,7 @@ export const notesReducer = createReducer<INotesState>(
         };
     }),
     on(NotesActions.createNoteSuccess, (state, action): INotesState => {
+        localStorage.setItem('lastSelectedNote', action.note.note_id.toString());
         return {
             ...state,
             notes: pinnedNotes([action.note, ...state.notes]),
@@ -265,7 +266,7 @@ export const getNoteCurrentRoute = createSelector(
 export function opendNote(state: INotesState, remoteNotes?: Note[]): Note {
     if (state.opendNote !== null && remoteNotes !== undefined) {
         const findOpendNote = remoteNotes.find((n) => n.note_id === state.opendNote.note_id);
-        if (findOpendNote === undefined && state.opendNote.sync) return null;
+        if (findOpendNote === undefined && state.facadeNote.sync) return null;
         return {
             ...state.opendNote,
             colour: findOpendNote.colour,
@@ -323,7 +324,11 @@ export function facadeNote(state: INotesState, remoteNotes?: Note[]): Note {
 }
 
 export function dateModifiedNotes(notes: Note[]): Note[] {
-    return notes.sort((a, b) => (new Date(a.date_modified) > new Date(b.date_modified) ? -1 : 1));
+    return notes.sort((a, b) => {
+        const dateA = a.local_date_modified === undefined ? a.date_modified : a.local_date_modified;
+        const dateB = b.local_date_modified === undefined ? b.date_modified : b.local_date_modified;
+        return new Date(dateA) > new Date(dateB) ? -1 : 1;
+    });
 }
 
 export function pinnedNotes(notes: Note[]): Note[] {
