@@ -7,8 +7,8 @@
 .c {
     // border: 0.2rem solid var(--border);
     cursor: pointer;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
     box-shadow: 0 0 4px 0 var(--active-list-link-border-color);
 }
@@ -18,5 +18,6 @@
     // border: 6px solid var(--active-list-link-border-color);
     // box-shadow: 1px 1px 4px 1px;
     // outline: 4px solid var(--body-color);
-    box-shadow: inset 0 0 5px 1px var(--body-color);
+    // box-shadow: inset 0 0 5px 1px var(--body-color);
+    outline: 2px solid var(--note-pin-fill);
 }

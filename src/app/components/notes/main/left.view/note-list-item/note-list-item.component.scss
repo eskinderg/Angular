@@ -98,7 +98,7 @@
 
 .right {
     display: flex;
-    column-gap: 0.5rem;
+    column-gap: 0.25rem;
     flex-direction: row;
     align-items: center;
     z-index: 2;
@@ -157,16 +157,15 @@
 
 .pin {
     transition: all 0.25s ease;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
     fill: #c7c7c7;
 }
 
 .pin-wrapper {
     z-index: 1;
+    display:flex;
     border: none;
-    height: 1.75rem;
-    width: 1.75rem;
     transition: all 0.5s ease;
     cursor: pointer;
 }
@@ -191,10 +190,19 @@
     }
 }
 
-.archive-note-button-icon {
-    fill: rgb(from var(--warning) r g b / 55%);
-    width: 100%;
-    height: 100%;
+// .archive-note-button-icon {
+//     fill: rgb(from var(--warning) r g b / 55%);
+//     width: 100%;
+//     height: 100%;
+// }
+
+.archive-note-icon {
+    fill: rgb(from var(--warning) r g b / 45%);
+    cursor: pointer;
+}
+
+.archive-note-icon:hover {
+    fill: rgb(from var(--warning) r g b / 65%);
 }
 
 .del-button {
@@ -202,8 +210,8 @@
     font-size: 1.25rem;
     padding: 0.25rem;
     display: flex;
-    width: 1.75rem;
-    height: 1.75rem;
+    // width: 1.75rem;
+    // height: 1.75rem;
 
     // padding-right: 2rem;
     // position: absolute;

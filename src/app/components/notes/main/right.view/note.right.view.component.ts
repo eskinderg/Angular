@@ -55,6 +55,7 @@ export class NoteRightViewComponent {
     @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
     @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
     @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
+    @Output() togglePin: EventEmitter<Note> = new EventEmitter();
     @Output() notesUpdate: EventEmitter<Note> = new EventEmitter<Note>();
 
     noteChanges$ = merge(this.changeNoteText, this.updateNoteHeader).pipe(
@@ -78,6 +79,10 @@ export class NoteRightViewComponent {
 
     onSpellCheckToggle(note: Note) {
         this.toggleSpellCheck.emit({ ...this.facadeNote, spell_check: !note.spell_check });
+    }
+
+    onTogglePin(note: Note) {
+        this.togglePin.emit({ ...this.facadeNote, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
     onNoteHeaderUpdate(note: Note) {
