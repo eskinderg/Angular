@@ -36,7 +36,7 @@ img {
 }
 
 .searchIcon {
-    stroke: var(--note-pin-nofill);
+    stroke: var(--bs-nav-tabs-link-active-color);
     cursor: pointer;
     margin-right: auto;
 }
@@ -59,13 +59,13 @@ img {
     border-right: 1px solid var(--border);
 
     // text-align: center;
-    height: 3rem;
+    height: 3.5rem;
     line-height: 3rem;
     font-size: 1.25rem;
     color: var(--secondary);
     z-index: 2;
     border-bottom: 1px solid var(--border);
-    background: var(--bg-hover);
+    background: var(--text-area-border);
 
     // margin-right: 0.65rem;
 }
@@ -108,8 +108,10 @@ input::placeholder {
 
 .closex {
     cursor: pointer;
-    color: var(--note-pin-nofill);
-    stroke: var(--note-pin-nofill);
+    // color: var(--note-pin-nofill);
+    // stroke: var(--note-pin-nofill);
+    color: var(--bs-nav-tabs-link-active-color);
+    stroke: var(--bs-nav-tabs-link-active-color);
 }
 
 .closex-hide {
