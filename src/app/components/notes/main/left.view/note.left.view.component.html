@@ -7,6 +7,19 @@
             (clicked)="showSearch()"
             src="assets/images/search.svg" />
         <div class="note-count" (click)="showSearch()">Notes ({{ NotesCount | async }})</div>
+
+        @if (notesApiService.IsSyncingRequired | async) {
+            <div class="svg-wrap" animate.leave="leaving" animate.enter="enter-animation">
+                <app-svg-icon
+                    [class.note-syncing]="true"
+                    (click)="onSyncNote()"
+                    height="20"
+                    width="20"
+                    class="sync-false"
+                    src="assets/images/sync.svg" />
+            </div>
+        }
+
         <app-svg-icon
             height="30"
             width="30"
@@ -50,7 +63,6 @@
                 <app-note-list-item
                     [note]="note"
                     [animate]="Animate | async"
-                    [isSyncing]="isSyncing"
                     [selectedNote]="selectedNote$ | async"
                     (selectNote)="onSelectNote($event)"
                     (archiveNote)="onArchiveNote($event)"

@@ -39,7 +39,7 @@
         @if (!note.sync) {
             <div class="svg-wrap" animate.leave="leaving" animate.enter="enter-animation">
                 <svg
-                    [class.note-syncing]="isSyncing"
+                    [class.note-syncing]="note.sync"
                     class="sync-false"
                     (mouseup)="onSyncNote()"
                     width="800px"

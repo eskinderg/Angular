@@ -12,6 +12,7 @@ export interface INotesState {
     syncConflict: boolean;
     isLoading: boolean;
     isSyncing: boolean;
+    isSyncingRequired: boolean;
     animate: {
         note: boolean;
         date: boolean;
@@ -25,6 +26,7 @@ const initialState: INotesState = {
     facadeNote: null,
     isLoading: false,
     isSyncing: false,
+    isSyncingRequired: false,
     syncConflict: false,
     animate: {
         note: false,
@@ -225,6 +227,10 @@ export const getNotesLength = createSelector(
 export const getNotesAnimate = createSelector(getNoteState, (state: INotesState) => state.animate);
 
 export const getSyncConflict = createSelector(getNoteState, (state: INotesState) => state.syncConflict);
+
+export const getIsSyncingRequired = createSelector(getNoteState, (state: INotesState) =>
+    state.notes.some((n) => !n.sync)
+);
 
 export const getSelectedNote = createSelector(getNoteState, (state: INotesState) =>
     state.selectedNote ? state.notes.find((n) => n.note_id === state.selectedNote.note_id) : new Note()

@@ -42,6 +42,10 @@ export class NoteApiService {
         return this.store.select(fromNotes.getIsSyncing);
     }
 
+    get IsSyncingRequired(): Observable<boolean> {
+        return this.store.select(fromNotes.getIsSyncingRequired);
+    }
+
     get ArchivedNotes(): Observable<Note[]> {
         return this.store.select(fromNotes.getArchivedNotes);
     }

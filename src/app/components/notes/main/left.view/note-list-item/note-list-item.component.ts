@@ -24,7 +24,6 @@ export class NoteListItemComponent {
     @Input() note: Note;
     @Input() animate: Animate;
     @Input() selectedNote: Note;
-    @Input() isSyncing: boolean;
 
     @Output() archiveNote = new EventEmitter(false);
     @Output() selectNote = new EventEmitter(false);
