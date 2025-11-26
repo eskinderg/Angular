@@ -37,7 +37,7 @@
 
 .spell-check-active {
     cursor: pointer;
-    fill: #1489df;
+    fill: var(--spell-check-active);
     // stroke: #1489df;
     // fill: var(--b-active-link-color);
     // stroke: var(--b-active-link-color);

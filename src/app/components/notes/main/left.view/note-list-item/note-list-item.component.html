@@ -22,26 +22,15 @@
         </small>
     </div>
     <div class="right">
-        <!-- <svg -->
-        <!--     class="sync-true" -->
-        <!--     width="800px" -->
-        <!--     height="800px" -->
-        <!--     viewBox="0 0 24 24" -->
-        <!--     fill="none" -->
-        <!--     xmlns="http://www.w3.org/2000/svg"> -->
-        <!--     <path -->
-        <!--         d="M20 7L9.00004 18L3.99994 13" -->
-        <!--         stroke="#000000" -->
-        <!--         stroke-width="1.5" -->
-        <!--         stroke-linecap="round" -->
-        <!--         stroke-linejoin="round" /> -->
-        <!-- </svg> -->
         @if (!note.sync) {
-            <div class="svg-wrap" animate.leave="leaving" animate.enter="enter-animation">
+            <div
+                class="svg-wrap"
+                (mouseup)="onSyncNote()"
+                animate.leave="leaving"
+                animate.enter="enter-animation">
                 <svg
                     [class.note-syncing]="note.sync"
                     class="sync-false"
-                    (mouseup)="onSyncNote()"
                     width="800px"
                     height="800px"
                     viewBox="0 0 512 512"
@@ -55,55 +44,20 @@
                         d="M232.028,104l-.056-32a184.5,184.5,0,0,0-130.14,314.954L130.878,416H48v32H184V312H152v79.868l-27.541-27.541A152.5,152.5,0,0,1,232.028,104Z"
                         class="ci-primary" />
                 </svg>
-                <!-- <svg -->
-                <!--     fill="#000000" -->
-                <!--     class="sync-false" -->
-                <!--     (mouseup)="onSyncNote()" -->
-                <!--     width="800px" -->
-                <!--     height="800px" -->
-                <!--     viewBox="0 0 512 512" -->
-                <!--     xmlns="http://www.w3.org/2000/svg"> -->
-                <!--     <path -->
-                <!--         d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z" /> -->
-                <!-- </svg> -->
             </div>
         }
+
+        <app-svg-icon
+            height="20"
+            width="20"
+            (mouseup)="onSpellCheckToggle(note)"
+            [class]="note.spell_check ? 'spell-check-active' : 'spell-check'"
+            src="assets/images/spell.svg" />
+
         <div class="menu del-button">
-            <!-- <svg -->
-            <!--     class="archive-note-button-icon" -->
-            <!--     (mouseup)="onArchiveNote(note)" -->
-            <!--     enable-background="new 0 0 256 256" -->
-            <!--     version="1.1" -->
-            <!--     viewBox="0 0 256 256" -->
-            <!--     height="22" -->
-            <!--     width="22" -->
-            <!--     xml:space="preserve" -->
-            <!--     xmlns="http://www.w3.org/2000/svg"> -->
-            <!--     <g id="g8"> -->
-            <!--         <g id="g6"> -->
-            <!--             <path -->
-            <!--                 id="path4" -->
-            <!--                 d="m172.2 54.3h-88.5v14.7h88.5v-14.7zm51.7-44.3h-191.8l-22.1 132.8v103.2h236v-103.2l-22.1-132.8zm-179.1 14.8h166.5l17.7 118h-64.1v29.4h-73.8v-29.4h-64.1l17.8-118zm186.4 206.4h-206.5v-73.2l0.1-0.6h51.5v29.6h103.2v-29.5h51.5l0.1 0.6 0.1 73.1zm-44.2-132.7h-118v14.7h118v-14.7z" /> -->
-            <!--         </g> -->
-            <!--     </g> -->
-            <!-- </svg> -->
-
-            <!-- <svg -->
-            <!--     class="archive-note-button-icon" -->
-            <!--     (mouseup)="onArchiveNote(note)" -->
-            <!--     fill="#000000" -->
-            <!--     width="800px" -->
-            <!--     height="800px" -->
-            <!--     viewBox="0 0 1920 1920" -->
-            <!--     xmlns="http://www.w3.org/2000/svg"> -->
-            <!--     <path -->
-            <!--         d="M533.333 586.667v106.666h-320v479.997h.422l233.6 213.34H1472.64l233.6-213.34h.43V693.333h-320V586.667h352c41.23 0 74.66 33.429 74.66 74.666v511.997H1856c35.35 0 64 28.66 64 64V1856c0 35.35-28.65 64-64 64H64c-35.346 0-64-28.65-64-64v-618.67c0-35.34 28.654-64 64-64h42.667V661.333c0-41.237 33.429-74.666 74.666-74.666h352ZM172.378 1280h-65.711v533.33H1813.33V1280h-65.71l-233.6 213.33H405.978L172.378 1280ZM1013.33 0v1044.579l228.96-228.958 75.42 75.425L960 1248.76 602.288 891.046l75.424-75.425 228.955 228.955V0h106.663Z" -->
-            <!--         fill-rule="evenodd" /> -->
-            <!-- </svg> -->
-
             <app-svg-icon
-                height="26"
-                width="26"
+                height="23"
+                width="23"
                 (mouseup)="onArchiveNote(note)"
                 class="archive-note-icon"
                 src="assets/images/archive.svg" />

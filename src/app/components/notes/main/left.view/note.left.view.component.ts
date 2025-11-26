@@ -45,10 +45,10 @@ export class NoteLeftViewComponent implements OnDestroy {
     @Input() isSyncing: boolean;
 
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
-    @Output() updatePin: EventEmitter<Note> = new EventEmitter();
+    @Output() updateNote: EventEmitter<Note> = new EventEmitter();
     @Output() selectNote: EventEmitter<Note> = new EventEmitter();
     @Output() createNewNote: EventEmitter<Note> = new EventEmitter();
-    @Output() syncNote: EventEmitter<Note> = new EventEmitter();
+    @Output() syncNotes: EventEmitter<Note> = new EventEmitter();
 
     private authService = inject(AuthService);
 
@@ -96,16 +96,16 @@ export class NoteLeftViewComponent implements OnDestroy {
         });
     }
 
-    onUpdatePinOrder(note: Note) {
-        this.updatePin.emit(note);
+    onUpdateNote(note: Note) {
+        this.updateNote.emit(note);
     }
 
     onArchiveNote(note: Note) {
         this.archiveNote.emit(note);
     }
 
-    onSyncNote() {
-        this.syncNote.emit();
+    onSyncNotes() {
+        this.syncNotes.emit();
     }
 
     routeToArchivedNotes() {

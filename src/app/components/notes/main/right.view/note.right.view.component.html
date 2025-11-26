@@ -73,8 +73,8 @@
             [opendNote]="opendNote"
             [facadeNote]="facadeNote"
             #textAreaExpanded
-            (textAreaSelectionChange)="onSelectionChange($event)"
-            (textAreaTextChanged)="onNoteTextUpdate($event)" />
+            (textAreaSelectionChange)="ontextAreaSelectionChange($event)"
+            (textAreaTextChanged)="ontextAreaTextChanged($event)" />
     }
 
     <div class="info" (click)="noteInfoClick(facadeNote)">

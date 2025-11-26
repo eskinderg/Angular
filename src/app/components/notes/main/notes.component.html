@@ -4,9 +4,9 @@
             [notes$]="filteredNotes$"
             [selectedNote$]="notesApiService.SelectedNote"
             [isSyncing]="notesApiService.IsSyncing | async"
+            (syncNotes)="onSyncNote()"
             (archiveNote)="onArchiveNote($event)"
-            (syncNote)="onSyncNote()"
-            (updatePin)="onUpdatePinOrder($event)"
+            (updateNote)="onUpdateNote($event)"
             (selectNote)="onSelectNote($event)"
             (createNewNote)="onCreateNewNote($event)"
             [searchTerm$]="searchTerm$" />
@@ -19,13 +19,8 @@
                     [facadeNote]="notesApiService.FacadeNote | async"
                     [opendNote]="notesApiService.OpendNote | async"
                     (archiveNote)="onArchiveNote($event)"
-                    (changeNoteText)="onChangeNoteText($event)"
-                    (notesUpdate)="onNotesUpdate()"
-                    (updateNoteColour)="onUpdateNoteColour($event)"
-                    (updateNoteHeader)="onUpdateNoteHeader($event)"
-                    (noteSelectionChange)="onSelectionChange($event)"
-                    (toggleSpellCheck)="onToggleSpellCheck($event)"
-                    (togglePin)="onUpdatePinOrder($event)" />
+                    (syncNotes)="onSyncNotes()"
+                    (noteUpdate)="onUpdateNote($event)" />
             } @else if (searchTerm$.value.length) {
                 <div class="filterWrapper">
                     @for (note of filteredNotes$ | async; track note) {

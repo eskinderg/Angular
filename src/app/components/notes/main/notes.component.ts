@@ -101,25 +101,12 @@ export class NotesComponent implements OnDestroy, OnInit {
         this.refreshSubscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
     }
 
-    onUpdateNoteHeader(note: Note) {
+    onUpdateNote(note: Note) {
         this.notesApiService.updateNote(note);
     }
 
-    onChangeNoteText(note: Note) {
-        this.notesApiService.updateNote(note);
-    }
-
-    onNotesUpdate() {
+    onSyncNotes() {
         this.notesApiService.syncNotes();
-    }
-
-    onToggleSpellCheck(note: Note) {
-        this.notesApiService.updateNote(note);
-        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
-    }
-
-    onSelectionChange(note: Note) {
-        this.notesApiService.updateNote(note);
     }
 
     onSelectNote(note: Note) {
@@ -132,14 +119,6 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     onCreateNewNote(note: Note) {
         this.notesApiService.createNewNote(note);
-    }
-
-    onUpdatePinOrder(note: Note) {
-        this.notesApiService.updateNote(note);
-    }
-
-    onUpdateNoteColour(note: Note) {
-        this.notesApiService.updateNote(note);
     }
 
     onArchiveNote(note: Note) {

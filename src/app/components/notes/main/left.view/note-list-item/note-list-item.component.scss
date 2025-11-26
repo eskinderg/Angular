@@ -11,6 +11,16 @@
     height: 1.25rem;
 }
 
+.spell-check {
+    cursor: pointer;
+    fill: var(--b-secondary);
+}
+
+.spell-check-active {
+    cursor: pointer;
+    fill: var(--spell-check-active);
+}
+
 .leaving {
     animation: rotateOutAnimation 0.75s ease-out forwards;
 }
@@ -60,7 +70,7 @@
     height: 100%;
 
     path {
-        fill: var(--b-secondary);
+        fill: var(--note-pin-fill);
     }
 }
 
@@ -102,6 +112,10 @@
     flex-direction: row;
     align-items: center;
     z-index: 2;
+
+    & > *:not(:last-child) {
+        // padding: 0.15rem;
+    }
 }
 
 .note-colour {
@@ -165,7 +179,7 @@
 
 .pin-wrapper {
     z-index: 1;
-    display:flex;
+    display: flex;
     border: none;
     transition: all 0.5s ease;
     cursor: pointer;
@@ -198,7 +212,8 @@
 // }
 
 .archive-note-icon {
-    fill: rgb(from var(--warning) r g b / 45%);
+    // fill: rgb(from var(--warning) r g b / 45%);
+    fill: var(--b-secondary);
     cursor: pointer;
 }
 
@@ -209,7 +224,7 @@
 .del-button {
     color: var(--del-button-note);
     font-size: 1.25rem;
-    padding: 0.25rem;
+    // padding: 0.25rem;
     display: flex;
     // width: 1.75rem;
     // height: 1.75rem;

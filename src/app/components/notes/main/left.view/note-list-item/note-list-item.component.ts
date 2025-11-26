@@ -25,11 +25,10 @@ export class NoteListItemComponent {
     @Input() animate: Animate;
     @Input() selectedNote: Note;
 
-    @Output() archiveNote = new EventEmitter(false);
-    @Output() selectNote = new EventEmitter(false);
-    @Output() changeNoteText = new EventEmitter(false);
-    @Output() changePineOrder = new EventEmitter(false);
-    @Output() syncNote = new EventEmitter(false);
+    @Output() archiveNote = new EventEmitter<Note>();
+    @Output() updateNote = new EventEmitter<Note>();
+    @Output() selectNote = new EventEmitter<Note>();
+    @Output() syncNote = new EventEmitter<Note>();
 
     onSelectNote(note: Note) {
         this.selectNote.emit(note);
@@ -40,10 +39,14 @@ export class NoteListItemComponent {
     }
 
     updatePinOrder(note: Note) {
-        this.changePineOrder.emit({ ...note, pinned: !note.pinned, pin_order: new Date().getTime() });
+        this.updateNote.emit({ ...note, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
     onSyncNote() {
         this.syncNote.emit();
+    }
+
+    onSpellCheckToggle(note: Note) {
+        this.updateNote.emit({ ...note, spell_check: !note.spell_check });
     }
 }

@@ -47,26 +47,21 @@ export class NoteRightViewComponent {
     @Input() opendNote: Note;
     @Input() facadeNote: Note;
 
-    @Output() changeNoteText: EventEmitter<Note> = new EventEmitter<Note>();
-    @Output() changeNotePosition: EventEmitter<Note> = new EventEmitter();
-    @Output() changeNoteSize: EventEmitter<Note> = new EventEmitter();
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
-    @Output() updateNoteColour: EventEmitter<Note> = new EventEmitter();
-    @Output() updateNoteHeader: EventEmitter<Note> = new EventEmitter<Note>();
-    @Output() noteSelectionChange: EventEmitter<Note> = new EventEmitter();
-    @Output() toggleSpellCheck: EventEmitter<Note> = new EventEmitter();
-    @Output() togglePin: EventEmitter<Note> = new EventEmitter();
-    @Output() notesUpdate: EventEmitter<Note> = new EventEmitter<Note>();
+    @Output() syncNotes: EventEmitter<Note> = new EventEmitter<Note>();
+    @Output() noteUpdate: EventEmitter<Note> = new EventEmitter<Note>();
 
-    noteChanges$ = merge(this.changeNoteText, this.updateNoteHeader).pipe(
-        filter(Boolean),
-        debounceTime(5000)
-    );
+    // noteChanges$ = merge(this.changeNoteText, this.updateNoteHeader).pipe(
+    //     filter(Boolean),
+    //     debounceTime(5000)
+    // );
+
+    noteChanges$ = merge(this.noteUpdate).pipe(filter(Boolean), debounceTime(5000));
 
     constructor() {
         effect((onCleanup) => {
             const sub = this.noteChanges$.subscribe(() => {
-                this.notesUpdate.emit();
+                this.syncNotes.emit();
             });
 
             onCleanup(() => sub.unsubscribe());
@@ -78,31 +73,31 @@ export class NoteRightViewComponent {
     }
 
     onSpellCheckToggle(note: Note) {
-        this.toggleSpellCheck.emit({ ...this.facadeNote, spell_check: !note.spell_check });
+        this.noteUpdate.emit({ ...this.facadeNote, spell_check: !note.spell_check });
+    }
+
+    onNoteColourUpdate(colour: Colour) {
+        this.noteUpdate.emit({ ...this.facadeNote, colour: colour.name });
     }
 
     onTogglePin(note: Note) {
-        this.togglePin.emit({ ...this.facadeNote, pinned: !note.pinned, pin_order: new Date().getTime() });
+        this.noteUpdate.emit({ ...this.facadeNote, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
     onNoteHeaderUpdate(note: Note) {
-        this.updateNoteHeader.emit({
+        this.noteUpdate.emit({
             ...this.facadeNote,
             header: note.header,
             local_date_modified: new Date()
         });
     }
 
-    onNoteTextUpdate(note: Note) {
-        this.changeNoteText.emit({ ...this.facadeNote, text: note.text, local_date_modified: new Date() });
+    ontextAreaTextChanged(note: Note) {
+        this.noteUpdate.emit({ ...this.facadeNote, text: note.text, local_date_modified: new Date() });
     }
 
-    onSelectionChange(note: Note) {
-        this.noteSelectionChange.emit({ ...this.facadeNote, selection: note.selection });
-    }
-
-    onNoteColourUpdate(colour: Colour) {
-        this.updateNoteColour.emit({ ...this.facadeNote, colour: colour.name });
+    ontextAreaSelectionChange(note: Note) {
+        this.noteUpdate.emit({ ...this.facadeNote, selection: note.selection });
     }
 
     noteInfoClick(note: Note) {
