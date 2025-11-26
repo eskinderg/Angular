@@ -132,7 +132,6 @@ export class NotesComponent implements OnDestroy, OnInit {
             )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    // this.notesApiService.archiveNote(note);
                     this.notesApiService.updateNote({ ...note, archived: true, date_archived: new Date() });
                 }
             });
