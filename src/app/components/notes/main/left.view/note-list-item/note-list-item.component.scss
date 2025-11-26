@@ -3,7 +3,7 @@
 }
 
 .note-wrapper:hover {
-    background: var(--active-list-link-hover);
+    // background: var(--active-list-link-hover);
 }
 
 .svg-wrap {
@@ -111,7 +111,8 @@
 }
 
 .selected-note {
-    background: var(--selected-note-list-item-bg-color) !important;
+    // background: var(--selected-note-list-item-bg-color) !important;
+    background: var(--bg-hover);
     z-index: 1;
     color: var(--active-list-color) !important;
 
