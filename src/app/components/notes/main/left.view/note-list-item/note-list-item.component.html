@@ -3,7 +3,7 @@
     [@fadeInOutNoteListItem]
     class="note-border"
     [class.selected-note]="selectedNote === note">
-    <div class="note-wrapper" (mouseup)="onSelectNote(note)"></div>
+    <div class="note-wrapper"></div>
     <div class="left" (mouseup)="onSelectNote(note)">
         <div class="item" (mouseup)="onSelectNote(note)">
             <div class="note-text" [class.pinned-note-text]="note.pinned">
