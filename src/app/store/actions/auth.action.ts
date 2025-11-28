@@ -27,7 +27,7 @@ export const logInSuccess = createAction('[AUTH] LOG_IN_SUCCESS');
 
 export const logOutSuccess = createAction('[AUTH] LOG_OUT_SUCCESS');
 
-export const routeActions = createAction('[AUTH] ADMIN_USER_ACTIONS');
+export const routeActions = createAction('[AUTH] ROUTE_ACTIONS');
 
 export const loginWithUsernamePasswordSuccess = createAction('[AUTH] LOGIN_WITH_PASSWORD_SUCCESS');
 

@@ -70,7 +70,7 @@ export class NotesEffect {
                 withLatestFrom(store.select(fromRoot.getSyncConflict)),
                 exhaustMap(([[_action, isSyncing], isSyncConflict]) =>
                     isSyncing || isSyncConflict
-                        ? of(NotesActions.syncNotesFail({ err: 'Sync currently is in progress' }))
+                        ? of(NotesActions.syncNotesInProgress({ message: 'Sync currently is in progress' }))
                         : of(NotesActions.syncNotesStart())
                 )
             )

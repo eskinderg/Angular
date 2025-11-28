@@ -29,6 +29,11 @@ export const syncNotesStart = createAction('[NOTE] SYNC_NOTES_START');
 
 export const syncNotesFail = createAction('[NOTE] SYNC_NOTES_FAIL', props<{ err: string }>());
 
+export const syncNotesInProgress = createAction(
+    '[NOTE] SYNC_NOTES_IN_PROGRESS',
+    props<{ message: string }>()
+);
+
 export const getLocalNotesSuccess = createAction(
     '[NOTE] GET_LOCAL_NOTES_SUCCESS',
     props<{ localNotes: Note[] }>()
