@@ -342,11 +342,16 @@ select:focus {
     // box-shadow: 0 0 0 0.25rem #2a6ada40;
 }
 
+.highlighted-match {
+    color: white !important;
+    background-color: #4c87ef;
+    font-weight: bold;
+}
+
 .hide-scroll-bar {
     overflow-y: hidden !important;
     margin-top: 0 !important;
 }
-
 
 .dialog-fade-out {
     opacity: 0 !important;

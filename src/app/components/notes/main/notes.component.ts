@@ -170,7 +170,7 @@ export class NotesComponent implements OnDestroy, OnInit {
 
         const highlightedPreview = preview.replace(
             new RegExp(this.escapeRegExp(searchTerm), 'gi'),
-            (match) => `<mark><strong>${match}</strong></mark>`
+            (match) => `<span class="highlighted-match"><strong>${match}</strong></span>`
         );
 
         return highlightedPreview;

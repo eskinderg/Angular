@@ -218,7 +218,8 @@
 }
 
 .archive-note-icon:hover {
-    fill: rgb(from var(--warning) r g b / 65%);
+    // fill: rgb(from var(--warning) r g b / 65%);
+    fill: var(--note-pin-fill);
 }
 
 .del-button {
