@@ -45,9 +45,9 @@ export class NotesComponent implements OnDestroy, OnInit {
     filteredNotes$ = combineLatest([this.notesApiService.Notes, this.searchTerm$]).pipe(
         map(([notes, searchTerm]) => {
             return notes.filter((note) => {
-                const div = document.createElement('div');
-                div.innerHTML = note.text;
-                const matchesSearch = [note.header, div.textContent]
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(note.text, 'text/html');
+                const matchesSearch = [note.header, doc.textContent]
                     .join(' ')
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase());
