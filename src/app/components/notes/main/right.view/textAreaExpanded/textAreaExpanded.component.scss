@@ -21,7 +21,7 @@
     // background: linear-gradient(0deg, rgba(230,230,230,1) 0%, rgba(255,255,255,1) 17%);
 }
 
-.textArea {
+.text-area {
     flex: 1 1 auto;
     position: relative;
     display: flex;
@@ -30,7 +30,7 @@
     margin-top: 0;
 }
 
-.textArea::spelling-error {
+.text-area::spelling-error {
     // color: blue;
     background-color: #ff000024;
     text-decoration-line: underline;
@@ -43,7 +43,7 @@
 //   text-decoration: underline;
 // }
 
-.textInput {
+.text-input {
     position: absolute;
 
     // font-size: 0.85rem;

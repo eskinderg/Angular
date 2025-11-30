@@ -5,6 +5,7 @@ import { EMPTY, from, of } from 'rxjs';
 import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
 import { OAuthService } from 'angular-oauth2-oidc';
 import * as AuthActions from '../actions/auth.action';
+import * as PreferenceActions from '../actions/preference.action';
 import * as EventActions from '../actions/event.action';
 import * as NoteActions from '../actions/note.actions';
 import * as MovieActions from '../actions/movie.actions';
@@ -12,6 +13,7 @@ import * as AdminAction from '../../admin/store/actions/admin.auth.action';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
 import { Action } from '@ngrx/store';
+import { PreferenceDataService } from 'src/app/preference/preference.data.service';
 
 @Injectable()
 export class AuthEffect {
@@ -75,6 +77,29 @@ export class AuthEffect {
     loadProfileSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loadProfileSuccess),
+            switchMap(() => of(PreferenceActions.loadUserPreference()))
+        )
+    );
+
+    loadUserPreference = createEffect(
+        (actions$ = inject(Actions), preferenceDataService = inject(PreferenceDataService)) =>
+            actions$.pipe(
+                ofType(PreferenceActions.loadUserPreference),
+                switchMap(() =>
+                    preferenceDataService.getPreference().pipe(
+                        mergeMap((preference) => [
+                            PreferenceActions.loadUserPreferenceSuccess({
+                                preference: preference.shift()
+                            })
+                        ])
+                    )
+                )
+            )
+    );
+
+    loadUserPreferenceSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.loadUserPreferenceSuccess),
             switchMap(() => of(AuthActions.logInSuccess()))
         )
     );

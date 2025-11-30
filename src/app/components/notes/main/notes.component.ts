@@ -19,7 +19,6 @@ import { AsyncPipe } from '@angular/common';
 import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
 
 @Component({
@@ -34,7 +33,6 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 export class NotesComponent implements OnDestroy, OnInit {
     public notesApiService = inject(NoteApiService);
     private notificationService = inject(NotificationService);
-    private authService = inject(OAuthService);
     private dialogService = inject(DialogService);
     private router = inject(Router);
 
@@ -47,9 +45,9 @@ export class NotesComponent implements OnDestroy, OnInit {
     filteredNotes$ = combineLatest([this.notesApiService.Notes, this.searchTerm$]).pipe(
         map(([notes, searchTerm]) => {
             return notes.filter((note) => {
-                const div = document.createElement('div');
-                div.innerHTML = note.text;
-                const matchesSearch = [note.header, div.textContent]
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(note.text, 'text/html');
+                const matchesSearch = [note.header, doc.textContent]
                     .join(' ')
                     .toLowerCase()
                     .includes(searchTerm.toLowerCase());
@@ -103,53 +101,24 @@ export class NotesComponent implements OnDestroy, OnInit {
         this.refreshSubscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
     }
 
-    onUpdateNoteHeader(note: Note) {
-        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
-    }
-
-    onChangeNoteText(note: Note) {
-        this.notesApiService.updateNote({ ...note, local_date_modified: new Date() });
-    }
-
-    onNotesUpdate() {
-        this.notesApiService.syncNotes();
-    }
-
-    onSelectionChange(note: Note) {
+    onUpdateNote(note: Note) {
         this.notesApiService.updateNote(note);
     }
 
-    onToggleSpellCheck(note: Note) {
-        this.notesApiService.updateNote({ ...note, spell_check: !note.spell_check });
-        this.appNoteComponent().textAreaExpandedComponent().textAreaElementRef().nativeElement.focus();
+    onSyncNotes() {
+        this.notesApiService.syncNotes();
     }
 
     onSelectNote(note: Note) {
         this.notesApiService.selectNote(note);
     }
 
+    onSearchSelection(note: Note) {
+        this.notesApiService.searchSelect(note);
+    }
+
     onCreateNewNote(note: Note) {
-        this.notesApiService.createNewNote({
-            ...note,
-            text: '',
-            header: '',
-            pinned: false,
-            active: true,
-            archived: false,
-            sync: false,
-            date_modified: new Date(),
-            local_date_modified: new Date(),
-            pin_order: new Date(),
-            user_id: this.authService.getIdentityClaims()['sub']
-        });
-    }
-
-    onUpdatePinOrder(note: Note) {
-        this.notesApiService.updateNote({ ...note, pinned: !note.pinned, pin_order: new Date() });
-    }
-
-    onUpdateNoteColour(note: Note) {
-        this.notesApiService.updateNote(note);
+        this.notesApiService.createNewNote(note);
     }
 
     onArchiveNote(note: Note) {
@@ -163,7 +132,6 @@ export class NotesComponent implements OnDestroy, OnInit {
             )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    // this.notesApiService.archiveNote(note);
                     this.notesApiService.updateNote({ ...note, archived: true, date_archived: new Date() });
                 }
             });
@@ -202,7 +170,7 @@ export class NotesComponent implements OnDestroy, OnInit {
 
         const highlightedPreview = preview.replace(
             new RegExp(this.escapeRegExp(searchTerm), 'gi'),
-            (match) => `<mark><strong>${match}</strong></mark>`
+            (match) => `<span class="highlighted-match"><strong>${match}</strong></span>`
         );
 
         return highlightedPreview;

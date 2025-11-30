@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, inject } 
 @Component({
     selector: 'app-loading',
     template: `
-        <div [class.hide]="!loading" class="appProgress">
-            <div class="appLoading"></div>
+        <div [class.hide]="!loading" class="app-progress">
+            <div class="app-loading"></div>
         </div>
     `,
     styleUrls: ['appLoading.component.scss'],

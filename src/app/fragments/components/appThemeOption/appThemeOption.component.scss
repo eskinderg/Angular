@@ -14,7 +14,7 @@
 .toggle-input {
     width: 40px;
     height: 20px;
-    background-color: #ccc;
+    background-color: var(--note-pin-fill);
     border-radius: 20px;
     position: relative;
     appearance: none;
@@ -24,7 +24,7 @@
 }
 
 .toggle-input:checked {
-    background-color: #2a6ada;
+    background-color: var(--note-pin-fill);
 }
 
 .toggle-input::before {

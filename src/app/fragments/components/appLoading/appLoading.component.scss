@@ -13,7 +13,7 @@
 }
 
 /* Progress Bar */
-.appProgress {
+.app-progress {
     position: relative;
     height: 4px;
     display: block;
@@ -24,7 +24,7 @@
     overflow: hidden;
 }
 
-.appProgress .determinate {
+.app-progress .determinate {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -32,11 +32,11 @@
     transition: width 0.3s linear;
 }
 
-.appProgress .appLoading {
+.app-progress .app-loading {
     background-color: var(--color2);
 }
 
-.appProgress .appLoading::before {
+.app-progress .app-loading::before {
     content: '';
     position: absolute;
     background-color: inherit;
@@ -47,7 +47,7 @@
     animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
 
-.appProgress .appLoading::after {
+.app-progress .app-loading::after {
     content: '';
     position: absolute;
     background-color: inherit;

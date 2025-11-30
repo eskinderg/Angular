@@ -21,6 +21,7 @@ import { AsyncPipe } from '@angular/common';
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
     selector: 'app-note-left-view',
@@ -44,10 +45,12 @@ export class NoteLeftViewComponent implements OnDestroy {
     @Input() isSyncing: boolean;
 
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
-    @Output() updatePin: EventEmitter<Note> = new EventEmitter();
+    @Output() updateNote: EventEmitter<Note> = new EventEmitter();
     @Output() selectNote: EventEmitter<Note> = new EventEmitter();
     @Output() createNewNote: EventEmitter<Note> = new EventEmitter();
-    @Output() syncNote: EventEmitter<Note> = new EventEmitter();
+    @Output() syncNotes: EventEmitter<Note> = new EventEmitter();
+
+    private authService = inject(AuthService);
 
     searchVisible: boolean = false;
     private timeoutId: any;
@@ -77,19 +80,32 @@ export class NoteLeftViewComponent implements OnDestroy {
     }
 
     onCreateNewNote() {
-        this.createNewNote.emit({ ...new Note(), note_id: uuidv4() });
+        this.createNewNote.emit({
+            ...new Note(),
+            note_id: uuidv4(),
+            text: '',
+            header: '',
+            pinned: false,
+            active: true,
+            archived: false,
+            sync: false,
+            date_modified: new Date(),
+            local_date_modified: new Date(),
+            pin_order: new Date().getTime(),
+            user_id: this.authService.getUserId()
+        });
     }
 
-    onUpdatePinOrder(note: Note) {
-        this.updatePin.emit(note);
+    onUpdateNote(note: Note) {
+        this.updateNote.emit(note);
     }
 
     onArchiveNote(note: Note) {
         this.archiveNote.emit(note);
     }
 
-    onSyncNote() {
-        this.syncNote.emit();
+    onSyncNotes() {
+        this.syncNotes.emit();
     }
 
     routeToArchivedNotes() {

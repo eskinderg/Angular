@@ -7,12 +7,12 @@
     width: 100%;
 }
 
-.activeLink {
+.active-link {
     background: var(--filter-boxshadow);
     color: var(--b-active-link-color);
 }
 
-.listItem {
+.list-item {
     cursor: pointer;
     padding: 1rem;
     font-size: 1rem;

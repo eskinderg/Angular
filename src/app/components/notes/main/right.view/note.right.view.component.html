@@ -25,7 +25,7 @@
         <div class="note-header">
             <app-note-header-control
                 #noteHeader
-                [note]="opendNote"
+                [opendNote]="opendNote"
                 (noteUpdateNoteHeader)="onNoteHeaderUpdate($event)" />
         </div>
 
@@ -42,14 +42,24 @@
                     src="assets/images/spell.svg" />
             </div>
 
-            <app-note-colour-selector
-                [note]="facadeNote"
-                #noteColourSelector
-                (noteColourUpdate)="onNoteColourUpdate($event)"
-                class="menu-icon" />
+            <app-svg-icon
+                height="26"
+                width="26"
+                [class.pinned]="facadeNote.pinned"
+                (mouseup)="onTogglePin(facadeNote)"
+                class="pin-note-icon"
+                src="assets/images/pin.svg" />
+
+            <div class="colour-selector">
+                <app-note-colour-selector
+                    [note]="facadeNote"
+                    #noteColourSelector
+                    (noteColourUpdate)="onNoteColourUpdate($event)"
+                    class="menu-icon" />
+            </div>
 
             <div class="trash-icon menu-icon" (click)="onNoteArchive(opendNote)">
-                <app-svg-icon height="25" width="25" src="assets/images/trash.svg" />
+                <app-svg-icon height="30" width="30" src="assets/images/archive.svg" />
             </div>
 
             <div class="info-icon menu-icon popover-content" (click)="noteInfoClick(facadeNote)">
@@ -60,12 +70,11 @@
 
     @if (opendNote) {
         <app-textarea-expanded
-            [note]="opendNote"
+            [opendNote]="opendNote"
             [facadeNote]="facadeNote"
             #textAreaExpanded
-            (textAreaSelectionChange)="onSelectionChange($event)"
-            (textAreaTextChanged)="onNoteTextUpdate($event)"
-            (textAreaUpdatedOpendNote)="onUpdatOpendNote($event)" />
+            (textAreaSelectionChange)="ontextAreaSelectionChange($event)"
+            (textAreaTextChanged)="ontextAreaTextChanged($event)" />
     }
 
     <div class="info" (click)="noteInfoClick(facadeNote)">

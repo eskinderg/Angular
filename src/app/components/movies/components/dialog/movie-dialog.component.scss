@@ -127,6 +127,10 @@
     gap: 0.5rem;
 }
 
+li {
+    list-style: none;
+}
+
 .reviews li {
     // border:2px solid black;
     // background: white;
@@ -155,10 +159,6 @@
     transition:
         max-width 0.5s ease-in-out,
         opacity 0.5s ease-in-out;
-}
-
-li {
-    list-style: none;
 }
 
 .badge {
@@ -191,7 +191,7 @@ li {
     column-gap: 0.5rem;
 }
 
-#backDrop {
+#back-drop {
     position: fixed;
     display: flex;
     align-items: center;
@@ -212,7 +212,7 @@ li {
     }
 }
 
-#scrollWrapper {
+#scroll-wrapper {
     position: relative; // allows animation transforms
     width: 75%;
     height: 600px;

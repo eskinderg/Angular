@@ -3,7 +3,7 @@
 }
 
 .note-wrapper:hover {
-    background: var(--active-list-link-hover);
+    // background: var(--active-list-link-hover);
 }
 
 .svg-wrap {
@@ -11,30 +11,42 @@
     height: 1.25rem;
 }
 
+.spell-check {
+    cursor: pointer;
+    fill: var(--b-secondary);
+}
+
+.spell-check-active {
+    cursor: pointer;
+    fill: var(--spell-check-active);
+}
+
 .leaving {
-    animation: rotateOutAnimation 0.75s ease-out forwards;
+    animation: rotate-out-animation 0.75s ease-out forwards;
 }
 
 .enter-animation {
-    animation: rotateInAnimation 0.25s ease-in forwards;
+    animation: rotate-in-animation 0.25s ease-in forwards;
 }
 
-@keyframes rotateInAnimation {
+@keyframes rotate-in-animation {
     from {
         opacity: 0;
         transform: rotate(0deg);
     }
+
     to {
         opacity: 1;
         transform: rotate(180deg);
     }
 }
 
-@keyframes rotateOutAnimation {
+@keyframes rotate-out-animation {
     from {
         opacity: 1;
         transform: rotate(180deg) scale(1);
     }
+
     to {
         opacity: 0;
         transform: rotate(0deg) scale(0.5);
@@ -49,6 +61,7 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -60,14 +73,15 @@
     height: 100%;
 
     path {
-        fill: var(--b-secondary);
+        fill: var(--note-pin-fill);
     }
 }
 
 .note-wrapper {
     position: absolute;
     height: 3.5rem;
-    cursor: pointer;
+
+    // cursor: pointer;
     width: 100%;
     z-index: 1;
     padding: 0.15rem;
@@ -75,7 +89,8 @@
 
 .note-border {
     position: relative;
-    border-bottom: 1px solid var(--border);
+
+    // border-bottom: 1px solid var(--border);
     height: 3.5rem;
 
     // margin: 0 0 0 0.75rem;
@@ -98,10 +113,14 @@
 
 .right {
     display: flex;
-    column-gap: 0.5rem;
+    column-gap: 0.25rem;
     flex-direction: row;
     align-items: center;
     z-index: 2;
+
+    & > *:not(:last-child) {
+        // padding: 0.15rem;
+    }
 }
 
 .note-colour {
@@ -110,8 +129,13 @@
     z-index: 3;
 }
 
+.date-text {
+    color: var(--bs-secondary-color);
+}
+
 .selected-note {
-    background: var(--selected-note-list-item-bg-color) !important;
+    // background: var(--selected-note-list-item-bg-color) !important;
+    background: var(--bg-hover);
     z-index: 1;
     color: var(--active-list-color) !important;
 
@@ -122,10 +146,6 @@
     .note-wrapper {
         opacity: 0;
     }
-}
-
-.date-text {
-    color: var(--bs-secondary-color);
 }
 
 .menu {
@@ -157,16 +177,15 @@
 
 .pin {
     transition: all 0.25s ease;
-    width: 1.75rem;
-    height: 1.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
     fill: #c7c7c7;
 }
 
 .pin-wrapper {
     z-index: 1;
+    display: flex;
     border: none;
-    height: 1.75rem;
-    width: 1.75rem;
     transition: all 0.5s ease;
     cursor: pointer;
 }
@@ -191,19 +210,32 @@
     }
 }
 
-.archive-note-button-icon {
-    fill: rgb(from var(--warning) r g b / 55%);
-    width: 100%;
-    height: 100%;
+// .archive-note-button-icon {
+//     fill: rgb(from var(--warning) r g b / 55%);
+//     width: 100%;
+//     height: 100%;
+// }
+
+.archive-note-icon {
+    // fill: rgb(from var(--warning) r g b / 45%);
+    fill: var(--b-secondary);
+    cursor: pointer;
+}
+
+.archive-note-icon:hover {
+    // fill: rgb(from var(--warning) r g b / 65%);
+    fill: var(--note-pin-fill);
 }
 
 .del-button {
     color: var(--del-button-note);
     font-size: 1.25rem;
-    padding: 0.25rem;
+
+    // padding: 0.25rem;
     display: flex;
-    width: 1.75rem;
-    height: 1.75rem;
+
+    // width: 1.75rem;
+    // height: 1.75rem;
 
     // padding-right: 2rem;
     // position: absolute;

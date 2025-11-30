@@ -2,10 +2,10 @@
     <ul>
         <a class="brand" [routerLink]="['/home']">Angular</a>
         @if (IsLoggedIn | async) {
-            <div class="menuLoggedIn">
+            <div class="menu-logged-in">
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: true }"
                         [routerLink]="['/home']">
                         Home
@@ -13,7 +13,7 @@
                 </li>
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: false }"
                         [routerLink]="['/about']">
                         About
@@ -21,7 +21,7 @@
                 </li>
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: true }"
                         [routerLink]="['/profile']">
                         Profile
@@ -32,7 +32,7 @@
                         [ngClass]="{ active: isNotesURLActive }"
                         aria-expanded="false"
                         [routerLink]="['/notes']"
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: false }">
                         Notes
                         @if (NoteLoading | async) {
@@ -48,7 +48,7 @@
                         <li>
                             <a
                                 [routerLink]="['/notes/mynotes']"
-                                [routerLinkActive]="['activeLink']"
+                                [routerLinkActive]="['active-link']"
                                 [routerLinkActiveOptions]="{ exact: true }">
                                 Notes
                             </a>
@@ -56,7 +56,7 @@
                         <li>
                             <a
                                 [routerLink]="['/notes/archived']"
-                                [routerLinkActive]="['activeLink']"
+                                [routerLinkActive]="['active-link']"
                                 [routerLinkActiveOptions]="{ exact: false }">
                                 Archived Notes
                             </a>
@@ -65,7 +65,7 @@
                 </li>
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: false }"
                         [routerLink]="['/wizard']">
                         Wizard
@@ -73,7 +73,7 @@
                 </li>
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: false }"
                         [routerLink]="['/events']">
                         Events
@@ -88,7 +88,7 @@
                 </li>
                 <li>
                     <a
-                        [routerLinkActive]="['activeLink']"
+                        [routerLinkActive]="['active-link']"
                         [routerLinkActiveOptions]="{ exact: false }"
                         [routerLink]="['/movies']">
                         Movies
@@ -98,7 +98,7 @@
                             <li>
                                 <a
                                     [routerLink]="['/movies/watchlist']"
-                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActive]="['active-link']"
                                     [routerLinkActiveOptions]="{ exact: true }">
                                     Watch List &nbsp;
                                     @if (WatchListCount | async; as count) {
@@ -109,12 +109,12 @@
                             <li>
                                 <a
                                     [routerLink]="['/movies/search']"
-                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActive]="['active-link']"
                                     [routerLinkActiveOptions]="{ exact: true }"
                                     style="display: flex; gap: 8px">
                                     Search
                                     <app-svg-icon
-                                        class="searchIcon"
+                                        class="search-icon"
                                         height="25"
                                         width="25"
                                         src="assets/images/search.svg"></app-svg-icon>
@@ -123,7 +123,7 @@
                             <li>
                                 <a
                                     [routerLink]="['/movies/history']"
-                                    [routerLinkActive]="['activeLink']"
+                                    [routerLinkActive]="['active-link']"
                                     [routerLinkActiveOptions]="{ exact: true }"
                                     style="display: flex; gap: 8px">
                                     History
@@ -140,7 +140,7 @@
                 <div class="dashboard">
                     <li>
                         <a
-                            [routerLinkActive]="['activeLink']"
+                            [routerLinkActive]="['active-link']"
                             [routerLinkActiveOptions]="{ exact: true }"
                             [routerLink]="['/admin/dashboard']">
                             Dashboard
@@ -150,7 +150,7 @@
                 <div class="">
                     <li>
                         <a
-                            [routerLinkActive]="['activeLink']"
+                            [routerLinkActive]="['active-link']"
                             [routerLinkActiveOptions]="{ exact: true }"
                             [routerLink]="['/admin/users']">
                             Users
@@ -160,6 +160,6 @@
             }
         }
 
-        <app-userinfo class="userInfo" (signout)="onSignout()"></app-userinfo>
+        <app-userinfo class="user-info" (signout)="onSignout()"></app-userinfo>
     </ul>
 </nav>

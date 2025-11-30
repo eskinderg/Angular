@@ -18,14 +18,14 @@ export class Note {
     last_modified_date: Date;
     date_sync: Date;
     sync: boolean;
-    pin_order: Date;
+    pin_order: number;
     archived: boolean;
     pinned: boolean;
     active: boolean;
     spell_check: boolean;
     owner: string;
 
-    constructor(values: object = {}) {
+    constructor(values: object = { sync: true }) {
         Object.assign(this, values);
     }
 }

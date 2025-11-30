@@ -198,6 +198,20 @@ select {
     background-repeat: no-repeat;
 }
 
+select,
+select:focus {
+    appearance: none;
+    margin: 0;
+    padding: 0.5rem 4rem 0.5rem 0.75rem;
+
+    // border: 1px solid var(--border);
+    box-shadow: none;
+
+    option {
+        border: none !important;
+    }
+}
+
 select:focus {
     background-image:
         linear-gradient(45deg, transparent 50%, #fff 50%), linear-gradient(135deg, #fff 50%, transparent 50%),
@@ -213,31 +227,12 @@ select:focus {
     background-repeat: no-repeat;
 }
 
-select,
-select:focus {
-    appearance: none;
-    margin: 0;
-    padding: 0.5rem 4rem 0.5rem 0.75rem;
-
-    // border: 1px solid var(--border);
-    box-shadow: none;
-
-    option {
-        border: none !important;
-    }
-}
-
 select:focus > option:checked {
     /* selected option */
     background: var(--bs-border-color) !important;
 
     // color: var(--b-active-link-color);
     color: #fff;
-}
-
-input[type='text'] {
-    // padding: 0.5rem 0.75rem;
-    // margin-bottom: 1rem;
 }
 
 input[type='text'] {

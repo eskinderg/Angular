@@ -88,6 +88,8 @@ export class EditNoteDialogComponent implements OnInit {
         if (this.form.valid) {
             const updatedNote: Note = {
                 ...this.note,
+                pin_order:
+                    this.form.value.pinned !== this.note.pinned ? new Date().getTime() : this.note.pin_order,
                 ...this.form.value
             };
             this.dirty = false;

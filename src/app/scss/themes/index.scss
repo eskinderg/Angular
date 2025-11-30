@@ -38,10 +38,11 @@
     --border: #dadada80;
     --del-button-note: #dcdcdc;
     --active-list-link: #fff;
+    --spell-check-active: #f78181;
     --active-list-link-hover: #fafafa;
     --active-list-link-border-color: #cfddf7;
     --selected-note-list-item-border-color: #e6e6e6;
-    --selected-note-list-item-bg-color: #f8f9fa;
+    --selected-note-list-item-bg-color: #2a6ada1f;
     --list-link-hover: #f5f5f5;
     --text-area-border: #dcdcdc;
     --note-pin-fill: rgb(from var(--primary) r g b / 65%);
@@ -105,11 +106,12 @@
     --list-group-action-hover-bg: none;
     --list-group-action-hover-color: #adbac7;
     --b-active-link-color: #5f9cfb;
-    --active-list-color: #fff;
+    --active-list-color: #73aaff;
     --border: #323843;
     --del-button-note: #484a4b;
     --active-list-link: #363c43a6;
     --active-list-link-hover: #353d47a6;
+    --spell-check-active: #b94949;
     --list-link-hover: #cfcfcf2b;
     --text-area-border: #22272e;
     --note-pin-fill: rgb(from var(--b-active-link-color) r g b / 65%);
@@ -340,11 +342,16 @@ select:focus {
     // box-shadow: 0 0 0 0.25rem #2a6ada40;
 }
 
+.highlighted-match {
+    color: white !important;
+    background-color: #4c87ef;
+    font-weight: bold;
+}
+
 .hide-scroll-bar {
     overflow-y: hidden !important;
     margin-top: 0 !important;
 }
-
 
 .dialog-fade-out {
     opacity: 0 !important;

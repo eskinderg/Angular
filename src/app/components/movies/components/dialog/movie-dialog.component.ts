@@ -66,11 +66,11 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
     }
 
     private requestClose(_reason: 'click' | 'esc') {
-        const backDropEl = this.host.nativeElement.querySelector('#backDrop') as HTMLElement;
+        const backDropEl = this.host.nativeElement.querySelector('#back-drop') as HTMLElement;
 
         // Trigger fade-out (your SCSS already has the transition)
         backDropEl.classList.add('closing');
-        backDropEl.querySelector('#scrollWrapper').classList.add('closing');
+        backDropEl.querySelector('#scroll-wrapper').classList.add('closing');
 
         let done = false;
         const cleanup = () => {
@@ -94,7 +94,7 @@ export class MovieDialogComponent implements OnInit, OnDestroy {
 
     onBackdropOrButtonClick(event: MouseEvent) {
         const id = (event.target as HTMLElement).id;
-        if (id === 'backDrop' || id === 'footerClose' || id === 'modalClose') {
+        if (id === 'back-drop' || id === 'footerClose' || id === 'modalClose') {
             this.requestClose('click');
         }
     }
