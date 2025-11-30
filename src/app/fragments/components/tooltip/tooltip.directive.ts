@@ -54,7 +54,7 @@ export class TooltipDirective implements OnDestroy {
         }
     }
 
-    @HostListener('touchstart', ['$event'])
+    @HostListener('touchstart', [])
     // onTouchStart($event: TouchEvent): void {
     onTouchStart(): void {
         // $event.preventDefault();

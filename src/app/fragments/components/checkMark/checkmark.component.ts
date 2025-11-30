@@ -11,7 +11,7 @@ export class CheckMarkComponent {
 
     @Output() selectValue: EventEmitter<boolean> = new EventEmitter();
 
-    @HostListener('click', ['$event.target'])
+    @HostListener('click', [])
     onClick() {
         this.checked = !this.checked;
         this.selectValue.emit(this.checked);
