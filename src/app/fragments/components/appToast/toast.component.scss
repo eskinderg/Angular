@@ -22,7 +22,7 @@
     transition:
         opacity 0.3s ease,
         transform 0.3s ease;
-    animation: fadeIn 0.3s ease;
+    animation: fade-in 0.3s ease;
 }
 
 /* Toast container */
@@ -30,7 +30,8 @@
     background-color: var(--body-bg, #fff);
     color: #333;
     border-radius: 0.5rem;
-    box-shadow: 0 0px 15px rgb(0 0 0 / 15%);
+    box-shadow: 0 0 15px rgb(0 0 0 / 15%);
+
     // border: 1px solid var(--border);
     outline: 0.3rem solid var(--card-border-color);
     overflow: hidden;
@@ -45,7 +46,7 @@
     align-items: center;
     cursor: pointer;
     justify-content: space-between;
-    padding: 0rem 0.25rem 0rem 0.75rem;
+    padding: 0 0.25rem 0 0.75rem;
     border-bottom: 1px solid rgb(0 0 0 / 8%);
     font-weight: bold;
     font-size: 0.85rem;
@@ -95,7 +96,7 @@
 }
 
 /* Animations */
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
         transform: translateY(15px);

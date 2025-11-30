@@ -22,7 +22,7 @@
     border-radius: 10px;
     width: 400px;
     box-shadow: 0 4px 15px rgb(0 0 0 / 20%);
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fade-in 0.3s ease-in-out;
 }
 
 /* Dialog header */
@@ -106,7 +106,7 @@ input[type='checkbox'] {
 // }
 
 /* Fade-in animation */
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
         transform: scale(0.9);

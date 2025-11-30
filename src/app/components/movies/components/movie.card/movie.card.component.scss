@@ -7,7 +7,7 @@
     --transform-size: 1rem;
 }
 
-@keyframes cardEnterAnimation {
+@keyframes card-enter-animation {
     0% {
         opacity: 0;
 
@@ -65,7 +65,7 @@ app-watched {
     flex-flow: column nowrap;
     border-radius: var(--card-border-radius);
     margin-bottom: 3rem;
-    animation: cardEnterAnimation 1s ease-in-out forwards;
+    animation: card-enter-animation 1s ease-in-out forwards;
     animation-delay: calc(50ms * var(--index));
     animation-iteration-count: 1;
 }
@@ -81,19 +81,16 @@ app-watched {
     pointer-events: auto; /* re-enable hover */
     box-shadow: 0 4px 15px 4px rgb(119 119 119 / 20%);
     border: none;
+
     // z-index: 2;
     transform: scale(1.07);
 }
 
 .loading-svg {
     position: absolute;
-    opacity: 0;
+    opacity: 1;
     z-index: 0;
     transition: opacity 1s ease;
-}
-
-.loading-svg {
-    opacity: 1;
 }
 
 .poster-loaded {

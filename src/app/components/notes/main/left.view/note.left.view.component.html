@@ -1,7 +1,7 @@
 <div class="note-left-menu">
     @if (!searchVisible) {
         <app-svg-icon
-            class="searchIcon"
+            class="search-icon"
             height="25"
             width="25"
             (clicked)="showSearch()"
@@ -41,7 +41,7 @@
                 (mouseup)="onSearchInputFocus($event)"
                 type="text"
                 placeholder="Search"
-                class="searchInput"
+                class="search-input"
                 [class.active]="searchTerm$.value.length"
                 [hidden]="!searchVisible"
                 [value]="searchTerm$.value"

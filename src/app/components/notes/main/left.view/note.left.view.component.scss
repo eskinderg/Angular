@@ -33,6 +33,7 @@ img {
 
 .note-count {
     cursor: pointer;
+
     // color: var(--menu-color);
     color: var(--note-pin-fill);
     font-weight: bold;
@@ -42,14 +43,15 @@ img {
     color: var(--menu-color);
 }
 
-.searchIcon {
+.search-icon {
     // stroke: var(--bs-nav-tabs-link-active-color);
     stroke: var(--note-pin-fill);
     cursor: pointer;
+
     // margin-right: auto;
 }
 
-.searchIcon:hover {
+.search-icon:hover {
     // stroke: var(--note-pin-fill);
     stroke: var(--menu-color);
 }
@@ -90,29 +92,31 @@ img {
 }
 
 .leaving {
-    animation: rotateOutAnimation 0.75s ease-out forwards;
+    animation: rotate-out-animation 0.75s ease-out forwards;
 }
 
 .enter-animation {
-    animation: rotateInAnimation 0.25s ease-in forwards;
+    animation: rotate-in-animation 0.25s ease-in forwards;
 }
 
-@keyframes rotateInAnimation {
+@keyframes rotate-in-animation {
     from {
         opacity: 0;
         transform: rotate(0deg);
     }
+
     to {
         opacity: 1;
         transform: rotate(180deg);
     }
 }
 
-@keyframes rotateOutAnimation {
+@keyframes rotate-out-animation {
     from {
         opacity: 1;
         transform: rotate(180deg) scale(1);
     }
+
     to {
         opacity: 0;
         transform: rotate(0deg) scale(0.5);
@@ -123,6 +127,7 @@ img {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -166,7 +171,7 @@ img {
 // color: var(--list-link-hover);
 // }
 
-.searchInput {
+.search-input {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -185,9 +190,11 @@ input::placeholder {
 
 .closex {
     cursor: pointer;
+
     // color: var(--note-pin-nofill);
     // stroke: var(--note-pin-nofill);
     color: var(--bs-nav-tabs-link-active-color);
+
     // stroke: var(--bs-nav-tabs-link-active-color);
     stroke: var(--note-pin-fill);
 }
@@ -200,7 +207,7 @@ input::placeholder {
     display: none;
 }
 
-.searchInput:focus {
+.search-input:focus {
     background: transparent;
 }
 

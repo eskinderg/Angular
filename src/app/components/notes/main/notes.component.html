@@ -22,7 +22,7 @@
                     (syncNotes)="onSyncNotes()"
                     (noteUpdate)="onUpdateNote($event)" />
             } @else if (searchTerm$.value.length) {
-                <div class="filterWrapper">
+                <div class="filter-wrapper">
                     @for (note of filteredNotes$ | async; track note) {
                         <div class="filter" (click)="onSearchSelection(note)">
                             <div class="note-header" [innerHTML]="hightlightText(note, 'header')"></div>

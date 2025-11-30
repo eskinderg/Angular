@@ -34,7 +34,18 @@
 .menu li > ul {
     list-style: none;
     margin: 0;
-    padding: 0;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #2e2e45;
+    border-radius: 6px;
+    padding: 0.5rem 0;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    animation: scale-in 0.3s ease-in-out;
+    z-index: 1000;
+    flex-direction: column;
 }
 
 .badge {
@@ -44,7 +55,7 @@
     padding: 0.5rem;
 }
 
-.searchIcon {
+.search-icon {
     stroke: var(--note-pin-nofill);
     cursor: pointer;
     margin-right: auto;
@@ -64,9 +75,16 @@
         box-shadow 0.2s ease;
 }
 
+.menu li > ul a {
+    display: block;
+    padding: 0.5rem 1rem;
+    background: none;
+    border-radius: 0;
+}
+
 /* Smooth highlight without shifting content */
 .menu > a:hover,
-.menu .activeLink {
+.menu .active-link {
     background-color: rgb(255 255 255 / 10%);
     box-shadow: 0 0 0 2px rgb(255 255 255 / 25%);
 }
@@ -85,31 +103,8 @@
     color: #21a1f1;
 }
 
-/* Submenu dropdown */
-.menu li > ul {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #2e2e45;
-    border-radius: 6px;
-    padding: 0.5rem 0;
-    min-width: 180px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
-    animation: scaleIn 0.3s ease-in-out;
-    z-index: 1000;
-    flex-direction: column;
-}
-
 .menu li:hover > ul {
     display: flex;
-}
-
-.menu li > ul a {
-    display: block;
-    padding: 0.5rem 1rem;
-    background: none;
-    border-radius: 0;
 }
 
 .menu li > ul a:hover {
@@ -117,7 +112,7 @@
 }
 
 /* Menu grouping for logged-in items */
-.menuLoggedIn {
+.menu-logged-in {
     display: flex;
     align-items: center;
     margin-right: auto;
@@ -130,14 +125,14 @@
 }
 
 /* Right aligned user info */
-.userInfo {
+.user-info {
     // margin-left: auto;
     display: flex;
     align-items: center;
 }
 
 /* Subtle animation for dropdown */
-@keyframes scaleIn {
+@keyframes scale-in {
     0% {
         transform: scale(0.95);
         opacity: 0;

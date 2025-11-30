@@ -15,8 +15,6 @@
 
 .note-select-info {
     display: flex;
-    width: fit-content;
-    height: fit-content;
     inset: 0;
     flex-flow: column nowrap;
     justify-content: space-around;
@@ -35,7 +33,7 @@
     }
 }
 
-.filterWrapper {
+.filter-wrapper {
     display: flex;
     flex-direction: column;
     gap: 15px;

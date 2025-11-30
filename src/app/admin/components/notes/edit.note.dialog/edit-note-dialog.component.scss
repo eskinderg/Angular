@@ -20,7 +20,7 @@
     width: 80%;
     max-height: 75vh;
     box-shadow: 0 0 24px rgb(0 0 0 / 20%);
-    animation: fadeIn 0.2s ease-in-out;
+    animation: fade-in 0.2s ease-in-out;
     overflow-y: auto;
     top: -50px;
 
@@ -127,7 +127,7 @@ input[type='text']::spelling-error {
     display: none;
 }
 
-.textInput {
+.text-input {
     border: 1px solid var(--b-secondary);
     padding: 0.25rem 1rem;
 }
@@ -223,7 +223,7 @@ select {
 //   background: #ddd;
 // }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         opacity: 0;
     }
@@ -233,7 +233,7 @@ select {
     }
 }
 
-@keyframes slideIn {
+@keyframes slide-in {
     from {
         transform: translateY(-10px);
         opacity: 0;

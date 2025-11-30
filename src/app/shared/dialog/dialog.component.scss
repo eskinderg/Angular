@@ -10,7 +10,7 @@
     z-index: 9999;
 }
 
-.backDropHide {
+.back-drop-hide {
     background: rgb(0 0 0 / 0%);
 }
 
@@ -23,7 +23,7 @@
     width: 90%;
     max-width: 500px;
     box-shadow: 0 0 24px rgb(0 0 0 / 20%);
-    animation: fadeIn 0.2s ease-in-out;
+    animation: fade-in 0.2s ease-in-out;
     overflow: hidden;
     position: fixed;
     display: flex;
@@ -113,7 +113,7 @@
     // filter: brightness(80%);
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         transform: scale(0.9);
         opacity: 0;

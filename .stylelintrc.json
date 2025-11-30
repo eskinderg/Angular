@@ -7,6 +7,15 @@
     ],
     "rules": {
         "color-no-invalid-hex": true,
-        "scss/at-import-no-partial-leading-underscore": true
+        "scss/load-no-partial-leading-underscore": true,
+        "no-empty-source": null,
+        "font-family-no-missing-generic-family-keyword": [
+            true,
+            {
+                "ignoreFontFamilies": [
+                    "icomoon"
+                ]
+            }
+        ]
     }
 }

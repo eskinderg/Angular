@@ -14,6 +14,14 @@ li > a {
     transition: background-color 0.2s ease;
 }
 
+li > ul li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: var(--body-color);
+    white-space: nowrap;
+    background: none;
+}
+
 li > a:hover {
     background-color: rgb(255 255 255 / 10%);
 }
@@ -46,14 +54,6 @@ li > ul {
 
 li:hover > ul {
     display: block;
-}
-
-li > ul li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: var(--body-color);
-    white-space: nowrap;
-    background: none;
 }
 
 li > ul li a:hover {

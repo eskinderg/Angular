@@ -38,6 +38,7 @@
 .spell-check-active {
     cursor: pointer;
     fill: var(--spell-check-active);
+
     // stroke: #1489df;
     // fill: var(--b-active-link-color);
     // stroke: var(--b-active-link-color);
@@ -65,7 +66,7 @@
 .colour-selector {
     border-left: 2px solid var(--border);
     border-right: 2px solid var(--border);
-    padding: 0rem 0.5rem 0rem 0.5rem;
+    padding: 0 0.5rem;
 }
 
 .menu-icon {
@@ -82,8 +83,9 @@
 
     // box-shadow: 0px 0px 9px 0px grey;
     border: 2px solid var(--border);
+
     // padding-left: 0.5rem;
-    padding: 0.5rem 0rem 0.5rem 0.5rem;
+    padding: 0.5rem 0 0.5rem 0.5rem;
     column-gap: 0.25rem;
     background: var(--body-bg);
 }

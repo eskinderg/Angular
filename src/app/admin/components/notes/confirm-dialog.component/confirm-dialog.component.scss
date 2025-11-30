@@ -10,7 +10,7 @@
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    animation: fadeIn 0.2s ease-in-out;
+    animation: fade-in 0.2s ease-in-out;
     box-shadow: 0 12px 28px rgb(0 0 0 / 20%);
     font-family: system-ui, sans-serif;
     border: 2px solid var(--card-border-color);
@@ -52,7 +52,6 @@
     gap: 12px;
 }
 
-
 .close-btn {
     cursor: pointer;
     font-size: 26px;
@@ -82,7 +81,7 @@
     transition: background-color 0.2s ease;
 }
 
-@keyframes fadeIn {
+@keyframes fade-in {
     from {
         transform: scale(0.9);
         opacity: 0;
