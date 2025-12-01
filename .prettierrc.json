@@ -2,6 +2,7 @@
     "trailingComma": "none",
     "bracketSpacing": true,
     "arrowParens": "always",
+    "endOfLine": "auto",
     "bracketSameLine": true,
     "jsxSingleQuote": false,
     "printWidth": 110,
