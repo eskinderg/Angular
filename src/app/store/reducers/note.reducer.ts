@@ -329,20 +329,17 @@ export function facadeNote(state: INotesState, remoteNotes?: Note[]): Note {
     return null;
 }
 
-export function dateModifiedNotes(notes: Note[]): Note[] {
-    return notes.sort((a, b) => {
-        const dateA = a.local_date_modified === undefined ? a.date_modified : a.local_date_modified;
-        const dateB = b.local_date_modified === undefined ? b.date_modified : b.local_date_modified;
-        return new Date(dateA) > new Date(dateB) ? -1 : 1;
-    });
-}
+export const dateModifiedNotes = (notes: Note[]) =>
+    [...notes].sort(
+        (a, b) =>
+            new Date(b.local_date_modified ?? b.date_modified).getTime() -
+            new Date(a.local_date_modified ?? a.date_modified).getTime()
+    );
 
-export function pinnedNotes(notes: Note[]): Note[] {
-    return [
-        ...notes.filter((note) => note.pinned).sort((a, b) => (a.pin_order < b.pin_order ? -1 : 1)),
-        ...notes.filter((n) => !n.pinned)
-    ];
-}
+export const pinnedNotes = (notes: Note[]) =>
+    [...notes].sort(
+        (a, b) => Number(b.pinned) - Number(a.pinned) || (a.pinned ? a.pin_order - b.pin_order : 0)
+    );
 
 export function filterActiveNotes(notes: Note[]): Note[] {
     return notes.filter((n) => !n.archived && n.active);
