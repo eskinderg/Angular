@@ -1,8 +1,4 @@
-<div
-    [@.disabled]="!animate.note"
-    [@fadeInOutNoteListItem]
-    class="note-border"
-    [class.selected-note]="selectedNote === note">
+<div class="note-border" [class.selected-note]="selectedNote === note">
     <div class="note-wrapper"></div>
     <div class="left" (mouseup)="onSelectNote(note)">
         <div class="item" (mouseup)="onSelectNote(note)">
@@ -15,8 +11,6 @@
             (mouseup)="onSelectNote(note)"
             [class.pinned-note-text]="note.pinned"
             class="date-modified date-text"
-            [@.disabled]="!animate.date"
-            [@fadeInOutNoteListItem]
             [appTooltip]="'Last Modified - ' + (note.date_modified | date: 'EEE, MMM d yyyy hh:mm:ss a')">
             {{ note.local_date_modified ?? note.date_modified | dateago }}
         </small>

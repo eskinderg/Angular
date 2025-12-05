@@ -10,7 +10,7 @@ import {
     OnDestroy
 } from '@angular/core';
 import { Note } from 'src/app/models/note';
-import { NoteApiService } from '../../services/notes.api.service';
+import { NoteApiService } from '../../../services/notes.api.service';
 import { Store } from '@ngrx/store';
 import * as fromNotes from 'src/app/store/reducers/note.reducer';
 import { Router } from '@angular/router';
@@ -28,7 +28,6 @@ import { AuthService } from 'src/app/auth/auth.service';
     templateUrl: './note.left.view.component.html',
     styleUrls: ['./note.left.view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [FadeInOutNoteListItem],
     imports: [NoteListItemComponent, AsyncPipe, SvgIconComponent]
 })
 export class NoteLeftViewComponent implements OnDestroy {

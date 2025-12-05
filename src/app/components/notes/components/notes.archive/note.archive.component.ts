@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { NoteApiService } from '../services/notes.api.service';
+import { NoteApiService } from '../../services/notes.api.service';
 import { Note } from 'src/app/models/note';
 import { NgClass, AsyncPipe, DatePipe } from '@angular/common';
-import { TooltipDirective } from '../../../fragments/components/tooltip/tooltip.directive';
-import { AgoDatePipe } from '../../movies/directives/dateagopipe';
-import { NoteTitleTruncatePipe } from '../../movies/directives/noteTitleTruncate';
+import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
+import { AgoDatePipe } from '../../../movies/directives/dateagopipe';
+import { NoteTitleTruncatePipe } from '../../../movies/directives/noteTitleTruncate';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
-import { SvgIconComponent } from '../../shared/svg/svg.component';
+import { SvgIconComponent } from '../../../shared/svg/svg.component';
 
 @Component({
     selector: 'app-note.archive',

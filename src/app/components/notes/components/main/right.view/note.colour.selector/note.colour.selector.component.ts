@@ -33,7 +33,7 @@ export const NOTE_COLOUR_VALUE_ACCESSOR: any = {
 @Component({
     selector: 'app-note-colour-selector',
     templateUrl: './note.colour.selector.component.html',
-    styleUrls: ['./note.colour.selector.component.scss', '../../../scss/notes.colour.scss'],
+    styleUrls: ['./note.colour.selector.component.scss', '../../../../scss/notes.colour.scss'],
     providers: [NOTE_COLOUR_VALUE_ACCESSOR],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NgClass]

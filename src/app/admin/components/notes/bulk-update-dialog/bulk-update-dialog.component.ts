@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { NoteColourSelectorComponent } from 'src/app/components/notes/main/right.view/note.colour.selector/note.colour.selector.component';
+import { NoteColourSelectorComponent } from 'src/app/components/notes/components/main/right.view/note.colour.selector/note.colour.selector.component';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 

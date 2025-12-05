@@ -12,9 +12,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Note } from 'src/app/models/note';
 import { DialogService } from '../dialog.service';
-import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
-import { TextSelection } from 'src/app/components/notes/main/right.view/textAreaExpanded/text.selection';
-import { NoteColourSelectorComponent } from 'src/app/components/notes/main/right.view/note.colour.selector/note.colour.selector.component';
+import { TextareaExpandedComponent } from 'src/app/components/notes/components/main/right.view/textAreaExpanded/textAreaExpanded.component';
+import { TextSelection } from 'src/app/components/notes/components/main/right.view/textAreaExpanded/text.selection';
+import { NoteColourSelectorComponent } from 'src/app/components/notes/components/main/right.view/note.colour.selector/note.colour.selector.component';
 import { AsyncPipe } from '@angular/common';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 

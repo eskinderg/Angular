@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { Note } from 'src/app/models/note';
 import { DatePipe } from '@angular/common';
-import { TooltipDirective } from '../../../../../fragments/components/tooltip/tooltip.directive';
-import { NoteTitleTruncatePipe } from '../../../../movies/directives/noteTitleTruncate';
-import { AgoDatePipe } from '../../../../movies/directives/dateagopipe';
+import { TooltipDirective } from '../../../../../../fragments/components/tooltip/tooltip.directive';
+import { NoteTitleTruncatePipe } from '../../../../../movies/directives/noteTitleTruncate';
+import { AgoDatePipe } from '../../../../../movies/directives/dateagopipe';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 type Animate = {
@@ -15,8 +15,7 @@ type Animate = {
 @Component({
     selector: 'app-note-list-item',
     templateUrl: './note-list-item.component.html',
-    animations: [FadeInOutNoteListItem],
-    styleUrls: ['./note-list-item.component.scss', '../../../scss/notes.colour.scss'],
+    styleUrls: ['./note-list-item.component.scss', '../../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TooltipDirective, SvgIconComponent, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
 })

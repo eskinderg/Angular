@@ -8,13 +8,13 @@ import {
     inject,
     effect
 } from '@angular/core';
-import { Note } from '../../../../models/note';
-import { TextareaExpandedComponent } from 'src/app/components/notes/main/right.view/textAreaExpanded/textAreaExpanded.component';
+import { Note } from '../../../../../models/note';
+import { TextareaExpandedComponent } from 'src/app/components/notes/components/main/right.view/textAreaExpanded/textAreaExpanded.component';
 import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
 import { NgClass, DatePipe } from '@angular/common';
-import { TooltipDirective } from '../../../../fragments/components/tooltip/tooltip.directive';
+import { TooltipDirective } from '../../../../../fragments/components/tooltip/tooltip.directive';
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
@@ -24,7 +24,7 @@ import { debounceTime, filter, merge } from 'rxjs';
 @Component({
     selector: 'app-note-right-view',
     templateUrl: 'note.right.view.component.html',
-    styleUrls: ['note.right.view.component.scss', '../../scss/notes.colour.scss'],
+    styleUrls: ['note.right.view.component.scss', '../../../scss/notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         SvgIconComponent,
