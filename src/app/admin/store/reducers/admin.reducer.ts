@@ -85,7 +85,7 @@ export const adminReducer = createReducer<IAdminNotesState>(
         return {
             ...state,
             users: state.users.map((user) => {
-                const updatedUser = action.payload.find((u) => u.id === user.id);
+                const updatedUser = action.payload.find((u) => u.user_id === user.user_id);
                 return updatedUser ? updatedUser : user;
             })
         };

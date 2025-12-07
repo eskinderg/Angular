@@ -199,14 +199,7 @@ export class AuthEffect {
         () =>
             this.actions$.pipe(
                 ofType(AuthActions.routeToLogin),
-                switchMap((action) =>
-                    from(
-                        this.router.navigate([
-                            '/login',
-                            { endsession: action.message, skipLocationChange: true }
-                        ])
-                    )
-                )
+                switchMap((action) => from(this.router.navigate(['/login'])))
             ),
         { dispatch: false }
     );

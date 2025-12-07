@@ -1,9 +1,9 @@
 export class User {
     owner: string;
-    id: string;
+    user_id: string;
     firstname: string;
     email: string;
-    createdAt: Date;
+    created_at: Date;
 
     constructor(values: object = {}) {
         Object.assign(this, values);
