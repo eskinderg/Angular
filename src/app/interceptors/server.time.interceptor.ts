@@ -13,9 +13,10 @@ export const ServerTimeInterceptor: HttpInterceptorFn = (
 
     return next(request).pipe(
         tap((r) => {
+            // if type response
             if (r.type === 4) {
-                const time = Number(r.headers.get('X-server-timestamp'));
-                if (time) store.dispatch(updateTimeDiff({ serverTime: time }));
+                const time = r.headers.get('X-server-timestamp');
+                if (time) store.dispatch(updateTimeDiff({ serverTime: Number(time) }));
             }
         })
     );
