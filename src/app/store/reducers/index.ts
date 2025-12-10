@@ -10,6 +10,7 @@ import { IAppRouterState } from './route.reducer';
 import { INotificationState, notificationReducer } from './notification.reducer';
 import { IMovieState, movieReducer } from './movie.reducer';
 import { adminReducer, IAdminNotesState } from 'src/app/admin/store/reducers/admin.reducer';
+import { IServerState, serverReducer } from './server.time.reducer';
 
 export interface IAppState {
     notes: INotesState;
@@ -19,6 +20,7 @@ export interface IAppState {
     movies: IMovieState;
     notifications: INotificationState;
     admin: IAdminNotesState;
+    server: IServerState;
     router: RouterReducerState<IAppRouterState>;
 }
 
@@ -30,6 +32,7 @@ export const appReducer: ActionReducerMap<IAppState> = {
     movies: movieReducer,
     notifications: notificationReducer,
     admin: adminReducer,
+    server: serverReducer,
     router: routerReducer
 };
 
@@ -48,4 +51,5 @@ export * from './preference.reducer';
 export * from './movie.reducer';
 export * from './notification.reducer';
 export * from '../../admin/store/reducers/admin.reducer';
+export * from './server.time.reducer';
 export * from './route.reducer';
