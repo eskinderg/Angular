@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { catchError, switchMap, map, exhaustMap, mergeMap, withLatestFrom } from 'rxjs/operators';
-import { from, of } from 'rxjs';
+import { EMPTY, from, of } from 'rxjs';
 import * as fromRoot from '../reducers';
 import * as NotesActions from '../actions/note.actions';
 import { NotesDataService } from '../../components/notes/services/notes.data.service';
@@ -123,13 +123,18 @@ export class NotesEffect {
             actions$.pipe(
                 ofType(NotesActions.getLocalNotesSuccess),
                 switchMap((action) =>
-                    notesDataService
-                        .upsertNotes(action.localNotes)
-                        .pipe(
-                            switchMap((response: Note[]) =>
-                                of(NotesActions.syncRemoteWithLocal({ remoteNotes: response }))
-                            )
-                        )
+                    notesDataService.upsertNotes(action.localNotes).pipe(
+                        switchMap((response: Note[]) =>
+                            of(NotesActions.syncRemoteWithLocal({ remoteNotes: response }))
+                        ),
+                        catchError((err) => {
+                            if (err.status === 403)
+                                return of(
+                                    NotesActions.syncRemoteWithLocal({ remoteNotes: action.localNotes })
+                                );
+                            return EMPTY;
+                        })
+                    )
                 )
             )
     );
