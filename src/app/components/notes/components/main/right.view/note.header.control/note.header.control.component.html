@@ -3,7 +3,9 @@
     #inputHeaderRef
     name="note"
     [spellcheck]="false"
+    [readOnly]="opendNote.readonly"
     type="text"
     class="input-header"
+    [class.readonly]="opendNote.readonly"
     [value]="opendNote.header"
     [placeholder]="'Untitled'" />

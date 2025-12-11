@@ -12,6 +12,10 @@
     color: var(--bs-body-color);
 }
 
+.readonly {
+    cursor: not-allowed;
+}
+
 .input-header:-webkit-autofill,
 .input-header:-webkit-autofill:hover,
 .input-header:-webkit-autofill:focus,

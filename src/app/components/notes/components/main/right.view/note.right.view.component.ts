@@ -13,7 +13,7 @@ import { TextareaExpandedComponent } from 'src/app/components/notes/components/m
 import { Colour, NoteColourSelectorComponent } from './note.colour.selector/note.colour.selector.component';
 import { NoteHeaderControlComponent } from './note.header.control/note.header.control.component';
 import { TooltipPosition } from 'src/app/fragments/components/tooltip/tooltip.enums';
-import { NgClass, DatePipe } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { TooltipDirective } from '../../../../../fragments/components/tooltip/tooltip.directive';
 import { TextareaExpandedComponent as TextareaExpandedComponent_1 } from './textAreaExpanded/textAreaExpanded.component';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
@@ -32,8 +32,7 @@ import { debounceTime, filter, merge } from 'rxjs';
         NoteHeaderControlComponent,
         TooltipDirective,
         NoteColourSelectorComponent,
-        TextareaExpandedComponent_1,
-        DatePipe
+        TextareaExpandedComponent_1
     ]
 })
 export class NoteRightViewComponent {
@@ -84,6 +83,10 @@ export class NoteRightViewComponent {
         this.noteUpdate.emit({ ...this.facadeNote, pinned: !note.pinned, pin_order: new Date().getTime() });
     }
 
+    onToggleReadonly(note: Note) {
+        this.noteUpdate.emit({ ...this.facadeNote, readonly: !note.readonly });
+    }
+
     onNoteHeaderUpdate(note: Note) {
         this.noteUpdate.emit({
             ...this.facadeNote,
@@ -121,7 +124,8 @@ export class NoteRightViewComponent {
                 <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.pinned ? 'Yes' : 'No'}<br />
                 <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.colour ? note?.colour : 'none'}<br />
                 <strong>Spell Check &nbsp; &nbsp; :</strong> &nbsp; ${note?.spell_check ? 'on' : 'off'}<br />
-                <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> &nbsp; ${note?.owner}
+                <strong>Readonly &nbsp; &nbsp; &nbsp; &nbsp; :</strong>  &nbsp; ${note?.readonly ? 'yes' : 'no'}<br />
+                <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;:</strong> &nbsp; ${note?.owner}
             `,
             DIALOG_TYPE.CLOSE_ONLY,
             false,

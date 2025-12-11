@@ -48,4 +48,8 @@ export class NoteListItemComponent {
     onSpellCheckToggle(note: Note) {
         this.updateNote.emit({ ...note, spell_check: !note.spell_check });
     }
+
+    onToggleReadonly(note: Note) {
+        this.updateNote.emit({ ...note, readonly: !note.readonly });
+    }
 }

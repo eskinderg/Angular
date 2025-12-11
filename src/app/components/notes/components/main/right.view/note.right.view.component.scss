@@ -30,6 +30,14 @@
     flex-basis: 50%;
 }
 
+.readonly {
+    cursor: not-allowed;
+}
+
+.svg-readonly {
+    fill: red ! important;
+}
+
 .spell-check {
     cursor: pointer;
     fill: var(--b-secondary);
@@ -58,6 +66,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    cursor: pointer;
 
     // padding-left: 1rem;
     align-items: center;

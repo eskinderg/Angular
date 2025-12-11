@@ -41,6 +41,15 @@
             </div>
         }
 
+        @if (note.readonly) {
+            <app-svg-icon
+                height="17"
+                width="17"
+                (mouseup)="onToggleReadonly(note)"
+                [class]="'readonly'"
+                src="assets/images/lock.svg" />
+        }
+
         <app-svg-icon
             height="20"
             width="20"

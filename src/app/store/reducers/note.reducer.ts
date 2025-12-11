@@ -178,6 +178,7 @@ export const notesReducer = createReducer<INotesState>(
                     archived: action.localNote.archived,
                     pinned: action.localNote.pinned,
                     active: action.localNote.active,
+                    readonly: action.localNote.readonly,
                     spell_check: action.localNote.spell_check,
                     owner: action.localNote.owner
                 },
@@ -285,6 +286,7 @@ export function opendNote(state: INotesState, remoteNotes?: Note[]): Note {
             archived: findOpendNote.archived,
             pinned: findOpendNote.pinned,
             active: findOpendNote.active,
+            readonly: findOpendNote.readonly,
             spell_check: findOpendNote.spell_check,
             owner: findOpendNote.owner
         };

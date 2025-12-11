@@ -1,26 +1,29 @@
-<ng-template #popContent>
-    <strong>Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }}
-    <br />
-    <strong>Last Modified &nbsp;:</strong>
-    &nbsp; {{ facadeNote?.date_modified | date: 'medium' }}
-    <br />
-    <strong>Date Created &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.date_created | date: 'medium' }}
-    <br />
-    <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }}
-    <br />
-    <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.colour ? facadeNote?.colour : 'none' }}
-    <br />
-    <strong>Spell Check &nbsp; &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.spell_check ? 'on' : 'off' }}
-    <br />
-    <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong>
-    &nbsp; {{ facadeNote?.owner }}
-</ng-template>
-<div class="note-background" [ngClass]="opendNote.colour + '-note'">
+<!-- <ng-template #popContent> -->
+<!--     <strong>Title &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.header ? facadeNote?.header : 'Untitled' }} -->
+<!--     <br /> -->
+<!--     <strong>Last Modified &nbsp;:</strong> -->
+<!--     &nbsp; {{ facadeNote?.date_modified | date: 'medium' }} -->
+<!--     <br /> -->
+<!--     <strong>Date Created &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.date_created | date: 'medium' }} -->
+<!--     <br /> -->
+<!--     <strong>Pinned &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.pinned ? 'Yes' : 'No' }} -->
+<!--     <br /> -->
+<!--     <strong>Colour &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.colour ? facadeNote?.colour : 'none' }} -->
+<!--     <br /> -->
+<!--     <strong>Spell Check &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.spell_check ? 'on' : 'off' }} -->
+<!--     <br /> -->
+<!--     <strong>Readonly &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.readonly ? 'yes' : 'no' }} -->
+<!--     <br /> -->
+<!--     <strong>Owner &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; :</strong> -->
+<!--     &nbsp; {{ facadeNote?.owner }} -->
+<!-- </ng-template> -->
+<div class="note-background" [ngClass]="opendNote.colour + '-note'" [class.readonly]="opendNote.readonly">
     <div class="note-menu">
         <div class="note-header">
             <app-note-header-control
@@ -60,6 +63,24 @@
 
             <div class="trash-icon menu-icon" (click)="onNoteArchive(opendNote)">
                 <app-svg-icon height="30" width="30" src="assets/images/archive.svg" />
+            </div>
+
+            <div class="">
+                <!-- @if (facadeNote.readonly) { -->
+                <app-svg-icon
+                    [class.svg-readonly]="facadeNote.readonly"
+                    (mouseUp)="onToggleReadonly(facadeNote)"
+                    height="28"
+                    width="28"
+                    src="assets/images/lock.svg" />
+                <!-- } @else { -->
+                <!-- <app-svg-icon -->
+                <!--     [fill]="'grey'" -->
+                <!--     (mouseUp)="onToggleReadonly(facadeNote)" -->
+                <!--     height="30" -->
+                <!--     width="30" -->
+                <!--     src="assets/images/lock.svg" /> -->
+                <!-- } -->
             </div>
 
             <div class="info-icon menu-icon popover-content" (click)="noteInfoClick(facadeNote)">

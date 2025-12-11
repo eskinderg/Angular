@@ -20,6 +20,7 @@ export class Note {
     sync: boolean;
     pin_order: number;
     archived: boolean;
+    readonly: boolean;
     pinned: boolean;
     active: boolean;
     spell_check: boolean;

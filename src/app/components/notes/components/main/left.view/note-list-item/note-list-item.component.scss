@@ -77,6 +77,11 @@
     }
 }
 
+.readonly {
+    fill: red;
+    cursor: pointer;
+}
+
 .note-wrapper {
     position: absolute;
     height: 3.5rem;

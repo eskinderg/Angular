@@ -90,6 +90,7 @@ export class NoteLocalDbService {
                     new Date(note.date_modified) > new Date(localNote.date_modified) ||
                     // new Date(note.pin_order) > new Date(localNote.pin_order) ||
                     note.pin_order > localNote.pin_order ||
+                    new Date(note.last_modified_date) > new Date(localNote.last_modified_date) ||
                     new Date(note.date_deleted) > new Date(localNote.date_deleted) ||
                     new Date(note.date_archived) > new Date(localNote.date_archived);
 
