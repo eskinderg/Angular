@@ -99,6 +99,16 @@
                 </th>
                 <th
                     [class.sorted-asc]="
+                        (sortField$ | async) === 'readonly' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'readonly' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('readonly')">
+                    Readonly
+                </th>
+                <th
+                    [class.sorted-asc]="
                         (sortField$ | async) === 'archived' && (sortDirection$ | async) === 'asc'
                     "
                     [class.sorted-desc]="
@@ -195,6 +205,7 @@
                     <td>{{ note.header }}</td>
                     <td>{{ note.owner }}</td>
                     <td>{{ note.active }}</td>
+                    <td>{{ note.readonly }}</td>
                     <td>{{ note.archived }}</td>
                     <td>{{ note.pinned }}</td>
                     <td>{{ note.date_archived | date: 'medium' }}</td>

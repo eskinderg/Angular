@@ -30,6 +30,10 @@
                                     Active
                                 </label>
                                 <label class="check-label">
+                                    <input type="checkbox" formControlName="readonly" />
+                                    Readonly
+                                </label>
+                                <label class="check-label">
                                     <input type="checkbox" formControlName="archived" />
                                     Archived
                                 </label>
@@ -58,7 +62,7 @@
                                     <input [value]="formatDate(note.date_archived)" readonly />
                                 </div>
                                 <div class="form-group readonly">
-                                    <label>Created</label>
+                                    <label>Date Created</label>
                                     <input [value]="formatDate(note.date_created)" readonly />
                                 </div>
                                 <div class="form-group readonly">

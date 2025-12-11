@@ -62,6 +62,7 @@ export class EditNoteDialogComponent implements OnInit {
             colour: [this.note.colour],
             pinned: [this.note.pinned],
             active: [this.note.active],
+            readonly: [this.note.readonly],
             archived: [this.note.archived],
             spell_check: [this.note.spell_check]
         });

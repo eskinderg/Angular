@@ -128,40 +128,40 @@ table {
     } // Header
     th:nth-child(3),
     td:nth-child(3) {
-        width: 10%;
+        width: 8%;
     } // Owner
     th:nth-child(4),
     td:nth-child(4) {
-        width: 7%;
+        width: 6%;
     } // Active
     th:nth-child(5),
     td:nth-child(5) {
-        width: 7%;
-    } // Archived
+        width: 6%;
+    } // Readonly
     th:nth-child(6),
     td:nth-child(6) {
-        width: 7%;
-    } // Pinned
+        width: 6%;
+    } // Archived
     th:nth-child(7),
     td:nth-child(7) {
-        width: 12%;
-    } // Date Archived
+        width: 5%;
+    } // Pinned
     th:nth-child(8),
     td:nth-child(8) {
         width: 8%;
-    } // Spell Check
+    } // Date archived
     th:nth-child(9),
     td:nth-child(9) {
         width: 7%;
-    } // Colour
+    } // Date deleted
     th:nth-child(10),
     td:nth-child(10) {
-        width: 12%;
-    } // Created
+        width: 6%;
+    } // spell check
     th:nth-child(11),
     td:nth-child(11) {
-        width: 12%;
-    } // Last Modified
+        width: 6%;
+    } // colour
 
     tr:nth-child(even) {
         background-color: var(--bs-card-bg);
