@@ -31,9 +31,15 @@ export class PreferenceEffect {
                 ofType(PreferenceActions.toggleDarkModeSuccess),
                 withLatestFrom(store.select(fromRoot.getUserPreference)),
                 withLatestFrom(store.select(fromRoot.isDarkMode)),
-                exhaustMap(([[_action, preference], isDarkMode]) =>
+                withLatestFrom(store.select(fromRoot.getPreferedMovieLanguage)),
+                exhaustMap(([[[_action, preference], isDarkMode], language]) =>
                     preferenceDataService.bulkUpdatePreference([
-                        { ...preference, user_id: authService.getUserId(), dark_mode: JSON.parse(isDarkMode) }
+                        {
+                            ...preference,
+                            language: language,
+                            user_id: authService.getUserId(),
+                            dark_mode: JSON.parse(isDarkMode)
+                        }
                     ])
                 )
             ),
