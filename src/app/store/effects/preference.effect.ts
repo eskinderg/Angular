@@ -9,6 +9,7 @@ import { PreferenceDataService } from 'src/app/preference/preference.data.servic
 import { AuthService } from 'src/app/auth/auth.service';
 import { Store } from '@ngrx/store';
 import { Preference } from 'src/app/models/preference';
+import { concatLatestFrom } from '@ngrx/operators';
 
 @Injectable()
 export class PreferenceEffect {
@@ -30,10 +31,12 @@ export class PreferenceEffect {
         ) =>
             actions$.pipe(
                 ofType(PreferenceActions.toggleDarkModeSuccess),
-                withLatestFrom(store.select(fromRoot.getUserPreference)),
-                withLatestFrom(store.select(fromRoot.isDarkMode)),
-                withLatestFrom(store.select(fromRoot.getPreferedMovieLanguage)),
-                exhaustMap(([[[_action, preference], isDarkMode], language]) =>
+                concatLatestFrom(() => [
+                    store.select(fromRoot.getUserPreference),
+                    store.select(fromRoot.isDarkMode),
+                    store.select(fromRoot.getUserLang)
+                ]),
+                switchMap(([_action, preference, isDarkMode, language]) =>
                     preferenceDataService.bulkUpdatePreference([
                         {
                             ...preference,

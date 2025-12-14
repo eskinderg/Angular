@@ -17,7 +17,6 @@ export interface IMovieState {
         genreId: number;
         page: number;
     };
-    preferedLanguage: string;
 }
 
 const initialState: IMovieState = {
@@ -32,8 +31,7 @@ const initialState: IMovieState = {
         movieResult: null,
         genreId: null,
         page: null
-    },
-    preferedLanguage: localStorage.getItem('lang') ?? null
+    }
 };
 
 export const movieReducer = createReducer<IMovieState>(
@@ -77,12 +75,12 @@ export const movieReducer = createReducer<IMovieState>(
             watchedList: [...action.movies, ...state.watchedList]
         };
     }),
-    on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {
-        return {
-            ...state,
-            preferedLanguage: action.lang
-        };
-    }),
+    // on(MoviesActions.setPreferedMovieLanguageSuccess, (state, action): IMovieState => {
+    //     return {
+    //         ...state,
+    //         preferedLanguage: action.lang
+    //     };
+    // }),
     on(MoviesActions.getDiscoverMovies, (state): IMovieState => {
         return {
             ...state,
@@ -150,10 +148,10 @@ export const getMovieState = createFeatureSelector<IMovieState>('movies');
 
 export const getWatchListMovies = createSelector(getMovieState, (state: IMovieState) => state.watchList);
 
-export const getPreferedMovieLanguage = createSelector(
-    getMovieState,
-    (state: IMovieState) => state.preferedLanguage
-);
+// export const getPreferedMovieLanguage = createSelector(
+//     getMovieState,
+//     (state: IMovieState) => state.preferedLanguage
+// );
 
 export const getDiscoverdMovies = createSelector(
     getMovieState,

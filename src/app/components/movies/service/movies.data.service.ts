@@ -219,7 +219,7 @@ export class MoviesDataService {
     // }
 
     searchMovies(searchStr: string): Observable<MovieResults> {
-        return this.store.select(fromMovies.getPreferedMovieLanguage).pipe(
+        return this.store.select(fromRoot.getUserLang).pipe(
             switchMap((lang) =>
                 this.http
                     .get('https://api.themoviedb.org/3/search/movie', {

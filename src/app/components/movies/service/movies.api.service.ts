@@ -90,7 +90,7 @@ export class MoviesApiService {
     }
 
     getPreferedMovieLang() {
-        return this.store.select(fromMovies.getPreferedMovieLanguage);
+        return this.store.select(fromRoot.getUserLang);
     }
 
     addWatchList(movie: Movie) {

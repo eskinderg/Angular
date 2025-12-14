@@ -260,7 +260,7 @@ export class MoviesEffect {
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.getDiscoverMoviesForHome),
-                concatLatestFrom(() => [store.select(fromMovies.getPreferedMovieLanguage)]),
+                concatLatestFrom(() => [store.select(fromRoot.getUserLang)]),
                 switchMap(([action, lang]) => {
                     return moviesDataService
                         .getDiscoverMovies(action.queryParams, lang, action.queryParams.page)
