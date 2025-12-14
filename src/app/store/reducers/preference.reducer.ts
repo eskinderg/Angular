@@ -15,7 +15,13 @@ const initialState: IPreferenceState = {
 
 export const profileReducer = createReducer<IPreferenceState>(
     initialState,
-    on(AuthActions.logOutSuccess, (): IPreferenceState => initialState),
+    on(
+        AuthActions.logOutSuccess,
+        (state): IPreferenceState => ({
+            ...initialState,
+            preference: { ...state.preference, language: state.preference.language }
+        })
+    ),
     on(
         PreferenceActions.toggleDarkModeSuccess,
         (state): IPreferenceState => ({
