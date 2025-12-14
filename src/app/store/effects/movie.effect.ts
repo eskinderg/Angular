@@ -1,13 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, switchMap, map, withLatestFrom, exhaustMap, take } from 'rxjs/operators';
+import { catchError, switchMap, map, exhaustMap, take } from 'rxjs/operators';
 import * as MoviesActions from '../actions/movie.actions';
 import { MoviesDataService } from 'src/app/components/movies/service/movies.data.service';
 import { AuthService } from 'src/app/shared/auth.service';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../store/reducers';
 import * as fromMovies from '../../store/reducers/movie.reducer';
+import { concatLatestFrom } from '@ngrx/operators';
 
 @Injectable()
 export class MoviesEffect {
@@ -225,9 +226,11 @@ export class MoviesEffect {
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.getDiscoverMovies),
-                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
-                withLatestFrom(store.select(fromMovies.getDiscoverdMoviesResults)),
-                exhaustMap(([[action, lang], loading]) => {
+                concatLatestFrom(() => [
+                    store.select(fromRoot.getUserLang),
+                    store.select(fromMovies.getDiscoverdMoviesResults)
+                ]),
+                switchMap(([action, lang, loading]) => {
                     if (loading) {
                         if (loading.page >= loading.total_pages) {
                             return of(MoviesActions.getDiscoverMoviesNoResult());
@@ -257,8 +260,8 @@ export class MoviesEffect {
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.getDiscoverMoviesForHome),
-                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
-                exhaustMap(([action, lang]) => {
+                concatLatestFrom(() => [store.select(fromMovies.getPreferedMovieLanguage)]),
+                switchMap(([action, lang]) => {
                     return moviesDataService
                         .getDiscoverMovies(action.queryParams, lang, action.queryParams.page)
                         .pipe(
@@ -283,9 +286,11 @@ export class MoviesEffect {
         ) =>
             actions$.pipe(
                 ofType(MoviesActions.fetchMoviesByGenre),
-                withLatestFrom(store.select(fromMovies.getPreferedMovieLanguage)),
-                withLatestFrom(store.select(fromMovies.getDiscoverdMoviesResults)),
-                exhaustMap(([[action, lang], loading]) => {
+                concatLatestFrom(() => [
+                    store.select(fromRoot.getUserLang),
+                    store.select(fromMovies.getDiscoverdMoviesResults)
+                ]),
+                switchMap(([action, lang, loading]) => {
                     if (loading) {
                         if (loading.page >= loading.total_pages) {
                             return of(MoviesActions.getDiscoverMoviesNoResult());

@@ -104,7 +104,8 @@
 }
 
 .trash-icon {
-    fill: rgb(from var(--warning) r g b / 45%);
+    // fill: rgb(from var(--warning) r g b / 45%);
+    fill: var(--note-pin-fill);
 }
 
 .trash-icon:hover {

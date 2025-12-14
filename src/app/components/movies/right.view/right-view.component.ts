@@ -8,6 +8,7 @@ import { MovieCardComponent } from '../components/movie.card/movie.card.componen
 import { PaginationComponent } from 'src/app/fragments/components/appPagination/pagination.component';
 import { AsyncPipe } from '@angular/common';
 import { MoviesApiService } from '../service/movies.api.service';
+import { PreferenceApiService } from 'src/app/preference/preference.api.service';
 
 @Component({
     selector: 'app-right-view',
@@ -21,12 +22,14 @@ export class RightViewComponent implements OnDestroy {
     route = inject(Router);
     movieModalService = inject(MovieDialogService);
     movieApiService = inject(MoviesApiService);
+    preferenceApiService = inject(PreferenceApiService);
 
     languages$ = this.movieApiService.getLanguages();
 
     routeSubscription: Subscription;
     apiSubscription: Subscription;
-    selectedLanguage$ = new BehaviorSubject<string>(null);
+
+    selectedLanguage$ = this.preferenceApiService.getUserPreferedLanguage();
 
     private _id: string;
     private _name: string;
@@ -70,13 +73,15 @@ export class RightViewComponent implements OnDestroy {
     }
 
     get UserPreferedLanaguage() {
-        return this.movieApiService.getPreferedMovieLang();
+        // return this.movieApiService.getPreferedMovieLang();
+        return this.preferenceApiService.getUserPreferedLanguage();
     }
 
     languageSelected(event: Event) {
         const selectElement = event.target as HTMLSelectElement;
         const selectedLanguage = selectElement.value;
         this.movieApiService.setPreferedMovieLang(selectedLanguage);
+        this.preferenceApiService.saveLang(selectedLanguage);
         // this.route.navigate(['/movies/genres', this.id, this.name, this.page ? '' : 1]);
     }
 

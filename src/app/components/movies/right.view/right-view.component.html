@@ -9,7 +9,7 @@
     <select
         [value]="selectedLanguage$ | async"
         (change)="languageSelected($event)"
-        [class.active]="selectedLanguage$.value">
+        [class.active]="selectedLanguage$">
         <option [value]="''">Language</option>
         @for (language of languages$ | async; track language) {
             <option

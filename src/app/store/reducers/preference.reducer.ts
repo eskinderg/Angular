@@ -30,12 +30,31 @@ export const profileReducer = createReducer<IPreferenceState>(
             ...state,
             preference: action.preference ?? state.preference
         })
+    ),
+    on(
+        PreferenceActions.saveUserLangSuccess,
+        (state, action): IPreferenceState => ({
+            ...state,
+            preference: { ...state.preference, language: action.lang }
+        })
+    ),
+    on(
+        PreferenceActions.saveUserPreferenceSuccess,
+        (state, action): IPreferenceState => ({
+            ...state,
+            preference: action.preference ?? state.preference
+        })
     )
 );
 
 export const getPreferenceState = createFeatureSelector<IPreferenceState>('preference');
 
 export const isDarkMode = createSelector(getPreferenceState, (state: IPreferenceState) => state.isDarkMode);
+
+export const getUserLang = createSelector(
+    getPreferenceState,
+    (state: IPreferenceState) => state.preference.language
+);
 
 export const getUserPreference = createSelector(
     getPreferenceState,

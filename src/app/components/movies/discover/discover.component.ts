@@ -7,6 +7,7 @@ import { AsyncPipe } from '@angular/common';
 import { BehaviorSubject, distinctUntilChanged, debounceTime, fromEvent, combineLatest, map } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { YearRangeSliderComponent } from './year/year-range-slider.component';
+import { PreferenceApiService } from 'src/app/preference/preference.api.service';
 
 @Component({
     selector: 'app-movies-discover',
@@ -17,9 +18,10 @@ import { YearRangeSliderComponent } from './year/year-range-slider.component';
 })
 export class DiscoverComponent implements OnInit, OnDestroy {
     private readonly movieModalService = inject(MovieDialogService);
+    private readonly preferenceApiService = inject(PreferenceApiService);
     public readonly movieApiService = inject(MoviesApiService);
 
-    selectedLanguage$ = new BehaviorSubject<string>(null);
+    selectedLanguage$ = this.preferenceApiService.getUserPreferedLanguage();
     startYear$ = new BehaviorSubject<string>(null);
     endYear$ = new BehaviorSubject<string>(null);
     sortDirection$ = new BehaviorSubject<string>(null);
@@ -64,7 +66,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
 
     private loadNextPage(): void {
         const queryParams = {
-            lang: this.selectedLanguage$.value,
+            lang: null,
             startDate: this.startYear$.value,
             endDate: this.endYear$.value,
             sortBy: this.sortDirection$.value,
@@ -78,6 +80,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
         const selectElement = event.target as HTMLSelectElement;
         const selectedLanguage = selectElement.value;
         this.movieApiService.setPreferedMovieLang(selectedLanguage);
+        this.preferenceApiService.saveLang(selectedLanguage);
         this.movieApiService.discoverReset();
         this.loadNextPage();
     }
@@ -99,7 +102,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
     }
 
     get UserPreferedLanaguage() {
-        return this.movieApiService.getPreferedMovieLang();
+        return this.preferenceApiService.getUserPreferedLanguage();
     }
 
     trackByMovie(index: number, movie: Movie) {

@@ -27,3 +27,27 @@ export const loadUserPreferenceFail = createAction(
     '[PREFERENCE] LOAD_USER_PREFERENCE_FAIL',
     props<{ error: any }>()
 );
+
+export const saveUserPreference = createAction(
+    '[PREFERENCE] SAVE_USER_PREFERENCE',
+    props<{ preference: Preference }>()
+);
+
+export const saveUserPreferenceSuccess = createAction(
+    '[PREFERENCE] SAVE_USER_PREFERENCE_SUCCESS',
+    props<{ preference: Preference }>()
+);
+
+export const saveUserPreferenceFail = createAction(
+    '[PREFERENCE] SAVE_USER_PREFERENCE_FAIL',
+    props<{ error: any }>()
+);
+
+export const saveUserLang = createAction('[PREFERENCE] SAVE_USER_LANGUAGE', props<{ lang: string }>());
+
+export const saveUserLangSuccess = createAction(
+    '[PREFERENCE] SAVE_USER_LANGUAGE_SUCCESS',
+    props<{ lang: string }>()
+);
+
+export const saveUserLangFail = createAction('[PREFERENCE] SAVE_USER_LANGUAGE_FAIL', props<{ error: any }>());
