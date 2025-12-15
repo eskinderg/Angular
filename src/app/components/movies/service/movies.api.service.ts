@@ -49,6 +49,10 @@ export class MoviesApiService {
         return this.store.select(fromMovies.getDiscoverdMovies);
     }
 
+    discoveredMoviesForHome(): Observable<Movie[]> {
+        return this.store.select(fromMovies.getDiscoverMoviesForHome);
+    }
+
     discoverMovies(queryParams: MovieQueryParams = null) {
         this.store.dispatch(AppActions.getDiscoverMovies({ queryParams: queryParams }));
     }

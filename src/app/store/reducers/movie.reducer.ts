@@ -11,6 +11,10 @@ export interface IMovieState {
         movies: Movie[];
         moviesResult: MovieResults;
         loading: boolean;
+        home: {
+            movies: Movie[];
+            movieResult: MovieResults;
+        };
     };
     genre: {
         movieResult: MovieResults;
@@ -25,7 +29,11 @@ const initialState: IMovieState = {
     discover: {
         movies: [],
         moviesResult: null,
-        loading: false
+        loading: false,
+        home: {
+            movies: [],
+            movieResult: null
+        }
     },
     genre: {
         movieResult: null,
@@ -95,8 +103,13 @@ export const movieReducer = createReducer<IMovieState>(
             ...state,
             discover: {
                 ...state.discover,
-                movies: [...action.movieResults.movies],
-                moviesResult: action.movieResults,
+                home: {
+                    ...state.discover.home,
+                    movies: [...action.movieResults.movies],
+                    movieResult: action.movieResults
+                },
+                // movies: [...action.movieResults.movies],
+                // moviesResult: action.movieResults,
                 loading: false
             }
         };
@@ -156,6 +169,10 @@ export const getWatchListMovies = createSelector(getMovieState, (state: IMovieSt
 export const getDiscoverdMovies = createSelector(
     getMovieState,
     (state: IMovieState) => state.discover.movies
+);
+export const getDiscoverMoviesForHome = createSelector(
+    getMovieState,
+    (state: IMovieState) => state.discover.home.movies
 );
 
 export const getDiscoverdMoviesLoading = createSelector(

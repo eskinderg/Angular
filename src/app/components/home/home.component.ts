@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     }
 
     get discoveredMovies$() {
-        return this.movieApiService.discoverdMovies();
+        return this.movieApiService.discoveredMoviesForHome();
     }
 
     get Owners(): Observable<

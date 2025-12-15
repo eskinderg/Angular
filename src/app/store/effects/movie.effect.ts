@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ofType, Actions, createEffect } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, switchMap, map, exhaustMap, take } from 'rxjs/operators';
+import { catchError, switchMap, map, take } from 'rxjs/operators';
 import * as MoviesActions from '../actions/movie.actions';
 import { MoviesDataService } from 'src/app/components/movies/service/movies.data.service';
 import { AuthService } from 'src/app/shared/auth.service';
