@@ -5,6 +5,7 @@ import prettier from 'eslint-plugin-prettier/recommended';
 import storybook from 'eslint-plugin-storybook';
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
+import tsseslint from '@typescript-eslint/eslint-plugin';
 
 export default defineConfig([
     { ignores: ['.angular', 'dist', 'docs', 'doc/compodoc'] },
@@ -14,7 +15,23 @@ export default defineConfig([
 
         extends: [...angular.configs.tsRecommended],
         processor: angular.processInlineTemplates,
+        plugins: {
+            '@typescript-eslint': tsseslint
+        },
         rules: {
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    // Options to ignore variables starting with an underscore, mirroring
+                    // TypeScript's default behavior.
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_'
+                }
+            ],
+            // If the base ESLint `no-unused-vars` rule is enabled by an extended config,
+            // you might need to disable it to avoid conflicts.
+            'no-unused-vars': 'off',
             '@angular-eslint/prefer-standalone': ['warn'],
 
             '@angular-eslint/component-selector': [

@@ -9,9 +9,9 @@ import {
     OnDestroy,
     Input,
     viewChild,
-    SimpleChanges,
-    OnChanges,
-    HostListener,
+    // SimpleChanges,
+    // OnChanges,
+    // HostListener,
     Renderer2,
     inject
 } from '@angular/core';
@@ -19,7 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, filter, distinctUntilChanged, tap, Subscription } from 'rxjs';
 import { Note } from 'src/app/models/note';
-import { TextSelection } from './text.selection';
+// import { TextSelection } from './text.selection';
 
 export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -38,7 +38,7 @@ export const EXPANDED_TEXTAREA_VALUE_ACCESSOR: any = {
 // export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit, OnChanges {
 export class TextareaExpandedComponent implements ControlValueAccessor, OnDestroy, OnInit {
     htmlSafe = inject(DomSanitizer);
-    private txtSelection = inject(TextSelection);
+    // private txtSelection = inject(TextSelection);
     private renderer = inject(Renderer2);
 
     @Input() opendNote: Note;

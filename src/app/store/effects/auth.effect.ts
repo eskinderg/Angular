@@ -199,7 +199,7 @@ export class AuthEffect {
         () =>
             this.actions$.pipe(
                 ofType(AuthActions.routeToLogin),
-                switchMap((action) => from(this.router.navigate(['/login'])))
+                switchMap((_action) => from(this.router.navigate(['/login'])))
             ),
         { dispatch: false }
     );

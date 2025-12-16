@@ -18,7 +18,7 @@ import { NoteRightViewComponent } from '../right.view/note.right.view.component'
 import { v4 as uuidv4 } from 'uuid';
 import { NoteListItemComponent } from './note-list-item/note-list-item.component';
 import { AsyncPipe } from '@angular/common';
-import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
+// import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 import { AuthService } from 'src/app/auth/auth.service';

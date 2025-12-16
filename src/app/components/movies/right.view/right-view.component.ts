@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { MovieResults } from '../models/movie-results';
 import { Movie } from '../models/movie';
 import { MovieDialogService } from '../service/movie.dialog.service';

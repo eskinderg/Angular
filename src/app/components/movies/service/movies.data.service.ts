@@ -1,9 +1,9 @@
-import { throwError as observableThrowError, Observable, forkJoin } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Genre } from '../models/genre';
 import { Movie } from '../models/movie';
 import { Tv } from '../models/tv';
-import * as fromMovies from '../../../store/reducers/movie.reducer';
+// import * as fromMovies from '../../../store/reducers/movie.reducer';
 
 import { map, switchMap } from 'rxjs/operators';
 
@@ -336,7 +336,7 @@ export class MoviesDataService {
     // }
 
     getMoviesByGenre(
-        queryParams: MovieQueryParams,
+        _queryParams: MovieQueryParams,
         genreId: number,
         lang: string = null,
         page: number = 1
@@ -494,8 +494,8 @@ export class MoviesDataService {
     //   )
     // }
 
-    private handleError(error: Response | any) {
-        console.error('ApiService::handleError', error);
-        return observableThrowError(error);
-    }
+    // private handleError(error: Response | any) {
+    //     console.error('ApiService::handleError', error);
+    //     return observableThrowError(error);
+    // }
 }

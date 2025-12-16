@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Movie } from 'src/app/components/movies/models/movie';
 import { MovieResults } from 'src/app/components/movies/models/movie-results';
 import { MovieQueryParams } from 'src/app/components/movies/service/movies.data.service';

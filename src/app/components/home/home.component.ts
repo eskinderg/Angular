@@ -10,7 +10,7 @@ import { MoviesDataService } from '../movies/service/movies.data.service';
 import { BarchartComponent } from 'src/app/fragments/components/barchart/barchart.component';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 import { map, Observable } from 'rxjs';
-import { AsyncPipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { ScatterPlotConnectedChartComponent } from 'src/app/fragments/components/scatterPlotConnectedChart/scatterplotconnected.component';
 import { PieChartComponent } from 'src/app/fragments/components/piechart/piechart.component';

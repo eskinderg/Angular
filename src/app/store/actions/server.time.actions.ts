@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Preference } from 'src/app/models/preference';
+// import { Preference } from 'src/app/models/preference';
 
 /**
  List of server messages

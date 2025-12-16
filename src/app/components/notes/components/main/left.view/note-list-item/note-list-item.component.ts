@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { FadeInOutNoteListItem } from 'src/app/components/shared/animations/fadeInAndOutNoteListItem';
 import { Note } from 'src/app/models/note';
 import { DatePipe } from '@angular/common';
 import { TooltipDirective } from '../../../../../../fragments/components/tooltip/tooltip.directive';

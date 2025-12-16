@@ -12,13 +12,12 @@ import { Movie } from '../../models/movie';
 import { AsyncPipe, CommonModule, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MoviesApiService } from '../../service/movies.api.service';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { CircularRatingComponent } from 'src/app/fragments/components/circularRating/circular.component';
 import { BookmarkComponent } from 'src/app/fragments/components/appBookmark/bookmark.component';
 import { MoviesDataService } from '../../service/movies.data.service';
 import { hrefLink, torLink } from '../../functions/link';
 import { WatchedComponent } from 'src/app/fragments/components/appWatched/watched.components';
-import { isInWatchList } from 'src/app/store/reducers';
 
 @Component({
     selector: 'app-movie-card',

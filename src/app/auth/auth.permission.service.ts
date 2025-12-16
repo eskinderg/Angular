@@ -11,7 +11,7 @@ export class AuthPermission {
         if (this.oAuthService.hasValidAccessToken()) {
             try {
                 return this.Roles.includes(permission);
-            } catch (error) {
+            } catch (_error) {
                 return false;
             }
         } else return false;
@@ -20,7 +20,7 @@ export class AuthPermission {
     private get Token(): any {
         try {
             return JSON.parse(atob(this.oAuthService.getAccessToken().split('.')[1]));
-        } catch (error) {
+        } catch (_error) {
             return null;
         }
     }
