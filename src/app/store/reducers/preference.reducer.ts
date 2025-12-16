@@ -59,7 +59,7 @@ export const isDarkMode = createSelector(getPreferenceState, (state: IPreference
 
 export const getUserLang = createSelector(
     getPreferenceState,
-    (state: IPreferenceState) => state.preference.language
+    (state: IPreferenceState) => state.preference?.language ?? 'en'
 );
 
 export const getUserPreference = createSelector(
