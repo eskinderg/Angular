@@ -147,7 +147,7 @@ textarea:focus {
 
     /* Does NOT affect layout */
     // width: 10px;
-    margin-left: -5px;
+    margin-left: -2px;
     left: calc(var(--left-pane-width, 20%) + 0px);
     cursor: col-resize;
     z-index: 20;
@@ -155,7 +155,7 @@ textarea:focus {
 }
 
 .resize-handle:hover {
-    width: 4px !important;
+    width: 3px !important;
     opacity: 1 !important;
 }
 
