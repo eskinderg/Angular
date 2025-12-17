@@ -1,5 +1,5 @@
-<div class="note-div">
-    <div class="notes-navigation">
+<div class="note-div" #container>
+    <div class="notes-navigation" #leftPane>
         <app-note-left-view
             [notes$]="filteredNotes$"
             [selectedNote$]="notesApiService.SelectedNote"
@@ -11,6 +11,10 @@
             (createNewNote)="onCreateNewNote($event)"
             [searchTerm$]="searchTerm$" />
     </div>
+
+    <!-- DRAG HANDLE -->
+    <div class="resize-handle" (mousedown)="startResize($event)"></div>
+
     <div class="notes-detail">
         <div class="note-outlet">
             @if (notesApiService.OpendNote | async) {

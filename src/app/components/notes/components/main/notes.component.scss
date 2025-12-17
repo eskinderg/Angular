@@ -7,6 +7,7 @@
 }
 
 .note-div {
+    position: relative;
     height: 100%;
     flex: 1 1 auto;
     display: flex;
@@ -137,4 +138,42 @@ textarea:hover {
 textarea:focus {
     box-shadow: 0 5px 12px rgb(0 0 0 / 20%);
     outline: none;
+}
+
+.resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+    /* Does NOT affect layout */
+    // width: 10px;
+    margin-left: -5px;
+    left: calc(var(--left-pane-width, 20%) + 0px);
+    cursor: col-resize;
+    z-index: 20;
+    background-color: var(--border);
+}
+
+.resize-handle:hover {
+    width: 4px !important;
+    opacity: 1 !important;
+}
+
+.resize-handle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    background-color: var(--border);
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: opacity 0.15s ease;
+}
+
+/* Prevent text selection while dragging */
+.resizing {
+    user-select: none;
+    cursor: col-resize;
 }

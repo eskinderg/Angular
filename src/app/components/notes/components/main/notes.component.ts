@@ -5,7 +5,10 @@ import {
     OnDestroy,
     OnInit,
     inject,
-    effect
+    effect,
+    ElementRef,
+    Renderer2,
+    AfterViewInit
 } from '@angular/core';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Note } from '../../../../models/note';
@@ -30,17 +33,29 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
     imports: [NoteLeftViewComponent, NoteRightViewComponent, AsyncPipe],
     providers: [TextSelection, NoteApiService]
 })
-export class NotesComponent implements OnDestroy, OnInit {
+export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     public notesApiService = inject(NoteApiService);
     private notificationService = inject(NotificationService);
     private dialogService = inject(DialogService);
     private router = inject(Router);
+    private renderer = inject(Renderer2);
 
     appNoteComponent = viewChild.required<NoteRightViewComponent>('appNote');
+    container = viewChild.required<ElementRef<HTMLDivElement>>('container');
+    leftPane = viewChild.required<ElementRef<HTMLDivElement>>('leftPane');
     refreshSubscription: Subscription;
     syncConflictSubscription: Subscription;
     refreshInterval = interval(NOTE_REFRESH_INTERVAL);
     searchTerm$ = new BehaviorSubject<string>('');
+
+    private startX = 0;
+    private startWidth = 0;
+    private removeMouseMove?: () => void;
+    private removeMouseUp?: () => void;
+
+    private readonly MIN_LEFT_PERCENT = 15; // %
+    private readonly STORAGE_KEY = 'notes-left-pane-width';
+    private readonly MAX_LEFT_PERCENT = 50; // %
 
     filteredNotes$ = combineLatest([this.notesApiService.Notes, this.searchTerm$]).pipe(
         map(([notes, searchTerm]) => {
@@ -99,6 +114,28 @@ export class NotesComponent implements OnDestroy, OnInit {
 
     ngOnInit(): void {
         this.refreshSubscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
+    }
+
+    ngAfterViewInit(): void {
+        const saved = localStorage.getItem(this.STORAGE_KEY);
+        if (!saved) return;
+
+        const savedPx = Number(saved);
+        if (Number.isNaN(savedPx)) return;
+
+        const containerWidth = this.container().nativeElement.offsetWidth;
+
+        const minPx = (this.MIN_LEFT_PERCENT / 100) * containerWidth;
+
+        const maxPx = (this.MAX_LEFT_PERCENT / 100) * containerWidth;
+
+        const safeWidth = Math.min(Math.max(savedPx, minPx), maxPx);
+
+        this.container().nativeElement.style.setProperty(
+            '--left-pane-width',
+            `${(safeWidth / containerWidth) * 100}%`
+        );
+        this.renderer.setStyle(this.leftPane().nativeElement, 'flex', `0 0 ${safeWidth}px`);
     }
 
     onUpdateNote(note: Note) {
@@ -184,5 +221,52 @@ export class NotesComponent implements OnDestroy, OnInit {
         document.querySelector('.content').classList.remove('hide-scroll-bar');
         if (this.refreshSubscription) this.refreshSubscription.unsubscribe();
         if (this.syncConflictSubscription) this.syncConflictSubscription.unsubscribe();
+        this.removeMouseMove?.();
+        this.removeMouseUp?.();
     }
+
+    startResize(event: MouseEvent): void {
+        event.preventDefault();
+        this.startX = event.clientX;
+        this.startWidth = this.leftPane().nativeElement.offsetWidth;
+        this.renderer.addClass(document.body, 'resizing');
+        this.removeMouseMove = this.renderer.listen('document', 'mousemove', this.onMouseMove);
+        this.removeMouseUp = this.renderer.listen('document', 'mouseup', this.stopResize);
+    }
+
+    private onMouseMove = (event: MouseEvent): void => {
+        const dx = event.clientX - this.startX;
+        const containerWidth = this.container().nativeElement.offsetWidth;
+
+        let newWidthPx = this.startWidth + dx;
+
+        // convert % → px
+        const minPx = (this.MIN_LEFT_PERCENT / 100) * containerWidth;
+
+        const maxPx = (this.MAX_LEFT_PERCENT / 100) * containerWidth;
+
+        // ✅ enforce limits
+        newWidthPx = Math.max(minPx, newWidthPx);
+        newWidthPx = Math.min(maxPx, newWidthPx);
+
+        this.container().nativeElement.style.setProperty(
+            '--left-pane-width',
+            `${(newWidthPx / containerWidth) * 100}%`
+        );
+
+        this.renderer.setStyle(this.leftPane().nativeElement, 'flex', `0 0 ${newWidthPx}px`);
+    };
+
+    private stopResize = (): void => {
+        this.renderer.removeClass(document.body, 'resizing');
+
+        const width = this.leftPane().nativeElement.offsetWidth;
+        localStorage.setItem(this.STORAGE_KEY, String(width));
+
+        this.removeMouseMove?.();
+        this.removeMouseUp?.();
+
+        this.removeMouseMove = undefined;
+        this.removeMouseUp = undefined;
+    };
 }
