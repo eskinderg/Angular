@@ -101,7 +101,10 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     }
 
     ngOnInit(): void {
-        this.refreshSubscription = this.refreshInterval.subscribe(() => this.notesApiService.refreshNotes());
+        this.refreshSubscription = this.refreshInterval.subscribe(() => {
+            //refresh if no search term
+            if (!this.searchTerm$.value.length) return this.notesApiService.refreshNotes();
+        });
     }
 
     ngAfterViewInit(): void {
