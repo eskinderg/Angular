@@ -24,7 +24,7 @@ import { debounceTime, filter, merge } from 'rxjs';
 @Component({
     selector: 'app-note-right-view',
     templateUrl: 'note.right.view.component.html',
-    styleUrls: ['note.right.view.component.scss', '../../../scss/notes.colour.scss'],
+    styleUrls: ['note.right.view.component.scss', '../../../scss/_notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         SvgIconComponent,

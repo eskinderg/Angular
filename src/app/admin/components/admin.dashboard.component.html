@@ -95,7 +95,7 @@
                         (sortField$ | async) === 'active' && (sortDirection$ | async) === 'desc'
                     "
                     (click)="updateSort('active')">
-                    Active
+                    <app-svg-icon height="23" width="23" class="svg-icon" src="assets/images/inactive.svg" />
                 </th>
                 <th
                     [class.sorted-asc]="
@@ -105,7 +105,7 @@
                         (sortField$ | async) === 'readonly' && (sortDirection$ | async) === 'desc'
                     "
                     (click)="updateSort('readonly')">
-                    Readonly
+                    <app-svg-icon height="23" width="23" class="svg-icon" src="assets/images/lock.svg" />
                 </th>
                 <th
                     [class.sorted-asc]="
@@ -115,7 +115,7 @@
                         (sortField$ | async) === 'archived' && (sortDirection$ | async) === 'desc'
                     "
                     (click)="updateSort('archived')">
-                    Archived
+                    <app-svg-icon height="23" width="23" class="svg-icon" src="assets/images/trash.svg" />
                 </th>
                 <th
                     [class.sorted-asc]="
@@ -125,7 +125,27 @@
                         (sortField$ | async) === 'pinned' && (sortDirection$ | async) === 'desc'
                     "
                     (click)="updateSort('pinned')">
-                    Pinned
+                    <app-svg-icon height="23" width="23" class="svg-icon" src="assets/images/pin.svg" />
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('spell_check')">
+                    <app-svg-icon height="23" width="23" class="svg-icon" src="assets/images/spell.svg" />
+                </th>
+                <th
+                    [class.sorted-asc]="
+                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'asc'
+                    "
+                    [class.sorted-desc]="
+                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'desc'
+                    "
+                    (click)="updateSort('colour')">
+                    <app-svg-icon height="25" width="25" class="svg-icon" src="assets/images/colour.svg" />
                 </th>
                 <th
                     [class.sorted-asc]="
@@ -146,26 +166,6 @@
                     "
                     (click)="updateSort('date_deleted')">
                     Date Deleted
-                </th>
-                <th
-                    [class.sorted-asc]="
-                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'asc'
-                    "
-                    [class.sorted-desc]="
-                        (sortField$ | async) === 'spell_check' && (sortDirection$ | async) === 'desc'
-                    "
-                    (click)="updateSort('spell_check')">
-                    Spell Check
-                </th>
-                <th
-                    [class.sorted-asc]="
-                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'asc'
-                    "
-                    [class.sorted-desc]="
-                        (sortField$ | async) === 'colour' && (sortDirection$ | async) === 'desc'
-                    "
-                    (click)="updateSort('colour')">
-                    Colour
                 </th>
                 <th
                     [class.sorted-asc]="
@@ -204,14 +204,64 @@
                     </td>
                     <td>{{ note.header }}</td>
                     <td>{{ note.owner }}</td>
-                    <td>{{ note.active }}</td>
-                    <td>{{ note.readonly }}</td>
-                    <td>{{ note.archived }}</td>
-                    <td>{{ note.pinned }}</td>
+                    <td>
+                        @if (!note.active) {
+                            <app-svg-icon
+                                height="23"
+                                width="23"
+                                class="svg-icon"
+                                src="assets/images/inactive.svg" />
+                        }
+                    </td>
+                    <td>
+                        @if (note.readonly) {
+                            <app-svg-icon
+                                height="23"
+                                width="23"
+                                [fill]="'red'"
+                                class="svg-icon"
+                                src="assets/images/lock.svg" />
+                        }
+                    </td>
+                    <td>
+                        @if (note.archived) {
+                            <app-svg-icon
+                                height="23"
+                                width="23"
+                                class="svg-icon"
+                                src="assets/images/trash.svg" />
+                        }
+                    </td>
+                    <td>
+                        @if (note.pinned) {
+                            <app-svg-icon
+                                height="23"
+                                width="23"
+                                class="svg-icon"
+                                src="assets/images/pin.svg" />
+                        }
+                    </td>
+                    <td>
+                        @if (note.spell_check) {
+                            <app-svg-icon
+                                height="23"
+                                width="23"
+                                class="svg-icon"
+                                src="assets/images/spell.svg" />
+                        }
+                    </td>
+                    <td>
+                        @if (note.colour !== 'none' && note.colour !== null && note.colour !== '') {
+                            <app-svg-icon
+                                height="25"
+                                width="25"
+                                [fill]="note.colour"
+                                [stroke]="note.colour"
+                                src="assets/images/colour.svg" />
+                        }
+                    </td>
                     <td>{{ note.date_archived | date: 'medium' }}</td>
                     <td>{{ note.date_deleted | date: 'medium' }}</td>
-                    <td>{{ note.spell_check }}</td>
-                    <td>{{ note.colour }}</td>
                     <td>{{ note.date_created | date: 'medium' }}</td>
                     <td>{{ note.date_modified | date: 'medium' }}</td>
                 </tr>

@@ -14,7 +14,7 @@ type Animate = {
 @Component({
     selector: 'app-note-list-item',
     templateUrl: './note-list-item.component.html',
-    styleUrls: ['./note-list-item.component.scss', '../../../../scss/notes.colour.scss'],
+    styleUrls: ['./note-list-item.component.scss', '../../../../scss/_notes.colour.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [TooltipDirective, SvgIconComponent, DatePipe, NoteTitleTruncatePipe, AgoDatePipe]
 })

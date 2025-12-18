@@ -27,7 +27,7 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 @Component({
     selector: 'app-notes',
     templateUrl: 'notes.component.html',
-    styleUrls: ['notes.component.scss', './../../scss/notes.colour.scss'],
+    styleUrls: ['notes.component.scss', './../../scss/_notes.colour.scss'],
     animations: [FadeInOutNoteListItem],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NoteLeftViewComponent, NoteRightViewComponent, AsyncPipe],

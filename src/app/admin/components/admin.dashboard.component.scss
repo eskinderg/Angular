@@ -68,7 +68,7 @@ table {
 
     th,
     td {
-        padding: 0.75rem 1rem;
+        padding: 0.5rem;
         border: 1px solid var(--border);
         text-align: left;
         text-overflow: ellipsis;
@@ -118,13 +118,21 @@ table {
 
     th.checkbox,
     td.checkbox {
-        min-width: 5rem;
+        // min-width: 5rem;
         max-width: 40px;
+        padding:0.35rem;
+    }
+
+    .svg-icon {
+        fill: var(--note-pin-fill);
+        display: inherit;
+
+        // stroke: var(--note-pin-fill);
     }
 
     th:nth-child(2),
     td:nth-child(2) {
-        width: 15%;
+        width: 14%;
     } // Header
     th:nth-child(3),
     td:nth-child(3) {
@@ -132,43 +140,44 @@ table {
     } // Owner
     th:nth-child(4),
     td:nth-child(4) {
-        width: 6%;
+        width: 3%;
     } // Active
     th:nth-child(5),
     td:nth-child(5) {
-        width: 6%;
+        width: 3%;
     } // Readonly
     th:nth-child(6),
     td:nth-child(6) {
-        width: 6%;
+        width: 3%;
     } // Archived
     th:nth-child(7),
     td:nth-child(7) {
-        width: 5%;
+        width: 3%;
     } // Pinned
     th:nth-child(8),
     td:nth-child(8) {
-        width: 8%;
-    } // Date archived
+        width: 3%;
+    } // Spell Check
     th:nth-child(9),
     td:nth-child(9) {
-        width: 7%;
-    } // Date deleted
+        width: 3%;
+    } // Colour
     th:nth-child(10),
     td:nth-child(10) {
-        width: 6%;
-    } // spell check
+        // width: 14%;
+    } // Date Archived
     th:nth-child(11),
     td:nth-child(11) {
-        width: 6%;
-    } // colour
+        // width: 14%;
+    } // Date Deleted
 
     tr:nth-child(even) {
         background-color: var(--bs-card-bg);
     }
 
     tr:hover {
-        background-color: var(--active-list-link);
+        // background-color: var(--active-list-link);
+        background-color: var(--bg-hover);
         cursor: pointer;
     }
 

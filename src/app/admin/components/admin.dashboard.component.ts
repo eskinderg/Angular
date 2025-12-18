@@ -10,6 +10,7 @@ import { NoteFilterService } from '../services/note-filter.service';
 import { BulkUpdateDialogComponent } from './notes/bulk-update-dialog/bulk-update-dialog.component';
 import { SelectedNotesDialogComponent } from './notes/selected-notes-dialog.component/selected-notes-dialog.component';
 import { PieChartRadialComponent } from 'src/app/fragments/components/piechartradial/piechartradial.component';
+import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
 
 @Component({
     selector: 'app-admin-dashboard-notes',
@@ -23,6 +24,7 @@ import { PieChartRadialComponent } from 'src/app/fragments/components/piechartra
         EditNoteDialogComponent,
         FormsModule,
         BulkUpdateDialogComponent,
+        SvgIconComponent,
         PieChartRadialComponent
     ],
     providers: [AdminNoteApiService]
