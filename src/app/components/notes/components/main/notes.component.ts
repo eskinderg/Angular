@@ -54,8 +54,8 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     private removeMouseUp?: () => void;
 
     private readonly MIN_LEFT_PERCENT = 15; // %
-    private readonly STORAGE_KEY = 'notes-left-pane-width';
     private readonly MAX_LEFT_PERCENT = 50; // %
+    private readonly STORAGE_KEY = 'notes-left-pane-width';
 
     filteredNotes$ = combineLatest([this.notesApiService.Notes, this.searchTerm$]).pipe(
         map(([notes, searchTerm]) => {
@@ -80,18 +80,6 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
                 'No internet connection available'
             );
         });
-
-        // this.syncConflictSubscription = this.notesApiService.IsSyncConflict.subscribe((c) => {
-        //     if (c) {
-        //         this.notificationService.showWarning(
-        //             "There are changes made that are not in sync with the server. Please reload your page to fetch the latest changes otherwise your changes won't be saved",
-        //             'Sync Operation',
-        //             5,
-        //             true,
-        //             false
-        //         );
-        //     }
-        // });
 
         effect((onCleanup) => {
             const sub = this.notesApiService.IsSyncConflict.subscribe((c) => {
@@ -135,6 +123,7 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
             '--left-pane-width',
             `${(safeWidth / containerWidth) * 100}%`
         );
+
         this.renderer.setStyle(this.leftPane().nativeElement, 'flex', `0 0 ${safeWidth}px`);
     }
 
@@ -183,9 +172,6 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     }
 
     hightlightText(note: Note, field: 'header' | 'text'): string {
-        // const div = document.createElement('div');
-        // div.innerHTML = note.text;
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(note.text, 'text/html');
 
@@ -245,7 +231,7 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
 
         const maxPx = (this.MAX_LEFT_PERCENT / 100) * containerWidth;
 
-        // ✅ enforce limits
+        // enforce limits
         newWidthPx = Math.max(minPx, newWidthPx);
         newWidthPx = Math.min(maxPx, newWidthPx);
 
