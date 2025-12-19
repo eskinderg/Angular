@@ -47,7 +47,7 @@
     @if ((movieResults$ | async).total_results) {
         @if (searchTerm$.value.length) {
             @if ((movieResults$ | async).movies.length) {
-                <div [@movieCardList] class="movie-cards-container">
+                <div class="movie-cards-container">
                     @for (movie of (movieResults$ | async)?.movies; track movie) {
                         <div>
                             <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />

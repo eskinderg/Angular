@@ -17,14 +17,12 @@ import { MovieDialogComponent } from '../components/dialog/movie-dialog.componen
 import { MovieDialogService } from '../service/movie.dialog.service';
 import { MovieCardComponent } from '../components/movie.card/movie.card.component';
 import { AsyncPipe } from '@angular/common';
-import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
 
 @Component({
     selector: 'app-search',
     templateUrl: 'search.component.html',
     styleUrls: ['search.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    animations: [MovieCardListAnimation],
     imports: [MovieCardComponent, AsyncPipe]
 })
 export class SearchComponent implements OnDestroy, AfterViewInit {

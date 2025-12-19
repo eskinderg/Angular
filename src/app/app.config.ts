@@ -1,6 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
@@ -17,7 +16,6 @@ import { appInterceptors } from './interceptors';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideAnimations(),
         provideOAuthClient(),
         provideZonelessChangeDetection(),
         provideHttpClient(withFetch(), withInterceptorsFromDi(), withInterceptors(appInterceptors)),

@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, inject } from '@angular/core';
-import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 import * as fromProfile from './../../store/reducers/preference.reducer';
@@ -15,7 +14,6 @@ import { AsyncPipe } from '@angular/common';
     selector: 'app-profile',
     templateUrl: 'profile.component.html',
     styleUrls: ['profile.component.scss'],
-    animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CardComponent, ThemeOptionComponent, FormsModule, AsyncPipe]
 })
@@ -23,7 +21,6 @@ export class ProfileComponent {
     private authService = inject(OAuthService);
     store = inject<Store<fromProfile.IPreferenceState>>(Store);
 
-    @HostBinding('@routerFadeInAnimation')
     public x: number;
     public y: number;
     public user: any;

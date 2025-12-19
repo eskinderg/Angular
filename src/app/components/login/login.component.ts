@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import * as fromRoot from '../../store/reducers';
 import * as AuthActions from '../../store/actions/auth.action';
@@ -11,7 +11,6 @@ import {
     FormsModule,
     ReactiveFormsModule
 } from '@angular/forms';
-import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 // import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +19,6 @@ import { BehaviorSubject } from 'rxjs';
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    animations: [fadeInAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [FormsModule, CommonModule, ReactiveFormsModule]
 })
@@ -30,7 +28,6 @@ export class LoginComponent implements OnInit {
     // private route = inject(ActivatedRoute);
     private router = inject(Router);
 
-    @HostBinding('@routerFadeInAnimation')
     userProfile: object;
     loginForm: UntypedFormGroup;
     message$ = new BehaviorSubject<string>('');

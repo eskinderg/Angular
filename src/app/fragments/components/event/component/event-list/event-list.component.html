@@ -3,7 +3,6 @@
         @for (event of events; track event) {
             <li [class.completed]="event.complete">
                 <app-event-list-item
-                    [@fadeInOutEventListItem]
                     [event]="event"
                     (toggle)="onToggleEvent($event)"
                     (remove)="onRemoveEvent($event)"

@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { NoteApiService } from '../../services/notes.api.service';
 import { Note } from '../../../../models/note';
-import { FadeInOutNoteListItem } from '../../../shared/animations/fadeInAndOutNoteListItem';
 import { Router } from '@angular/router';
 import { NoteRightViewComponent } from './right.view/note.right.view.component';
 import { BehaviorSubject, combineLatest, interval, map, Subscription } from 'rxjs';
@@ -28,7 +27,6 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
     selector: 'app-notes',
     templateUrl: 'notes.component.html',
     styleUrls: ['notes.component.scss', './../../scss/_notes.colour.scss'],
-    animations: [FadeInOutNoteListItem],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [NoteLeftViewComponent, NoteRightViewComponent, AsyncPipe],
     providers: [TextSelection, NoteApiService]

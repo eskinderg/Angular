@@ -1,13 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Event } from '../../event';
-import { FadeInOutEventListItem } from 'src/app/components/shared/animations/fadeInAndOutEventListItem';
 import { EventListItemComponent } from './event-list-item/event-list-item.component';
 
 @Component({
     selector: 'app-event-list',
     templateUrl: './event-list.component.html',
     styleUrls: ['./event-list.component.scss'],
-    animations: [FadeInOutEventListItem],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [EventListItemComponent]
 })

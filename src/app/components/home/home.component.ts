@@ -1,6 +1,5 @@
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { fadeInAnimation } from '../shared/animations/fadeInAnimation';
 import { Tv } from '../movies/models/tv';
 import { environment } from 'src/environments/environment';
 import { CardComponent } from '../../fragments/components/card/card.component';
@@ -21,7 +20,6 @@ import { TruncatePipe } from '../movies/directives/truncate';
     selector: 'app-home',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.scss'],
-    animations: [fadeInAnimation],
     imports: [
         CardComponent,
         BarchartComponent,
@@ -41,7 +39,6 @@ export class HomeComponent implements OnInit {
     movieApiService = inject(MoviesApiService);
 
     public appVersion: string;
-    @HostBinding('@routerFadeInAnimation')
     public tvs: Tv[];
 
     /* from component input binding */

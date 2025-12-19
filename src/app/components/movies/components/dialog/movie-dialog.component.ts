@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { Subscription } from 'rxjs';
-import { DialogAnimations } from './animation';
 import { AsyncPipe, UpperCasePipe } from '@angular/common';
 import { TruncatePipe } from '../../directives/truncate';
 import { MovieDialogService } from '../../service/movie.dialog.service';
@@ -25,7 +24,6 @@ import { hrefLink, torLink } from '../../functions/link';
     selector: 'app-movie-modal',
     templateUrl: './movie-dialog.component.html',
     styleUrl: './movie-dialog.component.scss',
-    animations: [DialogAnimations.modal],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [CircularRatingComponent, BookmarkComponent, AsyncPipe, UpperCasePipe, TruncatePipe]
 })
