@@ -1,5 +1,5 @@
 <h2 style="text-align: center">Watch List</h2>
-<div [@movieCardList] class="movie-cards-container">
+<div class="movie-cards-container">
     @for (movie of movieApiService.getUserMovies() | async; track movie) {
         <div>
             <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />

@@ -5,13 +5,11 @@ import { MovieDialogService } from '../service/movie.dialog.service';
 import { Observable } from 'rxjs';
 import { MoviesApiService } from '../service/movies.api.service';
 import { AsyncPipe } from '@angular/common';
-import { MovieCardListAnimation } from '../../shared/animations/fadeInAndOutMovieCard';
 
 @Component({
     selector: 'app-movies-watchlist',
     templateUrl: 'watchlist.component.html',
     styleUrls: ['watchlist.component.scss'],
-    animations: [MovieCardListAnimation],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MovieCardComponent, AsyncPipe]
 })
