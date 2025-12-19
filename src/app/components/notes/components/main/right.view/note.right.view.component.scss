@@ -26,6 +26,12 @@
     // background: grey;
 }
 
+.readonly-menu {
+    filter: grayscale(100%);
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}
+
 .note-header {
     flex-basis: 50%;
 }
@@ -35,12 +41,24 @@
 }
 
 .svg-readonly {
-    fill: red ! important;
+    fill: red !important;
+}
+
+.readonly-svg {
+    fill: var(--body-color);
+}
+
+.readonly-svg:hover {
+    fill: red !important;
 }
 
 .spell-check {
     cursor: pointer;
     fill: var(--b-secondary);
+}
+
+.spell-check:hover {
+    fill: var(--spell-check-active);
 }
 
 .spell-check-active {
@@ -55,6 +73,10 @@
 .pin-note-icon {
     cursor: pointer;
     fill: #c7c7c7;
+}
+
+.pin-note-icon:hover {
+    fill: var(--note-pin-fill);
 }
 
 .pinned {
@@ -105,7 +127,7 @@
 
 .trash-icon {
     // fill: rgb(from var(--warning) r g b / 45%);
-    fill: var(--note-pin-fill);
+    fill: var(--bs-secondary-color);
 }
 
 .trash-icon:hover {

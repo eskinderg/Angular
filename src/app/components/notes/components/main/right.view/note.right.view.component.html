@@ -32,11 +32,11 @@
                 (noteUpdateNoteHeader)="onNoteHeaderUpdate($event)" />
         </div>
 
-        <div class="menu-icons">
+        <div class="menu-icons" [class.readonly-menu]="facadeNote.readonly">
             <div
                 appTooltip="Toggle Spell Check"
                 [position]="tooltipPosition"
-                [ngClass]="{ 'spell-check-active': facadeNote.spell_check }"
+                [class.spell-check-active]="facadeNote.spell_check"
                 (click)="onSpellCheckToggle(facadeNote)">
                 <app-svg-icon
                     height="25"
@@ -70,6 +70,7 @@
                 <app-svg-icon
                     [class.svg-readonly]="facadeNote.readonly"
                     (mouseUp)="onToggleReadonly(facadeNote)"
+                    class="readonly-svg"
                     height="30"
                     width="30"
                     src="assets/images/lock.svg" />

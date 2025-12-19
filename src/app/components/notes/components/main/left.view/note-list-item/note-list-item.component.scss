@@ -13,7 +13,13 @@
 
 .spell-check {
     cursor: pointer;
-    fill: var(--b-secondary);
+
+    // fill: var(--b-secondary);
+    fill: var(--bs-nav-tabs-link-active-color);
+}
+
+.spell-check:hover {
+    fill: var(--spell-check-active);
 }
 
 .spell-check-active {
@@ -75,6 +81,18 @@
     path {
         fill: var(--note-pin-fill);
     }
+}
+
+.actions-readonly {
+    pointer-events: none;
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+.note-actions {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
 }
 
 .readonly {
@@ -184,7 +202,9 @@
     transition: all 0.25s ease;
     width: 1.5rem;
     height: 1.5rem;
-    fill: #c7c7c7;
+
+    // fill: #c7c7c7;
+    fill: var(--bs-nav-tabs-link-active-color);
 }
 
 .pin-wrapper {
@@ -200,7 +220,8 @@
 }
 
 .newpin {
-    fill: #c7c7c7;
+    // fill: #c7c7c7;
+    fill: var(--bs-nav-tabs-link-active-color);
     transform: rotate(90deg);
 }
 
@@ -223,7 +244,8 @@
 
 .archive-note-icon {
     // fill: rgb(from var(--warning) r g b / 45%);
-    fill: var(--b-secondary);
+    // fill: var(--b-secondary);
+    fill: var(--bs-nav-tabs-link-active-color);
     cursor: pointer;
 }
 

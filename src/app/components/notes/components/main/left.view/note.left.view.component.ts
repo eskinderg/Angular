@@ -88,6 +88,7 @@ export class NoteLeftViewComponent implements OnDestroy {
             active: true,
             archived: false,
             sync: false,
+            readonly: false,
             date_modified: new Date(),
             local_date_modified: new Date(),
             pin_order: new Date().getTime(),

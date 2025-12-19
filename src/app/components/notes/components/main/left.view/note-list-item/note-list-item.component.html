@@ -50,37 +50,39 @@
                 src="assets/images/lock.svg" />
         }
 
-        <app-svg-icon
-            height="20"
-            width="20"
-            (mouseup)="onSpellCheckToggle(note)"
-            [class]="note.spell_check ? 'spell-check-active' : 'spell-check'"
-            src="assets/images/spell.svg" />
-
-        <div class="menu del-button">
+        <div class="note-actions" [class.actions-readonly]="note.readonly">
             <app-svg-icon
-                height="23"
-                width="23"
-                (mouseup)="onArchiveNote(note)"
-                class="archive-note-icon"
-                src="assets/images/archive.svg" />
-        </div>
+                height="20"
+                width="20"
+                (mouseup)="onSpellCheckToggle(note)"
+                [class]="note.spell_check ? 'spell-check-active' : 'spell-check'"
+                src="assets/images/spell.svg" />
 
-        <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
-            <svg
-                class="pin"
-                width="800px"
-                height="800px"
-                [class]="note.pinned ? 'pinned' : 'newpin'"
-                viewBox="0 0 16 16"
-                xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <polygon
-                        points="13 8 11 6 11 3 12 3 12 1 4 1 4 3 5 3 5 6 3 8 3 10 7.3 10 7.3 16 8.7 16 8.7 10 13 10 13 8" />
-                </g>
-            </svg>
-        </div>
+            <div class="menu del-button">
+                <app-svg-icon
+                    height="23"
+                    width="23"
+                    (mouseup)="onArchiveNote(note)"
+                    class="archive-note-icon"
+                    src="assets/images/archive.svg" />
+            </div>
 
-        <div class="note-colour {{ note.colour + '-note' }}"></div>
+            <div class="pin-wrapper" (mouseup)="updatePinOrder(note)">
+                <svg
+                    class="pin"
+                    width="800px"
+                    height="800px"
+                    [class]="note.pinned ? 'pinned' : 'newpin'"
+                    viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <polygon
+                            points="13 8 11 6 11 3 12 3 12 1 4 1 4 3 5 3 5 6 3 8 3 10 7.3 10 7.3 16 8.7 16 8.7 10 13 10 13 8" />
+                    </g>
+                </svg>
+            </div>
+
+            <div class="note-colour {{ note.colour + '-note' }}"></div>
+        </div>
     </div>
 </div>
