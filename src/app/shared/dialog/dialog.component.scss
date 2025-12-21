@@ -83,7 +83,7 @@
     background: var(--body-bg);
     padding: 0;
     border-radius: 10px;
-    border: 1px solid var(--border);
+    border: 2px solid var(--bs-border-color-translucent);
     width: 90%;
     max-width: 500px;
     box-shadow: 0 0 24px rgb(0 0 0 / 20%);
@@ -98,8 +98,8 @@
 
 .dialog-header {
     // background-color: #f5f5f5;
-    background: var(--card-cap-bg);
-    padding: 5px 9px 5px 13px;
+    background: var(--border);
+    padding: 0 5px 0 13px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -148,6 +148,7 @@
     padding-right: 25px;
     padding-left: 25px;
     height: 40px;
+    fill: var(--body-color);
 }
 
 .dialog-actions {
