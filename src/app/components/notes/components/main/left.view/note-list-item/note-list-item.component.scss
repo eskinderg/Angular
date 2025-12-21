@@ -96,7 +96,8 @@
 }
 
 .readonly {
-    fill: red;
+    // fill: red;
+    fill: var(--b-active-link-color);
     cursor: pointer;
 }
 

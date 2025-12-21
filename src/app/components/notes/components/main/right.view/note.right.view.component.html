@@ -25,7 +25,7 @@
 <!-- </ng-template> -->
 <div class="note-background" [ngClass]="opendNote.colour + '-note'" [class.readonly]="opendNote.readonly">
     <div class="note-menu">
-        <div class="note-header">
+        <div class="note-header" [class.readonly]="opendNote.readonly">
             <app-note-header-control
                 #noteHeader
                 [opendNote]="opendNote"

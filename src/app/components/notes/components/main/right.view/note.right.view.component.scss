@@ -29,7 +29,7 @@
 .readonly-menu {
     filter: grayscale(100%);
     pointer-events: none !important;
-    cursor: not-allowed !important;
+    cursor: default !important;
 }
 
 .note-header {
@@ -37,7 +37,8 @@
 }
 
 .readonly {
-    cursor: not-allowed;
+    cursor: default;
+    pointer-events: none;
 }
 
 .svg-readonly {

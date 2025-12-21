@@ -1,5 +1,6 @@
 import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/store';
 import * as NotificationActions from '../actions/notification.action';
+import * as AuthActions from '../actions/auth.action';
 
 export interface INotificationState {
     notifications: any[];
@@ -11,6 +12,7 @@ const initialState: INotificationState = {
 
 export const notificationReducer = createReducer<INotificationState>(
     initialState,
+    on(AuthActions.logOutSuccess, (): INotificationState => initialState),
     on(
         NotificationActions.newNotification,
         (state, action): INotificationState => ({
