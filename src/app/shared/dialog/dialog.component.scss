@@ -14,6 +14,70 @@
     background: rgb(0 0 0 / 0%);
 }
 
+.back-drop-enter {
+    animation: slide-fade-in-backdrop 0.25s;
+}
+
+.back-drop-leave {
+    animation: slide-fade-out-backdrop 1s;
+}
+
+.dialog-enter {
+    animation: dialog-slide-fade-in 0.5s;
+}
+
+.dialog-leave {
+    animation: dialog-slide-fade-out 0.5s;
+}
+
+@keyframes dialog-slide-fade-in {
+    from {
+        opacity: 0;
+
+        // transform: translateY(20px);
+        transform: scale(90%);
+    }
+
+    to {
+        opacity: 1;
+
+        // transform: translateY(0);
+        transform: scale(100%);
+    }
+}
+
+@keyframes dialog-slide-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes slide-fade-in-backdrop {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide-fade-out-backdrop {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .dialog {
     outline: none;
     background: var(--body-bg);
@@ -23,7 +87,8 @@
     width: 90%;
     max-width: 500px;
     box-shadow: 0 0 24px rgb(0 0 0 / 20%);
-    animation: fade-in 0.2s ease-in-out;
+
+    // animation: fade-in 0.2s ease-in-out;
     overflow: hidden;
     position: fixed;
     display: flex;
@@ -113,14 +178,14 @@
     // filter: brightness(80%);
 }
 
-@keyframes fade-in {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
+// @keyframes fade-in {
+//     from {
+//         transform: scale(0.9);
+//         opacity: 0;
+//     }
 
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+//     to {
+//         transform: scale(1);
+//         opacity: 1;
+//     }
+// }

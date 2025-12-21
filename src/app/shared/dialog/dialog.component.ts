@@ -18,6 +18,9 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     standalone: true,
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
+    host: {
+        '[attr.animate.leave]': `'back-drop-leave'` // Bind the 'fade-out' class
+    },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SvgIconComponent]
 })
