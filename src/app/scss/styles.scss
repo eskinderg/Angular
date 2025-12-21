@@ -31,7 +31,10 @@ body {
     //     15px / 1.4 system-ui,
     //     sans-serif; // set base font here
 
-    font: 15px / 1.4 Helvetica, Arial, sans-serif;
+    font:
+        15px / 1.4 Helvetica,
+        Arial,
+        sans-serif;
     height: 100%;
     width: 100%;
     border: 0;
@@ -92,6 +95,42 @@ body {
     bottom: 10px;
     transform-origin: 20px -4px;
     animation: spin-d 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+.dialog-fadeout {
+    .backdrop {
+        animation: fade-out-backdrop 0.4s ease-in forwards;
+
+        .dialog {
+            animation: dialog-slide-fade-out 0.3s ease-in-out forwards;
+        }
+    }
+}
+
+@keyframes dialog-slide-fade-out {
+    from {
+        opacity: 1;
+
+        // transform: translateY(0);
+        transform: scale(100%);
+    }
+
+    to {
+        opacity: 0;
+
+        // transform: translateY(20px);
+        transform: scale(60%);
+    }
+}
+
+@keyframes fade-out-backdrop {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes spin-a {

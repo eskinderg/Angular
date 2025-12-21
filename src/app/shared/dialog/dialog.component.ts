@@ -18,9 +18,6 @@ import { SvgIconComponent } from 'src/app/components/shared/svg/svg.component';
     standalone: true,
     templateUrl: './dialog.component.html',
     styleUrls: ['./dialog.component.scss'],
-    host: {
-        '[attr.animate.leave]': `'back-drop-leave'` // Bind the 'fade-out' class
-    },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SvgIconComponent]
 })
@@ -71,7 +68,23 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     }
 
     close(response: DIALOG_RESPONSE | null) {
-        this.closed.emit(response);
+        this.elRef.nativeElement.classList.add('dialog-fadeout');
+        let done = false;
+        const cleanup = () => {
+            if (done) return;
+            done = true;
+            this.closed.emit(response);
+        };
+
+        const onEnd = (e: TransitionEvent) => {
+            if (e.currentTarget === this.elRef.nativeElement && e.propertyName === 'opacity') {
+                this.closed.emit(response);
+                this.elRef.nativeElement.removeEventListener('transitionend', onEnd);
+            }
+        };
+        this.elRef.nativeElement.querySelector('.dialog').addEventListener('transitionend', onEnd);
+
+        setTimeout(cleanup, 450); // slightly > 0.4s in the style. SCSS
     }
 
     onBackdropClick() {

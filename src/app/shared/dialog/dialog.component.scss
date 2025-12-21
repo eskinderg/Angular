@@ -18,24 +18,17 @@
     animation: slide-fade-in-backdrop 0.25s;
 }
 
-.back-drop-leave {
-    animation: slide-fade-out-backdrop 1s;
-}
-
 .dialog-enter {
-    animation: dialog-slide-fade-in 0.5s;
+    animation: dialog-slide-fade-in 0.3s;
 }
 
-.dialog-leave {
-    animation: dialog-slide-fade-out 0.5s;
-}
 
 @keyframes dialog-slide-fade-in {
     from {
-        opacity: 0;
+        opacity: 0.75;
 
         // transform: translateY(20px);
-        transform: scale(90%);
+        transform: scale(80%);
     }
 
     to {
@@ -46,17 +39,17 @@
     }
 }
 
-@keyframes dialog-slide-fade-out {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
+// @keyframes dialog-slide-fade-out {
+//     from {
+//         opacity: 1;
+//         transform: translateY(0);
+//     }
 
-    to {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-}
+//     to {
+//         opacity: 0;
+//         transform: translateY(20px);
+//     }
+// }
 
 @keyframes slide-fade-in-backdrop {
     from {
@@ -68,15 +61,15 @@
     }
 }
 
-@keyframes slide-fade-out-backdrop {
-    from {
-        opacity: 1;
-    }
+// @keyframes slide-fade-out-backdrop {
+//     from {
+//         opacity: 1;
+//     }
 
-    to {
-        opacity: 0;
-    }
-}
+//     to {
+//         opacity: 0;
+//     }
+// }
 
 .dialog {
     outline: none;
