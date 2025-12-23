@@ -206,15 +206,6 @@ img {
     cursor: pointer;
     margin-left: auto;
     fill: var(--note-pin-fill);
-    stroke: var(--text-area-border);
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 36px;
-
-    // position: absolute;
-    // top: 0.85rem;
-    // right: 4rem;
-    // bottom: 0;
 }
 
 .archive-note-icon:hover {
