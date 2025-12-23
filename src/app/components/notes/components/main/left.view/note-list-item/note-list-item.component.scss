@@ -85,8 +85,9 @@
 
 .actions-readonly {
     pointer-events: none;
-    filter: grayscale(100%);
-    opacity: 0.3;
+
+    // filter: grayscale(100%);
+    // opacity: 0.3;
 }
 
 .note-actions {

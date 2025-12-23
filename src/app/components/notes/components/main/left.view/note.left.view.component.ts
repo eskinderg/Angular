@@ -111,10 +111,6 @@ export class NoteLeftViewComponent implements OnDestroy {
         this.route.navigateByUrl('notes/archived');
     }
 
-    get Animate() {
-        return this.notesApiService.NoteAnimateState;
-    }
-
     get NoteLoading() {
         return this.noteStore.select(fromNotes.getIsNoteLoading);
     }

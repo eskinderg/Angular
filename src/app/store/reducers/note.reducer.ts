@@ -13,10 +13,6 @@ export interface INotesState {
     isLoading: boolean;
     isSyncing: boolean;
     isSyncingRequired: boolean;
-    animate: {
-        note: boolean;
-        date: boolean;
-    };
 }
 
 const initialState: INotesState = {
@@ -27,11 +23,7 @@ const initialState: INotesState = {
     isLoading: false,
     isSyncing: false,
     isSyncingRequired: false,
-    syncConflict: false,
-    animate: {
-        note: false,
-        date: false
-    }
+    syncConflict: false
 };
 
 export const notesReducer = createReducer<INotesState>(
@@ -53,11 +45,7 @@ export const notesReducer = createReducer<INotesState>(
             notes: pinnedNotes([action.note, ...state.notes]),
             selectedNote: action.note,
             opendNote: action.note,
-            facadeNote: action.note,
-            animate: {
-                note: true,
-                date: true
-            }
+            facadeNote: action.note
         };
     }),
     on(
@@ -90,11 +78,7 @@ export const notesReducer = createReducer<INotesState>(
             selectedNote: opendNote(state, action.notes),
             facadeNote: facadeNote(state, action.notes),
             isSyncing: false,
-            isLoading: false,
-            animate: {
-                note: false,
-                date: true
-            }
+            isLoading: false
         };
     }),
     on(NotesActions.syncRemoteNotesResponse, (state, action): INotesState => {
@@ -160,8 +144,7 @@ export const notesReducer = createReducer<INotesState>(
         ];
         let returnState = {
             ...state,
-            notes: pinnedNotes(dateModifiedNotes(newState)),
-            animate: { ...state.animate, note: false, date: false }
+            notes: pinnedNotes(dateModifiedNotes(newState))
         };
         if (state.opendNote) {
             returnState = {
@@ -202,8 +185,7 @@ export const notesReducer = createReducer<INotesState>(
         }
         return {
             ...state,
-            notes: pinnedNotes(dateModifiedNotes(newState)),
-            animate: { ...state.animate, note: false, date: false }
+            notes: pinnedNotes(dateModifiedNotes(newState))
         };
     })
 );
@@ -224,8 +206,6 @@ export const getNotesLength = createSelector(
     getNoteState,
     (state: INotesState) => filterActiveNotes(state.notes).length
 );
-
-export const getNotesAnimate = createSelector(getNoteState, (state: INotesState) => state.animate);
 
 export const getSyncConflict = createSelector(getNoteState, (state: INotesState) => state.syncConflict);
 

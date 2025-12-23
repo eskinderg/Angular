@@ -14,10 +14,6 @@ export class NoteApiService {
         return this.store.select(fromNotes.getNotes);
     }
 
-    get NoteAnimateState() {
-        return this.store.select(fromNotes.getNotesAnimate);
-    }
-
     get NotesLength(): Observable<number> {
         return this.store.select(fromNotes.getNotesLength);
     }
