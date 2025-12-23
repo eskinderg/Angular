@@ -79,18 +79,18 @@ export class AdminDashboardComponent {
 
         if (currentField === field) {
             // Cycle through 'asc' -> 'desc' -> clear (null)
-            if (currentDirection === 'asc') {
-                this.sortDirection$.next('desc');
-            } else if (currentDirection === 'desc') {
+            if (currentDirection === 'desc') {
+                this.sortDirection$.next('asc');
+            } else if (currentDirection === 'asc') {
                 this.sortField$.next(null); // Clear the sort field
                 this.sortDirection$.next(null); // Clear the sort direction
             } else {
-                this.sortDirection$.next('asc');
+                this.sortDirection$.next('desc');
             }
         } else {
             // Set new sort field and default to 'asc'
             this.sortField$.next(field);
-            this.sortDirection$.next('asc');
+            this.sortDirection$.next('desc');
         }
     }
 
