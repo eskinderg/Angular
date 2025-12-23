@@ -46,8 +46,16 @@
     flex: 1 1 auto;
 }
 
+h2 {
+    text-align: center;
+    margin: 1rem 1rem 0;
+}
+
 .notes {
     position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 30.5rem);
+    width: 100%;
 }
 
 .no-content {
