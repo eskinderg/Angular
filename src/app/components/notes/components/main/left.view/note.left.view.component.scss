@@ -203,10 +203,13 @@ img {
 }
 
 .archive-note-icon {
-    // fill: var(--bs-secondary-color);
-    fill: var(--note-pin-fill);
     cursor: pointer;
     margin-left: auto;
+    fill: var(--note-pin-fill);
+    stroke: var(--text-area-border);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 36px;
 
     // position: absolute;
     // top: 0.85rem;
