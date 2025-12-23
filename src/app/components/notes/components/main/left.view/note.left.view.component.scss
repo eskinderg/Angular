@@ -24,6 +24,58 @@
     background: var(--scrollbar-thumb-hover-color);
 }
 
+// app-note-list-item {
+//     transition:
+//         transform 300ms ease,
+//         opacity 200ms ease;
+//     will-change: transform;
+// }
+
+.note-list-item-enter {
+    animation: note-list-item-fade-in 0.5s ease-in-out backwards;
+    animation-delay: calc(50ms * var(--index));
+    animation-iteration-count: 1;
+}
+
+.note-list-item-leave {
+    animation: note-list-item-fade-out 0.5s ease-in-out;
+
+    // animation-delay: calc(50ms * var(--index));
+    animation-iteration-count: 1;
+}
+
+@keyframes note-list-item-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+
+        // transform: scale(80%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+
+        // transform: scale(100%);
+    }
+}
+
+@keyframes note-list-item-fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+
+        // transform: scale(80%);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(1.5rem);
+
+        // transform: scale(100%);
+    }
+}
+
 img {
     height: 1.5rem;
     left: 0;

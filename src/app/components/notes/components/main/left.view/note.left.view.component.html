@@ -61,8 +61,10 @@
         } @else {
             @for (note of notes$ | async; track note.note_id) {
                 <app-note-list-item
+                    [style.--index]="$index"
+                    animate.enter="note-list-item-enter"
+                    animate.leave="note-list-item-leave"
                     [note]="note"
-                    [animate]="Animate | async"
                     [selectedNote]="selectedNote$ | async"
                     (updateNote)="onUpdateNote($event)"
                     (archiveNote)="onArchiveNote($event)"
