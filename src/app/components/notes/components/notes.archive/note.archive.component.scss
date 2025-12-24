@@ -54,7 +54,9 @@ h2 {
 .notes {
     position: absolute;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 30.5rem);
+
+    // grid-template-columns: repeat(auto-fill, 26rem);
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 0fr));
     width: 100%;
 }
 
@@ -76,8 +78,8 @@ h2 {
 .note-border {
     border: 1px solid var(--border);
     margin: 0.5rem;
+    width: fit-content;
     padding: 0.5rem;
-    width: 30rem;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -86,8 +88,7 @@ h2 {
 }
 
 .numbering {
-    margin-right: auto;
-    margin-left: 0.75rem;
+    // margin-left: 0.75rem;
     font-size: 1.5rem;
     font-weight: bolder;
     align-self: center;
@@ -95,8 +96,14 @@ h2 {
 
 .left {
     display: flex;
-    gap: 1.5rem;
-    margin-right: auto;
+    gap: 1rem;
+    align-items: center;
+
+    // margin-right: auto;
+}
+
+.note-actions {
+    display: flex;
 }
 
 .restore-icon {

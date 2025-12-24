@@ -22,20 +22,25 @@
                                 {{ note.date_archived | date: 'medium' }}
                             </small>
                         </div>
-                    </div>
 
-                    <div class="restore" (click)="restore(note)">
-                        <div class="restore-icon">
-                            <app-svg-icon
-                                width="30"
-                                height="30"
-                                src="assets/images/restore.svg"></app-svg-icon>
-                        </div>
-                    </div>
+                        <div class="note-actions">
+                            <div class="restore" (click)="restore(note)">
+                                <div class="restore-icon">
+                                    <app-svg-icon
+                                        width="30"
+                                        height="30"
+                                        src="assets/images/restore.svg"></app-svg-icon>
+                                </div>
+                            </div>
 
-                    <div class="delete" (click)="delete(note)">
-                        <div class="delete-icon">
-                            <app-svg-icon width="30" height="30" src="assets/images/trash.svg"></app-svg-icon>
+                            <div class="delete" (click)="delete(note)">
+                                <div class="delete-icon">
+                                    <app-svg-icon
+                                        width="30"
+                                        height="30"
+                                        src="assets/images/trash.svg"></app-svg-icon>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
