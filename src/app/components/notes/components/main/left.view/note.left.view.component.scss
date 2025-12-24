@@ -105,7 +105,9 @@ img {
 
 .search-icon:hover {
     // stroke: var(--note-pin-fill);
-    stroke: var(--menu-color);
+    path {
+        stroke: var(--menu-color);
+    }
 }
 
 .search {
