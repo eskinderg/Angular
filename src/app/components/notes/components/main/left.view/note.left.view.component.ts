@@ -68,6 +68,11 @@ export class NoteLeftViewComponent implements OnDestroy {
         this.onSearchInput(event);
     }
 
+    onSearchInputFocusOut(event: any) {
+        const value = (event.currentTarget as HTMLInputElement).value;
+        if (!value.length) this.clearSearch();
+    }
+
     clearSearch() {
         this.searchVisible = false;
         this.searchTerm$.next('');

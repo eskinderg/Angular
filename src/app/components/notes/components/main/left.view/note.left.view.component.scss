@@ -96,11 +96,10 @@ img {
 }
 
 .search-icon {
-    // stroke: var(--bs-nav-tabs-link-active-color);
-    stroke: var(--note-pin-fill);
-    cursor: pointer;
-
-    // margin-right: auto;
+    path {
+        stroke: var(--note-pin-fill);
+        cursor: pointer;
+    }
 }
 
 .search-icon:hover {
