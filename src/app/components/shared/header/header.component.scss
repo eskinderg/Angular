@@ -21,7 +21,7 @@
 .menu-inner,
 .menu-main,
 .menu a {
-    z-index:9999;
+    z-index: 9999;
     position: relative;
     overflow: visible;
 }
@@ -82,7 +82,8 @@ app-userinfo {
     border-radius: 8px;
 }
 
-.menu a:hover, app-userinfo:hover {
+.menu a:hover,
+app-userinfo:hover {
     background: rgb(255 255 255 / 12%);
 }
 
@@ -113,6 +114,8 @@ app-userinfo {
 
 app-svg-icon {
     stroke: var(--menu-color);
+    position: absolute;
+    right: 1rem;
 }
 
 .user-dropdown {

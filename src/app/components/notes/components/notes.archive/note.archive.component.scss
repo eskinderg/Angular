@@ -107,7 +107,8 @@ h2 {
 }
 
 .restore-icon {
-    fill: var(--scrollbar-thumb-color);
+    // fill: var(--scrollbar-thumb-color);
+    fill: var(--note-pin-fill);
     cursor: pointer;
 
     :hover {
@@ -116,7 +117,8 @@ h2 {
 }
 
 .delete-icon {
-    fill: var(--scrollbar-thumb-color);
+    // fill: var(--scrollbar-thumb-color);
+    fill: var(--spell-check-active);
     cursor: pointer;
 
     :hover {
