@@ -1,165 +1,105 @@
 <nav class="menu">
-    <ul>
+    <div class="menu-inner">
+        <!-- Brand -->
         <a class="brand" [routerLink]="['/home']">Angular</a>
-        @if (IsLoggedIn | async) {
-            <div class="menu-logged-in">
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        [routerLink]="['/home']">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        [routerLink]="['/about']">
-                        About
-                    </a>
-                </li>
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        [routerLink]="['/profile']">
-                        Profile
-                    </a>
-                </li>
-                <li>
-                    <a
-                        [ngClass]="{ active: isNotesURLActive }"
-                        aria-expanded="false"
-                        [routerLink]="['/notes']"
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: false }">
-                        Notes
-                        @if (NoteLoading | async) {
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                        } @else {
+        <button class="menu-toggle" aria-label="Toggle navigation" (click)="toggleMenu()">☰</button>
+        <div class="menu-content" [class.open]="menuOpen()">
+            <!-- Main navigation -->
+            @if (IsLoggedIn | async) {
+                <ul class="menu-main">
+                    <li>
+                        <a
+                            routerLink="/home"
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{ exact: true }">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/about" routerLinkActive="active-link">About</a>
+                    </li>
+
+                    <li>
+                        <a
+                            [routerLinkActive]="['active-link']"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            [routerLink]="['/profile']">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            [routerLinkActive]="['active-link']"
+                            [routerLinkActiveOptions]="{ exact: false }"
+                            [routerLink]="['/wizard']">
+                            Wizard
+                        </a>
+                    </li>
+                    <li class="has-dropdown">
+                        <a routerLink="/notes" routerLinkActive="active-link">
+                            Notes
                             @if (NotesCount | async; as count) {
-                                <span class="badge bg-secondary">{{ count }}</span>
+                                <span class="badge">{{ count }}</span>
                             }
-                        }
-                    </a>
-
-                    <ul>
-                        <li>
-                            <a
-                                [routerLink]="['/notes/mynotes']"
-                                [routerLinkActive]="['active-link']"
-                                [routerLinkActiveOptions]="{ exact: true }">
-                                Notes
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                [routerLink]="['/notes/archived']"
-                                [routerLinkActive]="['active-link']"
-                                [routerLinkActiveOptions]="{ exact: false }">
-                                Archived Notes
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        [routerLink]="['/wizard']">
-                        Wizard
-                    </a>
-                </li>
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        [routerLink]="['/events']">
-                        Events
-                        @if (EventLoading | async) {
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                        } @else {
-                            @if (EventsCount | async; as count) {
-                                <span class="badge bg-secondary">{{ count }}</span>
-                            }
-                        }
-                    </a>
-                </li>
-                <li>
-                    <a
-                        [routerLinkActive]="['active-link']"
-                        [routerLinkActiveOptions]="{ exact: false }"
-                        [routerLink]="['/movies']">
-                        Movies
-                    </a>
-                    @if (IsLoggedIn | async) {
-                        <ul>
-                            <li>
-                                <a
-                                    [routerLink]="['/movies/watchlist']"
-                                    [routerLinkActive]="['active-link']"
-                                    [routerLinkActiveOptions]="{ exact: true }">
-                                    Watch List &nbsp;
-                                    @if (WatchListCount | async; as count) {
-                                        <span class="badge bg-secondary">{{ count }}</span>
-                                    }
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    [routerLink]="['/movies/search']"
-                                    [routerLinkActive]="['active-link']"
-                                    [routerLinkActiveOptions]="{ exact: true }"
-                                    style="display: flex; gap: 8px">
-                                    Search
-                                    <app-svg-icon
-                                        class="search-icon"
-                                        height="25"
-                                        width="25"
-                                        src="assets/images/search.svg"></app-svg-icon>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    [routerLink]="['/movies/history']"
-                                    [routerLinkActive]="['active-link']"
-                                    [routerLinkActiveOptions]="{ exact: true }"
-                                    style="display: flex; gap: 8px">
-                                    History
-                                    @if (WatchedListCount | async; as count) {
-                                        <span class="badge bg-secondary">{{ count }}</span>
-                                    }
-                                </a>
-                            </li>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a routerLink="/notes/mynotes">My Notes</a></li>
+                            <li><a routerLink="/notes/archived">Archived</a></li>
                         </ul>
-                    }
-                </li>
-            </div>
-            @if (permission.IsAdmin) {
-                <div class="dashboard">
-                    <li>
-                        <a
-                            [routerLinkActive]="['active-link']"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            [routerLink]="['/admin/dashboard']">
-                            Dashboard
-                        </a>
                     </li>
-                </div>
-                <div class="">
-                    <li>
-                        <a
-                            [routerLinkActive]="['active-link']"
-                            [routerLinkActiveOptions]="{ exact: true }"
-                            [routerLink]="['/admin/users']">
-                            Users
-                        </a>
-                    </li>
-                </div>
-            }
-        }
 
-        <app-userinfo class="user-info" (signout)="onSignout()"></app-userinfo>
-    </ul>
+                    <li>
+                        <a routerLink="/events" routerLinkActive="active-link">
+                            Events
+                            @if (EventsCount | async; as count) {
+                                <span class="badge">{{ count }}</span>
+                            }
+                        </a>
+                    </li>
+
+                    <li class="has-dropdown">
+                        <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
+                        <ul class="dropdown">
+                            <li>
+                                <a routerLink="/movies/watchlist">
+                                    Watchlist
+                                    @if (WatchListCount | async; as count) {
+                                        <span class="badge">
+                                            {{ count }}
+                                        </span>
+                                    }
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="/movies/search">
+                                    Search
+
+                                    <app-svg-icon
+                                        src="assets/images/search.svg"
+                                        width="20"
+                                        height="20"></app-svg-icon>
+                                </a>
+                            </li>
+                            <li><a routerLink="/movies/history">History</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+
+            <!-- Admin -->
+            @if (permission.IsAdmin) {
+                <ul class="menu-admin">
+                    <li><a routerLink="/admin/dashboard">Dashboard</a></li>
+                    <li><a routerLink="/admin/users">Users</a></li>
+                </ul>
+            }
+
+            <!-- User -->
+            <li class="user-dropdown user-info">
+                <app-userinfo (signout)="onSignout()"></app-userinfo>
+            </li>
+        </div>
+    </div>
 </nav>

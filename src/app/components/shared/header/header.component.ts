@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Output, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, EventEmitter, Output, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 // import { AuthService } from '../services/auth/auth.service';
 // import { OAuthService } from 'angular-oauth2-oidc';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { NgClass, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { UserInfoComponent } from './userinfo/userinfo.component';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { StoreService } from 'src/app/store/store.service';
@@ -20,7 +20,7 @@ export declare interface IsActiveMatchOptions {
     templateUrl: 'header.component.html',
     styleUrls: ['header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterLinkActive, SvgIconComponent, NgClass, UserInfoComponent, AsyncPipe]
+    imports: [RouterLink, RouterLinkActive, SvgIconComponent, UserInfoComponent, AsyncPipe]
 })
 export class HeaderComponent {
     permission = inject(AuthPermission);
@@ -38,6 +38,15 @@ export class HeaderComponent {
         paths: 'subset'
     };
 
+    menuOpen = signal(false);
+
+    toggleMenu() {
+        this.menuOpen.update((v) => !v);
+    }
+
+    closeMenu() {
+        this.menuOpen.set(false);
+    }
     // ngOnInit() {
     // this.claims = this.oauthService.getIdentityClaims();
     // if(this.claims){

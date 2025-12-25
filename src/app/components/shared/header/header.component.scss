@@ -2,144 +2,231 @@
     z-index: 2;
 }
 
-/* Main menu container */
 .menu {
-    background-color: var(--primary);
+    background: var(--primary);
+    box-shadow: 0 2px 12px rgb(0 0 0 / 15%);
+}
+
+.menu-inner {
+    // max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
     padding: 0.5rem 1rem;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
-}
-
-.menu li > a:has(+ ul)::after {
-    content: '▼';
-    font-size: 0.6rem;
-    margin-left: 6px;
-}
-
-.menu > ul {
-    list-style-type: none;
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.menu,
+.menu-inner,
+.menu-main,
+.menu a {
+    z-index:9999;
+    position: relative;
+    overflow: visible;
+}
+
+.brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #61dafb;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.menu-main,
+.menu-admin {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
     margin: 0;
     padding: 0;
-    gap: 0.5rem;
-    justify-content: space-between;
 }
 
-.menu li {
-    position: relative;
-    list-style: none;
-}
-
-.menu li > ul {
-    list-style: none;
-    margin: 0;
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #2e2e45;
-    border-radius: 6px;
-    padding: 0.5rem 0;
-    min-width: 180px;
-    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
-    animation: scale-in 0.3s ease-in-out;
-    z-index: 1000;
-    flex-direction: column;
-}
-
-.badge {
-    font-weight: bold;
-    border-radius: 50%;
-    width: 2rem;
-    padding: 0.5rem;
-}
-
-.search-icon {
-    stroke: var(--note-pin-nofill);
-    cursor: pointer;
+.menu-main {
     margin-right: auto;
-
-    // display: inline-flex;
 }
 
-/* Menu links */
+.menu-admin {
+    border-left: 1px solid rgb(255 255 255 / 15%);
+    padding-left: 1rem;
+}
+
 .menu a {
     color: var(--menu-color);
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
     text-decoration: none;
-    padding: 0.5rem 0.75rem;
-    border-radius: 6px;
-    display: inline-block;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     transition:
-        background-color 0.3s ease,
-        box-shadow 0.2s ease;
+        background 0.2s ease,
+        color 0.2s ease;
 }
 
-.menu li > ul a {
-    display: block;
-    padding: 0.5rem 1rem;
-    background: none;
+.user-info {
+    cursor: pointer;
+}
+
+.dropdown a {
+    padding: 0.55rem 1rem;
+    width: 100%;
+    transform-origin: top;
     border-radius: 0;
 }
 
-/* Smooth highlight without shifting content */
-.menu > a:hover,
-.menu .active-link {
-    background-color: rgb(255 255 255 / 10%);
-    box-shadow: 0 0 0 2px rgb(255 255 255 / 25%);
+app-userinfo {
+    padding: 0.2rem;
+    border-radius: 8px;
 }
 
-/* Brand styling */
-.brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #61dafb;
-
-    // margin-right: auto;
-    transition: color 0.3s ease;
+.menu a:hover, app-userinfo:hover {
+    background: rgb(255 255 255 / 12%);
 }
 
-.brand:hover {
-    color: #21a1f1;
+.active-link {
+    background: rgb(255 255 255 / 18%);
 }
 
-.menu li:hover > ul {
-    display: flex;
+.has-dropdown {
+    position: relative;
 }
 
-.menu li > ul a:hover {
-    background-color: #3c3c5c;
+.dropdown {
+    position: absolute;
+
+    // top: calc(100% + 6px);
+    left: 0;
+    min-width: 10rem;
+    background: #2e2e45;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0;
+    list-style: none;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: 0.2s ease;
 }
 
-/* Menu grouping for logged-in items */
-.menu-logged-in {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    gap: 1rem;
+app-svg-icon {
+    stroke: var(--menu-color);
 }
 
-.dashboard {
+.user-dropdown {
+    position: relative;
+}
+
+.user-dropdown,
+.user-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     margin-left: auto;
-    display: flex;
 }
 
-/* Right aligned user info */
-.user-info {
-    // margin-left: auto;
+.user-dropdown .dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 220px;
+    background: #2e2e45;
+    border-radius: 10px;
+    padding: 0.4rem 0;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
+
+    /* hidden by default */
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: 0.2s ease;
+    z-index: 1000;
+}
+
+.user-dropdown:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.has-dropdown:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgb(255 255 255 / 22%);
+    border-radius: 999px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--menu-color);
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.menu-content {
     display: flex;
     align-items: center;
+    gap: 1.5rem;
+    flex: 1;
 }
 
-/* Subtle animation for dropdown */
-@keyframes scale-in {
-    0% {
-        transform: scale(0.95);
-        opacity: 0;
+/* Mobile */
+@media (width <= 900px) {
+    .menu-toggle {
+        display: block;
     }
 
-    100% {
-        transform: scale(1);
-        opacity: 1;
+    .menu-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+        gap: 0.75rem;
+        display: none;
     }
+
+    .menu-content.open {
+        display: flex;
+    }
+
+    .menu-main,
+    .menu-admin {
+        flex-direction: column;
+    }
+}
+
+.menu a app-svg-icon {
+    opacity: 0.85;
+}
+
+.menu a:hover app-svg-icon {
+    opacity: 1;
+}
+
+.has-dropdown > a::after {
+    content: '▾';
+    font-size: 0.7rem;
+    margin-left: 4px;
+    opacity: 0.7;
 }

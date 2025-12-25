@@ -1,61 +1,96 @@
-li {
+:host {
     position: relative;
-    list-style: none;
+    display: inline-block;
 }
 
-li > a {
-    color: #fff;
+/* remove bullets */
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+
+    // width: fit-content;
+    color: var(--menu-color);
+}
+
+/* username */
+.user-trigger {
+    color: var(--menu-color);
     cursor: pointer;
-    padding: 0.5rem 0.75rem;
-    text-decoration: none;
-    border-radius: 6px;
+    font-weight: 600;
+    padding: 0.45rem 0.75rem;
+    border-radius: 8px;
     display: inline-flex;
     align-items: center;
-    transition: background-color 0.2s ease;
 }
 
-li > ul li a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: var(--body-color);
-    white-space: nowrap;
-    background: none;
+.user-trigger:hover {
+    // background: rgb(255 255 255 / 12%);
 }
 
-li > a:hover {
-    background-color: rgb(255 255 255 / 10%);
-}
-
-/* Arrow for submenu */
-li > a:has(+ ul)::after {
-    content: '▼';
-    font-size: 0.6rem;
+.user-trigger::after {
+    content: '▾';
+    font-size: 0.7rem;
     margin-left: 6px;
     opacity: 0.7;
 }
 
-/* Submenu dropdown */
-li > ul {
-    display: none;
+/* dropdown */
+.dropdown {
     position: absolute;
-    top: 100%;
+
+    // top: calc(100% + 6px);
     right: 0;
-    min-width: 160px;
-    padding: 0.25rem 0;
-    border-radius: 6px;
-    list-style: none;
+    color: var(--menu-color);
+
+    // min-width: 220px;
+    background: #2e2e45;
+    border-radius: 10px;
+    padding: 0.4rem 0;
+    box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
     z-index: 1000;
-    background-color: var(--bs-body-bg);
+
+    /* hidden by default */
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: 0.2s ease;
 }
 
-.dark li > ul {
-    background-color: #2e333a;
+/* show on hover */
+:host:hover .dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
-li:hover > ul {
+/* right alignment helper */
+.dropdown-right {
+    color: var(--menu-color);
+    right: 0;
+    left: auto;
+    padding: 0.5rem;
+}
+
+a {
     display: block;
+    text-decoration: none;
+    color: var(--menu-color);
+    width: 100%;
 }
 
-li > ul li a:hover {
-    background-color: rgb(42 106 218 / 15%);
+/* logout danger */
+.dropdown .danger a {
+    text-decoration: none;
+    color: var(--menu-color);
+}
+
+.dropdown .danger a:hover {
+    // background: rgb(255 0 0 / 12%);
+}
+
+
+app-theme-option {
+    width: max-content;
 }
