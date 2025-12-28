@@ -1,6 +1,6 @@
 @if (isLoggedIn | async) {
     <a class="user-trigger">
-        {{ username | async }}
+        {{ (name | async) ?? (preferredUsername | async) }}
     </a>
 
     <ul class="dropdown dropdown-right">

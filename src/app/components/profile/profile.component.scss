@@ -24,3 +24,10 @@
 input {
     margin: 0;
 }
+
+input[type='text'],
+[type='email'],
+[type='password'],
+[type='tel'] {
+    width: 25rem;
+}

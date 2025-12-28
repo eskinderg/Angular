@@ -26,7 +26,7 @@ export class UserInfoComponent {
     private store = inject<Store<fromRoot.IAppState>>(Store);
 
     claims: any;
-    name: any;
+    // name: any;
 
     @Output() signout: EventEmitter<any> = new EventEmitter();
 
@@ -67,6 +67,14 @@ export class UserInfoComponent {
         //     return null;
         // }
         // return claims['name'] ?? claims['preferred_username'];
+    }
+
+    get name() {
+        return this.store.select(fromRoot.getName);
+    }
+
+    get preferredUsername() {
+        return this.store.select(fromRoot.getPreferedUsername);
     }
 
     onDarkModeToggle() {

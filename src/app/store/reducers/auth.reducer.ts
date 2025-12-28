@@ -2,7 +2,14 @@ import { on, createFeatureSelector, createReducer, createSelector } from '@ngrx/
 import * as AuthActions from '../actions/auth.action';
 
 export interface IAuthState {
-    profile: any;
+    profile: {
+        sub: string;
+        email_verified: boolean;
+        name: string;
+        preferred_username: string;
+        given_name: string;
+        email: string;
+    };
     isLoggedIn: boolean;
     isLoading: boolean;
     loggingIn: boolean;
@@ -10,7 +17,14 @@ export interface IAuthState {
 }
 
 const initialState: IAuthState = {
-    profile: {},
+    profile: {
+        sub: '',
+        email_verified: false,
+        name: '',
+        preferred_username: '',
+        given_name: '',
+        email: ''
+    },
     isLoggedIn: false,
     isLoading: false,
     loggingIn: false,
@@ -77,6 +91,23 @@ export const authReducer = createReducer<IAuthState>(
 export const getAuthState = createFeatureSelector<IAuthState>('auth');
 
 export const getProfile = createSelector(getAuthState, (state: IAuthState) => state.profile);
+
+export const getUserId = createSelector(getAuthState, (state: IAuthState) => state.profile.sub);
+
+export const getIsEmailVerified = createSelector(
+    getAuthState,
+    (state: IAuthState) => state.profile.email_verified
+);
+export const getPreferedUsername = createSelector(
+    getAuthState,
+    (state: IAuthState) => state.profile.preferred_username
+);
+
+export const getGivenName = createSelector(getAuthState, (state: IAuthState) => state.profile.given_name);
+
+export const getEmail = createSelector(getAuthState, (state: IAuthState) => state.profile.email);
+
+export const getName = createSelector(getAuthState, (state: IAuthState) => state.profile.name);
 
 export const isLoggedIn = createSelector(getAuthState, (state: IAuthState) => state.isLoggedIn);
 
