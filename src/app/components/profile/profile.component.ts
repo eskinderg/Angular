@@ -17,6 +17,7 @@ import {
     Validators
 } from '@angular/forms';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { User } from 'src/app/admin/models/user';
 // import { Preference } from 'src/app/models/preference';
 
 @Component({
@@ -50,17 +51,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.form = this.fb.group({
             user_id: [''],
-            name: [''],
+            firstname: [''],
             language: [''],
+            owner: [''],
             email: new FormControl('', [Validators.required, Validators.email]),
             dark_mode: [false]
         });
 
         this.formSubscription = combineLatest([
             this.store.select(fromRoot.getProfile),
-            this.store.select(fromRoot.getUserPreference)
-        ]).subscribe(([profile, preference]) => {
-            this.form.patchValue({ ...profile, ...preference }, { emitEvent: false });
+            this.store.select(fromRoot.getUserPreference),
+            this.store.select(fromRoot.getUser)
+        ]).subscribe(([_profile, preference, user]) => {
+            this.form.patchValue({ ...preference, ...user }, { emitEvent: false });
         });
 
         this.form.valueChanges.subscribe(() => {
@@ -70,6 +73,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     onSave() {
         if (this.form.valid) {
+            this.store.dispatch(ProfileActions.updateUserInfo({ user: this.form.value as User }));
             console.log(this.form.value);
             this.dirty = false;
         }

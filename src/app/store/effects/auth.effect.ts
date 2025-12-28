@@ -19,6 +19,7 @@ import { PreferenceDataService } from 'src/app/preference/preference.data.servic
 export class AuthEffect {
     private actions$ = inject(Actions);
     private oauthService = inject(OAuthService);
+    private preferenceDataService = inject(PreferenceDataService);
     private router = inject(Router);
 
     logIn = createEffect((actions$ = inject(Actions), authService = inject(OAuthService)) =>
@@ -74,9 +75,31 @@ export class AuthEffect {
         )
     );
 
+    // loadUserInfoSuccess =
+
     loadProfileSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loadProfileSuccess),
+            switchMap(() => of(PreferenceActions.loadUserInfo()))
+            // switchMap(() => of(PreferenceActions.loadUserPreference()))
+        )
+    );
+
+    loadUserInfo = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.loadUserInfo),
+            switchMap(() =>
+                this.preferenceDataService.getUserInfo().pipe(
+                    mergeMap((user) => [PreferenceActions.loadUserInfoSuccess({ user: user.shift() })]),
+                    catchError((err) => [PreferenceActions.loadUserInfoFail({ error: err })])
+                )
+            )
+        )
+    );
+
+    loadUserInfoSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.loadUserInfoSuccess),
             switchMap(() => of(PreferenceActions.loadUserPreference()))
         )
     );
@@ -202,5 +225,17 @@ export class AuthEffect {
                 switchMap((_action) => from(this.router.navigate(['/login'])))
             ),
         { dispatch: false }
+    );
+
+    updateUserInfo$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.updateUserInfo),
+            switchMap((action) =>
+                this.preferenceDataService.updateUserInfo([action.user]).pipe(
+                    mergeMap((user) => [PreferenceActions.updateUserInfoSuccess({ user: user.shift() })]),
+                    catchError((err) => [PreferenceActions.updateUserInfoFail({ error: err })])
+                )
+            )
+        )
     );
 }

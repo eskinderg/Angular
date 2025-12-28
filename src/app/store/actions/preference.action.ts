@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from 'src/app/admin/models/user';
 import { Preference } from 'src/app/models/preference';
 
 /**
@@ -51,3 +52,21 @@ export const saveUserLangSuccess = createAction(
 );
 
 export const saveUserLangFail = createAction('[PREFERENCE] SAVE_USER_LANGUAGE_FAIL', props<{ error: any }>());
+
+export const loadUserInfo = createAction('[PREFERENCE] LOAD_USER_INFO');
+
+export const loadUserInfoSuccess = createAction(
+    '[PREFERENCE] LOAD_USER_INFO_SUCCESS',
+    props<{ user: User }>()
+);
+
+export const loadUserInfoFail = createAction('[PREFERENCE] LOAD_USER_INFO_FAIL', props<{ error: any }>());
+
+export const updateUserInfo = createAction('[PREFERENCE] UPDATE_USER_INFO', props<{ user: User }>());
+
+export const updateUserInfoSuccess = createAction(
+    '[PREFERENCE] UPDATE_USER_INFO_SUCCESS',
+    props<{ user: User }>()
+);
+
+export const updateUserInfoFail = createAction('[PREFERENCE] UPDATE_USER_INFO_FAIL', props<{ error: any }>());

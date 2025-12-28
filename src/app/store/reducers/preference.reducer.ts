@@ -2,15 +2,18 @@ import { createFeatureSelector, createReducer, createSelector, on } from '@ngrx/
 import * as PreferenceActions from '../actions/preference.action';
 import * as AuthActions from '../actions/auth.action';
 import { Preference } from 'src/app/models/preference';
+import { User } from 'src/app/admin/models/user';
 
 export interface IPreferenceState {
     isDarkMode: string;
     preference: Preference;
+    user: User;
 }
 
 const initialState: IPreferenceState = {
     isDarkMode: localStorage.getItem('darkmode') ?? String(false),
-    preference: null
+    preference: null,
+    user: null
 };
 
 export const profileReducer = createReducer<IPreferenceState>(
@@ -19,7 +22,7 @@ export const profileReducer = createReducer<IPreferenceState>(
         AuthActions.logOutSuccess,
         (state): IPreferenceState => ({
             ...initialState,
-            preference: { ...state.preference, language: state.preference.language }
+            preference: { ...initialState.preference, language: state.preference.language }
         })
     ),
     on(
@@ -50,6 +53,20 @@ export const profileReducer = createReducer<IPreferenceState>(
             ...state,
             preference: action.preference ?? state.preference
         })
+    ),
+    on(
+        PreferenceActions.loadUserInfoSuccess,
+        (state, action): IPreferenceState => ({
+            ...state,
+            user: action.user
+        })
+    ),
+    on(
+        PreferenceActions.updateUserInfoSuccess,
+        (state, action): IPreferenceState => ({
+            ...state,
+            user: action.user
+        })
     )
 );
 
@@ -66,3 +83,5 @@ export const getUserPreference = createSelector(
     getPreferenceState,
     (state: IPreferenceState) => state.preference
 );
+
+export const getUser = createSelector(getPreferenceState, (state: IPreferenceState) => state.user);
