@@ -13,19 +13,32 @@
             <div class="row mb-3">
                 <div class="label">User Id</div>
                 <div class="col-10">
-                    <input formControlName="user_id" class="form-control" type="text" readonly="true" />
+                    <input
+                        formControlName="user_id"
+                        class="form-control readonly"
+                        type="text"
+                        readonly="true" />
+                    <!-- <div formControlName="user_id" class="form-control">{{ form.get('user_id').value }}</div> -->
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="label">Name</div>
                 <div class="col-10">
-                    <input formControlName="firstname" class="form-control" type="text" />
+                    <input
+                        [class.invalid]="form.get('firstname').invalid"
+                        formControlName="firstname"
+                        class="form-control"
+                        type="text" />
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="label">Email</div>
                 <div class="col-10">
-                    <input formControlName="email" class="form-control" type="email" />
+                    <input
+                        [class.invalid]="form.get('email').invalid"
+                        formControlName="email"
+                        class="form-control"
+                        type="email" />
                 </div>
             </div>
             <div class="row mb-3">

@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.form = this.fb.group({
             user_id: [''],
-            firstname: [''],
+            firstname: new FormControl('', [Validators.required]),
             language: [''],
             owner: [''],
             email: new FormControl('', [Validators.required, Validators.email]),
@@ -74,7 +74,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     onSave() {
         if (this.form.valid) {
             this.store.dispatch(ProfileActions.updateUserInfo({ user: this.form.value as User }));
-            console.log(this.form.value);
             this.dirty = false;
         }
     }

@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY, from, of } from 'rxjs';
-import { catchError, concatMap, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { OAuthService } from 'angular-oauth2-oidc';
 import * as AuthActions from '../actions/auth.action';
 import * as PreferenceActions from '../actions/preference.action';
@@ -14,12 +14,14 @@ import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { passwordFlowAuthConfig } from 'src/app/auth/auth.config';
 import { Action } from '@ngrx/store';
 import { PreferenceDataService } from 'src/app/preference/preference.data.service';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
 
 @Injectable()
 export class AuthEffect {
     private actions$ = inject(Actions);
     private oauthService = inject(OAuthService);
     private preferenceDataService = inject(PreferenceDataService);
+    private notificationService = inject(NotificationService);
     private router = inject(Router);
 
     logIn = createEffect((actions$ = inject(Actions), authService = inject(OAuthService)) =>
@@ -74,8 +76,6 @@ export class AuthEffect {
             )
         )
     );
-
-    // loadUserInfoSuccess =
 
     loadProfileSuccess$ = createEffect(() =>
         this.actions$.pipe(
@@ -141,6 +141,13 @@ export class AuthEffect {
                 if (permission.IsAdmin) {
                     actions = [...actions, AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
                 }
+                if (!permission.hasPermission('Write'))
+                    this.notificationService.showStandard(
+                        'Current user does not have a write permisstion and any changes are not synced with the server.',
+                        'Permission Info',
+                        10000,
+                        false
+                    );
                 return of(...actions);
             })
         )
@@ -237,5 +244,14 @@ export class AuthEffect {
                 )
             )
         )
+    );
+
+    updateUserInfoSuccess = createEffect(
+        () =>
+            this.actions$.pipe(
+                ofType(PreferenceActions.updateUserInfoSuccess),
+                tap(() => this.notificationService.showSuccess('Profile saved', 'Save'))
+            ),
+        { dispatch: false }
     );
 }
