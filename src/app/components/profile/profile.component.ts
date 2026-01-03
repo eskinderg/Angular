@@ -51,10 +51,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.form = this.fb.group({
             user_id: [''],
-            firstname: new FormControl('', [Validators.required]),
+            firstname: '',
             language: [''],
             owner: [''],
-            email: new FormControl('', [Validators.required, Validators.email]),
+            email: new FormControl('', [Validators.email]),
             dark_mode: [false]
         });
 

@@ -1,19 +1,20 @@
 @if (isLoggedIn | async) {
-    <a class="user-trigger">
-        {{ (name | async) ?? (preferredUsername | async) }}
-    </a>
+    <li>
+        <a class="user-trigger">
+            {{ (name | async) ?? (preferredUsername | async) }}
+        </a>
+        <ul class="dropdown dropdown-right">
+            <li>
+                <app-theme-option
+                    label="Dark Mode"
+                    [darkMode]="DarkMode | async"
+                    (themeToggleDark)="onDarkModeToggle()" />
+            </li>
 
-    <ul class="dropdown dropdown-right">
-        <li>
-            <app-theme-option
-                label="Dark Mode"
-                [darkMode]="DarkMode | async"
-                (themeToggleDark)="onDarkModeToggle()"></app-theme-option>
-        </li>
-
-        <li><a routerLink="/profile">Profile</a></li>
-        <li class="danger"><a (click)="logOut()">Logout</a></li>
-    </ul>
+            <li><a routerLink="/profile">Profile</a></li>
+            <li class="btn"><a (click)="logOut()">Logout</a></li>
+        </ul>
+    </li>
 } @else {
     <a (click)="login()">Login / Sign Up</a>
 }
