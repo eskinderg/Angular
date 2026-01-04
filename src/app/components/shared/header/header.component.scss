@@ -58,11 +58,6 @@
     margin-right: auto;
 }
 
-.menu-admin {
-    // border-left: 1px solid rgb(255 255 255 / 15%);
-    // padding-left: 1rem;
-}
-
 .menu a {
     color: var(--menu-color);
     padding: 1rem 0.75rem;
@@ -87,11 +82,6 @@
     width: 100%;
     transform-origin: top;
     border-radius: 0;
-}
-
-app-userinfo {
-    // padding: 0.2rem;
-    // border-radius: 8px;
 }
 
 .menu a:hover,
@@ -207,7 +197,8 @@ app-svg-icon {
 .menu-content {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+
+    // gap: 1.5rem;
     flex: 1;
 }
 
