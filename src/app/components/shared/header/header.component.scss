@@ -1,5 +1,7 @@
 :host {
     z-index: 2;
+
+    --minimum-height: 3.5rem;
 }
 
 .menu {
@@ -132,7 +134,8 @@ app-svg-icon {
 .user-dropdown ul {
     list-style: none;
     margin: 0;
-    padding: 0;
+    margin-left: auto;
+    min-height: var(--minimum-height);
 
     // padding-right: 0.25rem;
     // margin-left: auto;
@@ -197,6 +200,7 @@ app-svg-icon {
 .menu-content {
     display: flex;
     align-items: center;
+    min-height: var(--minimum-height);
 
     // gap: 1.5rem;
     flex: 1;

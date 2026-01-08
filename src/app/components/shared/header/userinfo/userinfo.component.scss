@@ -12,6 +12,7 @@ li {
     list-style: none;
     margin: 0;
     padding: 0.5rem;
+    align-content: center;
 
     // width: fit-content;
     color: var(--menu-color);
@@ -22,7 +23,8 @@ li {
     color: var(--menu-color);
     cursor: pointer;
     font-weight: 600;
-    padding: 0.45rem 0.75rem;
+
+    // padding: 0.45rem 0.75rem;
     border-radius: 8px;
     display: inline-flex;
     align-items: center;
@@ -53,7 +55,7 @@ li {
 
     /* hidden by default */
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(1rem);
     pointer-events: none;
     transition: 0.2s ease;
 }
@@ -61,7 +63,8 @@ li {
 /* show on hover */
 :host:hover .dropdown {
     opacity: 1;
-    transform: translateY(0);
+
+    // transform: translateY(0);
     pointer-events: auto;
 }
 
@@ -79,6 +82,7 @@ a {
     color: var(--menu-color);
     width: 100%;
     align-self: center;
+    padding: 0 0.5rem;
 }
 
 /* logout danger */
