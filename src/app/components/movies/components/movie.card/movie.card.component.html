@@ -2,14 +2,14 @@
 <div
     class="card-view hover-shadow"
     [style.--index]="index % 20"
-    [class.poster-loaded]="imageLoaded"
+    [class.poster-loaded]="imageLoaded$.value"
     [class.watched]="isInWatchedList | async"
     (animationend)="onAnimationEnd($event)">
     <div class="poster">
-        @if (!imageLoaded) {
+        @if (!imageLoaded$.value) {
             <svg
                 class="loading-svg"
-                [class.loading-svg]="!imageLoaded"
+                [class.loading-svg]="!imageLoaded$.value"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 200 200">
                 <circle class="bouncing-circle" r="10" cx="40" cy="65">
@@ -47,8 +47,8 @@
 
         <img
             class="poster-image"
-            [src]="imageUrl"
-            [class.image-fade-in]="imageLoaded"
+            [src]="imageUrl.value"
+            [class.image-fade-in]="imageLoaded$.value"
             loading="lazy"
             (load)="onImageLoaded()"
             (click)="onImageClick()"

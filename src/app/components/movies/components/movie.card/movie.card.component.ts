@@ -46,21 +46,17 @@ export class MovieCardComponent implements OnInit {
     dialogLoading$ = new BehaviorSubject<boolean>(false);
     imageLoaded$ = new BehaviorSubject<boolean>(false);
 
-    imageLoaded: boolean = false;
-    imageUrl: string = '';
-    imageLoadingUrl: string = '/assets/images/placeholder.gif';
+    imageUrl = new BehaviorSubject<string>('');
     noImageUrl: string = '/assets/images/placeholder.png';
-    alt: string = '';
-
-    linkUrl: string = '';
+    // imageLoadingUrl: string = '/assets/images/placeholder.gif';
 
     ngOnInit() {
-        this.imageUrl = this.movie.get_poster_path() ?? this.noImageUrl;
+        const imgUrl = this.movie.get_poster_path() ?? this.noImageUrl;
+        this.imageUrl.next(imgUrl);
     }
 
     onImageLoaded() {
         this.imageLoaded$.next(true);
-        this.imageLoaded = true;
     }
 
     onImageClick() {
@@ -76,8 +72,8 @@ export class MovieCardComponent implements OnInit {
     }
 
     handleEmptyImage() {
-        this.imageUrl = this.noImageUrl;
-        this.imageLoaded = true;
+        this.imageUrl.next(this.noImageUrl);
+        this.onImageLoaded();
     }
 
     movieDialogLoadStart() {
