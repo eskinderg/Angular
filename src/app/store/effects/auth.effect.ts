@@ -61,7 +61,7 @@ export class AuthEffect {
     loginWithUsernamePasswordSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loginWithUsernamePasswordSuccess),
-            switchMap(() => [AuthActions.loadProfile(), AuthActions.routeActions()])
+            switchMap(() => [AuthActions.loadProfile()])
         )
     );
 
@@ -123,7 +123,7 @@ export class AuthEffect {
     loadUserPreferenceSuccess$ = createEffect(() =>
         this.actions$.pipe(
             ofType(PreferenceActions.loadUserPreferenceSuccess),
-            switchMap(() => of(AuthActions.logInSuccess()))
+            switchMap(() => of(AuthActions.logInSuccess(), AuthActions.routeActions()))
         )
     );
 
