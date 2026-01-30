@@ -15,7 +15,7 @@
         transform: scale(0);
     }
 
-    50% {
+    75% {
         opacity: 1;
 
         // transform: translateY(0);
@@ -65,7 +65,7 @@ app-watched {
     flex-flow: column nowrap;
     border-radius: var(--card-border-radius);
     margin-bottom: 3rem;
-    animation: card-enter-animation 1s ease-in-out forwards;
+    animation: card-enter-animation 0.75s ease-in-out forwards;
     animation-delay: calc(50ms * var(--index));
     animation-iteration-count: 1;
 }
