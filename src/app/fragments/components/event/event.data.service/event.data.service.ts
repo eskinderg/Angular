@@ -17,7 +17,8 @@ export class EventDataService extends ApiService {
     }
 
     public createEvent(event: Event): Observable<Event> {
-        return this.http.post<Event>(EVENTS_API_URL, event);
+        // return this.http.post<Event[]>(EVENTS_API_URL, event).pipe(map((response) => response.shift()));
+        return this.updateEvent(event);
     }
 
     public getEventById(eventId: number): Observable<Event> {
@@ -25,25 +26,20 @@ export class EventDataService extends ApiService {
     }
 
     public updateEvent(event: Event): Observable<Event> {
-        return this.http.put<Event>(EVENTS_API_URL, event).pipe(
+        return this.http.put<Event[]>(EVENTS_API_URL + '/upsert', [event]).pipe(
             map((response) => {
-                return response;
+                return response.shift();
             }),
             catchError(this.handleError)
         );
     }
 
     public toggleEvent(event: Event): Observable<Event> {
-        return this.http.put<Event>(EVENTS_API_URL + '/toggle', event).pipe(
-            map((response) => {
-                return response;
-            }),
-            catchError(this.handleError)
-        );
+        return this.updateEvent(event);
     }
 
     public deleteEventById(event: Event): Observable<Event> {
-        return this.http.delete<Event>(EVENTS_API_URL + '/' + event.id).pipe(
+        return this.http.delete<Event>(EVENTS_API_URL + '/' + event.event_id).pipe(
             map(() => {
                 return event;
             }),

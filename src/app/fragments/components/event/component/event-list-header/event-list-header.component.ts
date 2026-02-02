@@ -21,7 +21,7 @@ export class EventListHeaderComponent {
 
     addEvent() {
         if (this.newEvent.title.length > 0) {
-            this.add.emit({ ...this.newEvent, id: v4() });
+            this.add.emit({ ...this.newEvent, event_id: v4() });
             this.newEvent = new Event(); // clear entry
         }
     }

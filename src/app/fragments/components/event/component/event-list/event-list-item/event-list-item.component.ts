@@ -25,7 +25,7 @@ export class EventListItemComponent {
     constructor() {}
 
     onToggleEvent(event: Event) {
-        this.toggle.emit(event);
+        this.toggle.emit({ ...event, complete: !event.complete });
     }
 
     onSelectEvent(selected: boolean, event: Event) {

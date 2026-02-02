@@ -49,7 +49,9 @@ export class EventComponent {
         if (item.selected) {
             this.selectedEvents.push(item.event);
         } else {
-            this.selectedEvents = this.selectedEvents.filter((e: Event) => e.id !== item.event.id);
+            this.selectedEvents = this.selectedEvents.filter(
+                (e: Event) => e.event_id !== item.event.event_id
+            );
         }
     }
 
