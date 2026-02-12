@@ -39,12 +39,13 @@ export class EventDataService extends ApiService {
     }
 
     public deleteEventById(event: Event): Observable<Event> {
-        return this.http.delete<Event>(EVENTS_API_URL + '/' + event.event_id).pipe(
-            map(() => {
-                return event;
-            }),
-            catchError(this.handleError)
-        );
+        return this.updateEvent(event);
+        // return this.http.delete<Event>(EVENTS_API_URL + '/' + event.event_id).pipe(
+        //     map(() => {
+        //         return event;
+        //     }),
+        //     catchError(this.handleError)
+        // );
     }
 
     public deleteEvents(events: Event[]): Observable<Event[]> {

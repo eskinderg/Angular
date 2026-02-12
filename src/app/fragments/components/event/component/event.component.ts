@@ -67,7 +67,7 @@ export class EventComponent {
             )
             .then((result) => {
                 if (result === DIALOG_RESPONSE.YES) {
-                    this.store.dispatch(EventsActions.deleteEvent({ event: event }));
+                    this.store.dispatch(EventsActions.deleteEvent({ event: { ...event, active: false } }));
                 }
             });
         // this.eventDialogService.showDialog(event);
