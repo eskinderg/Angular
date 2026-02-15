@@ -191,7 +191,7 @@ export class AuthEffect {
                 if (permission.IsAdmin) {
                     return of(AuthActions.routeToDashboard());
                 }
-                return of(AuthActions.routeToHome());
+                return this.router.url === '/' ? of(AuthActions.routeToHome()) : EMPTY;
             })
         )
     );
