@@ -20,16 +20,17 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 export class AuthEffect {
     private actions$ = inject(Actions);
     private oauthService = inject(OAuthService);
+    private authPermission = inject(AuthPermission);
     private preferenceDataService = inject(PreferenceDataService);
     private notificationService = inject(NotificationService);
     private router = inject(Router);
 
-    logIn = createEffect((actions$ = inject(Actions), authService = inject(OAuthService)) =>
-        actions$.pipe(
+    logIn = createEffect(() =>
+        this.actions$.pipe(
             ofType(AuthActions.logIn),
             switchMap(() => {
                 let actions: Action[] = [];
-                if (authService.hasValidAccessToken()) {
+                if (this.oauthService.hasValidAccessToken()) {
                     actions = [...actions, AuthActions.loadProfile()];
                 }
                 return of(...actions);
@@ -37,16 +38,16 @@ export class AuthEffect {
         )
     );
 
-    loginWithUserNamePassword$ = createEffect((oauthService = inject(OAuthService)) =>
+    loginWithUserNamePassword$ = createEffect(() =>
         this.actions$.pipe(
             ofType(AuthActions.loginWithUserNamePassword),
             concatMap((action) => {
-                oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
+                this.oauthService.configure({ ...passwordFlowAuthConfig, logoutUrl: undefined });
 
-                return from(oauthService.loadDiscoveryDocumentAndTryLogin()).pipe(
+                return from(this.oauthService.loadDiscoveryDocumentAndTryLogin()).pipe(
                     switchMap(() => {
                         return from(
-                            oauthService.fetchTokenUsingPasswordFlow(action.username, action.password)
+                            this.oauthService.fetchTokenUsingPasswordFlow(action.username, action.password)
                         ).pipe(
                             mergeMap(() => of(AuthActions.loginWithUsernamePasswordSuccess())),
                             catchError((err) => of(AuthActions.loginEventFail({ payload: err })))
@@ -104,20 +105,19 @@ export class AuthEffect {
         )
     );
 
-    loadUserPreference = createEffect(
-        (actions$ = inject(Actions), preferenceDataService = inject(PreferenceDataService)) =>
-            actions$.pipe(
-                ofType(PreferenceActions.loadUserPreference),
-                switchMap(() =>
-                    preferenceDataService.getPreference().pipe(
-                        mergeMap((preference) => [
-                            PreferenceActions.loadUserPreferenceSuccess({
-                                preference: preference.shift()
-                            })
-                        ])
-                    )
+    loadUserPreference = createEffect(() =>
+        this.actions$.pipe(
+            ofType(PreferenceActions.loadUserPreference),
+            switchMap(() =>
+                this.preferenceDataService.getPreference().pipe(
+                    mergeMap((preference) => [
+                        PreferenceActions.loadUserPreferenceSuccess({
+                            preference: preference.shift()
+                        })
+                    ])
                 )
             )
+        )
     );
 
     loadUserPreferenceSuccess$ = createEffect(() =>
@@ -127,8 +127,8 @@ export class AuthEffect {
         )
     );
 
-    logInSuccess = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
-        actions$.pipe(
+    logInSuccess = createEffect(() =>
+        this.actions$.pipe(
             ofType(AuthActions.logInSuccess),
             switchMap(() => {
                 let actions: Action[] = [
@@ -138,10 +138,10 @@ export class AuthEffect {
                     MovieActions.fetchWatchedList()
                 ];
 
-                if (permission.IsAdmin) {
+                if (this.authPermission.IsAdmin) {
                     actions = [...actions, AdminAction.adminFetchUsersInfo(), AdminAction.adminFetchUsers()];
                 }
-                if (!permission.hasPermission('Write'))
+                if (!this.authPermission.hasPermission('Write'))
                     this.notificationService.showStandard(
                         'Current user does not have a write permisstion and any changes are not synced with the server.',
                         'Permission Info',
@@ -177,18 +177,18 @@ export class AuthEffect {
         )
     );
 
-    logOutSuccess = createEffect((actions$ = inject(Actions)) =>
-        actions$.pipe(
+    logOutSuccess = createEffect(() =>
+        this.actions$.pipe(
             ofType(AuthActions.logOutSuccess),
             switchMap(() => of(AuthActions.routeToLogin({ message: '' })))
         )
     );
 
-    routeActions$ = createEffect((actions$ = inject(Actions), permission = inject(AuthPermission)) =>
-        actions$.pipe(
+    routeActions$ = createEffect(() =>
+        this.actions$.pipe(
             ofType(AuthActions.routeActions),
             switchMap(() => {
-                if (permission.IsAdmin) {
+                if (this.authPermission.IsAdmin) {
                     return of(AuthActions.routeToDashboard());
                 }
 
