@@ -191,7 +191,12 @@ export class AuthEffect {
                 if (permission.IsAdmin) {
                     return of(AuthActions.routeToDashboard());
                 }
-                return of(AuthActions.routeToHome());
+
+                if (['/login'].find((r) => r === this.router.url)) {
+                    return of(AuthActions.routeToHome());
+                }
+
+                return EMPTY;
             })
         )
     );
