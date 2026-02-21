@@ -44,7 +44,7 @@
     "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^21.0.6",
     "@angular/language-server": "^21.1.0",
-    "@angular/localize": "^21.0.6",
+    "@angular/localize": "^21.1.4",
     "@angular/service-worker": "^21.0.6",
     "@eslint/js": "^9.38.0",
     "@ngrx/effects": "21.0.0",
