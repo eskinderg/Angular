@@ -53,11 +53,30 @@ a:focus {
     padding: 0.5rem;
 }
 
-.right i {
-    padding: 0.5rem;
+// .right i {
+//     padding: 0.5rem;
+// }
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .left {
     display: flex;
     align-items: center;
+}
+
+app-svg-icon {
+    cursor: pointer;
+    fill: var(--b-secondary);
+}
+
+.btn-archive:hover {
+    fill: red;
+}
+
+.btn-edit:hover {
+    fill: var(--b-active-link-color);
 }

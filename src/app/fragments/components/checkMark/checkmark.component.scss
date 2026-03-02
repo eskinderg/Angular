@@ -6,14 +6,35 @@
 
 span {
     color: var(--secondary);
-    font-size: large;
-    outline: 1px solid var(--border);
-    border-radius: 20%;
+
+    // font-size: large;
+    // outline: 1px solid var(--border);
+    // border-radius: 20%;
     padding: 4px;
 }
 
 .check-mark {
-    color: var(--b-active-link-color);
-    outline: 2px solid var(--border);
-    font-weight: bold;
+    display: inline-block;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 12px;
+        border: solid var(--b-active-link-color);
+        border-width: 0 4px 4px 0 !important;
+        transform: rotate(45deg);
+    }
+}
+
+.checked {
+    &::after {
+        border: solid var(--b-active-link-color);
+    }
+}
+
+.unchecked {
+    &::after {
+        border: solid var(--b-secondary);
+    }
 }

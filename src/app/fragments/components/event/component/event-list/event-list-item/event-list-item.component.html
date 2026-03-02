@@ -1,10 +1,7 @@
 <div class="flex">
     <div class="left">
-        <app-check-mark class="px-2" (selectValue)="onSelectEvent($event, event)"></app-check-mark>
-        <app-check-mark
-            class="px-2"
-            (click)="onToggleEvent(event)"
-            [checked]="event.complete"></app-check-mark>
+        <app-check-mark class="px-2" (selectValue)="onSelectEvent($event, event)" />
+        <app-check-mark class="px-2" (click)="onToggleEvent(event)" [checked]="event.complete" />
 
         <div class="custom-control" [hidden]="IsInEditMode" (dblclick)="onDoubleClick(event)">
             {{ event.title }}
@@ -21,15 +18,39 @@
     </div>
 
     <div class="right">
-        <i
-            [ngClass]="IsInEditMode ? 'btn-success' : 'btn-outline-secondary'"
-            class="btn btn-sm me-2"
-            (click)="onUpdateEvent(event)">
-            <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span>
-        </i>
+        <!-- <i -->
+        <!--     [ngClass]="IsInEditMode ? 'btn-success' : 'btn-outline-secondary'" -->
+        <!--     class="btn btn-sm me-2" -->
+        <!--     (click)="onUpdateEvent(event)"> -->
+        <!--     <span [ngClass]="IsInEditMode ? 'fa fa-checkmark' : 'fa fa-pencil'"></span> -->
+        <!-- </i> -->
+        @if (IsInEditMode) {
+            <!-- <app-svg-icon -->
+            <!--     height="23" -->
+            <!--     width="23" -->
+            <!--     (mouseup)="onUpdateEvent(event)" -->
+            <!--     class="" -->
+            <!--     src="assets/images/edit.svg" /> -->
+
+            <app-check-mark (click)="onUpdateEvent(event)" [checked]="true" />
+        } @else {
+            <app-svg-icon
+                height="23"
+                width="23"
+                (mouseup)="onUpdateEvent(event)"
+                class="btn-edit"
+                src="assets/images/edit.svg" />
+        }
         <!-- <i class="btn btn-danger btn-sm" (click)="removeEvent(event)" > -->
-        <i class="btn btn-outline-danger btn-sm" (click)="removeEvent(event)">
-            <span class="fa fa-bin2"></span>
-        </i>
+        <!-- <i class="btn btn-outline-danger btn-sm" (click)="removeEvent(event)"> -->
+        <!--     <span class="fa fa-bin2"></span> -->
+        <!-- </i> -->
+
+        <app-svg-icon
+            height="23"
+            width="23"
+            (mouseup)="removeEvent(event)"
+            class="btn-archive"
+            src="assets/images/archive.svg" />
     </div>
 </div>
