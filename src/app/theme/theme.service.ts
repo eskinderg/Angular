@@ -6,24 +6,18 @@ import { Injectable, inject, DOCUMENT } from '@angular/core';
 export class ThemeService {
     private document = inject<Document>(DOCUMENT);
 
+    public toggleDarkMode(): boolean {
+        this.DarkMode = !this.DarkMode;
+        return this.DarkMode;
+    }
+
     public get DarkMode(): boolean {
         return JSON.parse(localStorage.getItem('darkmode')) ?? false;
     }
 
     public set DarkMode(isDarkMode: boolean) {
         const root = this.document.querySelector(':root');
-
-        if (isDarkMode) {
-            root.classList.add('dark');
-        } else {
-            root.classList.remove('dark');
-        }
-
+        root.classList.toggle('dark', isDarkMode);
         localStorage.setItem('darkmode', isDarkMode.toString());
-    }
-
-    public toggleDarkMode(): boolean {
-        this.DarkMode = !this.DarkMode;
-        return this.DarkMode;
     }
 }
