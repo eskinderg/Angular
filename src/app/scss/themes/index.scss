@@ -1,5 +1,5 @@
 :root {
-    --primary: #2a6ada;
+    --primary: green;
     --primary-light: rgb(from var(--primary) r g b / 70%);
     --secondary: #6c757d;
     --bs-secondary-color: #6c757d;
@@ -15,7 +15,7 @@
     --nav-link-color: #ffffff8c;
     --navbar-brand-color: #fff;
     --btn-color: #fff;
-    --btn-bg-color: #4f81da;
+    --btn-bg-color: var(--primary);
     --btn-bg-hover-color: #327cff;
     --card-border-color: #0000002d;
     --card-bg: #fff;

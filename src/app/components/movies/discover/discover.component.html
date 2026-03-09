@@ -25,11 +25,11 @@
     @if (isDiscoverMoviesLoading | async) {
         <svg class="loading-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
             <radialGradient id="a12" cx=".66" fx=".66" cy=".3125" fy=".3125" gradientTransform="scale(1.5)">
-                <stop offset="0" stop-color="#2a6ada"></stop>
-                <stop offset=".3" stop-color="#2a6ada" stop-opacity=".9"></stop>
-                <stop offset=".6" stop-color="#2a6ada" stop-opacity=".6"></stop>
-                <stop offset=".8" stop-color="#2a6ada" stop-opacity=".3"></stop>
-                <stop offset="1" stop-color="#2a6ada" stop-opacity="0"></stop>
+                <stop offset="0" stop-color="var(--primary)"></stop>
+                <stop offset=".3" stop-color="var(--primary)" stop-opacity=".9"></stop>
+                <stop offset=".6" stop-color="var(--primary)" stop-opacity=".6"></stop>
+                <stop offset=".8" stop-color="var(--primary)" stop-opacity=".3"></stop>
+                <stop offset="1" stop-color="var(--primary)" stop-opacity="0"></stop>
             </radialGradient>
             <circle
                 transform-origin="center"
@@ -56,7 +56,7 @@
                 transform-origin="center"
                 fill="none"
                 opacity=".2"
-                stroke="#2a6ada"
+                stroke="var(--primary)"
                 stroke-width="7"
                 stroke-linecap="round"
                 cx="100"

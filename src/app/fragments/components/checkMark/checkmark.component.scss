@@ -21,7 +21,7 @@ span {
         display: block;
         width: 6px;
         height: 12px;
-        border: solid var(--b-active-link-color);
+        border: solid var(--primary);
         border-width: 0 4px 4px 0 !important;
         transform: rotate(45deg);
     }
@@ -29,7 +29,7 @@ span {
 
 .checked {
     &::after {
-        border: solid var(--b-active-link-color);
+        border: solid var(--primary);
     }
 }
 
