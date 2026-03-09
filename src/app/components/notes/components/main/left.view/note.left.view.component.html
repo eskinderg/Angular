@@ -32,11 +32,13 @@
         <app-svg-icon
             height="22"
             width="22"
+            [class.disabled]="!permission"
             (clicked)="routeToArchivedNotes()"
             class="archive-note-icon"
             src="assets/images/archive2.svg" />
 
         <app-svg-icon
+            [class.disabled]="!permission"
             height="26"
             width="26"
             (clicked)="onCreateNewNote()"
@@ -75,6 +77,7 @@
                     animate.enter="note-list-item-enter"
                     animate.leave="note-list-item-leave"
                     [note]="note"
+                    [permission]="permission"
                     [selectedNote]="selectedNote$ | async"
                     (updateNote)="onUpdateNote($event)"
                     (archiveNote)="onArchiveNote($event)"

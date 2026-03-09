@@ -71,24 +71,24 @@ div.disabled {
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-color);
+    background: var(--primary-light);
     border-radius: 0.5rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover-color);
+    background: var(--primary);
 }
 
-.custom-scroll {
-    --scrollbar-size: 8px;
-    --scrollbar-thumb-color: var(--bs-primary);
-    --scrollbar-hover-size: 12px;
-    --scrollbar-track-color: rgb(0 0 0 / 5%);
-    --scrollbar-border-radius: 0px;
+// .custom-scroll {
+//     --scrollbar-size: 8px;
+//     --scrollbar-thumb-color: var(--bs-primary);
+//     --scrollbar-hover-size: 12px;
+//     --scrollbar-track-color: rgb(0 0 0 / 5%);
+//     --scrollbar-border-radius: 0px;
 
-    // height: 100%;
-    // display:block;
-}
+//     // height: 100%;
+//     // display:block;
+// }
 
 // :host {
 //  ::ng-deep {

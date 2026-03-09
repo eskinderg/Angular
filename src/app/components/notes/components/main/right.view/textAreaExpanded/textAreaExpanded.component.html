@@ -5,7 +5,7 @@
             [autofocus]="true"
             class="text-input"
             [spellcheck]="opendNote.spell_check"
-            [contentEditable]="!opendNote.readonly"
+            [contentEditable]="!opendNote.readonly && permission"
             #textAreaElementRef
             tabindex="2">
             {{ opendNote.text }}

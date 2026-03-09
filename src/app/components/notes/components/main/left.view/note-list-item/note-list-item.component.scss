@@ -2,9 +2,9 @@
     box-sizing: border-box;
 }
 
-.note-wrapper:hover {
-    // background: var(--active-list-link-hover);
-}
+// .note-wrapper:hover {
+// background: var(--active-list-link-hover);
+// }
 
 .svg-wrap {
     width: 1.25rem;
@@ -16,6 +16,10 @@
 
     // fill: var(--b-secondary);
     fill: var(--bs-nav-tabs-link-active-color);
+}
+
+.disabled {
+    pointer-events: none;
 }
 
 .spell-check:hover {
@@ -98,7 +102,7 @@
 
 .readonly {
     // fill: red;
-    fill: var(--b-active-link-color);
+    fill: var(--primary);
     cursor: pointer;
 }
 

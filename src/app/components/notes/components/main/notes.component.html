@@ -1,6 +1,7 @@
 <div class="note-div" #container>
     <div class="notes-navigation" #leftPane>
         <app-note-left-view
+            [permission]="hasWritePermission"
             [notes$]="filteredNotes$"
             [selectedNote$]="notesApiService.SelectedNote"
             [isSyncing]="notesApiService.IsSyncing | async"
@@ -20,6 +21,7 @@
             @if (notesApiService.OpendNote | async) {
                 <app-note-right-view
                     #appNote
+                    [permission]="hasWritePermission"
                     [facadeNote]="notesApiService.FacadeNote | async"
                     [opendNote]="notesApiService.OpendNote | async"
                     (archiveNote)="onArchiveNote($event)"

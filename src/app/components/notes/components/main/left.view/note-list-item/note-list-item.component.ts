@@ -22,6 +22,7 @@ export class NoteListItemComponent {
     @Input() note: Note;
     @Input() animate: Animate;
     @Input() selectedNote: Note;
+    @Input() permission: boolean;
 
     @Output() archiveNote = new EventEmitter<Note>();
     @Output() updateNote = new EventEmitter<Note>();

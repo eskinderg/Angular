@@ -40,10 +40,10 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-color);
+    background: var(--primary-light);
     border-radius: 0.5rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover-color);
+    background: var(--primary);
 }

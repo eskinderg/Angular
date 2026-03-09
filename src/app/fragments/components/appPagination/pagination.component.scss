@@ -32,7 +32,7 @@
     }
 
     &.active {
-        background: #007bff;
+        background: var(--primary);
         color: #fff;
         font-weight: bold;
         border-color: var(--primary, #007bff);

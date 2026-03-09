@@ -30,6 +30,7 @@ import { AuthService } from 'src/app/auth/auth.service';
     imports: [NoteListItemComponent, AsyncPipe, SvgIconComponent]
 })
 export class NoteLeftViewComponent implements OnDestroy {
+    @Input() permission: boolean;
     notesApiService = inject(NoteApiService);
     private noteStore = inject<Store<fromNotes.INotesState>>(Store);
     route = inject(Router);

@@ -22,6 +22,7 @@ import { TextSelection } from './right.view/textAreaExpanded/text.selection';
 import { DialogService } from 'src/app/shared/dialog/dialog.service';
 import { DIALOG_RESPONSE, DIALOG_SIGNS, DIALOG_TYPE } from 'src/app/shared/dialog/dialog.enum';
 import { NotificationService } from 'src/app/shared/notification/notification.service';
+import { AuthPermission } from 'src/app/auth/auth.permission.service';
 
 @Component({
     selector: 'app-notes',
@@ -33,6 +34,7 @@ import { NotificationService } from 'src/app/shared/notification/notification.se
 })
 export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     public notesApiService = inject(NoteApiService);
+    public permission = inject(AuthPermission);
     private notificationService = inject(NotificationService);
     private dialogService = inject(DialogService);
     private router = inject(Router);
@@ -166,6 +168,10 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
 
     onSyncNote() {
         this.notesApiService.syncNotes();
+    }
+
+    get hasWritePermission(): boolean {
+        return this.permission.hasPermission('Write');
     }
 
     routeToArchivedNotes() {

@@ -45,6 +45,7 @@ export class NoteRightViewComponent {
 
     @Input() opendNote: Note;
     @Input() facadeNote: Note;
+    @Input() permission: boolean;
 
     @Output() archiveNote: EventEmitter<Note> = new EventEmitter();
     @Output() syncNotes: EventEmitter<Note> = new EventEmitter<Note>();

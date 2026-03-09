@@ -41,6 +41,7 @@ export class TextareaExpandedComponent implements ControlValueAccessor, OnDestro
     // private txtSelection = inject(TextSelection);
     private renderer = inject(Renderer2);
 
+    @Input() permission: boolean;
     @Input() opendNote: Note;
     @Input() facadeNote: Note;
     onChange: any = () => {};

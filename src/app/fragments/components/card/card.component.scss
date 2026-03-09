@@ -11,9 +11,12 @@
 
 .card-header {
     padding: 0.65rem;
-    border-radius: 0.375rem;
-    background-color: var(--card-cap-bg);
+    border-radius: 0.375rem 0.375rem 0 0;
+
+    // background-color: var(--card-cap-bg);
+    background: var(--bg-hover) ;
     border-bottom: 1px solid var(--border);
+    color: var(--card-header-color);
 }
 
 .scroll-content {
@@ -30,10 +33,10 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-color);
+    background: var(--primary-light);
     border-radius: 0.5rem;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: var(--scrollbar-thumb-hover-color);
+    background: var(--primary);
 }

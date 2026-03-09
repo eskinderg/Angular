@@ -16,7 +16,7 @@
 }
 
 :host::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-color);
+    background: var(--primary);
     border-radius: 0.5rem;
 }
 
@@ -30,6 +30,10 @@
 //         opacity 200ms ease;
 //     will-change: transform;
 // }
+
+.disabled {
+    pointer-events: none;
+}
 
 .note-list-item-enter {
     animation: note-list-item-fade-in 0.5s ease-in-out backwards;
@@ -319,9 +323,9 @@ input::placeholder {
 
 .main-note-list::-webkit-scrollbar-thumb {
     border-radius: 0.5rem;
-    background: linear-gradient(#5f9cfb, #698fc8, #5f9cfb);
+    background: linear-gradient(var(--primary-light), var(--primary-light), var(--primary-light));
 }
 
 .main-note-list::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(#5f9cfb, #b1caf0, #5f9cfb);
+    background: linear-gradient(var(--primary), var(--primary), var(--primary));
 }
