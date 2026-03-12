@@ -33,9 +33,12 @@
             background: var(--bs-body-bg);
             border-radius: 50%;
             display: flex;
-            align-items: center;
+            flex-flow: column nowrap;
             justify-content: center;
-            font-size: calc((var(--size) * 1px) / 3.5);
+            align-items: center;
+
+            // justify-content: center;
+            font-size: calc((var(--size) * 1px) / 4.0);
             font-weight: bold;
             color: var(--body-color);
 
@@ -43,8 +46,8 @@
         }
 
         .vote-count {
-            position: absolute;
-            bottom: 20%;
+            // position: absolute;
+            bottom: 14%;
             font-size: 85%;
         }
     }

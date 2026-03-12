@@ -8,11 +8,10 @@
     }">
     <div #circle class="circle">
         <div class="inner">
-            {{ displayedValue }}
-            <small>%</small>
+            <span>{{ displayedValue }}%</span>
+            @if (voteCount) {
+                <span class="vote-count">{{ voteCount }}</span>
+            }
         </div>
-        <!-- @if (voteCount) { -->
-        <!--     <span class="vote-count">{{ voteCount }}</span> -->
-        <!-- } -->
     </div>
 </div>
