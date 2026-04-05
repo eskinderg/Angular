@@ -44,10 +44,11 @@ app-watched {
 }
 
 .card-view.watched {
-    opacity: 0.25 ! important;
+    opacity: 0.25 !important;
 }
 
 .card-view {
+    width: var(--card-width);
     position: relative;
     opacity: 0;
     transform: scale(0); /* initial state */
