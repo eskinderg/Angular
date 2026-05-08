@@ -49,10 +49,7 @@
                                 <a routerLink="/notes/mynotes">
                                     My Notes
 
-                                    <app-svg-icon
-                                        src="assets/images/note.svg"
-                                        width="20"
-                                        height="20"></app-svg-icon>
+                                    <app-svg-icon src="assets/images/note.svg" width="20" height="20" />
                                 </a>
                             </li>
                             <li>
@@ -61,8 +58,9 @@
 
                                     <app-svg-icon
                                         src="assets/images/archive2.svg"
+                                        [fill]="'white'"
                                         width="20"
-                                        height="20"></app-svg-icon>
+                                        height="20" />
                                 </a>
                             </li>
                         </ul>
@@ -94,10 +92,7 @@
                                 <a routerLink="/movies/search">
                                     Search
 
-                                    <app-svg-icon
-                                        src="assets/images/search.svg"
-                                        width="20"
-                                        height="20"></app-svg-icon>
+                                    <app-svg-icon src="assets/images/search.svg" width="20" height="20" />
                                 </a>
                             </li>
                             <li><a routerLink="/movies/history">History</a></li>
@@ -116,7 +111,7 @@
 
             <!-- User -->
             <li class="user-dropdown user-info">
-                <app-userinfo (signout)="onSignout()"></app-userinfo>
+                <app-userinfo (signout)="onSignout()" />
             </li>
         </div>
     </div>
