@@ -52,8 +52,8 @@
 
         <div class="note-actions" [class.disabled]="!permission" [class.actions-readonly]="note.readonly">
             <app-svg-icon
-                height="20"
-                width="20"
+                height="25"
+                width="25"
                 (mouseup)="onSpellCheckToggle(note)"
                 [class]="note.spell_check ? 'spell-check-active' : 'spell-check'"
                 src="assets/images/spell.svg" />
