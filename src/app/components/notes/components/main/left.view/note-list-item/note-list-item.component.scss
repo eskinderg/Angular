@@ -28,7 +28,9 @@
 
 .spell-check-active {
     cursor: pointer;
-    fill: var(--spell-check-active);
+
+    // fill: var(--spell-check-active);
+    fill: var(--note-pin-fill);
 }
 
 .leaving {

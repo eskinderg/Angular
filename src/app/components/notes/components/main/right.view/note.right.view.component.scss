@@ -61,12 +61,15 @@
 }
 
 .spell-check:hover {
-    fill: var(--spell-check-active);
+    // fill: var(--spell-check-active);
+    fill: var(--note-pin-fill);
 }
 
 .spell-check-active {
     cursor: pointer;
-    fill: var(--spell-check-active);
+
+    // fill: var(--spell-check-active);
+    fill: var(--note-pin-fill);
 
     // stroke: #1489df;
     // fill: var(--b-active-link-color);
