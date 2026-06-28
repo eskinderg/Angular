@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZonelessChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
@@ -19,7 +19,7 @@ export const appConfig: ApplicationConfig = {
         provideOAuthClient(),
         provideZonelessChangeDetection(),
         provideHttpClient(withFetch(), withInterceptorsFromDi(), withInterceptors(appInterceptors)),
-        provideRouter(appRoutes, withComponentInputBinding()),
+        provideRouter(appRoutes, withComponentInputBinding(), withViewTransitions()),
         importProvidersFrom(appModules),
         provideStore(appReducer, { metaReducers }),
         provideEffects(...appEffects),

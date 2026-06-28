@@ -31,22 +31,28 @@
 //     will-change: transform;
 // }
 
+app-note-list-item {
+    opacity: 0;
+    animation: 300ms note-list-item-fade-in ease forwards;
+    animation-delay: calc((sibling-index() - 1) * 50ms);
+}
+
 .disabled {
     pointer-events: none;
 }
 
-.note-list-item-enter {
-    animation: note-list-item-fade-in 0.5s ease-in-out backwards;
-    animation-delay: calc(50ms * var(--index));
-    animation-iteration-count: 1;
-}
+// .note-list-item-enter {
+//     animation: note-list-item-fade-in 0.5s ease-in-out backwards;
+//     animation-delay: calc(50ms * var(--index));
+//     animation-iteration-count: 1;
+// }
 
-.note-list-item-leave {
-    animation: note-list-item-fade-out 0.5s ease-in-out;
+// .note-list-item-leave {
+//     animation: note-list-item-fade-out 0.5s ease-in-out;
 
-    // animation-delay: calc(50ms * var(--index));
-    animation-iteration-count: 1;
-}
+//     // animation-delay: calc(50ms * var(--index));
+//     animation-iteration-count: 1;
+// }
 
 @keyframes note-list-item-fade-in {
     from {
