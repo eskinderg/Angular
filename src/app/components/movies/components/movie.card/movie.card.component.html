@@ -5,94 +5,170 @@
     [class.poster-loaded]="imageLoaded$.value"
     [class.watched]="isInWatchedList | async"
     (animationend)="onAnimationEnd($event)">
-    <div class="poster">
-        @if (!imageLoaded$.value) {
-            <svg
-                class="loading-svg"
-                [class.loading-svg]="!imageLoaded$.value"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 200 200">
-                <circle class="bouncing-circle" r="10" cx="40" cy="65">
-                    <animate
-                        attributeName="cy"
-                        calcMode="spline"
-                        dur="2"
-                        values="160;110;160;"
-                        keySplines=".5 0 .5 1;.5 0 .5 1"
-                        repeatCount="indefinite"
-                        begin="-.4"></animate>
-                </circle>
-                <circle class="bouncing-circle" r="10" cx="100" cy="65">
-                    <animate
-                        attributeName="cy"
-                        calcMode="spline"
-                        dur="2"
-                        values="160;110;160;"
-                        keySplines=".5 0 .5 1;.5 0 .5 1"
-                        repeatCount="indefinite"
-                        begin="-.2"></animate>
-                </circle>
-                <circle class="bouncing-circle" r="10" cx="160" cy="65">
-                    <animate
-                        attributeName="cy"
-                        calcMode="spline"
-                        dur="2"
-                        values="160;110;160;"
-                        keySplines=".5 0 .5 1;.5 0 .5 1"
-                        repeatCount="indefinite"
-                        begin="0"></animate>
-                </circle>
-            </svg>
-        }
+    <div class="card-wrapper">
+        <div class="front">
+            <div class="front-wrapper">
+                <div class="poster">
+                    @if (!imageLoaded$.value) {
+                        <svg
+                            class="loading-svg"
+                            [class.loading-svg]="!imageLoaded$.value"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 200 200">
+                            <circle class="bouncing-circle" r="10" cx="40" cy="65">
+                                <animate
+                                    attributeName="cy"
+                                    calcMode="spline"
+                                    dur="2"
+                                    values="160;110;160;"
+                                    keySplines=".5 0 .5 1;.5 0 .5 1"
+                                    repeatCount="indefinite"
+                                    begin="-.4"></animate>
+                            </circle>
+                            <circle class="bouncing-circle" r="10" cx="100" cy="65">
+                                <animate
+                                    attributeName="cy"
+                                    calcMode="spline"
+                                    dur="2"
+                                    values="160;110;160;"
+                                    keySplines=".5 0 .5 1;.5 0 .5 1"
+                                    repeatCount="indefinite"
+                                    begin="-.2"></animate>
+                            </circle>
+                            <circle class="bouncing-circle" r="10" cx="160" cy="65">
+                                <animate
+                                    attributeName="cy"
+                                    calcMode="spline"
+                                    dur="2"
+                                    values="160;110;160;"
+                                    keySplines=".5 0 .5 1;.5 0 .5 1"
+                                    repeatCount="indefinite"
+                                    begin="0"></animate>
+                            </circle>
+                        </svg>
+                    }
 
-        <img
-            class="poster-image"
-            [src]="imageUrl.value"
-            [class.image-fade-in]="imageLoaded$.value"
-            loading="lazy"
-            (load)="onImageLoaded()"
-            (click)="onImageClick()"
-            (error)="handleEmptyImage()" />
+                    <img
+                        class="poster-image"
+                        [src]="imageUrl.value"
+                        [class.image-fade-in]="imageLoaded$.value"
+                        loading="lazy"
+                        (load)="onImageLoaded()"
+                        (click)="onImageClick()"
+                        (error)="handleEmptyImage()" />
 
-        @if (dialogLoading$ | async) {
-            <div class="poster-overlay">
-                <div class="spinner"></div>
+                    @if (dialogLoading$ | async) {
+                        <div class="poster-overlay">
+                            <div class="spinner"></div>
+                        </div>
+                    }
+
+                    <app-bookmark
+                        class="btn-bookmark"
+                        [size]="35"
+                        [saved]="isInWatchList | async"
+                        (savedChange)="onBookmarkToggled($event)" />
+                    <span
+                        [class.link-avail]="imageLoaded$.value"
+                        (click)="imageLoaded$.value ? onImageClick() : null"
+                        class="badge bg-secondary lang">
+                        {{ movie.original_language | uppercase }}
+                    </span>
+                    <!-- <app-watched -->
+                    <!--     class="btn-watched" -->
+                    <!--     [watched]="isInWatchedList | async" -->
+                    <!--     (watchedChange)="onWatchedToggled($event)" /> -->
+                </div>
+                <div class="content">
+                    <div class="title">
+                        <strong class="title-text">
+                            <!-- <div class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</div> -->
+                            <a class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">
+                                {{ movie.title }}
+                            </a>
+                        </strong>
+                    </div>
+
+                    <div class="overview-text">{{ movie.overview | truncate: '100' : true }}</div>
+
+                    <div class="year-rating">
+                        <div>{{ movie.release_date | truncate: '4' : false }}</div>
+
+                        <div class="watch">
+                            <a target="_blank" class="watch" [href]="WatchLink">Watch</a>
+                        </div>
+
+                        <div>
+                            <a target="_blank" class="ext" [href]="TorLink">&nbsp; T</a>
+                        </div>
+                        <app-circular-rating
+                            [voteCount]="movie.vote_count"
+                            [voteAverage]="movie.vote_average"
+                            [size]="65" />
+                    </div>
+                </div>
             </div>
-        }
-
-        <app-bookmark [size]="35" [saved]="isInWatchList | async" (savedChange)="onBookmarkToggled($event)" />
-        <span
-            [class.link-avail]="imageLoaded$.value"
-            (click)="imageLoaded$.value ? onImageClick() : null"
-            class="badge bg-secondary lang">
-            {{ movie.original_language | uppercase }}
-        </span>
-        <app-watched [watched]="isInWatchedList | async" (watchedChange)="onWatchedToggled($event)" />
-    </div>
-    <div class="content">
-        <div class="title">
-            <strong class="title-text">
-                <!-- <div class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</div> -->
-                <a class="card-title" [routerLink]="[`/movies/d/${movie.id}`]">{{ movie.title }}</a>
-            </strong>
         </div>
 
-        <div class="overview-text">{{ movie.overview | truncate: '100' : true }}</div>
-
-        <div class="year-rating">
-            <div>{{ movie.release_date | truncate: '4' : false }}</div>
-
-            <div class="watch">
-                <a target="_blank" class="watch" [href]="WatchLink">Watch</a>
+        <div class="back">
+            @if (dialogLoading$ | async) {
+                <div class="poster-overlay back-poster-overlay">
+                    <div class="spinner"></div>
+                </div>
+            }
+            <img
+                class="back-poster-image"
+                [src]="imageUrl.value"
+                [class.image-fade-in]="imageLoaded$.value"
+                loading="lazy"
+                (load)="onImageLoaded()"
+                (click)="onImageClick()"
+                (error)="handleEmptyImage()" />
+            <div class="back-content">
+                <a class="back-card-title">
+                    {{ movie.title }}
+                    <div class="back-year">({{ movie.release_date | truncate: '4' : false }})</div>
+                </a>
+                {{ movie.overview }}
             </div>
 
-            <div>
-                <a target="_blank" class="ext" [href]="TorLink">&nbsp; T</a>
+            <div class="back-controls">
+                <svg
+                    width="30px"
+                    height="30px"
+                    class="btn-detail"
+                    fill="#000000"
+                    (click)="onImageClick()"
+                    version="1.1"
+                    viewBox="0 0 96 96"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m18 12a6 6 0 000 12h60a6 6 0 000-12h-60zm0 30a6 6 0 000 12h60a6 6 0 000-12h-60zm0 30a6 6 0 000 12h60a6 6 0 000-12h-60z" />
+                </svg>
+                <app-bookmark
+                    class="back-bookmark"
+                    [size]="35"
+                    [saved]="isInWatchList | async"
+                    (savedChange)="onBookmarkToggled($event)" />
+                <!-- <span -->
+                <!--     [class.link-avail]="imageLoaded$.value" -->
+                <!--     (click)="imageLoaded$.value ? onImageClick() : null" -->
+                <!--     class="badge bg-secondary lang"> -->
+                <!--     {{ movie.original_language | uppercase }} -->
+                <!-- </span> -->
+                <app-watched
+                    class="back-watched"
+                    [watched]="isInWatchedList | async"
+                    (watchedChange)="onWatchedToggled($event)" />
+
+                <div class="watch">
+                    <a target="_blank" class="watch" [href]="WatchLink">Watch</a>
+                </div>
+
+                <div>
+                    <a target="_blank" class="ext" [href]="TorLink">&nbsp; T</a>
+                </div>
             </div>
-            <app-circular-rating
-                [voteCount]="movie.vote_count"
-                [voteAverage]="movie.vote_average"
-                [size]="65" />
         </div>
     </div>
 </div>

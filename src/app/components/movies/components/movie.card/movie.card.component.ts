@@ -51,6 +51,7 @@ export class MovieCardComponent implements OnInit {
     // imageLoadingUrl: string = '/assets/images/placeholder.gif';
 
     ngOnInit() {
+        // const imgUrl = this.noImageUrl;
         const imgUrl = this.movie.get_poster_path() ?? this.noImageUrl;
         this.imageUrl.next(imgUrl);
     }
