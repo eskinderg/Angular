@@ -1,6 +1,8 @@
 :host {
     --card-width: 250px;
-    --card-height: 550px;
+
+    // --card-height: 550px;
+    --card-height: 500px;
     --image-height: 379px;
     --circle-color: var(--del-button-note);
     --card-border-radius: 10px;
@@ -49,6 +51,9 @@
 
 .card-view {
     width: var(--card-width);
+    height: var(--card-height);
+
+    // width: 100%;
     position: relative;
     opacity: 0;
     transform: scale(0); /* initial state */
@@ -113,7 +118,9 @@
     padding-top: 0;
 
     // padding-top: 0rem;
-    max-width: var(--card-width);
+    width: 100%;
+
+    // max-width: var(--card-width);
 }
 
 .title {
@@ -142,9 +149,15 @@ a:hover {
     border-top-right-radius: var(--card-border-radius);
     border-top-left-radius: var(--card-border-radius);
     position: relative;
-    width: var(--card-width);
+
+    // width: var(--card-width);
     height: var(--image-height);
     overflow: hidden;
+
+    // height: auto;
+    width: 100%;
+
+    // border:3px solid yellow;
 }
 
 .poster-overlay {
@@ -202,7 +215,9 @@ app-circular-rating {
     padding: 0.5rem;
     right: -0.15rem;
     top: -0.25rem;
-    border-radius: 0.25rem;
+
+    // border-radius: 0.25rem;
+    border-top-right-radius: var(--card-border-radius);
     cursor: default;
     background: var(--card-border-color);
     color: #fff;
@@ -226,13 +241,13 @@ app-circular-rating {
 }
 
 .poster-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     opacity: 0;
 
     // z-index: 1;
-    width: auto;
+    width: 100%;
     height: 100%; /* Preserve aspect ratio */
     object-fit: cover;
 
@@ -267,11 +282,25 @@ app-circular-rating {
 
 .front-wrapper {
     position: relative;
+    border-radius: var(--card-border-radius);
+
+    // border: 5px solid red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .front {
+    border-radius: var(--card-border-radius);
     backface-visibility: hidden;
 
+    // border: 0.25rem solid #cfddf7;
+    border: 0.25rem solid var(--card-border-color);
+
+    // width: 100%;
+    height: 100%;
+
+    // border: 1px solid conic-gradient(var(--fill-color) calc(var(--progress) * 1%), var(--track-color) 0);
     // background: white;
 }
 
@@ -284,13 +313,19 @@ app-circular-rating {
     backface-visibility: hidden;
     top: 0;
     transform: rotateY(180deg);
-    background-color: var(--card-bg);
+
+    // background-color: var(--card-bg);
+
+    // border: 1px solid var(--border);
+    // border: 0.5rem solid red;
+    // border: 0.25rem solid #cfddf7;
+    border: 0.25rem solid var(--card-border-color);
 
     // padding: 1rem;
-    border-radius: 0.75rem;
+    border-radius: var(--card-border-radius);
 
     // overflow-y: auto;
-    box-shadow: 0 4px 15px 4px rgb(119 119 119 / 20%);
+    // box-shadow: 0 4px 15px 4px rgb(119 119 119 / 20%);
     display: flex;
     flex-direction: column;
 }
@@ -309,6 +344,7 @@ app-circular-rating {
 .back-card-title {
     font-size: 2rem;
     display: inline-block;
+    cursor: pointer;
 }
 
 .back-poster-image {
@@ -319,7 +355,7 @@ app-circular-rating {
     height: 100%;
     object-fit: cover;
     opacity: 0.12 !important;
-    border-radius: 0.75rem;
+    border-radius: var(--card-border-radius);
 }
 
 .back-bookmark {
@@ -337,6 +373,7 @@ app-circular-rating {
 
 .back-poster-overlay {
     z-index: 1;
+    border-radius: var(--card-border-radius);
 }
 
 .back-year {
