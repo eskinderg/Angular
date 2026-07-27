@@ -22,7 +22,7 @@
 </div>
 
 <div class="movie-cards-container">
-    @for (movie of moviesResult.movies; track movie) {
+    @for (movie of moviesResult.movies; track movie.id) {
         <app-movie-card [movie]="movie" [index]="$index" (clickImage)="onClick($event)" />
     }
 </div>

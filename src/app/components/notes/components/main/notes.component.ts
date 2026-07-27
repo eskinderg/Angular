@@ -72,7 +72,7 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     );
 
     constructor() {
-        document.querySelector('.content').className += ' hide-scroll-bar';
+        document.querySelector('.main-view-content').className += ' hide-scroll-bar';
 
         window.addEventListener('offline', () => {
             this.notificationService.showError(
@@ -211,7 +211,7 @@ export class NotesComponent implements OnDestroy, OnInit, AfterViewInit {
     }
 
     ngOnDestroy(): void {
-        document.querySelector('.content').classList.remove('hide-scroll-bar');
+        document.querySelector('.main-view-content').classList.remove('hide-scroll-bar');
         if (this.refreshSubscription) this.refreshSubscription.unsubscribe();
         if (this.syncConflictSubscription) this.syncConflictSubscription.unsubscribe();
         this.removeMouseMove?.();

@@ -40,7 +40,7 @@ export class RightViewComponent implements OnDestroy {
     /* withComponentInputBinding */
     @Input() set id(value: string) {
         this._id = value;
-        document.getElementsByClassName('content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
+        document.getElementsByClassName('main-view-content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
     }
 
     get id(): string {
@@ -57,7 +57,7 @@ export class RightViewComponent implements OnDestroy {
 
     @Input() set page(value: string) {
         this._page = value;
-        document.getElementsByClassName('content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
+        document.getElementsByClassName('main-view-content')[0].scroll({ top: 0, left: 0, behavior: 'auto' });
     }
 
     get page(): string {

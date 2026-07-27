@@ -40,7 +40,7 @@ export class DiscoverComponent implements OnInit, OnDestroy {
     }
 
     private setupInfiniteScroll(): void {
-        const contentEl = document.querySelector('.content');
+        const contentEl = document.querySelector('.main-view-content');
         if (!contentEl) {
             console.error('Content element not found for infinite scroll.');
             return;

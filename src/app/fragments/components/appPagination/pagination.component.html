@@ -1,7 +1,7 @@
 <nav class="pagination-container">
     <button class="page-btn" [disabled]="page === 1" (click)="prev()">‹</button>
 
-    @for (p of pages; track p) {
+    @for (p of pages; track trackPage($index, p)) {
         @if (p === '…') {
             <span class="ellipsis">…</span>
         } @else {

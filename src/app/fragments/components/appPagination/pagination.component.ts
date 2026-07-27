@@ -19,6 +19,10 @@ export class PaginationComponent implements OnChanges {
         this.buildPages();
     }
 
+    trackPage(index: number, page: any): any {
+        return index + page;
+    }
+
     private buildPages() {
         const totalPages = Math.ceil(this.collectionSize / this.pageSize);
         const pages: (number | string)[] = [];
