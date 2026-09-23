@@ -151,17 +151,18 @@ export class MoviesDataService {
             if (queryParams.endDate) urlString += `&release_date.gte=${queryParams.endDate}`;
             if (queryParams.sortBy) urlString += `&sort_by=primary_release_date.${queryParams.sortBy}`;
         }
-        urlString += `&show_me=everything`;
+        // urlString += `&show_me=everything`;
         // if (startDate) urlString += `&primary_release_date.lte=${startDate}`;
         // if (endDate) urlString += `&primary_release_date.gte=${endDate}`;
 
         return this.http.get<MovieResults>(urlString).pipe(
             switchMap((res) => {
-                const result: MovieResults = new MovieResults();
-                result.total_pages = res['total_pages'];
-                result.total_results = res['total_results'];
-                result.page = res['page'];
-                result.movies = res['results'].map((movie: Movie) => new Movie(movie));
+                const result: MovieResults = new MovieResults({
+                    total_pages: res['total_pages'],
+                    total_results: res['total_results'],
+                    page: res['page'],
+                    movies: res['results'].map((movie: Movie) => new Movie(movie))
+                });
 
                 // chain populate and then return MovieResults
                 return this.populateMovies(result.movies).pipe(map(() => result));
@@ -231,14 +232,14 @@ export class MoviesDataService {
                     })
                     .pipe(
                         map((res: any) => {
-                            const result: MovieResults = new MovieResults();
-                            result.total_pages = res.total_pages;
-                            result.total_results = res.total_results;
-                            result.page = res.page;
-                            result.movies = res.results
-                                .filter((movie: any) => (lang ? movie.original_language === lang : movie))
-                                .map((movie: Movie) => new Movie(movie));
-                            return result;
+                            return new MovieResults({
+                                total_pages: res.total_pages,
+                                total_results: res.total_results,
+                                page: res.page,
+                                movies: res.results
+                                    .filter((movie: any) => (lang ? movie.original_language === lang : movie))
+                                    .map((movie: Movie) => new Movie(movie))
+                            });
                         })
                     )
             )
@@ -350,7 +351,7 @@ export class MoviesDataService {
         //     if (queryParams.endDate) urlString += `&release_date.gte=${queryParams.endDate}`;
         //     if (queryParams.sortBy) urlString += `&sort_by=primary_release_date.${queryParams.sortBy}`;
         // }
-        urlString += `&show_me=everything`;
+        // urlString += `&show_me=everything`;
         return this.http.get<MovieResults>(urlString).pipe(
             switchMap((res) => {
                 const result: MovieResults = {

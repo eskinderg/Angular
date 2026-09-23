@@ -29,7 +29,8 @@
 .readonly-menu {
     filter: grayscale(100%);
     pointer-events: none !important;
-    cursor: default !important;
+
+    // cursor: default !important;
 }
 
 .note-header {
@@ -38,11 +39,8 @@
 
 .readonly {
     cursor: default;
-    pointer-events: none;
-}
 
-.svg-readonly {
-    // fill: red !important;
+    // pointer-events: none;
 }
 
 .readonly-svg {
@@ -94,7 +92,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    cursor: pointer;
+
+    // cursor: pointer;
 
     // padding-left: 1rem;
     align-items: center;
