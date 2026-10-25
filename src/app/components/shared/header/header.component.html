@@ -75,29 +75,29 @@
                         </a>
                     </li>
 
-                    <li class="has-dropdown">
-                        <a routerLink="/movies" routerLinkActive="active-link">Movies</a>
-                        <ul class="dropdown">
-                            <li>
-                                <a routerLink="/movies/watchlist">
-                                    Watchlist
-                                    @if (WatchListCount | async; as count) {
-                                        <span class="badge">
-                                            {{ count }}
-                                        </span>
-                                    }
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/movies/search">
-                                    Search
+                    <!-- <li class="has-dropdown"> -->
+                    <!--     <a routerLink="/movies" routerLinkActive="active-link">Movies</a> -->
+                    <!--     <ul class="dropdown"> -->
+                    <!--         <li> -->
+                    <!--             <a routerLink="/movies/watchlist"> -->
+                    <!--                 Watchlist -->
+                    <!--                 @if (WatchListCount | async; as count) { -->
+                    <!--                     <span class="badge"> -->
+                    <!--                         {{ count }} -->
+                    <!--                     </span> -->
+                    <!--                 } -->
+                    <!--             </a> -->
+                    <!--         </li> -->
+                    <!--         <li> -->
+                    <!--             <a routerLink="/movies/search"> -->
+                    <!--                 Search -->
 
-                                    <app-svg-icon src="assets/images/search.svg" width="20" height="20" />
-                                </a>
-                            </li>
-                            <li><a routerLink="/movies/history">History</a></li>
-                        </ul>
-                    </li>
+                    <!--                 <app-svg-icon src="assets/images/search.svg" width="20" height="20" /> -->
+                    <!--             </a> -->
+                    <!--         </li> -->
+                    <!--         <li><a routerLink="/movies/history">History</a></li> -->
+                    <!--     </ul> -->
+                    <!-- </li> -->
                 </ul>
             }
 
