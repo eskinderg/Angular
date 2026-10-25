@@ -28,10 +28,8 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     @Input() title: string;
     @Input() message: string;
     @Input() dialogType:
-        | DIALOG_TYPE.YES_NO
-        | DIALOG_TYPE.CANCEL_ONLY
-        | DIALOG_TYPE.OK_ONLY
-        | DIALOG_TYPE.CLOSE_ONLY = DIALOG_TYPE.YES_NO;
+        DIALOG_TYPE.YES_NO | DIALOG_TYPE.CANCEL_ONLY | DIALOG_TYPE.OK_ONLY | DIALOG_TYPE.CLOSE_ONLY =
+        DIALOG_TYPE.YES_NO;
     @Input() showBackDrop: boolean = true;
     @Input() sign: DIALOG_SIGNS.WARNING | DIALOG_SIGNS.INFO | null;
 

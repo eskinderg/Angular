@@ -18,56 +18,35 @@ const initialState: IPreferenceState = {
 
 export const profileReducer = createReducer<IPreferenceState>(
     initialState,
-    on(
-        AuthActions.logOutSuccess,
-        (state): IPreferenceState => ({
-            ...initialState,
-            preference: { ...initialState.preference, language: state.preference.language }
-        })
-    ),
-    on(
-        PreferenceActions.toggleDarkModeSuccess,
-        (state): IPreferenceState => ({
-            ...state,
-            preference: { ...state.preference, dark_mode: !JSON.parse(state.isDarkMode) },
-            isDarkMode: String(!JSON.parse(state.isDarkMode))
-        })
-    ),
-    on(
-        PreferenceActions.loadUserPreferenceSuccess,
-        (state, action): IPreferenceState => ({
-            ...state,
-            preference: action.preference ?? state.preference
-        })
-    ),
-    on(
-        PreferenceActions.saveUserLangSuccess,
-        (state, action): IPreferenceState => ({
-            ...state,
-            preference: { ...state.preference, language: action.lang }
-        })
-    ),
-    on(
-        PreferenceActions.saveUserPreferenceSuccess,
-        (state, action): IPreferenceState => ({
-            ...state,
-            preference: action.preference ?? state.preference
-        })
-    ),
-    on(
-        PreferenceActions.loadUserInfoSuccess,
-        (state, action): IPreferenceState => ({
-            ...state,
-            user: action.user
-        })
-    ),
-    on(
-        PreferenceActions.updateUserInfoSuccess,
-        (state, action): IPreferenceState => ({
-            ...state,
-            user: action.user
-        })
-    )
+    on(AuthActions.logOutSuccess, (state): IPreferenceState => ({
+        ...initialState,
+        preference: { ...initialState.preference, language: state.preference.language }
+    })),
+    on(PreferenceActions.toggleDarkModeSuccess, (state): IPreferenceState => ({
+        ...state,
+        preference: { ...state.preference, dark_mode: !JSON.parse(state.isDarkMode) },
+        isDarkMode: String(!JSON.parse(state.isDarkMode))
+    })),
+    on(PreferenceActions.loadUserPreferenceSuccess, (state, action): IPreferenceState => ({
+        ...state,
+        preference: action.preference ?? state.preference
+    })),
+    on(PreferenceActions.saveUserLangSuccess, (state, action): IPreferenceState => ({
+        ...state,
+        preference: { ...state.preference, language: action.lang }
+    })),
+    on(PreferenceActions.saveUserPreferenceSuccess, (state, action): IPreferenceState => ({
+        ...state,
+        preference: action.preference ?? state.preference
+    })),
+    on(PreferenceActions.loadUserInfoSuccess, (state, action): IPreferenceState => ({
+        ...state,
+        user: action.user
+    })),
+    on(PreferenceActions.updateUserInfoSuccess, (state, action): IPreferenceState => ({
+        ...state,
+        user: action.user
+    }))
 );
 
 export const getPreferenceState = createFeatureSelector<IPreferenceState>('preference');

@@ -20,50 +20,34 @@ export const eventsReducer = createReducer<IEventsState>(
         ...state,
         events: []
     })),
-    on(
-        EventsActions.createEventSuccess,
-        (state, action): IEventsState => ({
-            ...state,
-            events: [action.event, ...state.events]
+    on(EventsActions.createEventSuccess, (state, action): IEventsState => ({
+        ...state,
+        events: [action.event, ...state.events]
+    })),
+    on(EventsActions.fetchEventsSuccess, (state, action): IEventsState => ({
+        ...state,
+        events: action.events.slice().reverse() || [] // reverse array to show the most recent
+    })),
+    on(EventsActions.toggleEventSuccess, EventsActions.updateEventSuccess, (state, action): IEventsState => ({
+        ...state,
+        events: state.events.map((event) => {
+            return event.event_id === action.event.event_id ? action.event : event;
         })
-    ),
-    on(
-        EventsActions.fetchEventsSuccess,
-        (state, action): IEventsState => ({
-            ...state,
-            events: action.events.slice().reverse() || [] // reverse array to show the most recent
+    })),
+    on(EventsActions.deleteEventSuccess, (state, action): IEventsState => ({
+        ...state,
+        events: state.events.filter((event: Event) => {
+            return event.event_id !== action.event.event_id;
         })
-    ),
-    on(
-        EventsActions.toggleEventSuccess,
-        EventsActions.updateEventSuccess,
-        (state, action): IEventsState => ({
-            ...state,
-            events: state.events.map((event) => {
-                return event.event_id === action.event.event_id ? action.event : event;
-            })
-        })
-    ),
-    on(
-        EventsActions.deleteEventSuccess,
-        (state, action): IEventsState => ({
-            ...state,
-            events: state.events.filter((event: Event) => {
-                return event.event_id !== action.event.event_id;
-            })
-        })
-    ),
+    })),
     on(EventsActions.fetchEventsStart, (state): IEventsState => ({ ...state, isLoading: true })),
     on(EventsActions.fetchEventsComplete, (state): IEventsState => ({ ...state, isLoading: false })),
-    on(
-        EventsActions.deleteEventsSuccess,
-        (state, action): IEventsState => ({
-            ...state,
-            events: state.events.filter((event: Event) => {
-                return action.events.every((e) => e.event_id !== event.event_id);
-            })
+    on(EventsActions.deleteEventsSuccess, (state, action): IEventsState => ({
+        ...state,
+        events: state.events.filter((event: Event) => {
+            return action.events.every((e) => e.event_id !== event.event_id);
         })
-    )
+    }))
 );
 
 export const getEventState = createFeatureSelector<IEventsState>('events');

@@ -48,28 +48,18 @@ export const notesReducer = createReducer<INotesState>(
             facadeNote: action.note
         };
     }),
-    on(
-        NotesActions.syncNotesStart,
-        (state): INotesState => ({
-            ...state,
-            isSyncing: true
-        })
-    ),
-    on(
-        NotesActions.syncServer,
-        (state): INotesState => ({
-            ...state,
-            isLoading: true
-        })
-    ),
-    on(
-        NotesActions.syncNotesFail,
-        NotesActions.syncServerFail,
-        (state): INotesState => ({
-            ...state,
-            isSyncing: false
-        })
-    ),
+    on(NotesActions.syncNotesStart, (state): INotesState => ({
+        ...state,
+        isSyncing: true
+    })),
+    on(NotesActions.syncServer, (state): INotesState => ({
+        ...state,
+        isLoading: true
+    })),
+    on(NotesActions.syncNotesFail, NotesActions.syncServerFail, (state): INotesState => ({
+        ...state,
+        isSyncing: false
+    })),
     on(NotesActions.syncRemoteWithLocalSuccess, (state, action): INotesState => {
         return {
             ...state,
@@ -114,24 +104,18 @@ export const notesReducer = createReducer<INotesState>(
             ...state
         };
     }),
-    on(
-        NotesActions.unselectNote,
-        (state): INotesState => ({
-            ...state,
-            selectedNote: null,
-            opendNote: null,
-            facadeNote: null
-        })
-    ),
-    on(
-        NotesActions.searchSelect,
-        (state, action): INotesState => ({
-            ...state,
-            selectedNote: action.selectedNote,
-            opendNote: action.selectedNote,
-            facadeNote: action.selectedNote
-        })
-    ),
+    on(NotesActions.unselectNote, (state): INotesState => ({
+        ...state,
+        selectedNote: null,
+        opendNote: null,
+        facadeNote: null
+    })),
+    on(NotesActions.searchSelect, (state, action): INotesState => ({
+        ...state,
+        selectedNote: action.selectedNote,
+        opendNote: action.selectedNote,
+        facadeNote: action.selectedNote
+    })),
     on(NotesActions.updateLocalNoteSuccess, (state, action): INotesState => {
         // const localNote = state.notes.find((n) => n.note_id === action.note.note_id);
         const notes: Note[] = state.notes.map((note) => {

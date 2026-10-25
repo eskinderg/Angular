@@ -264,9 +264,9 @@ export class MoviesDataService {
 
     getCasts(movieId: string) {
         return this.http
-            .get<
-                string[]
-            >('https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey)
+            .get<string[]>(
+                'https://api.themoviedb.org/3/movie/' + movieId + '/credits?api_key=' + this.apikey
+            )
             .pipe(
                 map((res) => {
                     return res['cast'];

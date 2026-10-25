@@ -1,143 +1,162 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "Angular": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "prefix": "app",
-          "style": "scss",
-          "changeDetection": "OnPush"
-        },
-        "@schematics/angular:directive": {
-          "prefix": "app"
-        },
-        "@angular-eslint/schematics:application": {
-          "setParserOptionsProject": true
-        },
-        "@angular-eslint/schematics:library": {
-          "setParserOptionsProject": true
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular/build:application",
-          "options": {
-            "allowedCommonJsDependencies": [
-              "jquery",
-              "oidc-client"
-            ],
-            "outputPath": {
-              "base": "docs"
-            },
-            "index": "src/index.html",
-            "polyfills": [
-              "src/polyfills.ts"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "/assets"
-              }
-            ],
-            "styles": [
-              "src/app/scss/styles.scss",
-              "src/assets/fonts/style.css"
-            ],
-            "scripts": ["src/assets/js/init.js"],
-            "browser": "src/main.ts"
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1.5mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "Angular": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "prefix": "app",
+                    "style": "scss",
+                    "changeDetection": "OnPush"
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "6kb"
+                "@schematics/angular:directive": {
+                    "prefix": "app"
+                },
+                "@angular-eslint/schematics:application": {
+                    "setParserOptionsProject": true
+                },
+                "@angular-eslint/schematics:library": {
+                    "setParserOptionsProject": true
                 }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+            },
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular/build:application",
+                    "options": {
+                        "allowedCommonJsDependencies": [
+                            "jquery",
+                            "oidc-client"
+                        ],
+                        "outputPath": {
+                            "base": "docs"
+                        },
+                        "index": "src/index.html",
+                        "polyfills": [
+                            "src/polyfills.ts"
+                        ],
+                        "tsConfig": "tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
+                            }
+                        ],
+                        "styles": [
+                            "src/app/scss/styles.scss",
+                            "src/assets/fonts/style.css"
+                        ],
+                        "scripts": [
+                            "src/assets/js/init.js"
+                        ],
+                        "browser": "src/main.ts"
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1.5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "6kb"
+                                }
+                            ],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        },
+                        "testing": {
+                            "aot": false,
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "assets": [
+                                "src/favicon.ico",
+                                "src/assets"
+                            ],
+                            "styles": [
+                                "src/styles.scss"
+                            ],
+                            "scripts": [],
+                            "polyfills": "src/polyfills.ts"
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular/build:dev-server",
+                    "options": {
+                        "proxyConfig": "src/proxy.conf.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "Angular:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "Angular:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular/build:extract-i18n",
+                    "options": {
+                        "buildTarget": "Angular:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular/build:unit-test",
+                    "options": {
+                        "tsConfig": "tsconfig.spec.json",
+                        "reporters": [
+                            "default"
+                        ],
+                        "coverageReporters": [
+                            "html",
+                            "text-summary"
+                        ],
+                        "setupFiles": [
+                            "src/test.ts"
+                        ],
+                        "buildTarget": ":build:testing",
+                        "runner": "vitest"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "src/**/*.ts",
+                            "src/**/*.html"
+                        ]
+                    }
                 }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular/build:dev-server",
-          "options": {
-            "proxyConfig": "src/proxy.conf.json"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "Angular:build:production"
-            },
-            "development": {
-              "buildTarget": "Angular:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "buildTarget": "Angular:build"
-          }
-        },
-        "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
-          }
         }
-      }
+    },
+    "cli": {
+        "analytics": false,
+        "schematicCollections": [
+            "@angular-eslint/schematics"
+        ]
     }
-  },
-  "cli": {
-    "analytics": false,
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
-  }
 }

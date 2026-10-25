@@ -34,58 +34,36 @@ const initialState: IAuthState = {
 export const authReducer = createReducer<IAuthState>(
     initialState,
     on(AuthActions.logOutSuccess, (): IAuthState => initialState),
-    on(
-        AuthActions.loginWithUserNamePassword,
-        (state, _action): IAuthState => ({
-            ...state,
-            loggingIn: true,
-            error: null
-        })
-    ),
-    on(
-        AuthActions.routeToHome,
-        AuthActions.routeToDashboard,
-        (state, _action): IAuthState => ({
-            ...state,
-            loggingIn: false
-        })
-    ),
-    on(
-        AuthActions.loginEventFail,
-        (state, action): IAuthState => ({
-            ...state,
-            loggingIn: false,
-            error: action.payload
-        })
-    ),
-    on(
-        AuthActions.loadProfileSuccess,
-        (state, action): IAuthState => ({
-            ...state,
-            profile: action.profile.info
-        })
-    ),
-    on(
-        AuthActions.logInSuccess,
-        (state, _action): IAuthState => ({
-            ...state,
-            isLoggedIn: true
-        })
-    ),
-    on(
-        AuthActions.startLoading,
-        (state): IAuthState => ({
-            ...state,
-            isLoading: true
-        })
-    ),
-    on(
-        AuthActions.stopLoading,
-        (state): IAuthState => ({
-            ...state,
-            isLoading: false
-        })
-    )
+    on(AuthActions.loginWithUserNamePassword, (state, _action): IAuthState => ({
+        ...state,
+        loggingIn: true,
+        error: null
+    })),
+    on(AuthActions.routeToHome, AuthActions.routeToDashboard, (state, _action): IAuthState => ({
+        ...state,
+        loggingIn: false
+    })),
+    on(AuthActions.loginEventFail, (state, action): IAuthState => ({
+        ...state,
+        loggingIn: false,
+        error: action.payload
+    })),
+    on(AuthActions.loadProfileSuccess, (state, action): IAuthState => ({
+        ...state,
+        profile: action.profile.info
+    })),
+    on(AuthActions.logInSuccess, (state, _action): IAuthState => ({
+        ...state,
+        isLoggedIn: true
+    })),
+    on(AuthActions.startLoading, (state): IAuthState => ({
+        ...state,
+        isLoading: true
+    })),
+    on(AuthActions.stopLoading, (state): IAuthState => ({
+        ...state,
+        isLoading: false
+    }))
 );
 
 export const getAuthState = createFeatureSelector<IAuthState>('auth');

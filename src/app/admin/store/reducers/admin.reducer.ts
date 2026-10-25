@@ -47,23 +47,17 @@ export const adminReducer = createReducer<IAdminNotesState>(
             usersInfos: action.payload
         };
     }),
-    on(
-        AdminNotesActions.adminUpdateNoteSuccess,
-        (state, action): IAdminNotesState => ({
-            ...state,
-            notes: state.notes.map((note) =>
-                note.note_id === action.payload.note_id || note.note_id === undefined ? action.payload : note
-            ),
-            selectedNote: null
-        })
-    ),
-    on(
-        AdminNotesActions.adminNoteUnSelect,
-        (state): IAdminNotesState => ({
-            ...state,
-            selectedNote: null
-        })
-    ),
+    on(AdminNotesActions.adminUpdateNoteSuccess, (state, action): IAdminNotesState => ({
+        ...state,
+        notes: state.notes.map((note) =>
+            note.note_id === action.payload.note_id || note.note_id === undefined ? action.payload : note
+        ),
+        selectedNote: null
+    })),
+    on(AdminNotesActions.adminNoteUnSelect, (state): IAdminNotesState => ({
+        ...state,
+        selectedNote: null
+    })),
     on(AdminNotesActions.adminBulkUpdateNotesSuccess, (state, action): IAdminNotesState => {
         return {
             ...state,

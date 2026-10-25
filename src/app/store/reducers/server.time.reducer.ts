@@ -11,13 +11,10 @@ const initialState: IServerState = {
 
 export const serverReducer = createReducer<IServerState>(
     initialState,
-    on(
-        updateTimeDiff,
-        (state, action): IServerState => ({
-            ...state,
-            timediff: new Date().getTime() - new Date(action.serverTime).getTime()
-        })
-    )
+    on(updateTimeDiff, (state, action): IServerState => ({
+        ...state,
+        timediff: new Date().getTime() - new Date(action.serverTime).getTime()
+    }))
 );
 
 export const getServerState = createFeatureSelector<IServerState>('server');
