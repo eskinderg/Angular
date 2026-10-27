@@ -19,7 +19,7 @@
                                 [opendNote]="note"
                                 [facadeNote]="note"
                                 [permission]="true"
-                                formControlName="text"></app-textarea-expanded>
+                                formControlName="text" />
                         </div>
                     </div>
 
@@ -48,9 +48,7 @@
                                 </label>
                                 <div class="form-group colour">
                                     <label>Colour</label>
-                                    <app-note-colour-selector
-                                        [note]="note"
-                                        formControlName="colour"></app-note-colour-selector>
+                                    <app-note-colour-selector [note]="note" formControlName="colour" />
                                 </div>
                             </div>
                             <div class="read">

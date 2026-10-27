@@ -1,4 +1,4 @@
-<app-event-list-header class="mb-5" (add)="onAddEvent($event)"></app-event-list-header>
+<app-event-list-header class="mb-5" (add)="onAddEvent($event)" />
 
 <app-card [height]="20" [showHeader]="false" [outerMargin]="0.5" [marginBottomOuter]="3">
     <app-event-list
@@ -6,7 +6,7 @@
         (toggle)="onToggleEvent($event)"
         (remove)="onRemoveEvent($event)"
         (update)="onUpdateEvent($event)"
-        (select)="onSelectEvent($event)"></app-event-list>
+        (select)="onSelectEvent($event)" />
 </app-card>
 
 <i class="btn btn-sm" [ngClass]="{ 'btn-outline-danger': selectedEvents.length }" (click)="onDeleteEvents()">
@@ -19,4 +19,4 @@
 <!--   <app-confirm-dialog-component></app-confirm-dialog-component> -->
 <!-- </ng-template> -->
 
-<router-outlet></router-outlet>
+<router-outlet />

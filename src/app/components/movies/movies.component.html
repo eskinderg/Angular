@@ -1,11 +1,11 @@
 <div class="movie-container">
     <div class="mov">
         <div class="left-view make-me-sticky">
-            <app-left-view (select)="onGenreSelect()" [genres]="genres"></app-left-view>
+            <app-left-view (select)="onGenreSelect()" [genres]="genres" />
         </div>
 
         <div class="right-view">
-            <router-outlet></router-outlet>
+            <router-outlet />
         </div>
     </div>
 </div>

@@ -9,11 +9,11 @@ import { MoviesDataService } from '../movies/service/movies.data.service';
 import { BarchartComponent } from 'src/app/fragments/components/barchart/barchart.component';
 import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
 import { map, Observable } from 'rxjs';
-import { AsyncPipe, UpperCasePipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { AuthPermission } from 'src/app/auth/auth.permission.service';
 import { ScatterPlotConnectedChartComponent } from 'src/app/fragments/components/scatterPlotConnectedChart/scatterplotconnected.component';
 import { PieChartComponent } from 'src/app/fragments/components/piechart/piechart.component';
-import { TruncatePipe } from '../movies/directives/truncate';
+// import { TruncatePipe } from '../movies/directives/truncate';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,9 +26,9 @@ import { TruncatePipe } from '../movies/directives/truncate';
         ScatterPlotChartComponent,
         PieChartComponent,
         ScatterPlotConnectedChartComponent,
-        AsyncPipe,
-        UpperCasePipe,
-        TruncatePipe
+        AsyncPipe
+        // UpperCasePipe,
+        // TruncatePipe
     ],
     providers: [MoviesApiService, MoviesDataService, AdminNoteApiService]
 })

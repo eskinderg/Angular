@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     padding: 2rem 1.5rem;
     gap: 1rem;
-    justify-content: center;
+    place-content: flex-start flex-start;
 }
 
 .home-wrapper div {

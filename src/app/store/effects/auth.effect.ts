@@ -188,10 +188,6 @@ export class AuthEffect {
         this.actions$.pipe(
             ofType(AuthActions.routeActions),
             switchMap(() => {
-                if (this.authPermission.IsAdmin) {
-                    return of(AuthActions.routeToDashboard());
-                }
-
                 if (['/login'].find((r) => r === this.router.url)) {
                     return of(AuthActions.routeToHome());
                 }
