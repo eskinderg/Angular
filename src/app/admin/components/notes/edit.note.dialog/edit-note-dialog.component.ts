@@ -6,7 +6,9 @@ import {
     OnInit,
     ViewContainerRef,
     ChangeDetectionStrategy,
-    inject
+    inject,
+    Renderer2,
+    OnDestroy
 } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -33,17 +35,20 @@ import { AdminNoteApiService } from 'src/app/admin/admin.notes.api.service';
     styleUrls: ['./edit-note-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditNoteDialogComponent implements OnInit {
+export class EditNoteDialogComponent implements OnInit, OnDestroy {
     private adminNoteApiService = inject(AdminNoteApiService);
     private dialogService = inject(DialogService);
     private vcRef = inject(ViewContainerRef);
     private fb = inject(FormBuilder);
+    private renderer = inject(Renderer2);
 
     @Input() note!: Note;
     @Output() closed = new EventEmitter<void>();
     @Output() saved = new EventEmitter<Note>();
     form!: FormGroup;
     dirty = false;
+
+    private unlistenEsc?: () => void;
 
     constructor() {
         this.dialogService.registerHost(this.vcRef);
@@ -70,6 +75,17 @@ export class EditNoteDialogComponent implements OnInit {
         this.form.valueChanges.subscribe(() => {
             this.dirty = true;
         });
+
+        this.unlistenEsc = this.renderer.listen('document', 'keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Escape' || e.code === 'Escape') {
+                e.preventDefault();
+                this.requestClose('esc');
+            }
+        });
+    }
+
+    private requestClose(_reason: 'click' | 'esc') {
+        this.onClose();
     }
 
     onOwnerChange(event: Event) {
@@ -125,5 +141,9 @@ export class EditNoteDialogComponent implements OnInit {
         const value = new Date(date);
 
         return formatter.format(value);
+    }
+
+    ngOnDestroy(): void {
+        this.unlistenEsc?.();
     }
 }
